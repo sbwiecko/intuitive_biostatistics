@@ -8,11 +8,10 @@ This approach ensures that the test isn't affected much by outliers.
 import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
-
 import scipy.stats as ss
 ```
 
-## Comparing two unpaired groups: Mann-Whitney/Wilcoxon rank-sum test
+## Comparing 2 unpaired groups: Mann-Whitney/Wilcoxon rank-sum test
 The data come from Chapter 30. Two values tie for ranks 4 and 5, so both are assigned a rank of 4.5
 
 
@@ -210,3 +209,38 @@ The P value tests the H0 that there is no rank correlation in the overall popula
 
 ## Nonparametric ANOVA
 See Kruskal-Wallis test (one-way ANOVA) and Friedman's test (repeated-measures one-way ANOVA). These tests first rank the data from low to high and then analyze the distribution of the ranks amoing groups.
+
+
+```python
+A = ss.norm(loc=10, scale=2).rvs(size=10)
+B = ss.norm(loc=10, scale=2).rvs(size=10)
+C = ss.norm(loc=12, scale=3).rvs(size=10)
+D = ss.norm(loc=15, scale=2).rvs(size=10)
+```
+
+
+```python
+plt.boxplot([A,B,C,D]);
+```
+
+
+![png](output_34_0.png)
+
+```python
+ss.kruskal(A,B,C,D)
+```
+
+
+    KruskalResult(statistic=19.17951219512196, pvalue=0.000250998968596849)
+
+
+```python
+import scikit_posthocs as sp
+x=[A,B,C,D]
+print(sp.posthoc_dunn(x, p_adjust='b'))
+```
+
+    [[-1.00000000e+00  1.00000000e+00  1.00000000e+00  2.24488486e-03]
+     [ 1.00000000e+00 -1.00000000e+00  1.00000000e+00  7.83167883e-04]
+     [ 1.00000000e+00  1.00000000e+00 -1.00000000e+00  6.88444514e-03]
+     [ 2.24488486e-03  7.83167883e-04  6.88444514e-03 -1.00000000e+00]]
