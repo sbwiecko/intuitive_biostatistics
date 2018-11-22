@@ -1,4 +1,4 @@
-# ANOVA
+
 
 ```python
 import numpy as np
@@ -12,6 +12,8 @@ import statsmodels.sandbox.stats as sandbox_stats
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 ```
+
+# ANOVA
 
 One-way ANOVA can be seen as a regression model with a **single categorical predictor**. This predictor usually has **2+ categories**. A one-way ANOVA has a single factor with _j_ levels. Each level corresponds to the groups in the independent measures design:
 
@@ -36,11 +38,11 @@ $y_{ij}=\mu_{grand}+\tau_j+\epsilon_{ij}$
 
 One example of one-way ANOVA comparing 3 groups:  
 
-Hypothesis | Scatter from | Sum of squares | Percentage of variation | R² 
+Hypothesis | Scatter from | Sum of squares | Percentage of variation | $R²$
 ---|---|---|---|---
 Null | Grand mean | 17.38 | 100.0% |
 Alternative | Group mean | 16.45 | 94.7% |
-Difference |  | .93 | 5.3% | 0.053
+Difference | - | .93 | 5.3% | 0.053
 
 Of all the variation, 94.7% is the result of variation within the groups, leaving 5.3% of the total variation as the result of differences between the group means.  
 **The sum of squares resulting from the treatment and the sum of sqaures within the groups always add up to the total sum of squares.**
@@ -64,6 +66,7 @@ print(f"P values computed from the F ratio distribution: {p_value:.4f}")
 ```
 
     P values computed from the F ratio distribution: 0.0040
+    
 
 The low P value means that the differences among group means would be very unlikely if in fact all the population means were equal.  
 The low R² means that the differences among group means are only a tiny fraction of the overall variability.
@@ -76,6 +79,23 @@ data = pd.read_csv("../data/PlantGrowth.csv", index_col=0)
 data.head()
 ```
 
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -112,6 +132,10 @@ data.head()
     </tr>
   </tbody>
 </table>
+</div>
+
+
+
 
 ```python
 sns.boxplot(x='group', y='weight', data=data);
@@ -140,13 +164,19 @@ print(k, N, m)
     trt1    10
     trt2    10
     dtype: int64
+    
+
 
 ```python
 data['group'].unique()
 ```
 
 
+
+
     array(['ctrl', 'trt1', 'trt2'], dtype=object)
+
+
 
 
 ```python
@@ -161,7 +191,11 @@ F, p
 ```
 
 
+
+
     (4.846087862380136, 0.0159099583256229)
+
+
 
 ### Using manual computation
 
@@ -177,7 +211,11 @@ SST
 ```
 
 
+
+
     14.258429999999999
+
+
 
 
 ```python
@@ -187,7 +225,11 @@ SSW
 ```
 
 
+
+
     10.492089999999997
+
+
 
 
 ```python
@@ -195,7 +237,11 @@ SSW/SST
 ```
 
 
+
+
     0.7358517031678802
+
+
 
 
 ```python
@@ -204,7 +250,11 @@ SSB
 ```
 
 
+
+
     3.7663400000000014
+
+
 
 
 ```python
@@ -212,7 +262,11 @@ SSB/SST
 ```
 
 
+
+
     0.26414829683211977
+
+
 
 
 ```python
@@ -220,7 +274,11 @@ SSB/SST
 ```
 
 
+
+
     0.3885925925925926
+
+
 
 
 ```python
@@ -228,7 +286,11 @@ SSB/SST
 ```
 
 
+
+
     1.883
+
+
 
 
 ```python
@@ -237,7 +299,11 @@ F_ratio
 ```
 
 
+
+
     4.840616966580977
+
+
 
 
 ```python
@@ -247,7 +313,11 @@ p_value
 ```
 
 
+
+
     0.0159099583256229
+
+
 
 We then fill the following table and then the ANOVA table:  
 
@@ -274,7 +344,11 @@ R² = SSB / SST
 ```
 
 
+
+
     0.2641324168887642
+
+
 
 Omega squared (ω2) is a measure of effect size, or the degree of association for a population. It is an estimate of **how much variance in the response variables are accounted for by the explanatory variables**. Omega squared is widely viewed as a lesser biased alternative to eta-squared, especially when sample sizes are small. Zero indicates no effect.
 $$
@@ -288,7 +362,11 @@ omega2
 ```
 
 
+
+
     0.20401804275562346
+
+
 
 ### statsmodels
 
@@ -297,6 +375,8 @@ omega2
 model = ols('weight ~ group', data=data).fit() # we use OLS regression
 model.summary()
 ```
+
+
 
 
 <table class="simpletable">
@@ -357,11 +437,32 @@ model.summary()
   <th>Kurtosis:</th>      <td> 2.835</td> <th>  Cond. No.          </th> <td>    3.73</td>
 </tr>
 </table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+
+
+
 ```python
 anova_table = sm.stats.anova_lm(model, typ='II')
 anova_table
 ```
 
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -389,6 +490,10 @@ anova_table
     </tr>
   </tbody>
 </table>
+</div>
+
+
+
 # Two-way ANOVA
 
 The data are divided in two ways because each data point is either from an animal given either an inactive or active treatment (one factor) given for either a short or long duration (second factor). If male and female animals were both included you'd need three-way ANOVA.
@@ -432,6 +537,7 @@ print(mult_comp.tukeyhsd()) # P values are computed but not displayed
      ctrl   trt2   0.494   -0.1971 1.1851 False 
      trt1   trt2   0.865    0.1739 1.5561  True 
     --------------------------------------------
+    
 
 These are multiple comparisons CIs, so the 95% confidence level applies to the entire family of comparisons, rather than to each individual interval. There is a 95% change that all three of these CIs include the true population value, leaving a 5% chance that any one or more of the intervals does not include the population value.  
 If a 95% CI for the difference between two means include zero ($H_0$) then the difference is not statistically significant (P>0.05).  
@@ -443,12 +549,16 @@ print(mult_comp.groupstats.groupmean)
 ```
 
     [5.032 4.661 5.526]
+    
+
 
 ```python
 mult_comp_2 = sm.stats.multicomp.pairwise_tukeyhsd(data['weight'], data['group'])
 # Tukey’s Honestly Significant Difference
 mult_comp_2.summary()
 ```
+
+
 
 
 <table class="simpletable">
@@ -466,14 +576,22 @@ mult_comp_2.summary()
    <td>trt1</td>   <td>trt2</td>    <td>0.865</td>  <td>0.1739</td>  <td>1.5561</td>  <td>True</td> 
 </tr>
 </table>
+
+
+
+
 ```python
 np.diff(mult_comp_2.confint) # same CI for all three comparisons (see end of this part), here n=10 in all groups
 ```
 
 
+
+
     array([[1.38217336],
            [1.38217336],
            [1.38217336]])
+
+
 
 When computing most multiple comparisons tests, the SD for difference between 2 means is not computed from the SDs of those two groups but rather from the pooled SD of all the groups. The margin of error of the CI is computed by multiplying the SE of the difference by a critical value that depends on the choice of test, the number of df, the degree of confidence desired and the number of comparisons:
 $$
@@ -521,7 +639,11 @@ p_val_adj
 ```
 
 
+
+
     0.016666666666666666
+
+
 
 
 ```python
@@ -531,7 +653,11 @@ res
 ```
 
 
+
+
     Ttest_indResult(statistic=1.1912603818487009, pvalue=0.2490231659730067)
+
+
 
 
 ```python
@@ -539,7 +665,11 @@ res.pvalue <= p_val_adj
 ```
 
 
+
+
     False
+
+
 
 The individual t-tests that are conducted have to have a p-value less than 0.01667 in order to be considered significant.
 
@@ -554,10 +684,14 @@ multipletests([.05, 0.3, 0.01], alpha=.05, method='bonferroni')
 ```
 
 
+
+
     (array([False, False,  True]),
      array([0.15, 0.9 , 0.03]),
      0.016952427508441503,
      0.016666666666666666)
+
+
 
 ### allpairtest
 
@@ -565,6 +699,8 @@ multipletests([.05, 0.3, 0.01], alpha=.05, method='bonferroni')
 ```python
 mult_comp.allpairtest(stats.ttest_ind, method='bonf')[0]
 ```
+
+
 
 
 <table class="simpletable">
@@ -585,7 +721,9 @@ alphacSidak=0.02, alphacBonf=0.017</caption>
 </tr>
 </table>
 
-The pairwise.ttest for independent samples in R, as well as the Tukey HSD test in both R and statsmodels, use the **joint variance across all samples**, while the pairwise ttest calculates the joint variance estimate for each pair of sample separately. _stats.ttest_ind_ just looks at one pair at a time:  
+
+
+The pairwise.ttest for independent samples in R, as well as the Tukey HSD test in both R and statsmoldels, use the **joint variance across all samples**, while the pairwise ttest calculates the joint variance estimate for each pair of sample separately. _stats.ttest_ind_ just looks at one pair at a time:  
 
 ```Rscipt
 pairwise.t.test(data$weight, data$group, p.adj = "bonferroni")
@@ -599,6 +737,19 @@ trt2 0.263 0.013
 P value adjustment method: bonferroni
 ```
 
+
+```python
+# use scikit_posthocs instead
+import scikit_posthocs as sp
+print(sp.posthoc_ttest(data, 'weight', 'group', pool_sd=True, p_adjust='b'))
+```
+
+              ctrl      trt1      trt2
+    ctrl -1.000000  0.583164  0.263045
+    trt1  0.583164 -1.000000  0.013378
+    trt2  0.263045  0.013378 -1.000000
+    
+
 ## Holm adjustment
 The Holm adjustment sequentially compares the lowest p-value with a Type I error rate that is reduced for each consecutive test. In our case, this means that our first p-value is tested at the .05/3 level (.017), second at the .05/2 level (.025), and third at the .05/1 level (.05). This method is generally considered superior to the Bonferroni adjustment.
 
@@ -606,6 +757,8 @@ The Holm adjustment sequentially compares the lowest p-value with a Type I error
 ```python
 mult_comp.allpairtest(stats.ttest_ind, method='h')[0]
 ```
+
+
 
 
 <table class="simpletable">
@@ -625,3 +778,10 @@ alphacSidak=0.02, alphacBonf=0.017</caption>
    <td>trt1</td>   <td>trt2</td>  <td>-3.0101</td> <td>0.0075</td>  <td>0.0226</td>    <td>True</td> 
 </tr>
 </table>
+
+
+
+
+```python
+
+```
