@@ -1,1 +1,3 @@
-raw.githubusercontent.com
+# PDF and HTML extracts
+*.pdf
+*.html
