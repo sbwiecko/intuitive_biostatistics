@@ -1,3 +1,5 @@
 # PDF and HTML extracts
 *.pdf
 *.html
+
+_build
