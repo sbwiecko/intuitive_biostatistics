@@ -1,5 +1,2 @@
-# PDF and HTML extracts
+# PDF extracts
 *.pdf
-*.html
-
-_build
