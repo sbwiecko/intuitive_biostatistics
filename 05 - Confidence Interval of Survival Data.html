@@ -831,8 +831,9 @@ event_at
 <section id="survival-function">
 <h3>Survival function<a class="headerlink" href="#survival-function" title="Link to this heading">#</a></h3>
 <p>In survival analysis, the survival function S(t) is often estimated using the product of conditional survival probabilities. This is the basis for the Kaplan-Meier estimator, which is one of the most commonly used methods in survival analysis.</p>
-<p>The Kaplan-Meier estimate of the survival function at time t is given by:
-$<span class="math notranslate nohighlight">\(\hat{S}(t) = \prod_{k \mid t_k \le{t}}(1 - \frac{d_k}{n_k})\)</span>$</p>
+<p>The Kaplan-Meier estimate of the survival function at time t is given by:</p>
+<div class="math notranslate nohighlight">
+\[\hat{S}(t) = \prod_{k \mid t_k \le{t}}(1 - \frac{d_k}{n_k})\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p>The product is over all times <span class="math notranslate nohighlight">\(t_i\)</span> up to and including <span class="math notranslate nohighlight">\(t\)</span> where at least one event occurred.</p></li>
@@ -840,8 +841,9 @@ $<span class="math notranslate nohighlight">\(\hat{S}(t) = \prod_{k \mid t_k \le
 <li><p><span class="math notranslate nohighlight">\(n_i\)</span> is the number of individuals at risk at time <span class="math notranslate nohighlight">\(t_i\)</span>, i.e., the number of individuals who have not yet had an event and have not been censored before time <span class="math notranslate nohighlight">\(t_i\)</span>.</p></li>
 </ul>
 <p>This product ensures that the survival function estimate is properly adjusted at each time an event occurs, taking into account the decreasing number of individuals at risk.</p>
-<p>Also note that
-$<span class="math notranslate nohighlight">\(\hat{S}(t_j) = \prod_{i=1}^j\frac{n_i - d_i}{n_i} = \frac{n_j - d_j}{n_j} \times \prod_{i=1}^{j-1} \frac{n_i - d_i}{n_i} = \frac{n_j - d_j}{n_j} \times \hat{S}(t_{j-1})\)</span>$</p>
+<p>Also note that</p>
+<div class="math notranslate nohighlight">
+\[\hat{S}(t_j) = \prod_{i=1}^j\frac{n_i - d_i}{n_i} = \frac{n_j - d_j}{n_j} \times \prod_{i=1}^{j-1} \frac{n_i - d_i}{n_i} = \frac{n_j - d_j}{n_j} \times \hat{S}(t_{j-1})\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
