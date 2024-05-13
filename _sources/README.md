@@ -1,6 +1,6 @@
-# Companion Guide to "Intuitive Biostatistics, 4th edition" by Harvey Motulsky
+# Python Companion Guide to "Intuitive Biostatistics, 4th edition"
 
-This repository contains a companion guide to Harvey Motulsky's "Intuitive Biostatistics, 4th edition" {cite:p}`motulsky_intuitive_2018`. The guide is designed to enhance understanding of the concepts explained in the book by providing practical examples and additional studies.
+This repository contains a companion guide to Harvey Motulsky's [Intuitive Biostatistics, 4th edition](https://global.oup.com/ushe/product/intuitive-biostatistics-9780190643560). The guide is designed to enhance understanding of the concepts explained in the book by providing practical examples and additional studies.
 
 ## Features
 
@@ -11,7 +11,7 @@ This repository contains a companion guide to Harvey Motulsky's "Intuitive Biost
 
 ## How to Use This Guide
 
-This guide is intended to be used alongside the "Intuitive Biostatistics, 4th edition" book. For each chapter or concept in the book, refer to the corresponding section in this guide for practical examples, additional studies, and supplementary information.
+This guide is intended to be used alongside the "Intuitive Biostatistics, 4th edition" book. For each chapter or concept in the book that requires concrete calculations or graphical representation, refer to the corresponding section in this guide for practical examples, additional studies, and supplementary information.
 
 ## Contributing
 

@@ -1,15 +1,14 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>05 - Confidence Interval of Survival Data &#8212; The Python Companion of Intuitive Biostatistics</title>
+    <title>Confidence Interval of Survival Data &#8212; The Python Companion of Intuitive Biostatistics</title>
   
   
   
@@ -29,40 +28,42 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '05 - Confidence Interval of Survival Data';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="06 - Confidence Interval of Counted Data (Poisson Distribution)" href="06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html" />
-    <link rel="prev" title="04 - Confidence Interval of a Proportion" href="04%20-%20Confidence%20Interval%20of%20a%20Proportion.html" />
+    <link rel="next" title="Confidence Interval of Counted Data (Poisson Distribution)" href="06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html" />
+    <link rel="prev" title="Confidence Interval of a Proportion" href="04%20-%20Confidence%20Interval%20of%20a%20Proportion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -173,14 +174,15 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Companion Guide to “Intuitive Biostatistics, 4th edition” by Harvey Motulsky
+                    Python Companion Guide to “Intuitive Biostatistics, 4th edition”
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20Interval%20of%20a%20Proportion.html">04 - Confidence Interval of a Proportion</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">05 - Confidence Interval of Survival Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html">06 - Confidence Interval of Counted Data (Poisson Distribution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20Interval%20of%20a%20Proportion.html">Confidence Interval of a Proportion</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Confidence Interval of Survival Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html">Confidence Interval of Counted Data (Poisson Distribution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20Scatter.html">Quantifying Scatter</a></li>
 </ul>
 
     </div>
@@ -235,7 +237,7 @@
       
       
       
-      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics_python" target="_blank"
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -252,7 +254,7 @@
       
       
       
-      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics_python/edit/main/05 - Confidence Interval of Survival Data.ipynb" target="_blank"
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/jupyter-book/05 - Confidence Interval of Survival Data.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -366,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>05 - Confidence Interval of Survival Data</h1>
+    <h1>Confidence Interval of Survival Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,16 +384,16 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-survival-function">Plotting the survival function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-kaplan-meier-estimator">The Kaplan-Meier estimator</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fraction-surviving">The fraction surviving</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-survival-function">The survival function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kaplan-meier-estimator">Kaplan-Meier estimator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fraction-surviving">Fraction surviving</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-function">Survival function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-confidence-interval">The confidence interval</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basics">The basics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-example">Step-by-step example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-survival">Log survival</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process-automation-with-a-script">Process automation with a script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process-automation-with-scripts">Process automation with scripts</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
@@ -408,17 +410,17 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="confidence-interval-of-survival-data">
-<h1>05 - Confidence Interval of Survival Data<a class="headerlink" href="#confidence-interval-of-survival-data" title="Permalink to this heading">#</a></h1>
+<h1>Confidence Interval of Survival Data<a class="headerlink" href="#confidence-interval-of-survival-data" title="Link to this heading">#</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p><strong>Survival analysis</strong> is a branch of statistics that deals with the analysis of time-to-event data, often referred to as ‘survival data’.</p>
 <p>The <strong>event</strong> can be anything from the death of an organism (hence <strong>‘survival’</strong>), to the failure of a mechanical system, to the recovery of a sick patient.</p>
 <p>A <strong>confidence interval</strong> in survival analysis gives a range of values, derived from the data, that is likely to contain the true value of an unknown population parameter. In the context of survival analysis, a confidence interval might be used to describe the uncertainty around a survival time estimate.</p>
 </section>
 <section id="survival-data">
-<h2>Survival data<a class="headerlink" href="#survival-data" title="Permalink to this heading">#</a></h2>
+<h2>Survival data<a class="headerlink" href="#survival-data" title="Link to this heading">#</a></h2>
 <section id="the-lifelines-library">
-<h3>The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library<a class="headerlink" href="#the-lifelines-library" title="Permalink to this heading">#</a></h3>
+<h3>The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library<a class="headerlink" href="#the-lifelines-library" title="Link to this heading">#</a></h3>
 <p>In Python, the <a class="reference external" href="https://lifelines.readthedocs.io/en/stable/index.html"><code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library</a> is commonly used for survival analysis. It provides a simple and intuitive API for fitting survival models, and also includes functions for visualizing survival data. Here’s a basic example of how you might calculate a confidence interval for a survival function estimate using the KaplanMeierFitter class in lifelines:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -547,12 +549,12 @@ document.write(`
 <p>The <code class="docutils literal notranslate"><span class="pre">kmf._median</span></code> attribute gives us the <strong>median survival time</strong>. In the context of survival analysis, the median survival time is the smallest time at which the survival probability drops to 0.5 or below. In other words, it’s the time by which half of the population has experienced the event of interest.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median survival time: &quot;</span><span class="p">,</span> <span class="n">kmf</span><span class="o">.</span><span class="n">median_survival_time_</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median survival time:&quot;</span><span class="p">,</span> <span class="n">kmf</span><span class="o">.</span><span class="n">median_survival_time_</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Median survival time:  5.89
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Median survival time: 5.89
 </pre></div>
 </div>
 </div>
@@ -752,8 +754,7 @@ event_at
 <span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">survival_events_from_table</span><span class="p">(</span>
     <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;YEARS&#39;</span><span class="p">),</span>
     <span class="n">observed_deaths_col</span><span class="o">=</span><span class="s1">&#39;observed&#39;</span><span class="p">,</span>
-    <span class="n">censored_col</span><span class="o">=</span><span class="s1">&#39;censored&#39;</span><span class="p">,</span>
-<span class="p">)</span>
+    <span class="n">censored_col</span><span class="o">=</span><span class="s1">&#39;censored&#39;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Durations of observation:&quot;</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
 </pre></div>
@@ -767,7 +768,7 @@ event_at
 </div>
 </section>
 <section id="plotting-the-survival-function">
-<h3>Plotting the survival function<a class="headerlink" href="#plotting-the-survival-function" title="Permalink to this heading">#</a></h3>
+<h3>Plotting the survival function<a class="headerlink" href="#plotting-the-survival-function" title="Link to this heading">#</a></h3>
 <p>We can then plot the survival function with confidence intervals using <code class="docutils literal notranslate"><span class="pre">kmf.plot_survival_function()</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -780,7 +781,7 @@ event_at
     <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
     <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
-    <span class="n">at_risk_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># add summary tables below the plot</span>
+    <span class="n">at_risk_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># adds summary tables below the plot</span>
 <span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (years)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Suvival probability estimate&#39;</span><span class="p">)</span>
@@ -796,10 +797,10 @@ event_at
 <p>The shaded area around the survival function line represents the confidence interval. By default, it’s a 95% confidence interval, meaning we are 95% confident that the true survival function lies within this area.</p>
 </section>
 </section>
-<section id="the-kaplan-meier-estimator">
-<h2>The Kaplan-Meier estimator<a class="headerlink" href="#the-kaplan-meier-estimator" title="Permalink to this heading">#</a></h2>
-<section id="the-fraction-surviving">
-<h3>The fraction surviving<a class="headerlink" href="#the-fraction-surviving" title="Permalink to this heading">#</a></h3>
+<section id="kaplan-meier-estimator">
+<h2>Kaplan-Meier estimator<a class="headerlink" href="#kaplan-meier-estimator" title="Link to this heading">#</a></h2>
+<section id="fraction-surviving">
+<h3>Fraction surviving<a class="headerlink" href="#fraction-surviving" title="Link to this heading">#</a></h3>
 <p>The <strong>fraction surviving</strong>, often represented as <span class="math notranslate nohighlight">\(S(t)\)</span>, is a fundamental concept in survival analysis. It represents the probability that an individual survives from the time origin (t=0) to a specified future time t.</p>
 <p>The survival function S(t), also known as the probability that life is longer than <span class="math notranslate nohighlight">\(t\)</span>, is given by <span class="math notranslate nohighlight">\(S(t) = P(T &gt; t)\)</span>, where T is the random lifetime taken from the population.</p>
 <p>In the context of survival analysis, “surviving” doesn’t necessarily mean “not dying.” Instead, it means “not experiencing the event of interest.” The event could be anything: death, failure of a machine, recovery from a disease, etc.</p>
@@ -827,12 +828,11 @@ event_at
 </div>
 </div>
 </section>
-<section id="the-survival-function">
-<h3>The survival function<a class="headerlink" href="#the-survival-function" title="Permalink to this heading">#</a></h3>
+<section id="survival-function">
+<h3>Survival function<a class="headerlink" href="#survival-function" title="Link to this heading">#</a></h3>
 <p>In survival analysis, the survival function S(t) is often estimated using the product of conditional survival probabilities. This is the basis for the Kaplan-Meier estimator, which is one of the most commonly used methods in survival analysis.</p>
-<p>The Kaplan-Meier estimate of the survival function at time t is given by:</p>
-<div class="math notranslate nohighlight">
-\[\hat{S}(t) = \prod_{k \mid t_k \le{t}}(1 - \frac{d_k}{n_k})\]</div>
+<p>The Kaplan-Meier estimate of the survival function at time t is given by:
+$<span class="math notranslate nohighlight">\(\hat{S}(t) = \prod_{k \mid t_k \le{t}}(1 - \frac{d_k}{n_k})\)</span>$</p>
 <p>where:</p>
 <ul class="simple">
 <li><p>The product is over all times <span class="math notranslate nohighlight">\(t_i\)</span> up to and including <span class="math notranslate nohighlight">\(t\)</span> where at least one event occurred.</p></li>
@@ -840,9 +840,8 @@ event_at
 <li><p><span class="math notranslate nohighlight">\(n_i\)</span> is the number of individuals at risk at time <span class="math notranslate nohighlight">\(t_i\)</span>, i.e., the number of individuals who have not yet had an event and have not been censored before time <span class="math notranslate nohighlight">\(t_i\)</span>.</p></li>
 </ul>
 <p>This product ensures that the survival function estimate is properly adjusted at each time an event occurs, taking into account the decreasing number of individuals at risk.</p>
-<p>Also note that</p>
-<div class="math notranslate nohighlight">
-\[\hat{S}(t_j) = \prod_{i=1}^j\frac{n_i - d_i}{n_i} = \frac{n_j - d_j}{n_j} \times \prod_{i=1}^{j-1} \frac{n_i - d_i}{n_i} = \frac{n_j - d_j}{n_j} \times \hat{S}(t_{j-1})\]</div>
+<p>Also note that
+$<span class="math notranslate nohighlight">\(\hat{S}(t_j) = \prod_{i=1}^j\frac{n_i - d_i}{n_i} = \frac{n_j - d_j}{n_j} \times \prod_{i=1}^{j-1} \frac{n_i - d_i}{n_i} = \frac{n_j - d_j}{n_j} \times \hat{S}(t_{j-1})\)</span>$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -902,7 +901,8 @@ Time: 6.54, Survival fraction S(t): 0.3428571428571429
 
 <span class="sd">    Args:</span>
 <span class="sd">        durations: A numpy array of event times.</span>
-<span class="sd">        event_observed: A numpy array of indicators (1: event, 0: censoring) at each time point.</span>
+<span class="sd">        event_observed: A numpy array of indicators (1 for event, 0 for censoring) </span>
+<span class="sd">        at each time point.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A tuple containing three numpy arrays:</span>
@@ -946,10 +946,10 @@ Time: 6.54, Survival fraction S(t): 0.3428571428571429
 </div>
 </section>
 </section>
-<section id="the-confidence-interval">
-<h2>The confidence interval<a class="headerlink" href="#the-confidence-interval" title="Permalink to this heading">#</a></h2>
+<section id="confidence-interval">
+<h2>Confidence interval<a class="headerlink" href="#confidence-interval" title="Link to this heading">#</a></h2>
 <section id="the-basics">
-<h3>The basics<a class="headerlink" href="#the-basics" title="Permalink to this heading">#</a></h3>
+<h3>The basics<a class="headerlink" href="#the-basics" title="Link to this heading">#</a></h3>
 <p>The confidence interval for the survival function at each time point is typically calculated in using the <a class="reference external" href="https://bookdown.org/sestelo/sa_financial/pointwise-confidence-interval-for-st.html">Greenwood’s formula</a>, which provides an estimate of the variance of the survival function. The formula for the variance at time <span class="math notranslate nohighlight">\(t\)</span> using the so-called “linear” or “plain” method is:</p>
 <div class="math notranslate nohighlight">
 \[\sigma^2(S(t)) = S^2(t) \times \sum_{t_i \le{t}} \frac{d_i}{n_i (n_i - d_i)}\]</div>
@@ -967,7 +967,7 @@ Time: 6.54, Survival fraction S(t): 0.3428571428571429
 <p>Note that these calculations assume that the number of events at each time point and the number of individuals at risk are <em>large enough</em> for the Central Limit Theorem to hold. If these numbers are small, the confidence intervals may not be accurate.</p>
 </section>
 <section id="step-by-step-example">
-<h3>Step-by-step example<a class="headerlink" href="#step-by-step-example" title="Permalink to this heading">#</a></h3>
+<h3>Step-by-step example<a class="headerlink" href="#step-by-step-example" title="Link to this heading">#</a></h3>
 <p>The z-values, also known as <strong>z-scores</strong>, correspond to the number of standard deviations away from the mean in a standard normal distribution. They are used to calculate confidence intervals in statistics. These values are derived from the standard normal distribution and are used to calculate the margin of error for confidence intervals.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1058,7 +1058,8 @@ Z-value for 95% confidence: 1.959963984540054
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;e1 = </span><span class="si">{</span><span class="n">e1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(e) = </span><span class="si">{</span><span class="n">sum_e1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SE(t1) = </span><span class="si">{</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain) limits are [</span><span class="si">{</span><span class="n">S1</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S1</span><span class="o">+</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1067,7 +1068,7 @@ Z-value for 95% confidence: 1.959963984540054
 e1 = 0.024
 sum(e) = 0.024
 SE(t1) = 0.132
-The confidence interval (plain) limits are [0.598 - 1.116]
+The confidence interval (plain type) limits are [0.598 - 1.116]
 </pre></div>
 </div>
 </div>
@@ -1084,7 +1085,8 @@ The confidence interval (plain) limits are [0.598 - 1.116]
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;e3 = </span><span class="si">{</span><span class="n">e3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(e) = </span><span class="si">{</span><span class="n">sum_e3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SE(t3) = </span><span class="si">{</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain) limits are [</span><span class="si">{</span><span class="n">S3</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S3</span><span class="o">+</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1093,7 +1095,7 @@ The confidence interval (plain) limits are [0.598 - 1.116]
 e3 = 0.050
 sum(e) = 0.074
 SE(t3) = 0.186
-The confidence interval (plain) limits are [0.321 - 1.051]
+The confidence interval (plain type) limits are [0.321 - 1.051]
 </pre></div>
 </div>
 </div>
@@ -1109,7 +1111,8 @@ The confidence interval (plain) limits are [0.321 - 1.051]
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;e4 = </span><span class="si">{</span><span class="n">e4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(e) = </span><span class="si">{</span><span class="n">sum_e4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SE(t4) = </span><span class="si">{</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain) limits are [</span><span class="si">{</span><span class="n">S4</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S4</span><span class="o">+</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S4</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1118,14 +1121,14 @@ The confidence interval (plain) limits are [0.321 - 1.051]
 e4 = 0.083
 sum(e) = 0.157
 SE(t4) = 0.204
-The confidence interval (plain) limits are [0.115 - 0.914]
+The confidence interval (plain type) limits are [0.115 - 0.914]
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="log-survival">
-<h3>Log survival<a class="headerlink" href="#log-survival" title="Permalink to this heading">#</a></h3>
+<h3>Log survival<a class="headerlink" href="#log-survival" title="Link to this heading">#</a></h3>
 <p>In survival analysis, confidence intervals are often calculated on the log scale, where the <em>complimentary log-log transformation</em> <span class="math notranslate nohighlight">\(v(t) = \log(-\log(S(t)))\)</span> is used a few reasons:</p>
 <ol class="arabic simple">
 <li><p>Symmetry: Survival probabilities are bound between 0 and 1, and their distribution can be skewed, especially when probabilities are close to the boundaries. Taking the logarithm helps to symmetrize the distribution, which is a key assumption for the calculation of confidence intervals.</p></li>
@@ -1215,8 +1218,8 @@ The confidence interval (plain) limits are [0.115 - 0.914]
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;l1 = </span><span class="si">{</span><span class="n">l1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(l) = </span><span class="si">{</span><span class="n">sum_l1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SElog(t1) = </span><span class="si">{</span><span class="n">SEl1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (log-log) limits are</span><span class="se">\</span>
-<span class="s2">      [</span><span class="si">{</span><span class="n">S1</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S1</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S1</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S1</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1224,7 +1227,7 @@ The confidence interval (plain) limits are [0.115 - 0.914]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l1 = -0.154
 sum(l) = -0.154
 SElog(t1) = 1.001
-The confidence interval (log-log) limits are      [0.3340 - 0.9786]
+The confidence interval (plain type) limits are [0.3340 - 0.9786]
 </pre></div>
 </div>
 </div>
@@ -1239,8 +1242,8 @@ The confidence interval (log-log) limits are      [0.3340 - 0.9786]
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;l3 = </span><span class="si">{</span><span class="n">l3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(l) = </span><span class="si">{</span><span class="n">sum_l3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SElog(t3) = </span><span class="si">{</span><span class="n">SEl3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (log-log) limits are</span><span class="se">\</span>
-<span class="s2">      [</span><span class="si">{</span><span class="n">S3</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl3</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S3</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl3</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S3</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl3</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S3</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl3</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1248,7 +1251,7 @@ The confidence interval (log-log) limits are      [0.3340 - 0.9786]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l3 = -0.223
 sum(l) = -0.377
 SElog(t3) = 0.720
-The confidence interval (log-log) limits are      [0.2128 - 0.9121]
+The confidence interval (plain type) limits are [0.2128 - 0.9121]
 </pre></div>
 </div>
 </div>
@@ -1262,8 +1265,8 @@ The confidence interval (log-log) limits are      [0.2128 - 0.9121]
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;l4 = </span><span class="si">{</span><span class="n">l4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(l) = </span><span class="si">{</span><span class="n">sum_l4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SElog(t4) = </span><span class="si">{</span><span class="n">SEl4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (log-log) limits are</span><span class="se">\</span>
-<span class="s2">    [</span><span class="si">{</span><span class="n">S4</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl4</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S4</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl4</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S4</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl4</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S4</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl4</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1271,14 +1274,14 @@ The confidence interval (log-log) limits are      [0.2128 - 0.9121]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l4 = -0.288
 sum(l) = -0.665
 SElog(t4) = 0.596
-The confidence interval (log-log) limits are    [0.1178 - 0.8133]
+The confidence interval (plain type) limits are [0.1178 - 0.8133]
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="process-automation-with-a-script">
-<h3>Process automation with a script<a class="headerlink" href="#process-automation-with-a-script" title="Permalink to this heading">#</a></h3>
+<section id="process-automation-with-scripts">
+<h3>Process automation with scripts<a class="headerlink" href="#process-automation-with-scripts" title="Link to this heading">#</a></h3>
 <p>While libraries like <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> offer convenient functions for various statistical analyses, understanding the underlying calculations is valuable. This section dives into creating one script to calculate confidence intervals.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1287,17 +1290,17 @@ The confidence interval (log-log) limits are    [0.1178 - 0.8133]
 <span class="k">def</span> <span class="nf">greenwood_confidence_interval</span><span class="p">(</span>
         <span class="n">survival_prob_sorted</span><span class="p">,</span> <span class="n">event_indicators_sorted</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log-log&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculates the confidence intervals, plain and log-log, for a Kaplan-Meier curve,</span>
+<span class="sd">    Calculates the confidence intervals, plain and log-log, for a Kaplan-Meier curve, </span>
 <span class="sd">    assuming pre-sorted data, using the Greenwood variance estimate.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        survival_prob_sorted: A numpy array of estimated survival probabilities at each </span>
-<span class="sd">        time point (assumed to be sorted).</span>
-<span class="sd">        event_indicators: A numpy array of indicators (1 for event, 0 for censoring) at </span>
-<span class="sd">        each time point (assumed to be sorted).</span>
+<span class="sd">        survival_prob_sorted: A numpy array of estimated survival probabilities </span>
+<span class="sd">        at each time point (assumed to be sorted).</span>
+<span class="sd">        event_indicators: A numpy array of indicators (1 for event, 0 for censoring) </span>
+<span class="sd">        at each time point (assumed to be sorted).</span>
 <span class="sd">        alpha: Significance level (e.g., 0.05 for 95% confidence interval)</span>
-<span class="sd">        method: if not &quot;log-log&quot; then the function return the &quot;plain&quot; or &quot;linear&quot; </span>
-<span class="sd">        confidence intervals</span>
+<span class="sd">        method: if not &quot;log-log&quot; then the function return the &quot;plain&quot; </span>
+<span class="sd">        or &quot;linear&quot; confidence intervals</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A tuple containing two numpy arrays:</span>
@@ -1327,8 +1330,7 @@ The confidence interval (log-log) limits are    [0.1178 - 0.8133]
     <span class="k">else</span><span class="p">:</span>
         <span class="n">SE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e</span> <span class="o">/</span> <span class="n">sum_l</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">SE</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">survival_prob_sorted</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE</span><span class="p">),</span> <span class="n">survival_prob_sorted</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE</span><span class="p">)]</span>
-        <span class="p">)</span>
+            <span class="p">[</span><span class="n">survival_prob_sorted</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE</span><span class="p">),</span> <span class="n">survival_prob_sorted</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
@@ -1359,7 +1361,7 @@ The confidence interval (log-log) limits are    [0.1178 - 0.8133]
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>Survival analysis is a branch of statistics that deals with time-to-event data. It’s used in a variety of fields, from medical research to machine failure analysis. The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library provides a high-level, intuitive API for survival analysis in Python, making it accessible for both statisticians and non-statisticians.</p>
 <p>Here are some key points about lifelines:</p>
 <ul class="simple">
@@ -1373,7 +1375,7 @@ The confidence interval (log-log) limits are    [0.1178 - 0.8133]
 <p>In conclusion, lifelines is a powerful tool for survival analysis in Python. Whether you’re a researcher studying patient survival times, a data scientist predicting customer churn, or an engineer analyzing machine failure times, lifelines has the tools you need to analyze your data and draw meaningful conclusions.</p>
 </section>
 <section id="session-information">
-<h2>Session Information<a class="headerlink" href="#session-information" title="Permalink to this heading">#</a></h2>
+<h2>Session Information<a class="headerlink" href="#session-information" title="Link to this heading">#</a></h2>
 <p>The output below details all packages and version necessary to reproduce the results in this report.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1461,7 +1463,7 @@ matplotlib: 3.8.3
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">04 - Confidence Interval of a Proportion</p>
+        <p class="prev-next-title">Confidence Interval of a Proportion</p>
       </div>
     </a>
     <a class="right-next"
@@ -1469,7 +1471,7 @@ matplotlib: 3.8.3
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">06 - Confidence Interval of Counted Data (Poisson Distribution)</p>
+        <p class="prev-next-title">Confidence Interval of Counted Data (Poisson Distribution)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1495,16 +1497,16 @@ matplotlib: 3.8.3
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-survival-function">Plotting the survival function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-kaplan-meier-estimator">The Kaplan-Meier estimator</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fraction-surviving">The fraction surviving</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-survival-function">The survival function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kaplan-meier-estimator">Kaplan-Meier estimator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fraction-surviving">Fraction surviving</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-function">Survival function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-confidence-interval">The confidence interval</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basics">The basics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-example">Step-by-step example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-survival">Log survival</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process-automation-with-a-script">Process automation with a script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process-automation-with-scripts">Process automation with scripts</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>

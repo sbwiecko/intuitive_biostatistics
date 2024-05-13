@@ -1,15 +1,14 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>06 - Confidence Interval of Counted Data (Poisson Distribution) &#8212; The Python Companion of Intuitive Biostatistics</title>
+    <title>Confidence Interval of Counted Data (Poisson Distribution) &#8212; The Python Companion of Intuitive Biostatistics</title>
   
   
   
@@ -29,39 +28,42 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '06 - Confidence Interval of Counted Data (Poisson Distribution)';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="05 - Confidence Interval of Survival Data" href="05%20-%20Confidence%20Interval%20of%20Survival%20Data.html" />
+    <link rel="next" title="Quantifying Scatter" href="09%20-%20Quantifying%20Scatter.html" />
+    <link rel="prev" title="Confidence Interval of Survival Data" href="05%20-%20Confidence%20Interval%20of%20Survival%20Data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -172,14 +174,15 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Companion Guide to “Intuitive Biostatistics, 4th edition” by Harvey Motulsky
+                    Python Companion Guide to “Intuitive Biostatistics, 4th edition”
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20Interval%20of%20a%20Proportion.html">04 - Confidence Interval of a Proportion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20Interval%20of%20Survival%20Data.html">05 - Confidence Interval of Survival Data</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">06 - Confidence Interval of Counted Data (Poisson Distribution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20Interval%20of%20a%20Proportion.html">Confidence Interval of a Proportion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20Interval%20of%20Survival%20Data.html">Confidence Interval of Survival Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Confidence Interval of Counted Data (Poisson Distribution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20Scatter.html">Quantifying Scatter</a></li>
 </ul>
 
     </div>
@@ -234,7 +237,7 @@
       
       
       
-      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics_python" target="_blank"
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -251,7 +254,7 @@
       
       
       
-      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics_python/edit/main/06 - Confidence Interval of Counted Data (Poisson Distribution).ipynb" target="_blank"
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/jupyter-book/06 - Confidence Interval of Counted Data (Poisson Distribution).ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -365,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>06 - Confidence Interval of Counted Data (Poisson Distribution)</h1>
+    <h1>Confidence Interval of Counted Data (Poisson Distribution)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -376,16 +379,18 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poisson-distribution">The Poisson distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-example-of-raisins-in-bagels">The example of raisins in bagels</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-distribution">Poisson distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-raisins-in-bagels">Example of raisins in bagels</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-shortcut-approximation">A shortcut approximation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-percent-point-function">The Percent Point Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#percent-point-function">Percent Point Function</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lollipop-plot">Lollipop plot</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-example-of-radioactive-count">The example of radioactive count</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes">The advantage of counting for longer time intervals or in larger volumes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-radioactive-count">Example of radioactive count</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes">Advantage of counting for longer time intervals or in larger volumes</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-the-observed-number-of-counts-is-0">What if the observed number of counts is 0?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
@@ -401,16 +406,16 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="confidence-interval-of-counted-data-poisson-distribution">
-<h1>06 - Confidence Interval of Counted Data (Poisson Distribution)<a class="headerlink" href="#confidence-interval-of-counted-data-poisson-distribution" title="Permalink to this heading">#</a></h1>
+<h1>Confidence Interval of Counted Data (Poisson Distribution)<a class="headerlink" href="#confidence-interval-of-counted-data-poisson-distribution" title="Link to this heading">#</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>In this chapter, we will delve into the world of <strong>counted data</strong> and its statistical analysis using the <strong>Poisson Distribution</strong>. Counted data, often encountered in fields such as epidemiology, traffic engineering, and social sciences, refers to data that are counted as <em>discrete events in a fixed time or space</em>.</p>
 <p>The Poisson Distribution is a powerful statistical tool used to model such data. Named after the French mathematician Siméon Denis Poisson, it provides a way to predict the probability of certain events from happening when you know how often the event has occurred. It is particularly useful when these events happen with a known <strong>average rate</strong> and <em>independently of the time since the last event</em>.</p>
-<p>We will focus on the confidence interval of counted data. Confidence intervals are a range of values that are likely to contain the true population parameter. In the context of Poisson Distribution, it provides a range where the true average rate of occurrence, lambda (<span class="math notranslate nohighlight">\(\lambda\)</span>), or mu (<span class="math notranslate nohighlight">\(\mu\)</span>), lies with a certain level of confidence.</p>
+<p>We will focus on the confidence interval of counted data. Confidence intervals are a range of values that are likely to contain the true population parameter. In the context of Poisson Distribution, it provides a range where the true average rate of occurrence (lambda, <span class="math notranslate nohighlight">\(\lambda\)</span>) lies with a certain level of confidence.</p>
 <p>Following the theoretical foundation, we will transition into practical Python applications, in particular using the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> library</a>. By the end of this chapter, we will have a solid understanding of how to apply Poisson Distribution to analyze counted data and calculate confidence intervals using Python.</p>
 </section>
-<section id="the-poisson-distribution">
-<h2>The Poisson distribution<a class="headerlink" href="#the-poisson-distribution" title="Permalink to this heading">#</a></h2>
+<section id="poisson-distribution">
+<h2>Poisson distribution<a class="headerlink" href="#poisson-distribution" title="Link to this heading">#</a></h2>
 <p>Let’s start by generating two sets of random variables from the Poisson distribution using <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. We will compare two distributions of some background radiation counts, one with a mean of 1.6 counts/min, and the second with 7.5 counts/min.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -447,8 +452,8 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot histograms using matplotlib</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">data1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$\lambda$=</span><span class="si">{</span><span class="n">lambda1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">data2</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$\lambda$=</span><span class="si">{</span><span class="n">lambda2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">data1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lambda=1.6&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">data2</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lambda=7.5&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Poisson Distribution&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
@@ -457,7 +462,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/efd5b5d82893c5c1b787a816eac47d397510d0a284e0d61fbfe2c81b3580f1ee.png" src="_images/efd5b5d82893c5c1b787a816eac47d397510d0a284e0d61fbfe2c81b3580f1ee.png" />
+<img alt="_images/ba0ea7434f9844fb210286db3034fc4ef6b8d107e5979e206696648c59a0004c.png" src="_images/ba0ea7434f9844fb210286db3034fc4ef6b8d107e5979e206696648c59a0004c.png" />
 </div>
 </div>
 <p>We can do similar things using the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> packages.</p>
@@ -473,7 +478,7 @@ document.write(`
     <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span>
     <span class="n">binwidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">discrete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$\lambda$=</span><span class="si">{</span><span class="n">lambda1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;lambda=</span><span class="si">{</span><span class="n">lambda1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
@@ -481,7 +486,7 @@ document.write(`
     <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span>
     <span class="n">binwidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">discrete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$\lambda$=</span><span class="si">{</span><span class="n">lambda2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;lambda=</span><span class="si">{</span><span class="n">lambda2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -494,15 +499,15 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/499b7bf5e495092cdc51e2a961f6c055b8923bb4164845c979a35bb4c86769d8.png" src="_images/499b7bf5e495092cdc51e2a961f6c055b8923bb4164845c979a35bb4c86769d8.png" />
+<img alt="_images/9ffd49f0ff6e6a6fabc1d3665c12c9ccf39f4a0f6fd964c1ab2f8c7b24b762b5.png" src="_images/9ffd49f0ff6e6a6fabc1d3665c12c9ccf39f4a0f6fd964c1ab2f8c7b24b762b5.png" />
 </div>
 </div>
 <p>Remember, the Poisson distribution is discrete, so the values on the x-axis represent specific counts of events. The y-axis represents the frequency of these counts in our data set. The separation between the two histograms reflects the difference in the <span class="math notranslate nohighlight">\(\lambda\)</span> parameters of the two distributions. The distribution with <span class="math notranslate nohighlight">\(\lambda=1.6\)</span> is skewed to the right and has a peak at lower values, while the distribution with <span class="math notranslate nohighlight">\(\lambda=7.5\)</span> is more spread out and has a peak at higher values. This is consistent with the property of the Poisson distribution that its mean and variance are both equal to <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 </section>
-<section id="the-example-of-raisins-in-bagels">
-<h2>The example of raisins in bagels<a class="headerlink" href="#the-example-of-raisins-in-bagels" title="Permalink to this heading">#</a></h2>
+<section id="example-of-raisins-in-bagels">
+<h2>Example of raisins in bagels<a class="headerlink" href="#example-of-raisins-in-bagels" title="Link to this heading">#</a></h2>
 <section id="confidence-interval">
-<h3>Confidence interval<a class="headerlink" href="#confidence-interval" title="Permalink to this heading">#</a></h3>
+<h3>Confidence interval<a class="headerlink" href="#confidence-interval" title="Link to this heading">#</a></h3>
 <p>We’ll use the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> Poisson distribution with an average (<span class="math notranslate nohighlight">\(\mu\)</span>) of 10 raisins per bagel.</p>
 <p>The Poisson distribution is a great fit for this scenario because it models the number of times an event (in this case, a raisin appearing in a bagel) occurs in a fixed interval of time or space. Here, our “fixed space” is the bagel, and the “event” is the appearance of a raisin.</p>
 <p>We’ll generate a sample data set, calculate the 2.5th and 97.5th percentiles of this data, which represent the lower and upper bounds of the 95% confidence interval, respectively, and plot the histogram.</p>
@@ -528,10 +533,11 @@ document.write(`
     <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span>
-    <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">conf_int</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2.5 percentile&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">conf_int</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;97.5 percentile&#39;</span><span class="p">)</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">conf_int</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2.5 percentile&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">conf_int</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;97.5 percentile&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Raisins in Bagels&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Raisins&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
@@ -549,7 +555,7 @@ document.write(`
 </div>
 </section>
 <section id="a-shortcut-approximation">
-<h3>A shortcut approximation<a class="headerlink" href="#a-shortcut-approximation" title="Permalink to this heading">#</a></h3>
+<h3>A shortcut approximation<a class="headerlink" href="#a-shortcut-approximation" title="Link to this heading">#</a></h3>
 <p>The Central Limit Theorem states that the sum of a <em>large number</em> of independent and identically distributed random variables will approximately follow a <em>normal distribution</em>, regardless of the shape of their original distribution. In the case of the Poisson distribution, as the mean (<span class="math notranslate nohighlight">\(\lambda\)</span>) gets larger, the distribution becomes more symmetric and starts to look like a normal distribution.</p>
 <p>When the count values are large (typically, <span class="math notranslate nohighlight">\(\lambda &gt; 30\)</span> is considered large enough), we can use the normal approximation to the Poisson distribution to calculate the confidence interval. The standard deviation of a Poisson distribution is the square root of <span class="math notranslate nohighlight">\(\lambda\)</span> (for Poisson distribution, the mean and the variance are equal to <span class="math notranslate nohighlight">\(\lambda\)</span>), so the standard error (which is the standard deviation of the sample mean) is the standard deviation divided by the square root of the sample size.</p>
 <p>Therefore the <strong>approximation for the 95% confidence interval</strong> ranges from <span class="math notranslate nohighlight">\(\lambda - 1.96 \times \sqrt{\lambda}\)</span> to <span class="math notranslate nohighlight">\(\lambda + 1.96 \times \sqrt{\lambda}\)</span>.</p>
@@ -566,8 +572,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="the-percent-point-function">
-<h3>The Percent Point Function<a class="headerlink" href="#the-percent-point-function" title="Permalink to this heading">#</a></h3>
+<section id="percent-point-function">
+<h3>Percent Point Function<a class="headerlink" href="#percent-point-function" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> stands for <strong>Percent Point Function</strong>, which is essentially the inverse of the Cumulative Distribution Function (CDF). The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> takes a probability <span class="math notranslate nohighlight">\(q\)</span> and returns a value <span class="math notranslate nohighlight">\(x\)</span> such that the probability of the random variable being less than or equal to <span class="math notranslate nohighlight">\(x\)</span> is equal to <span class="math notranslate nohighlight">\(q\)</span>. In other words, it allows us to determine the value below which a given percentage of the data falls.</p>
 <p>In the context of the Poisson distribution, the <code class="docutils literal notranslate"><span class="pre">ppf</span></code> can be used to calculate the value below which a certain percentage of the counts of events (e.g., raisins in bagels) fall. This can be particularly useful when you want to determine the confidence interval around the mean of the distribution.</p>
 <div class="cell docutils container">
@@ -595,7 +601,7 @@ document.write(`
 </div>
 </section>
 <section id="lollipop-plot">
-<h3>Lollipop plot<a class="headerlink" href="#lollipop-plot" title="Permalink to this heading">#</a></h3>
+<h3>Lollipop plot<a class="headerlink" href="#lollipop-plot" title="Link to this heading">#</a></h3>
 <p>The <strong>Probability Mass Function</strong> (PMF) of the Poisson distribution gives the probability of each possible outcome. In this case, it will give the probability of each possible count of events (e.g., raisins in a bagel).</p>
 <p>We first generate the x values using the <code class="docutils literal notranslate"><span class="pre">ppf</span></code> function to get the range of values that contain 99% of the probability. We then calculate the PMF for these x values using the <code class="docutils literal notranslate"><span class="pre">pmf</span></code> function. Finally, we create the lollipop plot using the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.stem.html"><code class="docutils literal notranslate"><span class="pre">stem</span></code> function in matplotlib</a>.</p>
 <div class="cell docutils container">
@@ -631,8 +637,8 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="the-example-of-radioactive-count">
-<h2>The example of radioactive count<a class="headerlink" href="#the-example-of-radioactive-count" title="Permalink to this heading">#</a></h2>
+<section id="example-of-radioactive-count">
+<h2>Example of radioactive count<a class="headerlink" href="#example-of-radioactive-count" title="Link to this heading">#</a></h2>
 <p>let’s create a Poisson model for radioactive counts with an average rate <span class="math notranslate nohighlight">\(\mu = 120\)</span>. We’ll generate a sample data set, calculate the mean and variance, and estimate the confidence interval.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -735,9 +741,8 @@ Sample Variance: 121.87046524
 </div>
 </div>
 </div>
-</section>
-<section id="the-advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes">
-<h2>The advantage of counting for longer time intervals or in larger volumes<a class="headerlink" href="#the-advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes" title="Permalink to this heading">#</a></h2>
+<section id="advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes">
+<h3>Advantage of counting for longer time intervals or in larger volumes<a class="headerlink" href="#advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes" title="Link to this heading">#</a></h3>
 <p>When we count events over longer time intervals or in larger volumes, the mean (<span class="math notranslate nohighlight">\(\lambda\)</span>) of the Poisson distribution increases. This results in a <strong>narrower confidence interval</strong>, which means our estimate of the average rate of events becomes more precise.</p>
 <p>Let’s illustrate this with Python code. We’ll create two Poisson models: one with a mean of 700 events per minute, and another with a mean of 7000 events per 10 minutes.</p>
 <div class="cell docutils container">
@@ -784,20 +789,21 @@ The 95% confidence interval for mu=7000 is (6836.0, 7164.0)
 <p>Remember, this normalization is valid under the assumption that the events are occurring at a constant average rate. If the rate is not constant, the confidence interval for the average rate per unit of time might not be accurate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for the average rate mu=700/minute is</span><span class="se">\</span>
-<span class="s2">      </span><span class="si">{</span><span class="p">[</span><span class="n">bound</span><span class="o">/</span><span class="mi">10</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">conf_int2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for the average rate mu=700/minute is </span><span class="se">\</span>
+<span class="si">{</span><span class="p">[</span><span class="n">bound</span><span class="o">/</span><span class="mi">10</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">conf_int2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for the average rate mu=700/minute is      [683.6, 716.4]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for the average rate mu=700/minute is [683.6, 716.4]
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+</section>
 <section id="what-if-the-observed-number-of-counts-is-0">
-<h2>What if the observed number of counts is 0?<a class="headerlink" href="#what-if-the-observed-number-of-counts-is-0" title="Permalink to this heading">#</a></h2>
+<h2>What if the observed number of counts is 0?<a class="headerlink" href="#what-if-the-observed-number-of-counts-is-0" title="Link to this heading">#</a></h2>
 <p>In this section, we will explore the scenario where the observed number of events is 0. This corresponds to a Poisson distribution with a mean <span class="math notranslate nohighlight">\(\lambda=0\)</span>.</p>
 <p>The Poisson distribution is defined for all non-negative integers, so having an observed number of 0 is a valid scenario. However, if the mean of the distribution is 0, it means that the event is not expected to occur at all in the given interval of time or space.</p>
 <div class="cell docutils container">
@@ -813,16 +819,15 @@ The 95% confidence interval for mu=7000 is (6836.0, 7164.0)
 
 <span class="c1"># Create the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pmf</span><span class="p">)</span>
-<span class="c1"># plt.plot(x, pmf, &#39;bo&#39;, ms=8, label=&#39;poisson pmf&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;Probability Mass Function with $\lambda$=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pmf</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;poisson pmf&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Probability Mass Function with $\lambda=0$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Events&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1222a3aa631c28115dd17cea827c3cec4b3fe5c06e0c274d0ac07aace6d36190.png" src="_images/1222a3aa631c28115dd17cea827c3cec4b3fe5c06e0c274d0ac07aace6d36190.png" />
+<img alt="_images/a56aa0e7f1c34366bf388d85cee846b1d2fdc29836678323d2ead9898dd0c101.png" src="_images/a56aa0e7f1c34366bf388d85cee846b1d2fdc29836678323d2ead9898dd0c101.png" />
 </div>
 </div>
 <p>As you we see from the plot, the probability of observing 0 events is 1, and the probability of observing any other number of events is 0. This is consistent with our expectation that if the average rate of events (<span class="math notranslate nohighlight">\(\lambda\)</span>) is 0, then we should not expect to observe any events.</p>
@@ -859,9 +864,8 @@ The 95% confidence interval for mu=7000 is (6836.0, 7164.0)
 
 <span class="c1"># Create the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pmf</span><span class="p">)</span>
-<span class="c1"># plt.plot(x, pmf, &#39;bo&#39;, ms=8, label=&#39;poisson pmf&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;Probability Mass Function with $\lambda$=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pmf</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;poisson pmf&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Probability Mass Function with $\lambda=0.1$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Events&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -874,7 +878,7 @@ The 95% confidence interval for mu=7000 is (6836.0, 7164.0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aeb0605294cf86d4fc5a967eeca3c45bea668b77b638e0d5e36e02b4c208e6c2.png" src="_images/aeb0605294cf86d4fc5a967eeca3c45bea668b77b638e0d5e36e02b4c208e6c2.png" />
+<img alt="_images/d491ba85445e6e5318fa18cb46e49c7e466a8a21deb39b45c91a59f32754405f.png" src="_images/d491ba85445e6e5318fa18cb46e49c7e466a8a21deb39b45c91a59f32754405f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval is [0.0, 1.0]
 </pre></div>
 </div>
@@ -882,14 +886,14 @@ The 95% confidence interval for mu=7000 is (6836.0, 7164.0)
 </div>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>In this chapter, we delved into the fascinating world of counted data and its statistical analysis using the Poisson Distribution. We explored how this powerful statistical tool can model discrete events in a fixed time or space, making it particularly useful in various fields such as epidemiology, traffic engineering, and social sciences.</p>
 <p>We discussed several examples, including the number of raisins in bagels and radioactive counts, and showed how to generate data, calculate confidence intervals, and plot histograms for these examples. We also explored different methods available in the <code class="docutils literal notranslate"><span class="pre">scipy.stats.poisson</span></code> module, such as <code class="docutils literal notranslate"><span class="pre">.pmf()</span></code>, <code class="docutils literal notranslate"><span class="pre">.cdf()</span></code>, <code class="docutils literal notranslate"><span class="pre">.ppf()</span></code>, and <code class="docutils literal notranslate"><span class="pre">.interval()</span></code>.</p>
 <p>We highlighted the importance of computing the confidence interval with the actual counts before normalizing by the time interval. We also discussed the advantages of counting events over longer time intervals or in larger volumes, which leads to more precise estimates of the average rate of events.</p>
 <p>Finally, we examined special cases where the mean (<span class="math notranslate nohighlight">\(\lambda\)</span>) of the Poisson distribution is 0 or close to 0, and discussed the implications of these scenarios.</p>
 </section>
 <section id="session-information">
-<h2>Session Information<a class="headerlink" href="#session-information" title="Permalink to this heading">#</a></h2>
+<h2>Session Information<a class="headerlink" href="#session-information" title="Link to this heading">#</a></h2>
 <p>The output below details all packages and version necessary to reproduce the results in this report.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -975,8 +979,17 @@ seaborn: 0.13.2
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">05 - Confidence Interval of Survival Data</p>
+        <p class="prev-next-title">Confidence Interval of Survival Data</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="09%20-%20Quantifying%20Scatter.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Quantifying Scatter</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -995,16 +1008,18 @@ seaborn: 0.13.2
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poisson-distribution">The Poisson distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-example-of-raisins-in-bagels">The example of raisins in bagels</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-distribution">Poisson distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-raisins-in-bagels">Example of raisins in bagels</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-shortcut-approximation">A shortcut approximation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-percent-point-function">The Percent Point Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#percent-point-function">Percent Point Function</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lollipop-plot">Lollipop plot</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-example-of-radioactive-count">The example of radioactive count</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes">The advantage of counting for longer time intervals or in larger volumes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-radioactive-count">Example of radioactive count</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes">Advantage of counting for longer time intervals or in larger volumes</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-the-observed-number-of-counts-is-0">What if the observed number of counts is 0?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
