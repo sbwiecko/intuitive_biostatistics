@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -443,7 +443,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\operatorname{Var}_s(x)= \sigma_s^2(x)  = \frac{1}{n-1}\sum_{i = 1}^{n}(x_i - \overline{x})^2\]</div>
 <p>One can understand Bessel’s correction as the degrees of freedom in the residuals vector (residuals, not errors, because the population mean is unknown): <span class="math notranslate nohighlight">\((x_1 - \bar{x}, \dots, x_n - \bar{x})\)</span>, where <span class="math notranslate nohighlight">\(\bar{x}\)</span> is the sample mean. While there are <span class="math notranslate nohighlight">\(n\)</span> independent observations in the sample, there are only <span class="math notranslate nohighlight">\(n- 1\)</span> independent residuals, as they sum to 0.</p>
-<p>You can see that <span class="math notranslate nohighlight">\(\operatorname{Var}_p(x) = \frac{n - 1}{n}\operatorname{Var}_s(x)\)</span>, so as the data set gets larger, the sample variance and the population variance become less and less distinguishable, which intuitively makes sense.</p>
+<p>We can see that <span class="math notranslate nohighlight">\(\operatorname{Var}_p(x) = \frac{n - 1}{n}\operatorname{Var}_s(x)\)</span>, so as the data set gets larger, the sample variance and the population variance become less and less distinguishable, which intuitively makes sense.</p>
 <p>Note that variance can be decomposed to show that it is also the difference of the mean of squares to the mean squared:</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{Var}(x) = (\frac{1}{n}\sum_{i = 1}^{n}x_i^2) - \overline{x}^2\]</div>
@@ -460,10 +460,10 @@ document.write(`
 </section>
 <section id="standard-error-of-the-mean-sem">
 <h3>Standard Error of the Mean (SEM)<a class="headerlink" href="#standard-error-of-the-mean-sem" title="Link to this heading">#</a></h3>
-<p>The <strong>Standard Error of the Mean (SEM)</strong> is a measure of how far your sample mean is likely to be from the true population mean. SEM is calculated as the standard deviation divided by the square root of the sample size:</p>
+<p>The <strong>Standard Error of the Mean (SEM)</strong> is a measure of how far our sample mean is likely to be from the true population mean. SEM is calculated as the standard deviation divided by the square root of the sample size:</p>
 <div class="math notranslate nohighlight">
 \[\mathrm{SEM} = \frac{\mathrm{SD}}{\sqrt{n}}\]</div>
-<p>The SEM gets smaller as your samples get larger. This implies that as you collect more data, your estimate of the mean gets more precise, which makes sense intuitively. Now, the Confidence Interval is a range of values, derived from the SEM, that predicts the probability of a parameter (like the mean) to fall within that range as <span class="math notranslate nohighlight">\(W = t \times \text{SEM}\)</span>. The most commonly used range for confidence is 95%.</p>
+<p>The SEM gets smaller as our samples get larger. This implies that as we collect more data, the estimate of the mean gets more precise, which makes sense intuitively. Now, the Confidence Interval is a range of values, derived from the SEM, that predicts the probability of a parameter (like the mean) to fall within that range as <span class="math notranslate nohighlight">\(W = t \times \text{SEM}\)</span>. The most commonly used range for confidence is 95%.</p>
 </section>
 </section>
 <section id="practical-examples-using-numpy-statistical-functions">
@@ -474,7 +474,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span> <span class="c1"># for the t distribution</span>
 
-<span class="c1"># Your dataset</span>
+<span class="c1"># The dataset</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">64.7</span><span class="p">,</span> <span class="mf">65.4</span><span class="p">,</span> <span class="mf">88.3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mf">71.9</span><span class="p">])</span>
 
 <span class="c1"># Calculate the mean</span>
@@ -511,10 +511,10 @@ The population (ddof=0) standard deviation of the dataset is 9.166
 </div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">ddof</span></code> parameter stands for ‘Delta Degrees of Freedom’. When calculating the standard deviation, the sum of squared deviations from the mean is usually divided by <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">-</span> <span class="pre">ddof</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of elements in your dataset.</p>
-<p>Setting <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code> means that we divide by n, which gives us the <em>population standard deviation</em>. This assumes that your dataset represents the entire population.</p>
-<p>On the other hand, if you set <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>, you would be dividing by <span class="math notranslate nohighlight">\(n - 1\)</span>, giving you the <em>sample standard deviation</em>. This is used when your data is a sample from a larger population.</p>
-<p>In most cases, if you’re working with a sample, you would use <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code> to get an unbiased estimate of the actual population standard deviation. However, if your data represents the entire population, you would use <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ddof</span></code> parameter stands for ‘Delta Degrees of Freedom’. When calculating the standard deviation, the sum of squared deviations from the mean is usually divided by <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">-</span> <span class="pre">ddof</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of elements in the dataset.</p>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code> means that we divide by n, which gives us the <em>population standard deviation</em>. This assumes that the dataset represents the entire population.</p>
+<p>On the other hand, if we set <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>, we would be dividing by <span class="math notranslate nohighlight">\(n - 1\)</span>, giving the <em>sample standard deviation</em>. This is used when our data is a sample from a larger population.</p>
+<p>In most cases, if we’re working with a sample, we would use <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code> to get an unbiased estimate of the actual population standard deviation. However, if our data represents the entire population, we would use <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code>.</p>
 <section id="the-3-sigma-rule">
 <h3>The 3-sigma rule<a class="headerlink" href="#the-3-sigma-rule" title="Link to this heading">#</a></h3>
 <p>The <strong>3-sigma</strong> (3-<span class="math notranslate nohighlight">\(\sigma\)</span>) rule, also known as the <em>empirical rule</em> or <em>68-95-99.7 rule</em>, is a statistical rule which states that for a normal distribution:</p>
@@ -523,21 +523,21 @@ The population (ddof=0) standard deviation of the dataset is 9.166
 <li><p>Approximately 95% of the data falls within two standard deviations of the mean.</p></li>
 <li><p>Approximately 99.7% of the data falls within three standard deviations of the mean.</p></li>
 </ol>
-<p>This rule is a quick way to get an understanding of where most of the values in your dataset are likely to fall, assuming the data follows a normal distribution.</p>
+<p>This rule is a quick way to get an understanding of where most of the values in the dataset are likely to fall, assuming the data follows a normal distribution.</p>
 <p>Here’s how it relates to the standard deviation:</p>
 <ul class="simple">
 <li><p>The standard deviation is a measure of the amount of variation or dispersion in a set of values. A low standard deviation means that the values tend to be close to the mean, while a high standard deviation means that the values are spread out over a wider range.</p></li>
 <li><p>When we talk about the “3-sigma” or “three standard deviations from the mean”, we’re talking about the range of values that covers about 99.7% of the data (assuming a normal distribution). This means that the probability of a value being outside of this range is very low (0.3%).</p></li>
 </ul>
-<p>So, the 3-sigma rule gives us a way to understand the standard deviation in terms of the percentage of data that falls within these ranges. It’s a useful rule of thumb for understanding the distribution of your data when working with statistics.</p>
+<p>So, the 3-sigma rule gives us a way to understand the standard deviation in terms of the percentage of data that falls within these ranges. It’s a useful rule of thumb for understanding the distribution of the data when working with statistics.</p>
 </section>
 <section id="geometric-mean-and-standard-deviation">
 <h3>Geometric Mean and Standard Deviation<a class="headerlink" href="#geometric-mean-and-standard-deviation" title="Link to this heading">#</a></h3>
-<p>The <strong>geometric mean</strong> is a type of average that is calculated by multiplying all the numbers together and then taking the nth root of the product. It’s particularly useful when you want to compare things with very different properties, or when dealing with values that increase exponentially.</p>
+<p>The <strong>geometric mean</strong> is a type of average that is calculated by multiplying all the numbers together and then taking the nth root of the product. It’s particularly useful when we want to compare things with very different properties, or when dealing with values that increase exponentially.</p>
 <p>The geometric standard deviation is a measure of spread of a set of numbers where the geometric mean is preferred. It expounds the factor by which a set of numbers deviate from the geometric mean. It’s used when dealing with values that increase exponentially.</p>
 <p>If a dataset follows a <strong>log-normal</strong> distribution, the logarithm of the values will have a normal distribution. In a log-normal distribution, the multiplicative spread of values (i.e., the ratio between different data points) is more important than the absolute difference between them. This is where the geometric mean and geometric standard deviation come into play.</p>
 <p>For a log-normal distribution, about 2/3 of the values fall between the geometric mean divided by the geometric standard deviation and the geometric mean multiplied by the geometric standard deviation. This is analogous to the rule for a normal distribution, where about 2/3 of the values fall within one standard deviation of the mean.</p>
-<p>When we take the logarithm of a log-normally distributed dataset, it becomes normally distributed (this is the “log converts multiplicative scatter to additive” part). The geometric mean corresponds to the arithmetic mean of the logged data, and the geometric standard deviation corresponds to the standard deviation of the logged data. So, the rule that 2/3 of the data falls within one standard deviation of the mean in a normal distribution translates to the rule you mentioned for a log-normal distribution.</p>
+<p>When we take the logarithm of a log-normally distributed dataset, it becomes normally distributed (this is the “log converts multiplicative scatter to additive” part). The geometric mean corresponds to the arithmetic mean of the logged data, and the geometric standard deviation corresponds to the standard deviation of the logged data. So, the rule that 2/3 of the data falls within one standard deviation of the mean in a normal distribution translates to the rule we mentioned for a log-normal distribution.</p>
 <p>This property is very useful in many fields, including finance, biology, and engineering, where variables often exhibit exponential growth and one is interested in rates or multiplicative factors rather than raw differences. For example in biology, we can use geometric mean and standard deviation for potentcy of drug (EC50, IC50, Km, Ki etc.), blood serum concentrations of many natural or toxic compounds, etc.</p>
 <p>While <code class="docutils literal notranslate"><span class="pre">numpy</span></code> provides a lot of useful statistical functions, it does not directly provide a function to calculate the geometric mean or the geometric standard deviation. However, we can calculate these using numpy’s other functions.</p>
 <div class="cell docutils container">
@@ -566,7 +566,7 @@ The geometric standard deviation is 1.1451
 <p>For example, if we’re calculating the average test score in a class, but some tests count for more of the final grade than others, we would use a weighted mean, where each test score is multiplied by the weight of that test before summing and dividing by the total weight.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The dataset</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">64.7</span><span class="p">,</span> <span class="mf">65.4</span><span class="p">,</span> <span class="mf">88.3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mf">71.9</span><span class="p">])</span>
 
 <span class="c1"># Weights for each data point</span>
@@ -599,7 +599,7 @@ The geometric standard deviation is 1.1451
 <li><p><em>Geometric mean</em>: This is a kind of average of a set of numbers that is different from the arithmetic average. The geometric mean is calculated by multiplying all the numbers together and then taking the nth root of the product.</p></li>
 <li><p><em>Geometric standard deviation</em>: This is a measure of spread of a set of numbers where the geometric mean is preferred, it expounds the factor by which a set of numbers deviate from the geometric mean.</p></li>
 </ul>
-<p>Here’s how you can use it to calculate various statistical measures:</p>
+<p>Here’s how we can use it to calculate various statistical measures:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the mean</span>

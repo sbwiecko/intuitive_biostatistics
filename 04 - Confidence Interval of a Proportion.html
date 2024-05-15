@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -391,7 +391,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-and-frequency">Probability and frequency</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scipy-stats-binom-methods">Using <code class="docutils literal notranslate"><span class="pre">scipy.stats.binom</span></code> methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-computational-methods">Using computational methods</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-a-clinical-trial-scenario">Simulating a clinical trial scenario</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-democrat-voters-example">The Democrat voters example</a></li>
 </ul>
@@ -401,9 +401,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">The Central Limit Theorem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-confidence-interval">Computing the confidence interval</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval-of-polling">Confidence interval of polling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-95-confidence-really-mean">What does 95% confidence really mean?</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-95-confidence-really-mean">What does 95% confidence really mean?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
 </ul>
@@ -554,8 +554,8 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="using-scipy-stats-binom-methods">
-<h2>Using <code class="docutils literal notranslate"><span class="pre">scipy.stats.binom</span></code> methods<a class="headerlink" href="#using-scipy-stats-binom-methods" title="Link to this heading">#</a></h2>
+<section id="using-computational-methods">
+<h2>Using computational methods<a class="headerlink" href="#using-computational-methods" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">scipy.stats.binom</span></code> is a function in the <a class="reference external" href="https://scipy.org/">SciPy library</a> in Python that provides a suite of methods for the binomial distribution. Here’s a brief introduction to some of the main methods provided by it:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pmf(k,</span> <span class="pre">n,</span> <span class="pre">p)</span></code>: This is the Probability Mass Function (PMF). It gives the probability of getting exactly k successes (heads) in n trials (flips), when the probability of success on any given trial is p.</p></li>
@@ -887,7 +887,7 @@ document.write(`
 <section id="the-central-limit-theorem">
 <h3>The Central Limit Theorem<a class="headerlink" href="#the-central-limit-theorem" title="Link to this heading">#</a></h3>
 <p>The <strong>Central Limit Theorem (CLT)</strong> states that the distribution of the sum (or average) of a large number of independent, identically distributed variables approaches a normal distribution, regardless of the shape of the original distribution.</p>
-<p>In the context of your experiment, if we’re conducting a large number of trials (like 10,000), the distribution of the sample proportions (the number of successes in each trial divided by the number of attempts) will tend to follow a normal distribution. This is due to the CLT.</p>
+<p>In the context of our experiment, if we’re conducting a large number of trials (like 10,000), the distribution of the sample proportions (the number of successes in each trial divided by the number of attempts) will tend to follow a normal distribution. This is due to the CLT.</p>
 <p>Therefore, when we calculate the <strong>2.5th and 97.5th percentiles</strong> of this distribution (which gives us a 95% confidence interval), it should be <strong>close to the theoretical binomial confidence interval</strong>, especially when the number of trials is large.</p>
 <p>However, it’s important to note that the CLT provides an approximation, and the accuracy of this approximation depends on the number of trials and the true success probability. The approximation is generally better when the number of trials is large and the success probability is not too close to 0 or 1.</p>
 </section>
@@ -1012,8 +1012,9 @@ The 95% confidence interval using statsmodels proportion is (24.42%, 42.97%)
 </div>
 </div>
 </section>
+</section>
 <section id="what-does-95-confidence-really-mean">
-<h3>What does 95% confidence really mean?<a class="headerlink" href="#what-does-95-confidence-really-mean" title="Link to this heading">#</a></h3>
+<h2>What does 95% confidence really mean?<a class="headerlink" href="#what-does-95-confidence-really-mean" title="Link to this heading">#</a></h2>
 <p>Remember, the confidence interval gives a range of plausible values for the population proportion based on the sample data. It <strong>does not guarantee that the population proportion is within this range</strong>, but it gives a range where the population proportion is likely to fall, with a certain level of confidence (often 95%).</p>
 <p>We illustrate that using the example of pages 35-36. The experiment involves a bowl that contains 100 balls in total. Out of these, 25 balls are red and the remaining 75 balls are black. The balls are well mixed to ensure randomness. The process is as follows:</p>
 <ol class="arabic simple">
@@ -1050,11 +1051,6 @@ The 95% confidence interval using statsmodels proportion is (24.42%, 42.97%)
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval (scipy norm.interval) is </span><span class="se">\</span>
 <span class="s2">(</span><span class="si">{</span><span class="n">ci_lower</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ci_upper</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">) out of 15&quot;</span><span class="p">)</span>
-
-<span class="c1"># Calculate the 95% confidence interval for proportions using statsmodels.stats.proportion,</span>
-<span class="c1"># now using binomial distrubution</span>
-<span class="c1"># ci_lower, ci_upper = smp.proportion_confint(count=s, nobs=n, alpha=0.05, method=&#39;binom_test&#39;)</span>
-<span class="c1"># DOESN&#39;T WORK WITH FLOAT NUMBER GIVEN FOR count=</span>
 </pre></div>
 </div>
 </div>
@@ -1065,8 +1061,8 @@ The 95% confidence interval (scipy norm.interval) is (0.49, 7.03) out of 15
 </div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">statsmodels.stats.proportion.proportion_confint</span></code> function is used to calculate the confidence interval for a proportion in a way that properly accounts for the binomial distribution, which is <strong>discrete</strong>. The <code class="docutils literal notranslate"><span class="pre">count</span></code> parameter of this function represents the number of successes (in your case, the number of red balls drawn), and it must be an integer because we can’t have a fraction of a success in a binomial experiment. It’s either a success or not, hence, it’s a discrete value.</p>
-<p>So, in our case, if we’re drawing 15 balls and we know that 25% of them are red, we can’t enter 0.25 * 15 for the count parameter because this would be a fractional number. Instead, we should enter the actual number of red balls drawn in your sample. For example, if we drew 4 red balls out of 15, we would enter 4 for the count parameter.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">statsmodels.stats.proportion.proportion_confint</span></code> function is used to calculate the confidence interval for a proportion in a way that properly accounts for the binomial distribution, which is <strong>discrete</strong>. The <code class="docutils literal notranslate"><span class="pre">count</span></code> parameter of this function represents the number of successes (in this case, the number of red balls drawn), and it must be an integer because we can’t have a fraction of a success in a binomial experiment. It’s either a success or not, hence, it’s a discrete value.</p>
+<p>So, in our case, if we’re drawing 15 balls and we know that 25% of them are red, we can’t enter 0.25 * 15 for the count parameter because this would be a fractional number. Instead, we should enter the actual number of red balls drawn in the sample. For example, if we drew 4 red balls out of 15, we would enter 4 for the count parameter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Number of successes and trials</span>
@@ -1128,8 +1124,7 @@ The 95% confidence interval (scipy norm.interval) is (0.49, 7.03) out of 15
 <img alt="_images/259fe5751f0de07dd2db5491a3e85ccf1ecbc6e13f8a265addcd546af65fe1fd.png" src="_images/259fe5751f0de07dd2db5491a3e85ccf1ecbc6e13f8a265addcd546af65fe1fd.png" />
 </div>
 </div>
-<p>This experiment helps illustrate the concept of confidence intervals and their interpretation. It shows that a 95% confidence interval does not guarantee that the population parameter (in this case, the proportion of red balls) lies within the interval. Rather, it means that if we were to repeat the experiment many times and calculate a confidence interval each time, we would expect about 95% of these intervals to contain the population parameter. Interestingly, Cumming and Maillardet (2016) have shown that the first 95% CI will include the sample means of 83% of repeat experiments, due to experimental bias and error.</p>
-</section>
+<p>This experiment helps illustrate the concept of confidence intervals and their interpretation. It shows that a 95% confidence interval does not guarantee that the population parameter (in this case, the proportion of red balls) lies within the interval. Rather, it means that if we were to repeat the experiment many times and calculate a confidence interval each time, we would expect about 95% of these intervals to contain the population parameter. Interestingly, <a class="reference external" href="https://psycnet.apa.org/doi/10.1037/1082-989X.11.3.217">Cumming and Maillardet (2006)</a> have shown that the first 95% CI will include the sample means of 83.4% of repeat experiments, due to experimental bias and error.</p>
 </section>
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
@@ -1267,7 +1262,7 @@ seaborn: 0.13.2
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-and-frequency">Probability and frequency</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scipy-stats-binom-methods">Using <code class="docutils literal notranslate"><span class="pre">scipy.stats.binom</span></code> methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-computational-methods">Using computational methods</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-a-clinical-trial-scenario">Simulating a clinical trial scenario</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-democrat-voters-example">The Democrat voters example</a></li>
 </ul>
@@ -1277,9 +1272,9 @@ seaborn: 0.13.2
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">The Central Limit Theorem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-confidence-interval">Computing the confidence interval</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval-of-polling">Confidence interval of polling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-95-confidence-really-mean">What does 95% confidence really mean?</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-95-confidence-really-mean">What does 95% confidence really mean?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
 </ul>

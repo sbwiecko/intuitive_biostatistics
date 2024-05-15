@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -410,7 +410,7 @@ document.write(`
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>In this chapter, we will delve into the world of <strong>counted data</strong> and its statistical analysis using the <strong>Poisson Distribution</strong>. Counted data, often encountered in fields such as epidemiology, traffic engineering, and social sciences, refers to data that are counted as <em>discrete events in a fixed time or space</em>.</p>
-<p>The Poisson Distribution is a powerful statistical tool used to model such data. Named after the French mathematician Siméon Denis Poisson, it provides a way to predict the probability of certain events from happening when you know how often the event has occurred. It is particularly useful when these events happen with a known <strong>average rate</strong> and <em>independently of the time since the last event</em>.</p>
+<p>The Poisson Distribution is a powerful statistical tool used to model such data. Named after the French mathematician Siméon Denis Poisson, it provides a way to predict the probability of certain events from happening when we know how often the event has occurred. It is particularly useful when these events happen with a known <strong>average rate</strong> and <em>independently of the time since the last event</em>.</p>
 <p>We will focus on the confidence interval of counted data. Confidence intervals are a range of values that are likely to contain the true population parameter. In the context of Poisson Distribution, it provides a range where the true average rate of occurrence (lambda, <span class="math notranslate nohighlight">\(\lambda\)</span>) lies with a certain level of confidence.</p>
 <p>Following the theoretical foundation, we will transition into practical Python applications, in particular using the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> library</a>. By the end of this chapter, we will have a solid understanding of how to apply Poisson Distribution to analyze counted data and calculate confidence intervals using Python.</p>
 </section>
@@ -575,7 +575,7 @@ document.write(`
 <section id="percent-point-function">
 <h3>Percent Point Function<a class="headerlink" href="#percent-point-function" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> stands for <strong>Percent Point Function</strong>, which is essentially the inverse of the Cumulative Distribution Function (CDF). The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> takes a probability <span class="math notranslate nohighlight">\(q\)</span> and returns a value <span class="math notranslate nohighlight">\(x\)</span> such that the probability of the random variable being less than or equal to <span class="math notranslate nohighlight">\(x\)</span> is equal to <span class="math notranslate nohighlight">\(q\)</span>. In other words, it allows us to determine the value below which a given percentage of the data falls.</p>
-<p>In the context of the Poisson distribution, the <code class="docutils literal notranslate"><span class="pre">ppf</span></code> can be used to calculate the value below which a certain percentage of the counts of events (e.g., raisins in bagels) fall. This can be particularly useful when you want to determine the confidence interval around the mean of the distribution.</p>
+<p>In the context of the Poisson distribution, the <code class="docutils literal notranslate"><span class="pre">ppf</span></code> can be used to calculate the value below which a certain percentage of the counts of events (e.g., raisins in bagels) fall. This can be particularly useful when we want to determine the confidence interval around the mean of the distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters for the Poisson distribution</span>
@@ -677,7 +677,7 @@ Sample Variance: 121.87046524
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">mean()</span></code>: This method returns the mean of the Poisson distribution. For a Poisson distribution, the mean is equal to mu (<span class="math notranslate nohighlight">\(\mu\)</span>) or lambda (<span class="math notranslate nohighlight">\(\lambda\)</span>), which is the average rate of events.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">stats()</span></code>: This method returns the mean (‘m’), variance (‘v’), skew (‘s’), and/or kurtosis (‘k’) of the Poisson distribution. By default, it returns the mean and variance.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">interval()</span></code>: This method returns the endpoints of the range that contains alpha percent of the distribution. For example, you can use it to calculate the confidence interval around the mean.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interval()</span></code>: This method returns the endpoints of the range that contains alpha percent of the distribution. For example, we can use it to calculate the confidence interval around the mean.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -830,7 +830,7 @@ The 95% confidence interval for mu=7000 is (6836.0, 7164.0)
 <img alt="_images/a56aa0e7f1c34366bf388d85cee846b1d2fdc29836678323d2ead9898dd0c101.png" src="_images/a56aa0e7f1c34366bf388d85cee846b1d2fdc29836678323d2ead9898dd0c101.png" />
 </div>
 </div>
-<p>As you we see from the plot, the probability of observing 0 events is 1, and the probability of observing any other number of events is 0. This is consistent with our expectation that if the average rate of events (<span class="math notranslate nohighlight">\(\lambda\)</span>) is 0, then we should not expect to observe any events.</p>
+<p>As we see from the plot, the probability of observing 0 events is 1, and the probability of observing any other number of events is 0. This is consistent with our expectation that if the average rate of events (<span class="math notranslate nohighlight">\(\lambda\)</span>) is 0, then we should not expect to observe any events.</p>
 <p>In the case where the mean of the Poisson distribution is 0, the confidence interval would also be 0. This is because if the average rate of events (<span class="math notranslate nohighlight">\(\lambda\)</span>) is 0, then we should not expect to observe any events. Therefore, we can be 100% confident that the true average rate of occurrence (<span class="math notranslate nohighlight">\(\lambda\)</span>) lies within the interval [0, 0].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

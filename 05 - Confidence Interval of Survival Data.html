@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -421,7 +421,7 @@ document.write(`
 <h2>Survival data<a class="headerlink" href="#survival-data" title="Link to this heading">#</a></h2>
 <section id="the-lifelines-library">
 <h3>The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library<a class="headerlink" href="#the-lifelines-library" title="Link to this heading">#</a></h3>
-<p>In Python, the <a class="reference external" href="https://lifelines.readthedocs.io/en/stable/index.html"><code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library</a> is commonly used for survival analysis. It provides a simple and intuitive API for fitting survival models, and also includes functions for visualizing survival data. Here’s a basic example of how you might calculate a confidence interval for a survival function estimate using the KaplanMeierFitter class in lifelines:</p>
+<p>In Python, the <a class="reference external" href="https://lifelines.readthedocs.io/en/stable/index.html"><code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library</a> is commonly used for survival analysis. It provides a simple and intuitive API for fitting survival models, and also includes functions for visualizing survival data. Here’s a basic example of how we might calculate a confidence interval for a survival function estimate using the <code class="docutils literal notranslate"><span class="pre">KaplanMeierFitter</span></code> class in lifelines:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -448,8 +448,8 @@ document.write(`
 <span class="c1"># i.e., death, occurred, and 0 indicates censorship</span>
 
 <span class="c1"># example of the survival data from pages 47-48 of the book Intuitive Biostatistics</span>
-<span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.07</span><span class="p">,</span> <span class="mf">6.54</span><span class="p">,</span> <span class="mf">1.39</span><span class="p">,</span> <span class="mf">6.17</span><span class="p">,</span> <span class="mf">5.89</span><span class="p">,</span> <span class="mf">4.76</span><span class="p">,</span> <span class="mf">3.67</span><span class="p">]</span>
-<span class="n">event_observed</span>  <span class="o">=</span> <span class="p">[</span>  <span class="mi">1</span> <span class="p">,</span>  <span class="mi">0</span>  <span class="p">,</span>  <span class="mi">1</span>  <span class="p">,</span>  <span class="mi">0</span>  <span class="p">,</span>  <span class="mi">1</span>  <span class="p">,</span>  <span class="mi">1</span>  <span class="p">,</span>  <span class="mi">0</span>  <span class="p">]</span>
+<span class="n">durations</span>       <span class="o">=</span> <span class="p">[</span><span class="mf">4.07</span><span class="p">,</span> <span class="mf">6.54</span><span class="p">,</span> <span class="mf">1.39</span><span class="p">,</span> <span class="mf">6.17</span><span class="p">,</span> <span class="mf">5.89</span><span class="p">,</span> <span class="mf">4.76</span><span class="p">,</span> <span class="mf">3.67</span><span class="p">]</span>
+<span class="n">event_observed</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span>   <span class="p">,</span> <span class="mi">0</span>   <span class="p">,</span> <span class="mi">1</span>   <span class="p">,</span> <span class="mi">0</span>   <span class="p">,</span> <span class="mi">1</span>   <span class="p">,</span> <span class="mi">1</span>   <span class="p">,</span> <span class="mi">0</span>   <span class="p">]</span>
 
 <span class="c1"># we create a dataframe with those data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
@@ -1339,7 +1339,7 @@ The confidence interval (plain type) limits are [0.1178 - 0.8133]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage (assuming you have your Kaplan-Meier estimates)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage (assuming we have our Kaplan-Meier estimates)</span>
 <span class="n">survival_prob_sorted</span><span class="p">,</span> <span class="n">event_indicators_sorted</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">kaplan_meier</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;YEARS&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;EVENT&#39;</span><span class="p">])</span>
 
 <span class="n">SE</span><span class="p">,</span> <span class="p">(</span><span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span> <span class="o">=</span> <span class="n">greenwood_confidence_interval</span><span class="p">(</span>
@@ -1368,13 +1368,13 @@ The confidence interval (plain type) limits are [0.1178 - 0.8133]
 <p>Here are some key points about lifelines:</p>
 <ul class="simple">
 <li><p>Easy to use: <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> provides a simple and intuitive interface for fitting survival models, calculating survival probabilities, and visualizing survival data.</p></li>
-<li><p>Comprehensive: <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> includes a variety of survival models, such as the Kaplan-Meier estimator and the Cox proportional hazards model, allowing you to choose the model that best fits your data.</p></li>
+<li><p>Comprehensive: <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> includes a variety of survival models, such as the Kaplan-Meier estimator and the Cox proportional hazards model, allowing us to choose the model that best fits our data.</p></li>
 <li><p>Handles censoring: One of the key challenges in survival analysis is dealing with censored data. <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> handles right-censored data natively, making it easier to work with this type of data.</p></li>
 <li><p>Confidence intervals: <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> automatically calculates confidence intervals for survival function estimates, providing a measure of uncertainty around these estimates.</p></li>
-<li><p>Plotting capabilities: <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> includes functions for plotting survival functions and hazard functions, providing a visual way to understand your survival data.</p></li>
+<li><p>Plotting capabilities: <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> includes functions for plotting survival functions and hazard functions, providing a visual way to understand our survival data.</p></li>
 </ul>
 <p>In this chapter, we’ve seen how to use lifelines to calculate survival probabilities, create survival tables, and estimate confidence intervals. We’ve also discussed some of the theory behind survival analysis, including the concept of “at risk” individuals and the calculation of survival fractions.</p>
-<p>In conclusion, lifelines is a powerful tool for survival analysis in Python. Whether you’re a researcher studying patient survival times, a data scientist predicting customer churn, or an engineer analyzing machine failure times, lifelines has the tools you need to analyze your data and draw meaningful conclusions.</p>
+<p>In conclusion, lifelines is a powerful tool for survival analysis in Python. Whether we’re a researcher studying patient survival times, a data scientist predicting customer churn, or an engineer analyzing machine failure times, lifelines has the tools we need to analyze our data and draw meaningful conclusions.</p>
 </section>
 <section id="session-information">
 <h2>Session Information<a class="headerlink" href="#session-information" title="Link to this heading">#</a></h2>
