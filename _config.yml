@@ -44,6 +44,9 @@ latex:
 #   - references.bib
 
 ######################################################################################
-# Build and deploy the Jupyter-book
+# Update, build and deploy the Jupyter-book
+#
+# complete _toc.yml
 # >jupyter-book build .
+# push the commits to origin/master
 # >ghp-import -n -p -f _build/html
