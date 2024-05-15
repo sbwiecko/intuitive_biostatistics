@@ -42,3 +42,8 @@ latex:
 # Add a bibtex file so that we can create citations
 # bibtex_bibfiles: 
 #   - references.bib
+
+######################################################################################
+# Build and deploy the Jupyter-book
+# >jupyter-book build .
+# >ghp-import -n -p -f _build/html
