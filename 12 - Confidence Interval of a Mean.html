@@ -255,7 +255,7 @@
       
       
       
-      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/jupyter-book/12 - Confidence Interval of a Mean.ipynb" target="_blank"
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/master/12 - Confidence Interval of a Mean.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -382,7 +382,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-t-distribution">The t-distribution</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#origin-of-the-t-distribution">Origin of the t-distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scipy-stats-to-obtain-t-values">Using <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> to obtain t-values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scipy-stats-to-obtain-critical-t-values">Using <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> to obtain critical t-values</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sign-of-the-t-critical-value">Sign of the t-critical value</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-t-distribution">Visualizing the t-distribution</a></li>
 </ul>
@@ -391,11 +391,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-t-statistic">Calculating the t-statistic</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-flip">The flip!</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-z-value-vs-t-value">Critical z-value vs. t-value</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-tools-for-ci-calculation">Python tools for CI calculation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist-normal-distribution">Frequentist - normal distribution</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist-small-sample-size">Frequentist - small sample size</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-approach">Bayesian approach</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">Bootstrap</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-of-a-proportion-via-resampling">CI of a proportion via resampling</a></li>
 </ul>
 </li>
 </ul>
@@ -430,8 +432,8 @@ document.write(`
 <h3>Origin of the t-distribution<a class="headerlink" href="#origin-of-the-t-distribution" title="Link to this heading">#</a></h3>
 <p>The t-distribution was developed by William Sealy Gosset, a chemist working for the Guinness brewery in the early 20th century. He published his work under the pseudonym “Student” due to company restrictions. The distribution arose from Gosset’s need to make inferences about the mean of a normally distributed population when the sample size was small and the population standard deviation was unknown. The t-distribution is similar to the standard normal distribution (z-distribution) but has heavier tails, especially with smaller sample sizes. As the sample size increases, the t-distribution approaches the z-distribution.</p>
 </section>
-<section id="using-scipy-stats-to-obtain-t-values">
-<h3>Using <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> to obtain t-values<a class="headerlink" href="#using-scipy-stats-to-obtain-t-values" title="Link to this heading">#</a></h3>
+<section id="using-scipy-stats-to-obtain-critical-t-values">
+<h3>Using <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> to obtain critical t-values<a class="headerlink" href="#using-scipy-stats-to-obtain-critical-t-values" title="Link to this heading">#</a></h3>
 <p>The <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> module</a> in Python provides a convenient way to work with the t-distribution and obtain critical t-values. For a <em>two-tailed confidence interval</em>, the expression <span class="math notranslate nohighlight">\(1 - \alpha/2\)</span> is used to find the critical t-value, with <span class="math notranslate nohighlight">\(\alpha\)</span> the <em>signifcance level</em>, also called the <em>complement of the confidence level</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -449,7 +451,8 @@ document.write(`
 <span class="c1"># Calculate the critical t-value (two-tailed)</span>
 <span class="n">t_critical</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>  <span class="c1"># ppf is the percent point function (inverse of CDF)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The critical t-value for a </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">confidence_level</span><span class="si">}</span><span class="s2">% confidence interval with </span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s2"> degrees of freedom is </span><span class="si">{</span><span class="n">t_critical</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The critical t-value for a </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">confidence_level</span><span class="si">}</span><span class="s2">% confidence interval </span><span class="se">\</span>
+<span class="s2">with </span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s2"> degrees of freedom is </span><span class="si">{</span><span class="n">t_critical</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -468,7 +471,7 @@ document.write(`
 <span class="n">confidence_levels</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.80</span><span class="p">,</span> <span class="mf">0.90</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">]</span> <span class="c1"># conf_lev = 1 - alpha</span>
 
 <span class="c1"># Degrees of freedom</span>
-<span class="n">df_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="n">df_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">251</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
 
 <span class="c1"># Create an empty dictionary to store t-values</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
@@ -495,13 +498,13 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Critical values of the t-distribution for various degrees of freedom (columns) and confidence levels (rows)
 ===========================================================================================================
-| 1-$\alpha$   | 1      | 2     | 3     | 4     | 5     | 6     | 7     | 8     | 9     | 10    | 50    | 100   | 150   | 200   |
-|:-------------|:-------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|
-| 0.8          | 3.078  | 1.886 | 1.638 | 1.533 | 1.476 | 1.44  | 1.415 | 1.397 | 1.383 | 1.372 | 1.299 | 1.29  | 1.287 | 1.286 |
-| 0.9          | 6.314  | 2.92  | 2.353 | 2.132 | 2.015 | 1.943 | 1.895 | 1.86  | 1.833 | 1.812 | 1.676 | 1.66  | 1.655 | 1.653 |
-| 0.95         | 12.706 | 4.303 | 3.182 | 2.776 | 2.571 | 2.447 | 2.365 | 2.306 | 2.262 | 2.228 | 2.009 | 1.984 | 1.976 | 1.972 |
-| 0.975        | 25.452 | 6.205 | 4.177 | 3.495 | 3.163 | 2.969 | 2.841 | 2.752 | 2.685 | 2.634 | 2.311 | 2.276 | 2.264 | 2.258 |
-| 0.99         | 63.657 | 9.925 | 5.841 | 4.604 | 4.032 | 3.707 | 3.499 | 3.355 | 3.25  | 3.169 | 2.678 | 2.626 | 2.609 | 2.601 |
+| 1-$\alpha$   | 1      | 2     | 3     | 4     | 5     | 6     | 7     | 8     | 9     | 10    | 50    | 100   | 150   | 200   | 250   |
+|:-------------|:-------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|
+| 0.8          | 3.078  | 1.886 | 1.638 | 1.533 | 1.476 | 1.44  | 1.415 | 1.397 | 1.383 | 1.372 | 1.299 | 1.29  | 1.287 | 1.286 | 1.285 |
+| 0.9          | 6.314  | 2.92  | 2.353 | 2.132 | 2.015 | 1.943 | 1.895 | 1.86  | 1.833 | 1.812 | 1.676 | 1.66  | 1.655 | 1.653 | 1.651 |
+| 0.95         | 12.706 | 4.303 | 3.182 | 2.776 | 2.571 | 2.447 | 2.365 | 2.306 | 2.262 | 2.228 | 2.009 | 1.984 | 1.976 | 1.972 | 1.969 |
+| 0.975        | 25.452 | 6.205 | 4.177 | 3.495 | 3.163 | 2.969 | 2.841 | 2.752 | 2.685 | 2.634 | 2.311 | 2.276 | 2.264 | 2.258 | 2.255 |
+| 0.99         | 63.657 | 9.925 | 5.841 | 4.604 | 4.032 | 3.707 | 3.499 | 3.355 | 3.25  | 3.169 | 2.678 | 2.626 | 2.609 | 2.601 | 2.596 |
 </pre></div>
 </div>
 </div>
@@ -535,16 +538,16 @@ document.write(`
 <span class="n">t_critical_upper</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>  <span class="c1"># Upper critical value at q = 0.975</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For a </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">confidence_level</span><span class="si">}</span><span class="s2">% confidence interval with </span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s2"> degrees of freedom:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The lower critical t-value is </span><span class="si">{</span><span class="n">t_critical_lower</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">(</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">confidence_level</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% of the area under the curve is to the left of this value)&quot;</span><span class="p">)</span>
+<span class="s2">(</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">confidence_level</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% of the area under the curve is to the left of this value)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The upper critical t-value is </span><span class="si">{</span><span class="n">t_critical_upper</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">(</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">confidence_level</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% of the area under the curve is to the right of this value)&quot;</span><span class="p">)</span>
+<span class="s2">(</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">confidence_level</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% of the area under the curve is to the right of this value)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For a 95.0% confidence interval with 11 degrees of freedom:
-The lower critical t-value is -2.2 (2.50% of the area under the curve is to the left of this value)
-The upper critical t-value is 2.2 (2.50% of the area under the curve is to the right of this value)
+The lower critical t-value is -2.2 (2.5% of the area under the curve is to the left of this value)
+The upper critical t-value is 2.2 (2.5% of the area under the curve is to the right of this value)
 </pre></div>
 </div>
 </div>
@@ -579,17 +582,21 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 <span class="n">y</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
 
 <span class="c1"># Create the plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># plt.figure(figsize=(4, 3))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;t-distribution (df=</span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Shade confidence interval areas</span>
 <span class="c1"># plt.fill_between(x, y, where=((x &lt; -t_critical) | (x &gt; t_critical)), color=&#39;mediumorchid&#39;,)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="p">((</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">t_critical_lower</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">t_critical_upper</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;mediumorchid&#39;</span><span class="p">,)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+    <span class="n">where</span><span class="o">=</span><span class="p">((</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">t_critical_lower</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">t_critical_upper</span><span class="p">)),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;mediumorchid&#39;</span><span class="p">,)</span>
 
 <span class="c1"># Add labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t-value&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Density&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-distribution with </span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s2"> Degrees of Freedom</span><span class="se">\n</span><span class="s2">(</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">confidence_level</span><span class="si">}</span><span class="s2">% Confidence Interval)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-distribution with </span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s2"> Degrees of Freedom</span><span class="se">\</span>
+<span class="se">\n</span><span class="s2">(</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">confidence_level</span><span class="si">}</span><span class="s2">% Confidence Interval)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Show the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">);</span>
@@ -597,7 +604,7 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b2e0a449fae71e121d0a388a3d2777d18f07d5ae286996f52ea2e93b164d767a.png" src="_images/b2e0a449fae71e121d0a388a3d2777d18f07d5ae286996f52ea2e93b164d767a.png" />
+<img alt="_images/549f918c3574f6996f1ed63f469ed6b539d0b0cc1e0d8e63fcb35c579810cbe5.png" src="_images/549f918c3574f6996f1ed63f469ed6b539d0b0cc1e0d8e63fcb35c579810cbe5.png" />
 </div>
 </div>
 <p>Notice that:</p>
@@ -620,7 +627,7 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 
 <span class="c1"># Create the plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="c1"># plt.figure(figsize=(5, 4))</span>
 <span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">df_values</span><span class="p">:</span>
     <span class="c1"># Calculate t-distribution PDF values</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
@@ -640,7 +647,7 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1c4d0b1a8b9faa9e696e75be02c4625868a05c2c513bf03440c088da66c70756.png" src="_images/1c4d0b1a8b9faa9e696e75be02c4625868a05c2c513bf03440c088da66c70756.png" />
+<img alt="_images/a6b1716a529f63f2aa5b2e6a012f4d937e7afbff437211559f1594bba245a1ac.png" src="_images/a6b1716a529f63f2aa5b2e6a012f4d937e7afbff437211559f1594bba245a1ac.png" />
 </div>
 </div>
 <p>The plot illustrates the following key characteristics of t-distributions:</p>
@@ -663,7 +670,7 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 <div class="math notranslate nohighlight">
 \[t=\frac{m - \mu}{s / \sqrt{n}}\]</div>
 <ul class="simple">
-<li><p>The t-statistic tells us how extreme your sample mean is compared to the hypothesized population mean, under the assumption that the null hypothesis is true (i.e., the true population mean is equal to the hypothesized value).</p></li>
+<li><p>The t-statistic tells us how extreme the sample mean is compared to the hypothesized population mean, under the assumption that the null hypothesis is true (i.e., the true population mean is equal to the hypothesized value).</p></li>
 <li><p>A larger absolute value of <span class="math notranslate nohighlight">\(t\)</span> indicates a more significant difference between the sample mean and the hypothesized population mean.</p></li>
 <li><p>The sign of <span class="math notranslate nohighlight">\(t\)</span> indicates whether the sample mean is larger (+) or smaller (-) than the hypothesized population mean.</p></li>
 </ul>
@@ -685,7 +692,7 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 <p>Once we’ve calculated the t-statistic, we can use the t-distribution to determine:</p>
 <ul class="simple">
 <li><p>P-value: The probability of observing a t-statistic as extreme as or more extreme than the one calculated, assuming the null hypothesis is true. A smaller p-value provides stronger evidence against the null hypothesis.</p></li>
-<li><p>Critical t-value: The t-value that corresponds to your chosen significance level (alpha) and degrees of freedom. If our calculated t-statistic is more extreme than the critical t-value, you reject the null hypothesis.</p></li>
+<li><p>Critical t-value: The t-value that corresponds to our chosen significance level (alpha) and degrees of freedom. If our calculated t-statistic is more extreme than the critical t-value, we reject the null hypothesis.</p></li>
 </ul>
 </section>
 <section id="the-flip">
@@ -706,7 +713,7 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 </section>
 <section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
-<p>To illustrate the effect of sample size on the confidence interval, we will simulate two datasets of body temperatures with different sample sizes (n=12 and n=130). We will assume the body temperatures are <em>normally distributed</em> with a population mean of 36.8 and a standard deviation of 0.4. We will then calculate and visualize the 95% confidence intervals for each sample using point plots.</p>
+<p>To illustrate the effect of sample size on the confidence interval, we will simulate two datasets of body temperatures with the same population mean and SD, but with different sample sizes (n=12 and n=130). We will assume the body temperatures are <em>normally distributed</em> with a population mean of 36.8 and a standard deviation of 0.4. We will then calculate and visualize the 95% confidence intervals for each sample using point plots.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
@@ -733,7 +740,7 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 <span class="n">std_error2</span> <span class="o">=</span> <span class="n">pop_std</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span>
 
 <span class="c1"># Calculate z-critical value for 95% CI (since pop std is known)</span>
-<span class="n">z_crit</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span>  <span class="c1"># ppf gives you z score for 97.5%</span>
+<span class="n">z_crit</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span>  <span class="c1"># ppf gives us z score for 97.5%</span>
 
 <span class="c1"># Calculate margin of error</span>
 <span class="n">margin_error1</span> <span class="o">=</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">std_error1</span>
@@ -746,11 +753,21 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 <span class="n">ci_upper2</span> <span class="o">=</span> <span class="n">sample_mean2</span> <span class="o">+</span> <span class="n">margin_error2</span>
 
 <span class="c1"># Create point plots with confidence intervals</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>  <span class="c1"># 1 row, 2 columns, subplot 1</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">sample_mean1</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="n">margin_error1</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;95% CI (n=</span><span class="si">{</span><span class="n">n1</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">pop_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Population mean&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">sample1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data points&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">sample_mean1</span><span class="p">],</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">margin_error1</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;95% CI (n=</span><span class="si">{</span><span class="n">n1</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
+    <span class="n">pop_mean</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Population mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">sample1</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data points&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Data point index&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Body Temperature (°C)&#39;</span><span class="p">)</span>
@@ -759,9 +776,19 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>  <span class="c1"># 1 row, 2 columns, subplot 2</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">([</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="n">sample_mean2</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="n">margin_error2</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;95% CI (n=</span><span class="si">{</span><span class="n">n2</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">pop_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Population mean&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">sample2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data points&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="n">sample_mean2</span><span class="p">],</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">margin_error2</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;95% CI (n=</span><span class="si">{</span><span class="n">n2</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
+    <span class="n">pop_mean</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Population mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">sample2</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data points&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Data point index&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">130</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Body temp with 95% CI (n = </span><span class="si">{</span><span class="n">n2</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
@@ -771,7 +798,7 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25c1d5cf108f4bbce717951bb77361df4e398b1e337384081568ff06b438a400.png" src="_images/25c1d5cf108f4bbce717951bb77361df4e398b1e337384081568ff06b438a400.png" />
+<img alt="_images/91b9f3136486610330d40910a7b8709f3259e870f823fbeb3abee6313fa7602f.png" src="_images/91b9f3136486610330d40910a7b8709f3259e870f823fbeb3abee6313fa7602f.png" />
 </div>
 </div>
 <p>Let’s calculate manually the CIs using the t-distribution in both cases.</p>
@@ -817,28 +844,49 @@ The upper critical t-value is 2.2 (2.50% of the area under the curve is to the r
 <span class="n">ci_upper2</span> <span class="o">=</span> <span class="n">sample_mean2</span> <span class="o">+</span> <span class="n">margin_error2</span>
 
 <span class="c1"># Print the results</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample size n1 = </span><span class="si">{</span><span class="n">n1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample size n1 = </span><span class="si">{</span><span class="n">n1</span><span class="si">}</span><span class="s2">, with know population SD:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Sample mean: </span><span class="si">{</span><span class="n">sample_mean1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  95% Confidence Interval: (</span><span class="si">{</span><span class="n">ci_lower1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ci_upper1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sample size n2 = </span><span class="si">{</span><span class="n">n2</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sample size n2 = </span><span class="si">{</span><span class="n">n2</span><span class="si">}</span><span class="s2">, with know population SD:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Sample mean: </span><span class="si">{</span><span class="n">sample_mean2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  95% Confidence Interval: (</span><span class="si">{</span><span class="n">ci_lower2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ci_upper2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample size n1 = 12:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample size n1 = 12, with know population SD:
   Sample mean: 36.918
   95% Confidence Interval: (36.664, 37.173)
 
-Sample size n2 = 130:
+Sample size n2 = 130, with know population SD:
   Sample mean: 36.758
   95% Confidence Interval: (36.688, 36.827)
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="critical-z-value-vs-t-value">
+<h3>Critical z-value vs. t-value<a class="headerlink" href="#critical-z-value-vs-t-value" title="Link to this heading">#</a></h3>
+<p>We can use the critical z-value instead of the critical t-value when calculating the margin of error in certain situations, but it’s important to understand the conditions under which this is appropriate.</p>
+<ul class="simple">
+<li><p>When to Use the z-Value:</p>
+<ul>
+<li><p>The population standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) is known: If we have access to the true population standard deviation, we can directly use the z-distribution (standard normal distribution) to calculate the critical value.</p></li>
+<li><p>The sample size is large (typically n &gt; 30): The Central Limit Theorem states that the distribution of sample means approaches a normal distribution as the sample size increases. For large samples, the t-distribution closely approximates the z-distribution, making the z-value a valid substitute.</p></li>
+</ul>
+</li>
+<li><p>When to Use the t-Value:</p>
+<ul>
+<li><p>The population standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) is unknown: This is the most common scenario in <em>real-world</em> applications. When we don’t know the population standard deviation, we estimate it from the sample data (using the sample standard deviation, <span class="math notranslate nohighlight">\(s\)</span>). The t-distribution accounts for the additional uncertainty introduced by this estimation.</p></li>
+<li><p>The sample size is small (typically n &lt; 30): With small sample sizes, the t-distribution has heavier tails than the z-distribution, reflecting the greater variability in sample means. Using the t-distribution provides a more accurate confidence interval in this case.</p></li>
+</ul>
+</li>
+</ul>
+<p>Using the z-value when the t-value is appropriate can lead to narrower confidence intervals that may not accurately capture the true population parameter. The t-distribution provides a more conservative estimate in these cases. But the distinction between the t-distribution and z-distribution becomes less critical as the sample size increases. For very large samples (n &gt; 100), the difference is negligible, and either distribution can be used.</p>
+<p>For example, suppose we have a sample of 15 measurements with a mean (m) of 50 and a sample standard deviation (s) of 10. We want a 95% confidence interval. If we know the population standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>): we can use the z-value (1.96 for a 95% CI) to calculate the margin of error.
+If we don’t know the population standard deviation: we should use the t-value (2.145 for a 95% CI with 14 degrees of freedom) to calculate the margin of error.</p>
 </section>
 <section id="python-tools-for-ci-calculation">
 <h3>Python tools for CI calculation<a class="headerlink" href="#python-tools-for-ci-calculation" title="Link to this heading">#</a></h3>
@@ -851,7 +899,7 @@ Sample size n2 = 130:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate 95% confidence interval (assuming known population std_dev)</span>
 <span class="n">confidence_level</span> <span class="o">=</span> <span class="mf">0.95</span>
 <span class="n">sample_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample2</span><span class="p">)</span>
-<span class="c1"># Here, you would typically use the population std_dev if known, </span>
+<span class="c1"># Here, we would typically use the population std_dev if known, </span>
 <span class="c1"># or an estimate (e.g., from previous studies)</span>
 <span class="n">standard_error1</span> <span class="o">=</span> <span class="n">pop_std</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sample2</span><span class="p">))</span>
 <span class="n">standard_error2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sample2</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sample2</span><span class="p">))</span>
@@ -948,7 +996,7 @@ Sample size n2 = 130:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% Percentile Bootstrap Confidence Interval: (36.700, 36.820)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% Percentile Bootstrap Confidence Interval: (36.690, 36.820)
 </pre></div>
 </div>
 </div>
@@ -960,29 +1008,46 @@ Sample size n2 = 130:
 <li><p>Identify the percentiles: Determine the <strong>2.5th and 97.5th percentiles</strong> of this collection of estimates. This range, which contains 95% of the resampled means, serves as the 95% confidence interval (CI) for the population mean.</p></li>
 </ul>
 <p>Remarkably, this resampling-based CI often aligns closely with the CI calculated using the conventional method that assumes a normal distribution. Extensive theoretical and simulation studies have validated this approach, leading some statisticians to advocate for its wider adoption.</p>
-<p>The underlying principle behind resampling’s effectiveness is the Central Limit Theorem (again ;-). This theorem states that as you take more and more simple random samples from a population, the distribution of the sample means will approximate a normal distribution, regardless of the original population’s distribution. In other words, the average of the sample means will converge towards the true population mean as the number of samples increases.</p>
+<p>The underlying principle behind resampling’s effectiveness is the Central Limit Theorem (again ;-). This theorem states that as we take more and more simple random samples from a population, the distribution of the sample means will approximate a normal distribution, regardless of the original population’s distribution. In other words, the average of the sample means will converge towards the true population mean as the number of samples increases. Learn more on bootstrap and computer-intensive methods in <a class="reference external" href="https://link.springer.com/chapter/10.1007/978-1-4419-5525-8_6">Wilcox (2010)</a> and <a class="reference external" href="https://doi.org/10.1201/9780429329203">Manly and Navarro Alberto (2020)</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Number of resamples</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Number of resamples</span>
 <span class="n">num_resamples</span> <span class="o">=</span> <span class="mi">10000</span>
 
 <span class="c1"># Resampling and mean calculation</span>
 <span class="c1"># !Make sure to choose exactly N elements randomly **with replacement**</span>
 <span class="c1"># from the original N-data point set, e.g., size=12 for sample1 set</span>
-<span class="n">resampled_means</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sample1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sample1</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_resamples</span><span class="p">)]</span>
+<span class="n">resampled_means</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+        <span class="n">sample1</span><span class="p">,</span>
+        <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sample1</span><span class="p">),</span>
+        <span class="n">replace</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_resamples</span><span class="p">)]</span>
 
 <span class="c1"># Calculate percentiles</span>
 <span class="n">percentile_2_5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">resampled_means</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
 <span class="n">percentile_97_5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">resampled_means</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">)</span>
 
 <span class="c1"># Plot histogram</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">resampled_means</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Resampled means&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">percentile_2_5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2.5th percentile&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">percentile_97_5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;97.5th percentile&#39;</span><span class="p">)</span>
+<span class="c1"># plt.figure(figsize=(4, 3))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">resampled_means</span><span class="p">,</span>
+    <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Resampled means&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">percentile_2_5</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2.5th percentile&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">percentile_97_5</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;97.5th percentile&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Resampled mean&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Histogram of resampled means (n = 12, </span><span class="si">{</span><span class="n">num_resamples</span><span class="si">}</span><span class="s1"> resamples)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Histogram of resampled means</span><span class="se">\n</span><span class="s1">(n = 12, </span><span class="si">{</span><span class="n">num_resamples</span><span class="si">}</span><span class="s1"> resamples)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
 
@@ -997,7 +1062,83 @@ Sample size n2 = 130:
 97.5th percentile: 37.084
 </pre></div>
 </div>
-<img alt="_images/1d99302ceabc51f8178de43642c0936107f5cbfb76fbd9510e51f3426d13ad3f.png" src="_images/1d99302ceabc51f8178de43642c0936107f5cbfb76fbd9510e51f3426d13ad3f.png" />
+<img alt="_images/72fb1d159ee0f5c4dfcb4a2e943e4c704b3e06f2305652269086a362608e08c3.png" src="_images/72fb1d159ee0f5c4dfcb4a2e943e4c704b3e06f2305652269086a362608e08c3.png" />
+</div>
+</div>
+</section>
+<section id="ci-of-a-proportion-via-resampling">
+<h4>CI of a proportion via resampling<a class="headerlink" href="#ci-of-a-proportion-via-resampling" title="Link to this heading">#</a></h4>
+<p>The bootstrap method isn’t limited to means; we can apply it to proportions as well. Let’s revisit the voting scenario from an earlier chapter, where 33 out of 100 people voted a certain way. Our goal is to estimate the 95% confidence interval for the true proportion of the population who would vote this way, assuming a population proportion of 0.33 for our simulation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Original sample size and proportion of interest</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.33</span>
+
+<span class="c1"># Number of resamples</span>
+<span class="n">num_resamples</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1"># Set random seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Generate original sample</span>
+<span class="n">original_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># 1 for success, 0 for failure</span>
+
+<span class="c1"># Resampling and proportion calculation</span>
+<span class="n">resampled_proportions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+        <span class="n">original_sample</span><span class="p">,</span>
+        <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+        <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_resamples</span><span class="p">)]</span>
+
+<span class="c1"># Calculate percentiles for 95% CI</span>
+<span class="n">percentile_2_5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">resampled_proportions</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">percentile_97_5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">resampled_proportions</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">)</span>
+
+<span class="c1"># Plot histogram</span>
+<span class="c1"># plt.figure(figsize=(4, 3))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">resampled_proportions</span><span class="p">,</span>
+    <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Resampled Proportions&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">percentile_2_5</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2.5th Percentile&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">percentile_97_5</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;97.5th Percentile&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">p</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Proportion&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Resampled Proportion&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Histogram of resampled proportions </span><span class="se">\</span>
+<span class="se">\n</span><span class="s1">(n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">, true p=</span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">num_resamples</span><span class="si">}</span><span class="s1"> pseudosamples)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+
+<span class="c1"># Print percentiles</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% bootstrap confidence interval for proportion: </span><span class="se">\</span>
+<span class="s2">(</span><span class="si">{</span><span class="n">percentile_2_5</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">percentile_97_5</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate the 95% confidence interval for proportions using statsmodels.stats.proportion,</span>
+<span class="c1"># now using binomial distrubution</span>
+<span class="n">ci_lower</span><span class="p">,</span> <span class="n">ci_upper</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">proportion_confint</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">33</span><span class="p">,</span> <span class="n">nobs</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;binom_test&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval using statsmodels proportion_confint is </span><span class="se">\</span>
+<span class="s2">(</span><span class="si">{</span><span class="n">ci_lower</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ci_upper</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% bootstrap confidence interval for proportion: (0.220, 0.400)
+The 95% confidence interval using statsmodels proportion_confint is (0.244, 0.430)
+</pre></div>
+</div>
+<img alt="_images/7bc037667ff077655e56666555f33e96c349d1dba41ea64e4547d5802dcb58a4.png" src="_images/7bc037667ff077655e56666555f33e96c349d1dba41ea64e4547d5802dcb58a4.png" />
 </div>
 </div>
 </section>
@@ -1015,10 +1156,67 @@ Sample size n2 = 130:
 <li><p>Narrow CI: Smaller SEM, more precise estimate</p></li>
 <li><p>Wide CI: Larger SEM, less precise estimate</p></li>
 </ul>
-<p>As we saw in the previous figure, larger samples tend to yield more precise estimates of population statistics, reflected in their narrower distributions. The standard deviation of a statistic derived from a sample is called the standard error of that statistic.  In the case of the sample mean, the standard error of the mean (SEM) is given by:</p>
+<p>As we saw in the previous figure, larger samples tend to yield more precise estimates of population statistics, reflected in their narrower distributions. The standard deviation of a statistic derived from a sample is called the standard error of that statistic.  In the case of the sample mean, the standard error of the mean (SEM) or standard error (SE) is given by:</p>
 <div class="math notranslate nohighlight">
 \[\text{SE} = \frac{\sigma}{\sqrt{n}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the (sample) standard deviation and <span class="math notranslate nohighlight">\(n\)</span> is the sample size. It’s important to remember that this calculation relies on the assumption that the sample standard deviation closely mirrors the population standard deviation, which is generally acceptable for samples of moderate or larger size. As the formula illustrates, the standard error of the mean (SEM) is inversely proportional to the square root of the sample size. This confirms our intuitive understanding that larger samples lead to more precise estimates of the population mean, as evidenced by the smaller SEM.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">sem</span>
+
+<span class="c1"># Calculate statistics</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample1</span><span class="p">)</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sample1</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Unbiased sample standard deviation</span>
+<span class="n">sample_sem</span> <span class="o">=</span> <span class="n">sem</span><span class="p">(</span><span class="n">sample1</span><span class="p">)</span>
+
+<span class="c1"># Critical value for 95% CI</span>
+<span class="n">z_crit</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span>  <span class="c1"># Assuming normal distribution</span>
+
+<span class="c1"># Calculate confidence interval</span>
+<span class="n">ci</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean</span> <span class="o">-</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">sample_sem</span><span class="p">,</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">sample_sem</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># SD error bar</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">sd</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Standard Deviation (SD)&#39;</span><span class="p">)</span>
+
+<span class="c1"># SEM error bar</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">sample_sem</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Standard Error of Mean (SEM)&#39;</span><span class="p">)</span>
+
+<span class="c1"># 95% CI error bar</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="mi">3</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">mean</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;95% Confidence Interval (CI)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;SD&#39;</span><span class="p">,</span> <span class="s1">&#39;SEM&#39;</span><span class="p">,</span> <span class="s1">&#39;95% CI&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparison of SD, SEM, and 95% CI&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4d6448e1bfec5efebd3d6e5dde5934230a6cde032852aaf4b4c113f67fd3d2f7.png" src="_images/4d6448e1bfec5efebd3d6e5dde5934230a6cde032852aaf4b4c113f67fd3d2f7.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>The error bar for SD is the longest, reflecting the variability of individual data points around the mean.</p></li>
+<li><p>The SEM error bar is shorter than the SD, showing the reduced variability expected in sample means compared to individual data points.</p></li>
+<li><p>The 95% CI error bar has a moderate width, indicating the range within which we are 95% confident that the true population mean lies.</p></li>
+</ul>
 </section>
 <section id="the-ci-of-the-sd">
 <h2>The CI of the SD<a class="headerlink" href="#the-ci-of-the-sd" title="Link to this heading">#</a></h2>
@@ -1145,7 +1343,7 @@ seaborn: 0.13.2
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-t-distribution">The t-distribution</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#origin-of-the-t-distribution">Origin of the t-distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scipy-stats-to-obtain-t-values">Using <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> to obtain t-values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scipy-stats-to-obtain-critical-t-values">Using <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> to obtain critical t-values</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sign-of-the-t-critical-value">Sign of the t-critical value</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-t-distribution">Visualizing the t-distribution</a></li>
 </ul>
@@ -1154,11 +1352,13 @@ seaborn: 0.13.2
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-t-statistic">Calculating the t-statistic</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-flip">The flip!</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-z-value-vs-t-value">Critical z-value vs. t-value</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-tools-for-ci-calculation">Python tools for CI calculation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist-normal-distribution">Frequentist - normal distribution</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#frequentist-small-sample-size">Frequentist - small sample size</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-approach">Bayesian approach</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">Bootstrap</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ci-of-a-proportion-via-resampling">CI of a proportion via resampling</a></li>
 </ul>
 </li>
 </ul>
