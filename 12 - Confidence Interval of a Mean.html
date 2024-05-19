@@ -449,7 +449,8 @@ document.write(`
 <span class="n">df</span> <span class="o">=</span> <span class="mi">27</span>
 
 <span class="c1"># Calculate the critical t-value (two-tailed)</span>
-<span class="n">t_critical</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>  <span class="c1"># ppf is the percent point function (inverse of CDF)</span>
+<span class="c1">#t_critical = t.ppf(1 - alpha/2, df)  # ppf is the percent point function (inverse of CDF)</span>
+<span class="n">t_critical</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># ppf is the percent point function (inverse of CDF)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The critical t-value for a </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">confidence_level</span><span class="si">}</span><span class="s2">% confidence interval </span><span class="se">\</span>
 <span class="s2">with </span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s2"> degrees of freedom is </span><span class="si">{</span><span class="n">t_critical</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -462,6 +463,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>In Sheet or Excel, we can use <code class="docutils literal notranslate"><span class="pre">T.INV.2T(1-0.95,</span> <span class="pre">27)</span></code>.</p>
 <p>To access a wider range of t-values for various confidence levels and degrees of freedom, we can generate the following table.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -996,7 +998,7 @@ If we don’t know the population standard deviation: we should use the t-value 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% Percentile Bootstrap Confidence Interval: (36.690, 36.820)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% Percentile Bootstrap Confidence Interval: (36.700, 36.820)
 </pre></div>
 </div>
 </div>
@@ -1045,6 +1047,10 @@ If we don’t know the population standard deviation: we should use the t-value 
     <span class="n">percentile_97_5</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="s1">&#39;97.5th percentile&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">pop_mean</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True population mean&#39;</span><span class="p">)</span> 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Resampled mean&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Histogram of resampled means</span><span class="se">\n</span><span class="s1">(n = 12, </span><span class="si">{</span><span class="n">num_resamples</span><span class="si">}</span><span class="s1"> resamples)&#39;</span><span class="p">)</span>
@@ -1062,7 +1068,7 @@ If we don’t know the population standard deviation: we should use the t-value 
 97.5th percentile: 37.084
 </pre></div>
 </div>
-<img alt="_images/72fb1d159ee0f5c4dfcb4a2e943e4c704b3e06f2305652269086a362608e08c3.png" src="_images/72fb1d159ee0f5c4dfcb4a2e943e4c704b3e06f2305652269086a362608e08c3.png" />
+<img alt="_images/9d6fbdaa35891ef148068ecf2fe7a0e28cd49c990b83beb5af55a7655bad12e8.png" src="_images/9d6fbdaa35891ef148068ecf2fe7a0e28cd49c990b83beb5af55a7655bad12e8.png" />
 </div>
 </div>
 </section>
@@ -1101,20 +1107,20 @@ If we don’t know the population standard deviation: we should use the t-value 
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
     <span class="n">resampled_proportions</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Resampled Proportions&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Resampled proportions&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">percentile_2_5</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2.5th Percentile&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2.5th percentile&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">percentile_97_5</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;97.5th Percentile&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;97.5th percentile&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">p</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Proportion&#39;</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Resampled Proportion&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True proportion&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Resampled proportion&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Histogram of resampled proportions </span><span class="se">\</span>
 <span class="se">\n</span><span class="s1">(n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">, true p=</span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">num_resamples</span><span class="si">}</span><span class="s1"> pseudosamples)&#39;</span><span class="p">)</span>
@@ -1138,7 +1144,7 @@ If we don’t know the population standard deviation: we should use the t-value 
 The 95% confidence interval using statsmodels proportion_confint is (0.244, 0.430)
 </pre></div>
 </div>
-<img alt="_images/7bc037667ff077655e56666555f33e96c349d1dba41ea64e4547d5802dcb58a4.png" src="_images/7bc037667ff077655e56666555f33e96c349d1dba41ea64e4547d5802dcb58a4.png" />
+<img alt="_images/d173831dfb6a8187e9aa2e9e68fe4682a84eab07ccb3683c0aeffd86c7ef3681.png" src="_images/d173831dfb6a8187e9aa2e9e68fe4682a84eab07ccb3683c0aeffd86c7ef3681.png" />
 </div>
 </div>
 </section>
