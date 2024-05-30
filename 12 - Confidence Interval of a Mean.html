@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '12 - Confidence Interval of a Mean';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Statistical Significance" href="15%20-%20Statistical%20Significance.html" />
     <link rel="prev" title="The Gaussian Distribution" href="10%20-%20Gaussian%20Distribution.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,6 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20Scatter.html">Quantifying Scatter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20Distribution.html">The Gaussian Distribution</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Confidence Interval of a Mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15%20-%20Statistical%20Significance.html">Statistical Significance</a></li>
 </ul>
 
     </div>
@@ -427,7 +429,7 @@ document.write(`
 </section>
 <section id="the-t-distribution">
 <h2>The t-distribution<a class="headerlink" href="#the-t-distribution" title="Link to this heading">#</a></h2>
-<p>To determine the width of the confidence interval of a mean, we utilize a constant called the <strong>critical value</strong> from the <strong>t-distribution</strong>, or the <strong>critical t-value</strong> denoted as <span class="math notranslate nohighlight">\(t^*\)</span>. The t-distribution is similar to the standard normal distribution but is used when the population standard deviation is unknown and estimated from the sample. The choice of <span class="math notranslate nohighlight">\(t^*\)</span> depends on the desired <strong>confidence level</strong> and the <strong>degrees of freedom</strong> (<span class="math notranslate nohighlight">\(\text{df}\)</span>), which is calculated as <span class="math notranslate nohighlight">\(\text{df} = n - 1\)</span>. In general, <span class="math notranslate nohighlight">\(\text{df}\)</span> equals the number of data points <span class="math notranslate nohighlight">\(n\)</span> minus the number of parameters being estimated.</p>
+<p>To determine the width of the confidence interval of a mean, we utilize a constant called the <strong>critical value</strong> from the <strong>t-distribution</strong>, or the <strong>critical t-value</strong> denoted as <span class="math notranslate nohighlight">\(t^*\)</span>. The t-distribution is similar to the standard normal distribution but is used when the population standard deviation is unknown and estimated from the sample. The choice of <span class="math notranslate nohighlight">\(t^*\)</span> depends on the desired <strong>confidence level</strong> and the <strong>degrees of freedom</strong> (<span class="math notranslate nohighlight">\(\text{df}\)</span>). In general, <span class="math notranslate nohighlight">\(\text{df}\)</span> equals the number of data points <span class="math notranslate nohighlight">\(n\)</span> minus the number of parameters being estimated, e.g., <span class="math notranslate nohighlight">\(\text{df} = n - 1\)</span> for the mean.</p>
 <section id="origin-of-the-t-distribution">
 <h3>Origin of the t-distribution<a class="headerlink" href="#origin-of-the-t-distribution" title="Link to this heading">#</a></h3>
 <p>The t-distribution was developed by William Sealy Gosset, a chemist working for the Guinness brewery in the early 20th century. He published his work under the pseudonym “Student” due to company restrictions. The distribution arose from Gosset’s need to make inferences about the mean of a normally distributed population when the sample size was small and the population standard deviation was unknown. The t-distribution is similar to the standard normal distribution (z-distribution) but has heavier tails, especially with smaller sample sizes. As the sample size increases, the t-distribution approaches the z-distribution.</p>
@@ -487,7 +489,7 @@ document.write(`
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">confidence_levels</span><span class="p">)</span>
 
 <span class="c1"># Format the table</span>
-<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;1-$\alpha$&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;1-α&#39;</span>
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;df&#39;</span>
 
 <span class="c1"># Print the table</span>
@@ -500,13 +502,13 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Critical values of the t-distribution for various degrees of freedom (columns) and confidence levels (rows)
 ===========================================================================================================
-| 1-$\alpha$   | 1      | 2     | 3     | 4     | 5     | 6     | 7     | 8     | 9     | 10    | 50    | 100   | 150   | 200   | 250   |
-|:-------------|:-------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|
-| 0.8          | 3.078  | 1.886 | 1.638 | 1.533 | 1.476 | 1.44  | 1.415 | 1.397 | 1.383 | 1.372 | 1.299 | 1.29  | 1.287 | 1.286 | 1.285 |
-| 0.9          | 6.314  | 2.92  | 2.353 | 2.132 | 2.015 | 1.943 | 1.895 | 1.86  | 1.833 | 1.812 | 1.676 | 1.66  | 1.655 | 1.653 | 1.651 |
-| 0.95         | 12.706 | 4.303 | 3.182 | 2.776 | 2.571 | 2.447 | 2.365 | 2.306 | 2.262 | 2.228 | 2.009 | 1.984 | 1.976 | 1.972 | 1.969 |
-| 0.975        | 25.452 | 6.205 | 4.177 | 3.495 | 3.163 | 2.969 | 2.841 | 2.752 | 2.685 | 2.634 | 2.311 | 2.276 | 2.264 | 2.258 | 2.255 |
-| 0.99         | 63.657 | 9.925 | 5.841 | 4.604 | 4.032 | 3.707 | 3.499 | 3.355 | 3.25  | 3.169 | 2.678 | 2.626 | 2.609 | 2.601 | 2.596 |
+| 1-α   | 1      | 2     | 3     | 4     | 5     | 6     | 7     | 8     | 9     | 10    | 50    | 100   | 150   | 200   | 250   |
+|:------|:-------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|
+| 0.8   | 3.078  | 1.886 | 1.638 | 1.533 | 1.476 | 1.44  | 1.415 | 1.397 | 1.383 | 1.372 | 1.299 | 1.29  | 1.287 | 1.286 | 1.285 |
+| 0.9   | 6.314  | 2.92  | 2.353 | 2.132 | 2.015 | 1.943 | 1.895 | 1.86  | 1.833 | 1.812 | 1.676 | 1.66  | 1.655 | 1.653 | 1.651 |
+| 0.95  | 12.706 | 4.303 | 3.182 | 2.776 | 2.571 | 2.447 | 2.365 | 2.306 | 2.262 | 2.228 | 2.009 | 1.984 | 1.976 | 1.972 | 1.969 |
+| 0.975 | 25.452 | 6.205 | 4.177 | 3.495 | 3.163 | 2.969 | 2.841 | 2.752 | 2.685 | 2.634 | 2.311 | 2.276 | 2.264 | 2.258 | 2.255 |
+| 0.99  | 63.657 | 9.925 | 5.841 | 4.604 | 4.032 | 3.707 | 3.499 | 3.355 | 3.25  | 3.169 | 2.678 | 2.626 | 2.609 | 2.601 | 2.596 |
 </pre></div>
 </div>
 </div>
@@ -598,15 +600,12 @@ The upper critical t-value is 2.2 (2.5% of the area under the curve is to the ri
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t-value&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-distribution with </span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s2"> Degrees of Freedom</span><span class="se">\</span>
-<span class="se">\n</span><span class="s2">(</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">confidence_level</span><span class="si">}</span><span class="s2">% Confidence Interval)&quot;</span><span class="p">)</span>
-
-<span class="c1"># Show the plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">);</span>
+<span class="se">\n</span><span class="s2">(</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">confidence_level</span><span class="si">}</span><span class="s2">% Confidence Interval)&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/549f918c3574f6996f1ed63f469ed6b539d0b0cc1e0d8e63fcb35c579810cbe5.png" src="_images/549f918c3574f6996f1ed63f469ed6b539d0b0cc1e0d8e63fcb35c579810cbe5.png" />
+<img alt="_images/f0e1c83a19f5ec47b1e47c9dfaaab9e5dcb177c2cce4fcdc8746a3f8d6489818.png" src="_images/f0e1c83a19f5ec47b1e47c9dfaaab9e5dcb177c2cce4fcdc8746a3f8d6489818.png" />
 </div>
 </div>
 <p>Notice that:</p>
@@ -641,15 +640,12 @@ The upper critical t-value is 2.2 (2.5% of the area under the curve is to the ri
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t-value&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;t-distributions with varying degrees of freedom&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
-<span class="c1"># Show the plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a6b1716a529f63f2aa5b2e6a012f4d937e7afbff437211559f1594bba245a1ac.png" src="_images/a6b1716a529f63f2aa5b2e6a012f4d937e7afbff437211559f1594bba245a1ac.png" />
+<img alt="_images/84fdbfb63c4077c6a796c7d9882f45a4863d6d9bc8bcf535f020bece44825563.png" src="_images/84fdbfb63c4077c6a796c7d9882f45a4863d6d9bc8bcf535f020bece44825563.png" />
 </div>
 </div>
 <p>The plot illustrates the following key characteristics of t-distributions:</p>
@@ -704,8 +700,8 @@ The upper critical t-value is 2.2 (2.5% of the area under the curve is to the ri
 \[\mu = m \pm t^* \times \frac{s}{\sqrt{n}}\]</div>
 <p>To estimate the population mean with a specified level of confidence, we can employ the t-distribution and follow this procedure:</p>
 <ol class="arabic simple">
-<li><p>Calculate the sample mean (m) and sample standard deviation (s)</p></li>
-<li><p>Determine the degrees of freedom (df = n - 1)</p></li>
+<li><p>Calculate the sample mean (<span class="math notranslate nohighlight">\(m\)</span>) and sample standard deviation (<span class="math notranslate nohighlight">\(s\)</span>)</p></li>
+<li><p>Determine the degrees of freedom (<span class="math notranslate nohighlight">\(df = n - 1\)</span>)</p></li>
 <li><p>Choose a confidence level (e.g., 95%)</p></li>
 <li><p>Find the critical t-value (<span class="math notranslate nohighlight">\(t^*\)</span>)</p></li>
 <li><p>Calculate the margin of error as <span class="math notranslate nohighlight">\(W = \frac{t^* \times s}{\sqrt{n}}\)</span></p></li>
@@ -800,7 +796,7 @@ The upper critical t-value is 2.2 (2.5% of the area under the curve is to the ri
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/91b9f3136486610330d40910a7b8709f3259e870f823fbeb3abee6313fa7602f.png" src="_images/91b9f3136486610330d40910a7b8709f3259e870f823fbeb3abee6313fa7602f.png" />
+<img alt="_images/566995db5206b429a2afdd58442cef77d923113dffd365ac3c954670007db061.png" src="_images/566995db5206b429a2afdd58442cef77d923113dffd365ac3c954670007db061.png" />
 </div>
 </div>
 <p>Let’s calculate manually the CIs using the t-distribution in both cases.</p>
@@ -873,13 +869,13 @@ Sample size n2 = 130, with know population SD:
 <h3>Critical z-value vs. t-value<a class="headerlink" href="#critical-z-value-vs-t-value" title="Link to this heading">#</a></h3>
 <p>We can use the critical z-value instead of the critical t-value when calculating the margin of error in certain situations, but it’s important to understand the conditions under which this is appropriate.</p>
 <ul class="simple">
-<li><p>When to Use the z-Value:</p>
+<li><p>When to Use the z-value:</p>
 <ul>
 <li><p>The population standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) is known: If we have access to the true population standard deviation, we can directly use the z-distribution (standard normal distribution) to calculate the critical value.</p></li>
 <li><p>The sample size is large (typically n &gt; 30): The Central Limit Theorem states that the distribution of sample means approaches a normal distribution as the sample size increases. For large samples, the t-distribution closely approximates the z-distribution, making the z-value a valid substitute.</p></li>
 </ul>
 </li>
-<li><p>When to Use the t-Value:</p>
+<li><p>When to Use the t-value:</p>
 <ul>
 <li><p>The population standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) is unknown: This is the most common scenario in <em>real-world</em> applications. When we don’t know the population standard deviation, we estimate it from the sample data (using the sample standard deviation, <span class="math notranslate nohighlight">\(s\)</span>). The t-distribution accounts for the additional uncertainty introduced by this estimation.</p></li>
 <li><p>The sample size is small (typically n &lt; 30): With small sample sizes, the t-distribution has heavier tails than the z-distribution, reflecting the greater variability in sample means. Using the t-distribution provides a more accurate confidence interval in this case.</p></li>
@@ -998,7 +994,7 @@ If we don’t know the population standard deviation: we should use the t-value 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% Percentile Bootstrap Confidence Interval: (36.700, 36.820)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% Percentile Bootstrap Confidence Interval: (36.690, 36.830)
 </pre></div>
 </div>
 </div>
@@ -1068,7 +1064,7 @@ If we don’t know the population standard deviation: we should use the t-value 
 97.5th percentile: 37.084
 </pre></div>
 </div>
-<img alt="_images/9d6fbdaa35891ef148068ecf2fe7a0e28cd49c990b83beb5af55a7655bad12e8.png" src="_images/9d6fbdaa35891ef148068ecf2fe7a0e28cd49c990b83beb5af55a7655bad12e8.png" />
+<img alt="_images/5b708ee1125933573fe748f5e5ce89f03c268ed74319bd795ec641e092396a69.png" src="_images/5b708ee1125933573fe748f5e5ce89f03c268ed74319bd795ec641e092396a69.png" />
 </div>
 </div>
 </section>
@@ -1144,7 +1140,7 @@ If we don’t know the population standard deviation: we should use the t-value 
 The 95% confidence interval using statsmodels proportion_confint is (0.244, 0.430)
 </pre></div>
 </div>
-<img alt="_images/d173831dfb6a8187e9aa2e9e68fe4682a84eab07ccb3683c0aeffd86c7ef3681.png" src="_images/d173831dfb6a8187e9aa2e9e68fe4682a84eab07ccb3683c0aeffd86c7ef3681.png" />
+<img alt="_images/55263045f6c9cdbba24f47fc461317529f4e80d611c01cf9c1fd0ee266ae825e.png" src="_images/55263045f6c9cdbba24f47fc461317529f4e80d611c01cf9c1fd0ee266ae825e.png" />
 </div>
 </div>
 </section>
@@ -1152,7 +1148,11 @@ The 95% confidence interval using statsmodels proportion_confint is (0.244, 0.43
 </section>
 <section id="the-ci-and-the-sem">
 <h2>The CI and the SEM<a class="headerlink" href="#the-ci-and-the-sem" title="Link to this heading">#</a></h2>
-<p>We might have noticed the term “standard error” or “standard error of the mean” (SEM) appearing in previous calculations of the margin of error. Let’s take a closer look at the relationship between the confidence interval (CI) and the SEM, as they both play crucial roles in understanding the precision of our estimates.</p>
+<p>As we saw in one previous figure, larger samples tend to yield more precise estimates of population statistics, reflected in their narrower distributions. The standard deviation of a statistic derived from a sample is called the standard error of that statistic.  In the case of the sample mean, the standard error of the mean (SEM) or standard error (SE) is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{SE} = \frac{\sigma}{\sqrt{n}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the (sample) standard deviation and <span class="math notranslate nohighlight">\(n\)</span> is the sample size. It’s important to remember that this calculation relies on the assumption that the sample standard deviation closely mirrors the population standard deviation, which is generally acceptable for samples of moderate or larger size. As the formula illustrates, the SEM is inversely proportional to the square root of the sample size. This confirms our intuitive understanding that larger samples lead to more precise estimates of the population mean, as evidenced by the smaller SEM.</p>
+<p>We might also have noticed the term “standard error” or “standard error of the mean” appearing in previous calculations of the margin of error. Let’s take a closer look at the relationship between the confidence interval (CI) and the SEM, as they both play crucial roles in understanding the precision of our estimates.</p>
 <p>A point estimate, such as the sample mean, gives us a single value to estimate a population parameter. However, estimates vary from sample to sample due to random sampling error. A confidence interval addresses this uncertainty by providing a range around the point estimate. This range is constructed to capture the true population parameter with a certain degree of confidence, often set at 95%. Wider intervals offer greater confidence in capturing the true parameter, but at the cost of reduced precision.</p>
 <p>Recall that the SEM is a measure of how much the sample mean is expected to vary from sample to sample. It’s calculated as <span class="math notranslate nohighlight">\(\text{SEM}=\frac{s}{\sqrt{n}}\)</span>. It quantifies the variability we expect to see in sample means due to random sampling error. A smaller SEM indicates that the sample mean is likely to be closer to the true population mean.</p>
 <p>The margin of error in a confidence interval is directly related to the SEM. It’s calculated by multiplying the SEM by a critical value (either from the t-distribution or the z-distribution) that corresponds to our desired confidence level: <span class="math notranslate nohighlight">\(W=t^* \times \text{SEM}\)</span>. The critical value depends on the chosen confidence level (e.g., 95% or 99%) and the degrees of freedom (if using the t-distribution).</p>
@@ -1162,10 +1162,6 @@ The 95% confidence interval using statsmodels proportion_confint is (0.244, 0.43
 <li><p>Narrow CI: Smaller SEM, more precise estimate</p></li>
 <li><p>Wide CI: Larger SEM, less precise estimate</p></li>
 </ul>
-<p>As we saw in the previous figure, larger samples tend to yield more precise estimates of population statistics, reflected in their narrower distributions. The standard deviation of a statistic derived from a sample is called the standard error of that statistic.  In the case of the sample mean, the standard error of the mean (SEM) or standard error (SE) is given by:</p>
-<div class="math notranslate nohighlight">
-\[\text{SE} = \frac{\sigma}{\sqrt{n}}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the (sample) standard deviation and <span class="math notranslate nohighlight">\(n\)</span> is the sample size. It’s important to remember that this calculation relies on the assumption that the sample standard deviation closely mirrors the population standard deviation, which is generally acceptable for samples of moderate or larger size. As the formula illustrates, the standard error of the mean (SEM) is inversely proportional to the square root of the sample size. This confirms our intuitive understanding that larger samples lead to more precise estimates of the population mean, as evidenced by the smaller SEM.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">sem</span>
@@ -1215,7 +1211,7 @@ The 95% confidence interval using statsmodels proportion_confint is (0.244, 0.43
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4d6448e1bfec5efebd3d6e5dde5934230a6cde032852aaf4b4c113f67fd3d2f7.png" src="_images/4d6448e1bfec5efebd3d6e5dde5934230a6cde032852aaf4b4c113f67fd3d2f7.png" />
+<img alt="_images/00966c58562be4d184879d16b9e2cf8e137e8dc42de64d53bb8457584c013d57.png" src="_images/00966c58562be4d184879d16b9e2cf8e137e8dc42de64d53bb8457584c013d57.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1279,10 +1275,10 @@ The 95% confidence interval using statsmodels proportion_confint is (0.244, 0.43
 -------------
 numpy: 1.26.4
 pandas: 2.2.2
-scipy: 1.13.0
+scipy: 1.13.1
 statsmodels: 0.14.2
 pingouin: 0.5.4
-matplotlib: 3.8.4
+matplotlib: 3.9.0
 seaborn: 0.13.2
 </pre></div>
 </div>
@@ -1329,6 +1325,15 @@ seaborn: 0.13.2
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">The Gaussian Distribution</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="15%20-%20Statistical%20Significance.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Statistical Significance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
