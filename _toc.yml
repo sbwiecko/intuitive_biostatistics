@@ -3,11 +3,17 @@
 
 format: jb-book
 root: README
-chapters:
-- file: 04 - Confidence Interval of a Proportion
-- file: 05 - Confidence Interval of Survival Data
-- file: 06 - Confidence Interval of Counted Data (Poisson Distribution)
-- file: 09 - Quantifying Scatter
-- file: 10 - Gaussian Distribution
-- file: 12 - Confidence Interval of a Mean
-- file: 15 - Statistical Significance
+parts:
+    - caption: Confidence Intervals
+      chapters:
+      - file: 04 - Confidence Interval of a Proportion
+      - file: 05 - Confidence Interval of Survival Data
+      - file: 06 - Confidence Interval of Counted Data (Poisson Distribution)
+    - caption: Continuous Variables
+      chapters:
+      - file: 09 - Quantifying Scatter
+      - file: 10 - Gaussian Distribution
+      - file: 12 - Confidence Interval of a Mean
+    - caption: Statistical Significance and Data Assumptions
+      chapters:
+      - file: 15 - Statistical Significance
