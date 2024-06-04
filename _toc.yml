@@ -17,3 +17,4 @@ parts:
     - caption: Statistical Significance and Data Assumptions
       chapters:
       - file: 15 - Statistical Significance
+      - file: 20 - Statistical Power
