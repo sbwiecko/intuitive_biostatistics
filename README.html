@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Python Companion Guide to “Intuitive Biostatistics, 4th edition” &#8212; The Python Companion of Intuitive Biostatistics</title>
+    <title>Python Companion Guide to “Intuitive Biostatistics” &#8212; The Python Companion of Intuitive Biostatistics</title>
   
   
   
@@ -53,9 +53,22 @@
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QQY9FLLPJ8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -175,17 +188,24 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Python Companion Guide to “Intuitive Biostatistics, 4th edition”
+                    Python Companion Guide to “Intuitive Biostatistics”
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence Intervals</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20Interval%20of%20a%20Proportion.html">Confidence Interval of a Proportion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20Interval%20of%20Survival%20Data.html">Confidence Interval of Survival Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html">Confidence Interval of Counted Data (Poisson Distribution)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous Variables</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20Scatter.html">Quantifying Scatter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20Distribution.html">The Gaussian Distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20Interval%20of%20a%20Mean.html">Confidence Interval of a Mean</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical Significance and Data Assumptions</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="15%20-%20Statistical%20Significance.html">Statistical Significance</a></li>
 </ul>
 
@@ -372,7 +392,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Python Companion Guide to “Intuitive Biostatistics, 4th edition”</h1>
+    <h1>Python Companion Guide to “Intuitive Biostatistics”</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -385,6 +405,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features">Features</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-this-guide">How to Use This Guide</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">Contributing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author">Author</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
 </ul>
             </nav>
@@ -397,30 +418,42 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="python-companion-guide-to-intuitive-biostatistics-4th-edition">
-<h1>Python Companion Guide to “Intuitive Biostatistics, 4th edition”<a class="headerlink" href="#python-companion-guide-to-intuitive-biostatistics-4th-edition" title="Link to this heading">#</a></h1>
-<p>This repository contains a companion guide to Harvey Motulsky’s <a class="reference external" href="https://global.oup.com/ushe/product/intuitive-biostatistics-9780190643560">Intuitive Biostatistics, 4th edition</a>. The guide is designed to enhance understanding of the concepts explained in the book by providing practical examples and additional studies.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="python-companion-guide-to-intuitive-biostatistics">
+<h1>Python Companion Guide to “Intuitive Biostatistics”<a class="headerlink" href="#python-companion-guide-to-intuitive-biostatistics" title="Link to this heading">#</a></h1>
+<p>I am thrilled to unveil a project that I embarked on a few years ago. I am confident it will intrigue any wet-lab scientist aiming to bolster their proficiency in biostatistics and datascience, ultimately leading to a deeper comprehension of their own research or studies published by others.</p>
+<p>The initial idea behind this project was to dissect, digest and expand upon the concepts found in the excellent book <a class="reference external" href="https://global.oup.com/ushe/product/intuitive-biostatistics-9780190643560">“Intuitive Biostatistics 4th Edition” by Harvey Motulsky</a>, that I highly suggest to anyone who is ready to delve into this daunting realm…</p>
+<p>My intention was not to reproduce the book, but to deepen my understanding of biostatistics by actively engaging with the material. The analyses were conducted mainly using Python, sometimes R, and I included practical illustrations and supplementary research to reinforce the ideas presented in the book.</p>
+<p>All of this work was initially done in a rather rough manner using notebooks and dirty scripts, but I felt the need to share it with (next generation) scientists, with a higher degree of professionalism. Consequently, I’ve initiated a <a class="reference external" href="https://jupyterbook.org/">Jupyter Book</a> that showcases various features.</p>
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Code Examples</strong>: All examples from the book have been implemented in Python and occasionally in R, allowing to interact with the concepts in a hands-on manner.</p></li>
-<li><p><strong>Manual Calculations</strong>: To deepen the understanding of the concepts, many of the calculations have been done manually.</p></li>
-<li><p><strong>Additional Studies</strong>: The guide includes original studies that supplement the material in the book.</p></li>
-<li><p><strong>Supplementary Equations and Information</strong>: The guide also includes additional equations and information that are essential for mastering the concepts.</p></li>
+<li><p><strong>Illustrative code</strong>, with practical examples of the statistical methods mentioned in the book, implemented in Python and R.</p></li>
+<li><p><strong>Detailed calculations</strong>, involving a comprehensive step-by-step explanation of how these methods function at their core.</p></li>
+<li><p><strong>Extended research</strong>, including an in-depth investigation of related subjects not discussed in the book, particularly utilizing data from my own experiments.</p></li>
+<li><p><strong>Supplementary equations and information</strong> that have assisted me in understanding certain concepts and delving further into others.</p></li>
 </ul>
 </section>
 <section id="how-to-use-this-guide">
 <h2>How to Use This Guide<a class="headerlink" href="#how-to-use-this-guide" title="Link to this heading">#</a></h2>
-<p>This guide is intended to be used alongside the “Intuitive Biostatistics, 4th edition” book. For each chapter or concept in the book that requires concrete calculations or graphical representation, refer to the corresponding section in this guide for practical examples, additional studies, and supplementary information.</p>
+<p>This Jupyter Book is designed to complement “Intuitive Biostatistics, 4th edition” book, focusing on the interactive aspects of biostatistics through code examples and visualizations. To enhance the learning, some chapters from the original book have been combined where the content naturally flows together.  Please note that introductory chapters primarily focused on theoretical concepts have not been included here; you can find those in the original text.</p>
+<p>For each chapter or concept in the book that requires concrete calculations or graphical representation, refer to the corresponding section in this guide for practical examples, additional studies, and supplementary information.</p>
 </section>
 <section id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">#</a></h2>
-<p>Contributions are welcome! If you have any suggestions or improvements, feel free to open an issue or submit a pull request.</p>
+<p>Contributions and thoughts are welcome! If you have any suggestions or improvements, feel free to open an issue, submit a pull request, or just drop me an e-mail.</p>
+</section>
+<section id="author">
+<h2>Author<a class="headerlink" href="#author" title="Link to this heading">#</a></h2>
+<p>Sébastien Wieckowski - Email: <a class="reference external" href="mailto:sb&#46;wiecko&#37;&#52;&#48;gmail&#46;com">sb<span>&#46;</span>wiecko<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
 </section>
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
-<p>This project is licensed under the MIT License. See the LICENSE file for details.</p>
+<p>This project is licensed under the MIT License. See the <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> file for details.</p>
 </section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -483,6 +516,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features">Features</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-this-guide">How to Use This Guide</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">Contributing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author">Author</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
 </ul>
   </nav></div>
