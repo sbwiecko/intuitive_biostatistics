@@ -11,10 +11,11 @@ parts:
       - file: 06 - Confidence Interval of Counted Data (Poisson Distribution)
     - caption: Continuous Variables
       chapters:
-      - file: 09 - Quantifying Scatter
+      - file: 09 - Quantifying Scatter of Continuous Data
       - file: 10 - Gaussian Distribution
       - file: 12 - Confidence Interval of a Mean
     - caption: Statistical Significance and Data Assumptions
       chapters:
-      - file: 15 - Statistical Significance
-      - file: 20 - Statistical Power
+      - file: 15 - P Values and Statistical Significance
+      - file: 20 - Statistical Power and Sample Size
+      - file: 24 - Normality Tests and Outliers
