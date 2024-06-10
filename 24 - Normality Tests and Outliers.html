@@ -1,0 +1,1927 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Normality Tests and Outliers &#8212; The Python Companion of Intuitive Biostatistics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QQY9FLLPJ8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '24 - Normality Tests and Outliers';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Statistical Power and Sample Size" href="20%20-%20Statistical%20Power%20and%20Sample%20Size.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="The Python Companion of Intuitive Biostatistics - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="The Python Companion of Intuitive Biostatistics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Python Companion Guide to “Intuitive Biostatistics”
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence Intervals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20Interval%20of%20a%20Proportion.html">Confidence Interval of a Proportion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20Interval%20of%20Survival%20Data.html">Confidence Interval of Survival Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html">Confidence Interval of Counted Data (Poisson Distribution)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous Variables</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20Scatter%20of%20Continuous%20Data.html">Quantifying Scatter of Continuous Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20Distribution.html">The Gaussian Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20Interval%20of%20a%20Mean.html">Confidence Interval of a Mean</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical Significance and Data Assumptions</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="15%20-%20P%20Values%20and%20Statistical%20Significance.html">P Values and Statistical Significance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20Power%20and%20Sample%20Size.html">Statistical Power and Sample Size</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Normality Tests and Outliers</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/master/24 - Normality Tests and Outliers.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/24 - Normality Tests and Outliers.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Normality Tests and Outliers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variability-of-gaussian-samples">Variability of Gaussian samples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-normality-of-data">Assessing the normality of data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-q-plots">Q-Q plots</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#q-q-plots-with-scipy-normal-vs-exponential">Q-Q plots with <code class="docutils literal notranslate"><span class="pre">scipy</span></code>: normal vs. exponential</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#q-q-plot-with-pingouin">Q-Q plot with <code class="docutils literal notranslate"><span class="pre">pingouin</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-options-for-ploting-q-q-plots">Alternative options for ploting Q-Q plots</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-tests-for-normality">Statistical tests for normality</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-agostino-pearson-omnibus-k2-normality-test">D’Agostino-Pearson omnibus K² normality test</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness-and-kurtosis">Skewness and Kurtosis</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-k2-test-works">How the K² test works</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-implementation-of-the-k2-test">Manual implementation of the K² test</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#k2-test-with-scipy-stats-normaltest">K² test with <code class="docutils literal notranslate"><span class="pre">scipy.stats.normaltest</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shapiro-wilk-test">Shapiro-Wilk test</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-shapiro-wilk-test-works">How the Shapiro-Wilk test works</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#application-of-scipy-stats-shapiro">Application of <code class="docutils literal notranslate"><span class="pre">scipy.stats.shapiro</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#normality-tests-using-pingouin">Normality tests using <code class="docutils literal notranslate"><span class="pre">pingouin</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#omnibus-test-for-normality-using-statsmodels">Omnibus test for normality using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kolmogorov-smirnov-test">Kolmogorov-Smirnov test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-normality-tests">Additional normality tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers">Outliers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-approaches-for-outlier-detection">Graphical approaches for outlier detection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-purpose-outlier-detection-methods">General-purpose outlier detection methods</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-case-of-log-normal-data">The case of log-normal data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cook-s-distance-and-leverage">Cook’s distance and leverage</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-outlier-detection">Statistical outlier detection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grubbs-test">Grubbs’ test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-statistical-methods-for-outlier-detection">Additional statistical methods for outlier detection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="normality-tests-and-outliers">
+<h1>Normality Tests and Outliers<a class="headerlink" href="#normality-tests-and-outliers" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>In many statistical analyses, we assume that the data we are analyzing follows a <strong>normal distribution</strong>. This assumption is important because many statistical tests are based on the <strong>assumption of normality</strong>. However, in reality, data often does not follow a normal distribution perfectly. Therefore, it is important to test the normality of our data before we conduct any statistical analyses.</p>
+</section>
+<section id="variability-of-gaussian-samples">
+<h2>Variability of Gaussian samples<a class="headerlink" href="#variability-of-gaussian-samples" title="Link to this heading">#</a></h2>
+<p>The figure below illustrates the reality of Gaussian distributions in practice.  Even when values are randomly drawn from a perfect bell curve (with identical mean and standard deviation), the resulting samples rarely look perfectly symmetrical. This is especially noticeable in <em>small samples</em> (top graphs, n=12) compared to larger ones (bottom graphs, n=130).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>  <span class="c1"># for easy KDE plotting</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+<span class="c1"># Sampling parameters</span>
+<span class="n">mean_temp</span> <span class="o">=</span> <span class="mf">36.8</span>
+<span class="n">std_temp</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">sample_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">130</span><span class="p">]</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># Pre-generate random values (for efficiency)</span>
+<span class="n">random_samples</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">size</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+        <span class="n">loc</span><span class="o">=</span><span class="n">mean_temp</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">std_temp</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_cols</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">sample_sizes</span>
+<span class="p">}</span>
+
+<span class="c1"># Create subplots and share x-axis for consistent scaling</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
+    <span class="n">nrows</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sample_sizes</span><span class="p">),</span>
+    <span class="n">ncols</span><span class="o">=</span><span class="n">num_cols</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Main title for the entire figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
+    <span class="s2">&quot;Gaussian distribution samples with varying sample sizes&quot;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">size</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample_sizes</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_cols</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span>  <span class="c1"># Get the current subplot</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>  <span class="c1"># Use seaborn for histogram with KDE</span>
+            <span class="n">random_samples</span><span class="p">[</span><span class="n">size</span><span class="p">][</span><span class="n">col</span><span class="p">],</span>
+            <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;density&quot;</span><span class="p">,</span>
+            <span class="n">binwidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+            <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;n=</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># Plot the KDE separately with desired color and linewidth</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span>
+            <span class="n">random_samples</span><span class="p">[</span><span class="n">size</span><span class="p">][</span><span class="n">col</span><span class="p">],</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature (°C)&#39;</span><span class="p">)</span>
+        <span class="c1"># Only label the y-axis for the first plot in each row</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span> <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add legend only to the last plot in each row</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="n">num_cols</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">35</span><span class="p">,</span> <span class="mi">38</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span> <span class="c1"># Adjust to avoid title overlap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2ddc3aa167a1895701b0708ea9f0fb54b2ee078c67b57580b0521c987ec9b0b3.png" src="_images/2ddc3aa167a1895701b0708ea9f0fb54b2ee078c67b57580b0521c987ec9b0b3.png" />
+</div>
+</div>
+<p>Even though all samples are drawn from the same theoretical distribution, they exhibit natural variation due to random sampling. The swarm plot below vividly demonstrates this, showing how each sample can differ slightly in its shape and spread.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">mean_temp</span> <span class="o">=</span> <span class="mf">36.8</span>
+<span class="n">std_temp</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ABCDEFGHIJ&quot;</span><span class="p">)</span>  <span class="c1"># Cleaner way to create a list of labels</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="c1"># Generate and reshape data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+    <span class="n">loc</span><span class="o">=</span><span class="n">mean_temp</span><span class="p">,</span>
+    <span class="n">scale</span><span class="o">=</span><span class="n">std_temp</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">*</span> <span class="n">sample_size</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">),</span> <span class="n">sample_size</span><span class="p">))</span>
+
+<span class="c1"># Create a list of sample labels for each data point</span>
+<span class="n">sample_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>  <span class="c1"># Repeat each label 12 times</span>
+
+<span class="c1"># Flatten the data array</span>
+<span class="n">flattened_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Create a dictionary for seaborn&#39;s data format</span>
+<span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Sample&#39;</span><span class="p">:</span> <span class="n">sample_labels</span><span class="p">,</span>
+    <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="n">flattened_data</span><span class="p">}</span>
+
+<span class="c1"># Plot using seaborn with the dictionary data format</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;olivedrab&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+    <span class="s2">&quot;Distribution of n=12 values from the same Gaussian&quot;</span><span class="p">,);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/872427665b4bc79fd125a2133407032f80409aae111d9b7f8d188dc34a009d52.png" src="_images/872427665b4bc79fd125a2133407032f80409aae111d9b7f8d188dc34a009d52.png" />
+</div>
+</div>
+</section>
+<section id="assessing-the-normality-of-data">
+<h2>Assessing the normality of data<a class="headerlink" href="#assessing-the-normality-of-data" title="Link to this heading">#</a></h2>
+<p>The assumption of normality underpins many statistical procedures. But how can we determine whether our data truly follow a Gaussian distribution? Fortunately, we have an arsenal of tools at our disposal, both graphical and statistical, to assess normality.</p>
+<p><strong>Graphical methods</strong> provide a visual first impression, helping us identify obvious departures from normality. <strong>Statistical tests</strong>, on the other hand, offer a more rigorous quantitative assessment.</p>
+<section id="q-q-plots">
+<h3>Q-Q plots<a class="headerlink" href="#q-q-plots" title="Link to this heading">#</a></h3>
+<p>One of the most powerful tools for visual assessment is the <strong>quantile-quantile (Q-Q) plot</strong>. This plot compares the quantiles of the observed data against the quantiles of a theoretical normal distribution. If the data is perfectly normal, the points on the Q-Q plot will fall along a <em>straight diagonal line</em>.  Deviations from this line signal departures from normality. How a Q-Q Plot is Constructed:</p>
+<ol class="arabic simple">
+<li><p>Percentiles: the Q-Q plot begins by calculating the percentile rank of each value in the dataset. This tells us the proportion of values that are smaller than or equal to a given value.</p></li>
+<li><p>Theoretical quantiles (Z-Scores): for each of these percentiles, the plot determines the corresponding Z-score in a standard normal distribution (mean = 0, standard deviation = 1). This Z-score indicates how many standard deviations away from the mean we would need to go in a normal distribution to reach that same percentile.</p></li>
+<li><p>Predicted values: using the actual mean and standard deviation calculated from the dataset, the plot converts these theoretical Z-scores into predicted values. These are the values we would expect to see at each percentile if the data were perfectly normally distributed.</p></li>
+<li><p>Plotting: finally, the Q-Q plot displays the observed data values on the y-axis and the corresponding predicted values (based on a normal distribution) on the x-axis.</p></li>
+</ol>
+<section id="q-q-plots-with-scipy-normal-vs-exponential">
+<h4>Q-Q plots with <code class="docutils literal notranslate"><span class="pre">scipy</span></code>: normal vs. exponential<a class="headerlink" href="#q-q-plots-with-scipy-normal-vs-exponential" title="Link to this heading">#</a></h4>
+<p>Let’s use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.probplot.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.probplot</span></code></a> to create Q-Q plots that visually assess the normality of data sampled from normal and exponential distributions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+<span class="c1"># Sample Generation (more descriptive variable names)</span>
+<span class="n">normal_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">exponential_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Plotting (using a loop for conciseness and consistency)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Q-Q Plot: Normal Distribution&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Q-Q Plot: Exponential Distribution&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="n">normal_data</span><span class="p">,</span> <span class="n">exponential_data</span><span class="p">],</span> <span class="n">titles</span><span class="p">)):</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/749b4c48686d3d157f769c135774de67144bec03c7a0dd9cd7016959459e2234.png" src="_images/749b4c48686d3d157f769c135774de67144bec03c7a0dd9cd7016959459e2234.png" />
+</div>
+</div>
+<p>The Q-Q plot for the normally distributed sample closely follows a straight line, indicating normality, while the plot for the exponentially distributed sample deviates significantly from the straight line, revealing its non-normal nature.</p>
+</section>
+<section id="q-q-plot-with-pingouin">
+<h4>Q-Q plot with <code class="docutils literal notranslate"><span class="pre">pingouin</span></code><a class="headerlink" href="#q-q-plot-with-pingouin" title="Link to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> library in Python offers a convenient function called <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.qqplot.html"><code class="docutils literal notranslate"><span class="pre">qqplot</span></code></a> for creating Q-Q plots. It simplifies the process and provides additional features, such as confidence intervals and customizable distributions for comparison. Of note, <code class="docutils literal notranslate"><span class="pre">pingouin.qqplot</span></code> uses a <em>simulation-based approach</em> to calculate confidence intervals, making it more robust for smaller sample sizes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>  <span class="c1"># For reproducibility</span>
+
+<span class="c1"># Sample Generation</span>
+<span class="n">normal_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">exponential_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Q-Q Plot: Normal Distribution&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Q-Q Plot: Exponential Distribution&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="n">normal_data</span><span class="p">,</span> <span class="n">exponential_data</span><span class="p">],</span> <span class="n">titles</span><span class="p">)):</span>
+    <span class="n">pg</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">,</span>
+        <span class="n">dist</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="c1"># compare the data against the normal distribution</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">confidence</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="c1"># Add 95% confidence intervals</span>
+    <span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/98f331be91aa230148b625f9f0c4c589c16cda2ad7acd4d8c178b57ca8f50601.png" src="_images/98f331be91aa230148b625f9f0c4c589c16cda2ad7acd4d8c178b57ca8f50601.png" />
+</div>
+</div>
+<p>The confidence intervals show the range within which we would expect the sample quantiles to fall if the data were truly drawn from a normal distribution.
+If most of the points in the Q-Q plot fall within the confidence intervals, it provides evidence in favor of the normality assumption.
+Points falling outside the confidence intervals suggest deviations from normality and warrant further investigation.</p>
+</section>
+<section id="alternative-options-for-ploting-q-q-plots">
+<h4>Alternative options for ploting Q-Q plots<a class="headerlink" href="#alternative-options-for-ploting-q-q-plots" title="Link to this heading">#</a></h4>
+<p>Besides <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> and <code class="docutils literal notranslate"><span class="pre">pingouin</span></code>, there are several other Python packages we can use to create Q-Q plots or similar visualizations for assessing normality:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.graphics.gofplots.qqplot.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.graphics.gofplots.qqplot</span></code></a>: a flexible function for creating Q-Q plots, offering customization options like different line types (e.g., standardized, theoretical quantiles, regression line) and marker styles. We can also add a fitted line for better visual comparison.</p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.QuantileTransformer.html"><code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.QuantileTransformer</span></code></a>: this transformer isn’t specifically designed for Q-Q plots, but we can use it creatively. By transforming the data to a normal distribution and comparing the original and transformed quantiles, we essentially create a Q-Q plot-like visualization.</p></li>
+<li><p>Manual Q-Q Plot with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>: if we want complete control over the plot’s appearance, we can create a Q-Q plot manually using Matplotlib. This involves calculating the theoretical and sample quantiles oursleves and then plotting them as a scatter plot, as shown below.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="k">def</span> <span class="nf">qq_plot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a Q-Q plot using Matplotlib.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data (array-like): The data to plot.</span>
+<span class="sd">        ax (matplotlib.axes.Axes, optional): The axes to plot on. If None,</span>
+<span class="sd">        a new figure and axes will be created.</span>
+<span class="sd">        **kwargs: Additional keyword arguments passed to ax.scatter.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        matplotlib.axes.Axes: The axes object on which the plot was drawn.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+    <span class="c1"># Sort the data</span>
+    <span class="n">data_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Theoretical quantiles</span>
+    <span class="n">theoretical_quantiles</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+
+    <span class="c1"># Scatter plot of sample quantiles vs. theoretical quantiles</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">theoretical_quantiles</span><span class="p">,</span>
+        <span class="n">data_sorted</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Add diagonal line</span>
+    <span class="n">lims</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()]),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()])</span>
+    <span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">lims</span><span class="p">,</span> <span class="n">lims</span><span class="p">,</span>
+        <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Labels and title</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Theoretical Quantiles&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Sample Quantiles&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Q-Q Plot&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+
+<span class="c1"># Example Usage</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+<span class="c1"># Standardize both datasets</span>
+<span class="n">normal_data_std</span> <span class="o">=</span> <span class="p">(</span><span class="n">normal_data</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">normal_data</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">normal_data</span><span class="p">)</span>
+<span class="n">exponential_data_std</span> <span class="o">=</span> <span class="p">(</span><span class="n">exponential_data</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">exponential_data</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">exponential_data</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">qq_plot</span><span class="p">(</span>
+    <span class="n">normal_data_std</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Normal&#39;</span><span class="p">)</span>
+<span class="n">qq_plot</span><span class="p">(</span>
+    <span class="n">exponential_data_std</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exponential&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7525597cf3c460241fee60fa6bbe927d0c94fe8a7dd09ef59053c51837ff2ad2.png" src="_images/7525597cf3c460241fee60fa6bbe927d0c94fe8a7dd09ef59053c51837ff2ad2.png" />
+</div>
+</div>
+<p>Initially, i.e., without standardisation, the Q-Q plot for the exponential distribution does appear shifted upwards compared to the theoretical normal quantiles, as <a class="reference external" href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot">shown elsewhere</a>. The exponential distribution is right-skewed, meaning it has a long tail on the right side and most of its values are concentrated on the left side, while the normal distribution is symmetrical, with values evenly distributed around the mean.</p>
+<p>When we create a Q-Q plot with the exponential distribution against the normal distribution, we’re essentially comparing two distributions with very different shapes. This leads to the observed pattern:</p>
+<ul class="simple">
+<li><p>Lower quantiles: the lower quantiles of the exponential distribution (values on the left side) will be smaller than the corresponding quantiles of a normal distribution. This causes the points on the Q-Q plot to fall below the diagonal line in the lower left corner.</p></li>
+<li><p>Upper quantiles: the upper quantiles of the exponential distribution (values on the right side) will be larger than the corresponding quantiles of a normal distribution. This pushes the points on the Q-Q plot above the diagonal line in the upper right corner, creating the appearance of an upward shift.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">pingouin.qqplot</span></code> scales the y-axis of the Q-Q plot according to the theoretical quantiles of the specified distribution (dist). When dist=’norm’, the y-axis is scaled to the standard normal distribution (mean=0, std=1). For non-normal distributions like the exponential, the scaling of the y-axis might not align perfectly with the range of the observed data, leading to a visual shift. One way to address this is to <strong>standardize both the normal and exponential data</strong> before creating the Q-Q plots. This ensures that both datasets have a mean of 0 and a standard deviation of 1, making the comparison more visually accurate.</p>
+</section>
+</section>
+<section id="statistical-tests-for-normality">
+<h3>Statistical tests for normality<a class="headerlink" href="#statistical-tests-for-normality" title="Link to this heading">#</a></h3>
+<p>To complement these visual assessments, statistical tests offer a <em>more objective and quantitative</em> way to evaluate whether the data significantly deviates from a normal distribution.</p>
+<p>Statistical normality tests operate by comparing the observed data to what would be expected under a perfect normal distribution. They then quantify the discrepancy between the two, typically resulting in a <em>test statistic</em> and a <em>P-value</em>.</p>
+<ul class="simple">
+<li><p><strong>Test statistic</strong>: this is a numerical measure of how far the data deviates from the expected pattern of a normal distribution. <em>Larger test statistic values</em> generally indicate a <em>greater departure from normality</em>.</p></li>
+<li><p><strong>P-value</strong>: the P-value tells us the probability of observing a test statistic as extreme as or more extreme than the one we calculated, <em>assuming that the data is truly normal</em>. A small P-value (typically less than 0.05) suggests that the data is <em>unlikely</em> to have come from a normal distribution, leading to the <em>rejection of the null hypothesis of normality</em>. A large P-value (typically greater than 0.05) suggests that the observed deviations from normality could be due to chance, and we fail to reject the null hypothesis of normality.</p></li>
+</ul>
+<p>In the following subsections, we’ll dive into three commonly used statistical tests for normality:</p>
+<ul class="simple">
+<li><p>D’Agostino-Pearson omnibus K² normality test: a versatile test that assesses both skewness (asymmetry) and kurtosis (tailedness) of the data to determine if it deviates from normality.</p></li>
+<li><p>Shapiro-Wilk test: often considered the most powerful test for small to medium sample sizes, it focuses on how closely the data matches the expected order statistics of a normal distribution.</p></li>
+<li><p>Kolmogorov-Smirnov test: a more general test that can compare the data to any theoretical distribution, not just the normal. While less powerful than the Shapiro-Wilk test for normality, it offers greater flexibility.</p></li>
+</ul>
+<section id="d-agostino-pearson-omnibus-k2-normality-test">
+<h4>D’Agostino-Pearson omnibus K² normality test<a class="headerlink" href="#d-agostino-pearson-omnibus-k2-normality-test" title="Link to this heading">#</a></h4>
+<p>The <strong>D’Agostino-Pearson omnibus K-squared test</strong> is a versatile and powerful statistical test designed to assess whether a <em>dataset deviates significantly from a normal distribution</em>. Unlike some other tests that focus on a single aspect of normality, the omnibus K² test examines both <strong>skewness</strong> and <strong>kurtosis</strong>, providing a more comprehensive evaluation.</p>
+<section id="skewness-and-kurtosis">
+<h5>Skewness and Kurtosis<a class="headerlink" href="#skewness-and-kurtosis" title="Link to this heading">#</a></h5>
+<ul>
+<li><p>Skewness measures the <em>asymmetry</em> of a distribution. A normal distribution is perfectly symmetrical (skewness = 0). Positive skewness indicates a long right tail, while negative skewness indicates a long left tail.</p></li>
+<li><p>Kurtosis measures the “tailedness” or “peakedness” of a distribution relative to a normal distribution. A normal distribution has a kurtosis of 3. A higher kurtosis (leptokurtic) implies heavier tails and a sharper peak, while a lower kurtosis (platykurtic) suggests lighter tails and a flatter peak.</p>
+  <img src="https://www.researchgate.net/publication/365035850/figure/fig4/AS:11431281179069850@1691150975936/Comparison-of-curves-for-different-skewness-and-kurtosis.png" alt="Comparison of curves for different skewness and kurtosis" style="width: 600px;"/>
+<p>It’s calculated as the “fourth standardized moment of the distribution”: <span class="math notranslate nohighlight">\(\text{kurtosis} = E[(X - \mu)^4 / \sigma^4]\)</span>, with <span class="math notranslate nohighlight">\(E\)</span> the expected value (average), <span class="math notranslate nohighlight">\(X\)</span> a random variable, <span class="math notranslate nohighlight">\(\mu\)</span> the mean of the distribution, and <span class="math notranslate nohighlight">\(\sigma\)</span> the standard deviation of the distribution. For a normal distribution, when we calculate this fourth standardized moment, it turns out to be exactly 3.</p>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>  <span class="c1"># For reproducibility</span>
+
+<span class="c1"># Sample Generation</span>
+<span class="n">normal_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">exponential_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Calculate and print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribution</span><span class="se">\t</span><span class="s2">Skewness</span><span class="se">\t</span><span class="s2">Kurtosis&quot;</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span> <span class="c1"># Adding a separator for visual clarity</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Normal</span><span class="se">\t\t</span><span class="si">{</span><span class="n">st</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">normal_data</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="se">\t\t\</span>
+<span class="si">{</span><span class="n">st</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">(</span><span class="n">normal_data</span><span class="p">,</span><span class="w"> </span><span class="n">fisher</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exponential</span><span class="se">\t</span><span class="si">{</span><span class="n">st</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">exponential_data</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="se">\t\t\</span>
+<span class="si">{</span><span class="n">st</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">(</span><span class="n">exponential_data</span><span class="p">,</span><span class="w"> </span><span class="n">fisher</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># by subtracting 3, the Fisher definition establishes a baseline of zero for a normal distribution</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distribution	Skewness	Kurtosis
+----------------------------------------
+Normal		0.354		0.167
+Exponential	1.374		1.654
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate descriptive statistics using `describe`</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normal samples:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Skewness = &quot;</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">normal_data</span><span class="p">)</span><span class="o">.</span><span class="n">skewness</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kurtosis = &quot;</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">normal_data</span><span class="p">)</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Normal samples:
+Skewness =  0.35440679809917
+Kurtosis =  0.1665451056955929
+</pre></div>
+</div>
+</div>
+</div>
+<p>The skewness of the normal data is close to 0 (indicating symmetry) and the excess kurtosis is close to 0 (indicating tailedness similar to a normal distribution). These values are consistent with the expectation for normally distributed data. In contrast, the skewness of <em>exponential data</em> is positive (around 2), indicating a long right tail. The excess kurtosis is also positive (around 2), showing heavier tails than a normal distribution. These values confirm the non-normal, skewed nature of exponential data.</p>
+</section>
+<section id="how-the-k2-test-works">
+<h5>How the K² test works<a class="headerlink" href="#how-the-k2-test-works" title="Link to this heading">#</a></h5>
+<ol class="arabic simple">
+<li><p>Sample statistics: the test first calculates the sample skewness and kurtosis from the data.</p></li>
+<li><p>Z-scores: these skewness and kurtosis values are then transformed into Z-scores. These Z-scores indicate how many standard deviations each value deviates from the expected value under normality (0 for skewness and 3 for kurtosis).</p></li>
+<li><p>Fisher’s Z-score transformation: the Z-score transformation for kurtosis specifically accounts for the fact that a normal distribution has a Fisher kurtosis of 0. It is calculated by subtracting 3 from the Pearson kurtosis. This transformation ensures that a normally distributed sample would have a kurtosis Z-score close to 0.</p></li>
+<li><p><strong>K² statistic</strong>: the Z-scores for skewness and kurtosis are squared and summed to form the omnibus K-squared statistic.</p></li>
+<li><p>P-value: the K² statistic is approximately <em>chi-square</em> distributed with 2 degrees of freedom under the null hypothesis of normality. This allows us to calculate a P-value, which represents the probability of observing a K² statistic as extreme as or more extreme than the one calculated from the data, assuming normality holds true.</p>
+<ul class="simple">
+<li><p>A small p-value (typically less than 0.05) indicates that the observed skewness and/or kurtosis are significantly different from what would be expected in a normal distribution, providing evidence against the normality assumption.</p></li>
+<li><p>A large p-value suggests that the data are consistent with normality (i.e., we fail to reject the null hypothesis).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="manual-implementation-of-the-k2-test">
+<h5>Manual implementation of the K² test<a class="headerlink" href="#manual-implementation-of-the-k2-test" title="Link to this heading">#</a></h5>
+<p>We can implement the D’Agostino-Pearson test from scratch using NumPy and SciPy functions. This involves calculating skewness and kurtosis, transforming them into Z-scores, and then computing the K2 statistic and its associated p-value using the chi-square distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurtosis</span><span class="p">,</span> <span class="n">chi2</span>
+
+<span class="k">def</span> <span class="nf">dagostino_pearson_test</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Performs the D&#39;Agostino-Pearson omnibus K2 test for normality.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data (array-like): The data to test for normality.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        statistic: The K2 test statistic.</span>
+<span class="sd">        p_value: The p-value for the hypothesis test.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Sample size must be at least 8 for the test.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Calculate sample skewness and kurtosis (Fisher&#39;s definition)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">skew</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">kurtosis</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fisher</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+
+    <span class="c1"># Calculate intermediate terms</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">s</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="n">beta_two</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">27</span><span class="o">*</span><span class="n">n</span> <span class="o">-</span> <span class="mi">70</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="o">/</span>
+        <span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">9</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="n">w_two</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">beta_two</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">w_two</span><span class="p">)))</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">w_two</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    
+    <span class="c1"># Calculate Z-scores</span>
+    <span class="n">z_skew</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y</span> <span class="o">/</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">y</span> <span class="o">/</span> <span class="n">alpha</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">z_kurt</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)))))</span>
+
+    <span class="c1"># Calculate K2 statistic</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="n">z_skew</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z_kurt</span><span class="o">**</span><span class="mi">2</span>
+
+    <span class="c1"># Calculate p-value using chi-square distribution with 2 degrees of freedom</span>
+    <span class="n">p_value</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">chi2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">k2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">k2</span><span class="p">,</span> <span class="n">p_value</span>
+
+<span class="c1"># Example usage with consistent seed</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>  <span class="c1"># Same seed for both samples</span>
+<span class="n">normal_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">exponential_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">sample_type</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">normal_data</span><span class="p">,</span> <span class="n">exponential_data</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;Exponential&quot;</span><span class="p">]):</span>
+    <span class="n">k2</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">dagostino_pearson_test</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sample_type</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> D&#39;Agostino-Pearson K²=</span><span class="si">{</span><span class="n">k2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">  p-value=</span><span class="si">{</span><span class="n">pval</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Normal       D&#39;Agostino-Pearson K²=2.50  p-value=0.286
+Exponential  D&#39;Agostino-Pearson K²=46.43  p-value=0.000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="k2-test-with-scipy-stats-normaltest">
+<h5>K² test with <code class="docutils literal notranslate"><span class="pre">scipy.stats.normaltest</span></code><a class="headerlink" href="#k2-test-with-scipy-stats-normaltest" title="Link to this heading">#</a></h5>
+<p>The D’Agostino-Pearson omnibus K² test is a powerful normality test that assesses both skewness and kurtosis, suitable for <em>various sample sizes</em>, but it may be <em>less sensitive</em> to deviations in the distribution’s center and <em>overly sensitive to outliers</em> in <em>small samples</em>. Let’s demonstrate the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.normaltest.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.normaltest</span></code></a> function in action to assess normality concretely.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+<span class="n">normal_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">exponential_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Function to perform the test and print results</span>
+<span class="k">def</span> <span class="nf">test_and_print</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sample_type</span><span class="p">):</span>
+    <span class="n">k2</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">normaltest</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sample_type</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> D&#39;Agostino-Pearson K²=</span><span class="si">{</span><span class="n">k2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">  P-value=</span><span class="si">{</span><span class="n">pval</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Perform tests and print results (using the function)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- D&#39;Agostino-Pearson Omnibus K² Test ---&quot;</span><span class="p">)</span>
+<span class="n">test_and_print</span><span class="p">(</span><span class="n">normal_data</span><span class="p">,</span> <span class="s2">&quot;Normal:&quot;</span><span class="p">)</span>
+<span class="n">test_and_print</span><span class="p">(</span><span class="n">exponential_data</span><span class="p">,</span> <span class="s2">&quot;Exponential:&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- D&#39;Agostino-Pearson Omnibus K² Test ---
+Normal:      D&#39;Agostino-Pearson K²=2.70  P-value=0.259
+Exponential: D&#39;Agostino-Pearson K²=29.04  P-value=0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>The P-value for the normal data is high (0.900), indicating we fail to reject the null hypothesis of normality. This is consistent with the data being sampled from a normal distribution. In contrast, the P-value for the exponential data is very small (0.000), indicating we strongly reject the null hypothesis of normality. This is expected, as exponential data is not normally distributed.</p>
+<p><u>Note</u>: Minor differences in results between the manual D’Agostino-Pearson implementation and <code class="docutils literal notranslate"><span class="pre">scipy.stats.normaltest</span></code> are likely due to floating-point arithmetic and rounding errors inherent in numerical calculations, implementation details such as optimizations or approximations used in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>, as well as software versions and potential updates to the algorithms in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>. Don’t overinterpret small variations, especially if both lead to the same conclusion about normality. Focus on practical significance and, if uncertain, use additional tests to confirm the findings. We can generally trust <code class="docutils literal notranslate"><span class="pre">scipy.stats.normaltest</span></code> as it’s well-maintained and widely used, but the manual implementation is a valuable learning exercise and cross-check ;-)</p>
+</section>
+</section>
+<section id="shapiro-wilk-test">
+<h4>Shapiro-Wilk test<a class="headerlink" href="#shapiro-wilk-test" title="Link to this heading">#</a></h4>
+<p>The Shapiro-Wilk test stands out as a powerful and widely used statistical test for assessing normality, particularly for <em>small to moderate sample sizes</em> (up to 5000 data points). The <a class="reference external" href="https://web.archive.org/web/20150630110326/http://instatmy.org.my/downloads/e-jurnal%202/3.pdf">study from Razali and Wah (2011)</a> demonstrated its slightly superior power compared to other normality tests, making it a preferred choice in many scenarios.</p>
+<section id="how-the-shapiro-wilk-test-works">
+<h5>How the Shapiro-Wilk test works<a class="headerlink" href="#how-the-shapiro-wilk-test-works" title="Link to this heading">#</a></h5>
+<p>At its core, the Shapiro-Wilk test <em>compares the observed distribution</em> of the data to an <em>idealized normal distribution</em>. Here’s a simplified breakdown:</p>
+<ol class="arabic simple">
+<li><p>Sorting: the test starts by sorting the data points from smallest to largest.</p></li>
+<li><p>Expected values: it then calculates the values we would expect to see at each rank (percentile) if the data were perfectly normally distributed. These expected values are based on the properties of the <em>standard normal distribution</em> (mean = 0, standard deviation = 1).</p></li>
+<li><p><strong>Correlation</strong>: the test assesses the correlation between the observed sorted values and their corresponding expected values. If the data is perfectly normal, this correlation should be very high.</p></li>
+<li><p><strong>Test statistic (W)</strong>: the correlation is transformed into a test statistic called <span class="math notranslate nohighlight">\(W\)</span>, which ranges from 0 to 1. Values closer to 1 indicate a better fit to normality.</p></li>
+<li><p>P-value: finally, a P-value is calculated based on the W statistic. A small P-value (typically &lt; 0.05) suggests that the observed data are <em>unlikely to have come from a normal distribution</em>, leading to the rejection of the null hypothesis of normality.</p></li>
+</ol>
+<p>While modern algorithms extend the Shapiro-Wilk test’s applicability to 5000 data points, it’s still <em>not ideal for very large samples</em>. For samples exceeding this limit, consider alternative tests like the D’Agostino-Pearson omnibus K2 test. Another limitation is that the Shapiro-Wilk test is generally powerful, but it might not be the most sensitive to specific types of deviations from normality, such as those affecting only the tails of the distribution.</p>
+</section>
+<section id="application-of-scipy-stats-shapiro">
+<h5>Application of <code class="docutils literal notranslate"><span class="pre">scipy.stats.shapiro</span></code><a class="headerlink" href="#application-of-scipy-stats-shapiro" title="Link to this heading">#</a></h5>
+<p>Let’s demonstrate how to apply the Shapiro-Wilk test in Python using the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> module, in particular the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.shapiro.html"><code class="docutils literal notranslate"><span class="pre">shapiro</span></code> function</a> and interpret its results to gain deeper insights into the normality of the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span> <span class="c1"># for reproducibility</span>
+
+<span class="c1"># Sample Generation</span>
+<span class="n">normal_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">exponential_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Function to perform the Shapiro-Wilk test and print results</span>
+<span class="k">def</span> <span class="nf">shapiro_wilk_test</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sample_type</span><span class="p">):</span>
+    <span class="n">statistic</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sample_type</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> Shapiro-Wilk W = </span><span class="si">{</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, P-value = </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># print(f&quot;{&#39; &#39;:&lt;15} {&#39;(Reject H0 if p &lt; 0.05)&#39;:&gt;30}&quot;)  # H0: Data is normal</span>
+
+<span class="c1"># Perform Shapiro-Wilk test and print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Shapiro-Wilk Test ---&quot;</span><span class="p">)</span>
+<span class="n">shapiro_wilk_test</span><span class="p">(</span><span class="n">normal_data</span><span class="p">,</span> <span class="s2">&quot;Normal:&quot;</span><span class="p">)</span>
+<span class="n">shapiro_wilk_test</span><span class="p">(</span><span class="n">exponential_data</span><span class="p">,</span> <span class="s2">&quot;Exponential:&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Shapiro-Wilk Test ---
+Normal:      Shapiro-Wilk W = 0.984, P-value = 0.263
+Exponential: Shapiro-Wilk W = 0.855, P-value = 0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>The W statistic for the normal data (0.987) is close to 1, indicating a good fit to normality. Combined with the high P-value, this strongly supports the hypothesis that the data is normally distributed. In contrast, the W statistic for the exponential data (0.803) is lower, suggesting a less good fit to normality. Along with the extremely low P-value, this provides strong evidence against the normality of the exponential data.</p>
+</section>
+</section>
+<section id="normality-tests-using-pingouin">
+<h4>Normality tests using <code class="docutils literal notranslate"><span class="pre">pingouin</span></code><a class="headerlink" href="#normality-tests-using-pingouin" title="Link to this heading">#</a></h4>
+<p>Pingouin’s <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.normality.html"><code class="docutils literal notranslate"><span class="pre">normality</span></code> function</a> actually performs both the Shapiro-Wilk test and the D’Agostino-Pearson test. We can easily access the results for either test from the returned dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>  <span class="c1"># For reproducibility</span>
+
+<span class="c1"># Sample Generation</span>
+<span class="n">normal_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">exponential_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Function to perform tests and print results</span>
+<span class="k">def</span> <span class="nf">normality_tests</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sample_type</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Normality Tests for&quot;</span><span class="p">,</span> <span class="n">sample_type</span><span class="p">,</span> <span class="s2">&quot;---&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Test&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;W&#39;</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;P-value&#39;</span><span class="si">:</span><span class="s2">&lt;6</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Shapiro-Wilk Test</span>
+    <span class="n">shapiro_results</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">normality</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;shapiro&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Shapiro-Wilk&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">shapiro_results</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;8.3f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="si">{</span><span class="n">shapiro_results</span><span class="p">[</span><span class="s1">&#39;pval&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;6.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># D&#39;Agostino-Pearson Test</span>
+    <span class="n">dagostino_results</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">normality</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;normaltest&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;D</span><span class="se">\&#39;</span><span class="s1">Agostino-Pearson&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">dagostino_results</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;8.3f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="si">{</span><span class="n">dagostino_results</span><span class="p">[</span><span class="s1">&#39;pval&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;6.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="c1"># Perform tests and print results</span>
+<span class="n">normality_tests</span><span class="p">(</span><span class="n">normal_data</span><span class="p">,</span> <span class="s2">&quot;Normal Data&quot;</span><span class="p">)</span>
+<span class="n">normality_tests</span><span class="p">(</span><span class="n">exponential_data</span><span class="p">,</span> <span class="s2">&quot;Exponential Data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Normality Tests for Normal Data ---
+Test                 W        P-value
+Shapiro-Wilk         0.984    0.263 
+D&#39;Agostino-Pearson   2.703    0.259 
+----------------------------------------
+
+--- Normality Tests for Exponential Data ---
+Test                 W        P-value
+Shapiro-Wilk         0.855    0.000 
+D&#39;Agostino-Pearson   29.044   0.000 
+----------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="omnibus-test-for-normality-using-statsmodels">
+<h4>Omnibus test for normality using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code><a class="headerlink" href="#omnibus-test-for-normality-using-statsmodels" title="Link to this heading">#</a></h4>
+<p>The <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.stats.stattools.omni_normtest.html"><code class="docutils literal notranslate"><span class="pre">omni_normtest</span></code> function</a> offers a convenient way to assess normality in the data. The term “omnibus” means “including or covering many things.” In the context of normality testing, an omnibus test combines multiple aspects of normality into a single test statistic. The <code class="docutils literal notranslate"><span class="pre">omni_normtest</span></code> function in <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> does this by evaluating both skewness and kurtosis, similar to the D’Agostino-Pearson test, by incorporating three different tests, i.e., the Jarque-Bera test, the skewness test and the kurtosis test.</p>
+<p>The function calculates the test statistics for each of the three individual tests, and then combines the P-values from these individual tests using Fisher’s method to obtain an overall omnibus test statistic (chi-square distributed). Finally, the test calculates a single P-value based on this omnibus test statistic. This P-value indicates the overall probability of observing the combined test results if the data were truly normally distributed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>  <span class="c1"># For reproducibility</span>
+
+<span class="c1"># Sample Generation</span>
+<span class="n">normal_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">exponential_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Function to perform the omnibus test and print results</span>
+<span class="k">def</span> <span class="nf">omnibus_normality_test</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sample_type</span><span class="p">):</span>
+    <span class="n">omnibus_stat</span><span class="p">,</span> <span class="n">omnibus_pvalue</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">stattools</span><span class="o">.</span><span class="n">omni_normtest</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Omnibus Normality Test for </span><span class="si">{</span><span class="n">sample_type</span><span class="si">}</span><span class="s2"> ---&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Omnibus Statistic: </span><span class="si">{</span><span class="n">omnibus_stat</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Omnibus p-value: </span><span class="si">{</span><span class="n">omnibus_pvalue</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># print(f&quot;{&#39;(Reject H0 if p &lt; 0.05)&#39;:&gt;30}&quot;)  # H0: Data is normal</span>
+
+<span class="c1"># Perform tests and print results</span>
+<span class="n">omnibus_normality_test</span><span class="p">(</span><span class="n">normal_data</span><span class="p">,</span> <span class="s2">&quot;Normal Data&quot;</span><span class="p">)</span>
+<span class="n">omnibus_normality_test</span><span class="p">(</span><span class="n">exponential_data</span><span class="p">,</span> <span class="s2">&quot;Exponential Data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Omnibus Normality Test for Normal Data ---
+Omnibus Statistic: 2.703
+Omnibus p-value: 0.259
+
+--- Omnibus Normality Test for Exponential Data ---
+Omnibus Statistic: 29.044
+Omnibus p-value: 0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s important to note that the omni_normtest function is not the most powerful test for normality, especially for smaller sample sizes. For smaller samples, the Shapiro-Wilk test is often preferred. Moreover, the omnibus nature of this test makes it difficult to pinpoint exactly which aspect of normality (skewness or kurtosis) is being violated if the null hypothesis is rejected.</p>
+</section>
+<section id="kolmogorov-smirnov-test">
+<h4>Kolmogorov-Smirnov test<a class="headerlink" href="#kolmogorov-smirnov-test" title="Link to this heading">#</a></h4>
+<p>The Kolmogorov-Smirnov (K-S) test is a versatile <strong>nonparametric test</strong> used to assess whether two samples are drawn from the same distribution or whether a single sample follows a specified theoretical distribution. Unlike parametric tests like the t-test, which primarily focus on differences in location (means), the K-S test is sensitive to differences in both location, scale (spread), and shape, making it a more comprehensive tool for comparing distributions.</p>
+<p>The K-S test comes in two flavors:</p>
+<ul class="simple">
+<li><p>One-Sample K-S test: compares the empirical distribution function (ECDF) of the observed data to the cumulative distribution function (CDF) of a reference distribution (e.g., normal, exponential, uniform). This helps us determine if the sample data likely comes from the specified distribution.</p></li>
+<li><p>Two-Sample K-S test: compares the ECDFs of two independent samples to assess whether they are likely drawn from the same underlying distribution, even if that distribution is unknown.</p></li>
+</ul>
+<p>The core idea behind the K-S test is simple yet powerful: it quantifies the <em>maximum vertical distance</em> (absolute difference) between the two cumulative distribution functions being compared. This <strong>maximum distance</strong> is the <strong>K-S test statistic</strong>, often denoted as <span class="math notranslate nohighlight">\(D\)</span>. A larger K-S statistic indicates a <em>greater discrepancy</em> between the two distributions, providing stronger evidence against the null hypothesis of identical distributions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>  <span class="c1"># for reproducibility</span>
+
+<span class="c1"># Sample Generation (bimodal distribution)</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span>
+    <span class="o">*</span> <span class="mf">0.5</span>
+    <span class="o">+</span> <span class="mi">1</span>
+    <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># ECDF Function</span>
+<span class="k">def</span> <span class="nf">ecdf</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute ECDF for a one-dimensional array of values.&quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="c1"># Calculate ECDFs</span>
+<span class="n">sample_x</span><span class="p">,</span> <span class="n">sample_ecdf</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="n">normal_cdf</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">sample_x</span><span class="p">)</span>
+
+<span class="c1"># KS Statistic</span>
+<span class="n">ks_stat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">normal_cdf</span> <span class="o">-</span> <span class="n">sample_ecdf</span><span class="p">))</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Histogram and KDE Plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
+    <span class="n">sample</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sampled data (bimodal)&quot;</span><span class="p">,</span>
+    <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;density&quot;</span><span class="p">,</span>
+    <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">sample_x</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">sample_x</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;xkcd:orange&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Expected (normal)&quot;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+    <span class="s2">&quot;Histogram and KDE with expected normal&quot;</span><span class="p">,)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+
+<span class="c1"># ECDF Plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">sample_x</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">sample_ecdf</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sampled data (bimodal)&quot;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">sample_x</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">normal_cdf</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;xkcd:orange&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Expected (normal)&quot;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># Highlight the max difference (KS statistic)</span>
+<span class="n">max_diff_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">normal_cdf</span> <span class="o">-</span> <span class="n">sample_ecdf</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">sample_x</span><span class="p">[</span><span class="n">max_diff_idx</span><span class="p">],</span>
+    <span class="n">ymin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">sample_ecdf</span><span class="p">[</span><span class="n">max_diff_idx</span><span class="p">],</span> <span class="n">normal_cdf</span><span class="p">[</span><span class="n">max_diff_idx</span><span class="p">]),</span>
+    <span class="n">ymax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">sample_ecdf</span><span class="p">[</span><span class="n">max_diff_idx</span><span class="p">],</span> <span class="n">normal_cdf</span><span class="p">[</span><span class="n">max_diff_idx</span><span class="p">]),</span>
+    <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+    <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;KS statistic: </span><span class="si">{</span><span class="n">ks_stat</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+    <span class="s2">&quot;ECDF with expected normal&quot;</span><span class="p">,)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/44449a26b6d1ef3f05ae2ccb090e51c981a8913775e67e50e8c6c654f4688646.png" src="_images/44449a26b6d1ef3f05ae2ccb090e51c981a8913775e67e50e8c6c654f4688646.png" />
+</div>
+</div>
+<p>We can perform the (one-sample) K-S test using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kstest.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.kstest</span></code></a> as shown below.</p>
+<p>The test statistic (D) measures the maximum absolute difference between the empirical cumulative distribution function (ECDF) of the sample and the cumulative distribution function (CDF) of the standard normal distribution. A larger D value suggests a greater discrepancy from normality. In addition, the P-value is the probability of observing a test statistic as extreme as or more extreme than the calculated D, assuming the null hypothesis (normality) is true. A small p-value (typically &lt; 0.05) provides evidence against normality.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>  <span class="c1"># For reproducibility</span>
+
+<span class="c1"># Sample Generation (bimodal distribution)</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Perform the one-sample Kolmogorov-Smirnov test</span>
+<span class="n">ks_statistic</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">kstest</span><span class="p">(</span>
+    <span class="n">sample</span><span class="p">,</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="c1"># &#39;norm&#39; specifies the normal distribution</span>
+<span class="p">)</span> 
+
+<span class="c1"># Output the results with clear formatting</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- One-Sample Kolmogorov-Smirnov Test ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Null Hypothesis (H0): sample comes from a normal distribution&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test statistic (D): </span><span class="si">{</span><span class="n">ks_statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>  <span class="c1"># Typical significance level</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reject H0: evidence suggests the sample is NOT normally distributed&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fail to reject H0: insufficient evidence to conclude the sample </span><span class="se">\</span>
+<span class="s2">is not normally distributed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- One-Sample Kolmogorov-Smirnov Test ---
+Null Hypothesis (H0): sample comes from a normal distribution
+Test statistic (D): 0.148
+P-value: 0.00000
+Reject H0: evidence suggests the sample is NOT normally distributed
+</pre></div>
+</div>
+</div>
+</div>
+<p>Given that the sample is intentionally generated as a bimodal distribution, we expect the P-value to be very small, indicating strong evidence against the null hypothesis of normality. This would align with the visual inspection of the ECDF plots, where the sample distribution clearly deviates from the normal curve.</p>
+<p>The K-S test finds applications in various fields:</p>
+<ul class="simple">
+<li><p>Goodness-of-fit testing: assessing whether data fits a particular theoretical distribution (e.g., testing for normality).</p></li>
+<li><p>Comparing sample distributions: determining if two groups differ significantly in their underlying distributions.</p></li>
+<li><p>Model validation: evaluating the fit of statistical models by comparing the predicted and observed distributions.</p></li>
+<li><p>Quality control: testing the uniformity of random number generators.</p></li>
+</ul>
+</section>
+<section id="additional-normality-tests">
+<h4>Additional normality tests<a class="headerlink" href="#additional-normality-tests" title="Link to this heading">#</a></h4>
+<p>In addition to the D’Agostino-Pearson, Shapiro-Wilk, and Kolmogorov-Smirnov tests, several other statistical tests can assess normality:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Anderson%E2%80%93Darling_test">Anderson-Darling test</a>: a modification of the Kolmogorov-Smirnov test that is often more powerful, particularly for detecting deviations in the tails. (Available in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.anderson.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.anderson</span></code></a>).</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Lilliefors_test">Lilliefors test</a>: a corrected version of the Kolmogorov-Smirnov test that is more appropriate when the population parameters are unknown. (Available in <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.stats.diagnostic.lilliefors.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.stats.diagnotic.lilliefors</span></code></a>).</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Jarque%E2%80%93Bera_test">Jarque-Bera test</a>: similar to D’Agostino-Pearson, but less powerful, especially for small samples. Often used in econometrics. (Available in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.jarque_bera.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.jarque_bera</span></code></a>).</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Shapiro%E2%80%93Francia_test">Shapiro-Francia test</a>: a computationally lighter alternative to Shapiro-Wilk for large samples (typically &gt; 50). (Available in the <a class="reference external" href="https://pypi.org/project/sfrancia/#data"><code class="docutils literal notranslate"><span class="pre">sfrancia</span></code> package</a>).</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93von_Mises_criterion">Cramér-von Mises test</a>: measures the overall difference between the observed and theoretical distributions. (Available in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.cramervonmises.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.cramervonmises</span></code> function</a>).</p></li>
+</ul>
+<p>Choosing a Test:</p>
+<ul class="simple">
+<li><p>Shapiro-Wilk is a good general-purpose test.</p></li>
+<li><p>Shapiro-Francia or Anderson-Darling are suitable for large samples.</p></li>
+<li><p>Shapiro-Wilk is better for small samples.</p></li>
+<li><p>Anderson-Darling is sensitive to tail deviations.</p></li>
+<li><p>Lilliefors is suitable when parameters are unknown.</p></li>
+<li><p>Jarque-Bera is often used in time series and econometrics.</p></li>
+</ul>
+<p>Combining visual inspection with multiple tests is recommended for a well-rounded assessment of normality.</p>
+</section>
+</section>
+</section>
+<section id="outliers">
+<h2>Outliers<a class="headerlink" href="#outliers" title="Link to this heading">#</a></h2>
+<p>An outlier is a data point that significantly deviates from the overall pattern of the dataset, raising questions about its origin and validity. It’s a value so extreme that it appears to belong to a different population than the rest of the data. Outliers can arise from various sources, both benign and problematic:</p>
+<ul class="simple">
+<li><p>Data entry errors: typos, miscalculations, or incorrect measurements can easily introduce outliers. Or it can be a missing value encoded as ‘999’.</p></li>
+<li><p>Biological diversity: in biological data, outliers can reflect genuine <em>natural variation</em>. Some individuals simply fall at the extreme ends of a trait’s distribution.</p></li>
+<li><p>Random chance: even in perfectly controlled experiments, statistical fluctuations can occasionally produce extreme values.</p></li>
+<li><p>Experimental mistakes: equipment malfunctions, protocol deviations, or contamination can lead to erroneous data points.</p></li>
+<li><p>Invalid assumptions: sometimes, what appears to be an outlier under one statistical model might fit perfectly under a different model. For example, data that seems like an outlier in a normal distribution might be entirely expected in a lognormal distribution.</p></li>
+</ul>
+<section id="graphical-approaches-for-outlier-detection">
+<h3>Graphical approaches for outlier detection<a class="headerlink" href="#graphical-approaches-for-outlier-detection" title="Link to this heading">#</a></h3>
+<section id="general-purpose-outlier-detection-methods">
+<h4>General-purpose outlier detection methods<a class="headerlink" href="#general-purpose-outlier-detection-methods" title="Link to this heading">#</a></h4>
+<p>For effectively detecting outliers in the data, we may combine both graphical and statistical methods. First of all, we need to understand the data:</p>
+<ul class="simple">
+<li><p>Contextual knowledge: leverage the domain expertise to define what constitutes an “outlier” in the context of the specific data and research question. Is it an extreme value, an unexpected pattern, or something else?</p></li>
+<li><p>Data exploration: conduct a thorough exploratory data analysis (EDA) to understand the central tendency, spread, and overall shape of the data. This will help identify reasonable ranges and establish a baseline for outlier detection.</p></li>
+</ul>
+<p>Visual inspection can be achieved using different tools:</p>
+<ul class="simple">
+<li><p>Univariate data:</p>
+<ul>
+<li><p>Histograms: looking for isolated bars or gaps in the distribution.</p></li>
+<li><p><strong>Box plots</strong>: identifying points that fall outside the whiskers (<span class="math notranslate nohighlight">\(1.5 \times \text{IQR}\)</span> from the quartiles).</p></li>
+<li><p>Normal Q-Q plots: checking if points deviate significantly from the diagonal line, especially in the tails.</p></li>
+</ul>
+</li>
+<li><p>Multivariate data:</p>
+<ul>
+<li><p>Scatter plots: visualizing relationships between pairs of variables and look for isolated points.</p></li>
+<li><p>Scatterplot matrices: examining multiple pairwise relationships simultaneously to spot outliers across different dimensions.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="the-case-of-log-normal-data">
+<h4>The case of log-normal data<a class="headerlink" href="#the-case-of-log-normal-data" title="Link to this heading">#</a></h4>
+<p>Sometimes, data doesn’t fit the familiar bell-shaped curve of a normal distribution. One common scenario is <strong>log-normal</strong> data, where the logarithms of the values follow a normal distribution. This type of distribution often arises in situations where the data represents <em>multiplicative</em> processes or where the values are inherently <em>positive and skewed to the right</em>. This skew can create a <em>misleading impression of outliers</em> when viewed on a linear scale.</p>
+<p>To illustrate the characteristics of log-normal data and the potential misidentification of outliers, consider the following example. We’ve generated 10 random samples (labeled A-J), each containing 15 values drawn from the same log-normal distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span> <span class="c1"># for reproducibility</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span> <span class="c1"># Mean of the underlying normal distribution </span>
+<span class="c1"># (calculated from the desired median of the lognormal distribution)</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.8</span>       <span class="c1"># Standard deviation of the underlying normal distribution</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ABCDEFGHIJ&quot;</span><span class="p">)</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="c1"># Generate data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span>
+    <span class="n">mean</span><span class="p">,</span>
+    <span class="n">sigma</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">),</span> <span class="n">sample_size</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Flatten and create labels for seaborn</span>
+<span class="n">flattened_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">sample_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+<span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Sample&#39;</span><span class="p">:</span> <span class="n">sample_labels</span><span class="p">,</span>
+    <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="n">flattened_data</span><span class="p">}</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,)</span>
+
+<span class="c1"># Plot 1: Linear Scale</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span>
+    <span class="c1"># size=4,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+    <span class="s2">&quot;Lognormal distribution (linear scale)&quot;</span><span class="p">,)</span>
+
+<span class="c1"># Plot 2: Log Scale</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;steelblue&quot;</span><span class="p">,</span>
+    <span class="c1"># size=4,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Lognormal distribution (log scale)&quot;</span><span class="p">,)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/69cc0c27b3e97d9d56395a35fc8a4a222d42b7e6d7eaf773ad7dc8a223ce60ed.png" src="_images/69cc0c27b3e97d9d56395a35fc8a4a222d42b7e6d7eaf773ad7dc8a223ce60ed.png" />
+</div>
+</div>
+<p>The top swarm plot shows the raw, untransformed data. Notice the <em>rightward skew</em>, with most values clustered towards the lower end and a few extreme values stretching out the tail. On this linear scale, these extreme values might be mistakenly labeled as outliers.</p>
+<p>However, the bottom swarm plot reveals a different story. Here, the y-axis is transformed to a <em>logarithmic scale</em>. The points now align more closely along a horizontal line, resembling the pattern expected from a normal distribution. This visual transformation confirms that the logarithms of the data are approximately normally distributed, a hallmark of log-normal data. Crucially, the values that appeared as outliers on the linear scale are now seen as part of the normal variation within the log-transformed distribution.</p>
+<p>Understanding whether the data is log-normal has important implications for the analysis:</p>
+<ul class="simple">
+<li><p>Transformation for normality: if we need to apply statistical methods that assume normality, we might be able to transform log-normal data into a normal distribution by taking the logarithm of each value. This can open up a wider range of analysis techniques.</p></li>
+<li><p>Interpreting descriptive statistics: for log-normal data, the <strong>geometric mean</strong> is often a more appropriate measure of central tendency than the arithmetic mean, which can be heavily influenced by extreme values.</p></li>
+<li><p>Modeling: log-normal distributions are frequently used to model phenomena like income distribution, stock prices, and biological growth processes.</p></li>
+<li><p>Avoiding misinterpretation of outliers: as demonstrated in the plots, careful consideration of the appropriate scale is crucial when identifying outliers in log-normal data. Blindly applying outlier detection methods on the raw data can lead to erroneous conclusions.</p></li>
+</ul>
+</section>
+<section id="cook-s-distance-and-leverage">
+<h4>Cook’s distance and leverage<a class="headerlink" href="#cook-s-distance-and-leverage" title="Link to this heading">#</a></h4>
+<p><strong>Cook’s distance</strong> is a statistical measure of the influence of a data point on a <em>regression model</em>, i.e., it is not applicable to general outlier detection in other types of data without a regression context. It’s <em>not a visual test in itself</em>, but it can be used to inform visual inspection. Cook’s distance is calculated based on the <strong>residuals</strong> (the differences between the observed and predicted values) and the <strong>leverage</strong> (how far the predictor values are from their mean) of each data point in a regression model. Of note, a high leverage point can have a high Cook’s distance even if its residual isn’t that large. Higher Cook’s distance values indicate that a data point has a <em>greater influence on the model’s fitted values</em>.</p>
+<p>We can plot Cook’s distances against data point indices or predictor values to visually identify highly influential data points that significantly modify the regression coefficients. For example, we can leverageg the <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.stats.outliers_influence.OLSInfluence.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.stats.outliers_influence.OLSInfluence</span></code> class</a> to calculate outlier and influence measures on the <a class="reference external" href="https://search.r-project.org/CRAN/refmans/MVTests/html/iris.html">R <code class="docutils literal notranslate"><span class="pre">iris</span></code> dataset</a>. While often used for classification, e.g., for machine learning, the <code class="docutils literal notranslate"><span class="pre">iris</span></code> dataset includes continuous variables like sepal length and width that we can use for regression analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the dataset</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">get_rdataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># rename columns to avoid PatsyError</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+
+<span class="c1"># create one exagerated outlier</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;Petal_Length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;Petal_Length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;Petal_Length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">iris</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 150 entries, 0 to 149
+Data columns (total 5 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   Sepal_Length  150 non-null    float64
+ 1   Sepal_Width   150 non-null    float64
+ 2   Petal_Length  150 non-null    float64
+ 3   Petal_Width   150 non-null    float64
+ 4   Species       150 non-null    object 
+dtypes: float64(4), object(1)
+memory usage: 6.0+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">OLSInfluence</span>
+
+<span class="c1"># fit the regression model using statsmodels library </span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span>
+    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;Petal_Length ~ Petal_Width&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">iris</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Calculate Cooks&#39; distance, leverage, DFFITS, and standardized residuals</span>
+<span class="n">influence</span> <span class="o">=</span> <span class="n">OLSInfluence</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="n">cooks_distance</span> <span class="o">=</span> <span class="n">influence</span><span class="o">.</span><span class="n">cooks_distance</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">leverage</span> <span class="o">=</span> <span class="n">influence</span><span class="o">.</span><span class="n">hat_matrix_diag</span>
+<span class="n">dffits</span> <span class="o">=</span> <span class="n">influence</span><span class="o">.</span><span class="n">dffits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">standardized_residuals</span> <span class="o">=</span> <span class="n">influence</span><span class="o">.</span><span class="n">resid_studentized_internal</span>
+<span class="n">predicted_values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fittedvalues</span>
+
+<span class="c1"># Set font sizes for title and labels before creating the plot</span>
+<span class="n">title_fontsize</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">label_fontsize</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">ticks_fontsize</span> <span class="o">=</span> <span class="mi">9</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+    <span class="s1">&#39;axes.titlesize&#39;</span><span class="p">:</span> <span class="n">title_fontsize</span><span class="p">,</span> 
+    <span class="s1">&#39;axes.labelsize&#39;</span><span class="p">:</span> <span class="n">label_fontsize</span><span class="p">,</span>
+    <span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">:</span> <span class="n">ticks_fontsize</span><span class="p">,</span>
+    <span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">:</span> <span class="n">ticks_fontsize</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1"># Create a figure with four subplots sharing a y-axis</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Subplot 1: Regression Plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Petal_Width&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Petal_Length&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="n">cooks_distance</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="n">cooks_distance</span><span class="p">,</span>
+    <span class="n">sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Petal_Width&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Petal_Length&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="p">,</span>
+    <span class="n">scatter</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">ci</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">line_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;darkgrey&#39;</span><span class="p">,</span> <span class="s1">&#39;ls&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Petal Width&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Petal Length&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Regression Plot&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Cooks&#39; distance&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Subplot 2: Cooks&#39; distance vs. Predicted Values</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">predicted_values</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">cooks_distance</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">.75</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Influence Plot&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Predicted Values (Petal Length)&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Cook&#39;s Distance&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Subplot 3: DFFITS Plot</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">dffits</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;DFFITS Plot&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Observation Index&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;DFFITS&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Subplot 4: Influence Plot (Bubble Plot)</span>
+<span class="n">influence_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Leverage&#39;</span><span class="p">:</span> <span class="n">leverage</span><span class="p">,</span>
+    <span class="s1">&#39;Std Residuals&#39;</span><span class="p">:</span> <span class="n">standardized_residuals</span><span class="p">,</span>
+    <span class="s1">&#39;Cooks Distance&#39;</span><span class="p">:</span> <span class="n">cooks_distance</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Leverage&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Std Residuals&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">influence_data</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="s1">&#39;Cooks Distance&#39;</span><span class="p">,</span>
+    <span class="n">sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Cooks Distance&#39;</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;crest&#39;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Leverage-Residual Plot&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display all plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/59b1dc3cc298760753d7995cc72368ff3d2c39475d9f3ad0a9f778d50564a02d.png" src="_images/59b1dc3cc298760753d7995cc72368ff3d2c39475d9f3ad0a9f778d50564a02d.png" />
+</div>
+</div>
+<p>The four plots - regression with Cook’s distance as hue, Cook’s distance vs. predicted values, DFFITS plot, and leverage-residual plot - offer complementary perspectives on the impact of the outlier in the regression analysis.</p>
+<ol class="arabic simple">
+<li><p>Regression Plot with Cook’s Distance as Hue</p>
+<ul class="simple">
+<li><p>The outlier is immediately noticeable due to its distinct color, indicating a high Cook’s distance.</p></li>
+<li><p>Visually, we can see how the outlier pulls the regression line towards itself, demonstrating its disproportionate influence on the fitted values.</p></li>
+</ul>
+</li>
+<li><p>Cook’s Distance vs. Predicted Values</p>
+<ul class="simple">
+<li><p>The outlier stands out with a much higher Cook’s distance than other points.</p></li>
+<li><p>Its position on the x-axis (predicted values) might give clues about its nature. For instance, if it’s far from the other predicted values, it suggests that the outlier is not only influential but also <em>poorly predicted</em> by the model.</p></li>
+</ul>
+</li>
+<li><p>DFFITS Plot</p>
+<ul class="simple">
+<li><p>The outlier is likely the point with the highest absolute DFFITS value, indicating that its <em>removal would lead to a substantial change</em> in its own predicted value.</p></li>
+<li><p>This plot confirms the outlier’s influence on the model’s predictions.</p></li>
+</ul>
+</li>
+<li><p>Leverage-Residual Plot (Influence Plot)</p>
+<ul class="simple">
+<li><p>The outlier appears in the upper right or lower right quadrant, indicating high leverage and a <em>large residual</em>.</p></li>
+<li><p>This plot highlights how the outlier is both unusual in its predictor values (leverage) and has a large discrepancy between its observed and predicted values (residual), making it a particularly influential point.</p></li>
+</ul>
+</li>
+</ol>
+<p>The consistent identification of the outlier across all four plots underscores its strong influence on the regression model. This outlier is not merely an extreme value but also exerts significant leverage, affecting both the overall fit of the model and individual predictions.</p>
+<p>There’s no strict cutoff for what constitutes a “high” Cook’s distance. It depends on the sample size and the specific context of the analysis. A common rule of thumb is to investigate points with a Cook’s distance greater than <span class="math notranslate nohighlight">\(4/n\)</span> (where <span class="math notranslate nohighlight">\(n\)</span> is the sample size), but it’s also essential to examine the plot visually to identify any points that stand out from the rest, regardless of the numerical threshold.</p>
+<p>Some statisticians suggest investigating data points with a Cook’s distance greater than 1 divided by the square root of the sample size (<span class="math notranslate nohighlight">\(1/\sqrt{n}\)</span>). This threshold is generally more conservative than the <span class="math notranslate nohighlight">\(4/n\)</span> rule and might be more appropriate for smaller sample sizes. In another rule, the threshold is <span class="math notranslate nohighlight">\(2 \times \sqrt{(p+1)/n}\)</span>, with <span class="math notranslate nohighlight">\(p\)</span> the number of predictor variables on the regression model. Neither rule is a definitive cut-off. They are meant as guidelines to help us identify points that warrant further investigation.</p>
+</section>
+</section>
+<section id="statistical-outlier-detection">
+<h3>Statistical outlier detection<a class="headerlink" href="#statistical-outlier-detection" title="Link to this heading">#</a></h3>
+<section id="grubbs-test">
+<h4>Grubbs’ test<a class="headerlink" href="#grubbs-test" title="Link to this heading">#</a></h4>
+<p>While visual inspection provides a valuable first look, statistical tests offer a more objective way to identify outliers. One such test, well-suited for detecting a single outlier in a <em>normally distributed dataset</em>, is <strong>Grubbs’ test</strong>.</p>
+<p>Grubbs’ test calculates a test statistic (<span class="math notranslate nohighlight">\(G\)</span>) that quantifies how many standard deviations the most extreme value in the dataset is from the sample mean. While similar in concept to z-scores and t-statistics, Grubbs’ test statistic uses a specific distribution (the studentized maximum modulus distribution) to determine its critical values and p-values. It’s worth noting that the term “extreme studentized deviate (ESD) test” is sometimes used interchangeably with Grubbs’ test, particularly when testing for multiple outliers.</p>
+<ol class="arabic">
+<li><p>Null hypothesis: the null hypothesis (H0) states that there are no outliers in the data.</p></li>
+<li><p>Test statistic: Grubbs’ test calculates a test statistic (<span class="math notranslate nohighlight">\(G\)</span>) based on the <em>maximum deviation</em> of the data point from the <em>sample mean</em>, divided by the sample standard deviation (<span class="math notranslate nohighlight">\(G = \max_{i} \left|\frac{y_{i} − \bar{y}}{s}\right|\)</span>).</p></li>
+<li><p>Critical value: this test statistic is compared to a critical value that depends on the desired significance level (e.g., 0.05) and the sample size. For example the critical G values for <em>one-sided test</em> can be found in the table below:</p>
+<img src="https://cdn.slidesharecdn.com/ss_thumbnails/statisticstablesgrubbstest-150209143458-conversion-gate02-thumbnail-4.jpg?cb=1423492541" alt="Critical Values of Grubbs' Statistic (G)" style="width: 600px;"/>
+</li>
+<li><p>Decision:</p>
+<ul class="simple">
+<li><p>If the test statistic is greater than the critical value, we reject the null hypothesis and conclude that the most extreme value is a significant outlier.</p></li>
+<li><p>If the test statistic is less than or equal to the critical value, we fail to reject the null hypothesis, suggesting that the extreme value may not be a true outlier.</p></li>
+</ul>
+</li>
+</ol>
+<p>Let’s put Grubbs’ test to work on a concrete example. We generate data from a normal distribution, intentionally introduce an exaggerated outlier, and then calculate the Grubbs’ statistic to see if the test can successfully detect it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grubbs_gmax</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">onesided</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Critical value for Grubbs&#39; test for outlier.</span>
+
+<span class="sd">    &gt;&gt;&gt; grubbs_gmax(n=8, alpha=0.05, onesided=False)</span>
+<span class="sd">    2.126645087195626</span>
+<span class="sd">    &gt;&gt;&gt; grubbs_gmax(n=8, alpha=0.05, onesided=True)</span>
+<span class="sd">    2.031652001549952</span>
+<span class="sd">    See also:</span>
+<span class="sd">    https://ycopin.pages.in2p3.fr/Informatique-Python/Annales/22-grubbs/exam22_corrige.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sl</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">/</span> <span class="n">n</span>    <span class="c1"># one-sided</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">onesided</span><span class="p">:</span>  <span class="c1"># two-sided</span>
+        <span class="n">sl</span> <span class="o">/=</span> <span class="mi">2</span>
+
+    <span class="c1"># Critical value (squared) of the t distribution w/ n-2 DoF and</span>
+    <span class="c1"># significance level sl</span>
+    <span class="n">cv2</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">sl</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">gmax</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cv2</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">cv2</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">gmax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate normal sample with an outlier</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># For reproducibility</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+<span class="n">sample</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Introduce an exaggerated outlier</span>
+
+<span class="c1"># Grubbs&#39; Test (Manual Implementation)</span>
+<span class="k">def</span> <span class="nf">grubbs_test_manual</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Performs a two-sided Grubbs&#39; test manually.&quot;&quot;&quot;</span>
+
+    <span class="n">sample_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">sample_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Use ddof=1 for sample standard deviation</span>
+
+    <span class="c1"># Calculate G statistic (using absolute value for two-sided test)</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">sample_mean</span><span class="p">))</span> <span class="o">/</span> <span class="n">sample_std</span>
+
+    <span class="c1"># Critical value from Grubbs&#39; table or using t-distribution</span>
+    <span class="n">G_critical</span> <span class="o">=</span> <span class="n">grubbs_gmax</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">onesided</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">G</span><span class="p">,</span> <span class="n">G_critical</span>
+
+<span class="c1"># Perform manual Grubbs&#39; test</span>
+<span class="n">G_calculated</span><span class="p">,</span> <span class="n">G_critical</span> <span class="o">=</span> <span class="n">grubbs_test_manual</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Manual Grubbs&#39; Test ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Statistic (G): </span><span class="si">{</span><span class="n">G_calculated</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Critical Value (G): </span><span class="si">{</span><span class="n">G_critical</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">G_calculated</span> <span class="o">&gt;</span> <span class="n">G_critical</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reject H0: Evidence suggests the presence of a significant outlier.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fail to reject H0: Insufficient evidence to conclude there is an outlier.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Manual Grubbs&#39; Test ---
+Test Statistic (G): 3.985
+Critical Value (G): 3.384
+Reject H0: Evidence suggests the presence of a significant outlier.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="additional-statistical-methods-for-outlier-detection">
+<h4>Additional statistical methods for outlier detection<a class="headerlink" href="#additional-statistical-methods-for-outlier-detection" title="Link to this heading">#</a></h4>
+<p>There are several other statistical methods to identify outliers, each with its own strengths and weaknesses depending on the data and assumptions.</p>
+<ul class="simple">
+<li><p><strong>Generalized Extreme Studentized Deviate (GESD) Test</strong>: this test extends Grubbs’ test to detect multiple outliers in a normally distributed dataset. It’s implemented in the <a class="reference external" href="https://pypi.org/project/outlier-utils/"><code class="docutils literal notranslate"><span class="pre">outliers</span></code> library</a>.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Dixon%27s_Q_test"><strong>Dixon’s Q Test</strong></a>: another test for outliers, but it’s more sensitive to outliers at the ends of the distribution and can be less powerful for outliers near the center. <a class="reference external" href="https://sebastianraschka.com/Articles/2014_dixon_test.html#implementing-a-dixon-q-test-function">Sebastian Raschka has implemented the Dixon’s Q test elsewhere</a>.</p></li>
+<li><p><strong>T-test based Outlier Detection</strong>: we can perform t-tests comparing <em>each data point against the mean of the remaining data</em> to identify outliers. This can be computationally intensive for large datasets.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> provides different <a class="reference external" href="https://scikit-learn.org/stable/modules/outlier_detection.html#id1">unsupervised outlier detection algorithms</a>:</p>
+<ul>
+<li><p>Fitting an elliptic envelope: fits a robust covariance estimate to the data, and thus fits an ellipse to the central data points, ignoring points outside the central mode.</p></li>
+<li><p>Isolation Forest: isolates anomalies by randomly partitioning the data and measuring how easily a point can be isolated from others. Good for detecting outliers in both small and large datasets.</p></li>
+<li><p>Local Outlier Factor (LOF): calculates a score for each point based on its local density compared to its neighbors. Points with significantly lower density than their neighbors are considered outliers.</p></li>
+<li><p>One-Class SVM: learns a decision boundary around the “normal” data and classifies points outside this boundary as outliers. Useful when we have a good representation of the normal data but few examples of outliers.</p></li>
+</ul>
+</li>
+<li><p><strong>Robust outlier detection based on the MAD-median rule</strong> as implemented in <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.madmedianrule.html#pingouin.madmedianrule"><code class="docutils literal notranslate"><span class="pre">pingouin.madmedianrule</span></code></a>: the <a class="reference external" href="https://link.springer.com/article/10.1007/BF02481078">MAD-median-rule</a> will refer to declaring <span class="math notranslate nohighlight">\(X_{i}\)</span> an outlier if <span class="math notranslate nohighlight">\(\frac{\left | X_i - M \right |}{\text{MAD}_{\text{norm}}} &gt; K\)</span>, where <span class="math notranslate nohighlight">\(M\)</span> is the median of <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(\text{MAD}_{\text{norm}}\)</span> the normalized median absolute deviation of <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(K\)</span> is the square root of the 0.975 quantile of a <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution with one degree of freedom (which is roughly equal to 2.24).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns a boolean array indicating whether each sample</span>
+<span class="c1"># is an outlier (True) or not (False)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">madmedianrule</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The choice of outlier detection method depends on various factors:</p>
+<ul class="simple">
+<li><p>Number of outliers expected: Grubbs’ test is for <em>single outliers</em>, GESD test for multiple.</p></li>
+<li><p>Distribution of the data: Grubbs’ and GESD assume <em>normality</em>. Non-parametric methods like Isolation Forest are more flexible.</p></li>
+<li><p>Data type: some methods are better suited for <em>univariate data</em>, while others can handle multivariate data.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In this chapter, we’ve embarked on a journey to understand the critical role of <strong>normality</strong> assumptions in statistical analysis. We’ve explored a toolkit of graphical methods (like Q-Q plots) and statistical tests (such as the Shapiro-Wilk and D’Agostino-Pearson tests) for assessing whether our data conforms to the familiar bell curve. We’ve delved into the nuances of skewness and kurtosis, those telltale signs of departure from normality, and discovered how to leverage different Python packages for efficient testing.</p>
+<p>We then ventured into the realm of <strong>outliers</strong>, those unexpected data points that can wreak havoc on our analyses if left unchecked. We learned how to visually identify outliers using various plots and then put them to the test using Grubbs’ test and the powerful arsenal of outlier detection methods available in libraries like <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>, <code class="docutils literal notranslate"><span class="pre">pingouin</span></code>, and <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
+<p>Armed with this knowledge, we’re now equipped to:</p>
+<ul class="simple">
+<li><p>Critically assess the normality assumption: don’t blindly apply statistical tests that require normality. Instead, use the tools we’ve learned to rigorously evaluate whether the data meets this crucial assumption.</p></li>
+<li><p>Choose the right test: understand the strengths and limitations of different normality tests and select the one best suited for the specific data and research question.</p></li>
+<li><p>Identify and handle outliers: detect outliers using a combination of visual inspection and statistical tests, and make informed decisions about how to handle them in the analysis.</p></li>
+<li><p>Explore further: this chapter has only scratched the surface of normality testing and outlier detection. There’s a wealth of additional methods and techniques to explore. Consider delving deeper into robust statistics, nonparametric methods, and specialized techniques for multivariate data.</p></li>
+</ul>
+<p>Normality and outliers are not mere theoretical concepts but practical considerations that can significantly impact the validity and reliability of our statistical findings. By mastering these tools and approaches, we’ll be well on our way to becoming a more discerning and confident data analyst!</p>
+</section>
+<section id="session-information">
+<h2>Session Information<a class="headerlink" href="#session-information" title="Link to this heading">#</a></h2>
+<p>The output below details all packages and version necessary to reproduce the results in this report.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>--version
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------&quot;</span><span class="p">)</span>
+<span class="c1"># List of packages we want to check the version</span>
+<span class="n">packages</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;numpy&#39;</span><span class="p">,</span> <span class="s1">&#39;scipy&#39;</span><span class="p">,</span> <span class="s1">&#39;statsmodels&#39;</span><span class="p">,</span> <span class="s1">&#39;pingouin&#39;</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">,</span> <span class="s1">&#39;seaborn&#39;</span><span class="p">]</span>
+
+<span class="c1"># Initialize an empty list to store the versions</span>
+<span class="n">versions</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Loop over the packages</span>
+<span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">packages</span><span class="p">:</span>
+    <span class="c1"># Get the version of the package</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="o">!</span>pip<span class="w"> </span>show<span class="w"> </span><span class="o">{</span>package<span class="o">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>findstr<span class="w"> </span><span class="s2">&quot;Version&quot;</span>
+    <span class="c1"># If the output is not empty, get the version</span>
+    <span class="k">if</span> <span class="n">output</span><span class="p">:</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;Not installed&#39;</span>
+    <span class="c1"># Append the version to the list</span>
+    <span class="n">versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+
+<span class="c1"># Print the versions</span>
+<span class="k">for</span> <span class="n">package</span><span class="p">,</span> <span class="n">version</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span> <span class="n">versions</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">package</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.4
+-------------
+numpy: 1.26.4
+scipy: 1.13.1
+statsmodels: 0.14.2
+pingouin: 0.5.4
+matplotlib: 3.9.0
+seaborn: 0.13.2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="20%20-%20Statistical%20Power%20and%20Sample%20Size.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Statistical Power and Sample Size</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variability-of-gaussian-samples">Variability of Gaussian samples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-normality-of-data">Assessing the normality of data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-q-plots">Q-Q plots</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#q-q-plots-with-scipy-normal-vs-exponential">Q-Q plots with <code class="docutils literal notranslate"><span class="pre">scipy</span></code>: normal vs. exponential</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#q-q-plot-with-pingouin">Q-Q plot with <code class="docutils literal notranslate"><span class="pre">pingouin</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-options-for-ploting-q-q-plots">Alternative options for ploting Q-Q plots</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-tests-for-normality">Statistical tests for normality</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-agostino-pearson-omnibus-k2-normality-test">D’Agostino-Pearson omnibus K² normality test</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness-and-kurtosis">Skewness and Kurtosis</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-k2-test-works">How the K² test works</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-implementation-of-the-k2-test">Manual implementation of the K² test</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#k2-test-with-scipy-stats-normaltest">K² test with <code class="docutils literal notranslate"><span class="pre">scipy.stats.normaltest</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shapiro-wilk-test">Shapiro-Wilk test</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-shapiro-wilk-test-works">How the Shapiro-Wilk test works</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#application-of-scipy-stats-shapiro">Application of <code class="docutils literal notranslate"><span class="pre">scipy.stats.shapiro</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#normality-tests-using-pingouin">Normality tests using <code class="docutils literal notranslate"><span class="pre">pingouin</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#omnibus-test-for-normality-using-statsmodels">Omnibus test for normality using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kolmogorov-smirnov-test">Kolmogorov-Smirnov test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-normality-tests">Additional normality tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers">Outliers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-approaches-for-outlier-detection">Graphical approaches for outlier detection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-purpose-outlier-detection-methods">General-purpose outlier detection methods</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-case-of-log-normal-data">The case of log-normal data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cook-s-distance-and-leverage">Cook’s distance and leverage</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-outlier-detection">Statistical outlier detection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grubbs-test">Grubbs’ test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-statistical-methods-for-outlier-detection">Additional statistical methods for outlier detection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sébastien Wieckowski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
