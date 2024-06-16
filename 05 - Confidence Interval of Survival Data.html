@@ -1432,13 +1432,13 @@ The confidence interval (plain type) limits are [0.1178 - 0.8133]
 <span class="c1"># Survival table</span>
 <span class="kn">from</span> <span class="nn">lifelines.utils</span> <span class="kn">import</span> <span class="n">survival_table_from_events</span>
 
-<span class="c1"># Create the survival table</span>
 <span class="n">survival_table_from_events</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">event_observed</span><span class="p">)</span>
 
-<span class="c1"># Inverse of `survival_table_from_events`</span>
+<span class="c1"># Survival events</span>
 <span class="kn">from</span> <span class="nn">lifelines.utils</span> <span class="kn">import</span> <span class="n">survival_events_from_table</span>
 
-<span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">survival_events_from_table</span><span class="p">(</span> <span class="c1"># time, events, censored</span>
+<span class="c1"># time, events, censored</span>
+<span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">survival_events_from_table</span><span class="p">(</span>
     <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;YEARS&#39;</span><span class="p">),</span>
     <span class="n">observed_deaths_col</span><span class="o">=</span><span class="s1">&#39;observed&#39;</span><span class="p">,</span>
     <span class="n">censored_col</span><span class="o">=</span><span class="s1">&#39;censored&#39;</span><span class="p">)</span>

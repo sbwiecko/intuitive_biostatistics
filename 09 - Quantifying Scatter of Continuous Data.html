@@ -422,13 +422,20 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-statsmodels-library">The <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> library</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interlude-understanding-key-statistical-formulas">Interlude: Understanding Key Statistical Formulas</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interlude-understanding-key-statistical-formulas">Interlude: understanding key statistical formulas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-of-a-sum">Mean of a sum</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-a-linear-combination">Variance of a linear combination</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error-of-the-difference-between-means">Standard Error of the difference between means</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics-with-numpy">Statistics with <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics-with-scipy-stats">Statistics with <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics-with-pandas">Statistics with <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics-with-statsmodels">Statistics with <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
 </ul>
             </nav>
@@ -494,11 +501,11 @@ document.write(`
 </section>
 <section id="practical-examples-using-numpy-statistical-functions">
 <h2>Practical examples using <code class="docutils literal notranslate"><span class="pre">numpy</span></code> statistical functions<a class="headerlink" href="#practical-examples-using-numpy-statistical-functions" title="Link to this heading">#</a></h2>
-<p>Let’s calculate the mean and standard deviation for a dataset using numpy.</p>
+<p>Let’s calculate the mean, standard deviation, and other statistics for a given dataset using numpy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span> <span class="c1"># for the t distribution</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 
 <span class="c1"># The dataset</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">64.7</span><span class="p">,</span> <span class="mf">65.4</span><span class="p">,</span> <span class="mf">88.3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mf">71.9</span><span class="p">])</span>
@@ -523,7 +530,7 @@ document.write(`
 
 <span class="c1"># Calculate the standard deviation with ddof=0</span>
 <span class="n">std_dev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The population (ddof=0) standard deviation of the dataset is </span><span class="si">{</span><span class="n">std_dev</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The population standard deviation (ddof=0) is </span><span class="si">{</span><span class="n">std_dev</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -532,7 +539,7 @@ document.write(`
 The sample (ddof=1) variance of the dataset is 105.013
 The sample (ddof=1) standard error of the mean is 4.583
 The corresponding 95% confidence interval is (58.136, 83.584)
-The population (ddof=0) standard deviation of the dataset is 9.166
+The population standard deviation (ddof=0) is 9.166
 </pre></div>
 </div>
 </div>
@@ -628,15 +635,7 @@ The geometric standard deviation is 1.1451
 <p>Here’s how we can use it to calculate various statistical measures:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the mean</span>
-<span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The mean of the dataset is </span><span class="si">{</span><span class="n">mean</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Calculate the standard deviation</span>
-<span class="n">std_dev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The standard deviation of the dataset is </span><span class="si">{</span><span class="n">std_dev</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Interquartile Range (IQR)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interquartile Range (IQR)</span>
 <span class="n">iqr</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">iqr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Interquartile Range (IQR) is </span><span class="si">{</span><span class="n">iqr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -667,9 +666,7 @@ The geometric standard deviation is 1.1451
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mean of the dataset is 70.86
-The standard deviation of the dataset is 10.248
-The Interquartile Range (IQR) is 7.20
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Interquartile Range (IQR) is 7.20
 The Standard Error of the Mean (SEM) is 4.583
 The descriptive summary is:
 DescribeResult(nobs=5, minmax=(64.0, 88.3), mean=70.86000000000001, variance=105.01299999999995, skewness=1.1912013156755001, kurtosis=-0.24972334599204293)
@@ -757,7 +754,7 @@ The Coefficient of Variation (CV) is 0.1446
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.weightstats</span> <span class="kn">import</span> <span class="n">DescrStatsW</span>
 
 <span class="c1"># Create a DescrStatsW object</span>
-<span class="n">d1</span> <span class="o">=</span> <span class="n">DescrStatsW</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+<span class="n">d1</span> <span class="o">=</span> <span class="n">DescrStatsW</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Calculate the weighted mean</span>
 <span class="n">mean</span> <span class="o">=</span> <span class="n">d1</span><span class="o">.</span><span class="n">mean</span>
@@ -784,7 +781,7 @@ The standard deviation is 9.8036
 </section>
 </section>
 <section id="interlude-understanding-key-statistical-formulas">
-<h2>Interlude: Understanding Key Statistical Formulas<a class="headerlink" href="#interlude-understanding-key-statistical-formulas" title="Link to this heading">#</a></h2>
+<h2>Interlude: understanding key statistical formulas<a class="headerlink" href="#interlude-understanding-key-statistical-formulas" title="Link to this heading">#</a></h2>
 <p>In this section, we will explore some fundamental statistical formulas that are crucial in data analysis. These include the mean of a sum, the variance of a linear combination, and the standard error of the difference between means.</p>
 <section id="mean-of-a-sum">
 <h3>Mean of a sum<a class="headerlink" href="#mean-of-a-sum" title="Link to this heading">#</a></h3>
@@ -846,6 +843,87 @@ SE &amp;= \sqrt{\operatorname{Var}(\overline{x})} \\
 <p>Finally, we took a mathematical interlude to understand key statistical formulas, including the mean of a sum, the variance of a linear combination, and the standard error of the difference between means. These formulas provide the mathematical foundation for many statistical tests and measures.</p>
 <p>Understanding these concepts and being able to calculate and interpret these measures are fundamental skills in data analysis and statistics. They allow us to summarize and understand our data, and form the basis for many advanced statistical tests and models.</p>
 </section>
+<section id="cheat-sheet">
+<h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>
+<p>This cheat sheet provides a quick reference for essential code snippets used in this chapter.</p>
+<section id="statistics-with-numpy">
+<h3>Statistics with <code class="docutils literal notranslate"><span class="pre">numpy</span></code><a class="headerlink" href="#statistics-with-numpy" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Defining the sample dataset</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">64.7</span><span class="p">,</span> <span class="mf">65.4</span><span class="p">,</span> <span class="mf">88.3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mf">71.9</span><span class="p">])</span>
+
+<span class="c1"># Calculate basic statistics</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># ddof=0 by default</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sem</span> <span class="o">=</span> <span class="n">std</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+<span class="c1"># Geometric mean and std</span>
+<span class="n">gmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+<span class="n">gstd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Weighted statistics</span>
+<span class="c1"># Weights for each corresponding point in data</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+
+<span class="n">weighted_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="statistics-with-scipy-stats">
+<h3>Statistics with <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code><a class="headerlink" href="#statistics-with-scipy-stats" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># Basic statistics</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1"># desciptive summary</span>
+<span class="n">iqr</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">iqr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">sem</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">zscore</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">variation</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Geometric mean and std</span>
+<span class="n">gmean</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gmean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">gstd</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gstd</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="statistics-with-pandas">
+<h3>Statistics with <code class="docutils literal notranslate"><span class="pre">pandas</span></code><a class="headerlink" href="#statistics-with-pandas" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Define the dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">])</span>
+
+<span class="c1"># Basic statistics</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span> <span class="c1"># desciptive summary</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sem</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sem</span><span class="p">()</span>
+<span class="n">iqr</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;zscore&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="statistics-with-statsmodels">
+<h3>Statistics with <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code><a class="headerlink" href="#statistics-with-statsmodels" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.weightstats</span> <span class="kn">import</span> <span class="n">DescrStatsW</span>
+
+<span class="c1"># Create a DescrStatsW object</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">DescrStatsW</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="c1"># &#39;None&#39; if no weights</span>
+    <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Basic statistics</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">mean</span>
+<span class="n">variance</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">var</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">std</span>
+</pre></div>
+</div>
+</section>
+</section>
 <section id="session-information">
 <h2>Session Information<a class="headerlink" href="#session-information" title="Link to this heading">#</a></h2>
 <p>The output below details all packages and version necessary to reproduce the results in this report.</p>
@@ -884,11 +962,11 @@ SE &amp;= \sqrt{\operatorname{Var}(\overline{x})} \\
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.4
 -------------
 numpy: 1.26.4
-pandas: 2.2.1
-scipy: 1.12.0
+pandas: 2.2.2
+scipy: 1.13.1
 statsmodels: 0.14.2
 </pre></div>
 </div>
@@ -980,13 +1058,20 @@ statsmodels: 0.14.2
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-statsmodels-library">The <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> library</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interlude-understanding-key-statistical-formulas">Interlude: Understanding Key Statistical Formulas</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interlude-understanding-key-statistical-formulas">Interlude: understanding key statistical formulas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-of-a-sum">Mean of a sum</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-a-linear-combination">Variance of a linear combination</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error-of-the-difference-between-means">Standard Error of the difference between means</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics-with-numpy">Statistics with <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics-with-scipy-stats">Statistics with <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics-with-pandas">Statistics with <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics-with-statsmodels">Statistics with <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
 </ul>
   </nav></div>

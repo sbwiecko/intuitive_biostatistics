@@ -432,7 +432,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Binomial distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lollipop-plot-of-pmf">Lollipop plot of PMF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pmf-lollipop-plot">PMF Lollipop plot</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilities">Probabilities</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Confidence Interval</a></li>
 </ul>
@@ -594,7 +594,7 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">mean(n,</span> <span class="pre">p)</span></code>, <code class="docutils literal notranslate"><span class="pre">var(n,</span> <span class="pre">p)</span></code>, <code class="docutils literal notranslate"><span class="pre">std(n,</span> <span class="pre">p)</span></code>: These functions return the mean, variance, and standard deviation of the binomial distribution respectively.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rvs(n,</span> <span class="pre">p,</span> <span class="pre">size)</span></code>: This function generates random variates in a given shape.</p></li>
 </ul>
-<p>Note that the <code class="docutils literal notranslate"><span class="pre">binom</span></code> function in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> takes only two parameters: <span class="math notranslate nohighlight">\(n\)</span> (number of trials) and <span class="math notranslate nohighlight">\(p\)</span> (probability of success on each trial). The <code class="docutils literal notranslate"><span class="pre">binom(n,</span> <span class="pre">p).rvs(num_trials)</span></code> from <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> and <code class="docutils literal notranslate"><span class="pre">np.random.binomial(n,</span> <span class="pre">p,</span> <span class="pre">num_trials)</span></code> from <code class="docutils literal notranslate"><span class="pre">numpy</span></code> are equivalent. Both of these functions generate <code class="docutils literal notranslate"><span class="pre">num_trials</span></code> random variates from a binomial distribution with <span class="math notranslate nohighlight">\(n\)</span> trials and <span class="math notranslate nohighlight">\(p\)</span> probability of success on each trial.</p>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">binom</span></code> function in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> takes only two parameters: <span class="math notranslate nohighlight">\(n\)</span> (number of trials) and <span class="math notranslate nohighlight">\(p\)</span> (probability of success on each trial). The <code class="docutils literal notranslate"><span class="pre">scipy.stats.binom(n,</span> <span class="pre">p).rvs(num_trials)</span></code> and <code class="docutils literal notranslate"><span class="pre">np.random.binomial(n,</span> <span class="pre">p,</span> <span class="pre">num_trials)</span></code> methods are equivalent. Both generate <code class="docutils literal notranslate"><span class="pre">num_trials</span></code> random variates from a binomial distribution with <span class="math notranslate nohighlight">\(n\)</span> trials and <span class="math notranslate nohighlight">\(p\)</span> probability of success on each trial.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>
@@ -1174,7 +1174,7 @@ The 95% confidence interval (scipy norm.interval) is (0.46, 7.04) out of 15
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters of the binomial distribution</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">15</span>  <span class="c1"># number of balls drawn per trial</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">15</span>    <span class="c1"># number of balls drawn per trial</span>
 <span class="n">p</span> <span class="o">=</span> <span class="mf">0.25</span>  <span class="c1"># probability of drawing a red ball</span>
 
 <span class="c1"># Number of trials</span>
@@ -1226,58 +1226,58 @@ The 95% confidence interval (scipy norm.interval) is (0.46, 7.04) out of 15
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>
 
 <span class="c1"># Parameters of the binomial distribution</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>   <span class="c1"># number of successes</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>   <span class="c1"># number of trials</span>
 <span class="n">p</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># probability of succes</span>
 
 <span class="c1"># Prepare the distribution</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">binom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+<span class="n">binom_distribution</span> <span class="o">=</span> <span class="n">binom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
 
-<span class="c1"># Calculate mean, variance (and more), and SD from the model</span>
-<span class="n">model</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mv&#39;</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="c1"># Calculate mean, variance (and more), and SD from the distribution</span>
+<span class="n">binom_distribution</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mv&#39;</span><span class="p">)</span>
+<span class="n">binom_distribution</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">binom_distribution</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
-<section id="lollipop-plot-of-pmf">
-<h3>Lollipop plot of PMF<a class="headerlink" href="#lollipop-plot-of-pmf" title="Link to this heading">#</a></h3>
+<section id="pmf-lollipop-plot">
+<h3>PMF Lollipop plot<a class="headerlink" href="#pmf-lollipop-plot" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span>
     <span class="c1"># central 99.8% of the distribution</span>
     <span class="n">x</span><span class="o">:=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.001</span><span class="p">),</span> <span class="c1">#Percent Point Function</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.999</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">binom_distribution</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.001</span><span class="p">),</span> <span class="c1"># Percent Point Function</span>
+        <span class="n">binom_distribution</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.999</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+    <span class="n">binom_distribution</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="probabilities">
 <h3>Probabilities<a class="headerlink" href="#probabilities" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Probability Mass Function - P(X)=5</span>
-<span class="n">model</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Probability Mass Function - P(X=5)</span>
+<span class="n">binom_distribution</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="c1"># Cumulative Distribution Function - P(X)&lt;=3</span>
-<span class="n">model</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># Cumulative Distribution Function - P(X&lt;=3)</span>
+<span class="n">binom_distribution</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
-<span class="c1"># Survival Function - P(X)&gt;6</span>
-<span class="n">model</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="c1"># Survival Function - P(X&gt;6) or P(X&gt;=7)</span>
+<span class="n">binom_distribution</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="id3">
 <h3>Confidence Interval<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters of the binomial distribution</span>
-<span class="n">numerator</span> <span class="o">=</span>  <span class="mi">33</span>   <span class="c1"># number of successes</span>
-<span class="n">denominator</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># number of trials</span>
-<span class="n">size</span> <span class="o">=</span>  <span class="mi">10000</span>     <span class="c1"># number of simulations</span>
+<span class="n">numerator</span> <span class="o">=</span> <span class="mi">33</span>     <span class="c1"># number of successes</span>
+<span class="n">denominator</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># number of trials</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>       <span class="c1"># number of simulations</span>
 
 <span class="c1"># Generate random variates</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">binom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">denominator</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">numerator</span><span class="o">/</span><span class="n">denominator</span><span class="p">)</span>
-<span class="n">experiments</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">binom_distribution</span> <span class="o">=</span> <span class="n">binom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">denominator</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">numerator</span><span class="o">/</span><span class="n">denominator</span><span class="p">)</span>
+<span class="n">experiments</span> <span class="o">=</span> <span class="n">binom_distribution</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">111</span><span class="p">)</span>
 
 <span class="c1"># Modified Wald method</span>
 <span class="n">p_prime</span> <span class="o">=</span> <span class="p">(</span><span class="n">numerator</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">denominator</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
@@ -1288,7 +1288,7 @@ The 95% confidence interval (scipy norm.interval) is (0.46, 7.04) out of 15
 <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">experiments</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">])</span>
 
 <span class="c1"># 95% CI with equal areas around the median</span>
-<span class="n">model</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">confidence</span><span class="o">=</span><span class="mf">.95</span><span class="p">)</span>
+<span class="n">binom_distribution</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">confidence</span><span class="o">=</span><span class="mf">.95</span><span class="p">)</span>
 
 <span class="c1"># `statsmodels.stats.proportion` functions</span>
 <span class="kn">import</span> <span class="nn">statsmodels.stats.proportion</span> <span class="k">as</span> <span class="nn">smp</span>
@@ -1448,7 +1448,7 @@ seaborn: 0.13.2
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Binomial distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lollipop-plot-of-pmf">Lollipop plot of PMF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pmf-lollipop-plot">PMF Lollipop plot</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilities">Probabilities</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Confidence Interval</a></li>
 </ul>

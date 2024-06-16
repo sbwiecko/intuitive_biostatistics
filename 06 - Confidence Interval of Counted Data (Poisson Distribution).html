@@ -419,7 +419,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Poisson distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lollipop-plot-of-pmf">Lollipop plot of PMF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pmf-lollipop-plot">PMF Lollipop plot</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilities">Probabilities</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Confidence Interval</a></li>
 </ul>
@@ -819,7 +819,7 @@ The 95% confidence interval for mu=7000 is (6836.0, 7164.0)
 <span class="n">count1</span> <span class="o">=</span> <span class="mi">700</span>
 <span class="n">count2</span> <span class="o">=</span> <span class="mi">7000</span>
 
-<span class="c1"># Exposure (e.g., time or area)</span>
+<span class="c1"># Exposure (e.g., time, area or volume)</span>
 <span class="n">exposure1</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">exposure2</span> <span class="o">=</span> <span class="mi">10</span>
 
@@ -944,42 +944,42 @@ The 95% confidence interval for mu=7000 is (6836.0, 7164.0)
 <span class="n">mu</span> <span class="o">=</span> <span class="mf">7.6</span>  <span class="c1"># mu or lambda</span>
 
 <span class="c1"># Simulate the experiments</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">)</span>
+<span class="n">poisson_distribution</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">)</span>
 
-<span class="c1"># Calculate mean, variance (and more), median and SD from the model</span>
-<span class="n">model</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mv&#39;</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="c1"># Calculate mean, variance (and more), median and SD from the distribution</span>
+<span class="n">poisson_distribution</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mv&#39;</span><span class="p">)</span>
+<span class="n">poisson_distribution</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">poisson_distribution</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">poisson_distribution</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
-<section id="lollipop-plot-of-pmf">
-<h3>Lollipop plot of PMF<a class="headerlink" href="#lollipop-plot-of-pmf" title="Link to this heading">#</a></h3>
+<section id="pmf-lollipop-plot">
+<h3>PMF Lollipop plot<a class="headerlink" href="#pmf-lollipop-plot" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span>
     <span class="c1"># central 98% of the distribution</span>
     <span class="n">x</span><span class="o">:=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.01</span><span class="p">),</span> <span class="c1">#Percent Point Function</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.99</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">poisson_distribution</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.01</span><span class="p">),</span> <span class="c1"># Percent Point Function</span>
+        <span class="n">poisson_distribution</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.99</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+    <span class="n">poisson_distribution</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="probabilities">
 <h3>Probabilities<a class="headerlink" href="#probabilities" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Probability Mass Function - P(X)=5</span>
-<span class="n">model</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Probability Mass Function - P(X=5)</span>
+<span class="n">poisson_distribution</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="c1"># Cumulative Distribution Function - P(X)&lt;=3</span>
-<span class="n">model</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># Cumulative Distribution Function - P(X&lt;=3)</span>
+<span class="n">poisson_distribution</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
-<span class="c1"># Survival Function - P(X)&gt;6 (or P(X)&gt;=7)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="c1"># Survival Function - P(X&gt;6) or P(X&gt;=7)</span>
+<span class="n">poisson_distribution</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -987,7 +987,7 @@ The 95% confidence interval for mu=7000 is (6836.0, 7164.0)
 <h3>Confidence Interval<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate random variates</span>
 <span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># number of simulations</span>
-<span class="n">experiments</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+<span class="n">experiments</span> <span class="o">=</span> <span class="n">poisson_distribution</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
 <span class="c1"># experiments = poisson.rvs(mu=mu, size=size)</span>
 
 <span class="c1"># Bootstrap 95% percentiles</span>
@@ -997,7 +997,7 @@ The 95% confidence interval for mu=7000 is (6836.0, 7164.0)
 <span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mu</span><span class="p">),</span> <span class="n">mu</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mu</span><span class="p">))</span>
 
 <span class="c1"># 95% CI with equal areas around the median</span>
-<span class="n">model</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">confidence</span><span class="o">=</span><span class="mf">.95</span><span class="p">)</span>
+<span class="n">poisson_distribution</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">confidence</span><span class="o">=</span><span class="mf">.95</span><span class="p">)</span>
 
 <span class="c1"># Hypothesis testing for Poisson data</span>
 <span class="kn">import</span> <span class="nn">statsmodels.stats.rates</span> <span class="k">as</span> <span class="nn">smr</span>
@@ -1148,7 +1148,7 @@ seaborn: 0.13.2
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Poisson distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lollipop-plot-of-pmf">Lollipop plot of PMF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pmf-lollipop-plot">PMF Lollipop plot</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilities">Probabilities</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Confidence Interval</a></li>
 </ul>
