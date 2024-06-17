@@ -425,9 +425,19 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complexities-when-computing-sample-size">Complexities when computing sample size</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incorporating-fprp-into-sample-size-decisions">Incorporating FPRP into sample size decisions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guidance-for-making-informed-sample-size-decisions">Guidance for making informed sample size decisions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underestimation-of-the-true-variability">Underestimation of the true variability</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-and-statistical-power-for-one-sample-t-test">Sample size and statistical power for one-sample t-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-and-statistical-power-for-paired-t-test">Sample size and statistical power for paired t-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-and-statistical-power-for-unpaired-two-sample-t-test">Sample size and statistical power for unpaired two-sample t-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-analysis-plot">Power analysis plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-and-statistical-power-with-pingouin">Sample size and statistical power with pingouin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-test">A/B test</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
 </ul>
             </nav>
@@ -458,8 +468,8 @@ document.write(`
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p></p></th>
-<th class="head text-center"><p>Decision: Reject H0</p></th>
-<th class="head text-center"><p>Decision: Fail to reject H0</p></th>
+<th class="head text-center"><p>Decision: reject H0</p></th>
+<th class="head text-center"><p>Decision: fail to reject H0</p></th>
 </tr>
 </thead>
 <tbody>
@@ -484,20 +494,34 @@ document.write(`
 <p>And when there is no true effect (the null hypothesis is true), power tends to be as low as the chosen significance level (often 5%). However, as the true effect size increases (while keeping sample size and variability constant), power increases in a sigmoidal (S-shaped) curve, theoretically reaching 100%. This means that with a large enough effect, we’re virtually guaranteed to detect it.</p>
 </section>
 <section id="the-effect-size">
-<h3>The effect size<a class="headerlink" href="#the-effect-size" title="Link to this heading">#</a></h3>
+<span id="effect-size"></span><h3>The effect size<a class="headerlink" href="#the-effect-size" title="Link to this heading">#</a></h3>
 <p>Statistical significance (<span class="math notranslate nohighlight">\(P \lt \alpha\)</span>) tells us if an observed effect is likely not due to chance. However, it doesn’t reveal how large or meaningful the effect is. This is where <strong>effect size</strong> comes in. Effect size is a standardized measure of the magnitude of a phenomenon, allowing us to compare the strength of effects across different studies, even when they use different scales or measures.</p>
 <p>One of the most common measures of effect size for comparing two groups is <strong>Cohen’s <span class="math notranslate nohighlight">\(d\)</span></strong>.  It quantifies the difference between two group means in terms of their <em>pooled standard deviation</em>:</p>
 <div class="math notranslate nohighlight">
 \[d = \frac{\overline{X} - \overline{Y}}{\text{pooled standard deviation}} = \frac{\overline{X} - \overline{Y}}{\sqrt{\frac{(n_{1} - 1)\sigma_{1}^{2} + (n_{2} - 1) \sigma_{2}^{2}}{n1 + n2 - 2}}}\]</div>
-<p>For a comparison between 2 groups with the <em>same sample size</em> (<span class="math notranslate nohighlight">\(n_1 = n_2 = n\)</span>), and the <em>same variance</em> <span class="math notranslate nohighlight">\(\sigma^2\)</span> (this is often referred to as the homoscedasticity or equal variance assumption, e.g., in controlled experiments, matched pairs designs or random sampling from a homogeneous population), the equation can be simplified to</p>
+<p>For a comparison between 2 groups with the <em>same sample size</em> (<span class="math notranslate nohighlight">\(n_1 = n_2 = n\)</span>), and the <em>same variance</em> <span class="math notranslate nohighlight">\(\sigma^2\)</span> (this is often referred to as the <strong>homoscedasticity</strong> or equal variance assumption, e.g., in controlled experiments, matched pairs designs or random sampling from a homogeneous population), the equation can be simplified to</p>
 <div class="math notranslate nohighlight">
 \[d = \frac{\overline{X} - \overline{Y}}{\sqrt{\frac{2 (n - 1) \sigma^2}{2 (n - 1)}}} = \frac{\overline{X} - \overline{Y}}{\sigma}\]</div>
 <p>Cohen’s d values are typically interpreted as follows:</p>
-<ul class="simple">
-<li><p>Small effect: <span class="math notranslate nohighlight">\(d = 0.2\)</span></p></li>
-<li><p>Medium effect: <span class="math notranslate nohighlight">\(d = 0.5\)</span></p></li>
-<li><p>Large effect: <span class="math notranslate nohighlight">\(d = 0.8\)</span></p></li>
-</ul>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Effect</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(d\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Small</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Medium</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.5\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Large</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.8\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>We can calculate effect size between two sets of observations with <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.compute_effsize.html"><code class="docutils literal notranslate"><span class="pre">pingouin.compute_effsize</span></code></a>.</p>
 </section>
 </section>
 <section id="relationship-between-power-effect-size-sample-size-and-variability">
@@ -580,12 +604,11 @@ document.write(`
 <img alt="_images/292b0e81affc0a3c5ab3c1d80d076ed1864d76a3798d58bbaa61de7d4d02e687.png" src="_images/292b0e81affc0a3c5ab3c1d80d076ed1864d76a3798d58bbaa61de7d4d02e687.png" />
 </div>
 </div>
-<p>This plot illustrates how increasing standard deviation (greater variability in the data) lowers the statistical power for a given sample size and effect size. To maintain a desired level of power when dealing with higher variability, we need to increase the sample size.</p>
+<p>This plot illustrates how increasing standard deviation (greater variability in the data) lowers the statistical power for a given sample size and effect size. To maintain a desired level of power when dealing with higher variability, we need to increase the sample size, because <a class="reference internal" href="#effect-size"><span class="std std-ref">effect size and variance are inversely related</span></a>.</p>
 <p>The plot is also a valuable tool for planning studies. It helps us determine the appropriate sample size needed to detect a specific effect with a desired level of confidence, given the expected variability in the data. If our study didn’t find a significant result, this plot can help us assess whether it was due to a lack of a true effect or simply a lack of power (insufficient sample size). Finally, by understanding the relationship between power, sample size, and variability, we can allocate the research resources more efficiently, avoiding underpowered studies that are unlikely to yield meaningful results.</p>
 </section>
 <section id="unpaired-t-test">
 <h3>Unpaired t-test<a class="headerlink" href="#unpaired-t-test" title="Link to this heading">#</a></h3>
-<p>Effect size and variance are inversely related. As seen just above, Cohen’s d is the standardized difference between two group means, divided by the pooled standard deviation (which is a measure of variability).</p>
 <p>Power calculations for independent t-tests serve a crucial role in experimental design and interpretation of results. Their primary purpose is to determine the minimum sample size needed in each group to detect a statistically significant difference between the means of two independent groups, with a specified level of confidence. In the following example, we the <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.stats.power.TTestIndPower.html"><code class="docutils literal notranslate"><span class="pre">TTestIndPower</span></code></a> function for analyzing statistical power in the context of <em>independent two-sample t-tests</em>. In particular, the <code class="docutils literal notranslate"><span class="pre">plot_power</span></code> function within provides a convenient way to visualize the relationship between power, the effect size and sample size in a <em>two-sample t-test</em> scenario.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -715,8 +738,8 @@ document.write(`
 </section>
 <section id="paired-t-test">
 <h3>Paired t-test<a class="headerlink" href="#paired-t-test" title="Link to this heading">#</a></h3>
-<p>Let’s dive into a concrete example of power calculation for a <em>paired t-test</em> using the <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.power_ttest.html"><code class="docutils literal notranslate"><span class="pre">pingouin</span></code></a> package in Python.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">power_ttest</span></code> method provides a single function that can calculate power, sample size, effect size, or significance level, depending on which parameters are provided. It handles one-sample, paired-sample, and two-sample independent t-tests (with equal sample sizes; use <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.power_ttest2n.html"><code class="docutils literal notranslate"><span class="pre">power_ttest2n</span></code></a> for unequal sample sizes). However, it doesn’t directly create plots like <code class="docutils literal notranslate"><span class="pre">plot_power</span></code> does.</p>
+<p>Let’s dive into a concrete example of power calculation for a <em>paired t-test</em> using the <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> package in Python.</p>
+<p>The <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.power_ttest.html"><code class="docutils literal notranslate"><span class="pre">power_ttest</span></code> method</a> provides a single function that can calculate power, sample size, effect size, or significance level, depending on which parameters are provided. It handles one-sample, paired-sample, and two-sample independent t-tests with equal sample sizes (for unequal sample sizes, use <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.power_ttest2n.html"><code class="docutils literal notranslate"><span class="pre">power_ttest2n</span></code></a>, though it does not solve the number of observations). However, <code class="docutils literal notranslate"><span class="pre">pingouin.power_ttest</span></code> doesn’t directly create plots like <code class="docutils literal notranslate"><span class="pre">statsmodels.stats.power</span></code> classes and methods do.</p>
 <p>Imagine a biotech is studying the effectiveness of a new cognitive training program aimed at improving memory scores. It plans to administer a memory test to participants <em>before and after</em> the training program. Researchers want to determine the sample size needed to have an 80% chance (power = 0.8) of detecting a statistically significant improvement in memory scores after the training.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -803,10 +826,10 @@ ES of paired differences = 0.8: 15 pairs
 <h3>Tools for power calculations<a class="headerlink" href="#tools-for-power-calculations" title="Link to this heading">#</a></h3>
 <p>As we’ve seen, sample size calculations for a desired level of statistical power require to specify the following:</p>
 <ul class="simple">
-<li><p>Significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>): The acceptable risk of a false positive (Type I error).</p></li>
-<li><p>Desired power (<span class="math notranslate nohighlight">\(1 - \beta\)</span>): The desired probability of correctly detecting a true effect.</p></li>
-<li><p>Minimum effect size: The smallest effect size we consider meaningful and worth detecting.</p></li>
-<li><p>Standard deviation (SD): A measure of the variability or scatter in the data. Alternatively, for proportion-based tests, we would need the expected proportion.</p></li>
+<li><p>Significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>): the acceptable risk of a false positive (Type I error).</p></li>
+<li><p>Desired power (<span class="math notranslate nohighlight">\(1 - \beta\)</span>): the desired probability of correctly detecting a true effect.</p></li>
+<li><p>Minimum effect size: the smallest effect size we consider meaningful and worth detecting.</p></li>
+<li><p>Standard deviation (SD): a measure of the variability or scatter in the data. Alternatively, for proportion-based tests, we would need the expected proportion.</p></li>
 </ul>
 <p>The type of test (one-tailed or two-tailed) also affects sample size calculations. One-tailed tests generally require smaller sample sizes but are only appropriate when we have a strong directional hypothesis. Importantly, power analysis formulas often rely on <em>assumptions</em> about the distribution of the data (e.g., normality). Violating these assumptions can affect the accuracy of the calculations.</p>
 <p>Numerous online tools and software packages can assist with power analysis. Some popular options include:</p>
@@ -814,15 +837,15 @@ ES of paired differences = 0.8: 15 pairs
 <li><p><a class="reference external" href="https://www.gpower.hhu.de">G*Power</a> for comparing means</p></li>
 <li><p><a class="reference external" href="https://www.powerandsamplesize.com">Power and Sample Size</a>, for comparing means, K means, proportions, time-to-event data, odds ratio, etc.</p></li>
 <li><p>R packages such as <a class="reference external" href="https://github.com/heliosdrm/pwr"><code class="docutils literal notranslate"><span class="pre">pwr</span></code></a> and <a class="reference external" href="https://github.com/pitakakariki/simr"><code class="docutils literal notranslate"><span class="pre">simr</span></code></a> that offer comprehensive power analysis functions within the R statistical environment</p></li>
-<li><p>the Python libraries <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>, with the <code class="docutils literal notranslate"><span class="pre">solve_power</span></code> method from the <code class="docutils literal notranslate"><span class="pre">TTestPower</span></code> and <code class="docutils literal notranslate"><span class="pre">TTestIndPower</span></code> classes, and <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> with <code class="docutils literal notranslate"><span class="pre">power_ttest</span></code>, as we have seen in our previous examples. The first library offers another option with the direct function import of <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.stats.power.tt_ind_solve_power.html"><code class="docutils literal notranslate"><span class="pre">tt_ind_solve_power</span></code></a>.</p></li>
+<li><p>Python libraries <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>, with the <code class="docutils literal notranslate"><span class="pre">solve_power</span></code> method from the <code class="docutils literal notranslate"><span class="pre">TTestPower</span></code> and <code class="docutils literal notranslate"><span class="pre">TTestIndPower</span></code> classes, and <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> with <code class="docutils literal notranslate"><span class="pre">power_ttest</span></code>, as we have seen in our previous examples. The <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> library offers another option with the direct function import of <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.stats.power.tt_ind_solve_power.html"><code class="docutils literal notranslate"><span class="pre">tt_ind_solve_power</span></code></a>.</p></li>
 </ul>
-<p>For example, the required sample size per group to achieve 80% power in detecting a 17 kg mean difference between men and women, given a standard deviation of 17 kg and an alpha level of 0.05 can be obtained as follows.</p>
+<p>For example, the required sample size per group to achieve 80% power in detecting a 17 kg mean difference between men and women, given a standard deviation of 17 kg and a significance level of 0.05 can be obtained as follows.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.power</span> <span class="kn">import</span> <span class="n">tt_ind_solve_power</span>
 
 <span class="c1"># Parameters</span>
-<span class="n">effect_size</span> <span class="o">=</span> <span class="mi">17</span> <span class="o">/</span> <span class="mi">17</span>  <span class="c1"># Cohen&#39;s d (mean_diff / sd_diff)</span>
+<span class="n">effect_size</span> <span class="o">=</span> <span class="mi">17</span> <span class="o">/</span> <span class="mi">17</span>  <span class="c1"># Cohen&#39;s d (mean_diff / polled_sd)</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>           <span class="c1"># Significance level</span>
 <span class="n">desired_power</span> <span class="o">=</span> <span class="mf">0.8</span>    <span class="c1"># Target power</span>
 
@@ -849,10 +872,10 @@ ES of paired differences = 0.8: 15 pairs
 <p>If we collect weights from 17 men and 17 women in many experiments, assuming the standard deviation (SD) of 17 kg is close to the true population SD, we’d expect approximately 80% of those experiments to yield statistically significant results (P &lt; 0.05). This is because our power analysis indicated that a sample size of 17 per group is sufficient to achieve 80% power to detect a mean difference of 17 kg with this SD.</p>
 <p>Important Considerations:</p>
 <ul class="simple">
-<li><p>Assumption of Equal Variance (Homoscedasticity): This calculation assumes that the <em>variances</em> in the men and women groups are <em>equal</em>. If we have reason to believe the variances might be different, we should use a different power analysis function or adjust the calculation accordingly.</p></li>
-<li><p>Assumption of Normality: The power analysis and the interpretation of the results rely on the assumption that the weight data are <em>normally distributed</em> within each group. If this assumption is violated, the results might not be accurate.</p></li>
-<li><p>Standard Deviation: The <em>standard deviation</em> of 17 kg is an estimate. It’s crucial to have a <em>reliable estimate</em> of this value, either from prior studies or pilot data.</p></li>
-<li><p>Effect Size: The chosen effect size of 1.0 (17 kg / 17 kg) is considered a <em>large effect</em>. If we expect a smaller effect, we will need a larger sample size to achieve the same power.</p></li>
+<li><p>Assumption of Equal Variance (Homoscedasticity): this calculation assumes that the <em>variances</em> in the men and women groups are <em>equal</em>. If we have reason to believe the variances might be different, we should use a different power analysis function or adjust the calculation accordingly.</p></li>
+<li><p>Assumption of Normality: the power analysis and the interpretation of the results rely on the assumption that the weight data are <em>normally distributed</em> within each group. If this assumption is violated, the results might not be accurate.</p></li>
+<li><p>Standard Deviation: the <em>standard deviation</em> of 17 kg is an estimate. It’s crucial to have a <em>reliable estimate</em> of this value, either from prior studies or pilot data.</p></li>
+<li><p>Effect Size: the chosen effect size of 1.0 (17 kg / 17 kg) is considered a <em>large effect</em>. If we expect a smaller effect, we will need a larger sample size to achieve the same power.</p></li>
 </ul>
 </section>
 <section id="the-simulation-based-approach">
@@ -924,8 +947,8 @@ ES of paired differences = 0.8: 15 pairs
 <div class="math notranslate nohighlight">
 \[n=(z_{\alpha/2}+z_\beta)^2 \times \frac{p_1(1-p_1)+p_2(1-p_2)}{(p_1-p_2)^2}\]</div>
 <p>The term <span class="math notranslate nohighlight">\((p_1 - p_2)\)</span> represents the effect size, i.e., the difference in proportions we want to detect, <span class="math notranslate nohighlight">\(z_{\alpha/2}\)</span> is the z-score corresponding to the significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>) divided by 2 which defines the critical region in each tail of the distribution where we would reject the null hypothesis (here it’s a two-sided test), and <span class="math notranslate nohighlight">\(z_\beta\)</span> is the z-score corresponding to the desired power (<span class="math notranslate nohighlight">\(1-\beta\)</span>) which defines the distance between the alternative hypothesis distribution and the critical region.</p>
+<p>We can also use the <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.stats.proportion.samplesize_proportions_2indep_onetail.html"><code class="docutils literal notranslate"><span class="pre">samplesize_proportions_2indep_onetail</span></code> function</a> which uses an explicit computation to find sample size.</p>
 <p>Some methods calculate power and sample size based on exact statistical distributions (like the binomial distribution for proportions), while others use approximations (like the normal approximation to the binomial). These approximations might introduce <em>slight discrepancies</em>, especially with smaller sample sizes. Furthermore, the specific numerical algorithms used to solve for power and sample size can vary between functions, leading to slight differences in the results. There are more sophisticated methods available (e.g., using the binomial distribution directly) for complex scenarios or when precise calculations are required.</p>
-<p>While the normal distribution is often used to approximate the binomial distribution in hypothesis tests for proportions (especially with larger sample sizes), there are also a few tools, such as <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.stats.proportion.samplesize_proportions_2indep_onetail.html"><code class="docutils literal notranslate"><span class="pre">samplesize_proportions_2indep_onetail</span></code></a>, that allow us to calculate sample sizes for comparing proportions without relying on the normality assumption.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
@@ -976,8 +999,8 @@ Required sample size per group (using statsmodels): 2016
 <p>The False Positive Report Probability (FPRP) can be estimated before conducting an experiment based on the chosen significance level, desired power, and the prior probability of the null hypothesis (H0) being true.</p>
 <p>As shown in the next table, the FPRP is dramatically affected by the prior probability:</p>
 <ul class="simple">
-<li><p>1% Prior Probability: This represents a <em>highly speculative scenario</em> with <em>little evidence</em> to support the alternative hypothesis. In this case, a significant result has an 86.1% chance of being a <em>false positive</em>. Less than 1% of significant results would be true positives.</p></li>
-<li><p>50% Prior Probability: When there’s solid theoretical or empirical backing for the alternative hypothesis, the FPRP drops significantly to 5.9%. This suggests a <em>much higher likelihood</em> of a significant result being a <em>true discovery</em>.</p></li>
+<li><p>1% Prior Probability: this represents a <em>highly speculative scenario</em> with <em>little evidence</em> to support the alternative hypothesis. In this case, a significant result has an 86.1% chance of being a <em>false positive</em>. Less than 1% of significant results would be true positives.</p></li>
+<li><p>50% Prior Probability: when there’s solid theoretical or empirical backing for the alternative hypothesis, the FPRP drops significantly to 5.9%. This suggests a <em>much higher likelihood</em> of a significant result being a <em>true discovery</em>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1058,7 +1081,7 @@ alpha	power	1.0%	10.0%	25.0%	50.0%
 <li><p>Estimating expected variability</p>
 <ul>
 <li><p>Minimize variability: if possible, design the study to <strong>reduce the variability</strong> within groups (e.g., through stricter inclusion criteria, more controlled experimental conditions).</p></li>
-<li><p>Pilot studies: conduct <strong>pilot studies</strong> to get a realistic estimate of variability. Small pilot studies often underestimate true variability (see the table below).</p></li>
+<li><p>Pilot studies: conduct <strong>pilot studies</strong> to get a realistic estimate of variability. Small pilot studies often underestimate true variability as seen in <a class="reference internal" href="#underestimation-variability"><span class="std std-ref">the table below</span></a>.</p></li>
 <li><p>Published estimates with caution: be aware that published standard deviations might be biased downward due to selective reporting.</p></li>
 </ul>
 </li>
@@ -1081,18 +1104,21 @@ alpha	power	1.0%	10.0%	25.0%	50.0%
 </ul>
 </li>
 </ul>
+</section>
+<section id="underestimation-of-the-true-variability">
+<span id="underestimation-variability"></span><h3>Underestimation of the true variability<a class="headerlink" href="#underestimation-of-the-true-variability" title="Link to this heading">#</a></h3>
+<p>The discrepancy between a sample’s standard deviation (SD) and the true population SD can be substantial, particularly when dealing with small sample sizes. For example, with a sample size of only 3, the population SD could be up to 6.28 times larger than the sample SD, as reflected in the confidence interval for the standard deviation. Since the required sample size for a t-test is proportional to the square of the SD, if the SD obtained in a pilot study is half the true population SD, the calculated sample size would be merely one-quarter of what it should be.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>
 
 <span class="k">def</span> <span class="nf">W</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="mf">0.95</span><span class="p">):</span>
-    <span class="n">t2</span><span class="o">=</span><span class="n">chi2</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># based on the equation from Sheskin 2011</span>
+    <span class="n">t2</span><span class="o">=</span><span class="n">chi2</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">t1</span><span class="o">=</span><span class="n">chi2</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">t1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">t2</span><span class="p">)</span>
     
 <span class="n">sample_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;95% CI of a SD</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n</span><span class="se">\t</span><span class="s2">95% CI of SD&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 
@@ -1103,9 +1129,7 @@ alpha	power	1.0%	10.0%	25.0%	50.0%
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% CI of a SD
-
-n	95% CI of SD
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n	95% CI of SD
 --------------------------
 2	0.45×SD - 31.91×SD
 3	0.52×SD - 06.28×SD
@@ -1120,7 +1144,6 @@ n	95% CI of SD
 </div>
 </div>
 </div>
-<p>The discrepancy between a sample’s standard deviation (SD) and the true population SD can be substantial, particularly when dealing with small sample sizes. For example, with a sample size of only 3, the population SD could be up to 6.28 times larger than the sample SD, as reflected in the confidence interval for the standard deviation. Since the required sample size for a t-test is proportional to the square of the SD, if the SD obtained in a pilot study is half the true population SD, the calculated sample size would be merely one-quarter of what it should be.</p>
 <p>This highlights the importance of using caution when relying on pilot studies or <em>small samples</em> to estimate variability for power analysis. It underscores the value of obtaining <strong>reliable estimates of the population standard deviation</strong>, either from larger pilot studies, previous research, or expert knowledge. When such information is unavailable, conservative estimates of variability or adjustments to sample size calculations should be considered to avoid underpowered studies.</p>
 </section>
 </section>
@@ -1129,6 +1152,140 @@ n	95% CI of SD
 <p>We’ve learned that power is not a mere theoretical abstraction but a practical tool that empowers researchers to make informed decisions about the scale and scope of their studies. By understanding the factors that influence power and utilizing the computational resources available in Python, we can design experiments that are both efficient and reliable.</p>
 <p>We’ve also highlighted the importance of considering the false positive report probability (FPRP), especially in the context of low prior probability, to temper our enthusiasm for statistically significant results and ensure that our findings are truly meaningful.</p>
 <p>The tools and techniques discussed here are not just for statisticians; they are essential for any researcher seeking to extract reliable insights from data. By embracing the principles of power analysis, we can move beyond simple P-values and towards a more nuanced understanding of the evidence supporting our scientific claims.</p>
+</section>
+<section id="cheat-sheet">
+<h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>
+<p>This cheat sheet provides a quick reference for essential code snippets used in this chapter.</p>
+<section id="sample-size-and-statistical-power-for-one-sample-t-test">
+<h3>Sample size and statistical power for one-sample t-test<a class="headerlink" href="#sample-size-and-statistical-power-for-one-sample-t-test" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.power</span> <span class="kn">import</span> <span class="n">TTestPower</span>
+
+<span class="n">diff</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>         <span class="c1"># mean level **decrease** compared to known population</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="mi">20</span>            <span class="c1"># (pooled) standard deviation</span>
+<span class="n">power</span> <span class="o">=</span> <span class="mf">0.8</span>        <span class="c1"># desired power (80%)</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>       <span class="c1"># significance level</span>
+
+<span class="n">power_analysis</span> <span class="o">=</span> <span class="n">TTestPower</span><span class="p">()</span>
+
+<span class="n">power_analysis</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span>
+    <span class="n">effect_size</span><span class="o">=</span><span class="n">diff</span><span class="o">/</span><span class="n">sd</span><span class="p">,</span>
+    <span class="n">power</span><span class="o">=</span><span class="n">power</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+    <span class="n">nobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>     <span class="c1"># number of observations (to solve)</span>
+    <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;smaller&#39;</span><span class="p">,</span>
+<span class="p">)</span> <span class="c1"># use np.ceil to round the result</span>
+</pre></div>
+</div>
+</section>
+<section id="sample-size-and-statistical-power-for-paired-t-test">
+<h3>Sample size and statistical power for paired t-test<a class="headerlink" href="#sample-size-and-statistical-power-for-paired-t-test" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diff</span> <span class="o">=</span> <span class="mi">10</span>          <span class="c1"># mean difference</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="mi">20</span>            <span class="c1"># (pooled) standard deviation</span>
+<span class="n">power</span> <span class="o">=</span> <span class="mf">0.8</span>        <span class="c1"># desired power (80%)</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>       <span class="c1"># significance level</span>
+
+<span class="n">power_analysis</span> <span class="o">=</span> <span class="n">TTestPower</span><span class="p">()</span>
+
+<span class="n">power_analysis</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span>
+    <span class="n">effect_size</span><span class="o">=</span><span class="n">diff</span><span class="o">/</span><span class="n">sd</span><span class="p">,</span>
+    <span class="n">power</span><span class="o">=</span><span class="n">power</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+    <span class="n">nobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>     <span class="c1"># number of pairs (to solve)</span>
+    <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;two-sided&#39;</span><span class="p">,</span>
+<span class="p">)</span> <span class="c1"># use np.ceil to round the result</span>
+</pre></div>
+</div>
+</section>
+<section id="sample-size-and-statistical-power-for-unpaired-two-sample-t-test">
+<h3>Sample size and statistical power for unpaired two-sample t-test<a class="headerlink" href="#sample-size-and-statistical-power-for-unpaired-two-sample-t-test" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.power</span> <span class="kn">import</span> <span class="n">TTestIndPower</span>
+
+<span class="n">es</span> <span class="o">=</span> <span class="mf">0.5</span>           <span class="c1"># effect size</span>
+<span class="n">power</span> <span class="o">=</span> <span class="mf">0.8</span>        <span class="c1"># desired power (80%)</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>       <span class="c1"># significance level</span>
+
+<span class="n">power_analysis</span> <span class="o">=</span> <span class="n">TTestIndPower</span><span class="p">()</span>
+
+<span class="n">power_analysis</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span>
+    <span class="n">effect_size</span><span class="o">=</span><span class="n">es</span><span class="p">,</span>
+    <span class="n">power</span><span class="o">=</span><span class="n">power</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+    <span class="c1"># parameters are a little different than in TTestPower</span>
+    <span class="n">ratio</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>       <span class="c1"># ratio nobs2 over nobs1</span>
+    <span class="n">nobs1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>    <span class="c1"># number of observations in first sample (to solve)</span>
+    <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;two-sided&#39;</span><span class="p">,</span>
+<span class="p">)</span> <span class="c1"># use np.ceil to round the result</span>
+
+<span class="c1"># Equivalent to </span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.power</span> <span class="kn">import</span> <span class="n">tt_ind_solve_power</span>
+
+<span class="c1"># Calculate sample size per group</span>
+<span class="n">tt_ind_solve_power</span><span class="p">(</span>
+    <span class="n">effect_size</span><span class="o">=</span><span class="n">es</span><span class="p">,</span>
+    <span class="n">nobs1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>    <span class="c1"># (to solve)</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+    <span class="n">power</span><span class="o">=</span><span class="n">power</span><span class="p">,</span>
+    <span class="n">ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>     <span class="c1"># with nobs2 = nobs1 * ratio</span>
+    <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;two-sided&#39;</span>
+<span class="p">)</span> <span class="c1"># use np.ceil to round the result</span>
+</pre></div>
+</div>
+</section>
+<section id="power-analysis-plot">
+<h3>Power analysis plot<a class="headerlink" href="#power-analysis-plot" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_sizes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">501</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Work exactly the same for TTestPower and TTestIndPower</span>
+<span class="n">power_analysis</span><span class="o">.</span><span class="n">plot_power</span><span class="p">(</span>
+    <span class="n">dep_var</span><span class="o">=</span><span class="s1">&#39;nobs&#39;</span><span class="p">,</span>
+    <span class="n">nobs</span><span class="o">=</span><span class="n">sample_sizes</span><span class="p">,</span>
+    <span class="n">effect_size</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">.8</span><span class="p">],</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+    <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;two-sided&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="sample-size-and-statistical-power-with-pingouin">
+<h3>Sample size and statistical power with pingouin<a class="headerlink" href="#sample-size-and-statistical-power-with-pingouin" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
+
+<span class="n">es</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">power</span> <span class="o">=</span> <span class="mf">0.8</span>
+
+<span class="c1"># For one-sample, paired and unpaired two-samples (with **equal sizes**) t-tests</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">power_ttest</span><span class="p">(</span>
+    <span class="n">d</span><span class="o">=</span><span class="n">es</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>         <span class="c1"># parameter to solve</span>
+    <span class="n">power</span><span class="o">=</span><span class="n">power</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+    <span class="n">contrast</span><span class="o">=</span><span class="s1">&#39;paired&#39;</span><span class="p">,</span> <span class="c1"># choice between &#39;paired&#39;, &#39;one-sample&#39; and &#39;two-samples&#39;</span>
+    <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;two-sided&#39;</span><span class="p">,</span>
+<span class="p">)</span> <span class="c1"># use np.ceil to round the result</span>
+</pre></div>
+</div>
+</section>
+<section id="a-b-test">
+<h3>A/B test<a class="headerlink" href="#a-b-test" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.proportion</span> <span class="kn">import</span> <span class="n">samplesize_proportions_2indep_onetail</span>
+
+<span class="n">p2</span><span class="o">=</span> <span class="mi">5</span><span class="o">/</span><span class="mi">100</span>           <span class="c1"># baseline proportion, e.g., complication rate</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">100</span>          <span class="c1"># 2% absolute change, i.e., from 5% to 3%</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">power</span> <span class="o">=</span> <span class="mf">.9</span>
+
+<span class="n">samplesize_proportions_2indep_onetail</span><span class="p">(</span>
+    <span class="n">diff</span><span class="o">=-</span><span class="mi">2</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span>    <span class="c1"># with p1 = prop2 + diff</span>
+    <span class="n">prop2</span><span class="o">=</span><span class="mi">5</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span>    <span class="c1"># prop2 is the proportion for the reference/baseline</span>
+    <span class="n">power</span><span class="o">=</span><span class="n">power</span><span class="p">,</span>
+    <span class="n">ratio</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1"># use np.ceil to round the result</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="session-information">
 <h2>Session Information<a class="headerlink" href="#session-information" title="Link to this heading">#</a></h2>
@@ -1168,7 +1325,7 @@ n	95% CI of SD
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.4
 -------------
 numpy: 1.26.4
 scipy: 1.13.1
@@ -1269,9 +1426,19 @@ seaborn: 0.13.2
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complexities-when-computing-sample-size">Complexities when computing sample size</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incorporating-fprp-into-sample-size-decisions">Incorporating FPRP into sample size decisions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guidance-for-making-informed-sample-size-decisions">Guidance for making informed sample size decisions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underestimation-of-the-true-variability">Underestimation of the true variability</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-and-statistical-power-for-one-sample-t-test">Sample size and statistical power for one-sample t-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-and-statistical-power-for-paired-t-test">Sample size and statistical power for paired t-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-and-statistical-power-for-unpaired-two-sample-t-test">Sample size and statistical power for unpaired two-sample t-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-analysis-plot">Power analysis plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-size-and-statistical-power-with-pingouin">Sample size and statistical power with pingouin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-test">A/B test</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
 </ul>
   </nav></div>

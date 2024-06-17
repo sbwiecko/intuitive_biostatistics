@@ -671,13 +671,13 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span>
 
 <span class="c1"># Simulation parameters</span>
-<span class="n">mean1</span><span class="p">,</span> <span class="n">mean2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span>       <span class="c1"># Group means (fixed difference)</span>
+<span class="n">mean1</span><span class="p">,</span> <span class="n">mean2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span>    <span class="c1"># Group means (fixed difference)</span>
 <span class="n">mean_diff</span> <span class="o">=</span> <span class="n">mean2</span> <span class="o">-</span> <span class="n">mean1</span>
-<span class="n">SD</span> <span class="o">=</span> <span class="mi">5</span>                      <span class="c1"># Standard deviation (fixed)</span>
+<span class="n">SD</span> <span class="o">=</span> <span class="mi">5</span>                   <span class="c1"># Standard deviation (fixed)</span>
 
 <span class="n">p_values</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">31</span><span class="p">):</span>      <span class="c1"># Varying sample sizes</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">31</span><span class="p">):</span>   <span class="c1"># Varying sample sizes</span>
     <span class="c1"># Calculate t-statistic (see previous chapter)</span>
     <span class="n">t_stat</span> <span class="o">=</span> <span class="n">mean_diff</span> <span class="o">/</span> <span class="p">(</span><span class="n">SD</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="n">p_value</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_stat</span><span class="p">),</span> <span class="n">df</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># Two-tailed p-value</span>
