@@ -209,6 +209,10 @@
 <li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20Power%20and%20Sample%20Size.html">Statistical Power and Sample Size</a></li>
 <li class="toctree-l1"><a class="reference internal" href="24%20-%20Normality%20Tests%20and%20Outliers.html">Normality Tests and Outliers</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical Tests</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20Proportions.html">Comparing Proportions</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -456,9 +460,9 @@ document.write(`
 <p>In this chapter, we will explore various methods to quantify scatter, such as the <strong>range</strong>, <strong>interquartile</strong> range, <strong>variance</strong>, and <strong>standard deviation</strong>. These measures help us understand the <strong>dispersion</strong> in our data and are fundamental to many statistical tests and models.</p>
 <p>Here’s a sneak peek into what we will cover with Python:</p>
 <ol class="arabic simple">
-<li><p><em>Range</em>: The simplest measure of scatter, defined as the difference between the maximum and minimum values in a dataset.</p></li>
-<li><p><em>Interquartile Range (IQR)</em>: This measure gives us the range within which the central 50% of our data lies.</p></li>
-<li><p><em>Variance</em> and <em>Standard Deviation</em>: These are more sophisticated measures of scatter that take into account how far each data point is from the mean.</p></li>
+<li><p><em>Range</em>: the simplest measure of scatter, defined as the difference between the maximum and minimum values in a dataset.</p></li>
+<li><p><em>Interquartile Range (IQR)</em>: this measure gives us the range within which the central 50% of our data lies.</p></li>
+<li><p><em>Variance</em> and <em>Standard Deviation</em>: these are more sophisticated measures of scatter that take into account how far each data point is from the mean.</p></li>
 </ol>
 </section>
 <section id="definitions">
@@ -625,12 +629,12 @@ The geometric standard deviation is 1.1451
 <h3>The <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> module<a class="headerlink" href="#the-scipy-stats-module" title="Link to this heading">#</a></h3>
 <p>This module contains a large number of probability distributions as well as a growing library of statistical functions:</p>
 <ul class="simple">
-<li><p><em>Interquartile Range (IQR)</em>: This is a measure of statistical dispersion, being equal to the difference between the upper and lower quartiles. IQR is a measure of variability, based on dividing a data set into quartiles.</p></li>
-<li><p><em>Descriptive summary</em>: This provides several descriptive statistics of the data. This includes measures such as the number of elements in the data set, the minimum and maximum value, the mean, variance, skewness, and kurtosis.</p></li>
-<li><p><em>Z-score</em>: This is a statistical measurement that describes a value’s relationship to the mean of a group of values. It is measured in terms of standard deviations from the mean.</p></li>
-<li><p><em>Coefficient of Variation (CV)</em>: This is a statistical measure of the relative dispersion of data points in a data series around the mean. For example, if <span class="math notranslate nohighlight">\(\text{CV} = 0.25\)</span>, we know that the SD is 25% of the mean</p></li>
-<li><p><em>Geometric mean</em>: This is a kind of average of a set of numbers that is different from the arithmetic average. The geometric mean is calculated by multiplying all the numbers together and then taking the nth root of the product.</p></li>
-<li><p><em>Geometric standard deviation</em>: This is a measure of spread of a set of numbers where the geometric mean is preferred, it expounds the factor by which a set of numbers deviate from the geometric mean.</p></li>
+<li><p><em>Interquartile Range (IQR)</em> is a measure of statistical dispersion, being equal to the difference between the upper and lower quartiles. IQR is a measure of variability, based on dividing a data set into quartiles.</p></li>
+<li><p><em>Descriptive summary</em> provides several descriptive statistics of the data. This includes measures such as the number of elements in the data set, the minimum and maximum value, the mean, variance, skewness, and kurtosis.</p></li>
+<li><p><em>Z-score</em> is a statistical measurement that describes a value’s relationship to the mean of a group of values. It is measured in terms of standard deviations from the mean.</p></li>
+<li><p><em>Coefficient of Variation (CV)</em> is a statistical measure of the relative dispersion of data points in a data series around the mean. For example, if <span class="math notranslate nohighlight">\(\text{CV} = 0.25\)</span>, we know that the SD is 25% of the mean</p></li>
+<li><p><em>Geometric mean</em> is a kind of average of a set of numbers that is different from the arithmetic average. The geometric mean is calculated by multiplying all the numbers together and then taking the nth root of the product.</p></li>
+<li><p><em>Geometric standard deviation</em> is a measure of spread of a set of numbers where the geometric mean is preferred, it expounds the factor by which a set of numbers deviate from the geometric mean.</p></li>
 </ul>
 <p>Here’s how we can use it to calculate various statistical measures:</p>
 <div class="cell docutils container">

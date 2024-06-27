@@ -209,6 +209,10 @@
 <li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20Power%20and%20Sample%20Size.html">Statistical Power and Sample Size</a></li>
 <li class="toctree-l1"><a class="reference internal" href="24%20-%20Normality%20Tests%20and%20Outliers.html">Normality Tests and Outliers</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical Tests</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20Proportions.html">Comparing Proportions</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -588,11 +592,11 @@ document.write(`
 <h2>Using computational methods<a class="headerlink" href="#using-computational-methods" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">scipy.stats.binom</span></code> is a function in the <a class="reference external" href="https://scipy.org/">SciPy library</a> in Python that provides a suite of methods for the binomial distribution. Here’s a brief introduction to some of the main methods provided by it:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">pmf(k,</span> <span class="pre">n,</span> <span class="pre">p)</span></code>: This is the Probability Mass Function (PMF). It gives the probability of getting exactly k successes (heads) in n trials (flips), when the probability of success on any given trial is p.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cdf(k,</span> <span class="pre">n,</span> <span class="pre">p)</span></code>: This is the Cumulative Distribution Function (CDF). It gives the probability of getting k or fewer successes in n trials.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sf(k)</span></code>: The Survival Function (SF) is defined as <span class="math notranslate nohighlight">\(1 - \text{cdf}(k)\)</span>, and it gives the probability of getting more than k successes.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mean(n,</span> <span class="pre">p)</span></code>, <code class="docutils literal notranslate"><span class="pre">var(n,</span> <span class="pre">p)</span></code>, <code class="docutils literal notranslate"><span class="pre">std(n,</span> <span class="pre">p)</span></code>: These functions return the mean, variance, and standard deviation of the binomial distribution respectively.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">rvs(n,</span> <span class="pre">p,</span> <span class="pre">size)</span></code>: This function generates random variates in a given shape.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pmf(k,</span> <span class="pre">n,</span> <span class="pre">p)</span></code> is the Probability Mass Function (PMF). It gives the probability of getting exactly k successes (heads) in n trials (flips), when the probability of success on any given trial is p.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cdf(k,</span> <span class="pre">n,</span> <span class="pre">p)</span></code> is the Cumulative Distribution Function (CDF). It gives the probability of getting k or fewer successes in n trials.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sf(k)</span></code>, also called the Survival Function (SF), is defined as <span class="math notranslate nohighlight">\(1 - \text{cdf}(k)\)</span>, and it gives the probability of getting more than k successes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean(n,</span> <span class="pre">p)</span></code>, <code class="docutils literal notranslate"><span class="pre">var(n,</span> <span class="pre">p)</span></code>, <code class="docutils literal notranslate"><span class="pre">std(n,</span> <span class="pre">p)</span></code> return the mean, variance, and standard deviation of the binomial distribution respectively.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rvs(n,</span> <span class="pre">p,</span> <span class="pre">size)</span></code> generates random variates in a given shape.</p></li>
 </ul>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">binom</span></code> function in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> takes only two parameters: <span class="math notranslate nohighlight">\(n\)</span> (number of trials) and <span class="math notranslate nohighlight">\(p\)</span> (probability of success on each trial). The <code class="docutils literal notranslate"><span class="pre">scipy.stats.binom(n,</span> <span class="pre">p).rvs(num_trials)</span></code> and <code class="docutils literal notranslate"><span class="pre">np.random.binomial(n,</span> <span class="pre">p,</span> <span class="pre">num_trials)</span></code> methods are equivalent. Both generate <code class="docutils literal notranslate"><span class="pre">num_trials</span></code> random variates from a binomial distribution with <span class="math notranslate nohighlight">\(n\)</span> trials and <span class="math notranslate nohighlight">\(p\)</span> probability of success on each trial.</p>
 <div class="cell docutils container">

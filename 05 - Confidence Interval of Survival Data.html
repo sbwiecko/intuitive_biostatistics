@@ -209,6 +209,10 @@
 <li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20Power%20and%20Sample%20Size.html">Statistical Power and Sample Size</a></li>
 <li class="toctree-l1"><a class="reference internal" href="24%20-%20Normality%20Tests%20and%20Outliers.html">Normality Tests and Outliers</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical Tests</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20Proportions.html">Comparing Proportions</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -1030,7 +1034,7 @@ Z-value for 95% confidence: 1.959963984540054
 <th class="head"><p>number at risk</p></th>
 <th class="head"><p>observed</p></th>
 <th class="head"><p>S(t)</p></th>
-<th class="head"><p>e=d/[n(n-d)]</p></th>
+<th class="head"><p>e=d/(n(n-d))</p></th>
 <th class="head"><p>sum(e)</p></th>
 <th class="head"><p>SE(t)</p></th>
 <th class="head"><p>LCL</p></th>
@@ -1184,9 +1188,9 @@ The confidence interval (plain type) limits are [0.115 - 0.914]
 <th class="head"><p>S(t)</p></th>
 <th class="head"><p>e</p></th>
 <th class="head"><p>sum(e)</p></th>
-<th class="head"><p>l=Log[(n-d)/n]</p></th>
+<th class="head"><p>l=log((n-d)/n)</p></th>
 <th class="head"><p>sum(l)</p></th>
-<th class="head"><p>SELog(t)</p></th>
+<th class="head"><p>SElog(t)</p></th>
 <th class="head"><p>LCL</p></th>
 <th class="head"><p>UCL</p></th>
 </tr>
@@ -1396,13 +1400,13 @@ The confidence interval (plain type) limits are [0.1178 - 0.8133]
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>Survival analysis is a branch of statistics that deals with time-to-event data. It’s used in a variety of fields, from medical research to machine failure analysis. The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library provides a high-level, intuitive API for survival analysis in Python, making it accessible for both statisticians and non-statisticians.</p>
-<p>Here are some key points about lifelines:</p>
+<p>Here are some key points about <code class="docutils literal notranslate"><span class="pre">lifelines</span></code>:</p>
 <ul class="simple">
-<li><p>Easy to use: <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> provides a simple and intuitive interface for fitting survival models, calculating survival probabilities, and visualizing survival data.</p></li>
-<li><p>Comprehensive: <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> includes a variety of survival models, such as the Kaplan-Meier estimator and the Cox proportional hazards model, allowing us to choose the model that best fits our data.</p></li>
-<li><p>Handles censoring: One of the key challenges in survival analysis is dealing with censored data. <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> handles right-censored data natively, making it easier to work with this type of data.</p></li>
-<li><p>Confidence intervals: <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> automatically calculates confidence intervals for survival function estimates, providing a measure of uncertainty around these estimates.</p></li>
-<li><p>Plotting capabilities: <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> includes functions for plotting survival functions and hazard functions, providing a visual way to understand our survival data.</p></li>
+<li><p>Easy to use: it provides a simple and intuitive interface for fitting survival models, calculating survival probabilities, and visualizing survival data.</p></li>
+<li><p>Comprehensive: it includes a variety of survival models, such as the Kaplan-Meier estimator and the Cox proportional hazards model, allowing us to choose the model that best fits our data.</p></li>
+<li><p>Handles censoring: One of the key challenges in survival analysis is dealing with censored data. It handles right-censored data natively, making it easier to work with this type of data.</p></li>
+<li><p>Confidence intervals: it automatically calculates confidence intervals for survival function estimates, providing a measure of uncertainty around these estimates.</p></li>
+<li><p>Plotting capabilities: it includes functions for plotting survival functions and hazard functions, providing a visual way to understand our survival data.</p></li>
 </ul>
 <p>In this chapter, we’ve seen how to use lifelines to calculate survival probabilities, create survival tables, and estimate confidence intervals. We’ve also discussed some of the theory behind survival analysis, including the concept of “at risk” individuals and the calculation of survival fractions.</p>
 <p>In conclusion, lifelines is a powerful tool for survival analysis in Python. Whether we’re a researcher studying patient survival times, a data scientist predicting customer churn, or an engineer analyzing machine failure times, lifelines has the tools we need to analyze our data and draw meaningful conclusions.</p>

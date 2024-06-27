@@ -75,6 +75,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '24 - Normality Tests and Outliers';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Comparing Proportions" href="27%20-%20Comparing%20Proportions.html" />
     <link rel="prev" title="Statistical Power and Sample Size" href="20%20-%20Statistical%20Power%20and%20Sample%20Size.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -207,6 +208,10 @@
 <li class="toctree-l1"><a class="reference internal" href="15%20-%20P%20Values%20and%20Statistical%20Significance.html">P Values and Statistical Significance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20Power%20and%20Sample%20Size.html">Statistical Power and Sample Size</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Normality Tests and Outliers</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical Tests</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20Proportions.html">Comparing Proportions</a></li>
 </ul>
 
     </div>
@@ -1814,7 +1819,7 @@ Reject H0: Evidence suggests the presence of a significant outlier.
 <span class="n">cooks_distance</span> <span class="o">=</span> <span class="n">influence</span><span class="o">.</span><span class="n">cooks_distance</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">dffits</span> <span class="o">=</span> <span class="n">influence</span><span class="o">.</span><span class="n">dffits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="c1"># Subplot 1: Regression Plot</span>
+<span class="c1"># Regression Plot</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Petal_Width&#39;</span><span class="p">,</span>
@@ -1824,16 +1829,12 @@ Reject H0: Evidence suggests the presence of a significant outlier.
     <span class="n">size</span><span class="o">=</span><span class="n">cooks_distance</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># Subplot 2: DFFITS Plot</span>
+<span class="c1"># DFFITS Plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">dffits</span><span class="p">)</span>
 
 
 <span class="c1"># Robust outlier detection based on the MAD-median rule</span>
-<span class="c1"># Generate normal sample with an outlier</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># For reproducibility</span>
-<span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">sample</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Introduce an exaggerated outlier</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">madmedianrule</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span> <span class="c1"># returns array of True and False whether of not sample is outlier</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">madmedianrule</span><span class="p">(</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;Petal_Length&#39;</span><span class="p">])</span> <span class="c1"># returns array of True and False whether of not sample is outlier</span>
 </pre></div>
 </div>
 </section>
@@ -1931,6 +1932,15 @@ seaborn: 0.13.2
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Statistical Power and Sample Size</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="27%20-%20Comparing%20Proportions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Comparing Proportions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
