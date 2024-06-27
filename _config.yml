@@ -6,7 +6,7 @@ title                       : The Python Companion of Intuitive Biostatistics
 author                      : "Sébastien Wieckowski"
 copyright                   : "2024"
 logo                        : logo.jpg
-exclude_patterns            : [_build, "**.ipynb_checkpoints", pdf, html]
+exclude_patterns            : [_build, "**.ipynb_checkpoints", pdf, html, vscode]
 
 # Auto-exclude files not in the toc
 only_build_toc_files        : true

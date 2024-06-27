@@ -19,3 +19,6 @@ parts:
       - file: 15 - P Values and Statistical Significance
       - file: 20 - Statistical Power and Sample Size
       - file: 24 - Normality Tests and Outliers
+    - caption: Statistical Tests
+      chapters:
+      - file: 27 - Comparing Proportions
