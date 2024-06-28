@@ -410,8 +410,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fisher-s-exact-test">Fisher’s exact test</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-fisher-s-test">When to use Fisher’s test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P-value</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypergeometric-distribution">Hypergeometric distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-hypergeometric-distribution-and-p-value">Relationship between hypergeometric distribution and P-value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-p-value">Interpreting the P-value</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-and-interpreting-risk-metrics">Calculating and interpreting risk metrics</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P-value</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#absolute-risk-reduction-arr-and-attributable-risk-ar">Absolute risk reduction (ARR) and attributable risk (AR)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#population-attributable-risk-par">Population attributable risk (PAR)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#number-needed-to-treat-ntt">Number needed to treat (NTT)</a></li>
@@ -519,10 +524,12 @@ document.write(`
 <li><p>Fisher’s Exact test: the go-to for <em>small sample sizes</em> when comparing proportions.</p></li>
 <li><p>Chi-Squared test: a powerful workhorse for <em>larger samples</em>, assessing the significance of observed differences.</p></li>
 <li><p>Cochran-Armitage trend test: a specialized tool for detecting trends in proportions across <strong>ordered categories</strong> - particularly relevant in toxicology studies.</p></li>
+<li><p>Case-control studies: a retrospective approach that investigates if past exposures are more common among individuals with a disease compared to those without.</p></li>
 </ul>
 </section>
 <section id="fisher-s-exact-test">
 <span id="fisher"></span><h2>Fisher’s exact test<a class="headerlink" href="#fisher-s-exact-test" title="Link to this heading">#</a></h2>
+<p>The core idea of Fisher’s test is to calculate the probability of obtaining the exact distribution of the data (or one more extreme) if there were truly no association between the variables (the null hypothesis H0). It does this by considering all possible ways the data could be arranged while keeping the row and column totals fixed. This allows for a precise P-value calculation, even when other tests might falter.</p>
 <section id="when-to-use-fisher-s-test">
 <h3>When to use Fisher’s test<a class="headerlink" href="#when-to-use-fisher-s-test" title="Link to this heading">#</a></h3>
 <p>When dealing with categorical data in biostatistics, we often find ourselves in situations where sample sizes are limited. This is where Fisher’s exact test shines. Unlike other tests that rely on approximations (which may not be accurate with small samples), Fisher’s test provides an exact calculation of the probability of observing the data (or something more extreme) under the null hypothesis of no association.</p>
@@ -532,7 +539,6 @@ document.write(`
 <li><p>Rare events: when we’re dealing with outcomes that occur infrequently, Fisher’s test is more reliable than tests that rely on large-sample assumptions.</p></li>
 <li><p>2x2 tables: while Fisher’s test can be extended to larger tables, it’s most commonly used for situations with two categorical variables, each having two levels (e.g., treatment vs. control, success vs. failure).</p></li>
 </ul>
-<p>The core idea of Fisher’s test is to calculate the probability of obtaining the exact distribution of the data (or one more extreme) if there were truly no association between the variables. It does this by considering all possible ways the data could be arranged while keeping the row and column totals fixed. This allows for a precise P-value calculation, even when other tests might falter.</p>
 </section>
 <section id="contingency-table">
 <h3>Contingency table<a class="headerlink" href="#contingency-table" title="Link to this heading">#</a></h3>
@@ -601,9 +607,6 @@ All        3  4    7
 </div>
 </div>
 </div>
-</section>
-<section id="calculating-and-interpreting-risk-metrics">
-<h3>Calculating and interpreting risk metrics<a class="headerlink" href="#calculating-and-interpreting-risk-metrics" title="Link to this heading">#</a></h3>
 <p>Let’s prepare the data derived from the study from <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/23216615/">Agnelli and colleagues</a>, and where each value is an actual number of patients, in a contingency table.</p>
 <table class="table">
 <thead>
@@ -631,6 +634,8 @@ All        3  4    7
 </tr>
 </tbody>
 </table>
+<p>The goal of this analysis is to draw conclusions about the <em>general population</em> of patients who have experienced a thromboembolism. This is achieved by calculating confidence intervals (CIs) and a P-value. The P-value helps us answer a critical question: if the treatment truly doesn’t affect the risk of recurrence (our null hypothesis, H0), what’s the probability of observing incidence rates as different (or even more different) than what we see in our study, simply due to random chance?</p>
+<p>The most appropriate statistical test for this situation is Fisher’s exact test. However, Fisher’s test can become computationally challenging with large sample sizes. In those cases, the <a class="reference internal" href="#chi-squared"><span class="std std-ref">chi-square test</span></a> serves as a practical alternative, yielding nearly identical P-values. The Fisher’s exact test is performed with <a class="reference external" href="https://docs.scipy.org/doc/scipy-1.13.1/reference/generated/scipy.stats.fisher_exact.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.fisher_exact</span></code></a> on a 2x2 contingency table.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contingency table with rows = alternative treatments, cols = alternative outcomes</span>
@@ -656,15 +661,158 @@ apixaban          14            826
 </div>
 </div>
 </div>
+</section>
 <section id="p-value">
-<span id="id1"></span><h4>P-value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h4>
-<p>The goal of this analysis is to draw conclusions about the <em>general population</em> of patients who have experienced a thromboembolism. This is achieved by calculating confidence intervals (CIs) and a P-value. The P-value helps us answer a critical question: if the treatment truly doesn’t affect the risk of recurrence (our null hypothesis, H0), what’s the probability of observing incidence rates as different (or even more different) than what we see in our study, simply due to random chance?</p>
-<p>The most appropriate statistical test for this situation is Fisher’s exact test. However, Fisher’s test can become computationally challenging with large sample sizes. In those cases, the chi-square test serves as a practical alternative, yielding nearly identical P-values. The Fisher’s exact test is performed with <a class="reference external" href="https://docs.scipy.org/doc/scipy-1.13.1/reference/generated/scipy.stats.fisher_exact.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.fisher_exact</span></code></a> on a 2x2 contingency table.</p>
+<span id="id1"></span><h3>P-value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h3>
+<section id="hypergeometric-distribution">
+<h4>Hypergeometric distribution<a class="headerlink" href="#hypergeometric-distribution" title="Link to this heading">#</a></h4>
+<p>Fisher’s exact test relies on the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypergeometric_distribution">hypergeometric distribution</a> to compute the exact probability of observing a given contingency table (or one more extreme) under the null hypothesis of no association. Briefly, the hypergeometric distribution describes the probability of obtaining a specific number of successes in a sample drawn without replacement from a finite population containing two types of objects (e.g., cases and controls, exposed and unexposed).</p>
+<p>Assume the null hypothesis of independence is true, and constrain the marginal counts to be as observed. What is the chance of getting this exact table and what is the chance of getting a table at least as extreme?</p>
+<p>Imagine an urn with <span class="math notranslate nohighlight">\(n\)</span> white balls and <span class="math notranslate nohighlight">\(M - n\)</span> black balls. Draw <span class="math notranslate nohighlight">\(k\)</span> balls <em>without replacement</em>, and let <span class="math notranslate nohighlight">\(k\)</span> be the number of white balls in the sample:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head text-center"><p>white</p></th>
+<th class="head text-center"><p>black</p></th>
+<th class="head text-center"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>sampled</p></td>
+<td class="text-center"><p>k</p></td>
+<td class="text-center"><p>N - k</p></td>
+<td class="text-center"><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>not sampled</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p>M - N</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td class="text-center"><p>n</p></td>
+<td class="text-center"><p>M - n</p></td>
+<td class="text-center"><p>M</p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math notranslate nohighlight">\(k\)</span> follows a hypergeometric distribution <span class="math notranslate nohighlight">\(K \sim \text{Hypergeometric}(M, n, N)\)</span>, with</p>
+<div class="math notranslate nohighlight">
+\[
+P(K=k) = \frac{\binom{n}{k} \binom{M - n}{N - k}}{\binom{M}{N}}
+\]</div>
+<p>For example, we can use the probability mass function(PMF) from <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.hypergeom.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.hypergeom</span></code></a> to solve the following configuration:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head text-center"><p>0</p></th>
+<th class="head text-center"><p>1</p></th>
+<th class="head text-center"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>sampled</p></td>
+<td class="text-center"><p>18</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>not sampled</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p>20</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td class="text-center"><p>29</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>40</p></td>
+</tr>
+</tbody>
+</table>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">fisher_exact</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">hypergeom</span>
 
-<span class="c1"># Assuming &#39;table&#39; is our 2x2 contingency table (NumPy array or list of lists)</span>
+<span class="n">k</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">20</span>
+<span class="n">pmf_hypergeom</span> <span class="o">=</span> <span class="n">hypergeom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P(K=18) = </span><span class="si">{</span><span class="n">pmf_hypergeom</span><span class="si">:</span><span class="s2">.5</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P(K=18) = 0.013804
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="relationship-between-hypergeometric-distribution-and-p-value">
+<h4>Relationship between hypergeometric distribution and P-value<a class="headerlink" href="#relationship-between-hypergeometric-distribution-and-p-value" title="Link to this heading">#</a></h4>
+<p>In the context of Fisher’s test, the “successes” are the individuals with the outcome of interest (e.g., cases in a case-control study), and the “population” is the total number of individuals in the study. The row and column totals in the contingency table define the number of successes and the sample sizes in each group. The probability of observing a particular contingency table with values <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> is given by the hypergeometric probability mass function:</p>
+<div class="math notranslate nohighlight">
+\[P(a) = \frac{\binom{a+b}{a} \binom{c+d}{c}}{\binom{a+b+c+d}{a+c}}\]</div>
+<p>The P-value for Fisher’s exact test of independence can be obtained using either the cumulative distribution function (CDF) or the survival function (SF) of the hypergeometric distribution, <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisher_exact.html">as clearly explained elsewhere</a>, depending on the directionality of the test:</p>
+<ul class="simple">
+<li><p>One-tailed test (right tail): when the alternative hypothesis suggests a higher number of successes than expected, the P-value is calculated using the survival function (SF), which gives the probability of observing a value greater than or equal to the observed value: <span class="math notranslate nohighlight">\(\text{P-value} = P(K \ge k) = \text{SF}(k - 1)\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is the random variable representing the number of successes, and <span class="math notranslate nohighlight">\(k\)</span> is the observed number of successes.</p></li>
+<li><p>One-tailed test (left tail): when the alternative hypothesis suggests a lower number of successes than expected, the P-value is calculated using the cumulative distribution function (CDF), which gives the probability of observing a value less than or equal to the observed value: <span class="math notranslate nohighlight">\(\text{P-value} = P(K \le k) = \text{CDF}(k)\)</span></p></li>
+<li><p>Two-tailed test: in a two-tailed test, we typically consider deviations in both directions (<strong>more extreme associations</strong> in either direction) from the observed table. Therefore, to obtain the two-sided P-value, we often double the P-value obtained from the one-sided calculation (using either the CDF or SF, depending on which tail is more extreme).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">fisher_exact</span><span class="p">,</span> <span class="n">hypergeom</span>
+
+<span class="c1"># Contingency table </span>
+<span class="n">table</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
+
+<span class="c1"># Perform Fisher&#39;s exact test</span>
+<span class="n">odds_ratio</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">fisher_exact</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;two-sided&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fisher&#39;s Exact Test (Two-Sided):</span><span class="se">\n</span><span class="s2"> P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Parameters for the hypergeometric distribution (from contingency table)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># 1. Calculate one-sided P-value (more extreme in one direction)</span>
+<span class="n">k</span><span class="o">=</span><span class="mi">18</span>  <span class="c1"># number of successes</span>
+<span class="n">p_value_one_sided</span> <span class="o">=</span> <span class="n">hypergeom</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;One-Sided P-value (&gt;= </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> &#39;successes&#39;): </span><span class="si">{</span><span class="n">p_value_one_sided</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Calculate two-sided P-value (more extreme in either direction)</span>
+<span class="n">p_value_two_sided</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">p_value_one_sided</span>  <span class="c1"># Assuming symmetry</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two-Sided P-value: </span><span class="si">{</span><span class="n">p_value_two_sided</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3. Probabilities of individual tables</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Probabilities of Individual Tables (more extreme than observed):&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">]:</span>  <span class="c1"># Consider tables with more extreme &#39;successes&#39;</span>
+    <span class="n">prob</span> <span class="o">=</span> <span class="n">hypergeom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  k = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">:</span><span class="se">\t</span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fisher&#39;s Exact Test (Two-Sided):
+ P-value: 0.0310
+
+One-Sided P-value (&gt;= 18 &#39;successes&#39;): 0.0155
+
+Two-Sided P-value: 0.0310
+
+Probabilities of Individual Tables (more extreme than observed):
+  k = 9:	0.0001
+  k = 10:	0.0016
+  k = 11:	0.0138
+  k = 18:	0.0138
+  k = 19:	0.0016
+  k = 20:	0.0001
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpreting-the-p-value">
+<h4>Interpreting the P-value<a class="headerlink" href="#interpreting-the-p-value" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming &#39;table&#39; is our 2x2 contingency table (NumPy array or list of lists)</span>
 <span class="c1"># For pre-aggregated data we can do:</span>
 <span class="n">table</span> <span class="o">=</span> <span class="n">table_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="c1"># converts DataFrame to NumPy array</span>
 <span class="n">odds_ratio</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">fisher_exact</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
@@ -681,6 +829,9 @@ apixaban          14            826
 </div>
 <p>A very low P-value typically leads to the rejection of the null hypothesis. It’s unlikely that the observed results (the distribution of data in the contingency table) occurred purely by chance if there were truly no association between the variables. Said differently, the low P-value indicates that there’s a statistically significant <strong>association</strong> between the two categorical variables.</p>
 </section>
+</section>
+<section id="calculating-and-interpreting-risk-metrics">
+<h3>Calculating and interpreting risk metrics<a class="headerlink" href="#calculating-and-interpreting-risk-metrics" title="Link to this heading">#</a></h3>
 <section id="absolute-risk-reduction-arr-and-attributable-risk-ar">
 <span id="arr"></span><h4>Absolute risk reduction (ARR) and attributable risk (AR)<a class="headerlink" href="#absolute-risk-reduction-arr-and-attributable-risk-ar" title="Link to this heading">#</a></h4>
 <p>In the context of evaluating treatments, the <strong>absolute risk reduction (ARR)</strong>, also known as <strong>attributable risk (AR)</strong> or risk difference, is a key measure that quantifies the absolute difference in the risk of an outcome between the treatment group and the control (or placebo) group. It provides a direct estimate of the reduction in risk that can be attributed to the treatment. The foundation of ARR is the concept of <strong>risk</strong>, which is simply the probability of an event (e.g., disease, side effect, recovery) occurring within a specific time period. Risk is often expressed as a percentage or a decimal:</p>
@@ -1798,7 +1949,7 @@ P-value (one-sided)	 0.046
 </section>
 </section>
 <section id="chi-squared-test">
-<h2>Chi-squared test<a class="headerlink" href="#chi-squared-test" title="Link to this heading">#</a></h2>
+<span id="chi-squared"></span><h2>Chi-squared test<a class="headerlink" href="#chi-squared-test" title="Link to this heading">#</a></h2>
 <p>The chi-squared (<span class="math notranslate nohighlight">\(\chi^2\)</span>) test stands as a cornerstone in the analysis of <strong>categorical data</strong>. It’s a versatile statistical tool used to examine the relationship between two categorical variables, answering the question of whether there’s a significant association between them.</p>
 <p>The chi-squared test’s versatility stems from its ability to handle various types of contingency tables, not just the 2x2 tables commonly analyzed with Fisher’s exact test. Whether we’re dealing with multiple groups, multiple outcomes, or a combination of both, the chi-squared test can adapt to the data structure.</p>
 <p>This test is particularly powerful when:</p>
@@ -3206,8 +3357,13 @@ loaded via a namespace (and not attached):
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fisher-s-exact-test">Fisher’s exact test</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-fisher-s-test">When to use Fisher’s test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P-value</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypergeometric-distribution">Hypergeometric distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-hypergeometric-distribution-and-p-value">Relationship between hypergeometric distribution and P-value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-p-value">Interpreting the P-value</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-and-interpreting-risk-metrics">Calculating and interpreting risk metrics</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P-value</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#absolute-risk-reduction-arr-and-attributable-risk-ar">Absolute risk reduction (ARR) and attributable risk (AR)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#population-attributable-risk-par">Population attributable risk (PAR)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#number-needed-to-treat-ntt">Number needed to treat (NTT)</a></li>
