@@ -3,3 +3,4 @@
 *.html
 
 _build
+.env

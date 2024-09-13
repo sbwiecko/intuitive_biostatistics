@@ -22,3 +22,4 @@ parts:
     - caption: Statistical Tests
       chapters:
       - file: 27 - Comparing Proportions
+      - file: 29 - Comparing Survival Curves
