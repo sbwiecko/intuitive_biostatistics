@@ -14,39 +14,39 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -86,27 +86,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -128,8 +124,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -153,6 +154,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="README.html">
   
@@ -174,7 +177,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -212,6 +215,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical Tests</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20Proportions.html">Comparing Proportions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29%20-%20Comparing%20Survival%20Curves.html">Comparing Survival Curves</a></li>
 </ul>
 
     </div>
@@ -227,7 +231,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -236,14 +240,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -368,10 +372,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -379,14 +383,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -582,7 +586,7 @@ document.write(`
 </div>
 <p>As our simulation demonstrates, the middle 95% of P-values can span a vast range, from as low as 0.000169 to as high as 0.7026 - a difference of over three orders of magnitude! This immense variability underscores a crucial point: P-values are far less reproducible than most researchers anticipate.</p>
 <p>This lack of reproducibility has significant implications for the conclusions we draw about statistical significance. Consider a study that finds a P-value of exactly 0.05, barely crossing the threshold for significance. If this study were repeated, there’s only a 50% chance that the new P-value would also be below 0.05, as revealed by simulations:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Initial P value</p></th>
 <th class="head text-left"><p>Probability of P-value &lt; 0.05 in replication</p></th>
@@ -606,6 +610,7 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <p>In other words, even a seemingly “significant” finding is surprisingly susceptible to being overturned by chance in subsequent experiments.</p>
 <p>This phenomenon isn’t limited to borderline cases. Even with a highly “significant” initial P-value of 0.001, there’s no guarantee that a repeat study will yield a P-value below the traditional 0.05 threshold. This highlights a fundamental truth: statistical significance, as determined by P-values, is not a static property of a phenomenon but rather a probabilistic outcome dependent on the specific data at hand.</p>
 </section>
@@ -855,7 +860,7 @@ t-statistic: -4.6677, p-value: 0.0016
 <section id="type-i-and-type-ii-errors">
 <h3>Type I and type II errors<a class="headerlink" href="#type-i-and-type-ii-errors" title="Link to this heading">#</a></h3>
 <p>The binary nature of statistical hypothesis testing (reject H0 or do not reject H0) creates a landscape of potential errors, as our decisions are made under uncertainty. These errors are classified into two distinct types, each with its own consequences:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head"><p>Reject H0</p></th>
@@ -873,6 +878,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </tr>
 </tbody>
 </table>
+</div>
 <ul class="simple">
 <li><p><strong>Type I error</strong> (<strong>False Positive</strong>): this occurs when we reject the null hypothesis (H0) even though it’s actually true. In other words, we conclude there’s a significant effect when, in reality, it’s due to chance. Think of this as a “false alarm”. In everyday life, we might mistakenly flag a legitimate email as spam or, more seriously, wrongly convict someone of a crime they didn’t commit.</p></li>
 <li><p><strong>Type II error</strong> (<strong>False Negative</strong>): this happens when we fail to reject the null hypothesis (H0) when it’s actually false. This means we miss a real effect and incorrectly conclude there’s no significant difference. Consider this a “missed opportunity.” In everyday life, we might mistakenly let a spam email slip into our inbox or, more seriously, wrongly acquit someone who actually committed a crime.</p></li>
@@ -897,7 +903,7 @@ t-statistic: -4.6677, p-value: 0.0016
 <li><p>If we repeatedly conduct experiments where there is no true effect, what proportion of these experiments will mistakenly lead us to conclude that there is a significant effect?</p></li>
 </ul>
 <p>In practical terms, <span class="math notranslate nohighlight">\(\alpha\)</span> can also be understood through repeated experimentation. Imagine conducting numerous experiments where the null hypothesis (H0) is true. Let <span class="math notranslate nohighlight">\(A\)</span> represent the number of times we incorrectly reject H0 (Type I errors), and let <span class="math notranslate nohighlight">\(B\)</span> represent the number of times we correctly fail to reject H0:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head text-center"><p>Reject H0</p></th>
@@ -923,6 +929,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </tr>
 </tbody>
 </table>
+</div>
 <p>The significance level only considers analyses where <em>H0 is true</em> (first row of the table). Of all experiments (<span class="math notranslate nohighlight">\(A+B\)</span>), the number of times H0 is rejected equals <span class="math notranslate nohighlight">\(A\)</span>, so that:</p>
 <div class="math notranslate nohighlight">
 \[\alpha = \frac{A}{A+B}\]</div>
@@ -943,7 +950,7 @@ t-statistic: -4.6677, p-value: 0.0016
 <p>The False Positive Report Probability (FPRP) isn’t a fixed value; it varies depending on several factors, including the significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>) and statistical power of the study. However, an often overlooked but critical factor is the <strong>prior probability</strong> of a true effect. This reflects our <em>existing knowledge</em> or <em>belief</em> about the likelihood of the phenomenon under investigation before we even conduct the experiment.</p>
 <p>Intuitively, if we’re testing a hypothesis that seems highly implausible based on prior research or scientific understanding, even a statistically significant result should be met with greater skepticism. In contrast, a significant finding for a well-established phenomenon is more likely to be a true positive.</p>
 <p>The table below illustrates how the FPRP changes depending on the prior probability of a true effect, assuming a fixed significance level and power.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Prior probability</p></th>
 <th class="head"><p>FPRP as P&lt;0.05</p></th>
@@ -973,6 +980,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </tr>
 </tbody>
 </table>
+</div>
 <p>Let’s explore these scenarios to understand the nuanced relationship between FPRP and the broader scientific context.</p>
 <section id="prior-probability-1">
 <h4>Prior probability = 1%<a class="headerlink" href="#prior-probability-1" title="Link to this heading">#</a></h4>
@@ -998,7 +1006,7 @@ t-statistic: -4.6677, p-value: 0.0016
                 941 have P&gt;0.05
 </pre></div>
 </div>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head text-center"><p>Statistically significant</p></th>
@@ -1024,6 +1032,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </tr>
 </tbody>
 </table>
+</div>
 <p>With such a low prior probability of success (1%), conducting this experiment with a conventional significance level of 5% (<span class="math notranslate nohighlight">\(\alpha = 0.05\)</span>) is likely to yield a high rate of false positives. This means that many of the drugs identified as ‘significant’ would actually be ineffective. To ensure the validity and usefulness of this drug screening, a much stricter significance level, such as 0.1% (<span class="math notranslate nohighlight">\(\alpha = 0.001\)</span>), may be necessary. This stricter threshold would reduce the risk of falsely identifying ineffective drugs as promising candidates, but it would also increase the risk of missing truly effective drugs (Type II errors). Balancing these risks requires careful consideration of the specific context, costs, and potential benefits of the drug screening program.</p>
 </section>
 <section id="prior-probability-50">
@@ -1042,7 +1051,7 @@ t-statistic: -4.6677, p-value: 0.0016
                 475 have P&gt;0.05
 </pre></div>
 </div>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head text-center"><p>Statistically significant</p></th>
@@ -1068,6 +1077,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </tr>
 </tbody>
 </table>
+</div>
 <p>Furthermore, if an experiment has low power to find the difference/effect we are looking for, we are likely to end up with a result that is not statistically significant even if the effect is real. And if the low power study does reach a conclusion that the effect is statistically significant, the results are hard to interpret because the FPRP will be high, and the effect size observed in that study is likely to be larger than the actual effect size because only large observed effects (even if due to chance) will yield a P-value less than 0.05. Experiments designed with low power cannot be very informative, and it should not be surprising when they cannot be reproduced.</p>
 </section>
 </section>
@@ -1182,7 +1192,7 @@ t-statistic: -4.6677, p-value: 0.0016
 <li><p><strong>Sensitivity</strong>, also commonly referred to as <strong>recall</strong>, <strong>hit rate</strong> or <strong>True Positive Rate (TPR)</strong>, quantifies how well the test <em>identifies individuals with the disease</em>. It’s the proportion of true positives (those who have the disease and test positive; TP) out of all individuals with the disease. Mathematically, it’s represented as <span class="math notranslate nohighlight">\(\text{sensitivity}=\frac{\text{TP}}{\text{TP}+\text{FN}}\)</span>, where FN represents false negatives (those with the disease who test negative).</p></li>
 <li><p><strong>Specificity</strong>, also commonly referred to as <strong>selectivity</strong> or <strong>True Negative Rate (TNR)</strong>, quantifies how well the test <em>identifies individuals without the disease</em>. It’s the proportion of true negatives (those who don’t have the disease and test negative; TN) out of all individuals without the disease. Mathematically, it’s represented as: <span class="math notranslate nohighlight">\(\text{specificity}=\frac{\text{TN}}{\text{TN}+\text{FP}}\)</span>, where FP represents false positives (those without the disease who test positive).</p></li>
 </ul>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head text-center"><p>Disease present (true)</p></th>
@@ -1200,6 +1210,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </tr>
 </tbody>
 </table>
+</div>
 <p>Test <strong>accuracy</strong>, sometimes abbreviated as <strong>ACC</strong>, is a measure of how often a diagnostic test correctly classifies individuals as having or not having a particular disease or condition. It’s the proportion of true results (both true positives and true negatives) out of all test results: <span class="math notranslate nohighlight">\(\text{accuracy}=\frac{\text{TP}+\text{TN}}{\text{TP}+\text{FP}+\text{TN}+\text{FN}}\)</span>.</p>
 <p>While accuracy is a useful overall metric, it can be misleading when dealing with <em>imbalanced datasets</em>, where the number of samples in one class is significantly higher than the other. In such cases, a classifier could achieve high accuracy by simply predicting the majority class most of the time, even if it performs poorly on the minority class. <strong>Balanced accuracy (BA)</strong> addresses this issue by taking the average of sensitivity (true positive rate) and specificity (true negative rate): <span class="math notranslate nohighlight">\(\text{BA}=\frac{\text{TPR}+\text{TNR}}{2}\)</span>.</p>
 <p>While sensitivity and specificity are fundamental metrics, they don’t directly answer the questions that matter most to patients and clinicians:</p>
@@ -1264,7 +1275,7 @@ t-statistic: -4.6677, p-value: 0.0016
 <li><p>Sensitivity: 82% (82 out of 100 patients with porphyria will test positive).</p></li>
 <li><p>Specificity: 96.3% (963 out of 1000 individuals <em>without</em> porphyria will test negative, 3.7% of individuals <em>without</em> porphyria will test positive).</p></li>
 </ul>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p></p></th>
 <th class="head text-center"><p>Has Porphyria</p></th>
@@ -1290,6 +1301,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </tr>
 </tbody>
 </table>
+</div>
 <p>Despite the test’s high sensitivity (82%) and specificity (96.3%), the probability that a patient with a positive (abnormal) test result actually has porphyria is surprisingly low: only 82 out of 37078 individuals, i.e., 0.22%, or approximately 1 in 500. This means that the vast majority (99.8%) of positive results are false positives.</p>
 <p>On the other hand, the test is highly reliable for ruling out porphyria. Of those who test negative, a staggering 99.998% truly do not have the disease. This high negative predictive value offers strong reassurance to individuals who receive a negative test result. A negative result on this test provides strong evidence that an individual does not have porphyria.</p>
 </section>
@@ -1297,7 +1309,7 @@ t-statistic: -4.6677, p-value: 0.0016
 <h4>Porphyria test in 50% prevalence<a class="headerlink" href="#porphyria-test-in-50-prevalence" title="Link to this heading">#</a></h4>
 <p>The low prevalence of porphyria (1 in 10,000) significantly impacts the test’s predictive value, even with high sensitivity and specificity.</p>
 <p>Let’s analyze a scenario where we’re testing whether individuals have siblings, with a prevalence of 50% (meaning half the population has siblings). We’ll consider a sample of 1000 individuals and the same test characteristics (sensitivity = 82%, specificity = 96.3%) to see how the predictive values change compared to the rare disease example.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p></p></th>
 <th class="head text-center"><p>Has Porphyria</p></th>
@@ -1323,12 +1335,13 @@ t-statistic: -4.6677, p-value: 0.0016
 </tr>
 </tbody>
 </table>
+</div>
 <p>In this scenario, approximately only 4.4% of positive tests are false positives (19 out of 429).</p>
 </section>
 <section id="hiv-test">
 <h4>HIV test<a class="headerlink" href="#hiv-test" title="Link to this heading">#</a></h4>
 <p>This case study examines the performance of an HIV test with a sensitivity of 99.9% and a specificity of 99.6%. We will simulate screening a population of 1 million individuals where the prevalence of HIV is 10%.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p></p></th>
 <th class="head text-center"><p>Has HIV</p></th>
@@ -1354,9 +1367,10 @@ t-statistic: -4.6677, p-value: 0.0016
 </tr>
 </tbody>
 </table>
+</div>
 <p>Of the approximately 103,500 positive tests, we estimate that 3.6% will be false positives due to the inherent limitations of the test.</p>
 <p>Let’s now simulate the screening of 1 million individuals where the prevalence of HIV is 0.1%.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p></p></th>
 <th class="head text-center"><p>Has HIV</p></th>
@@ -1382,6 +1396,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </tr>
 </tbody>
 </table>
+</div>
 <p>In a scenario with a low disease prevalence of 0.1%, a significant proportion of positive test results, i.e., 80%, are likely to be false positives. Even with a highly specific test, the low prevalence means that the number of false positives can far outweigh the number of true positives. This leads to a higher chance of healthy individuals being incorrectly identified as positive.</p>
 <p>The false positive rate isn’t solely determined by the test’s specificity. The prevalence of the disease within the tested population significantly influences the proportion of positive tests that are false positives.</p>
 </section>
@@ -1410,7 +1425,7 @@ t-statistic: -4.6677, p-value: 0.0016
 <p>This means that a positive result is 22.2 times <em>more likely</em> in someone with porphyria than someone without it, and 249.75 times more likely in someone with HIV.</p>
 <p>Now, Bayes’ theorem allows us to <strong>update</strong> the <strong>pretest odds</strong> (odds of disease before the test) to the <strong>posttest odds</strong> (odds of disease after the test) using the likelihood ratio as <span class="math notranslate nohighlight">\(\text{posttest odds} = \text{pretest odds} \times \frac{\text{sensitivity}}{1 - \text{specificity}} = \text{pretest odds} \times \text{likelihood ratio}\)</span>.</p>
 <p>The following table illustrates this process for the porphyria and HIV examples:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Who was tested?</p></th>
 <th class="head text-center"><p>Pretest probability</p></th>
@@ -1451,6 +1466,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </tr>
 </tbody>
 </table>
+</div>
 <p>with <span class="math notranslate nohighlight">\(\text{odds} = \frac{\text{probability}}{1-\text{probability}}\)</span> and <span class="math notranslate nohighlight">\(\text{probability} = \frac{\text{odds}}{1 + \text{odds}}\)</span>.</p>
 <p>Even with a high LR+, a positive result in a random screen only slightly increases the probability of having porphyria (0.22%). This is because the disease is very rare. A positive result with a high LR+ is much more informative when the pretest probability is high, as in the case of a sibling test (95.7%). Finally, for the same test (HIV), the posttest probability varies dramatically depending on the pretest probability. A positive result in a high-prevalence population is much more likely to be a true positive than in a low-prevalence population.</p>
 </section>
@@ -1540,7 +1556,7 @@ seaborn: 0.13.2
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1679,8 +1695,8 @@ By Sébastien Wieckowski
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
