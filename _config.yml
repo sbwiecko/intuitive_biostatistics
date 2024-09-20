@@ -40,8 +40,6 @@ repository:
 latex:
   latex_documents:
     targetname              : intuitive-biostatistics-python.tex
-  latex_elements:
-    preamble                : '\usepackage{cancel}'
 
 # Add a bibtex file so that we can create citations
 # bibtex_bibfiles: 
