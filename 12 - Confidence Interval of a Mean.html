@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -216,6 +216,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20Proportions.html">Comparing Proportions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="29%20-%20Comparing%20Survival%20Curves.html">Comparing Survival Curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30%20-%20Comparing%20Two%20Means%20with%20Unpaired%20t%20Test.html">Comparing Two Means with Unpaired t Test</a></li>
 </ul>
 
     </div>
@@ -1291,7 +1292,7 @@ The 95% confidence interval using statsmodels proportion_confint is (0.244, 0.43
 </section>
 <section id="bootstrap-with-pingouin">
 <h4>Bootstrap with <code class="docutils literal notranslate"><span class="pre">pingouin</span></code><a class="headerlink" href="#bootstrap-with-pingouin" title="Link to this heading">#</a></h4>
-<p>The <strong>bootstrap</strong> method doesn’t assume any particular distribution for the data, making it well-suited for analyzing complex or non-normal datasets. For example, the <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.compute_bootci.html"><code class="docutils literal notranslate"><span class="pre">pingoui.compute_bootci</span></code> function</a> calculates bootstrapped confidence intervals of univariate and bivariate functions. Since version 1.7, SciPy also includes a built-in bootstrap function <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html#scipy.stats.bootstrap"><code class="docutils literal notranslate"><span class="pre">scipy.stats.bootstrap</span></code></a>.</p>
+<p>The <strong>bootstrap</strong> method doesn’t assume any particular distribution for the data, making it well-suited for analyzing complex or non-normal datasets. For example, the <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.compute_bootci.html"><code class="docutils literal notranslate"><span class="pre">pingouin.compute_bootci</span></code></a> function calculates bootstrapped confidence intervals of univariate and bivariate functions. Since version 1.7, SciPy also includes a built-in bootstrap function <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html#scipy.stats.bootstrap"><code class="docutils literal notranslate"><span class="pre">scipy.stats.bootstrap</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
