@@ -23,3 +23,5 @@ parts:
       chapters:
       - file: 27 - Comparing Proportions
       - file: 29 - Comparing Survival Curves
+      - file: 30 - Comparing Two Means with Unpaired t Test
+      
