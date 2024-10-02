@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Comparing Two Means with Unpaired t Test &#8212; The Python Companion of Intuitive Biostatistics</title>
+    <title>Comparing Two Unpaired Means &#8212; The Python Companion of Intuitive Biostatistics</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -72,9 +72,10 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '30 - Comparing Two Means with Unpaired t Test';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '30 - Comparing Two Unpaired Means';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Comparing Paired Data" href="31%20-%20Comparing%20Paired%20Data.html" />
     <link rel="prev" title="Comparing Survival Curves" href="29%20-%20Comparing%20Survival%20Curves.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -215,7 +216,8 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20Proportions.html">Comparing Proportions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="29%20-%20Comparing%20Survival%20Curves.html">Comparing Survival Curves</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Comparing Two Means with Unpaired t Test</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Comparing Two Unpaired Means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31%20-%20Comparing%20Paired%20Data.html">Comparing Paired Data</a></li>
 </ul>
 
     </div>
@@ -287,7 +289,7 @@
       
       
       
-      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/master/30 - Comparing Two Means with Unpaired t Test.ipynb" target="_blank"
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/master/30 - Comparing Two Unpaired Means.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -317,7 +319,7 @@
       
       
       
-      <li><a href="_sources/30 - Comparing Two Means with Unpaired t Test.ipynb" target="_blank"
+      <li><a href="_sources/30 - Comparing Two Unpaired Means.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -401,7 +403,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Comparing Two Means with Unpaired t Test</h1>
+    <h1>Comparing Two Unpaired Means</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -470,6 +472,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Descriptive statistics and visualization</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Assessing assumptions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Normality testing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#q-q-plot">Q-Q plot</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Homoscedasticity testing</a></li>
 </ul>
 </li>
@@ -479,11 +482,8 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Bootstrapping and permutation tests</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Bootstrapping with pingouin</a></li>
-</ul>
-</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Bootstrapping with pingouin</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P value</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Bootstrapped t-statistics of shifted data</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Permutation</a></li>
@@ -505,8 +505,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="comparing-two-means-with-unpaired-t-test">
-<h1>Comparing Two Means with Unpaired t Test<a class="headerlink" href="#comparing-two-means-with-unpaired-t-test" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="comparing-two-unpaired-means">
+<h1>Comparing Two Unpaired Means<a class="headerlink" href="#comparing-two-unpaired-means" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>In hypothesis testing, the unpaired t-test is a valuable tool for determining if two separate groups have truly different average values. Whether we’re investigating the impact of a new drug on blood pressure or comparing crop yields from two different fertilizers, the unpaired t-test helps us draw statistically sound conclusions from our data.</p>
@@ -617,8 +617,9 @@ Descriptive statistics for &#39;young&#39;:
 <span class="c1"># Interpret the results</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># Set the desired significance level</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="n">pval_k2_old</span> <span class="o">&gt;</span> <span class="n">alpha</span> <span class="ow">and</span> <span class="n">pval_k2_yng</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">pval_shapiro_old</span> <span class="o">&gt;</span> <span class="n">alpha</span> <span class="ow">and</span> <span class="n">pval_shapiro_yng</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Both groups&#39; data are not inconsistent with a normal distribution </span><span class="se">\</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">pval_k2_old</span> <span class="o">&gt;</span> <span class="n">alpha</span> <span class="ow">and</span> <span class="n">pval_k2_yng</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">)</span> \
+<span class="ow">or</span> <span class="p">(</span><span class="n">pval_shapiro_old</span> <span class="o">&gt;</span> <span class="n">alpha</span> <span class="ow">and</span> <span class="n">pval_shapiro_yng</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Both groups&#39; data are not inconsistent with a normal distribution</span><span class="se">\n\</span>
 <span class="s2">(failed to reject null hypothesis of normality)&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">At least one group&#39;s data is not consistent with a normal distribution&quot;</span><span class="p">)</span>
@@ -631,7 +632,8 @@ young	D&#39;Agostino-Pearson omnibus: K2=1.75, P value=0.418
 old	Shapiro-Wilk&#39;s normality test P value=0.900
 young	Shapiro-Wilk&#39;s normality test P value=0.238
 
-Both groups&#39; data are not inconsistent with a normal distribution (failed to reject null hypothesis of normality)
+Both groups&#39; data are not inconsistent with a normal distribution
+(failed to reject null hypothesis of normality)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics\.env\Lib\site-packages\scipy\stats\_axis_nan_policy.py:418: UserWarning: `kurtosistest` p-value may be inaccurate with fewer than 20 observations; only n=9 observations were given.
@@ -647,8 +649,7 @@ c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
 
-<span class="c1"># Function to perform tests and print results (no changes needed here)</span>
-
+<span class="c1"># Function to perform tests and print results</span>
 <span class="k">def</span> <span class="nf">normality_tests</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sample_type</span><span class="p">):</span>
     <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Test&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;W&#39;</span><span class="si">:</span><span class="s2">&lt;6</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;P value&#39;</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;normal&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Normality tests for </span><span class="si">{</span><span class="n">sample_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="s2">&quot;-&quot;</span><span class="p">))</span>
@@ -725,7 +726,7 @@ c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics
 <p>In such cases, we have a few options:</p>
 <ul class="simple">
 <li><p>Transform the data: if the data exhibits a clear pattern of non-normality, we might attempt to transform it (e.g., using log transformations or square root transformations) to achieve a more normal distribution.</p></li>
-<li><p>Use non-parametric alternatives: when transformations are ineffective or impractical, we can consider non-parametric tests like the Mann-Whitney U test, which do not rely on the normality assumption.</p></li>
+<li><p>Use non-parametric alternatives: when transformations are ineffective or impractical, we can consider non-parametric tests like the <em>Mann-Whitney U test</em> (discussed in a later chapter), which do not rely on the normality assumption.</p></li>
 <li><p>Proceed with caution: if the sample sizes are relatively large and the deviations from normality are not severe, we might proceed with the unpaired t-test, acknowledging the potential limitations in the interpretation of the results.</p></li>
 </ul>
 </section>
@@ -789,6 +790,13 @@ P value for the F-test of equal variance (manual calculation) = 0.2631
 <span class="c1"># Create the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hx</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 
+<span class="c1"># Plot the critical value</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">f_crit</span><span class="p">,</span> <span class="c1"># type: ignore</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;Critical value (</span><span class="si">{</span><span class="n">f_crit</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
 <span class="c1"># Shade the probability alpha</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">f_crit</span><span class="p">],</span>
@@ -798,12 +806,12 @@ P value for the F-test of equal variance (manual calculation) = 0.2631
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
-<span class="c1"># Plot the critical value</span>
+<span class="c1"># Plot the observed F-statistic</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">f_crit</span><span class="p">,</span> <span class="c1"># type: ignore</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;Critical value (</span><span class="si">{</span><span class="n">f_crit</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">f_statistic</span><span class="p">,</span> <span class="c1"># type: ignore</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;F statistic (</span><span class="si">{</span><span class="n">f_statistic</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the P value area</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
@@ -811,13 +819,6 @@ P value for the F-test of equal variance (manual calculation) = 0.2631
     <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">f_statistic</span><span class="p">],</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P value (</span><span class="si">{</span><span class="n">p_value_fstat</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-
-<span class="c1"># Plot the observed F-statistic</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">f_statistic</span><span class="p">,</span> <span class="c1"># type: ignore</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;F statistic (</span><span class="si">{</span><span class="n">f_statistic</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;F value&#39;</span><span class="p">)</span>
@@ -830,7 +831,7 @@ P value for the F-test of equal variance (manual calculation) = 0.2631
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bd698d496f2c7e6993f3aa30424b2ac033c0fc453dd2339eb4de645d2352157e.png" src="_images/bd698d496f2c7e6993f3aa30424b2ac033c0fc453dd2339eb4de645d2352157e.png" />
+<img alt="_images/8d7e5e96ccbe95c7650fab5c60d8f55723d291bd3fa02196406c9d70e25cd02b.png" src="_images/8d7e5e96ccbe95c7650fab5c60d8f55723d291bd3fa02196406c9d70e25cd02b.png" />
 </div>
 </div>
 <p>In the context of homoscedasticity tests like Levene’s test or Bartlett’s test, the <em>null hypothesis states that the variances are equal</em>.</p>
@@ -987,12 +988,12 @@ bartlett  1.290011  0.256046       True
 <span class="c1"># Calculate the confidence interval (e.g., 95% confidence)</span>
 <span class="n">confidence_level</span> <span class="o">=</span> <span class="mf">0.95</span>
 <span class="n">margin_of_error_welch</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">confidence_level</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">df_welch</span><span class="p">)</span> <span class="o">*</span> <span class="n">se_unequal</span>
-<span class="n">confidence_interval_welch</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean_diff</span> <span class="o">-</span> <span class="n">margin_of_error_welch</span><span class="p">,</span> <span class="n">mean_diff</span> <span class="o">+</span> <span class="n">margin_of_error_welch</span><span class="p">)</span>
+<span class="n">ci_welch</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean_diff</span> <span class="o">-</span> <span class="n">margin_of_error_welch</span><span class="p">,</span> <span class="n">mean_diff</span> <span class="o">+</span> <span class="n">margin_of_error_welch</span><span class="p">)</span>
 
 <span class="c1"># Print the results</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean difference (young - old) = </span><span class="si">{</span><span class="n">mean_diff</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% confidence interval for the mean difference: </span><span class="se">\</span>
-<span class="s2">[</span><span class="si">{</span><span class="n">confidence_interval_welch</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">confidence_interval_welch</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">ci_welch</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ci_welch</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1099,6 +1100,17 @@ Welch&#39;s t-test results (Pingouin):
 <span class="c1"># Create the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hx</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 
+<span class="c1"># Plot the critical t-values</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">t_crit_upper_welch</span><span class="p">,</span> <span class="c1"># type: ignore</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Critical value (</span><span class="si">{</span><span class="n">t_crit_upper_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">t_crit_lower_welch</span><span class="p">,</span> <span class="c1"># type: ignore</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,)</span>
+
 <span class="c1"># Shade the rejection regions (alpha)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">t_crit_lower_welch</span><span class="p">],</span>
@@ -1107,7 +1119,6 @@ Welch&#39;s t-test results (Pingouin):
     <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper_welch</span><span class="p">],</span>
     <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper_welch</span><span class="p">],</span>
@@ -1115,17 +1126,12 @@ Welch&#39;s t-test results (Pingouin):
     <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">)</span>
 
-<span class="c1"># Plot the critical t-values</span>
+<span class="c1"># Plot the observed t-statistic</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">t_crit_lower_welch</span><span class="p">,</span> <span class="c1"># type: ignore</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">t_crit_upper_welch</span><span class="p">,</span> <span class="c1"># type: ignore</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Critical value (</span><span class="si">{</span><span class="n">t_crit_upper_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">t_statistic_welch</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;t-statistic (</span><span class="si">{</span><span class="n">t_statistic_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the P-value areas (two-tailed)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
@@ -1133,18 +1139,10 @@ Welch&#39;s t-test results (Pingouin):
     <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_welch</span><span class="p">)],</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P value (</span><span class="si">{</span><span class="n">p_value_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_welch</span><span class="p">)],</span>
     <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_welch</span><span class="p">)],</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">)</span>
-
-<span class="c1"># Plot the observed t-statistic</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">t_statistic_welch</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;t-statistic (</span><span class="si">{</span><span class="n">t_statistic_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t-value&#39;</span><span class="p">)</span>
@@ -1157,11 +1155,11 @@ Welch&#39;s t-test results (Pingouin):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5d2e9f33c69a10b326b2f3387550bdd8d85c808ddfdcf87ab2b59160c770fa51.png" src="_images/5d2e9f33c69a10b326b2f3387550bdd8d85c808ddfdcf87ab2b59160c770fa51.png" />
+<img alt="_images/0893ba87c431050f6e702983ec3c799253364bc3c31e2fd17222d275477bdb4a.png" src="_images/0893ba87c431050f6e702983ec3c799253364bc3c31e2fd17222d275477bdb4a.png" />
 </div>
 </div>
 <p>The red dashed lines in this diagram represent the critical t-values that define the <em>rejection regions</em> for a two-tailed t-test at a 5% significance level. The ‘tails’ of the curve outside these lines each represent 2.5% of the probability distribution under the null hypothesis (that the true population mean difference is zero).</p>
-<p>The green dot-dashed line represents the observed t-statistic calculated from our sample data. The P value corresponds to the total probability of observing a t-statistic as extreme as (or more extreme than) the one we calculated, assuming the null hypothesis is true. In a two-tailed test like this, we consider <em>both tails of the distribution</em> because the true population mean difference could be either higher or lower than zero. One-tailed tests <a class="reference internal" href="#one-sided"><span class="std std-ref">as shown later</span></a> are used when we have a directional hypothesis, specifically testing if the difference is ‘less than zero’ or ‘greater than zero’.</p>
+<p>The green dot-dashed line represents the observed t-statistic calculated from our sample data. The P value corresponds to the total probability of observing a t-statistic as extreme as (or more extreme than) the one we calculated, assuming the null hypothesis is true. In a two-tailed test like this, we consider <em>both tails of the distribution</em> because the true population mean difference could be either higher or lower than zero. <a class="reference internal" href="#one-sided"><span class="std std-ref">One-tailed tests (as shown later)</span></a> are used when we have a directional hypothesis, specifically testing if the difference is ‘less than zero’ or ‘greater than zero’.</p>
 </section>
 </section>
 <section id="student-t-test">
@@ -1242,12 +1240,12 @@ s_p^2 &amp;= \frac{\sum_{i=1}^{n_1}(x_i - \bar x_1)^2 + \sum_{j=1}^{n_2}(x_j - \
 
 <span class="c1"># Calculate the confidence interval (e.g., 95% confidence)</span>
 <span class="n">margin_of_error_student</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">confidence_level</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">df_student</span><span class="p">)</span> <span class="o">*</span> <span class="n">se_pooled</span> 
-<span class="n">confidence_interval_student</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean_diff</span> <span class="o">-</span> <span class="n">margin_of_error_student</span><span class="p">,</span> <span class="n">mean_diff</span> <span class="o">+</span> <span class="n">margin_of_error_student</span><span class="p">)</span>
+<span class="n">ci_student</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean_diff</span> <span class="o">-</span> <span class="n">margin_of_error_student</span><span class="p">,</span> <span class="n">mean_diff</span> <span class="o">+</span> <span class="n">margin_of_error_student</span><span class="p">)</span>
 
 <span class="c1"># Print the results</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean difference (young - old) = </span><span class="si">{</span><span class="n">mean_diff</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% confidence interval for the mean difference: </span><span class="se">\</span>
-<span class="s2">[</span><span class="si">{</span><span class="n">confidence_interval_student</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">confidence_interval_student</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">ci_student</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ci_student</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1351,22 +1349,6 @@ Student&#39;s t-test results (Pingouin):
 <span class="c1"># Create the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hx</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 
-<span class="c1"># Shade the rejection regions (alpha)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
-    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">t_crit_lower_student</span><span class="p">],</span>
-    <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">t_crit_lower_student</span><span class="p">],</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
-    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper_student</span><span class="p">],</span>
-    <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper_student</span><span class="p">],</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">)</span>
-
 <span class="c1"># Plot the critical t-values</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">t_crit_lower_student</span><span class="p">,</span> <span class="c1"># type: ignore</span>
@@ -1379,17 +1361,20 @@ Student&#39;s t-test results (Pingouin):
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Critical value (</span><span class="si">{</span><span class="n">t_crit_upper_student</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
-<span class="c1"># Shade the P-value areas (two-tailed)</span>
+<span class="c1"># Shade the rejection regions (alpha)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
-    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_student</span><span class="p">)],</span>
-    <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_student</span><span class="p">)],</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P value (</span><span class="si">{</span><span class="n">p_value_student</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,)</span>
-
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">t_crit_lower_student</span><span class="p">],</span>
+    <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">t_crit_lower_student</span><span class="p">],</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
-    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_student</span><span class="p">)],</span>
-    <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_student</span><span class="p">)],</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper_student</span><span class="p">],</span>
+    <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper_student</span><span class="p">],</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot the observed t-statistic</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
@@ -1397,6 +1382,17 @@ Student&#39;s t-test results (Pingouin):
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;t-statistic (</span><span class="si">{</span><span class="n">t_statistic_student</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Shade the P-value areas (two-tailed)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_student</span><span class="p">)],</span>
+    <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_student</span><span class="p">)],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P value (</span><span class="si">{</span><span class="n">p_value_student</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_student</span><span class="p">)],</span>
+    <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_student</span><span class="p">)],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t-value&#39;</span><span class="p">)</span>
@@ -1409,7 +1405,7 @@ Student&#39;s t-test results (Pingouin):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10718d90899e9fbd92bb043b7460ef11775caed673c8c3efbc730289e4882450.png" src="_images/10718d90899e9fbd92bb043b7460ef11775caed673c8c3efbc730289e4882450.png" />
+<img alt="_images/e8d2f4c719796db873bbffdcebe6b4c0432b45c88625d299a806a53e924a4a67.png" src="_images/e8d2f4c719796db873bbffdcebe6b4c0432b45c88625d299a806a53e924a4a67.png" />
 </div>
 </div>
 </section>
@@ -1423,7 +1419,7 @@ Student&#39;s t-test results (Pingouin):
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all available datasets in pingouin (commented out)</span>
-<span class="c1"># pg.list_datasets() </span>
+<span class="c1"># pg.list_dataset()</span>
 
 <span class="c1"># Load the &#39;penguins&#39; dataset</span>
 <span class="n">penguins</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">read_dataset</span><span class="p">(</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
@@ -1776,7 +1772,8 @@ Student&#39;s t-test results (Pingouin):
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove the Chinstrap species</span>
-<span class="n">penguins_filtered</span> <span class="o">=</span> <span class="n">penguins</span><span class="p">[</span><span class="n">penguins</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;Chinstrap&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Create a copy to avoid modifying the original DataFrame</span>
+<span class="c1"># Create a copy to avoid modifying the original DataFrame</span>
+<span class="n">penguins_filtered</span> <span class="o">=</span> <span class="n">penguins</span><span class="p">[</span><span class="n">penguins</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;Chinstrap&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
 <span class="c1"># Box and swarm plots</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
@@ -1805,13 +1802,15 @@ Student&#39;s t-test results (Pingouin):
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform tests using our own function (see normality testing)</span>
 <span class="n">normality_tests</span><span class="p">(</span>
-    <span class="n">adelie_flipper</span><span class="o">:=</span><span class="n">penguins_filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">penguins_filtered</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Adelie&#39;</span><span class="p">,</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">adelie_flipper</span><span class="o">:=</span><span class="n">penguins_filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="n">penguins_filtered</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Adelie&#39;</span><span class="p">,</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
     <span class="s2">&quot;Adelie penguins&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="n">normality_tests</span><span class="p">(</span>
-    <span class="n">gentoo_flipper</span><span class="o">:=</span><span class="n">penguins_filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">penguins_filtered</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Gentoo&#39;</span><span class="p">,</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">gentoo_flipper</span><span class="o">:=</span><span class="n">penguins_filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="n">penguins_filtered</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Gentoo&#39;</span><span class="p">,</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
     <span class="s2">&quot;Gentoo penguins&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2292,8 +2291,8 @@ t-statistic = 2.684, P value = 0.00386, DF= 272.0
 <span class="c1"># Generate 10,000 bootstrap replicates of the mean for each group</span>
 <span class="c1"># !Make sure to choose exactly N elements randomly **with replacement**</span>
 <span class="n">n_replicates</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">bs_old_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+<span class="n">bs_old_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
         <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
             <span class="n">old</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">old</span><span class="p">),</span>
@@ -2304,7 +2303,8 @@ t-statistic = 2.684, P value = 0.00386, DF= 272.0
     <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">yng</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">yng</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)</span>
     <span class="p">])</span>
 
-<span class="c1"># Calculate the difference between the bootstrap means for each replicate (cast operation on numpy arrays)</span>
+<span class="c1"># Calculate the difference between the bootstrap means for each replicate</span>
+<span class="c1"># (cast operation on numpy arrays)</span>
 <span class="n">bs_mean_diff</span> <span class="o">=</span> <span class="n">bs_yng_means</span> <span class="o">-</span> <span class="n">bs_old_means</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">bs_mean_diff</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>  <span class="c1"># print the 10 first replicates</span>
 </pre></div>
@@ -2328,13 +2328,13 @@ t-statistic = 2.684, P value = 0.00386, DF= 272.0
 <span class="n">bs_CI_mean_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bs_mean_diff</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Print the results</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap estimate of rthe mean difference  = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_mean_diff</span><span class="p">)</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap estimate of the mean difference  = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_mean_diff</span><span class="p">)</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Corresponding 95% CI estimate = </span><span class="si">{</span><span class="n">bs_CI_mean_diff</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bootstrap estimate of rthe mean difference  = 23.44
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bootstrap estimate of the mean difference  = 23.44
 Corresponding 95% CI estimate = [11.52 35.54]
 </pre></div>
 </div>
@@ -2374,20 +2374,20 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <span class="c1"># Add labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Resampled mean difference&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap distribution of mean differences (</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2"> resamples)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap distribution of mean differences (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5359d8a30de18d5663726272c0443fe5164c75ebc7bfbb20938e8ab2fc49e8e7.png" src="_images/5359d8a30de18d5663726272c0443fe5164c75ebc7bfbb20938e8ab2fc49e8e7.png" />
+<img alt="_images/be53b9bca7d4a1b676d4e37775d85a472a98b759aebed9fe09eafb7e9bd29c66.png" src="_images/be53b9bca7d4a1b676d4e37775d85a472a98b759aebed9fe09eafb7e9bd29c66.png" />
 </div>
 </div>
 <p>Bootstrapping relies entirely on the data in the original sample. If, by chance, the original samples have less variability or happen to be more representative of their respective populations, the bootstrap distribution might exhibit less spread, leading to a narrower confidence interval. And as bootstrapping involves random resampling, which introduces some inherent variability in the results, it’s possible that the particular set of bootstrap samples generated in this instance led to a slightly narrower confidence interval than the theoretical one based on the t-distribution. Moreover, the t-distribution-based confidence interval assumes that the data follows a normal distribution. If the actual data deviates from normality, especially in the tails, the t-distribution might overestimate the variability, resulting in a wider confidence interval than necessary.</p>
 </section>
 <section id="bootstrapping-with-pingouin">
 <h3>Bootstrapping with pingouin<a class="headerlink" href="#bootstrapping-with-pingouin" title="Link to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">compute_bootci</span></code> method from the <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> library proves to be a valuable asset in such scenarios, as it streamlines the process of generating confidence intervals using bootstrapping. It eliminates the need for manual creation of bootstrap samples, offering a variety of methods for confidence interval computation, including the normal approximation, percentile bootstrap, and bias-corrected percentile method. Additionally, it provides the flexibility to return the entire bootstrap distribution, enabling further exploration and visualization of the resampling results.</p>
+<p>The <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.compute_bootci.html"><code class="docutils literal notranslate"><span class="pre">compute_bootci</span></code></a> method from the <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> library proves to be a valuable asset in such scenarios, as it streamlines the process of generating confidence intervals using bootstrapping. It eliminates the need for manual creation of bootstrap samples, offering a variety of methods for confidence interval computation, including the normal approximation, percentile bootstrap, and bias-corrected percentile method. Additionally, it provides the flexibility to return the entire bootstrap distribution, enabling further exploration and visualization of the resampling results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate 95% percentile bootstrap confidence interval using pingouin</span>
@@ -2402,7 +2402,8 @@ Corresponding 95% CI estimate = [11.52 35.54]
     <span class="n">n_boot</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
     <span class="n">return_dist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% percentile bootstrap confidence interval (pingouin): (</span><span class="si">{</span><span class="n">bs_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">bs_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;95% percentile bootstrap confidence interval (pingouin): (</span><span class="si">{</span><span class="n">bs_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">bs_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="n">bt</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -2434,12 +2435,15 @@ Corresponding 95% CI estimate = [11.52 35.54]
 </ol>
 <p>Finally, we <a class="reference external" href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)#Bootstrap_hypothesis_testing">estimate the P value</a> as the proportion of bootstrap t-statistics that are as extreme as or more extreme than the observed t-statistic <span class="math notranslate nohighlight">\(t\)</span> from our original data:</p>
 <div class="math notranslate nohighlight">
-\[p = \frac{\sum_{i=1}^B I\{t_i^* \ge t \}}{B}\]</div>
+\[p = \frac{\sum_{i=1}^B I\{t_i^* \ge t \}}{B} | t \gt 0\]</div>
 <p>where <span class="math notranslate nohighlight">\(I\{\text{condition}\} = 1\)</span> if the <em>condition</em> is true and <span class="math notranslate nohighlight">\(0\)</span> otherwise. This P value represents the probability of observing a t-statistic as extreme as, or more extreme than, the one calculated from our original data, assuming the null hypothesis (H0) of equal population means is true.</p>
+<p>Importantly, we’re not just interested in any difference, but a difference in a <em>specific direction</em>. A positive statistic suggests an effect in one direction, a negative statistic suggests an effect in the opposite direction. Therefore, if the observed test statistic is negative, the P value is the proportion of bootstrapped test statistics that <em>are less than or equal</em> to the observed test statistic:</p>
+<div class="math notranslate nohighlight">
+\[p = \frac{\sum_{i=1}^B I\{t_i^* \le t \}}{B} | t \lt 0\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the random seed for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>  
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
 <span class="n">n_replicates</span> <span class="o">=</span> <span class="mi">10000</span>
 
@@ -2458,20 +2462,17 @@ Corresponding 95% CI estimate = [11.52 35.54]
 
 <span class="c1"># Calculate sample means and variances for each bootstrap replicate</span>
 <span class="c1"># !np.mean calculates the mean of the entire flattened array by default if no &#39;axis&#39; is provided</span>
-<span class="n">bs_shifted_old_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_shifted_old</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Calculate mean along each row (replicate)</span>
+<span class="n">bs_shifted_old_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_shifted_old</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Calculate mean along each row/replicate</span>
 <span class="n">bs_shifted_yng_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_shifted_yng</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">bs_shifted_old_vars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">bs_shifted_old</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Calculate variance along each row</span>
 <span class="n">bs_shifted_yng_vars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">bs_shifted_yng</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># Calculate the standard error for the difference in means for each replicate (assuming unequal variances)</span>
+<span class="c1"># Calculate the standard error for the difference means for each replicate using Welch&#39;s formula</span>
 <span class="n">bs_se_unequal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">bs_shifted_old_vars</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">old</span><span class="p">)</span> <span class="o">+</span> <span class="n">bs_shifted_yng_vars</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">yng</span><span class="p">))</span>
 
 <span class="c1"># Calculate Welch&#39;s t-statistic for each bootstrap replicate</span>
 <span class="n">bs_t_statistic_welch</span> <span class="o">=</span> <span class="p">(</span><span class="n">bs_shifted_yng_means</span> <span class="o">-</span> <span class="n">bs_shifted_old_means</span><span class="p">)</span> <span class="o">/</span> <span class="n">bs_se_unequal</span>
-
-<span class="c1"># Reminds the observed t-statistic calculated earlier</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Observed t-statistic (Welch&#39;s) = </span><span class="si">{</span><span class="n">t_statistic_welch</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Print the first 15 t-statistics from the bootstrap replicates</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">[:</span><span class="mi">15</span><span class="p">])</span>
@@ -2479,8 +2480,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observed t-statistic (Welch&#39;s) = 3.6242
-[ 0.3117061   0.04728963 -0.30521782  0.8322539  -0.03140883  0.49586349
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.3117061   0.04728963 -0.30521782  0.8322539  -0.03140883  0.49586349
  -0.0809322  -0.76470241  0.51108061  0.84035053 -2.5197374   0.16208369
  -2.19024079  0.38957005  2.06971633]
 </pre></div>
@@ -2489,8 +2489,11 @@ Corresponding 95% CI estimate = [11.52 35.54]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the P value using bootstrapping (one-tailed test, assuming unequal variances)</span>
-<span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&gt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the P value using bootstrapping, considering the direction of the observed statistic</span>
+<span class="k">if</span> <span class="n">t_statistic_welch</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&gt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&lt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">)</span>
 
 <span class="c1"># Print the P value</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value obtained using bootstrapped t-statistics = </span><span class="si">{</span><span class="n">p_value_bs_shifted</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -2506,11 +2509,13 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <p>We can visualize the P value by plotting the histogram of bootstrapped t-statistics (after shifting the data to a common mean). The P value corresponds to the area under the histogram where the t-statistic is greater than or equal to the observed t-statistic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the histogram of the bootstrap t-statistics</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+
+<span class="c1"># Plot the histogram of the bootstrap t-statistics</span>
+<span class="n">hist</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
     <span class="n">bs_t_statistic_welch</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+    <span class="n">bins</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">n_replicates</span><span class="o">**</span><span class="mf">.5</span><span class="p">),</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span>
     <span class="c1"># alpha=0.75,</span>
     <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bootstrap t-statistics&#39;</span><span class="p">)</span>
@@ -2522,25 +2527,38 @@ Corresponding 95% CI estimate = [11.52 35.54]
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Observed t-statistic (</span><span class="si">{</span><span class="n">t_statistic_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
-<span class="c1"># Plot the histogram of the bootstrap t-statistics, only the part to the right of the observed t-statistic</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
-    <span class="n">bs_t_statistic_welch</span><span class="p">[</span><span class="n">bs_t_statistic_welch</span> <span class="o">&gt;=</span> <span class="n">t_statistic_welch</span><span class="p">],</span>
-    <span class="n">density</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span>
-    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P value (</span><span class="si">{</span><span class="n">p_value_bs_shifted</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="c1"># Determine the direction of the observed statistic and plot accordingly</span>
+<span class="k">if</span> <span class="n">t_statistic_welch</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># Plot the histogram of the bootstrap t-statistics &gt;= observed t-statistic</span>
+    <span class="n">extreme_t_stats</span> <span class="o">=</span> <span class="n">bs_t_statistic_welch</span><span class="p">[</span><span class="n">bs_t_statistic_welch</span> <span class="o">&gt;=</span> <span class="n">t_statistic_welch</span><span class="p">]</span>
+    <span class="c1"># Change the color of the bars based on the direction parameter</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bin_edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">bin_edge</span> <span class="o">&gt;=</span> <span class="n">extreme_t_stats</span><span class="p">):</span>
+            <span class="n">patches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lime&#39;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Plot the histogram of the bootstrap t-statistics &lt;= observed t-statistic</span>
+    <span class="n">extreme_t_stats</span> <span class="o">=</span> <span class="n">bs_t_statistic_welch</span><span class="p">[</span><span class="n">bs_t_statistic_welch</span> <span class="o">&lt;=</span> <span class="n">t_statistic_welch</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bin_edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">bin_edge</span> <span class="o">&lt;=</span> <span class="n">extreme_t_stats</span><span class="p">):</span>
+            <span class="n">patches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lime&#39;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Bootstrap t-statistic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t-statistic&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribution of bootstrap t-statistics under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+
+<span class="c1"># Create a copy of the original patch for the legend</span>
+<span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bootstrap t-statistics&#39;</span><span class="p">)</span>
+<span class="c1"># Create a patch for the legend</span>
+<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P value (</span><span class="si">{</span><span class="n">p_value_bs_shifted</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add the patches to the legend</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">original_patch</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_value_patch</span><span class="p">]);</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/79815512c05de6abad885cb82dbea4441a3226f8f806ea9a5b248b2975051f23.png" src="_images/79815512c05de6abad885cb82dbea4441a3226f8f806ea9a5b248b2975051f23.png" />
+<img alt="_images/982eca5c38708aaf99c1146ec5ceba579fac4cf7234b4ddbce81d735cd771256.png" src="_images/982eca5c38708aaf99c1146ec5ceba579fac4cf7234b4ddbce81d735cd771256.png" />
 </div>
 </div>
 </section>
@@ -2592,7 +2610,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <span class="n">n_replicates</span> <span class="o">=</span> <span class="mi">10000</span>
 
 <span class="c1"># Initialize an empty array to store the bootstrap mean differences</span>
-<span class="n">bs_mean_diff_shuffled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)</span>
+<span class="n">permuted_mean_diffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)</span>
 
 <span class="c1"># Generate bootstrap replicates of the mean difference for each permutation sample</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">):</span>
@@ -2600,13 +2618,15 @@ Corresponding 95% CI estimate = [11.52 35.54]
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">permutation_sample</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">yng</span><span class="p">)</span>
 
     <span class="c1"># Calculate the mean difference for this permuted sample</span>
-    <span class="n">bs_mean_diff_shuffled</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">permuted_mean_diffs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># We could also use a list comprehension instead of the loop</span>
-<span class="c1">#bs_mean_diff_shuffled = np.array([np.mean(x) - np.mean(y) for _ in range(n_replicates) for x, y in [permutation_sample(old, yng)]])</span>
+<span class="c1"># bs_mean_diff_shuffled = np.array([</span>
+<span class="c1">#     np.mean(x)-np.mean(y) for _ in range(n_replicates) for x, y in [permutation_sample(old, yng)]</span>
+<span class="c1">#     ])</span>
 
 <span class="c1"># Print the first 10 replicates</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">permuted_mean_diffs</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2620,8 +2640,12 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <p>The core logic for calculating the P value remains consistent between the permutation test and the mean-shifting approach. In both cases, we estimate the P value as the proportion of replicates (permuted mean differences or bootstrapped t-statistics from shifted data) that are as extreme as, or more extreme than, the observed statistic (the original mean difference or t-statistic). The fundamental distinction lies in how the null hypothesis is simulated. The permutation test achieves this by shuffling group labels, while the mean-shifting approach shifts the data in each group to a common mean, effectively assuming no difference between the groups.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the P value using the permutation distribution of mean differences</span>
-<span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span> <span class="o">&gt;=</span> <span class="n">mean_diff</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the P value using the permutation distribution of mean differences,</span>
+<span class="c1"># considering the direction of the observed mean difference</span>
+<span class="k">if</span> <span class="n">mean_diff</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&gt;=</span> <span class="n">mean_diff</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">permuted_mean_diffs</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&lt;=</span> <span class="n">mean_diff</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">permuted_mean_diffs</span><span class="p">)</span>
 
 <span class="c1"># Print the p-value</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value obtained using permutation test (mean difference) = </span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -2637,10 +2661,10 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the histogram of the shuffled mean differences</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
-    <span class="n">bs_mean_diff_shuffled</span><span class="p">,</span>
+<span class="n">hist</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">permuted_mean_diffs</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+    <span class="n">bins</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">n_replicates</span><span class="o">**</span><span class="mf">.5</span><span class="p">),</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span>
     <span class="c1"># alpha=0.75,</span>
     <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Permuted mean differences&#39;</span><span class="p">)</span>
@@ -2652,25 +2676,38 @@ Corresponding 95% CI estimate = [11.52 35.54]
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Observed mean difference (</span><span class="si">{</span><span class="n">mean_diff</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
-<span class="c1"># Plot the histogram of the mean differences greater than or equal to the observed mean difference</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
-    <span class="n">bs_mean_diff_shuffled</span><span class="p">[</span><span class="n">bs_mean_diff_shuffled</span> <span class="o">&gt;=</span> <span class="n">mean_diff</span><span class="p">],</span>
-    <span class="n">density</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span>
-    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P value (</span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="c1"># Determine the direction of the observed difference and plot accordingly</span>
+<span class="k">if</span> <span class="n">mean_diff</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># Plot the histogram of the mean differences &gt;= observed mean difference </span>
+    <span class="n">extreme_diffs</span> <span class="o">=</span> <span class="n">permuted_mean_diffs</span><span class="p">[</span><span class="n">permuted_mean_diffs</span> <span class="o">&gt;=</span> <span class="n">mean_diff</span><span class="p">]</span>
+    <span class="c1"># Change the color of the bars based on the direction parameter</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bin_edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">bin_edge</span> <span class="o">&gt;=</span> <span class="n">extreme_diffs</span><span class="p">):</span>
+            <span class="n">patches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lime&#39;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Plot the histogram of the mean differences &lt;= observed mean difference</span>
+    <span class="n">extreme_diffs</span> <span class="o">=</span> <span class="n">permuted_mean_diffs</span><span class="p">[</span><span class="n">permuted_mean_diffs</span> <span class="o">&lt;=</span> <span class="n">mean_diff</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bin_edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">bin_edge</span> <span class="o">&lt;=</span> <span class="n">extreme_diffs</span><span class="p">):</span>
+            <span class="n">patches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lime&#39;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 
 <span class="c1"># Add labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Mean difference&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribution of permutated mean differences under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+
+<span class="c1"># Create a copy of the original patch for the legend</span>
+<span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Permuted paired difference means&#39;</span><span class="p">)</span>
+<span class="c1"># Create a patch for the legend</span>
+<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P value (</span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add the patches to the legend</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">original_patch</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_value_patch</span><span class="p">]);</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c0402a19ac3e6fedddfa4707746d2d661cea5adab973bb4e6c44304a26b583e4.png" src="_images/c0402a19ac3e6fedddfa4707746d2d661cea5adab973bb4e6c44304a26b583e4.png" />
+<img alt="_images/21852ab069ab2b69b237adb2093cee74880ef21285ed6b41ce1503b15f14a90b.png" src="_images/21852ab069ab2b69b237adb2093cee74880ef21285ed6b41ce1503b15f14a90b.png" />
 </div>
 </div>
 <p>All the P values are considerably smaller than the typical significance level of 0.05. This indicates strong evidence to <strong>reject the null hypothesis</strong> of no difference between the means of the “old” and “young” rat groups. Therefore, we can confidently conclude that there is a <strong>statistically significant difference</strong> between the means of the two groups. The data suggests that the “young” rats, on average, have a significantly different (likely higher, based on the previous context) outcome measurement compared to the “old” rats.</p>
@@ -2690,13 +2727,13 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>
 <section id="id1">
 <h3>Descriptive statistics and visualization<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
-<span class="c1"># Descriptive statistics</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Descriptive statistics</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 <span class="n">stats</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span>
 
+<span class="c1"># Box and swarm plots</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="c1"># Box and swarm plots</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">])</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">])</span>
 </pre></div>
@@ -2716,9 +2753,12 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">normality</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;normaltest&#39;</span><span class="p">)</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">normality</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;shapiro&#39;</span><span class="p">)</span>
-
-<span class="c1"># Q-Q plot</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="q-q-plot">
+<h4>Q-Q plot<a class="headerlink" href="#q-q-plot" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pg</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2750,7 +2790,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using scipy.stats</span>
 <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># Using Pingouin</span>
+<span class="c1"># Using pingouin</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2767,7 +2807,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
     <span class="n">nan_policy</span><span class="o">=</span><span class="s1">&#39;omit&#39;</span><span class="p">,</span>  <span class="c1"># scipy doesn&#39;t remove missing values automatically</span>
 <span class="p">)</span>
 
-<span class="c1"># Using Pingouin</span>
+<span class="c1"># Using pingouin</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="c1"># T-test with a DataFrame</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span>
@@ -2799,42 +2839,35 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <h3>Bootstrapping and permutation tests<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <section id="bootstrapping">
 <h4>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate 10,000 bootstrap replicates of the mean for each group</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate B bootstrap replicates of the mean for each group</span>
 <span class="c1"># !Make sure to choose exactly N elements randomly **with replacement**</span>
 <span class="n">n_replicates</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">bs_old_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+<span class="n">bs_data1_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
         <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
             <span class="n">data1</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data1</span><span class="p">),</span>
             <span class="n">replace</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)</span>
     <span class="p">])</span>
+<span class="c1"># bs_data2_means = ...</span>
 
 <span class="c1"># Calculate the statistic of interest `bs` for each replicate</span>
-</pre></div>
-</div>
-<section id="confidence-interval">
-<h5>Confidence interval<a class="headerlink" href="#confidence-interval" title="Link to this heading">#</a></h5>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bs_CI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Confidence interval</span>
+<span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>
 <section id="id7">
-<h5>Bootstrapping with pingouin<a class="headerlink" href="#id7" title="Link to this heading">#</a></h5>
+<h4>Bootstrapping with pingouin<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bs_ci</span><span class="p">,</span> <span class="n">bt</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">compute_bootci</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">data1</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="n">data2</span><span class="p">,</span>
-    <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data2</span><span class="p">),</span>
-    <span class="n">confidence</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
-    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;cper&#39;</span><span class="p">,</span>  <span class="c1"># Bias-corrected percentile method (default)</span>
-    <span class="n">seed</span><span class="o">=</span><span class="mi">111</span><span class="p">,</span>
-    <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">n_boot</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+    <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data2</span><span class="p">),</span>
     <span class="n">return_dist</span><span class="o">=</span><span class="kc">True</span><span class="p">,)</span>
 </pre></div>
 </div>
-</section>
 </section>
 <section id="p-value">
 <h4>P value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h4>
@@ -2849,26 +2882,32 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <span class="n">data1_shifted</span> <span class="o">=</span> <span class="n">data1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span> <span class="o">+</span> <span class="n">combined_mean</span>
 <span class="n">data2_shifted</span> <span class="o">=</span> <span class="n">data2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="o">+</span> <span class="n">combined_mean</span>
 
-<span class="c1"># Generate 10,000 bootstrap replicates for each shifted group</span>
-<span class="n">bs_shifted_data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data1_shifted</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data1</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)])</span>
-<span class="n">bs_shifted_data2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data2_shifted</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data2</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)])</span>
+<span class="c1"># Generate B bootstrap replicates for each shifted group</span>
+<span class="n">bs_shifted_data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data1_shifted</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data1</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)])</span>
+<span class="n">bs_shifted_data2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data2_shifted</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data2</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)])</span>
 
 <span class="c1"># Calculate sample means and variances for each bootstrap replicate</span>
 <span class="c1"># !np.mean calculates the mean of the entire flattened array by default if no &#39;axis&#39; is provided</span>
-<span class="n">bs_shifted_data1_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_shifted_data1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Calculate mean along each row (replicate)</span>
+<span class="n">bs_shifted_data1_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_shifted_data1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Calculate mean along each row</span>
 <span class="n">bs_shifted_data2_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_shifted_data2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">bs_shifted_data1_vars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">bs_shifted_data1</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Calculate variance along each row</span>
+<span class="n">bs_shifted_data1_vars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">bs_shifted_data1</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Variance along each row</span>
 <span class="n">bs_shifted_data2_vars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">bs_shifted_data2</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># Calculate the standard error for the difference in means for each replicate (assuming unequal variances)</span>
+<span class="c1"># Calculate the standard error for the difference in means for each replicate (Welch&#39;s formula)</span>
 <span class="n">bs_se_unequal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">bs_shifted_data1_vars</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span> <span class="o">+</span> <span class="n">bs_shifted_data2_vars</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data2</span><span class="p">))</span>
 
 <span class="c1"># Calculate Welch&#39;s t-statistic for each bootstrap replicate</span>
 <span class="n">bs_t_statistic_welch</span> <span class="o">=</span> <span class="p">(</span><span class="n">bs_shifted_data2_means</span> <span class="o">-</span> <span class="n">bs_shifted_data1_means</span><span class="p">)</span> <span class="o">/</span> <span class="n">bs_se_unequal</span>
 
-<span class="c1"># Calculate the P value using bootstrapping (one-tailed test, assuming unequal variances)</span>
-<span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&gt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">)</span>
+<span class="c1"># Calculate the P value using bootstrapping, considering the direction of the observed statistic</span>
+<span class="k">if</span> <span class="n">t_statistic_welch</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&gt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&lt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">)</span>
+
 </pre></div>
 </div>
 </section>
@@ -2885,9 +2924,17 @@ Corresponding 95% CI estimate = [11.52 35.54]
 
     <span class="k">return</span> <span class="n">permuted_data1</span><span class="p">,</span> <span class="n">permuted_data2</span>
 
-<span class="n">bs_mean_diff_shuffled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="n">permutation_sample</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">)]])</span>
+<span class="n">bs_mean_diff_shuffled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="n">permutation_sample</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">)]</span>
+    <span class="p">])</span>
 
-<span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span> <span class="o">&gt;=</span> <span class="n">mean_diff</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span><span class="p">)</span>
+<span class="c1"># Calculate the P value using the permutation distribution of mean differences,</span>
+<span class="c1"># considering the direction of the observed mean difference</span>
+<span class="k">if</span> <span class="n">mean_diff</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span> <span class="o">&gt;=</span> <span class="n">mean_diff</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span> <span class="o">&lt;=</span> <span class="n">mean_diff</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2987,6 +3034,15 @@ statsmodels: 0.14.2
         <p class="prev-next-title">Comparing Survival Curves</p>
       </div>
     </a>
+    <a class="right-next"
+       href="31%20-%20Comparing%20Paired%20Data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Comparing Paired Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -3062,6 +3118,7 @@ statsmodels: 0.14.2
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Descriptive statistics and visualization</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Assessing assumptions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Normality testing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#q-q-plot">Q-Q plot</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Homoscedasticity testing</a></li>
 </ul>
 </li>
@@ -3071,11 +3128,8 @@ statsmodels: 0.14.2
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Bootstrapping and permutation tests</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Bootstrapping with pingouin</a></li>
-</ul>
-</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Bootstrapping with pingouin</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P value</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Bootstrapped t-statistics of shifted data</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Permutation</a></li>
