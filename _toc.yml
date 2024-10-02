@@ -24,4 +24,4 @@ parts:
       - file: 27 - Comparing Proportions
       - file: 29 - Comparing Survival Curves
       - file: 30 - Comparing Two Unpaired Means
-      
+      - file: 31 - Comparing Paired Data
