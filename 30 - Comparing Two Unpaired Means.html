@@ -2622,7 +2622,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
 
 <span class="c1"># We could also use a list comprehension instead of the loop</span>
 <span class="c1"># bs_mean_diff_shuffled = np.array([</span>
-<span class="c1">#     np.mean(x)-np.mean(y) for _ in range(n_replicates) for x, y in [permutation_sample(old, yng)]</span>
+<span class="c1">#     np.mean(x)-np.mean(y) for _ in range(n_replicates) for x,y in [permutation_sample(old, yng)]</span>
 <span class="c1">#     ])</span>
 
 <span class="c1"># Print the first 10 replicates</span>

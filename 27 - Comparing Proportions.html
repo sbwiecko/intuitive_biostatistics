@@ -417,10 +417,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fisher-s-exact-test">Fisher’s exact test</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-fisher-s-test">When to use Fisher’s test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P-value</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P value</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypergeometric-distribution">Hypergeometric distribution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-hypergeometric-distribution-and-p-value">Relationship between hypergeometric distribution and P-value</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-p-value">Interpreting the P-value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-hypergeometric-distribution-and-p-value">Relationship between hypergeometric distribution and P value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-p-value">Interpreting the P value</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-and-interpreting-risk-metrics">Calculating and interpreting risk metrics</a><ul class="nav section-nav flex-column">
@@ -449,9 +449,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-table">Summary table</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-measures-of-association-and-effect-with-custom-functions">Calculating measures of association and effect with custom functions</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-statsmodels-table2x2-for-risk-and-odds-ratio-analysis">Using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> Table2x2 for risk and odds ratio analysis</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#application-to-toxicology-count-data">Application to toxicology count data</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-sided-test-application-to-toxicology-count-data">One-sided test - Application to toxicology count data</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-squared-test">Chi-squared test</a><ul class="nav section-nav flex-column">
@@ -536,7 +536,7 @@ document.write(`
 </section>
 <section id="fisher-s-exact-test">
 <span id="fisher"></span><h2>Fisher’s exact test<a class="headerlink" href="#fisher-s-exact-test" title="Link to this heading">#</a></h2>
-<p>The core idea of Fisher’s test is to calculate the probability of obtaining the exact distribution of the data (or one more extreme) if there were truly no association between the variables (the null hypothesis H0). It does this by considering all possible ways the data could be arranged while keeping the row and column totals fixed. This allows for a precise P-value calculation, even when other tests might falter.</p>
+<p>The core idea of Fisher’s test is to calculate the probability of obtaining the exact distribution of the data (or one more extreme) if there were truly no association between the variables (the null hypothesis H0). It does this by considering all possible ways the data could be arranged while keeping the row and column totals fixed. This allows for a precise P value calculation, even when other tests might falter.</p>
 <section id="when-to-use-fisher-s-test">
 <h3>When to use Fisher’s test<a class="headerlink" href="#when-to-use-fisher-s-test" title="Link to this heading">#</a></h3>
 <p>When dealing with categorical data in biostatistics, we often find ourselves in situations where sample sizes are limited. This is where Fisher’s exact test shines. Unlike other tests that rely on approximations (which may not be accurate with small samples), Fisher’s test provides an exact calculation of the probability of observing the data (or something more extreme) under the null hypothesis of no association.</p>
@@ -566,8 +566,8 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;With `scipy.stats.contingency`&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------------&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The object containing all atributes is:</span><span class="se">\n</span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The `treatment` (rows) elements are: </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The `outcome` (columns) elements are: </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The `treatment` (rows) elements are: </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The `outcome` (columns) elements are: </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The actual contingency table is:</span><span class="se">\n</span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># If the data is already in a Pandas DataFrame we can use pandas.crosstab</span>
@@ -579,9 +579,10 @@ document.write(`
 
 <span class="c1"># Creating contingency table using pd.crosstab</span>
 <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span>
-    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;treatment&quot;</span><span class="p">],</span> <span class="c1"># use .dropna() if NaN values are expected</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;treatment&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>  <span class="c1"># Remove NaN values if expected</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;outcome&quot;</span><span class="p">],</span>
-    <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>    <span class="c1">#i.e., totals</span>
+    <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>     <span class="c1"># Include row and column totals</span>
+    <span class="n">dropna</span><span class="o">=</span><span class="kc">False</span>      <span class="c1"># Keep rows/columns with zero counts</span>
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">With `pandas.crosstab`&quot;</span><span class="p">)</span>
@@ -642,8 +643,8 @@ All        3  4    7
 </tbody>
 </table>
 </div>
-<p>The goal of this analysis is to draw conclusions about the <em>general population</em> of patients who have experienced a thromboembolism. This is achieved by calculating confidence intervals (CIs) and a P-value. The P-value helps us answer a critical question: if the treatment truly doesn’t affect the risk of recurrence (our null hypothesis, H0), what’s the probability of observing incidence rates as different (or even more different) than what we see in our study, simply due to random chance?</p>
-<p>The most appropriate statistical test for this situation is Fisher’s exact test. However, Fisher’s test can become computationally challenging with large sample sizes. In those cases, the <a class="reference internal" href="#chi-squared"><span class="std std-ref">chi-square test</span></a> serves as a practical alternative, yielding nearly identical P-values. The Fisher’s exact test is performed with <a class="reference external" href="https://docs.scipy.org/doc/scipy-1.13.1/reference/generated/scipy.stats.fisher_exact.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.fisher_exact</span></code></a> on a 2x2 contingency table.</p>
+<p>The goal of this analysis is to draw conclusions about the <em>general population</em> of patients who have experienced a thromboembolism. This is achieved by calculating confidence intervals (CIs) and a P value. The P value helps us answer a critical question: if the treatment truly doesn’t affect the risk of recurrence (our null hypothesis, H0), what’s the probability of observing incidence rates as different (or even more different) than what we see in our study, simply due to random chance?</p>
+<p>The most appropriate statistical test for this situation is Fisher’s exact test. However, Fisher’s test can become computationally challenging with large sample sizes. In those cases, the <a class="reference internal" href="#chi-squared"><span class="std std-ref">chi-square test</span></a> serves as a practical alternative, yielding nearly identical P values. The Fisher’s exact test is performed with <a class="reference external" href="https://docs.scipy.org/doc/scipy-1.13.1/reference/generated/scipy.stats.fisher_exact.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.fisher_exact</span></code></a> on a 2x2 contingency table.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contingency table with rows = alternative treatments, cols = alternative outcomes</span>
@@ -671,7 +672,7 @@ apixaban          14            826
 </div>
 </section>
 <section id="p-value">
-<span id="id1"></span><h3>P-value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h3>
+<span id="id1"></span><h3>P value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h3>
 <section id="hypergeometric-distribution">
 <h4>Hypergeometric distribution<a class="headerlink" href="#hypergeometric-distribution" title="Link to this heading">#</a></h4>
 <p>Fisher’s exact test relies on the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypergeometric_distribution">hypergeometric distribution</a> to compute the exact probability of observing a given contingency table (or one more extreme) under the null hypothesis of no association. Briefly, the hypergeometric distribution describes the probability of obtaining a specific number of successes in a sample drawn without replacement from a finite population containing two types of objects (e.g., cases and controls, exposed and unexposed).</p>
@@ -755,15 +756,15 @@ P(K=k) = \frac{\binom{n}{k} \binom{M - n}{N - k}}{\binom{M}{N}}
 </div>
 </section>
 <section id="relationship-between-hypergeometric-distribution-and-p-value">
-<h4>Relationship between hypergeometric distribution and P-value<a class="headerlink" href="#relationship-between-hypergeometric-distribution-and-p-value" title="Link to this heading">#</a></h4>
+<h4>Relationship between hypergeometric distribution and P value<a class="headerlink" href="#relationship-between-hypergeometric-distribution-and-p-value" title="Link to this heading">#</a></h4>
 <p>In the context of Fisher’s test, the “successes” are the individuals with the outcome of interest (e.g., cases in a case-control study), and the “population” is the total number of individuals in the study. The row and column totals in the contingency table define the number of successes and the sample sizes in each group. The probability of observing a particular contingency table with values <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> is given by the hypergeometric probability mass function:</p>
 <div class="math notranslate nohighlight">
 \[P(a) = \frac{\binom{a+b}{a} \binom{c+d}{c}}{\binom{a+b+c+d}{a+c}}\]</div>
-<p>The P-value for Fisher’s exact test of independence can be obtained using either the cumulative distribution function (CDF) or the survival function (SF) of the hypergeometric distribution, <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisher_exact.html">as clearly explained elsewhere</a>, depending on the directionality of the test:</p>
+<p>The P value for Fisher’s exact test of independence can be obtained using either the cumulative distribution function (CDF) or the survival function (SF) of the hypergeometric distribution, <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisher_exact.html">as clearly explained elsewhere</a>, depending on the directionality of the test:</p>
 <ul class="simple">
-<li><p>One-tailed test (right tail): when the alternative hypothesis suggests a higher number of successes than expected, the P-value is calculated using the survival function (SF), which gives the probability of observing a value greater than or equal to the observed value: <span class="math notranslate nohighlight">\(\text{P-value} = P(K \ge k) = \text{SF}(k - 1)\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is the random variable representing the number of successes, and <span class="math notranslate nohighlight">\(k\)</span> is the observed number of successes.</p></li>
-<li><p>One-tailed test (left tail): when the alternative hypothesis suggests a lower number of successes than expected, the P-value is calculated using the cumulative distribution function (CDF), which gives the probability of observing a value less than or equal to the observed value: <span class="math notranslate nohighlight">\(\text{P-value} = P(K \le k) = \text{CDF}(k)\)</span></p></li>
-<li><p>Two-tailed test: in a two-tailed test, we typically consider deviations in both directions (<strong>more extreme associations</strong> in either direction) from the observed table. Therefore, to obtain the two-sided P-value, we often double the P-value obtained from the one-sided calculation (using either the CDF or SF, depending on which tail is more extreme).</p></li>
+<li><p>One-tailed test (right tail): when the alternative hypothesis suggests a higher number of successes than expected, the P value is calculated using the survival function (SF), which gives the probability of observing a value greater than or equal to the observed value: <span class="math notranslate nohighlight">\(\text{P value} = P(K \ge k) = \text{SF}(k - 1)\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is the random variable representing the number of successes, and <span class="math notranslate nohighlight">\(k\)</span> is the observed number of successes.</p></li>
+<li><p>One-tailed test (left tail): when the alternative hypothesis suggests a lower number of successes than expected, the P value is calculated using the cumulative distribution function (CDF), which gives the probability of observing a value less than or equal to the observed value: <span class="math notranslate nohighlight">\(\text{P value} = P(K \le k) = \text{CDF}(k)\)</span></p></li>
+<li><p>Two-tailed test: in a two-tailed test, we typically consider deviations in both directions (<strong>more extreme associations</strong> in either direction) from the observed table. Therefore, to obtain the two-sided P value, we often double the P value obtained from the one-sided calculation (using either the CDF or SF, depending on which tail is more extreme).</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -774,21 +775,21 @@ P(K=k) = \frac{\binom{n}{k} \binom{M - n}{N - k}}{\binom{M}{N}}
 
 <span class="c1"># Perform Fisher&#39;s exact test</span>
 <span class="n">odds_ratio</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">fisher_exact</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;two-sided&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fisher&#39;s Exact Test (Two-Sided):</span><span class="se">\n</span><span class="s2"> P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fisher&#39;s Exact Test (Two-Sided):</span><span class="se">\n</span><span class="s2"> P value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Parameters for the hypergeometric distribution (from contingency table)</span>
 <span class="n">M</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">n</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">N</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="c1"># 1. Calculate one-sided P-value (more extreme in one direction)</span>
+<span class="c1"># 1. Calculate one-sided P value (more extreme in one direction)</span>
 <span class="n">k</span><span class="o">=</span><span class="mi">18</span>  <span class="c1"># number of successes</span>
 <span class="n">p_value_one_sided</span> <span class="o">=</span> <span class="n">hypergeom</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;One-Sided P-value (&gt;= </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> &#39;successes&#39;): </span><span class="si">{</span><span class="n">p_value_one_sided</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;One-Sided P value (&gt;= </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> &#39;successes&#39;): </span><span class="si">{</span><span class="n">p_value_one_sided</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="c1"># 2. Calculate two-sided P-value (more extreme in either direction)</span>
+<span class="c1"># 2. Calculate two-sided P value (more extreme in either direction)</span>
 <span class="n">p_value_two_sided</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">p_value_one_sided</span>  <span class="c1"># Assuming symmetry</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two-Sided P-value: </span><span class="si">{</span><span class="n">p_value_two_sided</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two-Sided P value: </span><span class="si">{</span><span class="n">p_value_two_sided</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># 3. Probabilities of individual tables</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Probabilities of Individual Tables (more extreme than observed):&quot;</span><span class="p">)</span>
@@ -800,11 +801,11 @@ P(K=k) = \frac{\binom{n}{k} \binom{M - n}{N - k}}{\binom{M}{N}}
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fisher&#39;s Exact Test (Two-Sided):
- P-value: 0.0310
+ P value: 0.0310
 
-One-Sided P-value (&gt;= 18 &#39;successes&#39;): 0.0155
+One-Sided P value (&gt;= 18 &#39;successes&#39;): 0.0155
 
-Two-Sided P-value: 0.0310
+Two-Sided P value: 0.0310
 
 Probabilities of Individual Tables (more extreme than observed):
   k = 9:	0.0001
@@ -819,7 +820,7 @@ Probabilities of Individual Tables (more extreme than observed):
 </div>
 </section>
 <section id="interpreting-the-p-value">
-<h4>Interpreting the P-value<a class="headerlink" href="#interpreting-the-p-value" title="Link to this heading">#</a></h4>
+<h4>Interpreting the P value<a class="headerlink" href="#interpreting-the-p-value" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming &#39;table&#39; is our 2x2 contingency table (NumPy array or list of lists)</span>
@@ -827,17 +828,17 @@ Probabilities of Individual Tables (more extreme than observed):
 <span class="n">table</span> <span class="o">=</span> <span class="n">table_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="c1"># converts DataFrame to NumPy array</span>
 <span class="n">odds_ratio</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">fisher_exact</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value in the apixaban study: </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P-value: 1.334e-11
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P value in the apixaban study: 1.334e-11
 </pre></div>
 </div>
 </div>
 </div>
-<p>A very low P-value typically leads to the rejection of the null hypothesis. It’s unlikely that the observed results (the distribution of data in the contingency table) occurred purely by chance if there were truly no association between the variables. Said differently, the low P-value indicates that there’s a statistically significant <strong>association</strong> between the two categorical variables.</p>
+<p>A very low P value typically leads to the rejection of the null hypothesis. It’s unlikely that the observed results (the distribution of data in the contingency table) occurred purely by chance if there were truly no association between the variables. Said differently, the low P value indicates that there’s a statistically significant <strong>association</strong> between the two categorical variables.</p>
 </section>
 </section>
 <section id="calculating-and-interpreting-risk-metrics">
@@ -854,14 +855,20 @@ Probabilities of Individual Tables (more extreme than observed):
 </ul>
 <p>We can calculate ARR as:</p>
 <div class="math notranslate nohighlight">
-\[\text{ARR} = \text{Risk in Control group} - \text{Risk in Treatment group}\]</div>
-<div class="math notranslate nohighlight">
-\[\text{ARR} = p_1 - p_2\]</div>
+\[\begin{split}
+\begin{align}
+\text{ARR} &amp;= \text{Risk in Control group} - \text{Risk in Treatment group} \\
+&amp;= p_1 - p_2
+\end{align}
+\end{split}\]</div>
 <p>And we can write AR as:</p>
 <div class="math notranslate nohighlight">
-\[\text{AR} = \text{Risk in Exposed group} - \text{Risk in Unexposed group}\]</div>
-<div class="math notranslate nohighlight">
-\[\text{AR} = p_1 - p_2\]</div>
+\[\begin{split}
+\begin{align}
+\text{AR} &amp;= \text{Risk in Exposed group} - \text{Risk in Unexposed group} \\
+&amp;= p_1 - p_2
+\end{align}
+\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(p_1\)</span> is the risk in the control or exposed group, and <span class="math notranslate nohighlight">\(p_2\)</span> the risk in the treatment or unexposed group. In the context of treatment evaluation, the placebo group is usually considered the reference, as we are interested in the effect of the treatment relative to the placebo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1097,7 +1104,7 @@ Relative risk (from scipy.stats.contingency): 5.283
 </ul>
 <p><u>Note:</u> The order of the rows in the contingency table matters for interpreting the relative risk (RR). If the first row represents the placebo group and the second row represents the Apixaban group, the fundamental meaning of the RR value itself doesn’t change, but the reference group against which we’re comparing does.</p>
 <p>When we calculated the RR using our original contingency table, with the <em>placebo group as the reference in the first row</em>, we obtained an RR of 5.283. This means that subjects in the placebo group were over <em>five times more likely</em> to experience a recurrent disease compared to those who received the treatment.</p>
-<p>Alternatively, if we directly submitted the proportions <span class="math notranslate nohighlight">\(p_1\)</span> (risk in the treatment group) and <span class="math notranslate nohighlight">\(p_2\)</span> (risk in the placebo group) to the <code class="docutils literal notranslate"><span class="pre">calculate_rr</span> <span class="pre">function</span></code>, we obtain an RR of 0.189. This can be interpreted in two ways:</p>
+<p>Alternatively, if we directly submitted the proportions <span class="math notranslate nohighlight">\(p_1\)</span> (risk in the treatment group) and <span class="math notranslate nohighlight">\(p_2\)</span> (risk in the placebo group) to the <code class="docutils literal notranslate"><span class="pre">calculate_rr</span></code> function, we obtain an RR of 0.189. This can be interpreted in two ways:</p>
 <ol class="arabic simple">
 <li><p>Risk reduction: patients receiving the drug had only 18.9% of the risk of recurrent disease compared to those receiving the placebo. In other words, the treatment significantly reduced the risk.</p></li>
 <li><p>Protective effect: the treatment exhibited a protective effect, reducing the relative risk of recurrent disease by a substantial margin of <span class="math notranslate nohighlight">\(1 - 0.189 = 81.1\%\)</span>.</p></li>
@@ -1123,7 +1130,7 @@ Relative risk (from scipy.stats.contingency): 5.283
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 
-<span class="n">log_rr</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
+<span class="n">log_rr</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log(RR): </span><span class="si">{</span><span class="n">log_rr</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Corresponding relative risk: </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_rr</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1149,13 +1156,13 @@ Corresponding relative risk: 5.283
 <p>Mathematically, the OR formula is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{aligned}
-\text{OR} = \frac{p_1 / (1 - p_1)}{p_2 / (1 - p_2)} \\
-= \frac{a / (a + b)}{c / (c + d)} \times \frac{1 - c / (c + d)}{1 - a / (a + b)} \\
-= \frac{a / (a + b)}{c / (c + d)} \times \frac{\frac{\cancel{c} + d - \cancel{c}}{c + d}}{\frac{\cancel{a} + b - \cancel{a}}{a + b}} \\
-= \frac{a \cancel{(c + d)}}{c \cancel{(a + b)}} \times \frac{d \cancel{(a + b)}}{b \cancel{(c + d)}} \\
-= \frac{ad}{bc}
-\end{aligned}
+\begin{align}
+\text{OR} &amp;= \frac{p_1 / (1 - p_1)}{p_2 / (1 - p_2)} \\
+&amp;= \frac{a / (a + b)}{c / (c + d)} \times \frac{1 - c / (c + d)}{1 - a / (a + b)} \\
+&amp;= \frac{a / (a + b)}{c / (c + d)} \times \frac{\frac{\cancel{c} + d - \cancel{c}}{c + d}}{\frac{\cancel{a} + b - \cancel{a}}{a + b}} \\
+&amp;= \frac{a \cancel{(c + d)}}{c \cancel{(a + b)}} \times \frac{d \cancel{(a + b)}}{b \cancel{(c + d)}} \\
+&amp;= \frac{ad}{bc}
+\end{align}
 \end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1182,9 +1189,12 @@ Corresponding relative risk: 5.283
 
 <span class="c1"># Alternative method for obtaining the RR using scipy.stats.contingency.odds_ratio</span>
 <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">table_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Odds ratio (from scipy.stats.contingency): </span><span class="si">{</span><span class="n">contingency</span><span class="o">.</span><span class="n">odds_ratio</span><span class="p">(</span>
-<span class="w">    </span><span class="n">table</span><span class="o">=</span><span class="n">table_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
-<span class="w">    </span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;sample&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;Odds ratio (from scipy.stats.contingency): </span><span class="si">{</span><span class="n">contingency</span><span class="o">.</span><span class="n">odds_ratio</span><span class="p">(</span>
+<span class="w">        </span><span class="n">table</span><span class="o">=</span><span class="n">table_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;sample&#39;</span>
+<span class="w">    </span><span class="p">)</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1229,7 +1239,7 @@ Odds ratio (from scipy.stats.contingency): 5.697
 \[\log(\text{OR}) = \ln(\text{OR}) = \log(p_1) - \log(1 - p_1) - \log(p_2) + \log(1 - p_2)\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_odds_ratio</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">odds_ratio</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_odds_ratio</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">odds_ratio</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log(OR) as the natural logarithm of OR: </span><span class="si">{</span><span class="n">log_odds_ratio</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># log(OR) obtained with calculations</span>
@@ -1291,8 +1301,10 @@ Odds ratio calculated as the exponential of log(OR): 5.697
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Proportion and </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">conf</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">% CI&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">21</span><span class="p">)</span>
 <span class="c1"># We round each bound of the returned tuples using a generator</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;placebo group:</span><span class="se">\t</span><span class="si">{</span><span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ci_placebo</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;apixaban group:</span><span class="se">\t</span><span class="si">{</span><span class="n">c</span><span class="o">/</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="n">d</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ci_apixaban</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;placebo group:</span><span class="se">\t</span><span class="si">{</span><span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ci_placebo</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;apixaban group:</span><span class="se">\t</span><span class="si">{</span><span class="n">c</span><span class="o">/</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="n">d</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ci_apixaban</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
@@ -1318,11 +1330,11 @@ apixaban group:	0.0167, (0.008, 0.025)
 <p>Because the standard error of a difference between two proportions is calculated as <span class="math notranslate nohighlight">\(\text{SE}(p_1 - p_2) = \sqrt{\mathrm{Var}(p_1) + \mathrm{Var}(p_2)}\)</span>, the variance of a sample proportion <span class="math notranslate nohighlight">\(x\)</span> is estimated as <span class="math notranslate nohighlight">\(\mathrm{Var}(x) = x (1 - x)/n\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is the sample size, and we can express <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span> in terms of the ovarall risk <span class="math notranslate nohighlight">\(p\)</span> and the ARR, substituting these into the formula for <span class="math notranslate nohighlight">\(\text{SE}(p_1 - p_2)\)</span> and simplifying, we arrive at:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{gather*}
-\text{SE(ARR)} =\text{SE}(p_1 - p_2) = \sqrt{p_1 (1 - p_1) /n_1 + p_2 (1 - p_2) /n_2}\\
-\approx \sqrt{p (1 - p) /n_1 + p (1 - p) /n_2}\\
-\approx \sqrt{p (1 - p) (1/n_1 + 1/n_2)}
-\end{gather*}
+\begin{align}
+\text{SE(ARR)} &amp;= \text{SE}(p_1 - p_2) = \sqrt{p_1 (1 - p_1) /n_1 + p_2 (1 - p_2) /n_2} \\
+&amp;\approx \sqrt{p (1 - p) /n_1 + p (1 - p) /n_2} \\
+&amp;\approx \sqrt{p (1 - p) (1/n_1 + 1/n_2)}
+\end{align}
 \end{split}\]</div>
 <p>by approximating both <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span> using the overall risk <span class="math notranslate nohighlight">\(p\)</span>, calculated as <span class="math notranslate nohighlight">\(p = m_1/N\)</span>, where <span class="math notranslate nohighlight">\(m_1\)</span> is the total number of events in the population <span class="math notranslate nohighlight">\((a + c)\)</span>, and <span class="math notranslate nohighlight">\(N\)</span> is the total sample size <span class="math notranslate nohighlight">\((a + b + c + d)\)</span>, and <span class="math notranslate nohighlight">\(n_1\)</span> and <span class="math notranslate nohighlight">\(n_2\)</span> are the sample sizes of the control/exposed and treatment/unexposed groups respectively, because we are dealing with <em>rare events</em>.</p>
 <div class="cell docutils container">
@@ -1404,19 +1416,19 @@ apixaban group:	0.0167, (0.008, 0.025)
 <span class="c1"># Perform Z-test for difference in proportions</span>
 <span class="n">z_stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">proportions_ztest</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">nobs</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Z-statistic:&quot;</span><span class="p">,</span> <span class="n">z_stat</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P-value:&quot;</span><span class="p">,</span> <span class="n">p_value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Z-statistic:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">z_stat</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P value:&quot;</span><span class="p">,</span> <span class="n">p_value</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Z-statistic: 6.560351392241345
-P-value: 5.368112856740949e-11
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Z-statistic: 6.56
+P value: 5.368112856740949e-11
 </pre></div>
 </div>
 </div>
 </div>
-<p>The Z-test assesses whether the observed ARR is significantly different from zero (no difference in risk). If the absolute value of the Z-statistic is large enough (typically exceeding 1.96 for a 95% confidence level), the P-value associated with the Z-test will be small, indicating statistical significance. A statistically significant result in the Z-test implies that the <em>CI for ARR will not include zero</em>. This means we can be confident that the true ARR in the population is not zero, and there is a real difference in risk between the two groups.</p>
+<p>The Z-test assesses whether the observed ARR is significantly different from zero (no difference in risk). If the absolute value of the Z-statistic is large enough (typically exceeding 1.96 for a 95% confidence level), the P value associated with the Z-test will be small, indicating statistical significance. A statistically significant result in the Z-test implies that the <em>CI for ARR will not include zero</em>. This means we can be confident that the true ARR in the population is not zero, and there is a real difference in risk between the two groups.</p>
 </section>
 <section id="exact-methods">
 <h5>Exact methods<a class="headerlink" href="#exact-methods" title="Link to this heading">#</a></h5>
@@ -1488,7 +1500,7 @@ Approximated SE: 0.01088
     <span class="n">method</span><span class="o">=</span><span class="s1">&#39;newcomb&#39;</span><span class="p">,</span>
     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% Newcombe CI for ARR: </span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ci_arr_newcombe</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% Newcombe CI for ARR: </span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ci_arr_newcombe</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
@@ -1580,10 +1592,10 @@ Approximated SE: 0.01088
 <p>However, a more accurate approach to calculating the CI for RR is based on the <a class="reference internal" href="#logrr"><span class="std std-ref">log transformation</span></a>. This approach takes advantage of the fact that the logarithm of the RR tends to follow a normal distribution, especially for large sample sizes. Then we calculate the standard error of log(RR) as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{aligned}
-\mathrm{SE}(\log{\text{RR}}) = \sqrt{\mathrm{Var}(\log{\text{RR}})} \\
-= \sqrt{\frac{1 - p_1}{a} + \frac{1 - p_2}{c}}
-\end{aligned}
+\begin{align}
+\mathrm{SE}(\log{\text{RR}}) &amp;= \sqrt{\mathrm{Var}(\log{\text{RR}})} \\
+&amp;= \sqrt{\frac{1 - p_1}{a} + \frac{1 - p_2}{c}}
+\end{align}
 \end{split}\]</div>
 <p><em>The formula for Var(logRR) is derived using a statistical technique called the <a class="reference external" href="https://en.wikipedia.org/wiki/Delta_method">Delta Method</a>. This method approximates the variance of a transformed variable (in this case, logRR) using the variance of the original variable (RR) and the derivative of the transformation function.</em></p>
 <div class="cell docutils container">
@@ -1660,13 +1672,15 @@ Approximated SE: 0.01088
     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Approximate 95</span><span class="si">% c</span><span class="s2">onfidence interval for RR:&quot;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> \
-<span class="k">for</span> <span class="n">bound</span> <span class="ow">in</span> <span class="n">ci_rr_approx</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Approximate 95</span><span class="si">% c</span><span class="s2">onfidence interval for RR (&#39;score&#39; method):&quot;</span><span class="p">,</span>
+    <span class="nb">tuple</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">bound</span> <span class="ow">in</span> <span class="n">ci_rr_approx</span><span class="p">)</span> <span class="c1"># type: ignore</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Approximate 95% confidence interval for RR: (3.033, 9.231)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Approximate 95% confidence interval for RR (&#39;score&#39; method): (3.033, 9.231)
 </pre></div>
 </div>
 </div>
@@ -1785,13 +1799,15 @@ Approximated SE: 0.01088
     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Approximate 95</span><span class="si">% c</span><span class="s2">onfidence interval for OR:&quot;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> \
-<span class="k">for</span> <span class="n">bound</span> <span class="ow">in</span> <span class="n">ci_rr_approx</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Approximate 95</span><span class="si">% c</span><span class="s2">onfidence interval for OR (&#39;score&#39; method):&quot;</span><span class="p">,</span>
+    <span class="nb">tuple</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">bound</span> <span class="ow">in</span> <span class="n">ci_rr_approx</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Approximate 95% confidence interval for OR: (3.212, 10.103)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Approximate 95% confidence interval for OR (&#39;score&#39; method): (3.212, 10.103)
 </pre></div>
 </div>
 </div>
@@ -1802,7 +1818,7 @@ Approximated SE: 0.01088
 <h3>Summary table<a class="headerlink" href="#summary-table" title="Link to this heading">#</a></h3>
 <section id="calculating-measures-of-association-and-effect-with-custom-functions">
 <h4>Calculating measures of association and effect with custom functions<a class="headerlink" href="#calculating-measures-of-association-and-effect-with-custom-functions" title="Link to this heading">#</a></h4>
-<p>Let’s create a comprehensive table summarizing the calculation of the P-value, individual proportions, ARR, NNT, RR and OR, and their logarithms, and their respective confidence intervals (CIs), incorporating the functions we’ve discussed.</p>
+<p>Let’s create a comprehensive table summarizing the calculation of the P value, individual proportions, ARR, NNT, RR and OR, and their logarithms, and their respective confidence intervals (CIs), incorporating the functions we’ve discussed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_metrics</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">conf</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
@@ -1853,21 +1869,21 @@ Approximated SE: 0.01088
     <span class="n">ci_upper_log_rr</span> <span class="o">=</span> <span class="n">log_rr</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="n">se_log_rr</span>
     
     <span class="c1"># Fisher&#39;s exact test</span>
-    <span class="n">odds_ratio_fisher</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">fisher_exact</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">fisher_exact</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 
 
     <span class="c1"># Create results DataFrame</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;Metric&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s1">&#39;P-value&#39;</span><span class="p">,</span> <span class="s1">&#39;Proportion (placebo)&#39;</span><span class="p">,</span> <span class="s1">&#39;Proportion (treatment)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;P value&#39;</span><span class="p">,</span> <span class="s1">&#39;Proportion (control)&#39;</span><span class="p">,</span> <span class="s1">&#39;Proportion (treatment)&#39;</span><span class="p">,</span>
             <span class="s1">&#39;ARR&#39;</span><span class="p">,</span> <span class="s1">&#39;NNT/NNH&#39;</span><span class="p">,</span> <span class="s1">&#39;OR&#39;</span><span class="p">,</span> <span class="s1">&#39;log(OR)&#39;</span><span class="p">,</span> <span class="s1">&#39;RR&#39;</span><span class="p">,</span> <span class="s1">&#39;log(RR)&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;Estimate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">p_value</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">nnt_or_nnh</span><span class="p">,</span> <span class="n">rr</span><span class="p">,</span> <span class="n">log_rr</span><span class="p">,</span> <span class="n">odds_ratio</span><span class="p">,</span> <span class="n">log_or</span><span class="p">],</span>
+        <span class="s1">&#39;Estimate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">p_value</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">nnt_or_nnh</span><span class="p">,</span> <span class="n">odds_ratio</span><span class="p">,</span> <span class="n">log_or</span><span class="p">,</span> <span class="n">rr</span><span class="p">,</span> <span class="n">log_rr</span><span class="p">],</span>
         <span class="s1">&#39;CI lower&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">ci_p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ci_p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ci_lower_arr</span><span class="p">,</span> <span class="n">ci_lower_nnt</span><span class="p">,</span> 
-            <span class="n">ci_lower_rr</span><span class="p">,</span> <span class="n">ci_lower_log_rr</span><span class="p">,</span> <span class="n">ci_lower_or</span><span class="p">,</span> <span class="n">ci_lower_log_or</span><span class="p">],</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">ci_p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ci_p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ci_lower_arr</span><span class="p">,</span> <span class="n">ci_lower_nnt</span><span class="p">,</span>
+            <span class="n">ci_lower_or</span><span class="p">,</span> <span class="n">ci_lower_log_or</span><span class="p">,</span> <span class="n">ci_lower_rr</span><span class="p">,</span> <span class="n">ci_lower_log_rr</span><span class="p">],</span>
         <span class="s1">&#39;CI upper&#39;</span><span class="p">:</span> <span class="p">[</span>
             <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">ci_p1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ci_p2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ci_upper_arr</span><span class="p">,</span> <span class="n">ci_upper_nnt</span><span class="p">,</span> 
-            <span class="n">ci_upper_rr</span><span class="p">,</span> <span class="n">ci_upper_log_rr</span><span class="p">,</span> <span class="n">ci_upper_or</span><span class="p">,</span> <span class="n">ci_upper_log_or</span><span class="p">]</span>
+            <span class="n">ci_upper_or</span><span class="p">,</span> <span class="n">ci_upper_log_or</span><span class="p">,</span> <span class="n">ci_upper_rr</span><span class="p">,</span> <span class="n">ci_upper_log_rr</span><span class="p">]</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Round to 3 decimal places</span>
@@ -1883,15 +1899,15 @@ Approximated SE: 0.01088
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| Metric                 | Estimate   | CI lower   | CI upper   |
 |:-----------------------|:-----------|:-----------|:-----------|
-| P-value                | 0          | nan        | nan        |
-| Proportion (placebo)   | 0.088      | 0.071      | 0.109      |
+| P value                | 0          | nan        | nan        |
+| Proportion (control)   | 0.088      | 0.071      | 0.109      |
 | Proportion (treatment) | 0.017      | 0.01       | 0.028      |
 | ARR                    | 0.071      | 0.05       | 0.093      |
 | NNT/NNH                | 14         | 11         | 20         |
-| OR                     | 5.283      | 3.007      | 9.284      |
-| log(OR)                | 1.665      | 1.101      | 2.228      |
-| RR                     | 5.697      | 3.189      | 10.178     |
-| log(RR)                | 1.74       | 1.16       | 2.32       |
+| OR                     | 5.697      | 3.189      | 10.178     |
+| log(OR)                | 1.74       | 1.16       | 2.32       |
+| RR                     | 5.283      | 3.007      | 9.284      |
+| log(RR)                | 1.665      | 1.101      | 2.228      |
 </pre></div>
 </div>
 </div>
@@ -1926,12 +1942,13 @@ Log risk ratio    1.665 0.288 1.101  2.228   0.000
 </div>
 </div>
 </section>
-<section id="application-to-toxicology-count-data">
-<h4>Application to toxicology count data<a class="headerlink" href="#application-to-toxicology-count-data" title="Link to this heading">#</a></h4>
-<p>In toxicology studies, where the paramount goal is to assess the safety of a test article (TA), minimizing the risk of false negatives - incorrectly concluding a TA is safe when it’s not - must be the central concern throughout the study’s design, analysis, and interpretation.</p>
+</section>
+<section id="one-sided-test-application-to-toxicology-count-data">
+<h3>One-sided test - Application to toxicology count data<a class="headerlink" href="#one-sided-test-application-to-toxicology-count-data" title="Link to this heading">#</a></h3>
+<p>In toxicology studies, where the paramount goal is to assess the safety of a test article (TA), e.g., a new drug, minimizing the risk of false negatives - incorrectly concluding a TA is safe when it’s not - must be the central concern throughout the study’s design, analysis, and interpretation.</p>
 <p>Data from toxicology studies frequently consist of event counts, such as the number of tumors observed in two treatment groups: treated with a TA and control. These counts can be easily organized into contingency tables, making Fisher’s exact test a relevant statistical tool for analyzing such data.</p>
-<p>A common scenario is testing the hypothesis that the tumor rate in a treated group is equal to that in a control group, i.e., there is no treatment effect, against the alternative hypothesis that the tumor rate is higher in the treated group. This necessitates a <strong>one-sided test</strong>. Fisher’s exact test is particularly suitable when the number of observations in the contingency table is <strong>small</strong>, as it provides an exact P-value without relying on large-sample approximations.</p>
-<p>While <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> is a powerful library for various statistical analyses, it currently does not include a built-in function for Fisher’s exact test. However, this test can be readily performed in Python using the <code class="docutils literal notranslate"><span class="pre">fisher_exact</span></code> function from the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span> <span class="pre">module</span></code>, as we’ve <a class="reference internal" href="#fisher"><span class="std std-ref">demonstrated earlier in this chapter</span></a>.</p>
+<p>A common scenario is testing the hypothesis that the tumor rate in a treated group is equal to that in a control group, i.e., there is no treatment effect, against the alternative hypothesis that the tumor rate is higher in the treated group. We perform a <strong>one-sided test</strong> to specifically assess whether the odds of tumor development are significantly greater in the treated group compared to the control group (i.e., <strong>OR &gt; 1</strong>). Fisher’s exact test is particularly suitable when the number of observations in the contingency table is small, as it provides an exact P value without relying on large-sample approximations.</p>
+<p>Although some statistical software packages may lack a dedicated function for Fisher’s exact test, it’s readily available in Python using the <code class="docutils literal notranslate"><span class="pre">fisher_exact</span></code> function from the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> module, as we’ve <a class="reference internal" href="#fisher"><span class="std std-ref">demonstrated earlier in this chapter</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table_tumors</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
@@ -1944,20 +1961,19 @@ Log risk ratio    1.665 0.288 1.101  2.228   0.000
 
 <span class="n">odds_ratio</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">fisher_exact</span><span class="p">(</span><span class="n">table_tumors</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;greater&#39;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Odds ratio</span><span class="se">\t\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">odds_ratio</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P-value (one-sided)</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Odds ratio</span><span class="se">\t\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">odds_ratio</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="c1"># type: ignore</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P value (one-sided)</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Odds ratio		 4.57
-P-value (one-sided)	 0.046
+P value (one-sided)	 0.046
 </pre></div>
 </div>
 </div>
 </div>
-<p>A small P-value (typically below 0.05) would provide evidence against the null hypothesis, suggesting that the tumor rate is indeed higher in the treated group.</p>
-</section>
+<p>A small P value (typically below 0.05) would provide evidence against the null hypothesis, suggesting that the tumor rate is indeed higher in the treated group.</p>
 </section>
 </section>
 <section id="chi-squared-test">
@@ -1991,8 +2007,8 @@ P-value (one-sided)	 0.046
 <div class="math notranslate nohighlight">
 \[\chi^2 = \sum \frac{(\text{Observed} - \text{Expected})^2}{\text{Expected}}\]</div>
 <ol class="arabic simple">
-<li><p>Determine P-value: the P-value quantifies the probability of observing a chi-squared statistic as extreme as (or more extreme than) the one calculated, assuming the null hypothesis is true.</p></li>
-<li><p>Interpret results: if the P-value is small (typically below 0.05), we reject the null hypothesis and conclude that there is evidence of a statistically significant association between the variables.</p></li>
+<li><p>Determine P value: the P value quantifies the probability of observing a chi-squared statistic as extreme as (or more extreme than) the one calculated, assuming the null hypothesis is true.</p></li>
+<li><p>Interpret results: if the P value is small (typically below 0.05), we reject the null hypothesis and conclude that there is evidence of a statistically significant association between the variables.</p></li>
 </ol>
 </section>
 <section id="example-of-the-mendel-s-peas">
@@ -2068,7 +2084,7 @@ P-value (one-sided)	 0.046
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Expected frequencies:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">((</span><span class="n">observed</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="n">expected_proportions</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Chi-squared statistic:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">chi2_stat</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P-Value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
 <span class="c1"># Interpretation</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
@@ -2089,7 +2105,7 @@ Expected frequencies:
 [312.75 104.25 104.25  34.75]
 
 Chi-squared statistic: 0.47
-P-Value: 0.9254
+P value: 0.9254
 
 Fail to reject the null hypothesis (P = 0.9254). 
 The observed frequencies are consistent with the expected proportions.
@@ -2097,10 +2113,10 @@ The observed frequencies are consistent with the expected proportions.
 </div>
 </div>
 </div>
-<p>With such a large P-value, the deviations between the observed frequencies and the expected frequencies based on Mendel’s theory are small and consistent with random variation. This indicates that Mendel’s observed data support his genetic theory of inheritance.</p>
+<p>With such a large P value, the deviations between the observed frequencies and the expected frequencies based on Mendel’s theory are small and consistent with random variation. This indicates that Mendel’s observed data support his genetic theory of inheritance.</p>
 <section id="the-chi-squared-distribution">
 <h4>The chi-squared distribution<a class="headerlink" href="#the-chi-squared-distribution" title="Link to this heading">#</a></h4>
-<p>The chi-squared statistic calculated from a contingency table follows a chi-squared distribution, which can be used to determine the P-value associated with this statistic. Like the t-distribution, the shape of the chi-squared distribution depends on the degrees of freedom.</p>
+<p>The chi-squared statistic calculated from a contingency table follows a chi-squared distribution, which can be used to determine the P value associated with this statistic. Like the t-distribution, the shape of the chi-squared distribution depends on the degrees of freedom.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -2114,10 +2130,10 @@ The observed frequencies are consistent with the expected proportions.
 
 <span class="c1"># Plot distributions for each degree of freedom</span>
 <span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">degrees_of_freedom</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">chi2</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;df = </span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">chi2</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;df = </span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\chi^2$ value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\chi^2$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Chi-squared distribution for various degrees of freedom&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -2132,7 +2148,7 @@ The observed frequencies are consistent with the expected proportions.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/51fd430cd1a937d84cb41366ddc65131faa80f6f8e66140a34d53d45ae88acdb.png" src="_images/51fd430cd1a937d84cb41366ddc65131faa80f6f8e66140a34d53d45ae88acdb.png" />
+<img alt="_images/e9ddaed90e5e1af0f9613ca3ae1f0bdeee48366d00f1d314dc400099cb24469e.png" src="_images/e9ddaed90e5e1af0f9613ca3ae1f0bdeee48366d00f1d314dc400099cb24469e.png" />
 </div>
 </div>
 <p>The plot illustrates that the chi-squared distribution is right-skewed (long tail to the right). Moreover, as the degrees of freedom increase, the distribution becomes more symmetrical and approaches a normal distribution.</p>
@@ -2151,7 +2167,7 @@ The observed frequencies are consistent with the expected proportions.
 <span class="c1"># Calculate critical value</span>
 <span class="n">chi2_crit</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">Df</span><span class="p">)</span>
 
-<span class="c1"># Calculate P-value using chi-squared stat from previous calculation</span>
+<span class="c1"># Calculate P value using chi-squared stat from previous calculation</span>
 <span class="n">p_value</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">chi2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">chi2_stat</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">Df</span><span class="p">)</span>
 
 <span class="c1"># Generate x values for plotting</span>
@@ -2161,47 +2177,47 @@ The observed frequencies are consistent with the expected proportions.
 <span class="c1"># Create the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hx</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 
-<span class="c1"># Shade the P-value area</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
-    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_stat</span><span class="p">],</span> <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_stat</span><span class="p">],</span>
-    <span class="c1"># hatch=&#39;///&#39;, edgecolor=&quot;limegreen&quot;, facecolor=&#39;lime&#39;, alpha=.5,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">)</span>
+<span class="c1"># Plot the critical value</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">chi2_crit</span><span class="p">,</span> <span class="c1"># type: ignore</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;Critical value (</span><span class="si">{</span><span class="n">chi2_crit</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the probability alpha</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_crit</span><span class="p">],</span> <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_crit</span><span class="p">],</span>
-    <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;tomato&#39;</span><span class="p">)</span>
+    <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot the observed chi-squared statistic</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">chi2_stat</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\chi^2$ statistic (</span><span class="si">{</span><span class="n">chi2_stat</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>
-<span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\chi^2$ statistic (</span><span class="si">{</span><span class="n">chi2_stat</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
-<span class="c1"># Plot the critical value</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">chi2_crit</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;Critical value (</span><span class="si">{</span><span class="n">chi2_crit</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="c1"># Shade the P value area</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_stat</span><span class="p">],</span> <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_stat</span><span class="p">],</span>
+    <span class="c1"># hatch=&#39;///&#39;, edgecolor=&quot;limegreen&quot;, facecolor=&#39;lime&#39;, alpha=.5,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P value (</span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\chi^2$ value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\chi^2$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
-    <span class="sa">fr</span><span class="s1">&#39;$\chi^2$ distribution (df=</span><span class="si">{</span><span class="n">Df</span><span class="si">}</span><span class="s1">) with critical value and P-value (</span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="sa">fr</span><span class="s1">&#39;$\chi^2$ distribution (DF=</span><span class="si">{</span><span class="n">Df</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/827e82cb9c8ca5f747933fb1de4c332b00d8fa5c84956a49f7a8ebdaf1c73c91.png" src="_images/827e82cb9c8ca5f747933fb1de4c332b00d8fa5c84956a49f7a8ebdaf1c73c91.png" />
+<img alt="_images/a55a5b01de3399a4af4bba6d875b60b0fe384039b2258c8975b66b0b106dc498.png" src="_images/a55a5b01de3399a4af4bba6d875b60b0fe384039b2258c8975b66b0b106dc498.png" />
 </div>
 </div>
 <p>While the chi-squared goodness-of-fit test is inherently <strong>one-tailed</strong> due to the nature of the chi-squared distribution and test statistic, the interpretation can be either directional or non-directional depending on the specific hypothesis.</p>
@@ -2209,7 +2225,7 @@ The observed frequencies are consistent with the expected proportions.
 </section>
 <section id="chi-squared-test-of-independence">
 <h3>Chi-squared test of independence<a class="headerlink" href="#chi-squared-test-of-independence" title="Link to this heading">#</a></h3>
-<p>In this specific case, both seed shape and seed color have two categories each, resulting in a 2x2 (two rows by two columns) contingency table.  The chi-squared test is often used to analyze 2x2 tables to determine if there is a significant association between the two categorical variables. Chi-squared tests can be applied to tables with more than two rows or columns, allowing us to analyze relationships between variables with multiple categories. In some cases, we might have a single row representing a categorical variable with multiple categories. You can still use the chi-squared test to compare the observed frequencies in each category to expected frequencies based on some theoretical distribution.</p>
+<p>In this specific case, both seed shape and seed color have two categories each, resulting in a 2x2 (two rows by two columns) contingency table. The chi-squared test is often used to analyze 2x2 tables to determine if there is a significant association between the two categorical variables. Chi-squared tests can be applied to tables with more than two rows or columns, allowing us to analyze relationships between variables with multiple categories. In some cases, we might have a single row representing a categorical variable with multiple categories. We can still use the chi-squared test to compare the observed frequencies in each category to expected frequencies based on some theoretical distribution.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -2264,13 +2280,13 @@ The observed frequencies are consistent with the expected proportions.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/059546d4071a6075ad7b684eca32f04415787464820cfc5f69c175333726e209.png" src="_images/059546d4071a6075ad7b684eca32f04415787464820cfc5f69c175333726e209.png" />
+<img alt="_images/1d27c457d50e484c4ce565e5b037a0f061fb493ff872ab6aaa47e50abc4f9255.png" src="_images/1d27c457d50e484c4ce565e5b037a0f061fb493ff872ab6aaa47e50abc4f9255.png" />
 </div>
 </div>
 </section>
 <section id="interpreting-the-results-of-the-chi-squared-test-of-independence">
 <h4>Interpreting the results of the chi-squared test of independence<a class="headerlink" href="#interpreting-the-results-of-the-chi-squared-test-of-independence" title="Link to this heading">#</a></h4>
-<p>The <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2_contingency.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.chi2_contingency</span></code> function</a> performs the chi-squared test of independence for contingency tables. It’s designed to assess whether there is a significant association between two categorical variables. It takes a contingency table (a 2D array or list of lists) as input, representing the observed frequencies of the categories. It returns the <span class="math notranslate nohighlight">\(\chi^2\)</span> test statistic, the p-value of the test, the degrees of freedom and the expected frequencies under the null hypothesis of independence.</p>
+<p>The <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2_contingency.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.chi2_contingency</span></code> function</a> performs the chi-squared test of independence for contingency tables. It’s designed to assess whether there is a significant association between two categorical variables. It takes a contingency table (a 2D array or list of lists) as input, representing the observed frequencies of the categories. It returns the <span class="math notranslate nohighlight">\(\chi^2\)</span> test statistic, the P value of the test, the degrees of freedom and the expected frequencies under the null hypothesis of independence.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">chi2_contingency</span></code> function doesn’t inherently know about Mendel’s laws of inheritance or any specific biological mechanism. It calculates expected values based on a purely statistical assumption: independence between the categorical variables. The function first calculates the row and column totals of the observed contingency table. These totals represent the <strong>marginal frequencies</strong> of each category for each variable. It then calculates the expected proportion for each cell in the table under the assumption of independence. This is done by multiplying the corresponding row proportion and column proportion and dividing by the total number of observations. Finally, the expected frequencies are obtained by multiplying the expected proportions by the total number of observations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2281,20 +2297,20 @@ The observed frequencies are consistent with the expected proportions.
     <span class="n">observed</span><span class="o">=</span><span class="n">observed</span><span class="p">,</span>
     <span class="n">lambda_</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">,</span>  <span class="c1"># could also use &#39;cressie-read&#39;, &#39;log-likelihood&#39;, &#39;neyman&#39;, etc.</span>
     <span class="n">correction</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>    <span class="c1"># Yates&#39; correction for continuity</span>
-    <span class="p">)</span>
+<span class="p">)</span>
 
 <span class="c1"># Print the results</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observed Frequencies:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">observed</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Expected Frequencies (under null hypothesis of independence):&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Chi-Squared Statistic:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">chi2_stat</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># type: ignore</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Chi-Squared Statistic:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">chi2_stat</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="c1"># type: ignore</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Degrees of Freedom:&quot;</span><span class="p">,</span> <span class="n">dof</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P-Value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="c1"># type: ignore</span>
 
 <span class="c1"># Interpret the results (using alpha = 0.05 as significance level)</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
-<span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alpha</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alpha</span><span class="p">:</span> <span class="c1"># type: ignore</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reject the null hypothesis. There is a significant </span><span class="se">\</span>
 <span class="s2">association between seed shape and color.&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
@@ -2314,7 +2330,7 @@ Expected Frequencies (under null hypothesis of independence):
 
 Chi-Squared Statistic: 0.0513
 Degrees of Freedom: 1
-P-Value: 0.8208
+P value: 0.8208
 
 Fail to reject the null hypothesis. 
 There is not enough evidence to suggest an association between seed shape and color.
@@ -2333,58 +2349,57 @@ There is not enough evidence to suggest an association between seed shape and co
 <span class="c1"># Calculate critical value</span>
 <span class="n">chi2_crit</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">Df</span><span class="p">)</span>
 
-<span class="c1"># Calculate P-value using chi-squared stat from previous calculation</span>
+<span class="c1"># Calculate P value using chi-squared stat from previous calculation</span>
 <span class="n">p_value</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">chi2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">chi2_stat</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">Df</span><span class="p">)</span>
 
 <span class="c1"># Generate x values for plotting</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">hx</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">Df</span><span class="p">)</span> 
 
 <span class="c1"># Create the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hx</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 
-<span class="c1"># Shade the P-value area</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
-    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_stat</span><span class="p">],</span> <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_stat</span><span class="p">],</span>
-    <span class="c1"># hatch=&#39;///&#39;, edgecolor=&quot;limegreen&quot;, facecolor=&#39;lime&#39;, alpha=.5,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">)</span>
+<span class="c1"># Plot the critical value</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">chi2_crit</span><span class="p">,</span> <span class="c1"># type: ignore</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;Critical value (</span><span class="si">{</span><span class="n">chi2_crit</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the probability alpha</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_crit</span><span class="p">],</span> <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_crit</span><span class="p">],</span>
-    <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;tomato&#39;</span><span class="p">)</span>
+    <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot the observed chi-squared statistic</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">chi2_stat</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">chi2_stat</span><span class="p">,</span> <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\chi^2$ statistic (</span><span class="si">{</span><span class="n">chi2_stat</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>
-<span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\chi^2$ statistic (</span><span class="si">{</span><span class="n">chi2_stat</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
-<span class="c1"># Plot the critical value</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">chi2_crit</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;Critical value (</span><span class="si">{</span><span class="n">chi2_crit</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-
+<span class="c1"># Shade the P value area</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_stat</span><span class="p">],</span> <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">chi2_stat</span><span class="p">],</span> <span class="c1"># type: ignore</span>
+    <span class="c1"># hatch=&#39;///&#39;, edgecolor=&quot;limegreen&quot;, facecolor=&#39;lime&#39;, alpha=.5,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P value (</span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\chi^2$ value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\chi^2$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
-    <span class="sa">fr</span><span class="s1">&#39;$\chi^2$ distribution (df=</span><span class="si">{</span><span class="n">Df</span><span class="si">}</span><span class="s1">) with critical value and P-value (</span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="sa">fr</span><span class="s1">&#39;$\chi^2$ distribution (DF=</span><span class="si">{</span><span class="n">Df</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/64217f2959fa8875d153878438b9238a8e4bfc59cb52de39d07d1eb7652cd185.png" src="_images/64217f2959fa8875d153878438b9238a8e4bfc59cb52de39d07d1eb7652cd185.png" />
+<img alt="_images/2d9cd6024d0f599c422e857c41bbff2a5674c3db5eaba9315e5b94ae18061471.png" src="_images/2d9cd6024d0f599c422e857c41bbff2a5674c3db5eaba9315e5b94ae18061471.png" />
 </div>
 </div>
 <p>While the chi-squared test is widely used, it’s important to be aware of its limitations and assumptions:</p>
@@ -2392,7 +2407,7 @@ There is not enough evidence to suggest an association between seed shape and co
 <li><p>Large sample size: the chi-squared test relies on <em>large-sample approximations</em> to the <strong>chi-squared distribution</strong>. It’s generally considered reliable when the expected frequencies in each cell of the contingency table are <em>at least 5</em>. For smaller sample sizes or sparse tables, Fisher’s exact test might be a more appropriate choice.</p></li>
 <li><p>Independence: the observations in the contingency table must be <strong>independent</strong>. This means that each individual should contribute only one count to the table, and the occurrence of one event should not influence the occurrence of another event.</p></li>
 </ul>
-<p><u>Note:</u> when there are only two categories, the binomial test can compute exact P-values without relying on large-sample approximations. This makes it particularly useful for small to moderate sample sizes. However, for very large sample sizes, computational considerations might make the normal approximation to the binomial distribution a more practical choice, as long as the conditions for this approximation are met.</p>
+<p><u>Note:</u> when there are only two categories, the binomial test can compute exact P values without relying on large-sample approximations. This makes it particularly useful for small to moderate sample sizes. However, for very large sample sizes, computational considerations might make the normal approximation to the binomial distribution a more practical choice, as long as the conditions for this approximation are met.</p>
 </section>
 <section id="degrees-of-freedom-in-independence-tests">
 <h4>Degrees of freedom in independence tests<a class="headerlink" href="#degrees-of-freedom-in-independence-tests" title="Link to this heading">#</a></h4>
@@ -2420,10 +2435,10 @@ There is not enough evidence to suggest an association between seed shape and co
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observed Frequencies:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">observed</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Expected Frequencies (under null hypothesis of independence):&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Chi-Squared Statistic:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">chi2_stat</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># type: ignore</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Chi-Squared Statistic:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">chi2_stat</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="c1"># type: ignore</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Degrees of Freedom:&quot;</span><span class="p">,</span> <span class="n">dof</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P-Value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
@@ -2438,7 +2453,7 @@ Expected Frequencies (under null hypothesis of independence):
 
 Chi-Squared Statistic: 0.0513
 Degrees of Freedom: 1
-P-Value: 0.8208
+P value: 0.8208
 </pre></div>
 </div>
 </div>
@@ -2529,7 +2544,7 @@ neyman                -2.000  29.205  1.000   0.000     0.310    1.000
 </div>
 </div>
 </div>
-<p>The output from <code class="docutils literal notranslate"><span class="pre">pingouin.chi2_independence</span></code> includes the chi-squared statistic, degrees of freedom, and P-value for each test. A small P-value (typically &lt; 0.05) indicates evidence against the null hypothesis of independence, suggesting a statistically significant association between the variables. A larger chi-squared value generally indicates a stronger association, but its magnitude should be interpreted in conjunction with the degrees of freedom.</p>
+<p>The output from <code class="docutils literal notranslate"><span class="pre">pingouin.chi2_independence</span></code> includes the chi-squared statistic, degrees of freedom, and P value for each test. A small P value (typically &lt; 0.05) indicates evidence against the null hypothesis of independence, suggesting a statistically significant association between the variables. A larger chi-squared value generally indicates a stronger association, but its magnitude should be interpreted in conjunction with the degrees of freedom.</p>
 <p><code class="docutils literal notranslate"><span class="pre">pingouin.chi2_independence</span></code> doesn’t just perform the standard Pearson’s chi-squared test. It actually computes several related chi-squared tests, each with slightly different theoretical underpinnings and assumptions. This allows us to compare the results of different tests and choose the one most appropriate for the specific data and analysis goals.</p>
 <ol class="arabic simple">
 <li><p>Pearson’s chi-squared test (<code class="docutils literal notranslate"><span class="pre">pearson</span></code>): this is the classic chi-squared test of independence that we’re likely most familiar with. It compares the observed frequencies in the contingency table to the expected frequencies under the null hypothesis of independence. It’s the most commonly used chi-squared test and is generally suitable for most situations.</p></li>
@@ -2624,7 +2639,7 @@ neyman                -2.000  29.205  1.000   0.000     0.310    1.000
 <section id="interpreting-the-results-of-the-cochran-armitage-test">
 <h4>Interpreting the results of the Cochran-Armitage test<a class="headerlink" href="#interpreting-the-results-of-the-cochran-armitage-test" title="Link to this heading">#</a></h4>
 <p>The choice of scores can influence the test results. In <code class="docutils literal notranslate"><span class="pre">statsmodels.Table.test_ordinal_association</span></code>, the <code class="docutils literal notranslate"><span class="pre">col_scores</span></code> argument allows to specify the scores assigned to each column (category) of the contingency table. The direction of the trend (increasing or decreasing) is determined by the order of the scores. If the scores increase from left to right, the test will assess if there’s an increasing trend (default method behavior). If the scores decrease from left to right, the test will look for a decreasing trend.</p>
-<p>We can also use different scoring systems to test for linear, quadratic, or other types of trends.</p>
+<p>In the context of a toxicology study, where we’re interested in the potential harmful effects of a treatment, a significant <em>increasing trend</em> in tumor rates (one-sided test) with increasing dose is a concerning finding. It suggests that the treatment might be promoting tumor development, and further investigation is needed to assess the safety and potential risks associated with the treatment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.contingency_tables</span> <span class="kn">import</span> <span class="n">Table</span>
@@ -2639,35 +2654,37 @@ neyman                -2.000  29.205  1.000   0.000     0.310    1.000
 <span class="p">])</span>
 
 <span class="c1"># Perform Cochran-Armitage Trend Test</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">tumor_counts</span><span class="p">)</span><span class="o">.</span><span class="n">test_ordinal_association</span><span class="p">(</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">tumor_counts</span><span class="p">,</span> <span class="n">shift_zeros</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">test_ordinal_association</span><span class="p">(</span>
     <span class="c1"># row_scores=np.array([0, 1, 2, 3]),  # default</span>
-    <span class="n">col_scores</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># reversed trend</span>
+    <span class="n">col_scores</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>  <span class="c1"># reversed trend</span>
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
-<span class="c1"># Extract p-value</span>
-<span class="n">p_value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">pvalue</span>
+<span class="c1"># Extract P value</span>
+<span class="n">p_value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">pvalue</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># Divide p-value by 2 for one-sided test</span>
 
 <span class="c1"># Interpret results</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
 <span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alpha</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reject the null hypothesis (P = </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">). </span><span class="se">\</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reject the null hypothesis (P = </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">; one-sided test).</span><span class="se">\</span>
 <span class="se">\n</span><span class="s2">There is a significant increasing trend in tumor rates with increasing dose.&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fail to reject the null hypothesis (P = </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">). </span><span class="se">\</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fail to reject the null hypothesis (P = </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">; one-sided test).</span><span class="se">\</span>
 <span class="se">\n</span><span class="s2">There is not enough evidence to suggest a trend.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>null_mean   15.71072319201995
-null_sd     3.5390390971784127
-pvalue      0.008669937476153359
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>null_mean   15.0
+null_sd     3.454659660058306
+pvalue      0.0037959220933673713
 statistic   25.0
-zscore      2.624801973899118
+zscore      2.894641146743591
 
-Reject the null hypothesis (P = 0.0087). 
+Reject the null hypothesis (P = 0.002; one-sided test).
 There is a significant increasing trend in tumor rates with increasing dose.
 </pre></div>
 </div>
@@ -2679,7 +2696,6 @@ There is a significant increasing trend in tumor rates with increasing dose.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
     <span class="n">Table</span><span class="p">(</span>
         <span class="n">tumor_counts</span><span class="p">,</span>
-        <span class="n">shift_zeros</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span><span class="o">.</span><span class="n">test_ordinal_association</span><span class="p">(</span>
         <span class="c1"># row_scores=np.array([0, 1, 2, 3]),  # default</span>
         <span class="n">col_scores</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># reversed trend</span>
@@ -2689,15 +2705,17 @@ There is a significant increasing trend in tumor rates with increasing dose.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>null_mean   15.0
-null_sd     3.454659660058306
-pvalue      0.0037959220933673713
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>null_mean   15.71072319201995
+null_sd     3.5390390971784127
+pvalue      0.008669937476153359
 statistic   25.0
-zscore      2.894641146743591
+zscore      2.624801973899118
 </pre></div>
 </div>
 </div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">test_ordinal_association</span></code> method from <code class="docutils literal notranslate"><span class="pre">statsmodels.stats.contingency_tables.Table</span></code> in Python performs the Cochran-Armitage test for trend. This test assesses whether there is a linear trend in the proportions of observations across ordered categories. It relies on an <em>asymptotic approximation</em> using the chi-squared distribution, which is generally accurate for large sample sizes.</p>
+<p>For more sophisticated trend analysis or situations with small sample sizes, <a class="reference external" href="https://rcompanion.org/handbook/H_09.html">alternative methods are available in R</a>. For example, the <code class="docutils literal notranslate"><span class="pre">coin</span></code> package provides a flexible framework for permutation-based tests, including the linear-by-linear association test (<code class="docutils literal notranslate"><span class="pre">lbl_test</span></code>) and other trend tests. These permutation tests can be more accurate when the assumptions of the chi-squared test are not met or when dealing with small sample sizes. We can also use different scoring systems to test for linear, quadratic, or other types of trends.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">coin</span><span class="p">)</span>  <span class="c1"># https://cran.r-project.org/web/packages/coin/index.html</span>
@@ -2720,17 +2738,28 @@ alternative hypothesis: two.sided
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">DescTools</span><span class="p">)</span>  <span class="c1"># https://cran.r-project.org/web/packages/DescTools/index.html</span>
-
-<span class="n">CochranArmitageTest</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s2">&quot;two.sided&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform the Cochran-Armitage test using independence_test with &#39;exact&#39; distribution</span>
+<span class="n">coin</span><span class="p">::</span><span class="n">independence_test</span><span class="p">(</span>
+    <span class="k">as</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">table</span><span class="p">),</span>
+    <span class="c1"># distribution = &#39;asymptotic&#39;,  # same as lbl_test()</span>
+    <span class="n">distribution</span> <span class="o">=</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+    <span class="n">ytrafo</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">trafo</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span>
+            <span class="n">factor_trafo</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="o">~</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%*%</span> <span class="k">as</span><span class="o">.</span><span class="n">numeric</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Cochran-Armitage test for trend
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Exact General Independence Test
 
-data:  table
-Z = 2.9019, dim = 4, p-value = 0.003709
+data:  dose by resp (1, 0)
+Z = 2.8946, p-value = 0.004433
 alternative hypothesis: two.sided
 </pre></div>
 </div>
@@ -2748,8 +2777,8 @@ alternative hypothesis: two.sided
 <p>Instead, case-control studies utilize the odds ratio (OR) as their primary measure of association. The OR compares the odds of exposure (e.g., vaccination) among cases to the odds of exposure among controls.  Mathematically, it’s the ratio of the odds of cases being exposed to the odds of controls being exposed.</p>
 <p>The statistical tools we’ve discussed so far are still relevant, but their interpretation and application need to be adapted for case-control designs:</p>
 <ul class="simple">
-<li><p>Fisher’s exact test can still be used in case-control studies, especially when the sample size is <em>small</em> or the contingency table has low expected frequencies. However, it’s important to remember that Fisher’s test provides a P-value for testing the null hypothesis of no association, but it doesn’t directly estimate the relative risk.</p></li>
-<li><p>For larger sample sizes, the chi-squared test can be used as an alternative to Fisher’s exact test for testing the association between the exposure and outcome in a case-control study. Again, the chi-squared test doesn’t directly provide the RR, but it does give a P-value to assess statistical significance.</p></li>
+<li><p>Fisher’s exact test can still be used in case-control studies, especially when the sample size is <em>small</em> or the contingency table has low expected frequencies. However, it’s important to remember that Fisher’s test provides a P value for testing the null hypothesis of no association, but it doesn’t directly estimate the relative risk.</p></li>
+<li><p>For larger sample sizes, the chi-squared test can be used as an alternative to Fisher’s exact test for testing the association between the exposure and outcome in a case-control study. Again, the chi-squared test doesn’t directly provide the RR, but it does give a P value to assess statistical significance.</p></li>
 <li><p>The Cochran-Armitage test is generally not applicable to case-control studies because it’s designed for prospective studies where we follow individuals over time to observe the development of an outcome. In case-control studies, we’re looking back in time at exposure history, not tracking the development of new cases.</p></li>
 </ul>
 </section>
@@ -2816,17 +2845,17 @@ alternative hypothesis: two.sided
 <p>In our example, the OR of 0.25 signifies that vaccinated individuals have only 25% of the odds of developing the disease compared to unvaccinated individuals. This translates to a 75% reduction in the odds of disease due to vaccination.</p>
 <p>Interestingly, the odds ratio often serves as a good approximation of the relative risk (RR) in many scenarios. This approximation is particularly accurate when the disease is rare. However, recent research suggests that the OR can be reasonably interpreted as the RR in most case-control studies, even for common diseases, with some caveats and careful consideration of the study design.</p>
 <p>Moreover, the 95% confidence interval provides a range within which we can be 95% confident that the true population odds ratio lies. If the CI does not include 1, it indicates a <em>statistically significant</em> association at the 5% significance level.</p>
-<p>Given the relatively small sample sizes in this case-control study, we might consider performing Fisher’s exact test in addition to calculating the OR and CI. This test is more appropriate for small samples and will provide an exact P-value for the association.</p>
+<p>Given the relatively small sample sizes in this case-control study, we might consider performing Fisher’s exact test in addition to calculating the OR and CI. This test is more appropriate for small samples and will provide an exact P value for the association.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oddsratio</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">fisher_exact</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fisher&#39;s Exact Test P-value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fisher&#39;s Exact Test P value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fisher&#39;s Exact Test P-value: 0.0003
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fisher&#39;s Exact Test P value: 0.0003
 </pre></div>
 </div>
 </div>
@@ -2885,12 +2914,12 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Chi-squared Test P-value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Chi-squared test P value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chi-squared Test P-value: 0.471
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chi-squared test P value: 0.471
 </pre></div>
 </div>
 </div>
@@ -2899,12 +2928,12 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oddsratio</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">fisher_exact</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fisher&#39;s Exact Test P-value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fisher&#39;s exact test P value:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fisher&#39;s Exact Test P-value: 0.431
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fisher&#39;s exact test P value: 0.431
 </pre></div>
 </div>
 </div>
@@ -2938,20 +2967,18 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 <span class="n">res</span> <span class="o">=</span> <span class="n">contingency</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">treatment</span><span class="p">,</span> <span class="n">outcome</span><span class="p">)</span> <span class="c1"># treatment will be the rows, outcome the columns</span>
 <span class="n">table</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">count</span>
 
-
 <span class="c1"># If the data is already in a Pandas DataFrame we can use pandas.crosstab</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
 <span class="c1"># Assuming the Dataframe has columns named &quot;treatment&quot; and &quot;outcome&quot;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;treatment&quot;</span><span class="p">:</span> <span class="n">treatment</span><span class="p">,</span> <span class="s2">&quot;outcome&quot;</span><span class="p">:</span> <span class="n">outcome</span><span class="p">})</span>
 
-<span class="c1">#Creating contingency table using pd.crosstab</span>
+<span class="c1"># Creating contingency table using pd.crosstab</span>
 <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span>
-    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;treatment&quot;</span><span class="p">],</span> <span class="c1"># use .dropna() if NaN values are expected</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;treatment&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>  <span class="c1"># Remove NaN values if expected</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;outcome&quot;</span><span class="p">],</span>
-    <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>    <span class="c1">#i.e., totals</span>
+    <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>     <span class="c1"># Include row and column totals</span>
+    <span class="n">dropna</span><span class="o">=</span><span class="kc">False</span>      <span class="c1"># Keep rows/columns with zero counts</span>
 <span class="p">)</span>
-
 
 <span class="c1"># # Pre-aggregated contingency table with rows = alternative treatments,</span>
 <span class="c1"># cols = alternative outcomes; here is the example from Apixaban study</span>
@@ -2982,15 +3009,13 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 
 <span class="c1"># Assuming &#39;table&#39; is the 2x2 contingency table (NumPy array)</span>
 <span class="n">table2x2</span> <span class="o">=</span> <span class="n">Table2x2</span><span class="p">(</span><span class="n">table_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
-
 <span class="c1"># Calculate and print the results</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">table2x2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-
 
 <span class="c1"># Calculates probabilities</span>
 <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">table_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">),</span> <span class="n">c</span> <span class="o">/</span> <span class="p">(</span><span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span>
-<span class="c1"># with confidence intervals</span>
+<span class="c1"># Confidence intervals</span>
 <span class="kn">from</span> <span class="nn">statsmodels.stats.proportion</span> <span class="kn">import</span> <span class="n">proportion_confint</span>
 <span class="n">conf</span><span class="o">=</span><span class="mf">0.95</span>  <span class="c1"># Set 95% confidence interval</span>
 <span class="n">ci_p1</span> <span class="o">=</span> <span class="n">proportion_confint</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">nobs</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">conf</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
@@ -2999,10 +3024,9 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 <span class="c1"># Overall risk</span>
 <span class="n">p_bar</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span>
 
-
 <span class="c1"># Calculates absolute risk reduction / attributable risk</span>
 <span class="n">arr</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">-</span> <span class="n">p2</span>
-<span class="c1"># with (estimated) confidence interval</span>
+<span class="c1"># Confidence interval estimation</span>
 <span class="kn">from</span> <span class="nn">statsmodels.stats.proportion</span> <span class="kn">import</span> <span class="n">confint_proportions_2indep</span>
 <span class="n">ci_arr_1</span><span class="p">,</span> <span class="n">ci_arr_2</span> <span class="o">=</span> <span class="n">confint_proportions_2indep</span><span class="p">(</span>
     <span class="n">count1</span><span class="o">=</span><span class="n">a</span><span class="p">,</span>
@@ -3013,13 +3037,11 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
     <span class="n">method</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span>  <span class="c1"># [&#39;wald&#39;, &#39;agresti-caffo&#39;, &#39;newcomb&#39;, &#39;score&#39;]</span>
     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
 
-
 <span class="c1"># Calculates number needed to treat</span>
 <span class="n">ntt</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">arr</span>
-<span class="c1"># confidence interval is the reciprocal of ARR CI</span>
+<span class="c1"># Confidence interval is the reciprocal of ARR CI</span>
 <span class="n">ci_ntt_1</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">ci_arr_2</span><span class="p">)</span>
 <span class="n">ci_ntt_2</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">ci_arr_1</span><span class="p">)</span>
-
 
 <span class="c1"># Calculates relative risk</span>
 <span class="n">rr</span> <span class="o">=</span> <span class="n">p1</span><span class="o">/</span><span class="n">p2</span>
@@ -3030,7 +3052,7 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
     <span class="n">control_cases</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
     <span class="n">control_total</span><span class="o">=</span><span class="n">c</span><span class="o">+</span><span class="n">d</span>
 <span class="p">)</span><span class="o">.</span><span class="n">relative_risk</span>
-<span class="c1"># with (estimated) confidence interval</span>
+<span class="c1"># Confidence interval estimation</span>
 <span class="n">ci_rr_1</span><span class="p">,</span> <span class="n">ci_rr_2</span> <span class="o">=</span> <span class="n">confint_proportions_2indep</span><span class="p">(</span>
     <span class="n">count1</span><span class="o">=</span><span class="n">a</span><span class="p">,</span>
     <span class="n">nobs1</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">,</span>
@@ -3040,14 +3062,13 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
     <span class="n">method</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span>  <span class="c1"># [&#39;log&#39;, &#39;log-adjusted&#39;, &#39;score&#39;]</span>
     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
 
-
 <span class="c1"># Calculates odds ratio</span>
 <span class="ow">or</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">d</span> <span class="o">/</span> <span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
 <span class="c1"># Alternatively using scipy.stats.contingency</span>
 <span class="n">contingency</span><span class="o">.</span><span class="n">odds_ratio</span><span class="p">(</span>
     <span class="n">table</span><span class="o">=</span><span class="n">table_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
     <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;sample&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">statistic</span>
-<span class="c1"># with (estimated) confidence interval</span>
+<span class="c1"># Confidence interval estimation</span>
 <span class="n">ci_or_1</span><span class="p">,</span> <span class="n">ci_or_2</span> <span class="o">=</span> <span class="n">confint_proportions_2indep</span><span class="p">(</span>
     <span class="n">count1</span><span class="o">=</span><span class="n">a</span><span class="p">,</span>
     <span class="n">nobs1</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">,</span>
@@ -3096,17 +3117,14 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 <span class="c1"># Define the standard normal distribution model</span>
 <span class="n">df</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">chi2_distribution</span> <span class="o">=</span> <span class="n">chi2</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-
 <span class="c1"># Distribution statistics</span>
 <span class="n">chi2_distribution</span><span class="o">.</span><span class="n">stats</span><span class="p">()</span>
 
 <span class="c1"># Probabilities</span>
 <span class="c1"># Cumulative Distribution Function - P(X&lt;=8)</span>
 <span class="n">chi2_distribution</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-
 <span class="c1"># (One-tailed) Survival Function - P(X&gt;=16)</span>
 <span class="n">chi2_distribution</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-
 <span class="c1"># Percent Point Function</span>
 <span class="n">chi2_distribution</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.95</span><span class="p">)</span>
 </pre></div>
@@ -3141,7 +3159,6 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
     <span class="n">correction</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>    <span class="c1"># Yates&#39; correction for continuity</span>
 <span class="p">)</span>
 
-
 <span class="c1"># Chi-squared independence tests using pingouin</span>
 <span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">chi2_independence</span><span class="p">(</span>
@@ -3165,7 +3182,7 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
     <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">44</span><span class="p">]</span>   <span class="c1"># High dose</span>
 <span class="p">])</span>
 
-<span class="c1"># Perform Cochran-Armitage Trend Test</span>
+<span class="c1"># Perform Cochran-Armitage trend test (asymptotic linear-by-linear)</span>
 <span class="nb">print</span><span class="p">(</span>
     <span class="n">Table</span><span class="p">(</span>
         <span class="n">tumor_counts</span><span class="p">,</span>
@@ -3174,6 +3191,7 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
         <span class="c1"># row_scores=np.array([0, 1, 2, 3]), # default</span>
         <span class="n">col_scores</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>   <span class="c1"># reversed trend</span>
     <span class="p">))</span>
+<span class="c1"># Divide p-value by 2 for one-sided test</span>
 </pre></div>
 </div>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">49</span><span class="p">,</span><span class="m">47</span><span class="p">,</span><span class="m">44</span><span class="p">),</span><span class="w"> </span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">dimnames</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">resp</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">dose</span><span class="o">=</span><span class="m">0</span><span class="o">:</span><span class="m">3</span><span class="p">))</span>
@@ -3182,9 +3200,17 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 <span class="nf">library</span><span class="p">(</span><span class="n">coin</span><span class="p">)</span>
 <span class="nf">lbl_test</span><span class="p">(</span><span class="nf">as.table</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
 
-<span class="c1"># https://cran.r-project.org/web/packages/DescTools/index.html</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">DescTools</span><span class="p">)</span>
-<span class="nf">CochranArmitageTest</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">alternative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;two.sided&quot;</span><span class="p">)</span>
+<span class="n">coin</span><span class="o">::</span><span class="nf">independence_test</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">as.table</span><span class="p">(</span><span class="n">table</span><span class="p">),</span>
+<span class="w">    </span><span class="c1"># distribution = &#39;asymptotic&#39;,  # same as lbl_test()</span>
+<span class="w">    </span><span class="n">distribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;exact&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ytrafo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nf">trafo</span><span class="p">(</span>
+<span class="w">            </span><span class="n">data</span><span class="p">,</span>
+<span class="w">            </span><span class="n">factor_trafo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">table</span><span class="p">))}</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -3196,7 +3222,6 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
     <span class="p">[</span><span class="mi">1935</span><span class="p">,</span> <span class="mi">19216</span><span class="p">]</span>
 <span class="p">]</span>
 <span class="n">table</span> <span class="o">=</span> <span class="n">Table2x2</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 
 <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -3242,14 +3267,14 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
 -------------
 numpy: 1.26.4
 pandas: 2.2.2
-scipy: 1.13.1
+scipy: 1.14.1
 statsmodels: 0.14.2
-pingouin: 0.5.4
-matplotlib: 3.9.0
+pingouin: 0.5.5
+matplotlib: 3.9.2
 </pre></div>
 </div>
 </div>
@@ -3267,7 +3292,7 @@ matplotlib: 3.9.0
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.4.0 (2024-04-24 ucrt)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.4.1 (2024-06-14 ucrt)
 Platform: x86_64-w64-mingw32/x64
 Running under: Windows 11 x64 (build 26120)
 
@@ -3279,30 +3304,30 @@ locale:
 [3] LC_MONETARY=French_France.utf8 LC_NUMERIC=C                  
 [5] LC_TIME=French_France.utf8    
 
-time zone: Europe/Berlin
+time zone: Europe/Paris
 tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] DescTools_0.99.54 coin_1.4-3        survival_3.6-4    PropCIs_0.3-0    
+[1] DescTools_0.99.56 coin_1.4-3        survival_3.7-0    PropCIs_0.3-0    
 
 loaded via a namespace (and not attached):
- [1] Matrix_1.7-0      expm_0.999-9      jsonlite_1.8.8    compiler_4.4.0   
- [5] crayon_1.5.2      Rcpp_1.0.12       IRdisplay_1.1     parallel_4.4.0   
- [9] splines_4.4.0     readxl_1.4.3      gld_2.6.6         boot_1.3-30      
-[13] uuid_1.2-0        fastmap_1.1.1     IRkernel_1.3.2    lattice_0.22-6   
-[17] TH.data_1.1-2     R6_2.5.1          MASS_7.3-60.2     pillar_1.9.0     
-[21] rlang_1.1.3       utf8_1.2.4        multcomp_1.4-25   repr_1.1.7       
-[25] modeltools_0.2-23 cli_3.6.2         withr_3.0.0       class_7.3-22     
-[29] digest_0.6.35     grid_4.4.0        rootSolve_1.8.2.4 rstudioapi_0.16.0
-[33] mvtnorm_1.2-5     base64enc_0.1-3   Exact_3.2         sandwich_3.1-0   
+ [1] Matrix_1.7-0      expm_1.0-0        jsonlite_1.8.8    compiler_4.4.1   
+ [5] crayon_1.5.3      Rcpp_1.0.13       IRdisplay_1.1     parallel_4.4.1   
+ [9] splines_4.4.1     readxl_1.4.3      gld_2.6.6         boot_1.3-30      
+[13] uuid_1.2-1        fastmap_1.2.0     IRkernel_1.3.2    lattice_0.22-6   
+[17] TH.data_1.1-2     R6_2.5.1          MASS_7.3-61       pillar_1.9.0     
+[21] rlang_1.1.4       utf8_1.2.4        multcomp_1.4-26   repr_1.1.7       
+[25] modeltools_0.2-23 cli_3.6.3         withr_3.0.1       class_7.3-22     
+[29] digest_0.6.37     grid_4.4.1        rootSolve_1.8.2.4 rstudioapi_0.16.0
+[33] mvtnorm_1.2-6     base64enc_0.1-3   Exact_3.3         sandwich_3.1-0   
 [37] pbdZMQ_0.3-11     lifecycle_1.0.4   vctrs_0.6.5       proxy_0.4-27     
-[41] evaluate_0.23     glue_1.7.0        data.table_1.15.4 cellranger_1.1.0 
-[45] libcoin_1.0-10    codetools_0.2-20  zoo_1.8-12        stats4_4.4.0     
+[41] evaluate_0.24.0   glue_1.7.0        data.table_1.15.4 cellranger_1.1.0 
+[45] libcoin_1.0-10    codetools_0.2-20  zoo_1.8-12        stats4_4.4.1     
 [49] e1071_1.7-14      lmom_3.0          fansi_1.0.6       httr_1.4.7       
-[53] matrixStats_1.3.0 tools_4.4.0       htmltools_0.5.8.1
+[53] matrixStats_1.3.0 tools_4.4.1       htmltools_0.5.8.1
 </pre></div>
 </div>
 </div>
@@ -3378,10 +3403,10 @@ loaded via a namespace (and not attached):
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fisher-s-exact-test">Fisher’s exact test</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-fisher-s-test">When to use Fisher’s test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P-value</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P value</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hypergeometric-distribution">Hypergeometric distribution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-hypergeometric-distribution-and-p-value">Relationship between hypergeometric distribution and P-value</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-p-value">Interpreting the P-value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-hypergeometric-distribution-and-p-value">Relationship between hypergeometric distribution and P value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-p-value">Interpreting the P value</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-and-interpreting-risk-metrics">Calculating and interpreting risk metrics</a><ul class="nav section-nav flex-column">
@@ -3410,9 +3435,9 @@ loaded via a namespace (and not attached):
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-table">Summary table</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-measures-of-association-and-effect-with-custom-functions">Calculating measures of association and effect with custom functions</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-statsmodels-table2x2-for-risk-and-odds-ratio-analysis">Using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> Table2x2 for risk and odds ratio analysis</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#application-to-toxicology-count-data">Application to toxicology count data</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-sided-test-application-to-toxicology-count-data">One-sided test - Application to toxicology count data</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-squared-test">Chi-squared test</a><ul class="nav section-nav flex-column">
