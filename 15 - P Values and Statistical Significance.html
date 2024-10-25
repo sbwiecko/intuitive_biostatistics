@@ -218,6 +218,7 @@
 <li class="toctree-l1"><a class="reference internal" href="29%20-%20Comparing%20Survival%20Curves.html">Comparing Survival Curves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="30%20-%20Comparing%20Two%20Unpaired%20Means.html">Comparing Two Unpaired Means</a></li>
 <li class="toctree-l1"><a class="reference internal" href="31%20-%20Comparing%20Paired%20Data.html">Comparing Paired Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32%20-%20Correlation.html">Correlation</a></li>
 </ul>
 
     </div>
@@ -414,14 +415,14 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-reproducibility-challenge-of-p-values">The reproducibility challenge of P-values</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variability-of-p-values-under-a-true-effect">The variability of P-values under a true effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-reproducibility-challenge-of-p-values">The reproducibility challenge of P values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variability-of-p-values-under-a-true-effect">The variability of P values under a true effect</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-risk-of-false-positives-under-the-null-hypothesis">The risk of false positives under the null hypothesis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-influence-of-sample-size-on-p-values">The influence of sample size on P-values</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-danger-of-ad-hoc-sample-size-decisions-and-cumulative-p-values">The danger of ad hoc sample size decisions and cumulative P-values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-influence-of-sample-size-on-p-values">The influence of sample size on P values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-danger-of-ad-hoc-sample-size-decisions-and-cumulative-p-values">The danger of ad hoc sample size decisions and cumulative P values</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals-and-p-values">Confidence intervals and P-values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals-and-p-values">Confidence intervals and P values</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-significance-and-hypothesis-testing">Statistical significance and hypothesis testing</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#type-i-and-type-ii-errors">Type I and type II errors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-statistical-significance">Interpreting statistical significance</a><ul class="nav section-nav flex-column">
@@ -443,8 +444,8 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-equivalence-or-noninferiority">Testing for equivalence or noninferiority</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bioequivalence">Bioequivalence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-one-sided-tests-tost">Two one-sided tests (TOST)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-equivalence-and-noninferiority-tests">Interpreting equivalence and noninferiority tests</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-one-sided-tests-tost">Two One-Sided Tests (TOST)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-diagnostic-accuracy">Assessing diagnostic accuracy</a><ul class="nav section-nav flex-column">
@@ -485,10 +486,10 @@ document.write(`
 <p>In the world of biostatistics, we often face a crucial question: does the data we’ve gathered reveal a <em>true effect</em>, or is it simply the result of <em>random chance</em>? The concept of <strong>statistical significance</strong> offers a framework to grapple with this uncertainty, providing a tool to help us discern <em>meaningful</em> patterns from the <em>noise</em> inherent in biological systems. This chapter delves into the core of statistical significance, exploring why it matters, when it’s most useful, and how it can be a valuable guide in drawing conclusions from the data. Importantly, we’ll also discuss the potential pitfalls of relying too heavily on this concept, as well as when alternative approaches might be more appropriate.</p>
 </section>
 <section id="the-reproducibility-challenge-of-p-values">
-<h2>The reproducibility challenge of P-values<a class="headerlink" href="#the-reproducibility-challenge-of-p-values" title="Link to this heading">#</a></h2>
+<h2>The reproducibility challenge of P values<a class="headerlink" href="#the-reproducibility-challenge-of-p-values" title="Link to this heading">#</a></h2>
 <section id="the-variability-of-p-values-under-a-true-effect">
-<h3>The variability of P-values under a true effect<a class="headerlink" href="#the-variability-of-p-values-under-a-true-effect" title="Link to this heading">#</a></h3>
-<p>P-values, a cornerstone of statistical significance testing, can often give the illusion of definitive answers. However, they are inherently sensitive to the specific data set at hand, leading to a reproducibility challenge. To illustrate this, let’s consider a Python simulation:</p>
+<h3>The variability of P values under a true effect<a class="headerlink" href="#the-variability-of-p-values-under-a-true-effect" title="Link to this heading">#</a></h3>
+<p>P values, a cornerstone of statistical significance testing, can often give the illusion of definitive answers. However, they are inherently sensitive to the specific data set at hand, leading to a reproducibility challenge. To illustrate this, let’s consider a Python simulation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -503,7 +504,7 @@ document.write(`
 <span class="n">mean_difference</span> <span class="o">=</span> <span class="mf">5.0</span>
 <span class="n">num_simulations</span> <span class="o">=</span> <span class="mi">1000</span>
 
-<span class="c1"># Store p-values</span>
+<span class="c1"># Store P values</span>
 <span class="n">p_values</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># Run simulations</span>
@@ -516,19 +517,19 @@ document.write(`
     <span class="n">_</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">ttest_ind</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">)</span>
     <span class="n">p_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_value</span><span class="p">)</span>
 
-<span class="c1"># Analyze p-values</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proportion of P-values &lt; 0.05:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p_values</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">))</span>
+<span class="c1"># Analyze P values</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proportion of P values &lt; 0.05:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p_values</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proportion of P-values &lt; 0.05: 0.592
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proportion of P values &lt; 0.05: 0.592
 </pre></div>
 </div>
 </div>
 </div>
-<p>This code repeatedly samples 10 data points from two Gaussian distributions with the same standard deviation (5.0) but a mean difference of 5.0, so under a <em>true effect</em>. Each time, it performs a <strong>t-test</strong> to compare the means and records the resulting p-value.</p>
-<p>What we often find is a surprising inconsistency. Even though the underlying populations have a true difference in means, the proportion of P-values considered “statistically significant” (typically below 0.05) fluctuates significantly across simulations. This highlights the inherent variability of p-values and the potential for misleading conclusions when a single analysis is treated as definitive.</p>
+<p>This code repeatedly samples 10 data points from two Gaussian distributions with the same standard deviation (5.0) but a mean difference of 5.0, so under a <em>true effect</em>. Each time, it performs a <strong>t-test</strong> to compare the means and records the resulting P value.</p>
+<p>What we often find is a surprising inconsistency. Even though the underlying populations have a true difference in means, the proportion of P values considered “statistically significant” (typically <span class="math notranslate nohighlight">\(\alpha \lt 0.05\)</span>) fluctuates significantly across simulations. This highlights the inherent variability of P values and the potential for misleading conclusions when a single analysis is treated as definitive.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -543,7 +544,7 @@ document.write(`
 <span class="n">mean</span> <span class="o">=</span> <span class="mi">0</span>    <span class="c1"># Mean of the first population</span>
 <span class="n">num_simulations</span> <span class="o">=</span> <span class="mi">2500</span>
 
-<span class="c1"># Store p-values</span>
+<span class="c1"># Store P values</span>
 <span class="n">p_values</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># Run simulations</span>
@@ -563,19 +564,20 @@ document.write(`
 <span class="c1"># Histogram with log scale</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">p_values</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
 <span class="c1"># Vertical line at p=0.05</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;P = 0.05&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\alpha$ = 0.05&quot;</span><span class="p">)</span>
 
 <span class="c1"># Add percentile lines and annotations</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">percentiles</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;P-value&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;P value (log scale)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency (log scale)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
-    <span class="s2">&quot;Distribution of P-values from 2500 simulations</span><span class="se">\n</span><span class="s2">(True mean difference = 5.0)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Distribution of P values from 2500 simulations</span><span class="se">\n</span><span class="s2">(True mean difference = 5.0)&quot;</span><span class="p">,</span>
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -583,15 +585,15 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 2.5th and 97.5th percentiles are [1.69152124e-04 7.02604441e-01]
 </pre></div>
 </div>
-<img alt="_images/be03c553d4d32d704392510b7fe1f4cf892a7897625665b096427e02931eac4c.png" src="_images/be03c553d4d32d704392510b7fe1f4cf892a7897625665b096427e02931eac4c.png" />
+<img alt="_images/076d0b41357ea0e4096d50f30ea6d0be7fff4008191f10cbd38ead56e5d725b4.png" src="_images/076d0b41357ea0e4096d50f30ea6d0be7fff4008191f10cbd38ead56e5d725b4.png" />
 </div>
 </div>
-<p>As our simulation demonstrates, the middle 95% of P-values can span a vast range, from as low as 0.000169 to as high as 0.7026 - a difference of over three orders of magnitude! This immense variability underscores a crucial point: P-values are far less reproducible than most researchers anticipate.</p>
-<p>This lack of reproducibility has significant implications for the conclusions we draw about statistical significance. Consider a study that finds a P-value of exactly 0.05, barely crossing the threshold for significance. If this study were repeated, there’s only a 50% chance that the new P-value would also be below 0.05, as revealed by simulations:</p>
+<p>As our simulation demonstrates, the middle 95% of P values can span a vast range, from as low as 0.000169 to as high as 0.7026 - a difference of over three orders of magnitude! This immense variability underscores a crucial point: P values are far less reproducible than most researchers anticipate.</p>
+<p>This lack of reproducibility has significant implications for the conclusions we draw about statistical significance. Consider a study that finds a P value of exactly 0.05, barely crossing the threshold for significance. If this study were repeated, there’s only a 50% chance that the new P value would also be below 0.05, as revealed by simulations:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Initial P value</p></th>
-<th class="head text-left"><p>Probability of P-value &lt; 0.05 in replication</p></th>
+<th class="head text-left"><p>Probability of P value &lt; 0.05 in replication</p></th>
 </tr>
 </thead>
 <tbody>
@@ -614,11 +616,11 @@ document.write(`
 </table>
 </div>
 <p>In other words, even a seemingly “significant” finding is surprisingly susceptible to being overturned by chance in subsequent experiments.</p>
-<p>This phenomenon isn’t limited to borderline cases. Even with a highly “significant” initial P-value of 0.001, there’s no guarantee that a repeat study will yield a P-value below the traditional 0.05 threshold. This highlights a fundamental truth: statistical significance, as determined by P-values, is not a static property of a phenomenon but rather a probabilistic outcome dependent on the specific data at hand.</p>
+<p>This phenomenon isn’t limited to borderline cases. Even with a highly “significant” initial P value of 0.001, there’s no guarantee that a repeat study will yield a P value below the traditional 0.05 threshold. This highlights a fundamental truth: statistical significance, as determined by P values, is not a static property of a phenomenon but rather a probabilistic outcome dependent on the specific data at hand.</p>
 </section>
 <section id="the-risk-of-false-positives-under-the-null-hypothesis">
 <h3>The risk of false positives under the null hypothesis<a class="headerlink" href="#the-risk-of-false-positives-under-the-null-hypothesis" title="Link to this heading">#</a></h3>
-<p>While the variability of P-values under a true effect is a concern, an even more insidious issue arises when there is no real effect to be found. In this scenario, the <em>null hypothesis is true</em>, yet random sampling can still lead to statistically significant results. This simulation explores the frequency of such false positives and their implications for drawing reliable conclusions.</p>
+<p>While the variability of P values under a true effect is a concern, an even more insidious issue arises when there is no real effect to be found. In this scenario, the <em>null hypothesis is true</em>, yet random sampling can still lead to statistically significant results. This simulation explores the frequency of such false positives and their implications for drawing reliable conclusions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulation parameters</span>
@@ -630,7 +632,7 @@ document.write(`
 <span class="c1"># For reproducibility</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
-<span class="c1"># Store p-values</span>
+<span class="c1"># Store P values</span>
 <span class="n">p_values</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># Run simulations</span>
@@ -651,32 +653,33 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="mf">0.05</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;P = 0.05&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;P-value&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\alpha$ = 0.05&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;P value (log scale)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency (Log Scale)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
-    <span class="s2">&quot;Distribution of P-values from 2500 simulations</span><span class="se">\n\</span>
+    <span class="s2">&quot;Distribution of P values from 2500 simulations</span><span class="se">\n\</span>
 <span class="s2">(null hypothesis true: no mean difference)&quot;</span><span class="p">,</span>
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
-    <span class="mf">0.0011</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span>
+    <span class="mf">0.0004</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span>
     <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">signif_proportion</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">num_simulations</span><span class="p">)</span><span class="si">}</span><span class="s2"> experiments out of </span><span class="se">\n\</span>
 <span class="si">{</span><span class="n">num_simulations</span><span class="si">}</span><span class="s2"> yield p ≤ 0.05 (</span><span class="si">{</span><span class="n">signif_proportion</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> 
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dc10c72ee2046b4f107ecd42ade47979fdfdb2eae4882e311690730d1a2b4591.png" src="_images/dc10c72ee2046b4f107ecd42ade47979fdfdb2eae4882e311690730d1a2b4591.png" />
+<img alt="_images/6690d31eb56b96e07b73fbecef34cfc0b982913a4539e9536aaec0b9f56a1294.png" src="_images/6690d31eb56b96e07b73fbecef34cfc0b982913a4539e9536aaec0b9f56a1294.png" />
 </div>
 </div>
-<p>In our simulation, where both populations had the same mean, approximately 5% of the experiments yielded P-values below the 0.05 significance threshold. This phenomenon is known as a <strong>Type I error</strong>, or a <strong>false positive</strong>. This aligns with the chosen significance level, highlighting that statistical significance does not guarantee a true effect.</p>
-<p>This underscores the importance of interpreting P-values cautiously and considering them within the broader context of the research question, effect size, and potential for replication.</p>
+<p>In our simulation, where both populations had the same mean, approximately 5% of the experiments yielded P values below the 0.05 significance threshold. This phenomenon is known as a <strong>Type I error</strong>, or a <strong>false positive</strong>. This aligns with the chosen significance level, highlighting that statistical significance does not guarantee a true effect.</p>
+<p>This underscores the importance of interpreting P values cautiously and considering them within the broader context of the research question, effect size, and potential for replication.</p>
 </section>
 <section id="the-influence-of-sample-size-on-p-values">
-<h3>The influence of sample size on P-values<a class="headerlink" href="#the-influence-of-sample-size-on-p-values" title="Link to this heading">#</a></h3>
-<p>The size of the sample (the number of observations in each group) plays a crucial role in determining the outcome of a statistical test. Even with the same underlying effect size and variability, a larger sample size can drastically alter the resulting P-value. Let’s illustrate this with a simulation using the t-distribution’s cumulative distribution function (CDF). Here the number of degrees of freedom equals <span class="math notranslate nohighlight">\(n_1 + n_2 - 2\)</span> which, with <span class="math notranslate nohighlight">\(n_1 = n_2 = n\)</span>, equals <span class="math notranslate nohighlight">\(2 \times n - 2\)</span>.</p>
+<h3>The influence of sample size on P values<a class="headerlink" href="#the-influence-of-sample-size-on-p-values" title="Link to this heading">#</a></h3>
+<p>The size of the sample (the number of observations in each group) plays a crucial role in determining the outcome of a statistical test. Even with the same underlying effect size and variability, a larger sample size can drastically alter the resulting P value. Let’s illustrate this with a simulation using the t-distribution’s cumulative distribution function (CDF). Here the number of degrees of freedom equals <span class="math notranslate nohighlight">\(n_1 + n_2 - 2\)</span> which, with <span class="math notranslate nohighlight">\(n_1 = n_2 = n\)</span>, equals <span class="math notranslate nohighlight">\(2 \times n - 2\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span>
@@ -691,7 +694,7 @@ document.write(`
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">31</span><span class="p">):</span>   <span class="c1"># Varying sample sizes</span>
     <span class="c1"># Calculate t-statistic (see previous chapter)</span>
     <span class="n">t_stat</span> <span class="o">=</span> <span class="n">mean_diff</span> <span class="o">/</span> <span class="p">(</span><span class="n">SD</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">p_value</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_stat</span><span class="p">),</span> <span class="n">df</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># Two-tailed p-value</span>
+    <span class="n">p_value</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_stat</span><span class="p">),</span> <span class="n">df</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># Two-tailed P value</span>
     <span class="n">p_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_value</span><span class="p">)</span>
 
 <span class="c1"># Plotting</span>
@@ -699,21 +702,21 @@ document.write(`
 <span class="c1"># plt.figure(figsize=(10, 6))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">31</span><span class="p">)),</span> <span class="n">y</span><span class="o">=</span><span class="n">p_values</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample Size (per group)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;P-value&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;P value&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
-    <span class="s2">&quot;Impact of sample size on P-values</span><span class="se">\n\</span>
+    <span class="s2">&quot;Impact of sample size on P values</span><span class="se">\n\</span>
 <span class="s2">(fixed mean difference and standard deviation)&quot;</span><span class="p">,</span>
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
     <span class="mf">0.05</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;P = 0.05&quot;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\alpha$ = 0.05&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/299a9c8a8e02732b573ae186db376c3619dd70e7aa783267d0e9c1038c782cc7.png" src="_images/299a9c8a8e02732b573ae186db376c3619dd70e7aa783267d0e9c1038c782cc7.png" />
+<img alt="_images/5e9514f57d78bfa039aa017b94d2da5f7bce1130dc9cd828d1fa2c8082439d05.png" src="_images/5e9514f57d78bfa039aa017b94d2da5f7bce1130dc9cd828d1fa2c8082439d05.png" />
 </div>
 </div>
 <p>Of course, we can achieve the same results using both <code class="docutils literal notranslate"><span class="pre">scipy.stats.ttest_ind</span></code> (for the t-test) and directly working with the t-distribution, because the t-test relies on the t-distribution to model the behavior of the test statistic under the null hypothesis (will be discussed in later chapter).</p>
@@ -737,31 +740,31 @@ document.write(`
 <span class="p">)</span>
 <span class="n">t_stat_manual</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean1</span> <span class="o">-</span> <span class="n">mean2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">pooled_std</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">n2</span><span class="p">))</span>
 
-<span class="c1"># Calculate p-value using t-distribution CDF</span>
+<span class="c1"># Calculate P value using t-distribution CDF</span>
 <span class="n">p_value_manual</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_stat_manual</span><span class="p">),</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">))</span> 
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results using ttest_ind:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-statistic: </span><span class="si">{</span><span class="n">t_stat</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, p-value: </span><span class="si">{</span><span class="n">p_value_ttest</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-statistic: </span><span class="si">{</span><span class="n">t_stat</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, P value: </span><span class="si">{</span><span class="n">p_value_ttest</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Results using manual calculation:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-statistic: </span><span class="si">{</span><span class="n">t_stat_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, p-value: </span><span class="si">{</span><span class="n">p_value_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-statistic: </span><span class="si">{</span><span class="n">t_stat_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, P value: </span><span class="si">{</span><span class="n">p_value_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results using ttest_ind:
-t-statistic: -4.6677, p-value: 0.0016
+t-statistic: -4.6677, P value: 0.0016
 
 Results using manual calculation:
-t-statistic: -4.6677, p-value: 0.0016
+t-statistic: -4.6677, P value: 0.0016
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="the-danger-of-ad-hoc-sample-size-decisions-and-cumulative-p-values">
-<h3>The danger of ad hoc sample size decisions and cumulative P-values<a class="headerlink" href="#the-danger-of-ad-hoc-sample-size-decisions-and-cumulative-p-values" title="Link to this heading">#</a></h3>
-<p>In research, it’s tempting to collect data <em>incrementally</em> and assess statistical significance after each addition. However, this <strong>ad hoc</strong> approach to sample size can lead to misleading conclusions. Let’s simulate how cumulative P-values behave under the null hypothesis, where there’s no true difference between groups.</p>
+<h3>The danger of ad hoc sample size decisions and cumulative P values<a class="headerlink" href="#the-danger-of-ad-hoc-sample-size-decisions-and-cumulative-p-values" title="Link to this heading">#</a></h3>
+<p>In research, it’s tempting to collect data <em>incrementally</em> and assess statistical significance after each addition. However, this <strong>ad hoc</strong> approach to sample size can lead to misleading conclusions. Let’s simulate how cumulative P values behave under the null hypothesis, where there’s no true difference between groups.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulation parameters</span>
@@ -809,52 +812,52 @@ t-statistic: -4.6677, p-value: 0.0016
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
     <span class="mf">0.05</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;p = 0.05&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha$ = 0.05&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample size (per group)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;P-value (log scale)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;P value (log scale)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;Impact of increasing incrementally sample size on P-values</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span>
+    <span class="sa">f</span><span class="s2">&quot;Impact of increasing incrementally sample size on P values</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span>
 <span class="s2">(</span><span class="si">{</span><span class="n">num_simulations</span><span class="si">}</span><span class="s2"> simulations) - null hypothesis true: no mean difference&quot;</span><span class="p">,</span>
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">sample_size_max</span> <span class="o">+</span> <span class="mi">5</span><span class="p">))</span>
 <span class="c1"># plt.grid(axis=&#39;y&#39;, linestyle=&#39;--&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a5bd1102475ad2237d3ffb0ee8da82b4914f7d82e9f4b2845ec86c5e1f36ebee.png" src="_images/a5bd1102475ad2237d3ffb0ee8da82b4914f7d82e9f4b2845ec86c5e1f36ebee.png" />
+<img alt="_images/ede4b90a05d0b1f3d2570cce238f174215a9ec7653d45d3e55409618ef12b0a8.png" src="_images/ede4b90a05d0b1f3d2570cce238f174215a9ec7653d45d3e55409618ef12b0a8.png" />
 </div>
 </div>
-<p>Consider the potentially misleading practice of collecting data until a statistically significant result is achieved, then abruptly stopping the experiment. This approach capitalizes on the inherent randomness of sampling. If data collection were to continue beyond the initial “significant” finding, the P-value might fluctuate back into the non-significant range as new data points are added.</p>
-<p>This is evident with the first line in our previous simulation (where the curve rises between 13 and 14). However, for other samples, the rise of the P-value back into non-significance could occur later or even never happen, leaving a false sense of confidence in the results. In real-world research, this fluctuation would often remain hidden due to the premature halt of data collection.</p>
+<p>Consider the potentially misleading practice of collecting data until a statistically significant result is achieved, then abruptly stopping the experiment. This approach capitalizes on the inherent randomness of sampling. If data collection were to continue beyond the initial “significant” finding, the P value might fluctuate back into the non-significant range as new data points are added.</p>
+<p>This is evident with the first line in our previous simulation (where the curve rises between 13 and 14). However, for other samples, the rise of the P value back into non-significance could occur later or even never happen, leaving a false sense of confidence in the results. In real-world research, this fluctuation would often remain hidden due to the premature halt of data collection.</p>
 <p>This dynamic adjustment of sample size, known as <strong>sequential data analysis</strong>, introduces <strong>bias</strong> and inflates the rate of <strong>false positives</strong> (<strong>Type I errors</strong>). It’s a statistical illusion, creating the misleading impression of a significant effect where none truly exists.</p>
 </section>
 </section>
 <section id="confidence-intervals-and-p-values">
-<h2>Confidence intervals and P-values<a class="headerlink" href="#confidence-intervals-and-p-values" title="Link to this heading">#</a></h2>
-<p>Confidence intervals offer a valuable alternative to P-values for assessing statistical significance. They provide a <em>range of plausible values for the true population parameter</em> (e.g., mean difference, effect size) with a specified level of confidence (typically 95%). Unlike P-values, which focus solely on rejecting or failing to reject a null hypothesis, confidence intervals offer a more informative picture of the magnitude and uncertainty of an effect.</p>
-<p>There’s a direct relationship between confidence intervals and P-values, particularly for two-sided tests:</p>
+<h2>Confidence intervals and P values<a class="headerlink" href="#confidence-intervals-and-p-values" title="Link to this heading">#</a></h2>
+<p>Confidence intervals offer a valuable alternative to P values for assessing statistical significance. They provide a <em>range of plausible values for the true population parameter</em> (e.g., mean difference, effect size) with a specified level of confidence (typically 95%). Unlike P values, which focus solely on rejecting or failing to reject a null hypothesis, confidence intervals offer a more informative picture of the magnitude and uncertainty of an effect.</p>
+<p>There’s a direct relationship between confidence intervals and P values, particularly for two-sided tests:</p>
 <ul class="simple">
-<li><p><strong>95% CI excludes the null value</strong>: if the 95% confidence interval for a parameter (e.g., mean difference) does not include the null hypothesis value (often 0 for differences or 1 for ratios), then the corresponding P-value will be less than 0.05, indicating a <strong>statistically significant</strong> result.</p></li>
-<li><p><strong>95% CI includes the null value</strong>: conversely, if the 95% confidence interval does contain the null hypothesis value, the P-value will be greater than or equal to 0.05, suggesting that the results are <strong>not statistically significant</strong>.</p></li>
-</ul>
-<img src="https://ars.els-cdn.com/content/image/1-s2.0-S1063458412007789-gr1.jpg" alt="Statistically and clinically significant effects, measured in arbitrary units on an absolute scale, as evaluated by P-values and confidence intervals" style="width: 600px;"/>
-<p>Examples:</p>
-<ul class="simple">
+<li><p><strong>95% CI excludes the null value</strong>: if the 95% confidence interval for a parameter (e.g., mean difference) does not include the null hypothesis value (often 0 for differences or 1 for ratios), then the corresponding P value will be less than 0.05, indicating a <strong>statistically significant</strong> result.</p></li>
+<li><p><strong>95% CI includes the null value</strong>: conversely, if the 95% confidence interval does contain the null hypothesis value, the P value will be greater than or equal to 0.05, suggesting that the results are <strong>not statistically significant</strong>. For example:</p>
+<ul>
 <li><p>Comparing means: if the 95% CI for the difference between two means does not include zero, we can conclude a statistically significant difference exists between the groups (P &lt; 0.05).</p></li>
 <li><p>Comparing proportions: if the 95% CI for the ratio of two proportions does not include 1.0, we can conclude a statistically significant difference exists (P &lt; 0.05).</p></li>
 <li><p>Comparing percentages: if we’re testing whether a set of percentages differs from a hypothesized value of 100, and the 95% CI of the mean of the percentages excludes 100, then the discrepancy is statistically significant.</p></li>
 </ul>
-<p>Confidence intervals offer several advantages over P-values alone:</p>
+</li>
+</ul>
+<p>Confidence intervals offer several advantages over P values alone:</p>
 <ul class="simple">
 <li><p>Effect size estimation: CIs provide an estimate of the magnitude of the effect, not just whether it’s statistically significant.</p></li>
 <li><p>Precision assessment: the width of the CI reflects the precision of the estimate. Narrower CIs indicate more precise estimates.</p></li>
 <li><p>Decision relevance: CIs help assess the practical significance of the effect by showing the range of plausible values.</p></li>
 </ul>
-<p>In biostatistics and many other fields, it’s increasingly recommended to report confidence intervals alongside P-values. This provides a more comprehensive and informative view of our findings, allowing for better decision-making based on both statistical significance and the estimated magnitude of the effect.</p>
+<p>In biostatistics and many other fields, it’s increasingly recommended to report confidence intervals alongside P values. This provides a more comprehensive and informative view of our findings, allowing for better decision-making based on both statistical significance and the estimated magnitude of the effect.</p>
 </section>
 <section id="statistical-significance-and-hypothesis-testing">
 <h2>Statistical significance and hypothesis testing<a class="headerlink" href="#statistical-significance-and-hypothesis-testing" title="Link to this heading">#</a></h2>
@@ -892,7 +895,7 @@ t-statistic: -4.6677, p-value: 0.0016
 <section id="the-significance-level-alpha">
 <h4>The significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>)<a class="headerlink" href="#the-significance-level-alpha" title="Link to this heading">#</a></h4>
 <p>When a statistical test yields a “significant” result, it means the observed effect is unlikely to have occurred by chance alone, given a pre-specified threshold of improbability. This threshold is known as the significance level, denoted by the Greek letter alpha (<span class="math notranslate nohighlight">\(\alpha\)</span>).</p>
-<p>Typically, researchers set alpha at 0.05, meaning there’s a 5% chance of incorrectly rejecting the null hypothesis (H0) when it’s actually true (a Type I error). A P-value less than alpha leads to rejecting H0, while a P-value greater than or equal to alpha leads to failing to reject H0.</p>
+<p>Typically, researchers set alpha at 0.05, meaning there’s a 5% chance of incorrectly rejecting the null hypothesis (H0) when it’s actually true (a Type I error). A P value less than alpha leads to rejecting H0, while a P value greater than or equal to alpha leads to failing to reject H0.</p>
 <p>While a significant result (<span class="math notranslate nohighlight">\(P &lt; \alpha\)</span>) suggests an effect is unlikely due to chance, it doesn’t guarantee the effect is:</p>
 <ul class="simple">
 <li><p>Large: a small effect can be statistically significant with a large enough sample size.</p></li>
@@ -901,7 +904,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </ul>
 <p>Now, we can ask ourselves:</p>
 <ul class="simple">
-<li><p>Assuming the null hypothesis is true, what is the probability of obtaining a P-value that would lead us to incorrectly reject the null hypothesis?</p></li>
+<li><p>Assuming the null hypothesis is true, what is the probability of obtaining a P value that would lead us to incorrectly reject the null hypothesis?</p></li>
 <li><p>If we repeatedly conduct experiments where there is no true effect, what proportion of these experiments will mistakenly lead us to conclude that there is a significant effect?</p></li>
 </ul>
 <p>In practical terms, <span class="math notranslate nohighlight">\(\alpha\)</span> can also be understood through repeated experimentation. Imagine conducting numerous experiments where the null hypothesis (H0) is true. Let <span class="math notranslate nohighlight">\(A\)</span> represent the number of times we incorrectly reject H0 (Type I errors), and let <span class="math notranslate nohighlight">\(B\)</span> represent the number of times we correctly fail to reject H0:</p>
@@ -1080,7 +1083,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </tbody>
 </table>
 </div>
-<p>Furthermore, if an experiment has low power to find the difference/effect we are looking for, we are likely to end up with a result that is not statistically significant even if the effect is real. And if the low power study does reach a conclusion that the effect is statistically significant, the results are hard to interpret because the FPRP will be high, and the effect size observed in that study is likely to be larger than the actual effect size because only large observed effects (even if due to chance) will yield a P-value less than 0.05. Experiments designed with low power cannot be very informative, and it should not be surprising when they cannot be reproduced.</p>
+<p>Furthermore, if an experiment has low power to find the difference/effect we are looking for, we are likely to end up with a result that is not statistically significant even if the effect is real. And if the low power study does reach a conclusion that the effect is statistically significant, the results are hard to interpret because the FPRP will be high, and the effect size observed in that study is likely to be larger than the actual effect size because only large observed effects (even if due to chance) will yield a P value less than 0.05. Experiments designed with low power cannot be very informative, and it should not be surprising when they cannot be reproduced.</p>
 </section>
 </section>
 </section>
@@ -1100,8 +1103,8 @@ t-statistic: -4.6677, p-value: 0.0016
 <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
     <span class="mi">5</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;α = 0.05&quot;</span><span class="p">)</span>  <span class="c1"># Add alpha level line</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\alpha$ = 0.05&quot;</span><span class="p">)</span>  <span class="c1"># Add alpha level line</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
     <span class="s2">&quot;Probability of obtaining at least one statistically significant result by chance&quot;</span><span class="p">,</span>
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
@@ -1114,7 +1117,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/390887bfca56d31001c7ebf1554571acce7326cd5461d4a2e962867b4ff785af.png" src="_images/390887bfca56d31001c7ebf1554571acce7326cd5461d4a2e962867b4ff785af.png" />
+<img alt="_images/4f722c5debe9881f14c2ca5aefd21a91e917c1765d153c95f6da445cb30e0d48.png" src="_images/4f722c5debe9881f14c2ca5aefd21a91e917c1765d153c95f6da445cb30e0d48.png" />
 </div>
 </div>
 <p>This plot illustrate the concept of the multiple comparisons problem. The x-axis represents the number of comparisons made in a study, while the y-axis shows the probability of obtaining at least one statistically significant result purely by chance.</p>
@@ -1128,17 +1131,17 @@ t-statistic: -4.6677, p-value: 0.0016
 <h3>The False Discovery Rate (FDR)<a class="headerlink" href="#the-false-discovery-rate-fdr" title="Link to this heading">#</a></h3>
 <p>The False Discovery Rate (FDR) offers a more flexible alternative to the Bonferroni correction for addressing multiple comparisons. Instead of strictly controlling the probability of any false positives, the FDR aims to control the proportion of false positives among the discoveries we make. The FDR addresses these key questions:</p>
 <ul class="simple">
-<li><p>If a comparison is deemed significant (P-value below a threshold), what’s the chance it’s actually a false positive (H0 is true)?</p></li>
+<li><p>If a comparison is deemed significant (P value below a threshold), what’s the chance it’s actually a false positive (H0 is true)?</p></li>
 <li><p>Of all significant findings, what fraction are expected to be false positives?</p></li>
 </ul>
 <p>The desired FDR, often denoted as <span class="math notranslate nohighlight">\(Q\)</span>, is the acceptable proportion of false discoveries. For example, with Q = 10%, we aim for at least 90% of our significant results to be true positives.</p>
-<p>A widely used method to control the FDR is the <strong>Benjamini-Hochberg</strong> procedure. It sets dynamic thresholds for each comparison, depending on its rank among the P-values. For example, if we want an FDR of 5% across 100 comparisons, we would:</p>
+<p>A widely used method to control the FDR is the <strong>Benjamini-Hochberg</strong> procedure. It sets dynamic thresholds for each comparison, depending on its rank among the P values. For example, if we want an FDR of 5% across 100 comparisons, we would:</p>
 <ol class="arabic simple">
-<li><p>Rank P-values: order the P-values from smallest to largest (<span class="math notranslate nohighlight">\(P(1), P(2), ..., P(100)\)</span>).</p></li>
-<li><p>Calculate Thresholds: for each P-value <span class="math notranslate nohighlight">\(P(i)\)</span>, calculate a threshold <span class="math notranslate nohighlight">\(T(i)\)</span> using this formula <span class="math notranslate nohighlight">\(T(i) = (i / m) \times Q\)</span>, with <span class="math notranslate nohighlight">\(i\)</span> the rank of the P-value (<span class="math notranslate nohighlight">\(1, 2, ..., 100\)</span>), and <span class="math notranslate nohighlight">\(m\)</span> the total number of comparisons (<span class="math notranslate nohighlight">\(100\)</span>)</p></li>
+<li><p>Rank P values: order the P values from smallest to largest (<span class="math notranslate nohighlight">\(P(1), P(2), ..., P(100)\)</span>).</p></li>
+<li><p>Calculate Thresholds: for each P value <span class="math notranslate nohighlight">\(P(i)\)</span>, calculate a threshold <span class="math notranslate nohighlight">\(T(i)\)</span> using this formula <span class="math notranslate nohighlight">\(T(i) = (i / m) \times Q\)</span>, with <span class="math notranslate nohighlight">\(i\)</span> the rank of the P value (<span class="math notranslate nohighlight">\(1, 2, ..., 100\)</span>), and <span class="math notranslate nohighlight">\(m\)</span> the total number of comparisons (<span class="math notranslate nohighlight">\(100\)</span>)</p></li>
 <li><p>Compare and Decide: if <span class="math notranslate nohighlight">\(P(i) \leq T(i)\)</span>, declare the comparison as significant, if <span class="math notranslate nohighlight">\(P(i) \gt T(i)\)</span>, declare the comparison as not significant.</p></li>
 </ol>
-<p>For example, for the smallest P-value (<span class="math notranslate nohighlight">\(i = 1\)</span>), <span class="math notranslate nohighlight">\(T(1) = (1 / 100) \times 0.05 = 0.0005\)</span>, so, the smallest P-value would be considered significant if it’s less than or equal to 0.0005. The second smallest P-value’s threshold would be <span class="math notranslate nohighlight">\((2/100) \times 0.05 = 0.001\)</span>. For the largest P-value (<span class="math notranslate nohighlight">\(i = 100\)</span>), <span class="math notranslate nohighlight">\(T(100) = (100 / 100) \times 0.05 = 0.05\)</span>, so the largest P-value is compared directly to the overall alpha level (0.05).</p>
+<p>For example, for the smallest P value (<span class="math notranslate nohighlight">\(i = 1\)</span>), <span class="math notranslate nohighlight">\(T(1) = (1 / 100) \times 0.05 = 0.0005\)</span>, so, the smallest P value would be considered significant if it’s less than or equal to 0.0005. The second smallest P value’s threshold would be <span class="math notranslate nohighlight">\((2/100) \times 0.05 = 0.001\)</span>. For the largest P value (<span class="math notranslate nohighlight">\(i = 100\)</span>), <span class="math notranslate nohighlight">\(T(100) = (100 / 100) \times 0.05 = 0.05\)</span>, so the largest P value is compared directly to the overall alpha level (0.05).</p>
 <p>This approach ensures that, on average, no more than 5% of the significant results we identify will be false positives.</p>
 </section>
 </section>
@@ -1147,23 +1150,12 @@ t-statistic: -4.6677, p-value: 0.0016
 <p>Traditional hypothesis testing focuses on demonstrating a significant difference between treatments. However, in certain contexts, like generic drug development, the goal shifts towards demonstrating equivalence or noninferiority compared to a standard drug.</p>
 <section id="bioequivalence">
 <h3>Bioequivalence<a class="headerlink" href="#bioequivalence" title="Link to this heading">#</a></h3>
-<p>The U.S. Food and Drug Administration (FDA) defines two drug formulations as <strong>bioequivalent</strong> if the 90% confidence interval (CI) of the ratio of their peak concentrations in blood plasma falls entirely within the range of <strong>0.80 to 1.25</strong> (note that the reciprocal of 80% is <span class="math notranslate nohighlight">\(1/0.8=125%\)</span>). This means the generic drug’s performance is expected to be within 20% of the reference drug’s performance in most cases, a difference considered clinically insignificant.</p>
+<p>The U.S. Food and Drug Administration (FDA) defines two drug formulations as <strong>bioequivalent</strong> if the 90% confidence interval (CI) of the ratio of peak concentrations (Cmax) and total drug exposure (AUC) in blood plasma falls entirely within the range of <strong>0.80 to 1.25</strong> (note that the reciprocal of 80% is <span class="math notranslate nohighlight">\(1/0.8=125\%\)</span>). This means the generic drug’s performance is expected to be within 20% of the reference drug’s performance in most cases, a difference usually considered clinically insignificant.</p>
 <p>Using a 90% confidence interval (CI) for each of the two one-sided tests results in an overall 95% confidence level for the equivalence conclusion. This might seem counterintuitive, but it’s a result of how the two tests and their associated CIs combine.</p>
 </section>
-<section id="interpreting-equivalence-and-noninferiority-tests">
-<h3>Interpreting equivalence and noninferiority tests<a class="headerlink" href="#interpreting-equivalence-and-noninferiority-tests" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Equivalence</strong>: when the entire 90% CI lies within the 0.80-1.25 equivalence zone, the generic drug is deemed equivalent to the standard drug.</p></li>
-<li><p><strong>Non-equivalence</strong>: if the 90% CI falls completely outside the equivalence zone, the drugs are considered not equivalent.</p></li>
-<li><p><strong>Inconclusive results</strong>: a 90% CI that straddles the equivalence zone (partially inside, partially outside) means the data are inconclusive regarding equivalence.</p></li>
-<li><p><strong>Noninferiority</strong>: when the lower limit of the 90% CI exceeds 0.80, the new drug is considered noninferior. This indicates that the new drug is either superior to the standard drug or only slightly inferior, remaining within the zone of practical equivalence.</p></li>
-</ul>
-<img src="https://static.s4be.cochrane.org/app/uploads/2022/01/Figure-1-scaled.jpg" alt="Defining superiority, equivalence and non-inferiority in clinical trials" style="width: 800px;"/>
-<p>There is a nice interactive visualization of <a class="reference external" href="https://rpsychologist.com/d3/equivalence/">equivalence, non-inferiority and superiority testing</a>, where we can play with the effect size, the sample, size and the margin and see how these parameters affect the equivalence.</p>
-</section>
 <section id="two-one-sided-tests-tost">
-<h3>Two One-Sided Tests (TOST)<a class="headerlink" href="#two-one-sided-tests-tost" title="Link to this heading">#</a></h3>
-<p>Standard hypothesis testing (null hypothesis significance testing or NHST) is designed to detect differences between groups or treatments. However, in equivalence testing, our goal is to demonstrate that two treatments are not meaningfully different - that they fall within a pre-defined range of equivalence.</p>
+<h3>Two one-sided tests (TOST)<a class="headerlink" href="#two-one-sided-tests-tost" title="Link to this heading">#</a></h3>
+<p>Standard hypothesis testing (null hypothesis significance testing or NHST) is designed to detect differences between groups or treatments. However, in equivalence testing, the goal is to demonstrate that two treatments are not meaningfully different, i.e., that they fall within a pre-defined range of equivalence.</p>
 <p>The problem with applying NHST directly to equivalence testing is that failing to reject the null hypothesis (H0: no difference) doesn’t prove equivalence. It could simply mean our study lacked sufficient power to detect a small difference. The TOST procedure cleverly adapts NHST to the equivalence framework by posing <strong>two separate null hypotheses</strong>:</p>
 <ol class="arabic simple">
 <li><p>H01: the true mean ratio is less than or equal to the lower equivalence bound (0.80 in the FDA example).</p></li>
@@ -1172,9 +1164,20 @@ t-statistic: -4.6677, p-value: 0.0016
 <p>By conducting two <strong>one-sided tests</strong>, each with a significance level of 0.05, we essentially create two “null hypotheses of non-equivalence.”</p>
 <p>Now, how do we interpret TOST results?</p>
 <ul class="simple">
-<li><p>Reject Both Null Hypotheses: if we reject both H01 and H02 (i.e., both one-sided p-values are less than 0.05), we conclude that the true mean ratio lies within the equivalence interval with 90% confidence. This is the desired outcome for demonstrating equivalence.</p></li>
-<li><p>Fail to Reject Either Null Hypothesis: if we fail to reject either H01 or H02 (p-value ≥ 0.05), we cannot conclude equivalence. This doesn’t necessarily mean the treatments are not equivalent; it could be due to insufficient statistical power.</p></li>
+<li><p>Reject both null hypotheses: if we reject both H01 and H02 (i.e., both one-sided P values are less than 0.05), we conclude that the true mean ratio lies within the equivalence interval with 90% confidence. This is the desired outcome for demonstrating equivalence.</p></li>
+<li><p>Fail to reject either null hypothesis: if we fail to reject either H01 or H02 (P value &gt;= 0.05), we cannot conclude equivalence. This doesn’t necessarily mean the treatments are not equivalent; it could be due to insufficient statistical power.</p></li>
 </ul>
+</section>
+<section id="interpreting-equivalence-and-noninferiority-tests">
+<h3>Interpreting equivalence and noninferiority tests<a class="headerlink" href="#interpreting-equivalence-and-noninferiority-tests" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Equivalence</strong>: when the entire 90% CI lies within the 0.80-1.25 equivalence zone, the generic drug is deemed equivalent to the standard drug.</p></li>
+<li><p><strong>Non-equivalence</strong>: if the 90% CI falls completely outside the equivalence zone, the drugs are considered not equivalent.</p></li>
+<li><p><strong>Inconclusive results</strong>: a 90% CI that straddles the equivalence zone, i.e., partially inside, partially outside, means the data are inconclusive regarding equivalence.</p></li>
+<li><p><strong>Noninferiority</strong>: noninferiority trials aim to demonstrate that a new treatment is not unacceptably worse than an existing treatment. This is done by specifying a pre-defined margin of inferiority (<span class="math notranslate nohighlight">\(\Delta\)</span>), which represents the largest clinically acceptable difference between the new and existing treatment. This margin is not always 0.80 and it’s carefully chosen based on factors like the clinical importance of the effect of the existing treatment, the severity of the disease, and potential risks and benefits of the new treatment. To conclude non-inferiority, the entire 90% CI for the comparison between the new and existing treatments must lie above the pre-defined non-inferiority margin.</p></li>
+</ul>
+<p><img alt="noninferiority testing" src="_images/bioequivalence.svg" /></p>
+<p>There is also a nice interactive visualization of <a class="reference external" href="https://rpsychologist.com/d3/equivalence/">equivalence, non-inferiority and superiority testing</a>, where we can play with the effect size, the sample, size and the margin and see how these parameters affect equivalence.</p>
 <p>Equivalence and non-inferiority testing present unique challenges and require specialized methods beyond the scope of this jupyter-book, so that consulting with a statistician familiar with the relevant regulatory guidelines is strongly recommended.</p>
 </section>
 </section>
@@ -1475,7 +1478,7 @@ t-statistic: -4.6677, p-value: 0.0016
 </section>
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
-<p>Throughout this chapter, we have embarked on a nuanced exploration of statistical significance, venturing beyond the simplistic notion of P &lt; 0.05 as the sole arbiter of truth. We have examined the probabilistic nature of P-values, the importance of effect sizes, the complexities of multiple comparisons, and the influence of prior knowledge on interpreting results.</p>
+<p>Throughout this chapter, we have embarked on a nuanced exploration of statistical significance, venturing beyond the simplistic notion of P &lt; 0.05 as the sole arbiter of truth. We have examined the probabilistic nature of P values, the importance of effect sizes, the complexities of multiple comparisons, and the influence of prior knowledge on interpreting results.</p>
 <p>We have seen that statistical significance, while a valuable tool, is not a substitute for scientific reasoning or a guarantee of practical importance.  It is but one piece of evidence in the broader landscape of scientific inquiry.</p>
 <p>Armed with this knowledge, we can critically evaluate statistical claims, design studies with appropriate power, and interpret results with a discerning eye. Remember, statistics is not merely a set of formulas, but a framework for reasoning under uncertainty. By embracing its subtleties and complexities, we can unlock its full potential to inform our research and contribute to the advancement of biostatistical knowledge!</p>
 </section>
@@ -1517,12 +1520,12 @@ t-statistic: -4.6677, p-value: 0.0016
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
 -------------
 numpy: 1.26.4
-scipy: 1.13.1
-pingouin: 0.5.4
-matplotlib: 3.9.0
+scipy: 1.14.1
+pingouin: 0.5.5
+matplotlib: 3.9.2
 seaborn: 0.13.2
 </pre></div>
 </div>
@@ -1596,14 +1599,14 @@ seaborn: 0.13.2
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-reproducibility-challenge-of-p-values">The reproducibility challenge of P-values</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variability-of-p-values-under-a-true-effect">The variability of P-values under a true effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-reproducibility-challenge-of-p-values">The reproducibility challenge of P values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variability-of-p-values-under-a-true-effect">The variability of P values under a true effect</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-risk-of-false-positives-under-the-null-hypothesis">The risk of false positives under the null hypothesis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-influence-of-sample-size-on-p-values">The influence of sample size on P-values</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-danger-of-ad-hoc-sample-size-decisions-and-cumulative-p-values">The danger of ad hoc sample size decisions and cumulative P-values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-influence-of-sample-size-on-p-values">The influence of sample size on P values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-danger-of-ad-hoc-sample-size-decisions-and-cumulative-p-values">The danger of ad hoc sample size decisions and cumulative P values</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals-and-p-values">Confidence intervals and P-values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals-and-p-values">Confidence intervals and P values</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-significance-and-hypothesis-testing">Statistical significance and hypothesis testing</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#type-i-and-type-ii-errors">Type I and type II errors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-statistical-significance">Interpreting statistical significance</a><ul class="nav section-nav flex-column">
@@ -1625,8 +1628,8 @@ seaborn: 0.13.2
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-equivalence-or-noninferiority">Testing for equivalence or noninferiority</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bioequivalence">Bioequivalence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-one-sided-tests-tost">Two one-sided tests (TOST)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-equivalence-and-noninferiority-tests">Interpreting equivalence and noninferiority tests</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-one-sided-tests-tost">Two One-Sided Tests (TOST)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-diagnostic-accuracy">Assessing diagnostic accuracy</a><ul class="nav section-nav flex-column">
