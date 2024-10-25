@@ -24,13 +24,13 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="3.8402"
-     inkscape:cx="164.31436"
-     inkscape:cy="121.47805"
-     inkscape:window-width="2256"
-     inkscape:window-height="1398"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
-     inkscape:window-maximized="1"
+     inkscape:cx="168.35061"
+     inkscape:cy="121.60825"
+     inkscape:window-width="1925"
+     inkscape:window-height="1197"
+     inkscape:window-x="137"
+     inkscape:window-y="100"
+     inkscape:window-maximized="0"
      inkscape:current-layer="layer1" />
   <defs
      id="defs1">
@@ -232,7 +232,7 @@
      id="layer1"
      transform="translate(-17.677291,-17.447922)">
     <rect
-       style="opacity:1;fill:#e4c8bc;fill-opacity:1;stroke:none;stroke-width:0.264999;stroke-linejoin:bevel;stroke-dasharray:0.264999, 0.264999;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill"
+       style="opacity:1;fill:#dde9af;fill-opacity:1;stroke:none;stroke-width:0.264999;stroke-linejoin:bevel;stroke-dasharray:0.264999, 0.264999;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill"
        id="rect1"
        width="45.482079"
        height="49.932907"
@@ -298,83 +298,83 @@
          y="72.752861">-Δ</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Stop);marker-mid:url(#Square);marker-end:url(#Stop)"
-       d="M 24.390004,25.767972 H 37.962975 50.709164"
+       d="M 25.39683,25.767972 H 38.969801 51.71599"
        id="path5"
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Stop-3);marker-mid:url(#Square-2);marker-end:url(#Stop-3)"
-       d="M 40.55335,43.212291 H 54.126321 66.87251"
+       d="M 41.04431,43.212291 H 54.617281 67.36347"
        id="path5-5"
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Stop-3-6);marker-mid:url(#Square-2-0);marker-end:url(#Stop-3-6)"
-       d="m 51.282987,51.934451 h 7.654849 7.188563"
+       d="m 51.678874,51.934451 h 7.654849 7.188563"
        id="path5-5-6"
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Stop-3-1);marker-mid:url(#Square-2-9);marker-end:url(#Stop-3-1)"
-       d="m 63.879488,60.656611 h 5.724038 5.375365"
+       d="m 63.663503,60.656611 h 5.724038 5.375365"
        id="path5-5-5"
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Stop-3-1-1);marker-mid:url(#Square-2-9-3);marker-end:url(#Stop-3-1-1)"
-       d="M 51.278697,34.490132 H 57.002735 62.3781"
+       d="m 51.166785,34.490132 h 5.724038 5.375365"
        id="path5-5-5-1"
        sodipodi:nodetypes="ccc" />
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:2.64583px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';stroke-width:0.264583"
-       x="33.346786"
+       x="33.738159"
        y="29.097111"
        id="text6"><tspan
          sodipodi:role="line"
          id="tspan6"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:2.64583px;font-family:Arial;-inkscape-font-specification:'Arial Italic Condensed';fill:#0000ff;stroke-width:0.264583"
-         x="33.346786"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:2.64583px;font-family:Arial;-inkscape-font-specification:'Arial Condensed';fill:#0000ff;stroke-width:0.264583"
+         x="33.738159"
          y="29.097111">noninferior</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:2.64583px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';stroke-width:0.264583"
-       x="52.03603"
+       x="51.57576"
        y="37.877071"
        id="text6-5"><tspan
          sodipodi:role="line"
          id="tspan6-0"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:2.64583px;font-family:Arial;-inkscape-font-specification:'Arial Italic Condensed';fill:#0000ff;stroke-width:0.264583"
-         x="52.03603"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:2.64583px;font-family:Arial;-inkscape-font-specification:'Arial Condensed';fill:#0000ff;stroke-width:0.264583"
+         x="51.57576"
          y="37.877071">noninferior</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:2.64583px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';stroke-width:0.264583"
-       x="47.608047"
+       x="48.021431"
        y="46.580776"
        id="text6-5-9"><tspan
          sodipodi:role="line"
          id="tspan6-0-3"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:2.64583px;font-family:Arial;-inkscape-font-specification:'Arial Italic Condensed';fill:#000000;stroke-width:0.264583"
-         x="47.608047"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:2.64583px;font-family:Arial;-inkscape-font-specification:'Arial Condensed';fill:#000000;stroke-width:0.264583"
+         x="48.021431"
          y="46.580776">indeterminate</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:2.64583px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';stroke-width:0.264583"
-       x="52.504738"
+       x="52.71143"
        y="55.303558"
        id="text6-5-9-0"><tspan
          sodipodi:role="line"
          id="tspan6-0-3-6"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:2.64583px;font-family:Arial;-inkscape-font-specification:'Arial Italic Condensed';fill:#000000;stroke-width:0.264583"
-         x="52.504738"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:2.64583px;font-family:Arial;-inkscape-font-specification:'Arial Condensed';fill:#000000;stroke-width:0.264583"
+         x="52.71143"
          y="55.303558">indeterminate</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:2.64583px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';stroke-width:0.264583"
-       x="66.342712"
+       x="66.020248"
        y="64.223396"
        id="text6-0"><tspan
          sodipodi:role="line"
          id="tspan6-2"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:2.64583px;font-family:Arial;-inkscape-font-specification:'Arial Italic Condensed';fill:#ff0000;stroke-width:0.264583"
-         x="66.342712"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:2.64583px;font-family:Arial;-inkscape-font-specification:'Arial Condensed';fill:#ff0000;stroke-width:0.264583"
+         x="66.020248"
          y="64.223396">inferior</tspan></text>
     <text
        xml:space="preserve"
