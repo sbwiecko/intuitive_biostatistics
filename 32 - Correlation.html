@@ -478,8 +478,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Statistical inference</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-and-permutations">Bootstrapping and permutations</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-replicates-and-confidence-intervals">Bootstrap replicates and confidence intervals</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-r-to-z-transforms-with-pingouin">Bootstrap r-to-z transforms with pingouin</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bca-bootstrap-with-scipy">BCa bootstrap with scipy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-r-to-z-transforms-with-pingouin">Bootstrap r-to-z transforms with Pingouin</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bca-bootstrap-with-scipy">BCa bootstrap with SciPy</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">P value using permutation</a></li>
 </ul>
 </li>
@@ -503,8 +503,8 @@ document.write(`
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>In biology, it’s often crucial to understand how different variables relate to each other. Does the abundance of a particular species increase with temperature? Is there a relationship between gene expression levels and disease severity? Correlation analysis provides the tools to quantify these relationships.</p>
 <p>This chapter explores correlation, a statistical method for measuring the strength and direction of the association between two continuous variables. We’ll focus on Pearson correlation, which quantifies the linear relationship between variables. It’s important to remember that <strong>correlation</strong> is distinct from <strong>regression</strong> (covered in the next chapter). While regression analyzes how one variable predicts another, correlation simply assesses the degree to which they move together. In correlation, X and Y are interchangeable, unlike in regression.</p>
-<p>While correlation assesses the general relationship between two variables, there are cases where we want to evaluate the agreement between two methods measuring the same quantity. For example, we might compare a new, less expensive assay to a gold-standard method. In these situations, <a class="reference external" href="https://en.wikipedia.org/wiki/Bland%E2%80%93Altman_plot">Bland-Altman plots</a> are a valuable tool, but won’t be discussed in this chapter, but the <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> package offers a <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.plot_blandaltman.html#r5bbb6e366078-2">convenient function for comparing visually two sets of measurements</a>.</p>
-<p>We’ll begin this chapter by visualizing relationships with scatter plots and exploring different types of correlation.  Next, we’ll delve into the assumptions underlying correlation analysis, including linearity, normality, and the absence of outliers. We’ll then introduce various measures of correlation, including covariance, Pearson’s <em>r</em>, Spearman’s rank correlation, and Kendall’s rank correlation, providing Python code examples for their calculation.</p>
+<p>While correlation assesses the general relationship between two variables, there are cases where we want to evaluate the agreement between two methods measuring the same quantity. For example, we might compare a new, less expensive assay to a gold-standard method. In these situations, <a class="reference external" href="https://en.wikipedia.org/wiki/Bland%E2%80%93Altman_plot">Bland-Altman plots</a> are a valuable tool, but won’t be discussed in this chapter, but the Pingouin package offers a <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.plot_blandaltman.html#r5bbb6e366078-2">convenient function for comparing visually two sets of measurements</a>.</p>
+<p>We’ll begin this chapter by visualizing relationships with scatter plots and exploring different types of correlation.  Next, we’ll delve into the assumptions underlying correlation analysis, including linearity, normality, and the absence of outliers. We’ll then introduce various measures of correlation, including covariance, Pearson’s <em>r</em> correlation coefficient, Spearman’s rank correlation, and Kendall’s rank correlation, providing Python code examples for their calculation.</p>
 <p>The chapter will also cover statistical inference for correlation, including hypothesis testing to determine if a correlation is significantly different from zero, and methods for calculating confidence intervals. We’ll explore both parametric approaches and bootstrapping, demonstrating their implementation in Python.</p>
 <p>Finally, we’ll emphasize the crucial distinction between correlation and causation, illustrating this concept with biologically relevant examples. By the end of this chapter, you’ll have a solid understanding of correlation analysis and be equipped to apply it to your own biological research using Python.</p>
 </section>
@@ -615,14 +615,14 @@ document.write(`
 <p>A crucial first step in any correlation analysis is to explore the data visually and through descriptive statistics. This allows us to identify potential patterns, outliers, and the overall distribution of the variables, which can inform our subsequent analysis and interpretation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display descriptive statistics using pandas&#39; describe()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Descriptive statistics using pandas:&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display descriptive statistics using Pandas&#39; describe()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Descriptive statistics using Pandas:&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Descriptive statistics using pandas:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Descriptive statistics using Pandas:
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -696,15 +696,15 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">describe</span>
 
-<span class="c1"># Display additional statistics using scipy</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Additional Statistics using scipy:&quot;</span><span class="p">)</span>
+<span class="c1"># Display additional statistics using SciPy</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Additional Statistics using SciPy:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Insulin Sensitivity:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">describe</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">%C20-20 fatty acids:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">describe</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Additional Statistics using scipy:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Additional Statistics using SciPy:
 Insulin Sensitivity:
  DescribeResult(nobs=13, minmax=(115, 530), mean=284.2307692307692, variance=12970.192307692307, skewness=0.5429430677319255, kurtosis=-0.19429352446593473)
 
@@ -728,7 +728,7 @@ Insulin Sensitivity:
 
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">])</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Correlation between %C20-22 and Insulin Sensitivity&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Correlation between %C20-22 and insulin sensitivity&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;%C20-22 fatty acids&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Insulin sensitivity (mg/m²/min)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">((</span><span class="mi">16</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
@@ -737,7 +737,7 @@ Insulin Sensitivity:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15fc7ecf8110b6fc326b335d4792badf2a4390fb7fd077a06678307436ad00a5.png" src="_images/15fc7ecf8110b6fc326b335d4792badf2a4390fb7fd077a06678307436ad00a5.png" />
+<img alt="_images/62ea3e626120cac36ce80f06829f78e656b9cf4c36ead15af248eeb22b546b4a.png" src="_images/62ea3e626120cac36ce80f06829f78e656b9cf4c36ead15af248eeb22b546b4a.png" />
 </div>
 </div>
 <p>Observing the scatter plot, we can see an upward trend in the data points. This indicates that individuals with higher percentages of C20-22 fatty acids in their muscle tissue tend to have higher insulin sensitivity. While there is some variability, the overall pattern suggests a positive association between these two variables.</p>
@@ -860,6 +860,145 @@ Insulin Sensitivity:
 <div class="cell_output docutils container">
 <img alt="_images/ef640fc68a2c4188d6ea2266f641afdaa650fdf3b50363ee8324c5bdd27f9282.png" src="_images/ef640fc68a2c4188d6ea2266f641afdaa650fdf3b50363ee8324c5bdd27f9282.png" />
 </div>
+</div>
+<p>When testing for multiple pairwise correlations, especially with a large number of correlation coefficients, it’s important to adjust the P values to account for <em>multiple comparisons</em>, <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/15%20-%20P%20Values%20and%20Statistical%20Significance.html#the-challenge-of-multiple-comparisons">as discussed in a previous chapter</a>. This helps control the false positive rate. The <code class="docutils literal notranslate"><span class="pre">pairwise_corr</span></code> function in the Pingouin library provides a convenient way to do this using the ‘padjust’ argument.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pg</span><span class="o">.</span><span class="n">pairwise_corr</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">penguins</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;body_mass_g&#39;</span><span class="p">],</span>
+    <span class="n">padjust</span><span class="o">=</span><span class="s1">&#39;bonf&#39;</span><span class="p">,</span>  <span class="c1"># one-step Bonferroni correction</span>
+<span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y</th>
+      <th>method</th>
+      <th>alternative</th>
+      <th>n</th>
+      <th>r</th>
+      <th>CI95%</th>
+      <th>p-unc</th>
+      <th>p-corr</th>
+      <th>p-adjust</th>
+      <th>BF10</th>
+      <th>power</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>bill_length_mm</td>
+      <td>bill_depth_mm</td>
+      <td>pearson</td>
+      <td>two-sided</td>
+      <td>342</td>
+      <td>-0.235</td>
+      <td>[-0.33, -0.13]</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>bonf</td>
+      <td>1005.717</td>
+      <td>0.993</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>bill_length_mm</td>
+      <td>flipper_length_mm</td>
+      <td>pearson</td>
+      <td>two-sided</td>
+      <td>342</td>
+      <td>0.656</td>
+      <td>[0.59, 0.71]</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>bonf</td>
+      <td>1.46e+40</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>bill_length_mm</td>
+      <td>body_mass_g</td>
+      <td>pearson</td>
+      <td>two-sided</td>
+      <td>342</td>
+      <td>0.595</td>
+      <td>[0.52, 0.66]</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>bonf</td>
+      <td>8.34e+30</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>bill_depth_mm</td>
+      <td>flipper_length_mm</td>
+      <td>pearson</td>
+      <td>two-sided</td>
+      <td>342</td>
+      <td>-0.584</td>
+      <td>[-0.65, -0.51]</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>bonf</td>
+      <td>2.679e+29</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>bill_depth_mm</td>
+      <td>body_mass_g</td>
+      <td>pearson</td>
+      <td>two-sided</td>
+      <td>342</td>
+      <td>-0.472</td>
+      <td>[-0.55, -0.39]</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>bonf</td>
+      <td>2.103e+17</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>flipper_length_mm</td>
+      <td>body_mass_g</td>
+      <td>pearson</td>
+      <td>two-sided</td>
+      <td>342</td>
+      <td>0.871</td>
+      <td>[0.84, 0.89]</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>bonf</td>
+      <td>1.87e+103</td>
+      <td>1.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
@@ -1087,7 +1226,7 @@ insulin_sensitivity  0.96256  0.792641    True
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/faea123c28d13f02c932e35ff3916cc7d68167e99a68289f8f7e2e282dcd2ad9.png" src="_images/faea123c28d13f02c932e35ff3916cc7d68167e99a68289f8f7e2e282dcd2ad9.png" />
+<img alt="_images/d5726791335eb2f87e44d03d1c06ba906e7e8c3daaa06cf5314ce50a7f866d35.png" src="_images/d5726791335eb2f87e44d03d1c06ba906e7e8c3daaa06cf5314ce50a7f866d35.png" />
 </div>
 </div>
 </section>
@@ -1118,7 +1257,7 @@ insulin_sensitivity  0.96256  0.792641    True
 </div>
 </div>
 </div>
-<p>The <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.cov.html">pandas <code class="docutils literal notranslate"><span class="pre">cov</span></code> method</a> computes the pairwise covariance between columns of a DataFrame. The primary output is a <strong>covariance matrix</strong> (<span class="math notranslate nohighlight">\(\Sigma\)</span>). This is a square matrix that shows the covariances between all possible pairs of columns in the DataFrame. The diagonal elements of the matrix represent the <strong>variances</strong> of individual columns (covariance of a variable with itself), and the off-diagonal elements represent the <strong>covariances</strong> between different pairs of columns:</p>
+<p>The <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.cov.html">Pandas <code class="docutils literal notranslate"><span class="pre">cov</span></code> method</a> computes the pairwise covariance between columns of a DataFrame. The primary output is a <strong>covariance matrix</strong> (<span class="math notranslate nohighlight">\(\Sigma\)</span>). This is a square matrix that shows the covariances between all possible pairs of columns in the DataFrame. The diagonal elements of the matrix represent the <strong>variances</strong> of individual columns (covariance of a variable with itself), and the off-diagonal elements represent the <strong>covariances</strong> between different pairs of columns:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\Sigma = \begin{bmatrix}\sigma_x^2 &amp; \sigma_{xy}\\ \sigma_{yx} &amp; \sigma_y^2 \end{bmatrix}\end{split}\]</div>
 <div class="cell docutils container">
@@ -1267,11 +1406,11 @@ insulin_sensitivity  0.96256  0.792641    True
 <h4>Python packages for computing Pearson <span class="math notranslate nohighlight">\(r\)</span><a class="headerlink" href="#python-packages-for-computing-pearson-r" title="Link to this heading">#</a></h4>
 <p>We can use many different ready-to-use functions to calculate correlation coefficients:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html"><code class="docutils literal notranslate"><span class="pre">corrcoef</span></code> from <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></p></li>
-<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html"><code class="docutils literal notranslate"><span class="pre">corr</span></code> from <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a> as we saw at the beginning of the chapter while drawing a heatmap</p></li>
-<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html"><code class="docutils literal notranslate"><span class="pre">pearsonr</span></code> from <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code></a> as shown below</p></li>
-<li><p><a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.compute_effsize.html"><code class="docutils literal notranslate"><span class="pre">compute_effsize</span></code> from <code class="docutils literal notranslate"><span class="pre">pingouin</span></code></a> with method set to ‘r’ for ‘Pearson correlation coefficient’</p></li>
-<li><p><a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.corr.html"><code class="docutils literal notranslate"><span class="pre">corr</span></code> from <code class="docutils literal notranslate"><span class="pre">pingouin</span></code></a>, function that provides additional information beyond the correlation coefficient, e.g., P value and confidence interval, which we’ll discuss later in this chapter.</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html"><code class="docutils literal notranslate"><span class="pre">corrcoef</span></code> from NumPy</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html"><code class="docutils literal notranslate"><span class="pre">corr</span></code> from Pandas</a> as we saw at the beginning of the chapter while drawing a heatmap</p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html"><code class="docutils literal notranslate"><span class="pre">pearsonr</span></code> from SciPy</a> as shown below</p></li>
+<li><p><a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.compute_effsize.html"><code class="docutils literal notranslate"><span class="pre">compute_effsize</span></code> from Pingouin</a> with method set to ‘r’ for ‘Pearson correlation coefficient’</p></li>
+<li><p><a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.corr.html"><code class="docutils literal notranslate"><span class="pre">corr</span></code> from Pingouin</a>, function that provides additional information beyond the correlation coefficient, e.g., P value and confidence interval, which we’ll discuss later in this chapter.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1415,8 +1554,8 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </section>
 <section id="python-package-for-computing-spearman-rho-and-kendall-tau">
 <h4>Python package for computing Spearman <span class="math notranslate nohighlight">\(\rho\)</span> and Kendall <span class="math notranslate nohighlight">\(\tau\)</span><a class="headerlink" href="#python-package-for-computing-spearman-rho-and-kendall-tau" title="Link to this heading">#</a></h4>
-<p>To calculate the Spearman <span class="math notranslate nohighlight">\(\rho\)</span> correlation coefficient, we can use ready-to-use functions like [<code class="docutils literal notranslate"><span class="pre">spearmanr</span></code> from <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>][<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html</a>], <code class="docutils literal notranslate"><span class="pre">corr</span></code> from <code class="docutils literal notranslate"><span class="pre">pandas</span></code> by specifying the method as ‘spearman’, and <code class="docutils literal notranslate"><span class="pre">corr</span></code> from <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> with method parameter set to ‘spearman’.</p>
-<p>It is also possible to use <code class="docutils literal notranslate"><span class="pre">corrcoef</span></code> from <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, although we would first need to rank your data using <code class="docutils literal notranslate"><span class="pre">numpy.argsort</span></code>, as we did in the previous custom function <code class="docutils literal notranslate"><span class="pre">spearman_rho</span></code>, or using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rankdata.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.rankdata</span></code></a>.</p>
+<p>To calculate the Spearman <span class="math notranslate nohighlight">\(\rho\)</span> correlation coefficient, we can use ready-to-use functions like [<code class="docutils literal notranslate"><span class="pre">spearmanr</span></code> from SciPy][<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html</a>], <code class="docutils literal notranslate"><span class="pre">corr</span></code> from Pandas by specifying the method as ‘spearman’, and <code class="docutils literal notranslate"><span class="pre">corr</span></code> from <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> with method parameter set to ‘spearman’.</p>
+<p>It is also possible to use <code class="docutils literal notranslate"><span class="pre">corrcoef</span></code> from NumPy, although we would first need to rank your data using <code class="docutils literal notranslate"><span class="pre">argsort</span></code>, as we did in the previous custom function <code class="docutils literal notranslate"><span class="pre">spearman_rho</span></code>, or using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rankdata.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.rankdata</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">spearmanr</span>
@@ -1436,7 +1575,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 </div>
-<p>Similarly for Kendall <span class="math notranslate nohighlight">\(\tau\)</span>, we can leverage functions like <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kendalltau.html"><code class="docutils literal notranslate"><span class="pre">kendalltau</span></code> from <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code></a>,  <code class="docutils literal notranslate"><span class="pre">corr</span></code> from <code class="docutils literal notranslate"><span class="pre">pandas</span></code> with the <code class="docutils literal notranslate"><span class="pre">method</span></code> parameter set to ‘kendall’, and <code class="docutils literal notranslate"><span class="pre">corr</span></code> from <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> with the <code class="docutils literal notranslate"><span class="pre">method</span></code> parameter set to ‘kendall’, to calculate Kendall’s tau correlation coefficient.</p>
+<p>Similarly for Kendall <span class="math notranslate nohighlight">\(\tau\)</span>, we can leverage functions like <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kendalltau.html"><code class="docutils literal notranslate"><span class="pre">kendalltau</span></code> from SciPy</a>,  <code class="docutils literal notranslate"><span class="pre">corr</span></code> from Pandas with the <code class="docutils literal notranslate"><span class="pre">method</span></code> parameter set to ‘kendall’, and <code class="docutils literal notranslate"><span class="pre">corr</span></code> from Pingouin with the <code class="docutils literal notranslate"><span class="pre">method</span></code> parameter set to ‘kendall’, to calculate Kendall’s tau correlation coefficient.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">kendalltau</span>
@@ -1613,7 +1752,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/29b8aa5e191accb8aac111cfd33d94bd97a7f7b359528a156d394da9b941f8f8.png" src="_images/29b8aa5e191accb8aac111cfd33d94bd97a7f7b359528a156d394da9b941f8f8.png" />
+<img alt="_images/8059bd65075eb8a99510aeee411ee69593cb23448d1a9e5bf1805c0d10800105.png" src="_images/8059bd65075eb8a99510aeee411ee69593cb23448d1a9e5bf1805c0d10800105.png" />
 </div>
 </div>
 <p>While both Spearman’s rho and Kendall’s tau are valuable tools for assessing correlation, Kendall’s tau might be preferred in situations with <em>smaller sample sizes</em>, increased concern about <em>outliers</em>, <em>frequent tied values</em>, specific theoretical considerations (e.g., survival analysis or studies of event ordering), or when <em>computational efficiency</em> is a priority.</p>
@@ -1684,7 +1823,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </section>
 <section id="visualizing-t-critical-and-p-values">
 <h4>Visualizing t, critical and P values<a class="headerlink" href="#visualizing-t-critical-and-p-values" title="Link to this heading">#</a></h4>
-<p>We can visualize how the P and critical values are determined based on the t-statistic and the t-distribution.</p>
+<p>We can visualize how the P and critical values are determined based on the t-statistic (<span class="math notranslate nohighlight">\(t\)</span>) and the t-distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Significance level (alpha)</span>
@@ -1776,7 +1915,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </section>
 <section id="confidence-interval">
 <span id="ci"></span><h3>Confidence interval<a class="headerlink" href="#confidence-interval" title="Link to this heading">#</a></h3>
-<p>A confidence interval provides a range of plausible values for the true population correlation coefficient based on the sample correlation coefficient. It gives us an idea of the <em>precision</em> of our estimate. Similarly to what we discussed for confidence intervals of a <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/04%20-%20Confidence%20Interval%20of%20a%20Proportion.html#">proportion</a>, of <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/05%20-%20Confidence%20Interval%20of%20Survival%20Data.html">survival data</a>, of <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html">counted data</a>, for the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/12%20-%20Confidence%20Interval%20of%20a%20Mean.html">confidence interval of a mean</a>, or for the mean difference when assessing the significance of <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/31%20-%20Comparing%20Paired%20Data.html#p-value-and-confidence-interval">paired difference mean</a> or <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/30%20-%20Comparing%20Two%20Unpaired%20Means.html#welch-s-p-value-and-confidence-interval">mean differences in unpaired data</a>, we need to compute the <strong>margin of error</strong>, which is often based on the <strong>standard error</strong>. In the case of the confidence interval for the correlation coefficient, the margin of error is based on the standard error of the z-transformed correlation coefficient.</p>
+<p>A confidence interval provides a range of plausible values for the true population correlation coefficient based on the sample correlation coefficient. It gives us an idea of the <em>precision</em> of our estimate. Similarly to what we discussed for confidence intervals of a <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/04%20-%20Confidence%20Interval%20of%20a%20Proportion.html#">proportion</a>, of <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/05%20-%20Confidence%20Interval%20of%20Survival%20Data.html">survival data</a>, of <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html">counted data</a>, for the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/12%20-%20Confidence%20Interval%20of%20a%20Mean.html">confidence interval of a mean</a>, or for the mean difference when assessing the significance of <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/31%20-%20Comparing%20Paired%20Data.html#p-value-and-confidence-interval">paired difference mean</a> or <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/30%20-%20Comparing%20Two%20Unpaired%20Means.html#welch-s-p-value-and-confidence-interval">mean differences in unpaired data</a>, we need to compute the <strong>margin of error</strong>, which is often based on the <strong>standard error</strong>.</p>
 <p>A common method for calculating confidence intervals for Pearson’s correlation coefficient is to use <a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Using_the_Fisher_transformation"><strong>Fisher’s r-to-z transformation</strong></a>. This transformation helps to normalize the sampling distribution of the correlation coefficient, especially when the correlation is not close to zero. It works as follows:</p>
 <ol class="arabic">
 <li><p>The correlation coefficient (<span class="math notranslate nohighlight">\(r\)</span>) is transformed to a z-score, also known as Fisher’s Z-score, using the Fisher transformation:</p>
@@ -1825,27 +1964,24 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 </div>
-<p>The <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.compute_esci.html"><code class="docutils literal notranslate"><span class="pre">pingouin</span></code> function <code class="docutils literal notranslate"><span class="pre">compute_esci</span></code></a> computes the parametric confidence interval around a Pearson <span class="math notranslate nohighlight">\(r\)</span> correlation coefficient by applying the Fisher’s r-to-z transformation.</p>
+<p>The <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.compute_esci.html">Pingouin function <code class="docutils literal notranslate"><span class="pre">compute_esci</span></code></a> computes the parametric confidence interval around a Pearson <span class="math notranslate nohighlight">\(r\)</span> correlation coefficient by applying the Fisher’s r-to-z transformation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">]</span>
 <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span>
-    <span class="s2">&quot;Parametric confidence intervals around Pearson r =&quot;</span><span class="p">,</span>
-    <span class="nb">round</span><span class="p">(</span><span class="n">pg</span><span class="o">.</span><span class="n">compute_effsize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">eftype</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="c1"># type: ignore</span>
-    <span class="s2">&quot;:&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;Parametric confidence intervals around Pearson r=</span><span class="si">{</span><span class="n">pg</span><span class="o">.</span><span class="n">compute_effsize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">eftype</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">,</span>
     <span class="n">pg</span><span class="o">.</span><span class="n">compute_esci</span><span class="p">(</span>
         <span class="n">stat</span><span class="o">=</span><span class="n">pg</span><span class="o">.</span><span class="n">compute_effsize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">eftype</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">),</span>
         <span class="n">nx</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">eftype</span><span class="o">=</span><span class="s1">&#39;r&#39;</span>
-    <span class="p">),</span>
-    <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span>
+    <span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parametric confidence intervals around Pearson r = 0.77 : [0.38 0.93] 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parametric confidence intervals around Pearson r=0.77: [0.38 0.93]
 </pre></div>
 </div>
 </div>
@@ -1855,7 +1991,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <section id="performing-statistical-inference-in-python">
 <h3>Performing statistical inference in Python<a class="headerlink" href="#performing-statistical-inference-in-python" title="Link to this heading">#</a></h3>
 <p>As we’ve seen throughout this chapter, we can calculate correlation coefficients and perform statistical inference manually using Python libraries like NumPy, SciPy, and Pandas. However, there are also convenient functions available that streamline the process.</p>
-<p>The <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.corr.html"><code class="docutils literal notranslate"><span class="pre">pingouin</span></code> package offers a <code class="docutils literal notranslate"><span class="pre">corr</span></code> function</a> that calculates correlation coefficients and provides additional information like P values and confidence intervals.</p>
+<p>The <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.corr.html">Pingouin package offers a <code class="docutils literal notranslate"><span class="pre">corr</span></code> function</a> that calculates correlation coefficients and provides additional information like P values and confidence intervals.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate Pearson correlation with P value and confidence interval</span>
@@ -2121,7 +2257,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <p>One solution would be to apply a transformation (like Fisher’s r-to-z transformation) to the correlation coefficients before bootstrapping to help reducing skewness and improving the accuracy of the confidence interval. Let’s take this opportunity to use the <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.compute_bootci.html"><code class="docutils literal notranslate"><span class="pre">pingouin</span></code> function <code class="docutils literal notranslate"><span class="pre">compute_bootci</span></code></a> that computes bootstrapped confidence intervals of univariate and bivariate functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;95</span><span class="si">% c</span><span class="s2">onfidence interval (bootstrap with r-to-z transformation + backtransformation):&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;95</span><span class="si">% c</span><span class="s2">onfidence interval (bootstrap with r-to-z transformation):&quot;</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span>
     <span class="n">pg</span><span class="o">.</span><span class="n">compute_bootci</span><span class="p">(</span>
         <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">],</span>
@@ -2141,7 +2277,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% confidence interval (bootstrap with r-to-z transformation + backtransformation):
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% confidence interval (bootstrap with r-to-z transformation):
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.53704957, 0.91542046])
@@ -2149,7 +2285,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 </div>
-<p>There are also <a class="reference external" href="https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/1365-2656.12382">more advanced bootstrapping methods that adjusts for bias and skewness</a> in the bootstrap distribution, for example <em>bias-corrected and accelerated</em> (BCa) bootstrap. They can provide more accurate confidence intervals, especially when the distribution is skewed. The <code class="docutils literal notranslate"><span class="pre">scipy.stats.pearsonr</span></code> function natively returns a ‘result’ object associate to a <code class="docutils literal notranslate"><span class="pre">confidence_interval</span></code> method that can computes a bootstrap confidence interval of the correlation coefficient statistic using the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html#scipy.stats.bootstrap"><code class="docutils literal notranslate"><span class="pre">scipy.stats.bootstrap</span></code></a>.</p>
+<p>There are also <a class="reference external" href="https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/1365-2656.12382">more advanced bootstrapping methods that adjusts for bias and skewness</a> in the bootstrap distribution, for example <em>bias-corrected and accelerated</em> (BCa) bootstrap. They can provide more accurate confidence intervals, especially when the distribution is skewed. The <code class="docutils literal notranslate"><span class="pre">scipy.stats.pearsonr</span></code> function natively returns a ‘result’ object associate to a <code class="docutils literal notranslate"><span class="pre">confidence_interval</span></code> method that can computes a bootstrap confidence interval of the correlation coefficient statistic using the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html#scipy.stats.bootstrap"><code class="docutils literal notranslate"><span class="pre">scipy.stats.bootstrap</span></code></a>. It’s worth noting that the <code class="docutils literal notranslate"><span class="pre">compute_bootci</span></code> function in Pingouin uses a bias correction method for the bootstrap distribution that differs from the BCa method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">BootstrapMethod</span>
@@ -2385,11 +2521,11 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>
 <section id="id1">
 <h3>Descriptive statistics and visualization<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display descriptive statistics using pandas&#39; describe()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display descriptive statistics using Pandas&#39; describe()</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 
-<span class="c1"># Display additional statistics using scipy</span>
+<span class="c1"># Display additional statistics using SciPy</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">describe</span>
 <span class="n">describe</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
 
@@ -2400,6 +2536,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <span class="c1"># Correlation matrix heatmap</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="c1">#pg.pairwise_corr(df, columns=[x, y, z], padjust=&#39;bonf&#39;)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2480,7 +2617,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </section>
 <section id="bootstrap-r-to-z-transforms-with-pingouin">
-<h4>Bootstrap r-to-z transforms with pingouin<a class="headerlink" href="#bootstrap-r-to-z-transforms-with-pingouin" title="Link to this heading">#</a></h4>
+<h4>Bootstrap r-to-z transforms with Pingouin<a class="headerlink" href="#bootstrap-r-to-z-transforms-with-pingouin" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bs_ci_z</span><span class="p">,</span> <span class="n">bs_z</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">compute_bootci</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
     <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">y</span><span class="p">],</span>
@@ -2495,7 +2632,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </section>
 <section id="bca-bootstrap-with-scipy">
-<h4>BCa bootstrap with scipy<a class="headerlink" href="#bca-bootstrap-with-scipy" title="Link to this heading">#</a></h4>
+<h4>BCa bootstrap with SciPy<a class="headerlink" href="#bca-bootstrap-with-scipy" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">BootstrapMethod</span>
 
 <span class="n">method</span> <span class="o">=</span> <span class="n">BootstrapMethod</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;BCa&#39;</span><span class="p">)</span>
@@ -2565,8 +2702,8 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
--------------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7-------------
+
 numpy: 1.26.4
 pandas: 2.2.2
 matplotlib: 3.9.2
@@ -2700,8 +2837,8 @@ pingouin: 0.5.5
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Statistical inference</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-and-permutations">Bootstrapping and permutations</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-replicates-and-confidence-intervals">Bootstrap replicates and confidence intervals</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-r-to-z-transforms-with-pingouin">Bootstrap r-to-z transforms with pingouin</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bca-bootstrap-with-scipy">BCa bootstrap with scipy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-r-to-z-transforms-with-pingouin">Bootstrap r-to-z transforms with Pingouin</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bca-bootstrap-with-scipy">BCa bootstrap with SciPy</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">P value using permutation</a></li>
 </ul>
 </li>
