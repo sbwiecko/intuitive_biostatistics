@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Confidence Interval of Survival Data &#8212; The Python Companion of Intuitive Biostatistics</title>
+    <title>Confidence interval of survival data &#8212; The Python Companion of Intuitive Biostatistics</title>
   
   
   
@@ -72,11 +72,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '05 - Confidence Interval of Survival Data';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05 - Confidence interval of survival data';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Confidence Interval of Counted Data (Poisson Distribution)" href="06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html" />
-    <link rel="prev" title="Confidence Interval of a Proportion" href="04%20-%20Confidence%20Interval%20of%20a%20Proportion.html" />
+    <link rel="next" title="Confidence interval of counted data" href="06%20-%20Confidence%20interval%20of%20counted%20data.html" />
+    <link rel="prev" title="Confidence interval of a proportion" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -194,30 +194,30 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence Intervals</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20Interval%20of%20a%20Proportion.html">Confidence Interval of a Proportion</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Confidence Interval of Survival Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html">Confidence Interval of Counted Data (Poisson Distribution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Confidence interval of survival data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous Variables</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20Scatter%20of%20Continuous%20Data.html">Quantifying Scatter of Continuous Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20Distribution.html">The Gaussian Distribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20Interval%20of%20a%20Mean.html">Confidence Interval of a Mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20scatter%20of%20continuous%20data.html">Quantifying scatter of continuous data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20distribution.html">The Gaussian distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20interval%20of%20a%20mean.html">Confidence interval of a mean</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical Significance and Data Assumptions</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical significance and data assumptions</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="15%20-%20P%20Values%20and%20Statistical%20Significance.html">P Values and Statistical Significance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20Power%20and%20Sample%20Size.html">Statistical Power and Sample Size</a></li>
-<li class="toctree-l1"><a class="reference internal" href="24%20-%20Normality%20Tests%20and%20Outliers.html">Normality Tests and Outliers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15%20-%20Statistical%20significance.html">Statistical significance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20power%20and%20sample%20size.html">Statistical power and sample size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24%20-%20Normality%20tests%20and%20outliers.html">Normality tests and outliers</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical Tests</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical tests</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20Proportions.html">Comparing Proportions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="29%20-%20Comparing%20Survival%20Curves.html">Comparing Survival Curves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="30%20-%20Comparing%20Two%20Unpaired%20Means.html">Comparing Two Unpaired Means</a></li>
-<li class="toctree-l1"><a class="reference internal" href="31%20-%20Comparing%20Paired%20Data.html">Comparing Paired Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20proportions.html">Comparing proportions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29%20-%20Comparing%20survival%20curves.html">Comparing survival curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30%20-%20Comparing%20two%20unpaired%20means.html">Comparing two unpaired means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31%20-%20Comparing%20paired%20data.html">Comparing paired data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="32%20-%20Correlation.html">Correlation</a></li>
 </ul>
 
@@ -290,7 +290,7 @@
       
       
       
-      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/master/05 - Confidence Interval of Survival Data.ipynb" target="_blank"
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/master/05 - Confidence interval of survival data.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -320,7 +320,7 @@
       
       
       
-      <li><a href="_sources/05 - Confidence Interval of Survival Data.ipynb" target="_blank"
+      <li><a href="_sources/05 - Confidence interval of survival data.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -404,7 +404,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Confidence Interval of Survival Data</h1>
+    <h1>Confidence interval of survival data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -439,7 +439,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kaplan-meier-plot">Kaplan-Meier plot</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session information</a></li>
 </ul>
             </nav>
         </div>
@@ -452,7 +452,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="confidence-interval-of-survival-data">
-<h1>Confidence Interval of Survival Data<a class="headerlink" href="#confidence-interval-of-survival-data" title="Link to this heading">#</a></h1>
+<h1>Confidence interval of survival data<a class="headerlink" href="#confidence-interval-of-survival-data" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p><strong>Survival analysis</strong> is a branch of statistics that deals with the analysis of time-to-event data, often referred to as ‘survival data’.</p>
@@ -475,7 +475,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lifelines version: 0.28.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lifelines version: 0.30.0
 </pre></div>
 </div>
 </div>
@@ -825,14 +825,13 @@ event_at
     <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
     <span class="n">at_risk_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># adds summary tables under the plot</span>
 <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (years)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Suvival probability estimate&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Survival function of the population&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/67c2f3ccf186a6027cc1c8f58ba00e3587770c0c4ccc559c67491daa28eb23da.png" src="_images/67c2f3ccf186a6027cc1c8f58ba00e3587770c0c4ccc559c67491daa28eb23da.png" />
+<img alt="_images/bb8fa176d521d8c2019200f7a76791a8605a2dbe40ce81bd9b5622fa20d3df64.png" src="_images/bb8fa176d521d8c2019200f7a76791a8605a2dbe40ce81bd9b5622fa20d3df64.png" />
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">kmf.plot_survival_function()</span></code> plots the Kaplan-Meier estimate of the survival function. The y-axis represents the probability that the event of interest has not yet occurred, while the x-axis represents time.</p>
@@ -850,7 +849,7 @@ event_at
 <ol class="arabic simple">
 <li><p>At time t1, one event (death) occurs. So, the fraction surviving drops by 1/7 (since all 7 individuals were at risk at this time). The survival probability at time t1 is thus <span class="math notranslate nohighlight">\(S(t_1) = 6/7\)</span>.</p></li>
 <li><p>At time t2, one individual is censored. This means they leave the study or the study ends before they have the event. Censoring does not affect the survival probability, so <span class="math notranslate nohighlight">\(S(t_2) = S(t_1) = 6/7\)</span>.</p></li>
-<li><p>At time t3, another event occurs. Now, only 5 individuals were at risk (since one event occurred at t1, reducing the at-risk group to 6, and one individual was censored at t2, further reducing the at-risk group to 5), so the fraction surviving drops by 1/5. The survival fraction at time t3 is thus <span class="math notranslate nohighlight">\(S(t_3) = S(t_2) * (1 - 1/5) = (6/7) * (4/5)\)</span>. And so on.</p></li>
+<li><p>At time t3, another event occurs. Now, only 5 individuals were at risk (since one event occurred at t1, reducing the at-risk group to 6, and one individual was censored at t2, further reducing the at-risk group to 5), so the fraction surviving drops by 1/5. The survival fraction at time t3 is thus <span class="math notranslate nohighlight">\(S(t_3) = S(t_2) \ast (1 - 1/5) = (6/7) \ast (4/5)\)</span>. And so on.</p></li>
 </ol>
 <p>We can compute the surviving fractions manually as follows:</p>
 <div class="cell docutils container">
@@ -983,7 +982,7 @@ Time: 6.54, Survival fraction S(t): 0.3428571428571429
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0.85714286, 0.85714286, 0.68571429, 0.51428571, 0.34285714,
-       0.34285714, 0.34285714]), array([1, 0, 1, 1, 1, 0, 0], dtype=int64), array([1.39, 3.67, 4.07, 4.76, 5.89, 6.17, 6.54]))
+       0.34285714, 0.34285714]), array([1, 0, 1, 1, 1, 0, 0]), array([1.39, 3.67, 4.07, 4.76, 5.89, 6.17, 6.54]))
 </pre></div>
 </div>
 </div>
@@ -996,7 +995,7 @@ Time: 6.54, Survival fraction S(t): 0.3428571428571429
 <h3>The basics<a class="headerlink" href="#the-basics" title="Link to this heading">#</a></h3>
 <p>The confidence interval for the survival function at each time point is typically calculated in using the <a class="reference external" href="https://bookdown.org/sestelo/sa_financial/pointwise-confidence-interval-for-st.html">Greenwood’s formula</a>, which provides an estimate of the variance of the survival function. The formula for the variance at time <span class="math notranslate nohighlight">\(t\)</span> using the so-called “linear” or “plain” method is:</p>
 <div class="math notranslate nohighlight">
-\[\sigma^2(S(t)) = S^2(t) \times \sum_{t_i \le{t}} \frac{d_i}{n_i (n_i - d_i)}\]</div>
+\[\sigma^2[S(t)] = S^2(t) \times \sum_{t_i \le{t}} \frac{d_i}{n_i (n_i - d_i)}\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(S(t)\)</span> is the Kaplan-Meier estimate of the survival function at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
@@ -1004,10 +1003,10 @@ Time: 6.54, Survival fraction S(t): 0.3428571428571429
 <li><p><span class="math notranslate nohighlight">\(d_i\)</span> is the number of events that occurred at time <span class="math notranslate nohighlight">\(t_i\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(n_i\)</span> is the number of individuals at risk at time <span class="math notranslate nohighlight">\(t_i\)</span>.</p></li>
 </ul>
-<p>Therefore, assuming that the sample follow a Normal distribution, so that <span class="math notranslate nohighlight">\(S(t) \pm z \times \text{SE}(t)\)</span>, the confidence interval, can be determinted:</p>
+<p>Therefore, assuming that the sample follow a Normal distribution, so that <span class="math notranslate nohighlight">\(S(t) \pm z \times \text{se}(t)\)</span>, the confidence interval, can be determinted:</p>
 <div class="math notranslate nohighlight">
 \[\text{IC}_{0.95}[S(t)] = S(t) \pm 1.96 \times \sigma(S(t))\]</div>
-<p>where <span class="math notranslate nohighlight">\(z\)</span> is the z-score for the desired confidence level (for example, z = 1.96 for a 95% confidence interval), and <span class="math notranslate nohighlight">\(\sigma(S(t_j))\)</span> the <strong>standard error</strong> (will be discussed in later chapters). The common practice is to clip the interval at <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(z\)</span> is the z-score for the desired confidence level (for example, z = 1.96 for a 95% confidence interval), and <span class="math notranslate nohighlight">\(\sigma[S(t_j)]\)</span> the <strong>standard error</strong> (will be discussed in later chapters). The common practice is to clip the interval at <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
 <p>Note that these calculations assume that the number of events at each time point and the number of individuals at risk are <em>large enough</em> for the Central Limit Theorem to hold. If these numbers are small, the confidence intervals may not be accurate.</p>
 </section>
 <section id="step-by-step-example">
@@ -1043,7 +1042,7 @@ Z-value for 95% confidence: 1.959963984540054
 <th class="head"><p>S(t)</p></th>
 <th class="head"><p>e=d/(n(n-d))</p></th>
 <th class="head"><p>sum(e)</p></th>
-<th class="head"><p>SE(t)</p></th>
+<th class="head"><p>se(t)</p></th>
 <th class="head"><p>LCL</p></th>
 <th class="head"><p>UCL</p></th>
 </tr>
@@ -1174,7 +1173,7 @@ The confidence interval (plain type) limits are [0.115 - 0.914]
 </section>
 <section id="log-survival">
 <h3>Log survival<a class="headerlink" href="#log-survival" title="Link to this heading">#</a></h3>
-<p>In survival analysis, confidence intervals are often calculated on the log scale, where the <em>complimentary log-log transformation</em> <span class="math notranslate nohighlight">\(v(t) = \log(-\log(S(t)))\)</span> is used a few reasons:</p>
+<p>In survival analysis, confidence intervals are often calculated on the log scale, where the <em>complimentary log-log transformation</em> <span class="math notranslate nohighlight">\(v(t) = \log[-\log S(t)]\)</span> is used a few reasons:</p>
 <ol class="arabic simple">
 <li><p>Symmetry: Survival probabilities are bound between 0 and 1, and their distribution can be skewed, especially when probabilities are close to the boundaries. Taking the logarithm helps to symmetrize the distribution, which is a key assumption for the calculation of confidence intervals.</p></li>
 <li><p>Stabilizing Variance: The variance of survival probabilities can change over time, and it can be particularly high when probabilities are close to 0 or 1. The log transformation can help to stabilize the variance, making the statistical analysis more reliable.</p></li>
@@ -1198,7 +1197,7 @@ The confidence interval (plain type) limits are [0.115 - 0.914]
 <th class="head"><p>sum(e)</p></th>
 <th class="head"><p>l=log((n-d)/n)</p></th>
 <th class="head"><p>sum(l)</p></th>
-<th class="head"><p>SElog(t)</p></th>
+<th class="head"><p>se_log(t)</p></th>
 <th class="head"><p>LCL</p></th>
 <th class="head"><p>UCL</p></th>
 </tr>
@@ -1433,8 +1432,7 @@ The confidence interval (plain type) limits are [0.1178 - 0.8133]
 <span class="c1"># Fit the data to the model</span>
 <span class="n">kmf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
     <span class="n">durations</span><span class="o">=</span><span class="n">durations</span><span class="p">,</span>
-    <span class="n">event_observed</span><span class="o">=</span><span class="n">event_observed</span><span class="p">,</span>
-<span class="p">)</span>
+    <span class="n">event_observed</span><span class="o">=</span><span class="n">event_observed</span><span class="p">,)</span>
 
 <span class="c1"># Median survival time</span>
 <span class="n">kmf</span><span class="o">.</span><span class="n">median_survival_time_</span>
@@ -1478,7 +1476,7 @@ The confidence interval (plain type) limits are [0.1178 - 0.8133]
 </section>
 </section>
 <section id="session-information">
-<h2>Session Information<a class="headerlink" href="#session-information" title="Link to this heading">#</a></h2>
+<h2>Session information<a class="headerlink" href="#session-information" title="Link to this heading">#</a></h2>
 <p>The output below details all packages and version necessary to reproduce the results in this report.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1489,23 +1487,24 @@ The confidence interval (plain type) limits are [0.1178 - 0.8133]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>--version
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">importlib.metadata</span> <span class="kn">import</span> <span class="n">version</span>
+
 <span class="c1"># List of packages we want to check the version</span>
-<span class="n">packages</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;numpy&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas&#39;</span><span class="p">,</span> <span class="s1">&#39;lifelines&#39;</span><span class="p">,</span> <span class="s1">&#39;scipy&#39;</span><span class="p">,</span> <span class="s1">&#39;statsmodels&#39;</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">,]</span>
+<span class="n">packages</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;numpy&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas&#39;</span><span class="p">,</span> <span class="s1">&#39;lifelines&#39;</span><span class="p">,</span> <span class="s1">&#39;scipy&#39;</span><span class="p">,</span> <span class="s1">&#39;statsmodels&#39;</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">]</span>
 
 <span class="c1"># Initialize an empty list to store the versions</span>
 <span class="n">versions</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># Loop over the packages</span>
 <span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">packages</span><span class="p">:</span>
-    <span class="c1"># Get the version of the package</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="o">!</span>pip<span class="w"> </span>show<span class="w"> </span><span class="o">{</span>package<span class="o">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>findstr<span class="w"> </span><span class="s2">&quot;Version&quot;</span>
-    <span class="c1"># If the output is not empty, get the version</span>
-    <span class="k">if</span> <span class="n">output</span><span class="p">:</span>
-        <span class="n">version</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;Not installed&#39;</span>
-    <span class="c1"># Append the version to the list</span>
-    <span class="n">versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Get the version of the package</span>
+        <span class="n">package_version</span> <span class="o">=</span> <span class="n">version</span><span class="p">(</span><span class="n">package</span><span class="p">)</span>
+        <span class="c1"># Append the version to the list</span>
+        <span class="n">versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">package_version</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># Use a more general exception for broader compatibility</span>
+        <span class="n">versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Not installed&#39;</span><span class="p">)</span>
 
 <span class="c1"># Print the versions</span>
 <span class="k">for</span> <span class="n">package</span><span class="p">,</span> <span class="n">version</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span> <span class="n">versions</span><span class="p">):</span>
@@ -1515,14 +1514,14 @@ The confidence interval (plain type) limits are [0.1178 - 0.8133]
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
 -------------
-numpy: 1.26.4
-pandas: 2.2.1
-lifelines: 0.28.0
-scipy: 1.12.0
-statsmodels: 0.14.2
-matplotlib: 3.8.3
+numpy: 2.1.2
+pandas: 2.2.3
+lifelines: 0.30.0
+scipy: 1.14.1
+statsmodels: 0.14.4
+matplotlib: 3.9.2
 </pre></div>
 </div>
 </div>
@@ -1561,20 +1560,20 @@ matplotlib: 3.8.3
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="04%20-%20Confidence%20Interval%20of%20a%20Proportion.html"
+       href="04%20-%20Confidence%20interval%20of%20a%20proportion.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Confidence Interval of a Proportion</p>
+        <p class="prev-next-title">Confidence interval of a proportion</p>
       </div>
     </a>
     <a class="right-next"
-       href="06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html"
+       href="06%20-%20Confidence%20interval%20of%20counted%20data.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Confidence Interval of Counted Data (Poisson Distribution)</p>
+        <p class="prev-next-title">Confidence interval of counted data</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1619,7 +1618,7 @@ matplotlib: 3.8.3
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kaplan-meier-plot">Kaplan-Meier plot</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session information</a></li>
 </ul>
   </nav></div>
 

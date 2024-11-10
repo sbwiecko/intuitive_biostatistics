@@ -1,0 +1,1695 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Simple linear regression &#8212; The Python Companion of Intuitive Biostatistics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QQY9FLLPJ8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '33 - Simple linear regression';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Correlation" href="32%20-%20Correlation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="The Python Companion of Intuitive Biostatistics - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="The Python Companion of Intuitive Biostatistics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Python Companion Guide to “Intuitive Biostatistics”
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20interval%20of%20survival%20data.html">Confidence interval of survival data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20scatter%20of%20continuous%20data.html">Quantifying scatter of continuous data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20distribution.html">The Gaussian distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20interval%20of%20a%20mean.html">Confidence interval of a mean</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical significance and data assumptions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="15%20-%20Statistical%20significance.html">Statistical significance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20power%20and%20sample%20size.html">Statistical power and sample size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24%20-%20Normality%20tests%20and%20outliers.html">Normality tests and outliers</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical tests</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20proportions.html">Comparing proportions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29%20-%20Comparing%20survival%20curves.html">Comparing survival curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30%20-%20Comparing%20two%20unpaired%20means.html">Comparing two unpaired means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31%20-%20Comparing%20paired%20data.html">Comparing paired data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32%20-%20Correlation.html">Correlation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fitting models to data</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Simple linear regression</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/master/33 - Simple linear regression.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/33 - Simple linear regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Simple linear regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-results">Linear regression results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-stats">scipy.stats</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pingouin">pingouin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statsmodels">statsmodels</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#get-more-from-the-result-table-generated-by-statsmodels">Get more from the result table generated by statsmodels</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-polyfit">numpy polyfit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">scikit-learn</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-squared">R-squared</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error-of-the-regression">Standard error of the regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostic-plots-for-linear-regression">Diagnostic plots for linear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#residuals-vs-leverage">Residuals vs Leverage</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#q-q-plot">Q-Q plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-ci-bands">Computing the CI bands</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals">Confidence Intervals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P-value</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-models-to-data">Fitting models to data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#least-square">Least square</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underlying-hypothesis">Underlying hypothesis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goodness-of-fit">Goodness of fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization">Regularization</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-hypotheses-for-ols-aren-t-true">If hypotheses for OLS aren’t true?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">Maximum Likelihood Estimation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="simple-linear-regression">
+<h1>Simple linear regression<a class="headerlink" href="#simple-linear-regression" title="Link to this heading">#</a></h1>
+<p>One way to think about linear regression is that it fits the “best line” through a graph of data points. Another way to look at it is that linear regression fits a simple model to the data to determine the most likely values of the parameters that define that model (slope and intercept).</p>
+<section id="linear-regression-results">
+<h2>Linear regression results<a class="headerlink" href="#linear-regression-results" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example data from the book, page 319</span>
+<span class="n">insulin_sensitiv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">250</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">370</span><span class="p">,</span> <span class="mi">260</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">530</span><span class="p">,</span> <span class="mi">375</span><span class="p">])</span>
+<span class="n">C2022_fatacids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">17.9</span><span class="p">,</span> <span class="mf">18.3</span><span class="p">,</span> <span class="mf">18.3</span><span class="p">,</span> <span class="mf">18.4</span><span class="p">,</span> <span class="mf">18.4</span><span class="p">,</span> <span class="mf">20.2</span><span class="p">,</span> <span class="mf">20.3</span><span class="p">,</span> <span class="mf">21.8</span><span class="p">,</span> <span class="mf">21.9</span><span class="p">,</span> <span class="mf">22.1</span><span class="p">,</span> <span class="mf">23.1</span><span class="p">,</span> <span class="mf">24.2</span><span class="p">,</span> <span class="mf">24.4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="scipy-stats">
+<h3>scipy.stats<a class="headerlink" href="#scipy-stats" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">insulin_sensitiv</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinregressResult(slope=37.20774574745539, intercept=-486.54199459921034, rvalue=0.7700025428371727, pvalue=0.002077012151479462, stderr=9.295940157270161, intercept_stderr=193.71602138413147)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The best-fit value for the <strong>slope</strong> is 37.2, this means that when %C20-22 increased by 1.0, the average insulin sensitivity is expected to increase by 37.2 mg/m²/min.</p>
+<p>Although the CI is fairly wide, it does not include zero, which is a strong evidence that the observed relationship between lipid content of the muscles and insulin sensitivity is very unlikely to be a coincidence of random sampling.</p>
+<p>The <strong>intercept</strong> is the value of the insulin sensitivity when the %C20-22 equals zero. For this example, the Y-intercept is not a scientifically relevant value, because extrapolating back to zero is not helpful and negative values for insulin sensitivity are not biologically possible. In conclusion, these results tell us that the linear model cannot be correct when extrapolated way beyond the range of the data.</p>
+</section>
+<section id="pingouin">
+<h3>pingouin<a class="headerlink" href="#pingouin" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">linear_regression</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">insulin_sensitiv</span><span class="p">)</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>names</th>
+      <th>coef</th>
+      <th>se</th>
+      <th>T</th>
+      <th>pval</th>
+      <th>r2</th>
+      <th>adj_r2</th>
+      <th>CI[2.5%]</th>
+      <th>CI[97.5%]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Intercept</td>
+      <td>-486.542</td>
+      <td>193.716</td>
+      <td>-2.512</td>
+      <td>0.029</td>
+      <td>0.593</td>
+      <td>0.556</td>
+      <td>-912.908</td>
+      <td>-60.176</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>x1</td>
+      <td>37.208</td>
+      <td>9.296</td>
+      <td>4.003</td>
+      <td>0.002</td>
+      <td>0.593</td>
+      <td>0.556</td>
+      <td>16.748</td>
+      <td>57.668</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The <strong>R²</strong> value (noted as either r² or R² for linear regression, and R² exclusively for non-linear and multiple regressions) quantifies the <strong>goodness of fit</strong> and means that 59% of all variance in insulin sensitivity can be accounted for the linear regression model, and the remaining 41% of the variance may be caused by other factors, measurement errors, biological variation, or a nonlinear relationship between insulin sensitivity and %C20-22.</p>
+<p>For the <strong>P value</strong>, with linear regression the null hypothesis is that there really is no linear relationship between the 2 groups of data. If H0 were true, the best-fit line in the overall population would be horizontal with a slope of zero. The P value answers the question, if that null hypothesis was true, what is the chance that linear regression of data from a random sample of subjects would have a slope as far (or farther) from zero as that which is actually observed? In this example, the P value = 0.0021 is tniy, so we conclude that the null hypothesis is very unlikely to be true and that the observed relationship is unlikely to be caused by a coincidence of random sampling.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># returns results as a dictionnary instead of a dataframe</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">linear_regression</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">insulin_sensitiv</span><span class="p">,</span> <span class="n">as_dataframe</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;names&#39;: [&#39;Intercept&#39;, &#39;x1&#39;],
+ &#39;coef&#39;: array([-486.5419946 ,   37.20774575]),
+ &#39;se&#39;: array([193.71602138,   9.29594016]),
+ &#39;T&#39;: array([-2.51162496,  4.00258017]),
+ &#39;pval&#39;: array([0.02890283, 0.00207701]),
+ &#39;r2&#39;: 0.5929039159757126,
+ &#39;adj_r2&#39;: 0.5558951810644137,
+ &#39;CI[2.5%]&#39;: array([-912.90808294,   16.74751941]),
+ &#39;CI[97.5%]&#39;: array([-60.17590626,  57.66797208]),
+ &#39;df_model&#39;: 1,
+ &#39;df_resid&#39;: 11,
+ &#39;residuals&#39;: array([  70.52334572,   25.64024742,  -49.35975258,  -83.08052715,
+          31.91947285,  -65.0544695 ,   61.22475593,   75.4131373 ,
+          41.69236273,  -75.74918642, -102.95693217,  116.11454751,
+         -46.32700164]),
+ &#39;X&#39;: array([[ 1. , 17.9],
+        [ 1. , 18.3],
+        [ 1. , 18.3],
+        [ 1. , 18.4],
+        [ 1. , 18.4],
+        [ 1. , 20.2],
+        [ 1. , 20.3],
+        [ 1. , 21.8],
+        [ 1. , 21.9],
+        [ 1. , 22.1],
+        [ 1. , 23.1],
+        [ 1. , 24.2],
+        [ 1. , 24.4]]),
+ &#39;y&#39;: array([250, 220, 145, 115, 230, 200, 330, 400, 370, 260, 270, 530, 375]),
+ &#39;pred&#39;: array([179.47665428, 194.35975258, 194.35975258, 198.08052715,
+        198.08052715, 265.0544695 , 268.77524407, 324.5868627 ,
+        328.30763727, 335.74918642, 372.95693217, 413.88545249,
+        421.32700164])}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># many more options e.g. remove_na</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">linear_regression</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">insulin_sensitiv</span><span class="p">,</span> <span class="n">remove_na</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">coef_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-486.5419946 ,   37.20774575])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># weighted linear regression</span>
+<span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">C2022_fatacids</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">linear_regression</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">insulin_sensitiv</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">coef_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-486.5419946 ,   37.20774575])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="statsmodels">
+<h3>statsmodels<a class="headerlink" href="#statsmodels" title="Link to this heading">#</a></h3>
+<p>There is no R (or statsmodels)-like summary table in scipy.stats or sklearn-learn. Instead, there is statsmodels.regression.linear_model.OLS method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">insulin_sensitiv</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">C2022_fatacids</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary2</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Results: Ordinary least squares
+=================================================================
+Model:              OLS              Adj. R-squared:     0.556   
+Dependent Variable: y                AIC:                151.2840
+Date:               2021-09-09 10:42 BIC:                152.4139
+No. Observations:   13               Log-Likelihood:     -73.642 
+Df Model:           1                F-statistic:        16.02   
+Df Residuals:       11               Prob (F-statistic): 0.00208 
+R-squared:          0.593            Scale:              5760.1  
+------------------------------------------------------------------
+           Coef.    Std.Err.     t     P&gt;|t|     [0.025    0.975] 
+------------------------------------------------------------------
+const    -486.5420  193.7160  -2.5116  0.0289  -912.9081  -60.1759
+x1         37.2077    9.2959   4.0026  0.0021    16.7475   57.6680
+-----------------------------------------------------------------
+Omnibus:              3.503        Durbin-Watson:           2.172
+Prob(Omnibus):        0.173        Jarque-Bera (JB):        1.139
+Skew:                 0.023        Prob(JB):                0.566
+Kurtosis:             1.550        Condition No.:           192  
+=================================================================
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\WIECKOWS\AppData\Local\Programs\Python\Python39\lib\site-packages\scipy\stats\stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=13
+  warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>  <span class="c1"># possible to use R-like formula with a dataframe</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pct_C2022&#39;</span><span class="p">:</span>        <span class="n">C2022_fatacids</span><span class="p">,</span>
+         <span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">:</span><span class="n">insulin_sensitiv</span><span class="p">})</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;insulin_sensitivity ~ pct_C2022&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="c1"># use formula=&#39;insulin_sensitivity ~ pct_C2022 +0&#39; to removing the intercept, i.e. with categorical data</span>
+
+<span class="n">results_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     insulin_sensitivity   R-squared:                       0.593
+Model:                             OLS   Adj. R-squared:                  0.556
+Method:                  Least Squares   F-statistic:                     16.02
+Date:                 Thu, 09 Sep 2021   Prob (F-statistic):            0.00208
+Time:                         10:42:08   Log-Likelihood:                -73.642
+No. Observations:                   13   AIC:                             151.3
+Df Residuals:                       11   BIC:                             152.4
+Df Model:                            1                                         
+Covariance Type:             nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept   -486.5420    193.716     -2.512      0.029    -912.908     -60.176
+pct_C2022     37.2077      9.296      4.003      0.002      16.748      57.668
+==============================================================================
+Omnibus:                        3.503   Durbin-Watson:                   2.172
+Prob(Omnibus):                  0.173   Jarque-Bera (JB):                1.139
+Skew:                           0.023   Prob(JB):                        0.566
+Kurtosis:                       1.550   Cond. No.                         192.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\WIECKOWS\AppData\Local\Programs\Python\Python39\lib\site-packages\scipy\stats\stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=13
+  warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first panel gives you an overview of the fit quality:</p>
+<ul class="simple">
+<li><p>You recognize the good old <span class="math notranslate nohighlight">\(R^2\)</span> and <span class="math notranslate nohighlight">\(R_a^2\)</span></p></li>
+<li><p>The F-statistic and its associated P-value test the hypothesis that all the coefficients are 0 (normality assumption)</p></li>
+<li><p>You should also recognize the log-likelihood (normality assumption)</p></li>
+<li><p>AIC and BIC respectively Aikike Information Criterion and Bayesian Information Criterion are equivalent of likelihood but that you can use to compare non nested models.</p></li>
+</ul>
+<p>The second panel is quite self explanatory, just be careful with this t-test which again makes the assumption that errors are normally distributed, same for the standard error and the 95% confidence interval.</p>
+<p>The third panel is a summary of a few statistical tests that will give you a sense of how all of the hypothesis needed for OLS are plausible:</p>
+<ul class="simple">
+<li><p>Omnibus and Prob(omnibus): this is a test for normality of residuals. Low P-values means that your linear model is not adapted</p></li>
+<li><p>Durbin-Watson : tests autocorrelation in the error terms (2 is no autocorrelation, less than 1 is bad)</p></li>
+<li><p>Jarque-Bera: tests if the skewness and kurtosis of your errors are looking like a normal distribution. If the Pvalue is high then they look normal.</p></li>
+<li><p>Condition Number : sensibility to noise of the fit.Skewness and kurtosis of your noise (both 0 for normally distributed noise).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">exog</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pct_C2022&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">21</span><span class="p">]}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    294.820666
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<section id="get-more-from-the-result-table-generated-by-statsmodels">
+<h4>Get more from the result table generated by statsmodels<a class="headerlink" href="#get-more-from-the-result-table-generated-by-statsmodels" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">as_html</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\WIECKOWS\AppData\Local\Programs\Python\Python39\lib\site-packages\scipy\stats\stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=13
+  warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>y</td>        <th>  R-squared:         </th> <td>   0.593</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.556</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   16.02</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Thu, 09 Sep 2021</td> <th>  Prob (F-statistic):</th>  <td>0.00208</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>10:42:08</td>     <th>  Log-Likelihood:    </th> <td> -73.642</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>    13</td>      <th>  AIC:               </th> <td>   151.3</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>    11</td>      <th>  BIC:               </th> <td>   152.4</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;the parameters of the model&#39;</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loglikelihood model insulin_sensitivity ~ pct_C2022:&#39;</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">llf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the parameters of the model [-486.5419946    37.20774575]
+loglikelihood model insulin_sensitivity ~ pct_C2022: -73.64199323217251
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="numpy-polyfit">
+<h3>numpy polyfit<a class="headerlink" href="#numpy-polyfit" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">insulin_sensitiv</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  37.20774575, -486.5419946 ])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="scikit-learn">
+<h3>scikit-learn<a class="headerlink" href="#scikit-learn" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">C2022_fatacids</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">insulin_sensitiv</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[37.20774575]]
+[-486.5419946]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="r-squared">
+<h2>R-squared<a class="headerlink" href="#r-squared" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Rsq</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">rvalue</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R²: </span><span class="si">{</span><span class="n">Rsq</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R²: 0.592903915975712
+</pre></div>
+</div>
+</div>
+</div>
+<p>59% of all variance in insulin sensitivity can be accounted for the linear regression model and the remaining 41% of the variance may be caused by other factors, measurement errors, biological variation or a nonlinear relationship between both parameters.</p>
+<p>R² equals the difference of total sum of squares (TSS), <em>i.e. around the mean of the Y values</em>, to residual sum of squares (RSS), <em>i.e. around the regression line</em>, divided by the TSS:</p>
+<div class="math notranslate nohighlight">
+\[ R^2 = \frac{\text{TSS}-\text{RSS}}{\text{TSS}} = 1 - \frac{\text{RSS}}{\text{TSS}} \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_rss</span><span class="p">(</span><span class="n">y_estimate</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span> 
+  <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_estimate</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> 
+
+<span class="k">def</span> <span class="nf">estimate_y</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">b_0</span><span class="p">,</span> <span class="n">b_1</span><span class="p">):</span> 
+  <span class="k">return</span> <span class="n">b_0</span> <span class="o">+</span> <span class="n">b_1</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="n">beta_0</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">intercept</span>
+<span class="n">beta_1</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">slope</span>
+
+<span class="n">rss</span> <span class="o">=</span> <span class="n">compute_rss</span><span class="p">(</span><span class="n">estimate_y</span><span class="p">(</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">beta_0</span><span class="p">,</span> <span class="n">beta_1</span><span class="p">),</span> <span class="n">insulin_sensitiv</span><span class="p">)</span>
+
+<span class="n">tss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">insulin_sensitiv</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">insulin_sensitiv</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R² using TSS and RSS: </span><span class="si">{</span><span class="p">(</span><span class="n">tss</span><span class="o">-</span><span class="n">rss</span><span class="p">)</span><span class="o">/</span><span class="n">tss</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R² using TSS and RSS: 0.5929
+</pre></div>
+</div>
+</div>
+</div>
+<p>One natural way to benchmark how good a job your model does of explaining the outcome is to compare it to a situation where you have no input and no model at all. In this situation, all you have is your outcome values, which <em>can be considered a random variable with a mean and a variance</em>. In the case of all our observations, we have multiple values with a mean. We can consider the horizontal line representing the mean of <span class="math notranslate nohighlight">\(y\)</span> as the ‘random model’, and we can calculate the residuals around the mean. Recall the definition of the population variance of <span class="math notranslate nohighlight">\(y\)</span>, notated as <span class="math notranslate nohighlight">\(\mathrm{Var}(y)\)</span>. Note that it is defined as the average of the squares of the residuals around the mean of <span class="math notranslate nohighlight">\(y\)</span>. Therefore <span class="math notranslate nohighlight">\(\mathrm{Var}(y)\)</span> represents the average squared residual error of a random model (see also Chapter 35 - Comparing models).</p>
+</section>
+<section id="standard-error-of-the-regression">
+<h2>Standard error of the regression<a class="headerlink" href="#standard-error-of-the-regression" title="Link to this heading">#</a></h2>
+<p>The standard error of the regression <span class="math notranslate nohighlight">\(S\)</span>, also known as the <em>standard error of the estimate</em>, represents the average distance that the observed values fall from the regression line. Conveniently, it tells you how wrong the regression model is on average using the units of the response variable. Smaller values are better because it indicates that the observations are closer to the fitted line:</p>
+<div class="math notranslate nohighlight">
+\[ s_{\widehat {\beta }}={\sqrt {\frac {{\frac {1}{n-2}}\sum _{i=1}^{n}{\widehat {\varepsilon }}_{i}^{\,2}}{\sum _{i=1}^{n}(x_{i}-{\bar {x}})^{2}}}} \]</div>
+<p>We lose 2 degrees of freedom because we estimate the two parameters <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>.</p>
+<p>In contrast, <span class="math notranslate nohighlight">\(R^2\)</span> provides the relative measure of the percentage of the dependent variable variance that the model explains.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">rss</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">insulin_sensitiv</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">))</span> 
+    <span class="o">/</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">C2022_fatacids</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">C2022_fatacids</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+<span class="p">)</span><span class="o">**</span><span class="mf">.5</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S = </span><span class="si">{</span><span class="n">S</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S = 9.29594
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rss</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>63361.373970041794
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Link to this heading">#</a></h2>
+<section id="diagnostic-plots-for-linear-regression">
+<h3>Diagnostic plots for linear regression<a class="headerlink" href="#diagnostic-plots-for-linear-regression" title="Link to this heading">#</a></h3>
+<p>We can check if a model works well for data in many different ways. We pay great attention to regression results, such as slope coefficients, p-values, or R² that tell us how well a model represents given data. That’s not the whole picture though. <strong>Residuals</strong> could show how poorly a model represents data. Residuals are leftover of the outcome variable after fitting a model (predictors) to data and they could reveal unexplained patterns in the data by the fitted model. Using this information, not only could you check if linear regression assumptions are met, but you could improve your model in an exploratory way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">141</span><span class="p">)</span>
+<span class="c1"># plot the data points</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">insulin_sensitiv</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
+<span class="c1"># plot the regression line</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">17</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">slope</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="n">intercept</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Best-fit linear regression (scipy.stats)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">17</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;%C20-22 fatty acids&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Insulin sensitivity (mg/m²/min)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">insulin_sensitiv</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Best-fit linear regression (seaborn)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">17</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;%C20-22 fatty acids&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Insulin sensitivity (mg/m²/min)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">residplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">insulin_sensitiv</span><span class="p">,</span> <span class="n">lowess</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">)</span> <span class="c1">#Locally Weighted Scatterplot Smoothing</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Residuals of linear regression (seaborn)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">17</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;%C20-22 fatty acids&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="c1"># Preprocessing steps</span>
+<span class="n">model_norm_residuals</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_influence</span><span class="p">()</span><span class="o">.</span><span class="n">resid_studentized_internal</span>
+<span class="n">model_norm_residuals_abs_sqrt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">model_norm_residuals</span><span class="p">))</span>
+<span class="c1"># Create the scale-location plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">model_norm_residuals_abs_sqrt</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lowess</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Scale-location plot (statsmodels)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Fitted values&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">150</span><span class="p">,</span><span class="mi">450</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Sqrt abs val of standardized residuals&quot;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0a160e451c0756ea4767b191641644f2f293ec13e181cd383039689700e43c83.png" src="_images/0a160e451c0756ea4767b191641644f2f293ec13e181cd383039689700e43c83.png" />
+</div>
+</div>
+<p>On the second graph, the shaded area show the 95% confidence bands of the regression line, which combine the CIs of the slope and the intercept. If the assumptions of linear regression are true, you can 95% sure that the overall best-fit regression line lies somewhere within the shaded confidence bands.</p>
+<p>The curvature of the 95% CI bands simply is a way to enclose possible straight lines (see <em>boostrapping</em>).</p>
+<p>Only a few data points are included within the confidence bands, if the sample was much larger, the best-fit line would be determined more precisely, so the confidence bands would be narrower and a smaller fraction of data points would be included within the confidence bands.</p>
+<p>The <strong>residual plot</strong> shows if residuals have non-linear patterns. There could be a non-linear relationship between predictor variables and an outcome variable and the pattern could show up in this plot if the model doesn’t capture the non-linear relationship. If you find <em>equally spread residuals around a horizontal line without distinct patterns</em>, that is a good indication you don’t have non-linear relationships.</p>
+<p>The <strong>scale-location plot</strong>, also called ‘Spread-Location plot’, shows if residuals are spread equally along the ranges of predictors. This is how you can check the assumption of equal variance (<strong>homoscedasticity</strong>). It’s good if you see a <em>horizontal line with equally (randomly) spread points</em>.</p>
+<section id="residuals-vs-leverage">
+<h4>Residuals vs Leverage<a class="headerlink" href="#residuals-vs-leverage" title="Link to this heading">#</a></h4>
+<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Leverage_(statistics)">Leverage</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Influential_observation">influence</a></strong> are important concepts for determining whether your model is overly affected by some unusual data points:</p>
+<ul class="simple">
+<li><p>leverage is a measure of how far away the independent variable values of an observation are from those of the other observations</p></li>
+<li><p>influential observation in an observation whose deletion from the dataset would noticeably change the result of the calculation</p></li>
+</ul>
+<p>Cook’s distance or Cook’s D is a commonly used estimate of the influence of a data point when performing a least-squares regression analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_info</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_influence</span><span class="p">()</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;leverage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">summary_info</span><span class="p">[</span><span class="s2">&quot;hat_diag&quot;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cooks_dist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">summary_info</span><span class="p">[</span><span class="s2">&quot;cooks_d&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;cooks_dist&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    pct_C2022  insulin_sensitivity  leverage  cooks_dist
+11       24.2                  530  0.259088    0.552364
+10       23.1                  270  0.162231    0.212685
+3        18.4                  115  0.157350    0.132773
+0        17.9                  250  0.195836    0.130740
+12       24.4                  375  0.280599    0.101007
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-q-plot">
+<h4>Q-Q plot<a class="headerlink" href="#q-q-plot" title="Link to this heading">#</a></h4>
+<p>In an appropriate model we expect our errors to be random, so we would therefore expect our <strong>residuals to be normally distributed</strong> over sufficient numbers of observations. If our residuals are distributed differently, this is again an indicator of an inappropriate model and can result in inaccurate estimates of confidence intervals and the statistical significance of coefficients.</p>
+<p>The quickest way to determine if residuals in your sample are consistent with a normal distribution is to run a quantile-quantile plot (or Q-Q plot) on the residuals. This will plot the observed quantiles of your sample against the theoretical quantiles of a normal distribution. The closer this plot looks like a perfect correlation, the more certain you can be that this normality assumption holds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a Q-Q plot of the residuals</span>
+<span class="kn">from</span> <span class="nn">statsmodels.api</span> <span class="kn">import</span> <span class="n">qqplot</span>
+<span class="n">qqplot</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;45&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Q-Q plot of the residuals (statsmodels)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\WIECKOWS\AppData\Local\Programs\Python\Python39\lib\site-packages\statsmodels\graphics\gofplots.py:993: UserWarning: marker is redundantly defined by the &#39;marker&#39; keyword argument and the fmt string &quot;bo&quot; (-&gt; marker=&#39;o&#39;). The keyword argument will take precedence.
+  ax.plot(x, y, fmt, **plot_style)
+</pre></div>
+</div>
+<img alt="_images/ce6e60a5d610c2a1351700caf6ecbcf9fa9be8d82595981b0aeabf2e6f7b09a7.png" src="_images/ce6e60a5d610c2a1351700caf6ecbcf9fa9be8d82595981b0aeabf2e6f7b09a7.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="confidence-interval">
+<h2>Confidence interval<a class="headerlink" href="#confidence-interval" title="Link to this heading">#</a></h2>
+<p>After your fitting, you would probably like to know the confidence interval for each of your estimated <span class="math notranslate nohighlight">\(\beta\)</span>, as well as if they are truly necessary (significantly different from zero). For both <strong>you can’t truly do anything without making an hypothesis about the statistic of the noise</strong>: here comes the part where assuming your noise to be normally distributed (<span class="math notranslate nohighlight">\(N(0,\sigma^2)\)</span>) becomes important, but potentially wrong too. In summary, confidence intervals were devised to give a plausible set of values to the estimates one might have if one repeated the experiment a very large number of times. Typically, in any such situation, we seek to know a 95% confidence interval to set a standard of certainty around the values we are interpreting.</p>
+<p>The 95% confidence interval corresponds to approximately two standard errors above or below the estimated value. For a given coefficient, if this confidence interval includes zero, you cannot reject the hypothesis that the variable has no relationship with the outcome. Another indicator of this is the <code class="docutils literal notranslate"><span class="pre">Pr(&gt;|t|)</span></code> column of the coefficient summary, which represents the <em>p-value</em> of the null hypothesis that the input variable has no relationship with the outcome. If this value is less than a certain threshold (usually 0.05), you can conclude that this variable has a statistically significant relationship with the outcome.</p>
+<p>For the confidence interval, if you have an infinite amount of data, and your noise distribution is not heavytailed, you can show that the estimators are well described by a normal statistic (there is convergence in the distribution so that <span class="math notranslate nohighlight">\((\hat{\pmb\beta}-\pmb\beta)\rightarrow N(0,\sigma^2 (\pmb X^T \pmb X)^{-1})\)</span>). So for big amount of points relative to the number of estimated parameters, you are not making a big mistake by writting: <span class="math notranslate nohighlight">\(\beta_p \in [\hat{\beta_p} \pm z_{1-\frac{\alpha}{2}}\sqrt{\hat{\sigma}^2 [(\pmb X^T \pmb X)^{-1}]_{p,p}}]\)</span>.</p>
+<p>If you don’t have a huge amount of data you need to show that you have an incentive about your noise statistic to use these kind of confidence intervals.</p>
+<p>For the significance of the coefficients, <strong>if you know that your noise is normally distributed then you can use a t-test</strong>.</p>
+<p>It is possible to compute the CI using the SE stderr and the critical t ratio for a df of 13 - 2 (we know the slope AND intercept) and alpha = 95% (two-tailed).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">.95</span>
+<span class="n">df</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">insulin_sensitiv</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="n">t_</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">ppf</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CI_slope</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">slope</span> <span class="o">-</span> <span class="n">t_</span><span class="o">*</span><span class="n">res</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">slope</span> <span class="o">+</span> <span class="n">t_</span><span class="o">*</span><span class="n">res</span><span class="o">.</span><span class="n">stderr</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best-fit value of the slope: </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">slope</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> with 95% CI from </span><span class="si">{</span><span class="n">CI_slope</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">CI_slope</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best-fit value of the slope: 37.21 with 95% CI from 16.75 to 57.67
+</pre></div>
+</div>
+</div>
+</div>
+<p>Although the CI is wide, it does not include 0 and doesn’t even come close to 0. This is a strong evidence that the observed relationship is very unlikely to be a coincidence of random sampling.</p>
+<section id="computing-the-ci-bands">
+<h3>Computing the CI bands<a class="headerlink" href="#computing-the-ci-bands" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">insulin_sensitiv</span>
+
+<span class="k">def</span> <span class="nf">plot_ci_manual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s_err</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return an axes of confidence bands using a simple approach.</span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    .. math:: \left| \: \hat{\mu}_{y|x0} - \mu_{y|x0} \: \right| \; \leq \; T_{n-2}^{.975} \; \hat{\sigma} \; \sqrt{\frac{1}{n}+\frac{(x_0-\bar{x})^2}{\sum_{i=1}^n{(x_i-\bar{x})^2}}}</span>
+<span class="sd">    .. math:: \hat{\sigma} = \sqrt{\sum_{i=1}^n{\frac{(y_i-\hat{y})^2}{n-2}}}</span>
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1]: M. Duarte.  &quot;Curve fitting,&quot; Jupyter Notebook.</span>
+<span class="sd">       http://nbviewer.ipython.org/github/demotu/BMC/blob/master/notebooks/CurveFitting.ipynb</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+    <span class="n">ci</span> <span class="o">=</span> <span class="n">t</span> <span class="o">*</span> <span class="n">s_err</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span> <span class="o">+</span> <span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="o">+</span><span class="n">ci</span><span class="p">,</span> <span class="n">y2</span><span class="o">-</span><span class="n">ci</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightcoral&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">ax</span>
+
+<span class="k">def</span> <span class="nf">plot_ci_bootstrap</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">resid</span><span class="p">,</span> <span class="n">nboot</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return an axes of confidence bands using a bootstrap approach.</span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The bootstrap approach iteratively resampling residuals.</span>
+<span class="sd">    It plots `nboot` number of straight lines and outlines the shape of a band.</span>
+<span class="sd">    The density of overlapping lines indicates improved confidence.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ax : axes</span>
+<span class="sd">        - Cluster of lines</span>
+<span class="sd">        - Upper and Lower bounds (high and low) (optional)  Note: sensitive to outliers</span>
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] J. Stults. &quot;Visualizing Confidence Intervals&quot;, Various Consequences.</span>
+<span class="sd">       http://www.variousconsequences.com/2010/02/visualizing-confidence-intervals.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">bootindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nboot</span><span class="p">):</span>
+        <span class="n">resamp_resid</span> <span class="o">=</span> <span class="n">resid</span><span class="p">[</span><span class="n">bootindex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">resid</span><span class="p">))]</span>
+        <span class="c1"># Make coeffs of for polys</span>
+        <span class="n">pc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">resamp_resid</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>                   
+        <span class="c1"># Plot bootstrap cluster</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="s2">&quot;b-&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">3.0</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">nboot</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ax</span>
+
+<span class="c1"># Modeling with Numpy</span>
+<span class="n">p</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># parameters and covariance from of the fit</span>
+<span class="n">y_model</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>              <span class="c1"># model using the fit parameters; NOTE: parameters here are coefficients</span>
+
+<span class="c1"># Statistics</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span>                              <span class="c1"># number of observations</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">size</span>                              <span class="c1"># number of parameters</span>
+<span class="n">DF</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">m</span>                              <span class="c1"># degrees of freedom</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.95</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">m</span><span class="p">)</span>      <span class="c1"># used for CI and PI bands</span>
+
+<span class="c1"># Estimates of Error in Data/Model</span>
+<span class="n">resid</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_model</span>                           
+<span class="n">chi2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">resid</span><span class="o">/</span><span class="n">y_model</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>       <span class="c1"># chi-squared; estimates error in data</span>
+<span class="n">chi2_red</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">/</span><span class="p">(</span><span class="n">DF</span><span class="p">)</span>                    <span class="c1"># reduced chi-squared; measures goodness of fit</span>
+<span class="n">s_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">resid</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">DF</span><span class="p">))</span>  <span class="c1"># standard deviation of the error</span>
+
+
+<span class="c1"># Plotting --------------------------------------------------------------------</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Data</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s2">&quot;royalblue&quot;</span><span class="p">)</span>
+
+<span class="c1"># Fit</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_model</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Fit&quot;</span><span class="p">)</span>  
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y_model</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">y_model</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Confidence Interval (select one)</span>
+<span class="n">plot_ci_manual</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s_err</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="c1">#plot_ci_bootstrap(n, x, y, resid, ax=ax)</span>
+
+<span class="c1"># Prediction Interval</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="n">t</span><span class="o">*</span><span class="n">s_err</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">+</span><span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>   
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="o">+</span><span class="n">pi</span><span class="p">,</span> <span class="n">y2</span><span class="o">-</span><span class="n">pi</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="o">-</span><span class="n">pi</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;forestgreen&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;95% Prediction Limits&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="o">+</span><span class="n">pi</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;forestgreen&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="c1"># Figure Modifications --------------------------------------------------------</span>
+<span class="c1"># Labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Fit Plot and Confidence Interval&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;12&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;%C20-22 fatty acids&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Insulin sensitivity (mg/m²/min)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mf">.5</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mf">.5</span><span class="p">)</span>
+
+<span class="c1"># Custom legend</span>
+<span class="n">handles</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+<span class="n">anyArtist</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Line2D</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightcoral&quot;</span><span class="p">)</span>  <span class="c1"># Create custom artists</span>
+<span class="n">legend</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">handle</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">handle</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">handles</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="n">anyArtist</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">label</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;95% Confidence Limits&quot;</span><span class="p">],</span>
+    <span class="n">loc</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.21</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">.102</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;expand&quot;</span><span class="p">)</span>  
+<span class="n">frame</span> <span class="o">=</span> <span class="n">legend</span><span class="o">.</span><span class="n">get_frame</span><span class="p">()</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+
+<span class="c1"># Save Figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/65bbda8705556c41360731e532f7c7aff1da8b14343d6466ab07b557d874b87f.png" src="_images/65bbda8705556c41360731e532f7c7aff1da8b14343d6466ab07b557d874b87f.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="bootstrapping">
+<h2>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h2>
+<section id="confidence-intervals">
+<h3>Confidence Intervals<a class="headerlink" href="#confidence-intervals" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_bs_pairs_linreg</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">bs_slope_reps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">bs_intercept_reps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">bs_inds</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">inds</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inds</span><span class="p">))</span>
+        <span class="n">bs_x</span><span class="p">,</span> <span class="n">bs_y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">bs_inds</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">bs_inds</span><span class="p">]</span>
+        
+        <span class="n">bs_slope_reps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bs_intercept_reps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">bs_x</span><span class="p">,</span> <span class="n">bs_y</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bs_slope_reps</span><span class="p">,</span> <span class="n">bs_intercept_reps</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numpy has also a least squares polynomial fit method</span>
+<span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">insulin_sensitiv</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bs_slope</span><span class="p">,</span> <span class="n">bs_intercept</span> <span class="o">=</span> <span class="n">draw_bs_pairs_linreg</span><span class="p">(</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">insulin_sensitiv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CI_slope_bs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bs_slope</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">])</span>
+<span class="n">CI_intercept_bs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bs_intercept</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CI of the slope using bootstraping: </span><span class="si">{</span><span class="n">CI_slope_bs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CI of the intercept using bootstraping: </span><span class="si">{</span><span class="n">CI_intercept_bs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CI of the slope using bootstraping: [18.43209224 56.57744556]
+CI of the intercept using bootstraping: [-879.70919095 -109.12031934]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the 200 first pairs of parameters</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">17</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bs_slope</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">bs_intercept</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.25</span><span class="p">)</span>
+<span class="c1"># plot the real data points</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">C2022_fatacids</span><span class="p">,</span> <span class="n">insulin_sensitiv</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;%C20-22 fatty acids&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Insulin sensitivity (mg/m²/min)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="mf">.02</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16711b50f51a112169b981ec71abf206b91df06c176a8850ef068a8fb225e251.png" src="_images/16711b50f51a112169b981ec71abf206b91df06c176a8850ef068a8fb225e251.png" />
+</div>
+</div>
+</section>
+<section id="p-value">
+<h3>P-value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value: </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P value: 0.0021
+</pre></div>
+</div>
+</div>
+</div>
+<p>H0: no linear relationship between both parameters. If H0 was true, the best-fit line would be <strong>horizontal with a slope of zero</strong>.
+If H0 was true, what is the chance that linear regression of data from a random sample of subjects would have a slope as far or farther from zero as that which is observed?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># permutation of one group of values from the dataset, computation the slope 10000 times and estimatation of the P ratio</span>
+<span class="n">slope_bs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span>
+        <span class="n">C2022_fatacids</span><span class="p">,</span>                         <span class="c1"># original X values</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">insulin_sensitiv</span><span class="p">)</span> <span class="c1"># permuted Y values</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">slope</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P_values_bs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">slope_bs</span> <span class="o">&gt;=</span> <span class="n">res</span><span class="o">.</span><span class="n">slope</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P value from boostraping: </span><span class="si">{</span><span class="n">P_values_bs</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P value from boostraping: 0.0009
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">slope_bs</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">slope</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3973c838c5a58fde23d51f6776e8c07897e514496aa09f0a28c3a371876e7c6d.png" src="_images/3973c838c5a58fde23d51f6776e8c07897e514496aa09f0a28c3a371876e7c6d.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="fitting-models-to-data">
+<h2>Fitting models to data<a class="headerlink" href="#fitting-models-to-data" title="Link to this heading">#</a></h2>
+<p>We are interested in the relationship between one of this variable that we will call the <em>response variable</em> (<span class="math notranslate nohighlight">\(Y\)</span>) and the other variables that we will call <em>covariables</em> (<span class="math notranslate nohighlight">\(X\)</span>).
+Of course our measurments are not perfect so there is some noise associated to it (<span class="math notranslate nohighlight">\(\epsilon\)</span>). We can rewrite the equation as <span class="math notranslate nohighlight">\( \text{response} = \text{signal} + \text{noise}\)</span>.
+In mathematical term we are interested in a class of problem that we can write as <span class="math notranslate nohighlight">\( Y = f(X)+\epsilon\)</span>.</p>
+<p>The model analyzed below defines insulin sensitivity (<em>the dependend variable</em>) as a function of of %C20-22 (<em>the independent variable</em>) and the slope and the intercept (<em>the parameters</em>), without true <em>constants</em> here.</p>
+<p>The function <span class="math notranslate nohighlight">\(f\)</span> is called the regression function, and today we will be interested in looking at a particular form of those function: <strong>linear combination</strong>. A particular case of linear combination would be a single covariable with an intercept like <span class="math notranslate nohighlight">\(y_i=\beta x_i+c\)</span>.</p>
+<p>In our example, the linear regression used to fit the model to the data wan be written as <span class="math notranslate nohighlight">\( Y_i = \beta_0 + \beta_1.X_i + \epsilon_i \)</span>.
+The <strong>intercept</strong> <span class="math notranslate nohighlight">\(\beta_0\)</span> and <strong>slope</strong> <span class="math notranslate nohighlight">\(\beta_1\)</span> are parameters that each have a single true underlyinh population value. In contrast, the <strong>random component</strong> <span class="math notranslate nohighlight">\(\epsilon\)</span> of the model takes on a different value for each data point. These random values are assumed to follow a Gaussian distribution with a mean of zero.</p>
+<p>A more general case would have more covariables and would be written like:</p>
+<div class="math notranslate nohighlight">
+\[f(\textbf{X}_i,\pmb{\beta})=\sum_{p} \beta_p x_{i,p}= \textbf{X}_{i}^{T}\pmb{\beta}\]</div>
+<p>Where <em><span class="math notranslate nohighlight">\(X_i\)</span></em> is a vector of p covariables associated to point individual i.</p>
+<p>Note that for now nothing is said about the nature of the <span class="math notranslate nohighlight">\(x_{i,p}\)</span>, for example some could be constant instead of being a variable and thus you could go back to a more specific affine function (like <span class="math notranslate nohighlight">\(\beta x+c\)</span>).</p>
+<p>So of course now the game become to best choose the vector of parameters <span class="math notranslate nohighlight">\(\pmb{\beta}\)</span>. For that there are two main methods (sorry Bayesian people…):</p>
+<ul class="simple">
+<li><p>(Ordinary) Least Square fit</p></li>
+<li><p>Maximum Likelihood</p></li>
+</ul>
+<p>Least square fit is the most intuitive and easy to get a hold on. Maximum likelihood is a bit more advanced in terms of the concepts it utilizes, but being introduce to it will allow you to manipulate cool concepts that you will need by the end of this notebook and if you keep learning about statistics in general.</p>
+<p>Underlying those different methods, there are different models:</p>
+<ul class="simple">
+<li><p>Linear models</p></li>
+<li><p>Generalized linear models</p></li>
+</ul>
+<p>The way we wrote the function linking <span class="math notranslate nohighlight">\(Y\)</span> to <span class="math notranslate nohighlight">\(X\)</span> above, have the noise term <span class="math notranslate nohighlight">\(\epsilon\)</span> outside of the function. So one would say that this function only try to represent the mean of the response variable <span class="math notranslate nohighlight">\(Y\)</span> along the curve, and as importantly, it does it looking at linear function.
+This is what we actually do in the framework of Linear models: we only aim to fit the mean response using linear funcitons.</p>
+<p>Generalized linear model, in another hand, are more flexible: they allow us to transform the mean response and to fit that transformed response with a linear model. It is very powerfull, as now we could better modeled response variable with broader properties (count data, categorical data etc….), but significantly more complicated and so we will not talk about those methods here.</p>
+<section id="least-square">
+<h3>Least square<a class="headerlink" href="#least-square" title="Link to this heading">#</a></h3>
+<p>For clarity let’s define once for all some variables: we have a sample of size <span class="math notranslate nohighlight">\(n\)</span>, for each individual on this sample there are <span class="math notranslate nohighlight">\(p+1\)</span> measurments, <span class="math notranslate nohighlight">\(p\)</span> covariables and one response variable. In the least square method we are interested in making the smallest overall distance error between our model and the response variable. Typically we want to find the <span class="math notranslate nohighlight">\(\beta\)</span> that minimizes:</p>
+<p><span class="math notranslate nohighlight">\(S(\pmb\beta)=\sum_i (y_i-f(\textbf{X},\pmb{\beta}))^2=\sum_i \epsilon_i^2\)</span></p>
+<p>in mathematical terms you are looking for <span class="math notranslate nohighlight">\(\hat{\pmb\beta}=\text{arg min}_{\pmb\beta}S(\pmb\beta)\)</span>. Here the sum is over <span class="math notranslate nohighlight">\(i\)</span>, which counts the number of individuals.</p>
+<blockquote>
+<div><p>The hat <span class="math notranslate nohighlight">\(\hat{.}\)</span>, is a notation we use to denote our estimate of the true value of something. So in that sense <span class="math notranslate nohighlight">\(\hat{\pmb\beta}\)</span> is the estimate of the “real” coefficient values, and <span class="math notranslate nohighlight">\(\hat{Y}\)</span> is the estimation of <span class="math notranslate nohighlight">\(Y\)</span> given by our model (also called the model predictions).</p>
+</div></blockquote>
+<p>While we could use various optimization algorithms to find the best value for <span class="math notranslate nohighlight">\(\beta\)</span>,
+when the system is overdetermined (<em>i.e.</em>, you have more points than coefficients <span class="math notranslate nohighlight">\(\beta_i\)</span>) an analytical solution exists. It is of the form:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\pmb\beta}=(\pmb X^T \pmb X)^{-1}\pmb X^T \pmb Y\]</div>
+</section>
+<section id="underlying-hypothesis">
+<h3>Underlying hypothesis<a class="headerlink" href="#underlying-hypothesis" title="Link to this heading">#</a></h3>
+<p>There are a couple of important hypothesis behind this method:</p>
+<ul class="simple">
+<li><p><strong>Correct specification</strong> : have a good incentive for the function you use</p></li>
+<li><p><strong>Strict exogeneity</strong> : the errors are centered around the true value of y</p></li>
+<li><p><strong>No linear dependance</strong> : you can not reconstruct one of your covariable by summing a subset of your covariables with some set of constant weights</p></li>
+<li><p><strong>Spherical errors</strong>:</p>
+<ul>
+<li><p>Homoscedasticity : the spread of the error is the same along the curve (for example not true for counts data).</p></li>
+<li><p>No autocorrelation : error are not correlated along the curve.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Normality is not strictly needed for Least Square fitting</strong>, neither for the variables nor for their errors.</p>
+<blockquote>
+<div><p>The results of linear regression are based on the assumption that the <strong>residuals</strong> are Gaussian.</p>
+</div></blockquote>
+<p>However you may need that hypothesis downstream in your analysis, for instance when using a test statistic. If you errors are normally distributed, then Least Square fitting and Maximum Likelihood are equivalent, showing that your method for choosing <span class="math notranslate nohighlight">\(\pmb\beta\)</span> is efficient and sound.</p>
+<p>If the points with high or low X values tend to be farther from the best-fit line, the assumption that the SD is the same everywhere (homoscedasticity) is violated. Therefore, linear regression can be calculated by <strong>differentially weighting</strong> the data points, giving more weight to the points with small variability and less weight to the points with lots of variability.</p>
+<p>Finally, within that set of constraints and even if the method is called Linear Models, it is possible to fit polynomials of a degree bigger than 1. To do so you just have to precompute the monomials and add them to your set of covariables.</p>
+<p>For example:
+<span class="math notranslate nohighlight">\(y=\beta x +c\)</span> is a linear combination of x</p>
+<p><span class="math notranslate nohighlight">\(y=\beta_{1}x+\beta_{2}x^{2}+\beta_{3}x^{3}\)</span> is still a linear combination of features (covariables) <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(x^{2}\)</span> and <span class="math notranslate nohighlight">\(x^{3}\)</span>, and <strong>X</strong> becomes {<span class="math notranslate nohighlight">\(x,x^2,x^3\)</span>}</p>
+</section>
+<section id="goodness-of-fit">
+<h3>Goodness of fit<a class="headerlink" href="#goodness-of-fit" title="Link to this heading">#</a></h3>
+<p>To have an idea of how good your fit is, you can either directly use the <strong>Mean Squared Error (MSE)</strong> or the adjusted coefficient of determination <span class="math notranslate nohighlight">\(\pmb R^2_a\)</span>.</p>
+<p>The MSE is defined as follow:</p>
+<div class="math notranslate nohighlight">
+\[\text{MSE}=\frac{\sum (y_i-\hat{y_i})^2}{n-2}\]</div>
+<p>and accounts for what your model is missing. That could be the simple inherent variance induced by the noise term or the noise term and a missing term that your model doesn’t take into account. By its nature, this metric makes it hard to compare between different hypothetical fitting models or different dataset.</p>
+<p>A better normalized metric is the <strong>adjusted coefficient of determination <span class="math notranslate nohighlight">\(\pmb R^2_a\)</span></strong>.
+The adjusted part is very necessary when we work in the context of multiple linear regression (more than one covariable).</p>
+<p>Let’s start by defining the coefficient of determination <span class="math notranslate nohighlight">\(\pmb R^2\)</span>. This coefficient partitions the variance present in your data between what is taken into account by your model and what is not.</p>
+<p><span class="math notranslate nohighlight">\(R^2=1-\frac{\text{SSE}}{\text{SST}}\)</span>, where SSE is the sum of squared errors (<span class="math notranslate nohighlight">\(\sum_i (y_i-\hat{y_i})^2\)</span>) and SST in the sum of squares total (<span class="math notranslate nohighlight">\(\sum_i (y_i-\bar{y})^2\)</span>).</p>
+<p>For the adjusted coefficient of determination you have to take into account that SSE and SST don’t have the same degree of freedom and you should adjust for that.
+<span class="math notranslate nohighlight">\(R^2_a=1-\frac{n-1}{n-p}(1-R^2)\)</span>, with <span class="math notranslate nohighlight">\(p\)</span> the number of covariables and <span class="math notranslate nohighlight">\(n\)</span> the number of individuals.</p>
+<blockquote>
+<div><p>Note : you can see that when there is only one covariable then <span class="math notranslate nohighlight">\(R^2_a = R^2\)</span></p>
+</div></blockquote>
+<section id="regularization">
+<h4>Regularization<a class="headerlink" href="#regularization" title="Link to this heading">#</a></h4>
+<p>If you don’t have access to the noise properties (<em>i.e.</em> you have no good reason to say it is normally distributed), you can always use a technic called regularization which is going to penalize covariables that are not really important to your fit. This is more on the machine learning side, and so a lot should be said about how to properly use  this technic (splitting your dataset between train, validation and test set, <em>etc.</em>).
+But let’s just check what the principle behind it is and I will give an additionnal example on it later on.</p>
+<p>The only thing that this method does is to add a penalization term to the least square minimization method seen before.
+This penalization is based on the size of the parameters estimated.
+The rational is that some time, parameters estimated will be inflated to compensate the fact that the covariable is not really important to fit the data, but is rather important to understand the noise. So regularization minimizes square error while balancing the overall size of the parameters.</p>
+<p>Broadly, it can looks like that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S(\pmb{\beta}) + \frac{1}{C}\Sigma^{n}_{i=1}|\beta_{i}|\)</span> , l1 regularization (Lasso) C being the inverse of the weight that you put on that regularization</p></li>
+<li><p><span class="math notranslate nohighlight">\(S(\pmb{\beta}) + \frac{1}{C}\Sigma^{n}_{i=1}\beta_{i}^{2}\)</span> , l2 regularization (Ridge)</p></li>
+<li><p><span class="math notranslate nohighlight">\(S(\pmb{\beta}) + \frac{1}{C}\Sigma^{n}_{i=1}(\alpha|\beta_{i}|+(1-\alpha)\beta_{i}^{2})\)</span> , elasticnet</p></li>
+</ul>
+<p>How to choose this C, or sometime <span class="math notranslate nohighlight">\(\alpha\)</span>, is related to the field of machine learning and has to do with splitting your data set into train, validation and test sets. We will not go deeper than that but statsmodels has it implemented <code class="docutils literal notranslate"><span class="pre">statsmodels.regression.linear_model.OLS.fit_regularized</span></code> and scikitlearn, a python library specialized in machine learning has even more option.</p>
+<p>This is really just for culture, there are many more things to learn before applying those technics rigorously.</p>
+</section>
+</section>
+<section id="if-hypotheses-for-ols-aren-t-true">
+<h3>If hypotheses for OLS aren’t true?<a class="headerlink" href="#if-hypotheses-for-ols-aren-t-true" title="Link to this heading">#</a></h3>
+<p>When the homoscedasticity of your data is not true you have a few possibilities:</p>
+<ul class="simple">
+<li><p>you can transform your data so your data become homoscedastic (for example you could use variance stabilizing transformation, or a simple log transform or other…)</p></li>
+<li><p>you can change your loss function that we previously called <span class="math notranslate nohighlight">\(S(\beta)\)</span> to reweight the different members of that equation by taking into account the discrepancy in terms of variance. That only works if there is no correlation between the error terms. In that case the method is called Weighted Least Square and it simply transformed to <span class="math notranslate nohighlight">\(S(\pmb\beta)=\sum_i \frac{1}{\sigma_i^2} (y_i-f(\textbf{X},\pmb{\beta}))^2\)</span>.</p></li>
+<li><p>if there is a correlation between the different error terms then it becomes more complicated, but technics exist such as Generalized Least Square model</p></li>
+</ul>
+<p>Finally if you know  what statistics your measurement follow, you can bypass all of those problems (and encounter others :-)) by using a maximum likelihood estimation rather than an LS method. By doing so you will have to put yourself in the framework of Generalized Linear Models.</p>
+</section>
+<section id="maximum-likelihood-estimation">
+<h3>Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Link to this heading">#</a></h3>
+<p>MLE is a method that is used to estimate parameters of a probablililty distribution, and is usefull for model choosing. It is done by maximizing the likelihood function. In the case that we are interested in (i.e. independant identically distributed) this likelihood function is simply the product of a density function values over the entire sample. It is a parametric method since it needs to have an a priory about the density function for it to work. Since it is a product, most of the time we would rather work with the log likelihood function which transforms this product into a sum.</p>
+<p>So we would like to maximize <span class="math notranslate nohighlight">\(l\)</span>, the loglikelihood function, by choosing a set of parameters <span class="math notranslate nohighlight">\(\Theta\)</span>. Where <span class="math notranslate nohighlight">\(l\)</span> is of the form <span class="math notranslate nohighlight">\(l(\Theta;Y)=\sum_i ln(p(y_i|\Theta))\)</span>, where <span class="math notranslate nohighlight">\(Y\)</span> is a random variable and <span class="math notranslate nohighlight">\(p()\)</span> is the density function associated to <span class="math notranslate nohighlight">\(Y\)</span>. So you want to find the following estimation for <span class="math notranslate nohighlight">\(\pmb\Theta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\pmb\Theta}=\text{arg max}_{\pmb\Theta}l(\pmb\Theta;Y)\]</div>
+<p>Of note, the regression line determined by the OLS method is identical to the line determined by MLE calculations, i.e. given any hypothetical set of parameter values, it is possible to compute the chance of observing our particular data. MLE finds the set of parameter values for which the observed data are most probable. Given the assumption that scatter follows a Gaussian distribution (with a uniform SD), it can be proven that the MLE approach and the OLS approach generate identical results, i.e. <em>minimizing the sum of the squares finds values for the paramaters that are most likely to be correct.</em></p>
+<p>Let’s take the example of a gaussian where you would like to estimate the <span class="math notranslate nohighlight">\(\sigma\)</span> and the <span class="math notranslate nohighlight">\(\mu\)</span>, given your data. As they are simulated data we chose that <span class="math notranslate nohighlight">\(\mu=2\)</span> and <span class="math notranslate nohighlight">\(\sigma=0.5\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">collections</span>  <span class="k">as</span> <span class="n">mc</span>
+
+<span class="k">def</span> <span class="nf">gaussian_dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; returns the probability of observing x in a normal distribution of mean mu and standard deviation sigma &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># note: this is equivalent to stats.norm.pdf(x, mu, sigma)</span>
+
+<span class="n">X_small</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="o">+</span><span class="mi">2</span> <span class="c1"># this is our observed data, with (mean=2, sd=0.5)</span>
+
+<span class="n">m</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span> <span class="c1"># we will try 2 possible combinations of paramters (mean=2, sd=0.5) and (mean=0.5, sd=0.5) </span>
+<span class="n">s</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">X_small_</span><span class="o">=</span><span class="p">[[</span><span class="n">v</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">X_small</span><span class="p">]</span>
+
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.005</span><span class="p">)</span> <span class="c1"># we will plot between -2 and 4</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;the data that we observed&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">X_small_</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span> <span class="c1"># for each of the parameter combinations we want to try</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_small</span><span class="p">,[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">X_small</span><span class="p">),</span><span class="s1">&#39;k+&#39;</span><span class="p">)</span> <span class="c1"># we plot the observed data as crosses</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">m</span><span class="p">[</span><span class="n">q</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">q</span><span class="p">]),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span> <span class="c1"># we plot the distribution we are testing</span>
+    
+    <span class="n">Predicted</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">X_small</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">m</span><span class="p">[</span><span class="n">q</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">q</span><span class="p">])</span>
+
+    <span class="n">Predicted_</span><span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X_small</span><span class="p">,</span><span class="n">Predicted</span><span class="p">)]</span> <span class="c1"># this is to plot segments</span>
+    <span class="n">lc</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">LineCollection</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">X_small_</span><span class="p">,</span><span class="n">Predicted_</span><span class="p">)</span> <span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">linewidths</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted likelihood&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">.</span><span class="n">add_collection</span><span class="p">(</span><span class="n">lc</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    
+    <span class="c1"># the log likelihood of this set of parameters is the sum of the log of the probability densities of the sample</span>
+    <span class="n">sum_like</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Predicted</span><span class="p">))</span>     
+    <span class="n">ax</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$\mu$: </span><span class="si">{}</span><span class="s1"> - $\sigma$: </span><span class="si">{:.2f}</span><span class="s1"> - log likelihood: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">q</span><span class="p">],</span><span class="n">s</span><span class="p">[</span><span class="n">q</span><span class="p">],</span><span class="n">sum_like</span><span class="p">)</span> <span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Likelihood&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the data that we observed [2.1890487337978084, 1.4710499253047065, 1.476792571255515, 2.199132203217377, 1.740979788963625, 2.33492411469311, 2.594267177468156, 2.2711179114449838, 2.5572502467625, 1.2825084127097965]
+</pre></div>
+</div>
+<img alt="_images/43ae23cd6fdd47d40e7efdf3f1d0350d9d4601c44be09143196abf7f860301a2.png" src="_images/43ae23cd6fdd47d40e7efdf3f1d0350d9d4601c44be09143196abf7f860301a2.png" />
+</div>
+</div>
+<p>Multiplying those red bars is exactly what the maximum likelihood does. Basically, you shift your theoritical distribution to the right or the left (trying different means), and you narrow it or widen it (trying different variances). For each of those try you multiply those red bars together, and the combination of parameters giving highest result is the one maximizing the likelihood of your data being produced by that distribution with those parameters.</p>
+<p>It is important to point out here that <strong>even when our data are actually coming from a certain distribution, there will (almost) always be a difference between the theoretical distribution and the recovered one</strong>, as to have perfect match you would need an infinite number of data points.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="32%20-%20Correlation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Correlation</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-results">Linear regression results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-stats">scipy.stats</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pingouin">pingouin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statsmodels">statsmodels</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#get-more-from-the-result-table-generated-by-statsmodels">Get more from the result table generated by statsmodels</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-polyfit">numpy polyfit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">scikit-learn</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-squared">R-squared</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error-of-the-regression">Standard error of the regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostic-plots-for-linear-regression">Diagnostic plots for linear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#residuals-vs-leverage">Residuals vs Leverage</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#q-q-plot">Q-Q plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-ci-bands">Computing the CI bands</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals">Confidence Intervals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P-value</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-models-to-data">Fitting models to data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#least-square">Least square</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underlying-hypothesis">Underlying hypothesis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goodness-of-fit">Goodness of fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization">Regularization</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-hypotheses-for-ols-aren-t-true">If hypotheses for OLS aren’t true?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">Maximum Likelihood Estimation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sébastien Wieckowski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
