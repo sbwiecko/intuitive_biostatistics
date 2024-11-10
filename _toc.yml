@@ -4,26 +4,31 @@
 format: jb-book
 root: README
 parts:
-    - caption: Confidence Intervals
+    - caption: Confidence intervals
       chapters:
-      - file: 04 - Confidence Interval of a Proportion
-      - file: 05 - Confidence Interval of Survival Data
-      - file: 06 - Confidence Interval of Counted Data (Poisson Distribution)
-    - caption: Continuous Variables
+      - file: 04 - Confidence interval of a proportion
+      - file: 05 - Confidence interval of survival data
+      - file: 06 - Confidence interval of counted data
+    - caption: Continuous variables
       chapters:
-      - file: 09 - Quantifying Scatter of Continuous Data
-      - file: 10 - Gaussian Distribution
-      - file: 12 - Confidence Interval of a Mean
-    - caption: Statistical Significance and Data Assumptions
+      - file: 09 - Quantifying scatter of continuous data
+      - file: 10 - Gaussian distribution
+      - file: 12 - Confidence interval of a mean
+    - caption: Statistical significance and data assumptions
       chapters:
-      - file: 15 - P Values and Statistical Significance
-      - file: 20 - Statistical Power and Sample Size
-      - file: 24 - Normality Tests and Outliers
-    - caption: Statistical Tests
+      - file: 15 - Statistical significance
+      - file: 20 - Statistical power and sample size
+      - file: 24 - Normality tests and outliers
+    - caption: Statistical tests
       chapters:
-      - file: 27 - Comparing Proportions
-      - file: 29 - Comparing Survival Curves
-      - file: 30 - Comparing Two Unpaired Means
-      - file: 31 - Comparing Paired Data
+      - file: 27 - Comparing proportions
+      - file: 29 - Comparing survival curves
+      - file: 30 - Comparing two unpaired means
+      - file: 31 - Comparing paired data
       - file: 32 - Correlation
+    - caption: Fitting models to data
+      chapters:
+      - file: 33 - Simple linear regression
+
+      
       
