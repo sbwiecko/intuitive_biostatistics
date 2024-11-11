@@ -1,0 +1,1680 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Confidence interval of survival data &#8212; The Python Companion of Intuitive Biostatistics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QQY9FLLPJ8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05 - Confidence interval of survival data';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Confidence interval of counted data" href="06%20-%20Confidence%20interval%20of%20counted%20data.html" />
+    <link rel="prev" title="Confidence interval of a proportion" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="The Python Companion of Intuitive Biostatistics - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="The Python Companion of Intuitive Biostatistics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Python Companion Guide to “Intuitive Biostatistics”
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Confidence interval of survival data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20scatter%20of%20continuous%20data.html">Quantifying scatter of continuous data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20distribution.html">The Gaussian distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20interval%20of%20a%20mean.html">Confidence interval of a mean</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical significance and data assumptions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="15%20-%20Statistical%20significance.html">Statistical significance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20power%20and%20sample%20size.html">Statistical power and sample size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24%20-%20Normality%20tests%20and%20outliers.html">Normality tests and outliers</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical tests</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20proportions.html">Comparing proportions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29%20-%20Comparing%20survival%20curves.html">Comparing survival curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30%20-%20Comparing%20two%20unpaired%20means.html">Comparing two unpaired means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31%20-%20Comparing%20paired%20data.html">Comparing paired data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32%20-%20Correlation.html">Correlation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fitting models to data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="33%20-%20Simple%20linear%20regression.html">Simple linear regression</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/master/05 - Confidence interval of survival data.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/05 - Confidence interval of survival data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Confidence interval of survival data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-data">Survival data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lifelines-library">The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-survival-function">Plotting the survival function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kaplan-meier-estimator">Kaplan-Meier estimator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fraction-surviving">Fraction surviving</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-function">Survival function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basics">The basics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-example">Step-by-step example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-survival">Log survival</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process-automation-with-scripts">Process automation with scripts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Survival function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Confidence interval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kaplan-meier-plot">Kaplan-Meier plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session information</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="confidence-interval-of-survival-data">
+<h1>Confidence interval of survival data<a class="headerlink" href="#confidence-interval-of-survival-data" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p><strong>Survival analysis</strong> is a branch of statistics that deals with the analysis of time-to-event data, often referred to as ‘survival data’.</p>
+<p>The <strong>event</strong> can be anything from the death of an organism (hence <strong>‘survival’</strong>), to the failure of a mechanical system, to the recovery of a sick patient.</p>
+<p>A <strong>confidence interval</strong> in survival analysis gives a range of values, derived from the data, that is likely to contain the true value of an unknown population parameter. In the context of survival analysis, a confidence interval might be used to describe the uncertainty around a survival time estimate.</p>
+</section>
+<section id="survival-data">
+<h2>Survival data<a class="headerlink" href="#survival-data" title="Link to this heading">#</a></h2>
+<section id="the-lifelines-library">
+<h3>The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library<a class="headerlink" href="#the-lifelines-library" title="Link to this heading">#</a></h3>
+<p>In Python, the <a class="reference external" href="https://lifelines.readthedocs.io/en/stable/index.html"><code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library</a> is commonly used for survival analysis. It provides a simple and intuitive API for fitting survival models, and also includes functions for visualizing survival data. Here’s a basic example of how we might calculate a confidence interval for a survival function estimate using the <code class="docutils literal notranslate"><span class="pre">KaplanMeierFitter</span></code> class in lifelines:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">lifelines</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lifelines version:&#39;</span><span class="p">,</span> <span class="n">lifelines</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lifelines version: 0.30.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lifelines</span> <span class="kn">import</span> <span class="n">KaplanMeierFitter</span>
+
+<span class="c1"># Assume we have some survival data in the following two lists:</span>
+<span class="c1"># `durations` is a list of durations until the event or censorship</span>
+<span class="c1"># `event_observed` is a binary list where 1 indicates the event, </span>
+<span class="c1"># i.e., death, occurred, and 0 indicates censorship</span>
+
+<span class="c1"># example of the survival data from pages 47-48 of the book Intuitive Biostatistics</span>
+<span class="n">durations</span>       <span class="o">=</span> <span class="p">[</span><span class="mf">4.07</span><span class="p">,</span> <span class="mf">6.54</span><span class="p">,</span> <span class="mf">1.39</span><span class="p">,</span> <span class="mf">6.17</span><span class="p">,</span> <span class="mf">5.89</span><span class="p">,</span> <span class="mf">4.76</span><span class="p">,</span> <span class="mf">3.67</span><span class="p">]</span>
+<span class="n">event_observed</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span>   <span class="p">,</span> <span class="mi">0</span>   <span class="p">,</span> <span class="mi">1</span>   <span class="p">,</span> <span class="mi">0</span>   <span class="p">,</span> <span class="mi">1</span>   <span class="p">,</span> <span class="mi">1</span>   <span class="p">,</span> <span class="mi">0</span>   <span class="p">]</span>
+
+<span class="c1"># we create a dataframe with those data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;YEARS&#39;</span><span class="p">:</span> <span class="n">durations</span><span class="p">,</span>
+        <span class="s1">&#39;EVENT&#39;</span><span class="p">:</span> <span class="n">event_observed</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># sorted durations</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;EVENT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>YEARS</th>
+      <th>EVENT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>6.54</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6.17</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>3.67</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>4.07</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.39</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.89</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4.76</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a fitter instance</span>
+<span class="n">kmf</span> <span class="o">=</span> <span class="n">KaplanMeierFitter</span><span class="p">()</span>
+
+<span class="c1"># Fit the data to the model</span>
+<span class="n">kmf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">durations</span><span class="o">=</span><span class="n">durations</span><span class="p">,</span>
+    <span class="n">event_observed</span><span class="o">=</span><span class="n">event_observed</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lifelines.KaplanMeierFitter:&quot;KM_estimate&quot;, fitted with 7 total observations, 3 right-censored observations&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">kmf._median</span></code> attribute gives us the <strong>median survival time</strong>. In the context of survival analysis, the median survival time is the smallest time at which the survival probability drops to 0.5 or below. In other words, it’s the time by which half of the population has experienced the event of interest.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median survival time:&quot;</span><span class="p">,</span> <span class="n">kmf</span><span class="o">.</span><span class="n">median_survival_time_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Median survival time: 5.89
+</pre></div>
+</div>
+</div>
+</div>
+<p>Please note that the median survival time might be <code class="docutils literal notranslate"><span class="pre">inf</span></code> (infinity) for some datasets. This happens when the survival function never goes below 0.5, which means that more than half of the population survives till the end of the observation period. In such cases, the median survival time is undefined and is conventionally considered to be infinite.</p>
+<p>The survival function estimate and its confidence intervals can be accessed with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kmf</span><span class="o">.</span><span class="n">survival_function_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>KM_estimate</th>
+    </tr>
+    <tr>
+      <th>timeline</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.00</th>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1.39</th>
+      <td>0.857143</td>
+    </tr>
+    <tr>
+      <th>3.67</th>
+      <td>0.857143</td>
+    </tr>
+    <tr>
+      <th>4.07</th>
+      <td>0.685714</td>
+    </tr>
+    <tr>
+      <th>4.76</th>
+      <td>0.514286</td>
+    </tr>
+    <tr>
+      <th>5.89</th>
+      <td>0.342857</td>
+    </tr>
+    <tr>
+      <th>6.17</th>
+      <td>0.342857</td>
+    </tr>
+    <tr>
+      <th>6.54</th>
+      <td>0.342857</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kmf</span><span class="o">.</span><span class="n">confidence_interval_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>KM_estimate_lower_0.95</th>
+      <th>KM_estimate_upper_0.95</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.00</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1.39</th>
+      <td>0.334054</td>
+      <td>0.978561</td>
+    </tr>
+    <tr>
+      <th>3.67</th>
+      <td>0.334054</td>
+      <td>0.978561</td>
+    </tr>
+    <tr>
+      <th>4.07</th>
+      <td>0.212797</td>
+      <td>0.912112</td>
+    </tr>
+    <tr>
+      <th>4.76</th>
+      <td>0.117760</td>
+      <td>0.813249</td>
+    </tr>
+    <tr>
+      <th>5.89</th>
+      <td>0.048108</td>
+      <td>0.685484</td>
+    </tr>
+    <tr>
+      <th>6.17</th>
+      <td>0.048108</td>
+      <td>0.685484</td>
+    </tr>
+    <tr>
+      <th>6.54</th>
+      <td>0.048108</td>
+      <td>0.685484</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This gives us the survival function estimates along with their confidence intervals. The first table corresponds to the “% survival”, and the second table to the “lower limit” and “upper limit” in the table 5.3 of the book.</p>
+<p>Remember, the interpretation of confidence intervals in the context of survival data is the same as in other areas of statistics. A 95% confidence interval means that if we were to repeat our study many times, we would expect the true survival function to fall within our estimated interval in 95% of studies.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> API provides many other utilities, for example the function called <code class="docutils literal notranslate"><span class="pre">survival_table_from_events</span></code> is used to create a survival table given some durations and censoring vectors. The survival table provides a summary of the number of individuals at risk, the number of events, and the number of censored observations at each unique time point in the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lifelines.utils</span> <span class="kn">import</span> <span class="n">survival_table_from_events</span>
+
+<span class="c1"># Create the survival table</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">survival_table_from_events</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">event_observed</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          removed  observed  censored  entrance  at_risk
+event_at                                                
+0.00            0         0         0         7        7
+1.39            1         1         0         0        7
+3.67            1         0         1         0        6
+4.07            1         1         0         0        5
+4.76            1         1         0         0        4
+5.89            1         1         0         0        3
+6.17            1         0         1         0        2
+6.54            1         0         1         0        1
+</pre></div>
+</div>
+</div>
+</div>
+<p>This prints a DataFrame that includes the following columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">removed</span></code>: the number of individuals that had an event or were censored at each time point.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">observed</span></code>: the number of individuals that had an event at each time point.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">censored</span></code>: the number of individuals that were censored at each time point.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">entrance</span></code>: the number of individuals that entered the risk set at each time point. This is usually 0 for all time points except the first one.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">at_risk</span></code>: the number of individuals that are at risk of having an event at each time point.</p></li>
+</ul>
+<p>And <code class="docutils literal notranslate"><span class="pre">lifelines.utils.survival_events_from_table</span></code> is the inverse of the function survival_table_from_events:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># need to create new columns in order to prepare a lifelines Table</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;observed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;EVENT&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;censored&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;EVENT&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="c1"># Transforming survival-table data into lifelines format</span>
+<span class="kn">from</span> <span class="nn">lifelines.utils</span> <span class="kn">import</span> <span class="n">survival_events_from_table</span>
+
+<span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">survival_events_from_table</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;YEARS&#39;</span><span class="p">),</span>
+    <span class="n">observed_deaths_col</span><span class="o">=</span><span class="s1">&#39;observed&#39;</span><span class="p">,</span>
+    <span class="n">censored_col</span><span class="o">=</span><span class="s1">&#39;censored&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Durations of observation:&quot;</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Durations of observation: [4.07 6.54 1.39 6.17 5.89 4.76 3.67]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting-the-survival-function">
+<h3>Plotting the survival function<a class="headerlink" href="#plotting-the-survival-function" title="Link to this heading">#</a></h3>
+<p>We can then plot the survival function with confidence intervals using <code class="docutils literal notranslate"><span class="pre">kmf.plot_survival_function()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s see how it looks</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">kmf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">show_censors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ci_show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="n">at_risk_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># adds summary tables under the plot</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Suvival probability estimate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Survival function of the population&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bb8fa176d521d8c2019200f7a76791a8605a2dbe40ce81bd9b5622fa20d3df64.png" src="_images/bb8fa176d521d8c2019200f7a76791a8605a2dbe40ce81bd9b5622fa20d3df64.png" />
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">kmf.plot_survival_function()</span></code> plots the Kaplan-Meier estimate of the survival function. The y-axis represents the probability that the event of interest has not yet occurred, while the x-axis represents time.</p>
+<p>The shaded area around the survival function line represents the confidence interval. By default, it’s a 95% confidence interval, meaning we are 95% confident that the true survival function lies within this area.</p>
+</section>
+</section>
+<section id="kaplan-meier-estimator">
+<h2>Kaplan-Meier estimator<a class="headerlink" href="#kaplan-meier-estimator" title="Link to this heading">#</a></h2>
+<section id="fraction-surviving">
+<h3>Fraction surviving<a class="headerlink" href="#fraction-surviving" title="Link to this heading">#</a></h3>
+<p>The <strong>fraction surviving</strong>, often represented as <span class="math notranslate nohighlight">\(S(t)\)</span>, is a fundamental concept in survival analysis. It represents the probability that an individual survives from the time origin (t=0) to a specified future time t.</p>
+<p>The survival function S(t), also known as the probability that life is longer than <span class="math notranslate nohighlight">\(t\)</span>, is given by <span class="math notranslate nohighlight">\(S(t) = P(T &gt; t)\)</span>, where T is the random lifetime taken from the population.</p>
+<p>In the context of survival analysis, “surviving” doesn’t necessarily mean “not dying.” Instead, it means “not experiencing the event of interest.” The event could be anything: death, failure of a machine, recovery from a disease, etc.</p>
+<p>Now, let’s consider the example of the 7 individuals in the previous study. Let’s focus on the 3 first events:</p>
+<ol class="arabic simple">
+<li><p>At time t1, one event (death) occurs. So, the fraction surviving drops by 1/7 (since all 7 individuals were at risk at this time). The survival probability at time t1 is thus <span class="math notranslate nohighlight">\(S(t_1) = 6/7\)</span>.</p></li>
+<li><p>At time t2, one individual is censored. This means they leave the study or the study ends before they have the event. Censoring does not affect the survival probability, so <span class="math notranslate nohighlight">\(S(t_2) = S(t_1) = 6/7\)</span>.</p></li>
+<li><p>At time t3, another event occurs. Now, only 5 individuals were at risk (since one event occurred at t1, reducing the at-risk group to 6, and one individual was censored at t2, further reducing the at-risk group to 5), so the fraction surviving drops by 1/5. The survival fraction at time t3 is thus <span class="math notranslate nohighlight">\(S(t_3) = S(t_2) \ast (1 - 1/5) = (6/7) \ast (4/5)\)</span>. And so on.</p></li>
+</ol>
+<p>We can compute the surviving fractions manually as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">7</span> <span class="o">*</span> <span class="mi">4</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">7</span> <span class="o">*</span> <span class="mi">4</span><span class="o">/</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8571428571428571
+0.6857142857142857
+0.5142857142857142
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="survival-function">
+<h3>Survival function<a class="headerlink" href="#survival-function" title="Link to this heading">#</a></h3>
+<p>In survival analysis, the survival function S(t) is often estimated using the product of conditional survival probabilities. This is the basis for the Kaplan-Meier estimator, which is one of the most commonly used methods in survival analysis.</p>
+<p>The Kaplan-Meier estimate of the survival function at time t is given by:</p>
+<div class="math notranslate nohighlight">
+\[\hat{S}(t) = \prod_{k \mid t_k \le{t}}(1 - \frac{d_k}{n_k})\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p>The product is over all times <span class="math notranslate nohighlight">\(t_i\)</span> up to and including <span class="math notranslate nohighlight">\(t\)</span> where at least one event occurred.</p></li>
+<li><p><span class="math notranslate nohighlight">\(d_i\)</span> is the number of events that occurred at time <span class="math notranslate nohighlight">\(t_i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n_i\)</span> is the number of individuals at risk at time <span class="math notranslate nohighlight">\(t_i\)</span>, i.e., the number of individuals who have not yet had an event and have not been censored before time <span class="math notranslate nohighlight">\(t_i\)</span>.</p></li>
+</ul>
+<p>This product ensures that the survival function estimate is properly adjusted at each time an event occurs, taking into account the decreasing number of individuals at risk.</p>
+<p>Also note that</p>
+<div class="math notranslate nohighlight">
+\[\hat{S}(t_j) = \prod_{i=1}^j\frac{n_i - d_i}{n_i} = \frac{n_j - d_j}{n_j} \times \prod_{i=1}^{j-1} \frac{n_i - d_i}{n_i} = \frac{n_j - d_j}{n_j} \times \hat{S}(t_{j-1})\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># convert back from Series to array</span>
+<span class="n">durations</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;YEARS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">event_observed</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;EVENT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="c1"># Sort durations and event_observed by durations</span>
+<span class="n">sort_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">durations</span><span class="p">)</span>
+<span class="n">durations_sorted</span> <span class="o">=</span> <span class="n">durations</span><span class="p">[</span><span class="n">sort_indices</span><span class="p">]</span>
+<span class="n">events_sorted</span> <span class="o">=</span> <span class="n">event_observed</span><span class="p">[</span><span class="n">sort_indices</span><span class="p">]</span>
+
+<span class="n">n_at_risk</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">durations_sorted</span><span class="p">)</span>  <span class="c1"># initial number at risk</span>
+<span class="n">survival_prob</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># initial survival probability</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">durations_sorted</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">events_sorted</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>  <span class="c1"># if event occurred</span>
+        <span class="n">survival_prob</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">n_at_risk</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time: </span><span class="si">{</span><span class="n">durations_sorted</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">, Survival fraction S(t): </span><span class="si">{</span><span class="n">survival_prob</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">n_at_risk</span> <span class="o">-=</span> <span class="mi">1</span>  <span class="c1"># decrease number at risk</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time: 1.39, Survival fraction S(t): 0.8571428571428572
+Time: 3.67, Survival fraction S(t): 0.8571428571428572
+Time: 4.07, Survival fraction S(t): 0.6857142857142858
+Time: 4.76, Survival fraction S(t): 0.5142857142857143
+Time: 5.89, Survival fraction S(t): 0.3428571428571429
+Time: 6.17, Survival fraction S(t): 0.3428571428571429
+Time: 6.54, Survival fraction S(t): 0.3428571428571429
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for example at t=4.07</span>
+<span class="c1"># at the 2nd timepoint, no event were observed (censored)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">0</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6857142857142858
+</pre></div>
+</div>
+</div>
+</div>
+<p>We won’t rewrite the entire <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library, but here is an example of how we could have written the Kaplan-Meier survival function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kaplan_meier</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">event_observed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Estimates the survival function using the Kaplan-Meier method.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        durations: A numpy array of event times.</span>
+<span class="sd">        event_observed: A numpy array of indicators (1 for event, 0 for censoring) </span>
+<span class="sd">        at each time point.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple containing three numpy arrays:</span>
+<span class="sd">            - survival_probsorted: Estimated survival probabilities at each time point (sorted).</span>
+<span class="sd">            - events_sorted: Unique event (sorted).</span>
+<span class="sd">            - durations_sorted: Unique event times (sorted).</span>
+<span class="sd">            </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Sort durations and event_observed by durations</span>
+    <span class="n">sort_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">durations</span><span class="p">)</span>
+    <span class="n">durations_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">durations</span><span class="p">)[</span><span class="n">sort_indices</span><span class="p">]</span>
+    <span class="n">events_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">event_observed</span><span class="p">)[</span><span class="n">sort_indices</span><span class="p">]</span>
+
+    <span class="c1"># Initialize variables</span>
+    <span class="n">n_at_risk</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">durations_sorted</span><span class="p">)</span>  <span class="c1"># initial number at risk</span>
+    <span class="n">survival_prob_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">durations_sorted</span><span class="p">)</span>  <span class="c1"># initial survival probabilities</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">durations_sorted</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">events_sorted</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># if event occurred</span>
+            <span class="n">survival_prob_sorted</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">n_at_risk</span><span class="p">)</span>
+        <span class="n">n_at_risk</span> <span class="o">-=</span> <span class="mi">1</span>  <span class="c1"># decrease number at risk</span>
+
+    <span class="k">return</span> <span class="n">survival_prob_sorted</span><span class="p">,</span> <span class="n">events_sorted</span><span class="p">,</span> <span class="n">durations_sorted</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">kaplan_meier</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;YEARS&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;EVENT&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0.85714286, 0.85714286, 0.68571429, 0.51428571, 0.34285714,
+       0.34285714, 0.34285714]), array([1, 0, 1, 1, 1, 0, 0]), array([1.39, 3.67, 4.07, 4.76, 5.89, 6.17, 6.54]))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="confidence-interval">
+<h2>Confidence interval<a class="headerlink" href="#confidence-interval" title="Link to this heading">#</a></h2>
+<section id="the-basics">
+<h3>The basics<a class="headerlink" href="#the-basics" title="Link to this heading">#</a></h3>
+<p>The confidence interval for the survival function at each time point is typically calculated in using the <a class="reference external" href="https://bookdown.org/sestelo/sa_financial/pointwise-confidence-interval-for-st.html">Greenwood’s formula</a>, which provides an estimate of the variance of the survival function. The formula for the variance at time <span class="math notranslate nohighlight">\(t\)</span> using the so-called “linear” or “plain” method is:</p>
+<div class="math notranslate nohighlight">
+\[\sigma^2[S(t)] = S^2(t) \times \sum_{t_i \le{t}} \frac{d_i}{n_i (n_i - d_i)}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S(t)\)</span> is the Kaplan-Meier estimate of the survival function at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+<li><p>The sum is over all times <span class="math notranslate nohighlight">\(t_i\)</span> up to and including <span class="math notranslate nohighlight">\(t\)</span> where at least one event occurred.</p></li>
+<li><p><span class="math notranslate nohighlight">\(d_i\)</span> is the number of events that occurred at time <span class="math notranslate nohighlight">\(t_i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(n_i\)</span> is the number of individuals at risk at time <span class="math notranslate nohighlight">\(t_i\)</span>.</p></li>
+</ul>
+<p>Therefore, assuming that the sample follow a Normal distribution, so that <span class="math notranslate nohighlight">\(S(t) \pm z \times \text{se}(t)\)</span>, the confidence interval, can be determinted:</p>
+<div class="math notranslate nohighlight">
+\[\text{IC}_{0.95}[S(t)] = S(t) \pm 1.96 \times \sigma(S(t))\]</div>
+<p>where <span class="math notranslate nohighlight">\(z\)</span> is the z-score for the desired confidence level (for example, z = 1.96 for a 95% confidence interval), and <span class="math notranslate nohighlight">\(\sigma[S(t_j)]\)</span> the <strong>standard error</strong> (will be discussed in later chapters). The common practice is to clip the interval at <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
+<p>Note that these calculations assume that the number of events at each time point and the number of individuals at risk are <em>large enough</em> for the Central Limit Theorem to hold. If these numbers are small, the confidence intervals may not be accurate.</p>
+</section>
+<section id="step-by-step-example">
+<h3>Step-by-step example<a class="headerlink" href="#step-by-step-example" title="Link to this heading">#</a></h3>
+<p>The z-values, also known as <strong>z-scores</strong>, correspond to the number of standard deviations away from the mean in a standard normal distribution. They are used to calculate confidence intervals in statistics. These values are derived from the standard normal distribution and are used to calculate the margin of error for confidence intervals.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="c1"># For a 99% confidence level</span>
+<span class="n">z_99</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.995</span><span class="p">)</span>  <span class="c1"># Two-tailed test, so we use 0.995 instead of 0.99</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-value for 99% confidence: </span><span class="si">{</span><span class="n">z_99</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># For a 95% confidence level</span>
+<span class="n">z_95</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span>  <span class="c1"># Two-tailed test, so we use 0.975 instead of 0.95</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-value for 95% confidence: </span><span class="si">{</span><span class="n">z_95</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Z-value for 99% confidence: 2.5758293035489004
+Z-value for 95% confidence: 1.959963984540054
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take the first events in our example:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>time to event</p></th>
+<th class="head"><p>number at risk</p></th>
+<th class="head"><p>observed</p></th>
+<th class="head"><p>S(t)</p></th>
+<th class="head"><p>e=d/(n(n-d))</p></th>
+<th class="head"><p>sum(e)</p></th>
+<th class="head"><p>se(t)</p></th>
+<th class="head"><p>LCL</p></th>
+<th class="head"><p>UCL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.39</p></td>
+<td><p>7</p></td>
+<td><p>1</p></td>
+<td><p>.8571</p></td>
+<td><p>0.024</p></td>
+<td><p>0.024</p></td>
+<td><p>0.132</p></td>
+<td><p>0.598</p></td>
+<td><p>1.116</p></td>
+</tr>
+<tr class="row-odd"><td><p>3.67</p></td>
+<td><p>6</p></td>
+<td><p>0</p></td>
+<td><p>.8571</p></td>
+<td><p>0</p></td>
+<td><p>0.024</p></td>
+<td><p>0.132</p></td>
+<td><p>0.598</p></td>
+<td><p>1.116</p></td>
+</tr>
+<tr class="row-even"><td><p>4.07</p></td>
+<td><p>5</p></td>
+<td><p>1</p></td>
+<td><p>.6857</p></td>
+<td><p>0.050</p></td>
+<td><p>0.074</p></td>
+<td><p>0.186</p></td>
+<td><p>0.321</p></td>
+<td><p>1.051</p></td>
+</tr>
+<tr class="row-odd"><td><p>4.76</p></td>
+<td><p>4</p></td>
+<td><p>1</p></td>
+<td><p>.5143</p></td>
+<td><p>0.083</p></td>
+<td><p>0.157</p></td>
+<td><p>0.204</p></td>
+<td><p>0.115</p></td>
+<td><p>0.914</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the first event</span>
+<span class="n">S1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">e1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="p">(</span><span class="mi">7</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">sum_e1</span> <span class="o">=</span> <span class="n">e1</span>
+<span class="n">SE1</span> <span class="o">=</span> <span class="n">S1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S(t1) = </span><span class="si">{</span><span class="n">S1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;e1 = </span><span class="si">{</span><span class="n">e1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(e) = </span><span class="si">{</span><span class="n">sum_e1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SE(t1) = </span><span class="si">{</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S(t1) = 0.8571
+e1 = 0.024
+sum(e) = 0.024
+SE(t1) = 0.132
+The confidence interval (plain type) limits are [0.598 - 1.116]
+</pre></div>
+</div>
+</div>
+</div>
+<p>When no event is observed, <span class="math notranslate nohighlight">\(d=0\)</span> and <span class="math notranslate nohighlight">\(e=0\)</span>, so that the sum of <span class="math notranslate nohighlight">\(e\)</span> doesn’t change nor the survival function or its standard error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the third event</span>
+<span class="n">S3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">0</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">e3</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">sum_e3</span> <span class="o">=</span> <span class="n">e1</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">e3</span>
+<span class="n">SE3</span> <span class="o">=</span> <span class="n">S3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S(t3) = </span><span class="si">{</span><span class="n">S3</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;e3 = </span><span class="si">{</span><span class="n">e3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(e) = </span><span class="si">{</span><span class="n">sum_e3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SE(t3) = </span><span class="si">{</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S(t3) = 0.6857
+e3 = 0.050
+sum(e) = 0.074
+SE(t3) = 0.186
+The confidence interval (plain type) limits are [0.321 - 1.051]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the 4th event</span>
+<span class="n">S4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">0</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">e4</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">sum_e4</span> <span class="o">=</span> <span class="n">e1</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">e3</span> <span class="o">+</span> <span class="n">e4</span>
+<span class="n">SE4</span> <span class="o">=</span> <span class="n">S4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S(t4) = </span><span class="si">{</span><span class="n">S4</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;e4 = </span><span class="si">{</span><span class="n">e4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(e) = </span><span class="si">{</span><span class="n">sum_e4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SE(t4) = </span><span class="si">{</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S4</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S(t4) = 0.5143
+e4 = 0.083
+sum(e) = 0.157
+SE(t4) = 0.204
+The confidence interval (plain type) limits are [0.115 - 0.914]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="log-survival">
+<h3>Log survival<a class="headerlink" href="#log-survival" title="Link to this heading">#</a></h3>
+<p>In survival analysis, confidence intervals are often calculated on the log scale, where the <em>complimentary log-log transformation</em> <span class="math notranslate nohighlight">\(v(t) = \log[-\log S(t)]\)</span> is used a few reasons:</p>
+<ol class="arabic simple">
+<li><p>Symmetry: Survival probabilities are bound between 0 and 1, and their distribution can be skewed, especially when probabilities are close to the boundaries. Taking the logarithm helps to symmetrize the distribution, which is a key assumption for the calculation of confidence intervals.</p></li>
+<li><p>Stabilizing Variance: The variance of survival probabilities can change over time, and it can be particularly high when probabilities are close to 0 or 1. The log transformation can help to stabilize the variance, making the statistical analysis more reliable.</p></li>
+<li><p>Multiplicative Effects: In many cases, particularly in the context of survival analysis, the effects are multiplicative rather than additive. The log transformation converts multiplicative effects on the original scale to additive effects on the log scale, which simplifies the analysis, i.e., <span class="math notranslate nohighlight">\(\log {S(t)} = \log \prod (1 - \frac{d_k}{n_k}) = \sum{\log (1 - \frac{d_k}{n_k})}\)</span>.</p></li>
+<li><p>Avoiding Impossible Values: When calculating confidence intervals for survival probabilities, it’s possible to get values that fall outside the range [0, 1], which doesn’t make sense for probabilities. The log transformation followed by exponentiation (when calculating the confidence interval bounds) ensures that the confidence intervals fall within the appropriate range.</p></li>
+</ol>
+<p>The log transformation helps to normalize the distribution, which is a key assumption in the calculation of confidence intervals. Thus, the standard error on the complimentary log-log scale can be estimated by <span class="math notranslate nohighlight">\(\sigma(t)/\log S(t)\)</span>, and we can construct confidence intervals via:</p>
+<div class="math notranslate nohighlight">
+\[\text{SE}(t) = \sqrt{\frac{\sum \frac{d_i}{n_i(n_i - d_i)}}{\sum \log \frac{n_i - d_i}{n_i}}}\]</div>
+<p>Finally, we can transform back to the original scale (i.e., the scale of the survival function) by exponentiating the lower and upper limits of the confidence interval for the log survival function:</p>
+<div class="math notranslate nohighlight">
+\[\text{IC}_{0.95}[S(t)] = S(t)^{\exp(\pm 1.96 \times \text{SE}(t))}\]</div>
+<p>Let’s take the first events in our example:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>time to event</p></th>
+<th class="head"><p>n</p></th>
+<th class="head"><p>d</p></th>
+<th class="head"><p>S(t)</p></th>
+<th class="head"><p>e</p></th>
+<th class="head"><p>sum(e)</p></th>
+<th class="head"><p>l=log((n-d)/n)</p></th>
+<th class="head"><p>sum(l)</p></th>
+<th class="head"><p>se_log(t)</p></th>
+<th class="head"><p>LCL</p></th>
+<th class="head"><p>UCL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.39</p></td>
+<td><p>7</p></td>
+<td><p>1</p></td>
+<td><p>.8571</p></td>
+<td><p>0.024</p></td>
+<td><p>0.024</p></td>
+<td><p>-0.154</p></td>
+<td><p>-0.154</p></td>
+<td><p>1.001</p></td>
+<td><p>.3340</p></td>
+<td><p>.9786</p></td>
+</tr>
+<tr class="row-odd"><td><p>3.67</p></td>
+<td><p>6</p></td>
+<td><p>0</p></td>
+<td><p>.8571</p></td>
+<td><p>0</p></td>
+<td><p>0.024</p></td>
+<td><p>0</p></td>
+<td><p>-0.154</p></td>
+<td><p>1.001</p></td>
+<td><p>.3340</p></td>
+<td><p>.9786</p></td>
+</tr>
+<tr class="row-even"><td><p>4.07</p></td>
+<td><p>5</p></td>
+<td><p>1</p></td>
+<td><p>.6857</p></td>
+<td><p>0.050</p></td>
+<td><p>0.074</p></td>
+<td><p>-0.223</p></td>
+<td><p>-0.377</p></td>
+<td><p>0.720</p></td>
+<td><p>.2128</p></td>
+<td><p>.9121</p></td>
+</tr>
+<tr class="row-odd"><td><p>4.76</p></td>
+<td><p>4</p></td>
+<td><p>1</p></td>
+<td><p>.5143</p></td>
+<td><p>0.083</p></td>
+<td><p>0.157</p></td>
+<td><p>-0.288</p></td>
+<td><p>-0.665</p></td>
+<td><p>0.596</p></td>
+<td><p>.1178</p></td>
+<td><p>.8133</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the first and second events</span>
+<span class="n">l1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">7</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">sum_l1</span> <span class="o">=</span> <span class="n">l1</span>
+<span class="n">SEl1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e1</span> <span class="o">/</span> <span class="n">sum_l1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;l1 = </span><span class="si">{</span><span class="n">l1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(l) = </span><span class="si">{</span><span class="n">sum_l1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SElog(t1) = </span><span class="si">{</span><span class="n">SEl1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S1</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S1</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l1 = -0.154
+sum(l) = -0.154
+SElog(t1) = 1.001
+The confidence interval (plain type) limits are [0.3340 - 0.9786]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that when <span class="math notranslate nohighlight">\(d=0\)</span>, then <span class="math notranslate nohighlight">\(l=\log(n/n)=\log(1)=0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the third event</span>
+<span class="n">l3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">5</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">sum_l3</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">+</span> <span class="n">l3</span>
+<span class="n">SEl3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e3</span> <span class="o">/</span> <span class="n">sum_l3</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;l3 = </span><span class="si">{</span><span class="n">l3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(l) = </span><span class="si">{</span><span class="n">sum_l3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SElog(t3) = </span><span class="si">{</span><span class="n">SEl3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S3</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl3</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S3</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl3</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l3 = -0.223
+sum(l) = -0.377
+SElog(t3) = 0.720
+The confidence interval (plain type) limits are [0.2128 - 0.9121]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the 4th event</span>
+<span class="n">l4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">4</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">sum_l4</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">+</span> <span class="n">l3</span> <span class="o">+</span> <span class="n">l4</span>
+<span class="n">SEl4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e4</span> <span class="o">/</span> <span class="n">sum_l4</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;l4 = </span><span class="si">{</span><span class="n">l4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(l) = </span><span class="si">{</span><span class="n">sum_l4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SElog(t4) = </span><span class="si">{</span><span class="n">SEl4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S4</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl4</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S4</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl4</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l4 = -0.288
+sum(l) = -0.665
+SElog(t4) = 0.596
+The confidence interval (plain type) limits are [0.1178 - 0.8133]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="process-automation-with-scripts">
+<h3>Process automation with scripts<a class="headerlink" href="#process-automation-with-scripts" title="Link to this heading">#</a></h3>
+<p>While libraries like <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> offer convenient functions for various statistical analyses, understanding the underlying calculations is valuable. This section dives into creating one script to calculate confidence intervals.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="k">def</span> <span class="nf">greenwood_confidence_interval</span><span class="p">(</span>
+        <span class="n">survival_prob_sorted</span><span class="p">,</span> <span class="n">event_indicators_sorted</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log-log&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the confidence intervals, plain and log-log, for a Kaplan-Meier curve, </span>
+<span class="sd">    assuming pre-sorted data, using the Greenwood variance estimate.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        survival_prob_sorted: A numpy array of estimated survival probabilities </span>
+<span class="sd">        at each time point (assumed to be sorted).</span>
+<span class="sd">        event_indicators: A numpy array of indicators (1 for event, 0 for censoring) </span>
+<span class="sd">        at each time point (assumed to be sorted).</span>
+<span class="sd">        alpha: Significance level (e.g., 0.05 for 95% confidence interval)</span>
+<span class="sd">        method: if not &quot;log-log&quot; then the function return the &quot;plain&quot; </span>
+<span class="sd">        or &quot;linear&quot; confidence intervals</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple containing two numpy arrays:</span>
+<span class="sd">            standard error using the given method (log-log by default) and alpha (95% by default).</span>
+<span class="sd">            lower and upper bounds of the confidence interval using the given method and alpha.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Use inverse normal cumulative distribution for z-score</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Two-tailed test, so we use 0.975 instead of 0.95</span>
+
+    <span class="c1"># first we calculate the term in the sum for the variance</span>
+    <span class="c1"># di is indeed the array `event_indicators_sorted`</span>
+    
+    <span class="c1"># we need the number of individual at risk remaining at each time point</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="o">:=</span><span class="n">event_indicators_sorted</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+
+    <span class="c1"># and then compute the cumulative sums of the terms</span>
+    <span class="n">sum_e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">d</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">d</span><span class="p">)))</span>
+
+    <span class="c1"># then we compute the cumulative sums of the log of the term for the log-log method</span>
+    <span class="n">sum_l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">))</span>
+    
+    <span class="c1"># if the method is different from &quot;log-log&quot;, then we return the &quot;plain&quot; or &quot;linear&quot; SE and CI</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">!=</span> <span class="s2">&quot;log-log&quot;</span><span class="p">:</span>
+        <span class="n">SE</span> <span class="o">=</span> <span class="n">survival_prob_sorted</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SE</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">survival_prob_sorted</span> <span class="o">-</span> <span class="n">z</span><span class="o">*</span><span class="n">SE</span><span class="p">,</span> <span class="n">survival_prob_sorted</span> <span class="o">+</span> <span class="n">z</span><span class="o">*</span><span class="n">SE</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">SE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e</span> <span class="o">/</span> <span class="n">sum_l</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SE</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">survival_prob_sorted</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE</span><span class="p">),</span> <span class="n">survival_prob_sorted</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage (assuming we have our Kaplan-Meier estimates)</span>
+<span class="n">survival_prob_sorted</span><span class="p">,</span> <span class="n">event_indicators_sorted</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">kaplan_meier</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;YEARS&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;EVENT&#39;</span><span class="p">])</span>
+
+<span class="n">SE</span><span class="p">,</span> <span class="p">(</span><span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span> <span class="o">=</span> <span class="n">greenwood_confidence_interval</span><span class="p">(</span>
+    <span class="n">survival_prob_sorted</span><span class="p">,</span> <span class="n">event_indicators_sorted</span><span class="p">)</span>
+
+<span class="c1"># lower_bound and upper_bound contain the confidence interval for each time point</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lower_bound</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">upper_bound</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.33404067 0.33404067 0.21278887 0.11775418 0.04810556 0.04810556
+ 0.04810556]
+[0.97856182 0.97856182 0.91211394 0.81325222 0.68548852 0.68548852
+ 0.68548852]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Survival analysis is a branch of statistics that deals with time-to-event data. It’s used in a variety of fields, from medical research to machine failure analysis. The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library provides a high-level, intuitive API for survival analysis in Python, making it accessible for both statisticians and non-statisticians.</p>
+<p>Here are some key points about <code class="docutils literal notranslate"><span class="pre">lifelines</span></code>:</p>
+<ul class="simple">
+<li><p>Easy to use: it provides a simple and intuitive interface for fitting survival models, calculating survival probabilities, and visualizing survival data.</p></li>
+<li><p>Comprehensive: it includes a variety of survival models, such as the Kaplan-Meier estimator and the Cox proportional hazards model, allowing us to choose the model that best fits our data.</p></li>
+<li><p>Handles censoring: One of the key challenges in survival analysis is dealing with censored data. It handles right-censored data natively, making it easier to work with this type of data.</p></li>
+<li><p>Confidence intervals: it automatically calculates confidence intervals for survival function estimates, providing a measure of uncertainty around these estimates.</p></li>
+<li><p>Plotting capabilities: it includes functions for plotting survival functions and hazard functions, providing a visual way to understand our survival data.</p></li>
+</ul>
+<p>In this chapter, we’ve seen how to use lifelines to calculate survival probabilities, create survival tables, and estimate confidence intervals. We’ve also discussed some of the theory behind survival analysis, including the concept of “at risk” individuals and the calculation of survival fractions.</p>
+<p>In conclusion, lifelines is a powerful tool for survival analysis in Python. Whether we’re a researcher studying patient survival times, a data scientist predicting customer churn, or an engineer analyzing machine failure times, lifelines has the tools we need to analyze our data and draw meaningful conclusions.</p>
+</section>
+<section id="cheat-sheet">
+<h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>
+<p>This cheat sheet provides a quick reference for essential code snippets used in this chapter.</p>
+<section id="id1">
+<h3>Survival function<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lifelines</span>
+
+<span class="c1"># Create a fitter instance</span>
+<span class="n">kmf</span> <span class="o">=</span> <span class="n">KaplanMeierFitter</span><span class="p">()</span>
+
+<span class="c1"># Fit the data to the model</span>
+<span class="n">kmf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">durations</span><span class="o">=</span><span class="n">durations</span><span class="p">,</span>
+    <span class="n">event_observed</span><span class="o">=</span><span class="n">event_observed</span><span class="p">,)</span>
+
+<span class="c1"># Median survival time</span>
+<span class="n">kmf</span><span class="o">.</span><span class="n">median_survival_time_</span>
+
+<span class="c1"># Survival function</span>
+<span class="n">kmf</span><span class="o">.</span><span class="n">survival_function_</span>
+
+<span class="c1"># Survival table</span>
+<span class="kn">from</span> <span class="nn">lifelines.utils</span> <span class="kn">import</span> <span class="n">survival_table_from_events</span>
+
+<span class="n">survival_table_from_events</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">event_observed</span><span class="p">)</span>
+
+<span class="c1"># Survival events</span>
+<span class="kn">from</span> <span class="nn">lifelines.utils</span> <span class="kn">import</span> <span class="n">survival_events_from_table</span>
+
+<span class="c1"># time, events, censored</span>
+<span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">survival_events_from_table</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;YEARS&#39;</span><span class="p">),</span>
+    <span class="n">observed_deaths_col</span><span class="o">=</span><span class="s1">&#39;observed&#39;</span><span class="p">,</span>
+    <span class="n">censored_col</span><span class="o">=</span><span class="s1">&#39;censored&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>Confidence interval<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Confidence interval</span>
+<span class="n">kmf</span><span class="o">.</span><span class="n">confidence_interval_</span>
+</pre></div>
+</div>
+</section>
+<section id="kaplan-meier-plot">
+<h3>Kaplan-Meier plot<a class="headerlink" href="#kaplan-meier-plot" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the survival function</span>
+<span class="n">kmf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">show_censors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ci_show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">at_risk_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># add summary tables under the plot</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="session-information">
+<h2>Session information<a class="headerlink" href="#session-information" title="Link to this heading">#</a></h2>
+<p>The output below details all packages and version necessary to reproduce the results in this report.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>--version
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">importlib.metadata</span> <span class="kn">import</span> <span class="n">version</span>
+
+<span class="c1"># List of packages we want to check the version</span>
+<span class="n">packages</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;numpy&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas&#39;</span><span class="p">,</span> <span class="s1">&#39;lifelines&#39;</span><span class="p">,</span> <span class="s1">&#39;scipy&#39;</span><span class="p">,</span> <span class="s1">&#39;statsmodels&#39;</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">]</span>
+
+<span class="c1"># Initialize an empty list to store the versions</span>
+<span class="n">versions</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Loop over the packages</span>
+<span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">packages</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Get the version of the package</span>
+        <span class="n">package_version</span> <span class="o">=</span> <span class="n">version</span><span class="p">(</span><span class="n">package</span><span class="p">)</span>
+        <span class="c1"># Append the version to the list</span>
+        <span class="n">versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">package_version</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># Use a more general exception for broader compatibility</span>
+        <span class="n">versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Not installed&#39;</span><span class="p">)</span>
+
+<span class="c1"># Print the versions</span>
+<span class="k">for</span> <span class="n">package</span><span class="p">,</span> <span class="n">version</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span> <span class="n">versions</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">package</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
+-------------
+numpy: 2.1.2
+pandas: 2.2.3
+lifelines: 0.30.0
+scipy: 1.14.1
+statsmodels: 0.14.4
+matplotlib: 3.9.2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04%20-%20Confidence%20interval%20of%20a%20proportion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Confidence interval of a proportion</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06%20-%20Confidence%20interval%20of%20counted%20data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Confidence interval of counted data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-data">Survival data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lifelines-library">The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-survival-function">Plotting the survival function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kaplan-meier-estimator">Kaplan-Meier estimator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fraction-surviving">Fraction surviving</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-function">Survival function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basics">The basics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-example">Step-by-step example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-survival">Log survival</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process-automation-with-scripts">Process automation with scripts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Survival function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Confidence interval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kaplan-meier-plot">Kaplan-Meier plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session information</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sébastien Wieckowski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
