@@ -5,3 +5,8 @@
 _build
 .env
 *.code-workspace
+
+# Latex and markdown exports
+*.md
+*.tex
+*_files
