@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -477,7 +477,7 @@ document.write(`
 <h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h2>
 <section id="the-power">
 <h3>The power<a class="headerlink" href="#the-power" title="Link to this heading">#</a></h3>
-<p>The <strong>power (<span class="math notranslate nohighlight">\(1 - \beta\)</span>)</strong> of an experimental design answers this crucial question: if there truly is an effect of a specified size, and the experiment is repeated many times, what proportion of those experiments will yield a statistically significant result? This concept is essential for determining sample size requirements and for interpreting results that are not statistically significant.</p>
+<p>The <strong>power (1 - β)</strong> of an experimental design answers this crucial question: if there truly is an effect of a specified size, and the experiment is repeated many times, what proportion of those experiments will yield a statistically significant result? This concept is essential for determining sample size requirements and for interpreting results that are not statistically significant.</p>
 <p>While the definition of a P value starts with the assumption that the null hypothesis (H0) is true, we often want to know what happens when H0 is false, and there is a real effect. Statistical power addresses this by asking: if a specific effect truly exists (e.g., a difference between groups, a relative risk, a correlation), what is the probability of obtaining a statistically significant result in a single experiment?</p>
 <p>Power is the proportion of hypothetical experiments (if we were to repeat our study many times) in which we would expect to correctly reject the null hypothesis, given that the alternative hypothesis (the effect we’re looking for) is actually true</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -489,18 +489,18 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-left"><p>No effect (H0 True)</p></td>
-<td class="text-center"><p>Type I error (<span class="math notranslate nohighlight">\(\alpha\)</span>)</p></td>
-<td class="text-center"><p>Correct decision (<span class="math notranslate nohighlight">\(1 - \alpha\)</span>)</p></td>
+<td class="text-center"><p>Type I error (α)</p></td>
+<td class="text-center"><p>Correct decision (1 - α)</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>Effect exists</p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(1 - \beta\)</span></p></td>
-<td class="text-center"><p>Type II error (<span class="math notranslate nohighlight">\(\beta\)</span>)</p></td>
+<td class="text-center"><p>1 - β</p></td>
+<td class="text-center"><p>Type II error (β)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <img src="https://static.wingify.com/gcp/uploads/sites/3/2020/12/graphical-representation-of-type-1-and-type-2-errors.png" alt="type I and type II errors seen in H0 and H1 distributions" style="width: 500px;"/>
-<p>Since <span class="math notranslate nohighlight">\(\beta\)</span> represents the probability of one outcome (failing to reject a false H0), <span class="math notranslate nohighlight">\(1 - \beta\)</span> represents the probability of the complementary outcome (correctly rejecting a false H0). This complementary outcome is what we define as statistical power.</p>
+<p>Since β represents the probability of one outcome (failing to reject a false H0), 1 - β represents the probability of the complementary outcome (correctly rejecting a false H0). This complementary outcome is what we define as statistical power.</p>
 <p>In general, experiments with high statistical power are characterized by:</p>
 <ul class="simple">
 <li><p>Large sample sizes: more data points provide greater precision and reduce the impact of random variation.</p></li>
@@ -510,8 +510,8 @@ document.write(`
 <p>And when there is no true effect (the null hypothesis is true), power tends to be as low as the chosen significance level (often 5%). However, as the true effect size increases (while keeping sample size and variability constant), power increases in a sigmoidal (S-shaped) curve, theoretically reaching 100%. This means that with a large enough effect, we’re virtually guaranteed to detect it.</p>
 </section>
 <section id="the-effect-size">
-<span id="effect-size"></span><h3>The effect size<a class="headerlink" href="#the-effect-size" title="Link to this heading">#</a></h3>
-<p>Statistical significance (<span class="math notranslate nohighlight">\(P \lt \alpha\)</span>) tells us if an observed effect is likely not due to chance. However, it doesn’t reveal how large or meaningful the effect is. This is where <strong>effect size</strong> comes in. Effect size is a standardized measure of the magnitude of a phenomenon, allowing us to compare the strength of effects across different studies, even when they use different scales or measures.</p>
+<h3>The effect size<a class="headerlink" href="#the-effect-size" title="Link to this heading">#</a></h3>
+<p>Statistical significance (P &lt; α) tells us if an observed effect is likely not due to chance. However, it doesn’t reveal how large or meaningful the effect is. This is where <strong>effect size</strong> comes in. Effect size is a standardized measure of the magnitude of a phenomenon, allowing us to compare the strength of effects across different studies, even when they use different scales or measures.</p>
 <p>One of the most common measures of effect size for comparing two groups is <strong>Cohen’s <span class="math notranslate nohighlight">\(d\)</span></strong>.  It quantifies the difference between two group means in terms of their <em>pooled standard deviation</em> (<span class="math notranslate nohighlight">\(s_p\)</span>):</p>
 <div class="math notranslate nohighlight">
 \[d = \frac{\overline{X} - \overline{Y}}{s_p} = \frac{\overline{X} - \overline{Y}}{\sqrt{\frac{(n_{1} - 1)s_{1}^{2} + (n_{2} - 1) s_{2}^{2}}{n1 + n2 - 2}}}\]</div>
@@ -522,18 +522,18 @@ document.write(`
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Effect</p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(d\)</span></p></th>
+<th class="head"><p>d</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Small</p></td>
-<td><p><span class="math notranslate nohighlight">\(0.2\)</span></p></td>
+<td><p>0.2</p></td>
 </tr>
 <tr class="row-odd"><td><p>Medium</p></td>
-<td><p><span class="math notranslate nohighlight">\(0.5\)</span></p></td>
+<td><p>0.5</p></td>
 </tr>
 <tr class="row-even"><td><p>Large</p></td>
-<td><p><span class="math notranslate nohighlight">\(0.8\)</span></p></td>
+<td><p>0.8</p></td>
 </tr>
 </tbody>
 </table>
@@ -589,7 +589,7 @@ document.write(`
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
         <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_sample_size</span><span class="p">),</span>
         <span class="n">powers</span><span class="p">,</span>
-        <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$s$ = </span><span class="si">{</span><span class="n">sd</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;s = </span><span class="si">{</span><span class="n">sd</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
         <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
@@ -604,10 +604,10 @@ document.write(`
         <span class="c1"># label=f&#39;N for power=0.8, SD={sd}&#39;,</span>
     <span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample size&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Statistical power ($1 - \beta$)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample size (n)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Statistical power (1 - β)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
-    <span class="sa">fr</span><span class="s2">&quot;Power curves for one-sample t-test | $m$ differed by </span><span class="si">{</span><span class="n">diff</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;Power curves for one-sample t-test | m differed by </span><span class="si">{</span><span class="n">diff</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="c1"># plt.grid(axis=&#39;y&#39;, linestyle=&#39;--&#39;)</span>
@@ -617,10 +617,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4af5f44422371c6880ccb612d2bf469684e9ad16b5bdde2222f357d9c7acfa6c.png" src="_images/4af5f44422371c6880ccb612d2bf469684e9ad16b5bdde2222f357d9c7acfa6c.png" />
+<img alt="_images/2bdcf4516bbc65ff60051c6f6fa2d384fb4359f76b88a5c6071c9ab21c0b2101.png" src="_images/2bdcf4516bbc65ff60051c6f6fa2d384fb4359f76b88a5c6071c9ab21c0b2101.png" />
 </div>
 </div>
-<p>This plot illustrates how increasing standard deviation (greater variability in the data) lowers the statistical power for a given sample size and effect size. To maintain a desired level of power when dealing with higher variability, we need to increase the sample size, because <a class="reference internal" href="#effect-size"><span class="std std-ref">effect size and variance are inversely related</span></a>.</p>
+<p>This plot illustrates how increasing standard deviation (greater variability in the data) lowers the statistical power for a given sample size and effect size. To maintain a desired level of power when dealing with higher variability, we need to increase the sample size, because <a class="reference internal" href="#effect-size"><span class="xref myst">effect size and variance are inversely related</span></a>.</p>
 <p>The plot is also a valuable tool for planning studies. It helps us determine the appropriate sample size needed to detect a specific effect with a desired level of confidence, given the expected variability in the data. If our study didn’t find a significant result, this plot can help us assess whether it was due to a lack of a true effect or simply a lack of power (insufficient sample size). Finally, by understanding the relationship between power, sample size, and variability, we can allocate the research resources more efficiently, avoiding underpowered studies that are unlikely to yield meaningful results.</p>
 </section>
 <section id="unpaired-t-test">
@@ -669,8 +669,8 @@ document.write(`
         <span class="c1"># label=f&#39;N for power=0.8, SD={sd}&#39;,</span>
     <span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample size (per group)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Power ($1 - \beta$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample size (n) per group&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Power (1 - β)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">sample_sizes</span><span class="p">)</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Power analysis for independent t-test&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
@@ -678,7 +678,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/26031b55272ad2a9d6baee7e96678fe06cf6b72f6e068d3cb794eda8b0d3ab33.png" src="_images/26031b55272ad2a9d6baee7e96678fe06cf6b72f6e068d3cb794eda8b0d3ab33.png" />
+<img alt="_images/dffa33924de5eba67caa46662ffba84bf1a59982fc6878ca292b6296fd61a9cc.png" src="_images/dffa33924de5eba67caa46662ffba84bf1a59982fc6878ca292b6296fd61a9cc.png" />
 </div>
 </div>
 <p>Each curve corresponds to a different effect size, showing how power increases with sample size for that particular effect. The curves have a characteristic sigmoidal (S-shaped) pattern, reflecting how power initially increases rapidly with sample size and then levels off. Finally, larger effect sizes lead to steeper curves, meaning they require smaller sample sizes to achieve the same level of power.</p>
@@ -720,11 +720,11 @@ document.write(`
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">sample_sizes</span><span class="p">,</span> <span class="n">powers</span><span class="p">,</span>
     <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Sample size per group&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Power ($1 - \beta$)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Sample size (n) per group&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Power (1 - β)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
     <span class="s2">&quot;Power vs. sample size</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="sa">fr</span><span class="s2">&quot;($d$=</span><span class="si">{</span><span class="n">mean_difference</span><span class="o">/</span><span class="n">sd</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, $\alpha$=</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">, $s$=</span><span class="si">{</span><span class="n">sd</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;(d=</span><span class="si">{</span><span class="n">mean_difference</span><span class="o">/</span><span class="n">sd</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, α=</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">, s=</span><span class="si">{</span><span class="n">sd</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="c1"># axes[0].grid(axis=&#39;y&#39;, linestyle=&#39;--&#39;)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">sample_sizes</span><span class="p">)</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
@@ -734,11 +734,11 @@ document.write(`
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">sample_sizes</span><span class="p">,</span> <span class="n">mean_diffs</span><span class="p">,</span>
     <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Sample size per group&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Sample size (n) per group&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Detectable mean difference&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
     <span class="s2">&quot;Detectable mean difference vs. sample size</span><span class="se">\n</span><span class="s2">&quot;</span>  <span class="c1"># Implicit string concatenation</span>
-    <span class="sa">fr</span><span class="s2">&quot;($1-\beta$=</span><span class="si">{</span><span class="n">power</span><span class="si">}</span><span class="s2">, $\alpha$=</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">, $s$=</span><span class="si">{</span><span class="n">sd</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;(1-β=</span><span class="si">{</span><span class="n">power</span><span class="si">}</span><span class="s2">, α=</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">, s=</span><span class="si">{</span><span class="n">sd</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="c1"># axes[1].grid(axis=&#39;y&#39;, linestyle=&#39;--&#39;)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">sample_sizes</span><span class="p">)</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
@@ -749,7 +749,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1d3fbe7ddc8cacd0d4999c684aae8db5395fed9ebdfcb4d3522284ed693c600c.png" src="_images/1d3fbe7ddc8cacd0d4999c684aae8db5395fed9ebdfcb4d3522284ed693c600c.png" />
+<img alt="_images/c360749a6f4441902b2fff8a48df0821cc0927c764f8f5266db4ea6afc80bf4b.png" src="_images/c360749a6f4441902b2fff8a48df0821cc0927c764f8f5266db4ea6afc80bf4b.png" />
 </div>
 </div>
 </section>
@@ -805,9 +805,9 @@ document.write(`
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Desired power (</span><span class="si">{</span><span class="n">power</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample size (paired observations)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Power ($1 - \beta$)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Power (1 - β)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
-    <span class="sa">fr</span><span class="s2">&quot;Power analysis for paired t-test ($\alpha$=</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;Power analysis for paired t-test (α=</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
@@ -823,7 +823,7 @@ Effect size = 0.5: 34 pairs
 Effect size = 0.8: 15 pairs
 </pre></div>
 </div>
-<img alt="_images/5f17c6824892b6bf4a3b205951ec9cafd3511c724830973d241de66f027e502c.png" src="_images/5f17c6824892b6bf4a3b205951ec9cafd3511c724830973d241de66f027e502c.png" />
+<img alt="_images/554d7ecad0de32300db6b5ab342a7d384e823d8a4db0ee564009c90fc74d9ba4.png" src="_images/554d7ecad0de32300db6b5ab342a7d384e823d8a4db0ee564009c90fc74d9ba4.png" />
 </div>
 </div>
 <p>The curves clearly demonstrate that power increases as the sample size per group increases. This means that with larger samples, we have a higher probability of detecting a statistically significant difference between the groups, even if the true effect size is small.</p>
@@ -842,10 +842,10 @@ Effect size = 0.8: 15 pairs
 <h3>Tools for power calculations<a class="headerlink" href="#tools-for-power-calculations" title="Link to this heading">#</a></h3>
 <p>As we’ve seen, sample size calculations for a desired level of statistical power require to specify the following:</p>
 <ul class="simple">
-<li><p>Significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>): the acceptable risk of a false positive (type I error).</p></li>
-<li><p>Desired power (<span class="math notranslate nohighlight">\(1 - \beta\)</span>): the desired probability of correctly detecting a true effect.</p></li>
+<li><p>Significance level (α): the acceptable risk of a false positive (type I error).</p></li>
+<li><p>Desired power (1 - β): the desired probability of correctly detecting a true effect.</p></li>
 <li><p>Minimum effect size: the smallest effect size we consider meaningful and worth detecting.</p></li>
-<li><p>Standard deviation (<span class="math notranslate nohighlight">\(s\)</span>): a measure of the variability or scatter in the data. Alternatively, for proportion-based tests, we would need the expected proportion.</p></li>
+<li><p>Standard deviation (s): a measure of the variability or scatter in the data. Alternatively, for proportion-based tests, we would need the expected proportion.</p></li>
 </ul>
 <p>The type of test (one-tailed or two-tailed) also affects sample size calculations. One-tailed tests generally require smaller sample sizes but are only appropriate when we have a strong directional hypothesis. Importantly, power analysis formulas often rely on <em>assumptions</em> about the distribution of the data (e.g., normality). Violating these assumptions can affect the accuracy of the calculations.</p>
 <p>Numerous online tools and software packages can assist with power analysis. Some popular options include:</p>
@@ -962,7 +962,7 @@ Effect size = 0.8: 15 pairs
 <p>We can use a simplified formula derived from the principles of hypothesis testing for proportions, assuming the sample proportions follow a normal distribution, and incorporating the desired power and significance level:</p>
 <div class="math notranslate nohighlight">
 \[n=(z_{\alpha/2}+z_\beta)^2 \times \frac{p_1(1-p_1)+p_2(1-p_2)}{(p_1-p_2)^2}\]</div>
-<p>The term <span class="math notranslate nohighlight">\((p_1 - p_2)\)</span> represents the effect size, i.e., the difference in proportions we want to detect, <span class="math notranslate nohighlight">\(z_{\alpha/2}\)</span> is the z-score corresponding to the significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>) divided by 2 which defines the critical region in each tail of the distribution where we would reject the null hypothesis (here it’s a two-sided test), also noted as <span class="math notranslate nohighlight">\(z^\ast\)</span>, and <span class="math notranslate nohighlight">\(z_\beta\)</span> is the z-score corresponding to the desired power (<span class="math notranslate nohighlight">\(1-\beta\)</span>) which defines the distance between the alternative hypothesis distribution and the critical region.</p>
+<p>The term <span class="math notranslate nohighlight">\((p_1 - p_2)\)</span> represents the effect size, i.e., the difference in proportions we want to detect, <span class="math notranslate nohighlight">\(z_{\alpha/2}\)</span> is the z-score corresponding to the significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>) divided by 2 which defines the critical region in each tail of the distribution where we would reject the null hypothesis (here it’s a two-sided test), also noted as <span class="math notranslate nohighlight">\(z^\ast\)</span>, and <span class="math notranslate nohighlight">\(z_\beta\)</span> is the z-score corresponding to the desired power which defines the distance between the alternative hypothesis distribution and the critical region.</p>
 <p>We can also use the <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.stats.proportion.samplesize_proportions_2indep_onetail.html"><code class="docutils literal notranslate"><span class="pre">samplesize_proportions_2indep_onetail</span></code> function</a> which uses an explicit computation to find sample size.</p>
 <p>Some methods calculate power and sample size based on exact statistical distributions (like the binomial distribution for proportions), while others use approximations (like the normal approximation to the binomial). These approximations might introduce <em>slight discrepancies</em>, especially with smaller sample sizes. Furthermore, the specific numerical algorithms used to solve for power and sample size can vary between functions, leading to slight differences in the results. There are more sophisticated methods available (e.g., using the binomial distribution directly) for complex scenarios or when precise calculations are required.</p>
 <div class="cell docutils container">
@@ -1023,9 +1023,9 @@ Required sample size per group (using statsmodels): 2016
 <span class="n">powers</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.80</span><span class="p">,</span> <span class="mf">.90</span><span class="p">,</span> <span class="mf">.95</span><span class="p">,</span> <span class="mf">.99</span><span class="p">]</span> <span class="c1"># power levels tested</span>
 <span class="n">pprobas</span><span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">.25</span><span class="p">,</span> <span class="mf">.5</span><span class="p">]</span> <span class="c1"># estimates of prior probability</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FPRP affected by alpha, power, and prior probability</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FPRP affected by α, power, and prior probability</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;alpha</span><span class="se">\t</span><span class="s2">power</span><span class="se">\t</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">pprobas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">%</span><span class="se">\t</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">pprobas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">%</span><span class="se">\t</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">pprobas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">%</span><span class="se">\t</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">pprobas</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;α</span><span class="se">\t</span><span class="s2">power</span><span class="se">\t</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">pprobas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">%</span><span class="se">\t</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">pprobas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">%</span><span class="se">\t</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">pprobas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">%</span><span class="se">\t</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">pprobas</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">45</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">alphas</span><span class="p">:</span>
@@ -1040,9 +1040,9 @@ Required sample size per group (using statsmodels): 2016
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FPRP affected by alpha, power, and prior probability
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FPRP affected by α, power, and prior probability
 
-alpha	power	1.0%	10.0%	25.0%	50.0%
+α	power	1.0%	10.0%	25.0%	50.0%
 ---------------------------------------------
 0.050
 	80.0%	86.1%	36.0%	15.8%	5.9%
@@ -1070,17 +1070,17 @@ alpha	power	1.0%	10.0%	25.0%	50.0%
 <h3>Guidance for making informed sample size decisions<a class="headerlink" href="#guidance-for-making-informed-sample-size-decisions" title="Link to this heading">#</a></h3>
 <p>While power analysis provides a valuable framework for calculating sample size, the process is rarely straightforward. Several factors can influence the accuracy and applicability of our calculations:</p>
 <ul class="simple">
-<li><p>Choosing the significance level <span class="math notranslate nohighlight">\(\alpha\)</span></p>
+<li><p>Choosing the significance level α</p>
 <ul>
-<li><p>Think beyond tradition: don’t blindly default to the conventional <span class="math notranslate nohighlight">\(\alpha = 0.05\)</span>.</p></li>
+<li><p>Think beyond tradition: don’t blindly default to the conventional α = 0.05.</p></li>
 <li><p>Prior probability matters: consider the <strong>prior probability</strong> of a true effect (pre-study evidence).</p></li>
 <li><p>FPRP as a guide: estimate the False Positive Report Probability (FPRP) to understand the <strong>risk of false positives</strong>.</p></li>
 <li><p>One-tailed vs. two-tailed: choose the appropriate test directionality based on the research question.</p></li>
 </ul>
 </li>
-<li><p>Choosing desired statistical power (<span class="math notranslate nohighlight">\(1 - \beta\)</span>)</p>
+<li><p>Choosing desired statistical power (1 - β)</p>
 <ul>
-<li><p>Balance the FPRP: aim for a power level that, in combination with the chosen <span class="math notranslate nohighlight">\(\alpha\)</span>, results in a <strong>reasonably low FPRP</strong>.</p></li>
+<li><p>Balance the FPRP: aim for a power level that, in combination with the chosen α, results in a <strong>reasonably low FPRP</strong>.</p></li>
 <li><p>Weigh the consequences: consider the relative costs of type I and type II errors. If <strong>missing a true effect</strong> is very costly, opt for higher power.</p></li>
 </ul>
 </li>
@@ -1096,7 +1096,7 @@ alpha	power	1.0%	10.0%	25.0%	50.0%
 <li><p>Estimating expected variability</p>
 <ul>
 <li><p>Minimize variability: if possible, design the study to <strong>reduce the variability</strong> within groups (e.g., through stricter inclusion criteria, more controlled experimental conditions).</p></li>
-<li><p>Pilot studies: conduct <strong>pilot studies</strong> to get a realistic estimate of variability. Small pilot studies often underestimate true variability as seen in <a class="reference internal" href="#underestimation-variability"><span class="std std-ref">the table below</span></a>.</p></li>
+<li><p>Pilot studies: conduct <strong>pilot studies</strong> to get a realistic estimate of variability. Small pilot studies often underestimate true variability as seen in the table below.</p></li>
 <li><p>Published estimates with caution: be aware that published standard deviations might be biased downward due to selective reporting.</p></li>
 </ul>
 </li>
@@ -1121,8 +1121,8 @@ alpha	power	1.0%	10.0%	25.0%	50.0%
 </ul>
 </section>
 <section id="underestimation-of-the-true-variability">
-<span id="underestimation-variability"></span><h3>Underestimation of the true variability<a class="headerlink" href="#underestimation-of-the-true-variability" title="Link to this heading">#</a></h3>
-<p>The discrepancy between a sample’s standard deviation <span class="math notranslate nohighlight">\(s\)</span> and the true population SD <span class="math notranslate nohighlight">\(\sigma\)</span> can be substantial, particularly when dealing with small sample sizes. For example, with a sample size of only 3, <span class="math notranslate nohighlight">\(\sigma\)</span> could be up to 6.28 times larger than <span class="math notranslate nohighlight">\(s\)</span>, as reflected in the confidence interval for the SD. Since the required sample size for a t-test is proportional to the square of the SD, if the SD obtained in a pilot study is half the true population SD, the calculated sample size would be merely one-quarter of what it should be.</p>
+<h3>Underestimation of the true variability<a class="headerlink" href="#underestimation-of-the-true-variability" title="Link to this heading">#</a></h3>
+<p>The discrepancy between a sample’s standard deviation <span class="math notranslate nohighlight">\(s\)</span> and the true population SD (σ) can be substantial, particularly when dealing with small sample sizes. For example, with a sample size of only 3, σ could be up to 6.28 times larger than the sample SD (s), as reflected in the confidence interval for the SD. Since the required sample size for a t-test is proportional to the square of the SD, if the SD obtained in a pilot study is half the true population SD, the calculated sample size would be merely one-quarter of what it should be.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>
@@ -1341,8 +1341,8 @@ alpha	power	1.0%	10.0%	25.0%	50.0%
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7-------------
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
+-------------
 numpy: 1.26.4
 scipy: 1.14.1
 pingouin: 0.5.5

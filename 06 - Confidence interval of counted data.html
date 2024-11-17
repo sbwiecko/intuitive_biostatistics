@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -423,7 +423,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-raisins-in-bagels">Example of raisins in bagels</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-shortcut-approximation">A shortcut approximation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#percent-point-function">Percent Point Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#percent-point-function">Percent point function</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lollipop-plot">Lollipop plot</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-radioactive-count">Example of radioactive count</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes">Advantage of counting for longer time intervals or in larger volumes</a></li>
@@ -455,14 +455,14 @@ document.write(`
 <h1>Confidence interval of counted data<a class="headerlink" href="#confidence-interval-of-counted-data" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>In this chapter, we will delve into the world of <strong>counted data</strong> and its statistical analysis using the <strong>Poisson Distribution</strong>. Counted data, often encountered in fields such as epidemiology, traffic engineering, and social sciences, refers to data that are counted as <em>discrete events in a fixed time or space</em>.</p>
+<p>In this chapter, we will delve into the world of <strong>counted data</strong> and its statistical analysis using the <strong>Poisson distribution</strong>. Counted data, often encountered in fields such as epidemiology, traffic engineering, and social sciences, refers to data that are counted as <em>discrete events in a fixed time or space</em>.</p>
 <p>The Poisson Distribution is a powerful statistical tool used to model such data. Named after the French mathematician Siméon Denis Poisson, it provides a way to predict the probability of certain events from happening when we know how often the event has occurred. It is particularly useful when these events happen with a known <strong>average rate</strong> and <em>independently of the time since the last event</em>.</p>
-<p>We will focus on the confidence interval of counted data. Confidence intervals are a range of values that are likely to contain the true population parameter. In the context of Poisson Distribution, it provides a range where the true average rate of occurrence <strong>lambda</strong> (<span class="math notranslate nohighlight">\(\lambda\)</span>), or <strong>mu</strong> (<span class="math notranslate nohighlight">\(\mu\)</span>), lies with a certain level of confidence.</p>
-<p>Following the theoretical foundation, we will transition into practical Python applications, in particular using the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> library</a>. By the end of this chapter, we will have a solid understanding of how to apply Poisson Distribution to analyze counted data and calculate confidence intervals using Python.</p>
+<p>We will focus on the confidence interval of counted data. Confidence intervals are a range of values that are likely to contain the true population parameter. In the context of Poisson Distribution, it provides a range where the true average rate of occurrence <strong>lambda</strong> (λ), sometimes called <strong>mu</strong> (μ), lies with a certain level of confidence.</p>
+<p>Following the theoretical foundation, we will transition into practical Python applications, in particular using the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html">SciPy library</a>. By the end of this chapter, we will have a solid understanding of how to apply Poisson Distribution to analyze counted data and calculate confidence intervals using Python.</p>
 </section>
 <section id="poisson-distribution">
 <h2>Poisson distribution<a class="headerlink" href="#poisson-distribution" title="Link to this heading">#</a></h2>
-<p>Let’s start by generating two sets of random variables from the Poisson distribution using <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. We will compare two distributions of some background radiation counts, one with a mean of 1.6 counts/min, and the second with 7.5 counts/min.</p>
+<p>Let’s start by generating two sets of random variables from the Poisson distribution using NumPy. We will compare two distributions of some background radiation counts, one with a mean of 1.6 counts/min, and the second with 7.5 counts/min.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -471,13 +471,13 @@ document.write(`
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span> <span class="c1"># for reproducibility</span>
 
 <span class="c1"># Set the parameters for the Poisson distribution</span>
-<span class="n">lambda1</span> <span class="o">=</span> <span class="mf">1.6</span> <span class="c1"># e.g., mean radiation counts/min</span>
-<span class="n">lambda2</span> <span class="o">=</span> <span class="mf">7.5</span>
+<span class="n">λ1</span> <span class="o">=</span> <span class="mf">1.6</span> <span class="c1"># e.g., mean radiation counts/min</span>
+<span class="n">λ2</span> <span class="o">=</span> <span class="mf">7.5</span>
 <span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>
 
 <span class="c1"># Generate random variates</span>
-<span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lambda1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-<span class="n">data2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lambda2</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">λ1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">λ2</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -490,17 +490,17 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 0, 0, 1, 2, 0, 2, 1, 0, 7, 0, 1, 3, 1], dtype=int32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 0, 0, 1, 2, 0, 2, 1, 0, 7, 0, 1, 3, 1])
 </pre></div>
 </div>
 </div>
 </div>
-<p>We then plot their histograms using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<p>We then plot their histograms using Matplotlib.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot histograms using matplotlib</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">data1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\lambda$=1.6&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">data2</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\lambda$=7.5&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot histograms using Matplotlib</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">data1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;λ=1.6&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">data2</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;λ=7.5&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Poisson distribution&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value (counts/min)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
@@ -510,29 +510,29 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1a4ce64f5583eb9cd32fcc30472bf7db459c865c07b0be1a7da54b90b9b8e69f.png" src="_images/1a4ce64f5583eb9cd32fcc30472bf7db459c865c07b0be1a7da54b90b9b8e69f.png" />
+<img alt="_images/e0a6fdc655880a9a3efdfb55e5c7e9f18af41d40515288b8c1647a4cb7872251.png" src="_images/e0a6fdc655880a9a3efdfb55e5c7e9f18af41d40515288b8c1647a4cb7872251.png" />
 </div>
 </div>
-<p>We can do similar things using the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> packages.</p>
+<p>We can do similar things using theSciPy and seaborn packages.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">poisson</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
 <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
-    <span class="n">poisson</span><span class="p">(</span><span class="n">lambda1</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">111</span><span class="p">),</span> <span class="c1"># for reproducibility</span>
+    <span class="n">poisson</span><span class="p">(</span><span class="n">λ1</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">111</span><span class="p">),</span> <span class="c1"># for reproducibility</span>
     <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span>
     <span class="n">binwidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">discrete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$\lambda$=</span><span class="si">{</span><span class="n">lambda1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;λ=</span><span class="si">{</span><span class="n">λ1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
-    <span class="n">poisson</span><span class="p">(</span><span class="n">lambda2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">111</span><span class="p">),</span>
+    <span class="n">poisson</span><span class="p">(</span><span class="n">λ2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">111</span><span class="p">),</span>
     <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span>
     <span class="n">binwidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">discrete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$\lambda$=</span><span class="si">{</span><span class="n">lambda2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;λ=</span><span class="si">{</span><span class="n">λ2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -546,26 +546,26 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8063c747182a434131f8c68e1b8e89d10a38379445572c7465aace9d87413dfc.png" src="_images/8063c747182a434131f8c68e1b8e89d10a38379445572c7465aace9d87413dfc.png" />
+<img alt="_images/76e559cadafb095dc47c4604f1ed8b4ceaa831b69c5085843b7a41ef1271a7be.png" src="_images/76e559cadafb095dc47c4604f1ed8b4ceaa831b69c5085843b7a41ef1271a7be.png" />
 </div>
 </div>
-<p>Remember, the Poisson distribution is <strong>discrete</strong>, so the values on the x-axis represent specific counts of events. The y-axis represents the frequency of these counts in our data set. The separation between the two histograms reflects the difference in the <span class="math notranslate nohighlight">\(\lambda\)</span> parameters of the two distributions. The distribution with <span class="math notranslate nohighlight">\(\lambda=1.6\)</span> is skewed to the right and has a peak at lower values, while the distribution with <span class="math notranslate nohighlight">\(\lambda=7.5\)</span> is more spread out and has a peak at higher values. This is consistent with the property of the Poisson distribution that its mean and variance are both equal to <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<p>Remember, the Poisson distribution is <strong>discrete</strong>, so the values on the x-axis represent specific counts of events. The y-axis represents the frequency of these counts in our data set. The separation between the two histograms reflects the difference in the λ parameters of the two distributions. The distribution with λ=1.6 is skewed to the right and has a peak at lower values, while the distribution with λ=7.5 is more spread out and has a peak at higher values. This is consistent with the property of the Poisson distribution that its mean and variance are both equal to λ.</p>
 </section>
 <section id="confidence-interval">
 <h2>Confidence interval<a class="headerlink" href="#confidence-interval" title="Link to this heading">#</a></h2>
 <section id="example-of-raisins-in-bagels">
 <h3>Example of raisins in bagels<a class="headerlink" href="#example-of-raisins-in-bagels" title="Link to this heading">#</a></h3>
-<p>We’ll use the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html#scipy.stats.poisson"><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> Poisson distribution</a> with an average (<span class="math notranslate nohighlight">\(\mu\)</span>) of 10 raisins per bagel.</p>
+<p>We’ll use the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html#scipy.stats.poisson"><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> Poisson distribution</a> with an average λ=10 raisins per bagel.</p>
 <p>The Poisson distribution is a great fit for this scenario because it models the number of times an event (in this case, a raisin appearing in a bagel) occurs in a fixed interval of time or space. Here, our “fixed space” is the bagel, and the “event” is the appearance of a raisin.</p>
 <p>We’ll generate a sample data set, extract the 2.5th and 97.5th percentiles out of this data, which represent the lower and upper bounds of the 95% confidence interval, respectively, and plot the histogram.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters for the Poisson distribution</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># average number of raisins in each bagel</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># average number of raisins in each bagel</span>
 <span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>
 
 <span class="c1"># Generate random variables</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">111</span><span class="p">)</span> <span class="c1"># for reproducibility</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">λ</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">111</span><span class="p">)</span> <span class="c1"># for reproducibility</span>
 
 <span class="c1"># Calculate the confidence interval</span>
 <span class="n">conf_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">])</span>
@@ -585,7 +585,7 @@ document.write(`
     <span class="n">x</span><span class="o">=</span><span class="n">conf_int</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2.5th percentile&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">conf_int</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;97.5th percentile&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of raisins in bagels&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Histogram of raisins in bagels (λ=</span><span class="si">{</span><span class="n">λ</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of raisins&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
@@ -597,51 +597,51 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval (bootstrap) is [ 4. 17.]
 </pre></div>
 </div>
-<img alt="_images/c6c7565e7642edff2473ae2110d0107dfbb651e160596511cc14575bc7b39053.png" src="_images/c6c7565e7642edff2473ae2110d0107dfbb651e160596511cc14575bc7b39053.png" />
+<img alt="_images/507cf17e691154289250298b8da2a0b9f5a84aefa8392e3ddf7899d4dc074e6c.png" src="_images/507cf17e691154289250298b8da2a0b9f5a84aefa8392e3ddf7899d4dc074e6c.png" />
 </div>
 </div>
 </section>
 <section id="a-shortcut-approximation">
 <h3>A shortcut approximation<a class="headerlink" href="#a-shortcut-approximation" title="Link to this heading">#</a></h3>
-<p>The Central Limit Theorem states that the sum of a <em>large number</em> of independent and identically distributed random variables will approximately follow a <em>normal distribution</em>, regardless of the shape of their original distribution. In the case of the Poisson distribution, as the mean (<span class="math notranslate nohighlight">\(\lambda\)</span>) gets larger, the distribution becomes more symmetric and starts to look like a normal distribution.</p>
-<p>When the count values are large (typically, <span class="math notranslate nohighlight">\(\lambda &gt; 30\)</span> is considered large enough), we can use the <strong>Normal approximation</strong> to the Poisson distribution to calculate the confidence interval. The standard deviation of a Poisson distribution is the square root of <span class="math notranslate nohighlight">\(\lambda\)</span> (for Poisson distribution, the mean and the variance are equal to <span class="math notranslate nohighlight">\(\lambda\)</span>), so the standard error (which is the standard deviation of the sample mean) is the standard deviation divided by the square root of the sample size.</p>
-<p>Therefore the <strong>approximation for the 95% confidence interval</strong> ranges from <span class="math notranslate nohighlight">\(\lambda - 1.96 \times \sqrt{\lambda}\)</span> to <span class="math notranslate nohighlight">\(\lambda + 1.96 \times \sqrt{\lambda}\)</span>.</p>
+<p>As discussed in the last chapters, the <strong>central limit theorem</strong> states that the sum of a <em>large number</em> of independent and identically distributed random variables will approximately follow a <em>normal distribution</em>, regardless of the shape of their original distribution. In the case of the Poisson distribution, as λ gets larger, the distribution becomes more symmetric and starts to look like a normal distribution.</p>
+<p>When the count values are large (typically, λ &gt; 30 is considered large enough), we can use the <strong>normal approximation</strong> to the Poisson distribution to calculate the confidence interval. The standard deviation of a Poisson distribution is the square root of λ (for Poisson distribution, the mean AND the variance are equal to λ), so the standard error (which is the standard deviation of the sample mean) is the standard deviation divided by the square root of the sample size.</p>
+<p>Therefore the <em>approximation for the 95% confidence interval</em> ranges from <span class="math notranslate nohighlight">\(\lambda - 1.96 \times \sqrt{\lambda}\)</span> to <span class="math notranslate nohighlight">\(\lambda + 1.96 \times \sqrt{\lambda}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span> <span class="p">,</span> <span class="n">mu</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">λ</span><span class="p">)</span> <span class="p">,</span> <span class="n">λ</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">λ</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(3.8019357860699765), np.float64(16.198064213930024))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.8019357860699765, 16.198064213930024)
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="percent-point-function">
-<h3>Percent Point Function<a class="headerlink" href="#percent-point-function" title="Link to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> stands for <strong>Percent Point Function</strong>, which is essentially the inverse of the Cumulative Distribution Function (CDF). The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> takes a probability <span class="math notranslate nohighlight">\(q\)</span> and returns a value <span class="math notranslate nohighlight">\(x\)</span> such that the probability of the random variable being less than or equal to <span class="math notranslate nohighlight">\(x\)</span> is equal to <span class="math notranslate nohighlight">\(q\)</span>. In other words, it allows us to determine the value below which a given percentage of the data falls.</p>
+<h3>Percent point function<a class="headerlink" href="#percent-point-function" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> stands for <strong>percent point function</strong>, which is essentially the inverse of the cumulative distribution function (CDF). The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> takes a probability q and returns a value x such that the probability of the random variable being less than or equal to x is equal to q. In other words, it allows us to determine the value below which a given percentage of the data falls.</p>
 <p>In the context of the Poisson distribution, the <code class="docutils literal notranslate"><span class="pre">ppf</span></code> can be used to calculate the value below which a certain percentage of the counts of events (e.g., raisins in bagels) fall. This can be particularly useful when we want to determine the confidence interval around the mean of the distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters for the Poisson distribution</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># beware, `lambda` is a Python reserved name</span>
 <span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>
 
 <span class="c1"># Prepare the model of this distribution</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">λ</span><span class="p">)</span>
 
 <span class="c1"># Calculate the confidence interval using ppf</span>
 <span class="n">conf_int</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">),</span> <span class="n">model</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)]</span>
 
 <span class="c1"># Print the confidence interval</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval is </span><span class="si">{</span><span class="n">conf_int</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for λ=</span><span class="si">{</span><span class="n">λ</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">conf_int</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval is [np.float64(4.0), np.float64(17.0)]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for λ=10 is [4.0, 17.0]
 </pre></div>
 </div>
 </div>
@@ -649,13 +649,13 @@ document.write(`
 </section>
 <section id="lollipop-plot">
 <h3>Lollipop plot<a class="headerlink" href="#lollipop-plot" title="Link to this heading">#</a></h3>
-<p>The <strong>Probability Mass Function</strong> (PMF) of the Poisson distribution gives the probability of each possible outcome. In this case, it will give the probability of each possible count of events (e.g., raisins in a bagel).</p>
-<p>We first generate the x values using the <code class="docutils literal notranslate"><span class="pre">ppf</span></code> function to get the range of values that contain 98% of the probability. We then calculate the PMF for these x values using the <code class="docutils literal notranslate"><span class="pre">pmf</span></code> function. Finally, we create the lollipop plot using the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.stem.html"><code class="docutils literal notranslate"><span class="pre">stem</span></code> function in matplotlib</a>.</p>
+<p>The <strong>probability mass function</strong> (PMF) of the Poisson distribution gives the probability of each possible outcome. In this case, it will give the probability of each possible count of events (e.g., raisins in a bagel).</p>
+<p>We first generate the x values using the <code class="docutils literal notranslate"><span class="pre">ppf</span></code> function to get the range of values that contain 98% of the probability. We then calculate the PMF for these x values using the <code class="docutils literal notranslate"><span class="pre">pmf</span></code> function. Finally, we create the lollipop plot using the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.stem.html"><code class="docutils literal notranslate"><span class="pre">stem</span></code> function in Matplotlib</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters for the Poisson distribution</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">)</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">λ</span><span class="p">)</span>
 
 <span class="c1"># Generate the x values</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span>
@@ -674,7 +674,7 @@ document.write(`
 <span class="c1">#plt.plot(x, model.pmf(x), &#39;ro&#39;, ms=8)</span>
 <span class="c1">#plt.vlines(x, 0, model.pmf(x), colors=&#39;grey&#39;, lw=4, alpha=.5)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Lollipop plot of Poisson PMF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Lollipop plot of Poisson PMF (λ=</span><span class="si">{</span><span class="n">λ</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of events&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">();</span>
@@ -682,21 +682,21 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b368d2035a3165d74d77f4c56da9d2d2ecb7d63a98e84fd387431fd792c53a7f.png" src="_images/b368d2035a3165d74d77f4c56da9d2d2ecb7d63a98e84fd387431fd792c53a7f.png" />
+<img alt="_images/12b50b638148272e2154641e81927144a37523b8a454e3f4b592cb3d2c102969.png" src="_images/12b50b638148272e2154641e81927144a37523b8a454e3f4b592cb3d2c102969.png" />
 </div>
 </div>
 </section>
 <section id="example-of-radioactive-count">
 <h3>Example of radioactive count<a class="headerlink" href="#example-of-radioactive-count" title="Link to this heading">#</a></h3>
-<p>Let’s create a Poisson model for radioactive counts with an average rate <span class="math notranslate nohighlight">\(\mu = 120\)</span>. We’ll generate a sample data set, calculate its mean and variance, and estimate the confidence interval.</p>
+<p>Let’s create a Poisson model for radioactive counts with an average rate λ=120. We’ll generate a sample data set, calculate its mean and variance, and estimate the confidence interval.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters for the Poisson distribution</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mi">120</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mi">120</span>
 <span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>
 
 <span class="c1"># Generate random variables</span>
-<span class="n">desintegration_poisson_model</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">)</span>
+<span class="n">desintegration_poisson_model</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">λ</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">desintegration_poisson_model</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
 
 <span class="c1"># Calculate the sample mean and variance</span>
@@ -706,6 +706,7 @@ document.write(`
 <span class="c1"># Calculate the confidence interval using 2.5th and 97.5th percentiles</span>
 <span class="n">conf_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">])</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;λ=</span><span class="si">{</span><span class="n">λ</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample mean: </span><span class="si">{</span><span class="n">sample_mean</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample variance: </span><span class="si">{</span><span class="n">sample_variance</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% confidence interval (bootstrap): </span><span class="si">{</span><span class="n">conf_int</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -713,7 +714,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample mean: 119.8975
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>λ=120
+Sample mean: 119.8975
 Sample variance: 122.58519375
 95% confidence interval (bootstrap): [ 98. 142.]
 </pre></div>
@@ -722,7 +724,7 @@ Sample variance: 122.58519375
 </div>
 <p>There are several methods in the <code class="docutils literal notranslate"><span class="pre">scipy.stats.poisson</span></code> module that might be useful:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">median</span></code> and <code class="docutils literal notranslate"><span class="pre">std</span></code>: these methods return, respectively, the mean, median and standard deviation of the Poisson distribution. For a Poisson distribution, the mean is equal to mu (<span class="math notranslate nohighlight">\(\mu\)</span>) or lambda (<span class="math notranslate nohighlight">\(\lambda\)</span>), which is the average rate of events.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">median</span></code> and <code class="docutils literal notranslate"><span class="pre">std</span></code>: these methods return, respectively, the mean, median and standard deviation of the Poisson distribution. For a Poisson distribution, the mean is equal to λ, which is the average rate of events.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">stats</span></code>: this method returns the mean (‘m’), variance (‘v’), skew (‘s’), and/or kurtosis (‘k’) of the Poisson distribution. By default, it returns the mean and variance.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">interval</span></code>: this method returns the endpoints of the range that contains alpha percent of the distribution. For example, we can use it to calculate the confidence interval with equal areas around the median.</p></li>
 </ul>
@@ -742,7 +744,7 @@ Sample variance: 122.58519375
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of the distribution = 120.0
 Variance of the distribution = 120.0
 Standard deviation of the distribution = 10.954
-95% confidence interval with equal areas around the median = (np.float64(99.0), np.float64(142.0))
+95% confidence interval with equal areas around the median = (99.0, 142.0)
 2.5 PPF = 99.0
 97.5 PPF = 142.0
 </pre></div>
@@ -752,7 +754,7 @@ Standard deviation of the distribution = 10.954
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># method used for large count values (&gt;30) as it approximates Gaussian distribution</span>
-<span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">mu</span><span class="o">**</span><span class="mf">.5</span> <span class="p">,</span> <span class="n">mu</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">mu</span><span class="o">**</span><span class="mf">.5</span><span class="p">)</span>
+<span class="p">(</span><span class="n">λ</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">λ</span><span class="o">**</span><span class="mf">.5</span> <span class="p">,</span> <span class="n">λ</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">λ</span><span class="o">**</span><span class="mf">.5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -765,25 +767,25 @@ Standard deviation of the distribution = 10.954
 </section>
 <section id="advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes">
 <h3>Advantage of counting for longer time intervals or in larger volumes<a class="headerlink" href="#advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes" title="Link to this heading">#</a></h3>
-<p>When we count events over longer time intervals or in larger volumes, the mean (<span class="math notranslate nohighlight">\(\lambda\)</span>) of the Poisson distribution increases. This results in a <strong>narrower confidence interval</strong>, which means our estimate of the average rate of events becomes more precise.</p>
+<p>When we count events over longer time intervals or in larger volumes, the mean of the Poisson distribution λ increases. This results in a <em>narrower confidence interval</em>, which means our estimate of the average rate of events becomes more precise.</p>
 <p>Let’s illustrate this with Python code. We’ll create two Poisson models: one with a mean of 700 events per minute, and another with a mean of 7000 events per 10 minutes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters for the Poisson distribution</span>
-<span class="n">mu1</span> <span class="o">=</span> <span class="mi">700</span>  <span class="c1"># 700 events per minute</span>
-<span class="n">mu2</span> <span class="o">=</span> <span class="mi">7000</span>  <span class="c1"># 7000 events per 10 minutes</span>
+<span class="n">λ1</span> <span class="o">=</span> <span class="mi">700</span>  <span class="c1"># 700 events per minute</span>
+<span class="n">λ2</span> <span class="o">=</span> <span class="mi">7000</span>  <span class="c1"># 7000 events per 10 minutes</span>
 <span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>
 
 <span class="c1"># Generate random variables</span>
-<span class="n">data1</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">mu1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
-<span class="n">data2</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">mu2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+<span class="n">data1</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">λ1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">λ2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
 
 <span class="c1"># Calculate the confidence intervals</span>
-<span class="n">conf_int1</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">mu1</span><span class="p">)</span>
-<span class="n">conf_int2</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">mu2</span><span class="p">)</span>
+<span class="n">conf_int1</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">λ1</span><span class="p">)</span>
+<span class="n">conf_int2</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">λ2</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for mu=700 is </span><span class="si">{</span><span class="n">conf_int1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for mu=7000 is </span><span class="si">{</span><span class="n">conf_int2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for lambda=700 is </span><span class="si">{</span><span class="n">conf_int1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for lambda=7000 is </span><span class="si">{</span><span class="n">conf_int2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Create boxplots</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="o">/</span><span class="mi">10</span><span class="p">])</span> <span class="c1"># normalize the second dataset</span>
@@ -794,30 +796,30 @@ Standard deviation of the distribution = 10.954
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for mu=700 is (np.float64(649.0), np.float64(752.0))
-The 95% confidence interval for mu=7000 is (np.float64(6836.0), np.float64(7164.0))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for lambda=700 is (649.0, 752.0)
+The 95% confidence interval for lambda=7000 is (6836.0, 7164.0)
 </pre></div>
 </div>
-<img alt="_images/ee4ddb91540ac2bbdca8c727dba3ccd9459fad8b9a30cf1f345842c583ee7b8e.png" src="_images/ee4ddb91540ac2bbdca8c727dba3ccd9459fad8b9a30cf1f345842c583ee7b8e.png" />
+<img alt="_images/a888531a7012348d7f970d15c022211d338a9d8dc0a08e6be8479a98f3309ccd.png" src="_images/a888531a7012348d7f970d15c022211d338a9d8dc0a08e6be8479a98f3309ccd.png" />
 </div>
 </div>
 <p>When dealing with count data, especially in the context of a Poisson distribution, it’s important to compute the confidence interval with the actual counts first and only then normalize by the time interval (or space interval) for several reasons:</p>
 <ol class="arabic simple">
-<li><p>Discreteness of Count Data: Count data are discrete, meaning they can only take on integer values (0, 1, 2, 3, …). The Poisson distribution, which is often used to model count data, is a discrete probability distribution. Therefore, it’s appropriate to calculate the confidence interval based on the actual counts, which are also discrete.</p></li>
-<li><p>Preservation of Variability: The actual counts capture the inherent variability in the data. When we divide by the time interval, we’re essentially normalizing or standardizing the data, which can mask some of this variability. Calculating the confidence interval with the actual counts ensures that this variability is taken into account.</p></li>
-<li><p>Accuracy of Confidence Interval: The confidence interval calculated with the actual counts gives the range of values that the true count is likely to fall within, with a certain level of confidence. If we were to divide by the time interval before calculating the confidence interval, the resulting interval would not accurately reflect the variability in the counts.</p></li>
+<li><p>Discreteness of count data: count data are discrete, meaning they can only take on integer values (0, 1, 2, 3, …). The Poisson distribution, which is often used to model count data, is a discrete probability distribution. Therefore, it’s appropriate to calculate the confidence interval based on the actual counts, which are also discrete.</p></li>
+<li><p>Preservation of variability: the actual counts capture the inherent variability in the data. When we divide by the time interval, we’re essentially normalizing or standardizing the data, which can mask some of this variability. Calculating the confidence interval with the actual counts ensures that this variability is taken into account.</p></li>
+<li><p>Accuracy of confidence interval: the confidence interval calculated with the actual counts gives the range of values that the true count is likely to fall within, with a certain level of confidence. If we were to divide by the time interval before calculating the confidence interval, the resulting interval would not accurately reflect the variability in the counts.</p></li>
 </ol>
-<p>After calculating the confidence interval with the actual counts, we can then divide by the time interval to get the average rate of events per unit of time. This gives us a normalized measure, or the <strong>average rate of events per unit of time</strong> (or per unit of space), that is easier to interpret and compare across different time intervals or space intervals.</p>
+<p>After calculating the confidence interval with the actual counts, we can then divide by the time interval to get the average rate of events per unit of time. This gives us a normalized measure, or the <em>average rate of events per unit of time</em> (or per unit of space), that is easier to interpret and compare across different time intervals or space intervals.</p>
 <p>Remember, this normalization is valid under the assumption that the events are occurring at a constant average rate. If the rate is not constant, the confidence interval for the average rate per unit of time might not be accurate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for the average rate mu=700/minute is </span><span class="se">\</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for the average rate λ=700/minute is </span><span class="se">\</span>
 <span class="si">{</span><span class="p">[</span><span class="n">bound</span><span class="o">/</span><span class="mi">10</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">conf_int2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for the average rate mu=700/minute is [np.float64(683.6), np.float64(716.4)]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for the average rate λ=700/minute is [683.6, 716.4]
 </pre></div>
 </div>
 </div>
@@ -842,14 +844,14 @@ The 95% confidence interval for mu=7000 is (np.float64(6836.0), np.float64(7164.
 <span class="n">ci1</span> <span class="o">=</span> <span class="n">smr</span><span class="o">.</span><span class="n">confint_poisson</span><span class="p">(</span><span class="n">count1</span><span class="p">,</span> <span class="n">exposure1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
 <span class="n">ci2</span> <span class="o">=</span> <span class="n">smr</span><span class="o">.</span><span class="n">confint_poisson</span><span class="p">(</span><span class="n">count2</span><span class="p">,</span> <span class="n">exposure2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% CI (Asymptotic approx) for mu=700/min: </span><span class="si">{</span><span class="n">ci1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% CI (Asymptotic approx) for mu=7000/10min: </span><span class="si">{</span><span class="n">ci2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% CI (asymptotic approx) for λ=700/min: </span><span class="si">{</span><span class="n">ci1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% CI (asymptotic approx) for λ=7000/10min: </span><span class="si">{</span><span class="n">ci2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% CI (Asymptotic approx) for mu=700/min: (np.float64(650.0293970324473), np.float64(753.8120617882468))
-95% CI (Asymptotic approx) for mu=7000/10min: (np.float64(683.7927129089095), np.float64(716.59143297316))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% CI (asymptotic approx) for λ=700/min: (650.0293970324473, 753.8120617882468)
+95% CI (asymptotic approx) for λ=7000/10min: (683.7927129089095, 716.59143297316)
 </pre></div>
 </div>
 </div>
@@ -857,84 +859,81 @@ The 95% confidence interval for mu=7000 is (np.float64(6836.0), np.float64(7164.
 </section>
 <section id="zero-count">
 <h3>Zero count<a class="headerlink" href="#zero-count" title="Link to this heading">#</a></h3>
-<p>In this section, we will explore the scenario where the observed number of events is 0. This corresponds to a Poisson distribution with a mean <span class="math notranslate nohighlight">\(\lambda=0\)</span>.</p>
+<p>In this section, we will explore the scenario where the observed number of events is 0. This corresponds to a Poisson distribution with a mean λ = 0.</p>
 <p>The Poisson distribution is defined for all non-negative integers, so having an observed number of 0 is a valid scenario. However, if the mean of the distribution is 0, it means that the event is not expected to occur at all in the given interval of time or space.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters for the Poisson distribution</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="c1"># Generate the x values</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 
 <span class="c1"># Calculate the PMF</span>
-<span class="n">pmf</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+<span class="n">pmf</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">λ</span><span class="p">)</span>
 
 <span class="c1"># Create the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pmf</span><span class="p">)</span>
 <span class="c1"># plt.plot(x, pmf, &#39;bo&#39;, ms=8, label=&#39;poisson pmf&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Probability mass function ($\lambda=0$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Probability mass function (λ=</span><span class="si">{</span><span class="n">λ</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of events&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3b67784066622da69f079b72f9ed534b512cc74fc12e5f59e6e12fdd68063eaf.png" src="_images/3b67784066622da69f079b72f9ed534b512cc74fc12e5f59e6e12fdd68063eaf.png" />
+<img alt="_images/7a6d5388f95d18b193e869e43a740844c049a06c56af4fa71a979f8e559281ec.png" src="_images/7a6d5388f95d18b193e869e43a740844c049a06c56af4fa71a979f8e559281ec.png" />
 </div>
 </div>
-<p>As we see from the plot, the probability of observing 0 events is 1, and the probability of observing any other number of events is 0. This is consistent with our expectation that if the average rate of events (<span class="math notranslate nohighlight">\(\lambda\)</span>) is 0, then we should not expect to observe any events.</p>
-<p>In the case where the mean of the Poisson distribution is 0, the confidence interval would also be 0. This is because if the average rate of events (<span class="math notranslate nohighlight">\(\lambda\)</span>) is 0, then we should not expect to observe any events. Therefore, we can be 100% confident that the true average rate of occurrence (<span class="math notranslate nohighlight">\(\lambda\)</span>) lies within the interval [0, 0].</p>
+<p>As we see from the plot, the probability of observing 0 events is 1, and the probability of observing any other number of events is 0. This is consistent with our expectation that if the average rate of events λ is 0, then we should not expect to observe any events.</p>
+<p>In the case where the mean of the Poisson distribution is 0, the confidence interval would also be 0. This is because if λ=0, then we should not expect to observe any events. Therefore, we can be 100% confident that the true average rate of occurrence lies within the interval [0, 0].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters for the Poisson distribution</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># Calculate the confidence interval using ppf</span>
-<span class="n">conf_int</span> <span class="o">=</span> <span class="p">[</span><span class="n">poisson</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">mu</span><span class="p">),</span> <span class="n">poisson</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">mu</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the confidence interval using ppf</span>
+<span class="n">conf_int</span> <span class="o">=</span> <span class="p">[</span><span class="n">poisson</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">λ</span><span class="p">),</span> <span class="n">poisson</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">λ</span><span class="p">)]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval is </span><span class="si">{</span><span class="n">conf_int</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval is [np.float64(0.0), np.float64(0.0)]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval is [0.0, 0.0]
 </pre></div>
 </div>
 </div>
 </div>
-<p>If the mean (<span class="math notranslate nohighlight">\(\lambda\)</span>) of the Poisson distribution is 0.1, it means that the event is expected to occur 0.1 times on average in the given interval of time or space. This would be a rare event, but it’s still possible.</p>
+<p>If the mean of the Poisson distribution is 0.1, it means that the event is expected to occur 0.1 times on average in the given interval of time or space. This would be a rare event, but it’s still possible.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters for the Poisson distribution</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mf">0.1</span>
 
 <span class="c1"># Generate the x values</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 
 <span class="c1"># Calculate the PMF</span>
-<span class="n">pmf</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+<span class="n">pmf</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">λ</span><span class="p">)</span>
 
 <span class="c1"># Create the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pmf</span><span class="p">)</span>
 <span class="c1"># plt.plot(x, pmf, &#39;bo&#39;, ms=8, label=&#39;poisson pmf&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Probability mass function ($\lambda=0.1$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Probability mass function (λ=</span><span class="si">{</span><span class="n">λ</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of events&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># Calculate the confidence interval using ppf</span>
-<span class="n">conf_int</span> <span class="o">=</span> <span class="p">[</span><span class="n">poisson</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">mu</span><span class="p">),</span> <span class="n">poisson</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">mu</span><span class="p">)]</span>
+<span class="n">conf_int</span> <span class="o">=</span> <span class="p">[</span><span class="n">poisson</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">λ</span><span class="p">),</span> <span class="n">poisson</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">λ</span><span class="p">)]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval is </span><span class="si">{</span><span class="n">conf_int</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1b3b8fdfa308e6f6bac49c64e66eae6185f46eb52d49b39dbe9de88e1b1f55cc.png" src="_images/1b3b8fdfa308e6f6bac49c64e66eae6185f46eb52d49b39dbe9de88e1b1f55cc.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval is [np.float64(0.0), np.float64(1.0)]
+<img alt="_images/3af98618b5715a4cb8a121589c051d56cf707343f14a4490b560037aecf61070.png" src="_images/3af98618b5715a4cb8a121589c051d56cf707343f14a4490b560037aecf61070.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval is [0.0, 1.0]
 </pre></div>
 </div>
 </div>
@@ -943,10 +942,10 @@ The 95% confidence interval for mu=7000 is (np.float64(6836.0), np.float64(7164.
 </section>
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
-<p>In this chapter, we delved into the fascinating world of counted data and its statistical analysis using the Poisson Distribution. We explored how this powerful statistical tool can model discrete events in a fixed time or space, making it particularly useful in various fields such as epidemiology, traffic engineering, and social sciences.</p>
-<p>We discussed several examples, including the number of raisins in bagels and radioactive counts, and showed how to generate data, calculate confidence intervals, and plot histograms for these examples. We also explored different methods available in the <code class="docutils literal notranslate"><span class="pre">scipy.stats.poisson</span></code> module, such as <code class="docutils literal notranslate"><span class="pre">.pmf</span></code>, <code class="docutils literal notranslate"><span class="pre">.cdf</span></code>, <code class="docutils literal notranslate"><span class="pre">.ppf</span></code>, and <code class="docutils literal notranslate"><span class="pre">.interval</span></code>.</p>
+<p>In this chapter, we delved into the fascinating world of counted data and its statistical analysis using the Poisson distribution. We explored how this powerful statistical tool can model discrete events in a fixed time or space, making it particularly useful in various fields such as epidemiology, traffic engineering, and social sciences.</p>
+<p>We discussed several examples, including the number of raisins in bagels and radioactive counts, and showed how to generate data, calculate confidence intervals, and plot histograms for these examples. We also explored different methods available in the <code class="docutils literal notranslate"><span class="pre">scipy.stats.poisson</span></code> module, such as <code class="docutils literal notranslate"><span class="pre">pmf</span></code>, <code class="docutils literal notranslate"><span class="pre">cdf</span></code>, <code class="docutils literal notranslate"><span class="pre">ppf</span></code>, and <code class="docutils literal notranslate"><span class="pre">interval</span></code>.</p>
 <p>We highlighted the importance of computing the confidence interval with the actual counts before normalizing by the time interval. We also discussed the advantages of counting events over longer time intervals or in larger volumes, which leads to more precise estimates of the average rate of events.</p>
-<p>Finally, we examined special cases where the mean (<span class="math notranslate nohighlight">\(\lambda\)</span> or <span class="math notranslate nohighlight">\(\mu\)</span>) of the Poisson distribution is 0 or close to 0, and discussed the implications of these scenarios.</p>
+<p>Finally, we examined special cases where the mean λ (or μ) of the Poisson distribution is 0 or close to 0, and discussed the implications of these scenarios.</p>
 </section>
 <section id="cheat-sheet">
 <h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>
@@ -956,10 +955,10 @@ The 95% confidence interval for mu=7000 is (np.float64(6836.0), np.float64(7164.
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">poisson</span>
 
 <span class="c1"># Parameters of the Poisson distribution</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mf">7.6</span>  <span class="c1"># mu or lambda</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mf">7.6</span>  <span class="c1"># mu or lambda</span>
 
 <span class="c1"># Simulate the experiments</span>
-<span class="n">poisson_distribution</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">)</span>
+<span class="n">poisson_distribution</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">λ</span><span class="p">)</span>
 
 <span class="c1"># Calculate mean, variance (and more), median and SD from the distribution</span>
 <span class="n">poisson_distribution</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mv&#39;</span><span class="p">)</span>
@@ -1002,13 +1001,13 @@ The 95% confidence interval for mu=7000 is (np.float64(6836.0), np.float64(7164.
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate random variates</span>
 <span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># number of simulations</span>
 <span class="n">experiments</span> <span class="o">=</span> <span class="n">poisson_distribution</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
-<span class="c1"># experiments = poisson.rvs(mu=mu, size=size)</span>
+<span class="c1"># experiments = poisson.rvs(mu=λ, size=size)</span>
 
 <span class="c1"># Bootstrap 95% percentiles</span>
 <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">experiments</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">])</span>
 
 <span class="c1"># 95% CI Normal approximation for large count values (&gt;30)</span>
-<span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mu</span><span class="p">),</span> <span class="n">mu</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mu</span><span class="p">))</span>
+<span class="p">(</span><span class="n">λ</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">λ</span><span class="p">),</span> <span class="n">λ</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">λ</span><span class="p">))</span>
 
 <span class="c1"># 95% CI with equal areas around the median</span>
 <span class="n">poisson_distribution</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">confidence</span><span class="o">=</span><span class="mf">.95</span><span class="p">)</span>
@@ -1070,9 +1069,9 @@ The 95% confidence interval for mu=7000 is (np.float64(6836.0), np.float64(7164.
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
 -------------
-numpy: 2.1.2
+numpy: 1.26.4
 scipy: 1.14.1
-statsmodels: 0.14.4
+statsmodels: 0.14.2
 matplotlib: 3.9.2
 seaborn: 0.13.2
 </pre></div>
@@ -1151,7 +1150,7 @@ seaborn: 0.13.2
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-raisins-in-bagels">Example of raisins in bagels</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-shortcut-approximation">A shortcut approximation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#percent-point-function">Percent Point Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#percent-point-function">Percent point function</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lollipop-plot">Lollipop plot</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-radioactive-count">Example of radioactive count</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantage-of-counting-for-longer-time-intervals-or-in-larger-volumes">Advantage of counting for longer time intervals or in larger volumes</a></li>

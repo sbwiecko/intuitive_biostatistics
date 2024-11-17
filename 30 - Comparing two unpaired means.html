@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -603,7 +603,7 @@ Descriptive statistics for &#39;young&#39;:
 <p>Before proceeding with any hypothesis test, it’s crucial to verify that our data adheres to the underlying assumptions of the chosen statistical method. This subsection emphasizes the importance of checking for normality and homogeneity of variance, two common assumptions in many parametric tests, including the unpaired t-test. We’ll briefly discuss the methods used to assess these assumptions, such as normality tests and tests for equal variances, and outline the potential consequences of violating these assumptions. Additionally, we’ll highlight the available remedies or alternative approaches when assumptions are not met, ensuring the robustness and validity of our statistical inferences.</p>
 <section id="normality-testing">
 <h4>Normality testing<a class="headerlink" href="#normality-testing" title="Link to this heading">#</a></h4>
-<p>One of the fundamental assumptions of the unpaired t-test is that the data within each group is approximately normally distributed. To assess this assumption, we employ normality tests such as the D’Agostino-Pearson omnibus K² and Shapiro-Wilk tests, or visual inspections of histograms or Q-Q plots, <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html">as discussed in greater details in a previous chapter about normality test</a>. These tests help us gauge whether the observed data aligns with the expected characteristics of a normal distribution.</p>
+<p>One of the fundamental assumptions of the unpaired t-test is that the data within each group is approximately normally distributed. To assess this assumption, we employ normality tests such as the D’Agostino-Pearson omnibus K² and Shapiro-Wilk tests, or visual inspections of histograms or Q-Q plots, as discussed in greater details in a previous chapter about normality test. These tests help us gauge whether the observed data aligns with the expected characteristics of a normal distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normality tests</span>
@@ -663,7 +663,7 @@ c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html#normality-tests-using-pingouin">As discussed previsouly</a>, Pingouin’s normality function actually performs both the Shapiro-Wilk test and the D’Agostino-Pearson test.</p>
+<p>Pingouin’s normality function actually performs both the Shapiro-Wilk test and the D’Agostino-Pearson test.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
@@ -696,6 +696,10 @@ c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics\.env\Lib\site-packages\scipy\stats\_axis_nan_policy.py:418: UserWarning: `kurtosistest` p-value may be inaccurate with fewer than 20 observations; only n=9 observations were given.
+  return hypotest_fun_in(*args, **kwds)
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------Normality tests for old rats-------
 Test                 W      P value  normal
 D&#39;Agostino-Pearson   0.11   0.947    True
@@ -743,7 +747,7 @@ Shapiro-Wilk         0.89   0.238    True
 <p>In such cases, we have a few options:</p>
 <ul class="simple">
 <li><p>Transform the data: if the data exhibits a clear pattern of non-normality, we might attempt to transform it (e.g., using log transformations or square root transformations) to achieve a more normal distribution.</p></li>
-<li><p>Use non-parametric alternatives: when transformations are ineffective or impractical, we can consider non-parametric tests like the <em>Mann-Whitney U test</em>, <a class="reference internal" href="#nonparametric"><span class="std std-ref">as discussed in the dedicated section</span></a>, which do not rely on the normality assumption.</p></li>
+<li><p>Use non-parametric alternatives: when transformations are ineffective or impractical, we can consider non-parametric tests like the <em>Mann-Whitney U test</em>, <a class="reference internal" href="#nonparametric"><span class="xref myst">as discussed in the dedicated section</span></a>, which do not rely on the normality assumption.</p></li>
 <li><p>Proceed with caution: if the sample sizes are relatively large and the deviations from normality are not severe, we might proceed with the unpaired t-test, acknowledging the potential limitations in the interpretation of the results.</p></li>
 </ul>
 </section>
@@ -752,7 +756,7 @@ Shapiro-Wilk         0.89   0.238    True
 <p>Another crucial assumption underlying the unpaired t-test is that the variances (or spreads) of the two groups being compared are approximately equal. This property is known as <strong>homoscedasticity</strong>. In this subsection, we’ll explore the importance of this assumption and introduce statistical tests, such as Levene’s test, that help us assess whether our data meets this criterion.</p>
 <section id="f-test-of-equality-of-variances">
 <h5>F-test of equality of variances<a class="headerlink" href="#f-test-of-equality-of-variances" title="Link to this heading">#</a></h5>
-<p>The <strong>F-test</strong>, formally known as the <em>F-test of equality of variances</em>, is a statistical method used to compare the variances of two or more groups. In our context, it assesses whether the ‘old’ and ‘young’ groups have significantly different variances. The test calculates an F-statistic based on the <em>ratio of the group variances</em> and their respective <em>sample sizes</em>. This F-statistic is then compared to an <strong>F distribution</strong> to obtain a P value.</p>
+<p>The <strong>F-test</strong>, formally known as the <em>F-test of equality of variances</em>, is a statistical method used to compare the variances of two or more groups. In our context, it assesses whether the ‘old’ and ‘young’ groups have significantly different variances. The test calculates an F-statistic based on the <em>ratio of the group variances</em> and their respective <em>sample sizes</em>. This F-statistic is then compared to an <strong>F-distribution</strong> to obtain a P value.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate sample variances s (unbiased estimator)</span>
@@ -791,14 +795,14 @@ P value for the F-test of equal variance (manual calculation) = 0.2631
 </div>
 </div>
 </div>
-<p>Assuming the null hypothesis of equal variances is true, there is a 26.31% probability that we would observe a discrepancy between the sample standard deviations as large as (or larger than) the one we found, purely due to random sampling. Let’s visualize the F-statistic (<span class="math notranslate nohighlight">\(F\)</span>), critical F-value (<span class="math notranslate nohighlight">\(F^\ast\)</span>), and the area (<span class="math notranslate nohighlight">\(P\)</span> value) under the F distribution corresponding to our dataset.</p>
+<p>Assuming the null hypothesis of equal variances is true, there is a 26.31% probability that we would observe a discrepancy between the sample standard deviations as large as (or larger than) the one we found, purely due to random sampling. Let’s visualize the F-statistic (F), critical F-value (F*), and the area (P value) under the F distribution corresponding to our dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Significance level (alpha)</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mf">0.05</span>
 
 <span class="c1"># Calculate critical value</span>
-<span class="n">f_crit</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">df_old</span><span class="p">,</span> <span class="n">df_yng</span><span class="p">)</span>
+<span class="n">f_crit</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">,</span> <span class="n">df_old</span><span class="p">,</span> <span class="n">df_yng</span><span class="p">)</span>
 
 <span class="c1"># Generate x values for plotting</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -812,7 +816,7 @@ P value for the F-test of equal variance (manual calculation) = 0.2631
     <span class="n">x</span><span class="o">=</span><span class="n">f_crit</span><span class="p">,</span> <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$F^\ast$ (</span><span class="si">{</span><span class="n">f_crit</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;F* (</span><span class="si">{</span><span class="n">f_crit</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the probability alpha</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
@@ -821,34 +825,34 @@ P value for the F-test of equal variance (manual calculation) = 0.2631
     <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
     <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;α (</span><span class="si">{</span><span class="n">α</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot the observed F-statistic</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">f_statistic</span><span class="p">,</span> <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$F$ (</span><span class="si">{</span><span class="n">f_statistic</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;F (</span><span class="si">{</span><span class="n">f_statistic</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the P value area</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">f_statistic</span><span class="p">],</span>
     <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">f_statistic</span><span class="p">],</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$P$ (</span><span class="si">{</span><span class="n">p_value_fstat</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_fstat</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$F$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;F-distribution (DFn=</span><span class="si">{</span><span class="n">df_old</span><span class="si">}</span><span class="s2">, DFd=</span><span class="si">{</span><span class="n">df_yng</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F-distribution (DFn=</span><span class="si">{</span><span class="n">df_old</span><span class="si">}</span><span class="s2">, DFd=</span><span class="si">{</span><span class="n">df_yng</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/989b5bfdffc8573bd4eb8a0b984a7c0a4f5e4a2d8c74b1f2e5777e96b959d0f7.png" src="_images/989b5bfdffc8573bd4eb8a0b984a7c0a4f5e4a2d8c74b1f2e5777e96b959d0f7.png" />
+<img alt="_images/0d9c6854a63559264132200dab4db5cd75b0c77b1ad90d725b7d0e1b2923ea81.png" src="_images/0d9c6854a63559264132200dab4db5cd75b0c77b1ad90d725b7d0e1b2923ea81.png" />
 </div>
 </div>
 <p>In the context of homoscedasticity tests like Levene’s test or Bartlett’s test, the <em>null hypothesis states that the variances are equal</em>.</p>
@@ -914,7 +918,7 @@ bartlett  1.290011  0.256046       True
 </div>
 </div>
 </div>
-<p>A small P value, indicating a potential violation of the equal variances assumption, presents a nuanced situation. While some fields, including certain areas of biology, might tolerate minor deviations from homoscedasticity, it’s generally advisable to adopt a more conservative approach. Consider using <strong><a class="reference internal" href="#welch"><span class="std std-ref">Welch’s t-test</span></a></strong>, which is designed to handle unequal variances, or explore data transformations that might improve the homogeneity of variances. In cases of severe non-normality or highly unequal variances, especially with small sample sizes, consider using the <a class="reference internal" href="#nonparametric"><span class="std std-ref">non-parametric Mann-Whitney U test</span></a> as a robust alternative to Welch’s t-test, or a <a class="reference internal" href="#bootstrap"><span class="std std-ref">bootstrap approach</span></a>.</p>
+<p>A small P value, indicating a potential violation of the equal variances assumption, presents a nuanced situation. While some fields, including certain areas of biology, might tolerate minor deviations from homoscedasticity, it’s generally advisable to adopt a more conservative approach. Consider using <strong>Welch’s t-test</strong>, which is designed to handle unequal variances, or explore data transformations that might improve the homogeneity of variances. In cases of severe non-normality or highly unequal variances, especially with small sample sizes, consider using the non-parametric Mann-Whitney U test as a robust alternative to Welch’s t-test, or a bootstrap approach, both discussed at the end of this chapter.</p>
 </section>
 </section>
 </section>
@@ -937,17 +941,17 @@ bartlett  1.290011  0.256046       True
 </div>
 <section id="the-t-ratio">
 <h3>The t-ratio<a class="headerlink" href="#the-t-ratio" title="Link to this heading">#</a></h3>
-<p>At the core of the unpaired t-test lies the <strong>t-ratio</strong> (also named <em>t-value</em>, or <em>t-score</em>), a pivotal statistic that quantifies the <em>disparity between the means of two groups relative to their combined variability</em>. The t-ratio used in the unpaired t-test shares a structural resemblance to the <em>t-statistic</em> we encountered earlier when <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/12%20-%20Confidence%20Interval%20of%20a%20Mean.html#the-t-statistic">constructing confidence intervals for a single mean</a>. Both involve a ratio of a difference to a measure of variability and follow a t-distribution. However, the t-ratio in the unpaired t-test focuses on comparing two sample means, while the t-statistic for confidence intervals is used to estimate a single population mean.</p>
+<p>At the core of the unpaired t-test lies the <strong>t-ratio</strong>, also named <em>t-value</em>, or <em>t-score</em>, and abbreviated <strong>t</strong>, a pivotal statistic that quantifies the <em>disparity between the means of two groups relative to their combined variability</em>. The t-ratio used in the unpaired t-test shares a structural resemblance to the <em>t-statistic</em> we encountered earlier when constructing confidence intervals for a single mean in a previous chapter. Both involve a ratio of a difference to a measure of variability and follow a t-distribution. However, the t-ratio in the unpaired t-test focuses on comparing two sample means, while the t-statistic for confidence intervals is used to estimate a single population mean.</p>
 <p>In this subsection, we’ll delve into the mathematical underpinnings of the t-ratio, exploring how it incorporates sample means, variances, and sample sizes to provide a standardized measure of the difference between groups. Understanding the t-ratio is crucial for interpreting the results of the unpaired t-test and drawing meaningful conclusions about the statistical significance of any observed differences.</p>
 </section>
 <section id="welch-s-t-test">
-<span id="welch"></span><h3>Welch’s t-test<a class="headerlink" href="#welch-s-t-test" title="Link to this heading">#</a></h3>
+<h3>Welch’s t-test<a class="headerlink" href="#welch-s-t-test" title="Link to this heading">#</a></h3>
 <section id="manual-calculation-of-the-welch-s-t-ratio">
 <h4>Manual calculation of the Welch’s t-ratio<a class="headerlink" href="#manual-calculation-of-the-welch-s-t-ratio" title="Link to this heading">#</a></h4>
 <p>In the <em>general case</em>, where we do not assume equal variances, the t-ratio for the unpaired t-test is often referred to as <strong>Welch’s t-statistic</strong>. This test utilizes the following t-statistic:</p>
 <div class="math notranslate nohighlight">
 \[t = \frac{\bar x_1 - \bar x_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\bar x_1\)</span> and <span class="math notranslate nohighlight">\(\bar x_2\)</span> are the sample means, <span class="math notranslate nohighlight">\(s_1^2\)</span>  and <span class="math notranslate nohighlight">\(s_2^2\)</span> are the <strong>sample variances</strong> of the two groups, and <span class="math notranslate nohighlight">\(n_1\)</span> and <span class="math notranslate nohighlight">\(n_2\)</span> are the sample sizes. <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/09%20-%20Quantifying%20Scatter%20of%20Continuous%20Data.html#standard-error-of-the-mean-sem">Remember the relationships</a> between variance <span class="math notranslate nohighlight">\(s^2\)</span>, standard deviation <span class="math notranslate nohighlight">\(s\)</span>, and standard error <span class="math notranslate nohighlight">\(s_{\overline{x}} = s / \sqrt{n}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\bar x_1\)</span> and <span class="math notranslate nohighlight">\(\bar x_2\)</span> are the sample means, <span class="math notranslate nohighlight">\(s_1^2\)</span>  and <span class="math notranslate nohighlight">\(s_2^2\)</span> are the <strong>sample variances</strong> of the two groups, and <span class="math notranslate nohighlight">\(n_1\)</span> and <span class="math notranslate nohighlight">\(n_2\)</span> are the sample sizes. Remember the relationships between variance <span class="math notranslate nohighlight">\(s^2\)</span>, standard deviation <span class="math notranslate nohighlight">\(s\)</span>, and standard error of the mean: <span class="math notranslate nohighlight">\(s_{\overline{x}} = s / \sqrt{n}\)</span>.</p>
 <p>The standard error of the difference between the means with “unequal variances”, denoted by <span class="math notranslate nohighlight">\(s_{\bar x_1 - \bar x_2}\)</span>, is calculated as the square root of the sum of the estimated variances of the two sample means:</p>
 <div class="math notranslate nohighlight">
 \[s_{\bar x_1 - \bar x_2} = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}\]</div>
@@ -993,7 +997,7 @@ bartlett  1.290011  0.256046       True
 </section>
 <section id="welch-s-p-value">
 <h4>Welch’s P value<a class="headerlink" href="#welch-s-p-value" title="Link to this heading">#</a></h4>
-<p>Now that we have our t-statistic and degrees of freedom, we can determine the <strong>P value</strong> associated with our test. The P value will quantify the probability of observing a t-statistic as extreme as (or more extreme than) the one we calculated, assuming the null hypothesis of no difference between the group means is true. We will utilize the cumulative distribution function (CDF) of the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/12%20-%20Confidence%20Interval%20of%20a%20Mean.html#the-t-distribution">t-distribution</a> to compute this probability.</p>
+<p>Now that we have our t-statistic and degrees of freedom, we can determine the <strong>P value</strong> associated with our test. The P value will quantify the probability of observing a t-statistic as extreme as (or more extreme than) the one we calculated, assuming the null hypothesis of no difference between the group means is true. We will utilize the cumulative distribution function (CDF) of the t-distribution to compute this probability.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the P value using the t-distribution (two-sided test)</span>
@@ -1017,11 +1021,11 @@ bartlett  1.290011  0.256046       True
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Significance level (alpha)</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mf">0.05</span>
 
 <span class="c1"># Calculate critical t-values (two-tailed test)</span>
-<span class="n">t_crit_lower_welch</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df_welch</span><span class="p">)</span>
-<span class="n">t_crit_upper_welch</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df_welch</span><span class="p">)</span>
+<span class="n">t_crit_lower_welch</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">α</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df_welch</span><span class="p">)</span>
+<span class="n">t_crit_upper_welch</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df_welch</span><span class="p">)</span>
 
 <span class="c1"># Generate x values for plotting</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
@@ -1035,7 +1039,7 @@ bartlett  1.290011  0.256046       True
     <span class="n">x</span><span class="o">=</span><span class="n">t_crit_upper_welch</span><span class="p">,</span> <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$t^\ast$ (</span><span class="si">{</span><span class="n">t_crit_upper_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;t* (</span><span class="si">{</span><span class="n">t_crit_upper_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">t_crit_lower_welch</span><span class="p">,</span> <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
@@ -1048,7 +1052,7 @@ bartlett  1.290011  0.256046       True
     <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
     <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;α (</span><span class="si">{</span><span class="n">α</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper_welch</span><span class="p">],</span>
     <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper_welch</span><span class="p">],</span>
@@ -1061,35 +1065,35 @@ bartlett  1.290011  0.256046       True
     <span class="n">x</span><span class="o">=</span><span class="n">t_statistic_welch</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$t$ (</span><span class="si">{</span><span class="n">t_statistic_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;t (</span><span class="si">{</span><span class="n">t_statistic_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the P-value areas (two-tailed)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_welch</span><span class="p">)],</span>
     <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_welch</span><span class="p">)],</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$P$ (</span><span class="si">{</span><span class="n">p_value_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_welch</span><span class="p">)],</span>
     <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_welch</span><span class="p">)],</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;t-distribution (DF=</span><span class="si">{</span><span class="n">df_welch</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">) | Welch, two-tailed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-distribution (DF=</span><span class="si">{</span><span class="n">df_welch</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">) | Welch, two-tailed&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5bed4d67caa16377ff65c66ff94499559eaf3522e9e33be64bee8d1bf96e67f5.png" src="_images/5bed4d67caa16377ff65c66ff94499559eaf3522e9e33be64bee8d1bf96e67f5.png" />
+<img alt="_images/80209cf538cabd3aee3943287411c856ae50a5e274c577e4e967fe298677e618.png" src="_images/80209cf538cabd3aee3943287411c856ae50a5e274c577e4e967fe298677e618.png" />
 </div>
 </div>
 <p>The red dashed lines in this diagram represent the critical t-values that define the <em>rejection regions</em> for a two-tailed t-test at a 5% significance level. The ‘tails’ of the curve outside these lines each represent 2.5% of the probability distribution under the null hypothesis (that the true population mean difference is zero).</p>
-<p>The green dot-dashed line represents the observed t-statistic calculated from our sample data. The P value corresponds to the total probability of observing a t-statistic as extreme as (or more extreme than) the one we calculated, assuming the null hypothesis is true. In a two-tailed test like this, we consider <em>both tails of the distribution</em> because the true population mean difference could be either higher or lower than zero. <a class="reference internal" href="#one-sided"><span class="std std-ref">One-tailed tests (as shown later)</span></a> are used when we have a directional hypothesis, specifically testing if the difference is ‘less than zero’ or ‘greater than zero’.</p>
+<p>The green dot-dashed line represents the observed t-statistic calculated from our sample data. The P value corresponds to the total probability of observing a t-statistic as extreme as (or more extreme than) the one we calculated, assuming the null hypothesis is true. In a two-tailed test like this, we consider <em>both tails of the distribution</em> because the true population mean difference could be either higher or lower than zero. One-tailed tests (as shown later) are used when we have a directional hypothesis, specifically testing if the difference is ‘less than zero’ or ‘greater than zero’.</p>
 </section>
 <section id="welch-s-confidence-interval">
 <h4>Welch’s confidence interval<a class="headerlink" href="#welch-s-confidence-interval" title="Link to this heading">#</a></h4>
@@ -1209,18 +1213,18 @@ Welch&#39;s t-test results (Pingouin):
 <p>Starting from the general formula of the t-ratio, and under the assumption of equal variance where <span class="math notranslate nohighlight">\(s_1^2 = s_2^2 = s_p^2\)</span>, the t-ratio for the unpaired t-test assuming equal variances is calculated as follows:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align}
+\begin{aligned}
 t &amp;= \frac{\bar x_1 - \bar x_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} \\
 &amp;= \frac{\bar x_1 - \bar x_2}{\sqrt{s_p^2 \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}}
-\end{align}
+\end{aligned}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\bar x_1\)</span> and <span class="math notranslate nohighlight">\(\bar x_2\)</span> are the sample means, <span class="math notranslate nohighlight">\(n_1\)</span> and <span class="math notranslate nohighlight">\(n_2\)</span> are the sample sizes, and <span class="math notranslate nohighlight">\(s_p^2\)</span> is <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Pooled_variance">pooled sample variance</a></strong> <span class="math notranslate nohighlight">\(s_p^2\)</span> calculated as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align}
+\begin{aligned}
 s_p^2 &amp;= \frac{\sum_{i=1}^{n_1}(x_i - \bar x_1)^2 + \sum_{j=1}^{n_2}(x_j - \bar x_2)^2}{n_1 + n_2 - 2} \\
 &amp;= \frac{(n_1 - 1) s_1^2 + (n_2 - 1) s_2^2}{n_1 + n_2 - 2}
-\end{align}
+\end{aligned}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(s_1^2\)</span>  and <span class="math notranslate nohighlight">\(s_2^2\)</span> are the <strong>sample variances</strong> of the two groups. Even if we assume equal variances, we still need to combine the information from both samples to get a more precise estimate of the common variance.</p>
 <p>In the Student’s t-test, the standard error of the difference between the means is calculated using the pooled variance as:</p>
@@ -1269,7 +1273,7 @@ s_p^2 &amp;= \frac{\sum_{i=1}^{n_1}(x_i - \bar x_1)^2 + \sum_{j=1}^{n_2}(x_j - \
 </section>
 <section id="student-s-p-value">
 <h4>Student’s P value<a class="headerlink" href="#student-s-p-value" title="Link to this heading">#</a></h4>
-<p>Having calculated the t-statistic and degrees of freedom, we can now determine the P value. Similar to <a class="reference internal" href="#welch"><span class="std std-ref">Welch’s t-test</span></a>, we’ll use the t-distribution’s CDF to compute the P value, which quantifies the probability of observing such an extreme t-statistic (or more extreme) if the null hypothesis were true.</p>
+<p>Having calculated the t-statistic and degrees of freedom, we can now determine the P value. Similar to Welch’s t-test, we’ll use the t-distribution’s CDF to compute the P value, which quantifies the probability of observing such an extreme t-statistic (or more extreme) if the null hypothesis were true.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the P value using the t-distribution (two-sided test)</span>
@@ -1312,7 +1316,7 @@ s_p^2 &amp;= \frac{\sum_{i=1}^{n_1}(x_i - \bar x_1)^2 + \sum_{j=1}^{n_2}(x_j - \
     <span class="n">x</span><span class="o">=</span><span class="n">t_crit_upper_student</span><span class="p">,</span> <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$t^\ast$ (</span><span class="si">{</span><span class="n">t_crit_upper_student</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;t* (</span><span class="si">{</span><span class="n">t_crit_upper_student</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the rejection regions (alpha)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
@@ -1321,7 +1325,7 @@ s_p^2 &amp;= \frac{\sum_{i=1}^{n_1}(x_i - \bar x_1)^2 + \sum_{j=1}^{n_2}(x_j - \
     <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
     <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;α (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper_student</span><span class="p">],</span>
     <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper_student</span><span class="p">],</span>
@@ -1334,7 +1338,7 @@ s_p^2 &amp;= \frac{\sum_{i=1}^{n_1}(x_i - \bar x_1)^2 + \sum_{j=1}^{n_2}(x_j - \
     <span class="n">x</span><span class="o">=</span><span class="n">t_statistic_student</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$t$ (</span><span class="si">{</span><span class="n">t_statistic_student</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;t (</span><span class="si">{</span><span class="n">t_statistic_student</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the P-value areas (two-tailed)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
@@ -1352,13 +1356,13 @@ s_p^2 &amp;= \frac{\sum_{i=1}^{n_1}(x_i - \bar x_1)^2 + \sum_{j=1}^{n_2}(x_j - \
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;t-distribution (DF=</span><span class="si">{</span><span class="n">df_student</span><span class="si">}</span><span class="s2">) | Student, two-tailed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-distribution (DF=</span><span class="si">{</span><span class="n">df_student</span><span class="si">}</span><span class="s2">) | Student, two-tailed&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e3364140d58394957e74a846a223a68cabd3f4ffb54c77fbcf58290b70a4e035.png" src="_images/e3364140d58394957e74a846a223a68cabd3f4ffb54c77fbcf58290b70a4e035.png" />
+<img alt="_images/bdf5e8f351ee5b8dfe46ed051d9d071e413be1129268e57cf945144a462e220a.png" src="_images/bdf5e8f351ee5b8dfe46ed051d9d071e413be1129268e57cf945144a462e220a.png" />
 </div>
 </div>
 </section>
@@ -1467,7 +1471,7 @@ Student&#39;s t-test results (Pingouin):
 </section>
 <section id="effect-size">
 <h3>Effect size<a class="headerlink" href="#effect-size" title="Link to this heading">#</a></h3>
-<p>Cohen’s <span class="math notranslate nohighlight">\(d\)</span> is a widely used <strong>effect size</strong> measure for unpaired t-tests. It essentially standardizes the difference between the two group means by dividing it by a measure of variability:</p>
+<p>Cohen’s <em>d</em> is a widely used <strong>effect size</strong> measure for unpaired t-tests. It essentially standardizes the difference between the two group means by dividing it by a measure of variability:</p>
 <div class="math notranslate nohighlight">
 \[d = \frac{\bar X_1 - \bar X_2}{s}\]</div>
 <p>However, since we’re dealing with two independent groups, the calculation of the standard deviation (<span class="math notranslate nohighlight">\(s\)</span>) used in the denominator differs slightly depending on whether we assume equal variances or not, as we saw in the Welch and Student t-tests.</p>
@@ -1510,9 +1514,9 @@ Cohen&#39;s d (manual, Student&#39;s): 0.912
 </div>
 <p>The interpretation guidelines for Cohen’s d in unpaired t-tests are generally the same as those for paired t-tests (discussed in the next chapter):</p>
 <ul class="simple">
-<li><p>Small effect:  <span class="math notranslate nohighlight">\(d \approx 0.2\)</span></p></li>
-<li><p>Medium effect: <span class="math notranslate nohighlight">\(d \approx 0.5\)</span></p></li>
-<li><p>Large effect:  <span class="math notranslate nohighlight">\(d \approx 0.8\)</span></p></li>
+<li><p>Small effect:  d ≈ 0.2</p></li>
+<li><p>Medium effect: d ≈ 0.5</p></li>
+<li><p>Large effect:  d ≈ 0.8</p></li>
 </ul>
 <p>Effect size in unpaired t-tests helps understand the practical significance of the findings. A statistically significant result (small P value) doesn’t necessarily mean the effect is large or meaningful. Conversely, a non-significant result might still indicate a meaningful effect, especially if the study has low power due to a small sample size. By considering both the P value and the effect size, we can gain a more complete picture of your results and draw more informed conclusions.</p>
 </section>
@@ -2246,15 +2250,15 @@ memory usage: 17.2+ KB
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Standard deviation (SD)</p></td>
+<tr class="row-even"><td><p>SD</p></td>
 <td><p>No conclusion</p></td>
 <td><p>No conclusion</p></td>
 </tr>
-<tr class="row-odd"><td><p>Standard error of the mean (SEM)</p></td>
+<tr class="row-odd"><td><p>SEM</p></td>
 <td><p>Likely P &gt; 0.05</p></td>
 <td><p>No conclusion</p></td>
 </tr>
-<tr class="row-even"><td><p>95% confidence interval (CI)</p></td>
+<tr class="row-even"><td><p>95% CI</p></td>
 <td><p>No conclusion</p></td>
 <td><p>Likely P &lt; 0.05</p></td>
 </tr>
@@ -2263,7 +2267,7 @@ memory usage: 17.2+ KB
 </div>
 </section>
 <section id="one-sided-t-test">
-<span id="one-sided"></span><h4>One-sided t-test<a class="headerlink" href="#one-sided-t-test" title="Link to this heading">#</a></h4>
+<h4>One-sided t-test<a class="headerlink" href="#one-sided-t-test" title="Link to this heading">#</a></h4>
 <p>In our penguin dataset scenario, we aim to determine if the bill depth of Adelie penguins, after subtracting 3 mm, is still significantly greater than the bill depth of Gentoo penguins. Mathematically, we want to test if: <span class="math notranslate nohighlight">\(\bar x_\text{Adelie} - 3 &gt; \bar x_\text{Gentoo}\)</span>. We can restate <span class="math notranslate nohighlight">\(\bar x_{\text{Adelie} - 3} &gt; \bar x_\text{Gentoo}\)</span>. This allows us to frame our hypotheses for a <strong>one-sided t-test</strong>:</p>
 <ul class="simple">
 <li><p>Null hypothesis (H0): the mean bill depth of Adelie penguins, minus 3 mm, is equal to or less than the mean bill depth of Gentoo penguins (<span class="math notranslate nohighlight">\(\bar x_\text{Adelie - 3} \le \bar x_\text{Gentoo}\)</span>).</p></li>
@@ -2383,7 +2387,7 @@ t-statistic = 2.684, P value = 0.00386, DF= 272.0
 </section>
 </section>
 <section id="non-parametric-methods">
-<span id="nonparametric"></span><h2>Non-parametric methods<a class="headerlink" href="#non-parametric-methods" title="Link to this heading">#</a></h2>
+<h2>Non-parametric methods<a class="headerlink" href="#non-parametric-methods" title="Link to this heading">#</a></h2>
 <p>While biological data rarely perfectly adhere to a Gaussian (normal) distribution, many biological variables exhibit an approximately bell-shaped distribution. Parametric tests, such as the t-test and ANOVA, are often robust to minor deviations from normality, especially with large samples. Consequently, these tests are widely used across various scientific disciplines.</p>
 <p><strong>Non-parametric</strong> methods offer a valuable set of tools for analyzing data when the assumptions of parametric tests, such as the t-test or ANOVA, are not met. Unlike parametric methods that assume the data are sampled from a Gaussian distribution, non-parametric methods do not rely on such strict distributional assumptions. Instead, many of these tests operate by <strong>ranking</strong> the data from low to high and analyzing these ranks, making them <em>less sensitive</em> (more <strong>robust</strong>) to outliers and deviations from normality. But when the data is truly Gaussian (normally distributed), non-parametric tests generally have lower statistical power compared to their parametric counterparts. This means they might be less likely to detect a true difference if one exists.</p>
 <p>The choice between parametric and non-parametric tests can also be influenced by the sample size:</p>
@@ -2412,7 +2416,7 @@ t-statistic = 2.684, P value = 0.00386, DF= 272.0
 <p>Moreover, reporting confidence intervals for non-parametric tests can be more challenging, and they might not be as readily available or interpretable as those for parametric tests, and extending non-parametric tests to more complex models, such as regression models, can be less straightforward compared to parametric methods.</p>
 <p>Below is a flowchart designed to help choosing which <a class="reference external" href="https://pingouin-stats.org/build/html/guidelines.html#non-parametric">functions of Pingouin are adequate for a non-parametric analysis</a>:</p>
 <p><img alt="selection of the nonparamettric method" src="https://pingouin-stats.org/build/html/_images/flowchart_nonparametric.svg" /></p>
-<p>Of note, computer-intensive methods like bootstrapping and permutation tests also fall under the non-parametric umbrella, as they don’t assume a specific distribution for the data. These methods provide robust alternatives for estimating P values and confidence intervals, especially when dealing with small sample sizes or non-normal data, and will be <a class="reference internal" href="#bootstrap"><span class="std std-ref">discussed in the next section</span></a>.</p>
+<p>Of note, computer-intensive methods like bootstrapping and permutation tests also fall under the non-parametric umbrella, as they don’t assume a specific distribution for the data. These methods provide robust alternatives for estimating P values and confidence intervals, especially when dealing with small sample sizes or non-normal data, and will be discussed in the next section.</p>
 <section id="performing-the-mann-whitney-u-test-manually">
 <h3>Performing the Mann-Whitney U test manually<a class="headerlink" href="#performing-the-mann-whitney-u-test-manually" title="Link to this heading">#</a></h3>
 <section id="exact-method">
@@ -2470,8 +2474,8 @@ t-statistic = 2.684, P value = 0.00386, DF= 272.0
 <span class="c1"># Print the results</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;U1 = </span><span class="si">{</span><span class="n">U1</span><span class="si">:</span><span class="s2">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;U2 = </span><span class="si">{</span><span class="n">U2</span><span class="si">:</span><span class="s2">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;U statistic = </span><span class="si">{</span><span class="n">U_statistic</span><span class="si">:</span><span class="s2">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;U critical (n=</span><span class="si">{</span><span class="n">n1</span><span class="si">}</span><span class="s2">, m=</span><span class="si">{</span><span class="n">n2</span><span class="si">}</span><span class="s2">, alpha=0.05) = </span><span class="si">{</span><span class="n">U_critical</span><span class="si">:</span><span class="s2">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;U = </span><span class="si">{</span><span class="n">U_statistic</span><span class="si">:</span><span class="s2">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;U* (n=</span><span class="si">{</span><span class="n">n1</span><span class="si">}</span><span class="s2">, m=</span><span class="si">{</span><span class="n">n2</span><span class="si">}</span><span class="s2">, alpha=0.05) = </span><span class="si">{</span><span class="n">U_critical</span><span class="si">:</span><span class="s2">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Compare U to the critical value and draw a conclusion</span>
 <span class="k">if</span> <span class="n">U_statistic</span> <span class="o">&lt;=</span> <span class="n">U_critical</span><span class="p">:</span>
@@ -2484,8 +2488,8 @@ t-statistic = 2.684, P value = 0.00386, DF= 272.0
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>U1 = 65
 U2 = 7
-U statistic = 7
-U critical (n=9, m=8, alpha=0.05) = 15
+U = 7
+U* (n=9, m=8, alpha=0.05) = 15
 Reject the null hypothesis. There is a significant difference between the groups.
 </pre></div>
 </div>
@@ -2787,22 +2791,22 @@ Reject the null hypothesis. There is a significant difference between the groups
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 
 <span class="c1"># Determine the meean and SD to approximate the distribution</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">*</span> <span class="n">n2</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n1</span> <span class="o">*</span> <span class="n">n2</span> <span class="o">*</span> <span class="p">(</span><span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span>  <span class="c1"># Based on the variance of rank sum</span>
+<span class="n">μ</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">*</span> <span class="n">n2</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">σ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n1</span> <span class="o">*</span> <span class="n">n2</span> <span class="o">*</span> <span class="p">(</span><span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span>  <span class="c1"># Based on the variance of rank sum</span>
 
 <span class="c1"># Generate x values for plotting the normal distribution</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="n">normal_pdf</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">μ</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span><span class="p">,</span> <span class="n">μ</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">normal_pdf</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">μ</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">σ</span><span class="p">)</span>
 
 <span class="c1"># Create the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">normal_pdf</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 
 <span class="c1"># Plot the critical U-values (two-tailed test)</span>
-<span class="n">U_crit_lower</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">-</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma</span>
-<span class="n">U_crit_upper</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">+</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma</span>
+<span class="n">U_crit_lower</span> <span class="o">=</span> <span class="n">μ</span> <span class="o">-</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">σ</span>
+<span class="n">U_crit_upper</span> <span class="o">=</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">σ</span>
 
 <span class="c1"># Calculate the z-score</span>
-<span class="n">z_score</span> <span class="o">=</span> <span class="p">(</span><span class="n">U_statistic</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span>
+<span class="n">z_score</span> <span class="o">=</span> <span class="p">(</span><span class="n">U_statistic</span> <span class="o">-</span> <span class="n">μ</span><span class="p">)</span> <span class="o">/</span> <span class="n">σ</span>
 
 <span class="c1"># Calculate the p-value (two-tailed)</span>
 <span class="n">p_value_U</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">z_score</span><span class="p">)))</span>
@@ -2815,7 +2819,7 @@ Reject the null hypothesis. There is a significant difference between the groups
     <span class="n">x</span><span class="o">=</span><span class="n">U_crit_upper</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$U^\ast$ (</span><span class="si">{</span><span class="n">U_crit_lower</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;U* (</span><span class="si">{</span><span class="n">U_crit_lower</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Shade the rejection regions (alpha)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
@@ -2825,14 +2829,14 @@ Reject the null hypothesis. There is a significant difference between the groups
     <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
     <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;α (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot the observed U-statistic</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">U_statistic</span><span class="p">),</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$U$ (</span><span class="si">{</span><span class="n">U_statistic</span><span class="si">:</span><span class="s1">n</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;U (</span><span class="si">{</span><span class="n">U_statistic</span><span class="si">:</span><span class="s1">n</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the P-value areas (two-tailed)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
@@ -2840,10 +2844,10 @@ Reject the null hypothesis. There is a significant difference between the groups
     <span class="n">normal_pdf</span><span class="p">,</span>
     <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">U_statistic</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">mu</span> <span class="o">+</span> <span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="n">U_statistic</span><span class="p">)),</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$P$ (</span><span class="si">{</span><span class="n">p_value_U</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;P (</span><span class="si">{</span><span class="n">p_value_U</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$U$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
@@ -2853,7 +2857,7 @@ Reject the null hypothesis. There is a significant difference between the groups
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a94c71de0aedf57cb44355239d8795e2539946443a2396f2e12ba4978dab8163.png" src="_images/a94c71de0aedf57cb44355239d8795e2539946443a2396f2e12ba4978dab8163.png" />
+<img alt="_images/2226c2e877378f3cc2204e94a0591b2ac561a1920ecfa038b186141ff8786e2d.png" src="_images/2226c2e877378f3cc2204e94a0591b2ac561a1920ecfa038b186141ff8786e2d.png" />
 </div>
 </div>
 </section>
@@ -2875,14 +2879,14 @@ Reject the null hypothesis. There is a significant difference between the groups
 <span class="c1"># Print the results</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mann-Whitney U test results:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exact P value: </span><span class="si">{</span><span class="n">p_value_exact</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Asymptotic P value (similar to normal distribution method): </span><span class="si">{</span><span class="n">p_value_asymptotic</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Asymptotic P value: </span><span class="si">{</span><span class="n">p_value_asymptotic</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mann-Whitney U test results:
 Exact P value: 0.00370
-Asymptotic P value (similar to normal distribution method): 0.00523
+Asymptotic P value: 0.00523
 </pre></div>
 </div>
 </div>
@@ -2937,8 +2941,8 @@ Asymptotic P value (similar to normal distribution method): 0.00523
 </section>
 </section>
 <section id="bootstrapping-and-permutation-tests">
-<span id="bootstrap"></span><h2>Bootstrapping and permutation tests<a class="headerlink" href="#bootstrapping-and-permutation-tests" title="Link to this heading">#</a></h2>
-<p><strong>Bootstrapping</strong> offers a powerful alternative for statistical inference, allowing us to <em>estimate parameters and confidence intervals</em> directly from the data itself, without relying on strong assumptions about the underlying population distribution. This approach, also known as <strong>non-parametric inference</strong>, was previously encountered in the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/12%20-%20Confidence%20Interval%20of%20a%20Mean.html#resampling">chapter on calculating the confidence interval of a mean (univariate)</a>.</p>
+<h2>Bootstrapping and permutation tests<a class="headerlink" href="#bootstrapping-and-permutation-tests" title="Link to this heading">#</a></h2>
+<p><strong>Bootstrapping</strong> offers a powerful alternative for statistical inference, allowing us to <em>estimate parameters and confidence intervals</em> directly from the data itself, without relying on strong assumptions about the underlying population distribution. This approach, also known as <strong>non-parametric inference</strong>, was previously encountered in the chapter on calculating the confidence interval of a mean (univariate).</p>
 <p>While bootstrapping is primarily used for estimation, <strong>permutation tests</strong>, another resampling-based method, are specifically designed for <em>hypothesis testing</em>. They can be employed to test various hypotheses, such as the null hypothesis of exchangeability (where group labels are irrelevant) or the hypothesis of equal means after shifting the group means to a common value.</p>
 <section id="the-essence-of-bootstrapping">
 <h3>The essence of bootstrapping<a class="headerlink" href="#the-essence-of-bootstrapping" title="Link to this heading">#</a></h3>
@@ -3034,7 +3038,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;97.5th (</span><span class="si">{</span><span class="n">bs_CI_mean_diff</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\bar x - \bar y$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Mean difference&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap distribution of mean differences (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
@@ -3042,7 +3046,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/081ed41f73bf92ab4ca0ecfdb31983615fcb1b8decce26fa0454c2dabd0808fc.png" src="_images/081ed41f73bf92ab4ca0ecfdb31983615fcb1b8decce26fa0454c2dabd0808fc.png" />
+<img alt="_images/6f1d3b32a126cfb54ec9cb3182c9ab1fd767945350090617afeb15cf6880723d.png" src="_images/6f1d3b32a126cfb54ec9cb3182c9ab1fd767945350090617afeb15cf6880723d.png" />
 </div>
 </div>
 <p>Bootstrapping relies entirely on the data in the original sample. If, by chance, the original samples have less variability or happen to be more representative of their respective populations, the bootstrap distribution might exhibit less spread, leading to a narrower confidence interval. And as bootstrapping involves random resampling, which introduces some inherent variability in the results, it’s possible that the particular set of bootstrap samples generated in this instance led to a slightly narrower confidence interval than the theoretical one based on the t-distribution. Moreover, the t-distribution-based confidence interval assumes that the data follows a normal distribution. If the actual data deviates from normality, especially in the tails, the t-distribution might overestimate the variability, resulting in a wider confidence interval than necessary.</p>
@@ -3093,15 +3097,15 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <ol class="arabic simple">
 <li><p>Draw a bootstrap sample <span class="math notranslate nohighlight">\(x_{1i}^*\)</span> of size <span class="math notranslate nohighlight">\(n_1\)</span> with replacement from <span class="math notranslate nohighlight">\(x_{1i}'\)</span></p></li>
 <li><p>Draw another bootstrap sample <span class="math notranslate nohighlight">\(x_{2i}^*\)</span> of size <span class="math notranslate nohighlight">\(n_2\)</span> with replacement from <span class="math notranslate nohighlight">\(x_{2i}'\)</span></p></li>
-<li><p>Calculate <a class="reference internal" href="#welch"><span class="std std-ref">Welch’s t-statistic</span></a> <span class="math notranslate nohighlight">\(t^*\)</span> using the bootstrap samples.</p></li>
+<li><p>Calculate <a class="reference internal" href="#welch"><span class="xref myst">Welch’s t-statistic</span></a> <span class="math notranslate nohighlight">\(t^*\)</span> using the bootstrap samples.</p></li>
 </ol>
 <p>Finally, we <a class="reference external" href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)#Bootstrap_hypothesis_testing">estimate the P value</a> as the proportion of bootstrap t-statistics that are as extreme as or more extreme than the observed t-statistic <span class="math notranslate nohighlight">\(t\)</span> from our original data:</p>
 <div class="math notranslate nohighlight">
-\[p = \frac{\sum_{i=1}^B I\{t_i^* \ge t \}}{B} | t \gt 0\]</div>
+\[p = \frac{\sum_{i=1}^B I\{t_i^* \ge t \}}{B} | t &gt; 0\]</div>
 <p>where <span class="math notranslate nohighlight">\(I\{\text{condition}\} = 1\)</span> if the <em>condition</em> is true and <span class="math notranslate nohighlight">\(0\)</span> otherwise. This P value represents the probability of observing a t-statistic as extreme as, or more extreme than, the one calculated from our original data, assuming the null hypothesis (H0) of equal population means is true.</p>
 <p>Importantly, we’re not just interested in any difference, but a difference in a <em>specific direction</em>. A positive statistic suggests an effect in one direction, a negative statistic suggests an effect in the opposite direction. Therefore, if the observed test statistic is negative, the P value is the proportion of bootstrapped test statistics that <em>are less than or equal</em> to the observed test statistic:</p>
 <div class="math notranslate nohighlight">
-\[p = \frac{\sum_{i=1}^B I\{t_i^* \le t \}}{B} | t \lt 0\]</div>
+\[p = \frac{\sum_{i=1}^B I\{t_i^* \le t \}}{B} | t &lt; 0\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the random seed for reproducibility</span>
@@ -3180,14 +3184,14 @@ Corresponding 95% CI estimate = [11.52 35.54]
     <span class="n">bins</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">n_replicates</span><span class="o">**</span><span class="mf">.5</span><span class="p">),</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span>
     <span class="c1"># alpha=0.75,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Bootstrap $t$&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bootstrap t&#39;</span><span class="p">)</span>
 
 <span class="c1"># Annotate the observed t-statistic</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">t_statistic_welch</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;Observed $t$ (</span><span class="si">{</span><span class="n">t_statistic_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Observed t (</span><span class="si">{</span><span class="n">t_statistic_welch</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Determine the direction of the observed statistic and plot accordingly</span>
 <span class="k">if</span> <span class="n">t_statistic_welch</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -3205,14 +3209,14 @@ Corresponding 95% CI estimate = [11.52 35.54]
             <span class="n">patches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lime&#39;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;Bootstrap distribution of $t$ under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap distribution of t under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Create a copy of the original patch for the legend</span>
-<span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Bootstrap $t$&#39;</span><span class="p">)</span>
+<span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bootstrap t&#39;</span><span class="p">)</span>
 <span class="c1"># Create a patch for the legend</span>
-<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$P$ (</span><span class="si">{</span><span class="n">p_value_bs_shifted</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_bs_shifted</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add the patches to the legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">original_patch</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_value_patch</span><span class="p">]);</span> <span class="c1"># type: ignore</span>
@@ -3220,7 +3224,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2d7b5578db0267600bdc79323596bfc833f4ec9aa4f2c3cace177109db6c9e3b.png" src="_images/2d7b5578db0267600bdc79323596bfc833f4ec9aa4f2c3cace177109db6c9e3b.png" />
+<img alt="_images/34ec6efa931edfb097060ccc0cd2658848a3174812866f2d89b072c86abf2846.png" src="_images/34ec6efa931edfb097060ccc0cd2658848a3174812866f2d89b072c86abf2846.png" />
 </div>
 </div>
 </section>
@@ -3354,14 +3358,14 @@ Corresponding 95% CI estimate = [11.52 35.54]
             <span class="n">patches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lime&#39;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\bar x - \bar y$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Mean difference&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribution of permutated mean differences under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Create a copy of the original patch for the legend</span>
 <span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Permuted $\bar x - \bar y$&#39;</span><span class="p">)</span>
 <span class="c1"># Create a patch for the legend</span>
-<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$P$ (</span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add the patches to the legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">original_patch</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_value_patch</span><span class="p">]);</span> <span class="c1"># type: ignore</span>
@@ -3369,7 +3373,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8c4808261ff7e6a17e48398014da68ba4404839de2889a41d56f0d5aeb1fe0de.png" src="_images/8c4808261ff7e6a17e48398014da68ba4404839de2889a41d56f0d5aeb1fe0de.png" />
+<img alt="_images/b1f1a417d7772837f6227f8e16a61f2f914e9991c2870ed803968c2bf44f2ae8.png" src="_images/b1f1a417d7772837f6227f8e16a61f2f914e9991c2870ed803968c2bf44f2ae8.png" />
 </div>
 </div>
 <p>All the P values are considerably smaller than the typical significance level of 0.05. This indicates strong evidence to <strong>reject the null hypothesis</strong> of no difference between the means of the “old” and “young” rat groups. Therefore, we can confidently conclude that there is a <strong>statistically significant difference</strong> between the means of the two groups. The data suggests that the “young” rats, on average, have a significantly different (likely higher, based on the previous context) outcome measurement compared to the “old” rats.</p>

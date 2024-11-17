@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -611,7 +611,7 @@ document.write(`
 <section id="assessing-the-normality-of-data">
 <h2>Assessing the normality of data<a class="headerlink" href="#assessing-the-normality-of-data" title="Link to this heading">#</a></h2>
 <p>The assumption of normality underpins many statistical procedures. But how can we determine whether our data truly follow a Gaussian distribution? Fortunately, we have an arsenal of tools at our disposal, both graphical and statistical, to assess normality.</p>
-<p><strong>Graphical methods</strong> provide a visual first impression, helping us identify obvious departures from normality. <a class="reference internal" href="#statistical-test"><span class="std std-ref"><strong>Statistical tests</strong></span></a>, on the other hand, offer a more rigorous quantitative assessment.</p>
+<p><strong>Graphical methods</strong> provide a visual first impression, helping us identify obvious departures from normality. <a class="reference internal" href="#statistical-test"><span class="xref myst"><strong>Statistical tests</strong></span></a>, on the other hand, offer a more rigorous quantitative assessment.</p>
 <section id="q-q-plots">
 <h3>Q-Q plots<a class="headerlink" href="#q-q-plots" title="Link to this heading">#</a></h3>
 <p>One of the most powerful tools for visual assessment is the <strong>quantile-quantile (Q-Q) plot</strong>. This plot compares the quantiles of the observed data against the quantiles of a theoretical normal distribution. If the data is perfectly normal, the points on the Q-Q plot will fall along a <em>straight diagonal line</em>. Deviations from this line signal departures from normality. How a Q-Q Plot is Constructed:</p>
@@ -785,7 +785,7 @@ Points falling outside the confidence intervals suggest deviations from normalit
 </section>
 </section>
 <section id="statistical-tests-for-normality">
-<span id="statistical-test"></span><h3>Statistical tests for normality<a class="headerlink" href="#statistical-tests-for-normality" title="Link to this heading">#</a></h3>
+<h3>Statistical tests for normality<a class="headerlink" href="#statistical-tests-for-normality" title="Link to this heading">#</a></h3>
 <p>To complement these visual assessments, statistical tests offer a <em>more objective and quantitative</em> way to evaluate whether the data significantly deviates from a normal distribution.</p>
 <p>Statistical normality tests operate by comparing the observed data to what would be expected under a perfect normal distribution. They then quantify the discrepancy between the two, typically resulting in a <em>test statistic</em> and a <em>P value</em>.</p>
 <ul class="simple">
@@ -986,7 +986,7 @@ Exponential: D&#39;Agostino-Pearson K²=29.04  p-value=0.000
 <li><p>Sorting: the test starts by sorting the data points from smallest to largest.</p></li>
 <li><p>Expected values: it then calculates the values we would expect to see at each rank (percentile) if the data were perfectly normally distributed. These expected values are based on the properties of the <em>standard normal distribution</em> (mean = 0, standard deviation = 1).</p></li>
 <li><p>Correlation: the test assesses the correlation between the observed sorted values and their corresponding expected values. If the data is perfectly normal, this correlation should be very high.</p></li>
-<li><p>Test statistic (<span class="math notranslate nohighlight">\(W\)</span>): the correlation is transformed into a test statistic called <span class="math notranslate nohighlight">\(W\)</span>, which ranges from 0 to 1. Values closer to 1 indicate a better fit to normality.</p></li>
+<li><p>Test statistic (W): the correlation is transformed into a test statistic called W, which ranges from 0 to 1. Values closer to 1 indicate a better fit to normality.</p></li>
 <li><p>P value: finally, a P value is calculated based on the W statistic. A small P value (typically &lt; 0.05) suggests that the observed data are <em>unlikely to have come from a normal distribution</em>, leading to the rejection of the null hypothesis of normality.</p></li>
 </ol>
 <p>While modern algorithms extend the Shapiro-Wilk test’s applicability to 5000 data points, it’s still <em>not ideal for very large samples</em>. For samples exceeding this limit, consider alternative tests like the D’Agostino-Pearson omnibus K2 test. Another limitation is that the Shapiro-Wilk test is generally powerful, but it might not be the most sensitive to specific types of deviations from normality, such as those affecting only the tails of the distribution.</p>
@@ -1220,7 +1220,7 @@ Omnibus p-value: 0.000
 </div>
 </div>
 <p>We can perform the (one-sample) K-S test using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kstest.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.kstest</span></code></a> as shown below.</p>
-<p>The test statistic <span class="math notranslate nohighlight">\(D\)</span> measures the maximum absolute difference between the empirical cumulative distribution function (ECDF) of the sample and the cumulative distribution function (CDF) of the standard normal distribution. A larger D value suggests a greater discrepancy from normality. In addition, the P value is the probability of observing a test statistic as extreme as or more extreme than the calculated D, assuming the null hypothesis (normality) is true. A small P value (typically &lt; 0.05) provides evidence against normality.</p>
+<p>The test statistic D measures the maximum absolute difference between the empirical cumulative distribution function (ECDF) of the sample and the cumulative distribution function (CDF) of the standard normal distribution. A larger D value suggests a greater discrepancy from normality. In addition, the P value is the probability of observing a test statistic as extreme as or more extreme than the calculated D, assuming the null hypothesis (normality) is true. A small P value (typically &lt; 0.05) provides evidence against normality.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>  <span class="c1"># For reproducibility</span>
@@ -1314,7 +1314,7 @@ Reject H0: evidence suggests the sample is NOT normally distributed
 <li><p>Univariate data:</p>
 <ul>
 <li><p>Histograms: looking for isolated bars or gaps in the distribution.</p></li>
-<li><p><strong>Box plots</strong>: identifying points that fall outside the whiskers (<span class="math notranslate nohighlight">\(1.5 \times \text{IQR}\)</span> from the quartiles).</p></li>
+<li><p><strong>Box plots</strong>: identifying points that fall outside the whiskers (1.5*IQR from the quartiles).</p></li>
 <li><p>Normal Q-Q plots: checking if points deviate significantly from the diagonal line, especially in the tails.</p></li>
 </ul>
 </li>

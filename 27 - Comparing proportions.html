@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -495,15 +495,15 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Contingency table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Fisher’s exact test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contingency table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Fisher’s exact test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-and-odds-ratio-analysis">Risk and odds ratio analysis</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-test">Z-test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Chi-squared goodness-of-fit test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Chi-squared goodness-of-fit test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-squared-distribution">Chi-squared distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Chi-squared test of independence</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Cochran-Armitage test for trend</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Case-control studies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Chi-squared test of independence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Cochran-Armitage test for trend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Case-control studies</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session information</a></li>
@@ -540,7 +540,7 @@ document.write(`
 </ul>
 </section>
 <section id="fisher-s-exact-test">
-<span id="fisher"></span><h2>Fisher’s exact test<a class="headerlink" href="#fisher-s-exact-test" title="Link to this heading">#</a></h2>
+<h2>Fisher’s exact test<a class="headerlink" href="#fisher-s-exact-test" title="Link to this heading">#</a></h2>
 <p>The core idea of Fisher’s test is to calculate the probability of obtaining the exact distribution of the data (or one more extreme) if there were truly no association between the variables (the null hypothesis H0). It does this by considering all possible ways the data could be arranged while keeping the row and column totals fixed. This allows for a precise P value calculation, even when other tests might falter.</p>
 <section id="when-to-use-fisher-s-test">
 <h3>When to use Fisher’s test<a class="headerlink" href="#when-to-use-fisher-s-test" title="Link to this heading">#</a></h3>
@@ -649,7 +649,7 @@ All        3  4    7
 </table>
 </div>
 <p>The goal of this analysis is to draw conclusions about the <em>general population</em> of patients who have experienced a thromboembolism. This is achieved by calculating confidence intervals (CIs) and a P value. The P value helps us answer a critical question: if the treatment truly doesn’t affect the risk of recurrence (our null hypothesis, H0), what’s the probability of observing incidence rates as different (or even more different) than what we see in our study, simply due to random chance?</p>
-<p>The most appropriate statistical test for this situation is Fisher’s exact test. However, Fisher’s test can become computationally challenging with large sample sizes. In those cases, the <a class="reference internal" href="#chi-squared"><span class="std std-ref">chi-square test</span></a> serves as a practical alternative, yielding nearly identical P values. The Fisher’s exact test is performed with <a class="reference external" href="https://docs.scipy.org/doc/scipy-1.13.1/reference/generated/scipy.stats.fisher_exact.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.fisher_exact</span></code></a> on a 2x2 contingency table.</p>
+<p>The most appropriate statistical test for this situation is Fisher’s exact test. However, Fisher’s test can become computationally challenging with large sample sizes. In those cases, the chi-square test (as discussed later) serves as a practical alternative, yielding nearly identical P values. The Fisher’s exact test is performed with <a class="reference external" href="https://docs.scipy.org/doc/scipy-1.13.1/reference/generated/scipy.stats.fisher_exact.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.fisher_exact</span></code></a> on a 2x2 contingency table.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contingency table with rows = alternative treatments, cols = alternative outcomes</span>
@@ -677,12 +677,12 @@ apixaban          14            826
 </div>
 </section>
 <section id="p-value">
-<span id="id1"></span><h3>P value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h3>
+<h3>P value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h3>
 <section id="hypergeometric-distribution">
 <h4>Hypergeometric distribution<a class="headerlink" href="#hypergeometric-distribution" title="Link to this heading">#</a></h4>
 <p>Fisher’s exact test relies on the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypergeometric_distribution">hypergeometric distribution</a> to compute the exact probability of observing a given contingency table (or one more extreme) under the null hypothesis of no association. Briefly, the hypergeometric distribution describes the probability of obtaining a specific number of successes in a sample drawn without replacement from a finite population containing two types of objects (e.g., cases and controls, exposed and unexposed).</p>
 <p>Assume the null hypothesis of independence is true, and constrain the marginal counts to be as observed. What is the chance of getting this exact table and what is the chance of getting a table at least as extreme?</p>
-<p>Imagine an urn with <span class="math notranslate nohighlight">\(n\)</span> white balls and <span class="math notranslate nohighlight">\(M - n\)</span> black balls. Draw <span class="math notranslate nohighlight">\(k\)</span> balls <em>without replacement</em>, and let <span class="math notranslate nohighlight">\(k\)</span> be the number of white balls in the sample:</p>
+<p>Imagine an urn with n white balls and <em>M - n</em> black balls. Draw k balls <em>without replacement</em>, and let k be the number of white balls in the sample:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -710,12 +710,12 @@ apixaban          14            826
 </tbody>
 </table>
 </div>
-<p><span class="math notranslate nohighlight">\(k\)</span> follows a hypergeometric distribution <span class="math notranslate nohighlight">\(K \sim \text{Hypergeometric}(M, n, N)\)</span>, with</p>
+<p>k follows a hypergeometric distribution <span class="math notranslate nohighlight">\(K \sim \text{Hypergeometric}(M, n, N)\)</span>, with</p>
 <div class="math notranslate nohighlight">
 \[
 P(K=k) = \frac{\binom{n}{k} \binom{M - n}{N - k}}{\binom{M}{N}}
 \]</div>
-<p>For example, we can use the probability mass function(PMF) from <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.hypergeom.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.hypergeom</span></code></a> to solve the following configuration:</p>
+<p>For example, we can use the probability mass function (PMF) from <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.hypergeom.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.hypergeom</span></code></a> to solve the following configuration:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -762,14 +762,14 @@ P(K=k) = \frac{\binom{n}{k} \binom{M - n}{N - k}}{\binom{M}{N}}
 </section>
 <section id="relationship-between-hypergeometric-distribution-and-p-value">
 <h4>Relationship between hypergeometric distribution and P value<a class="headerlink" href="#relationship-between-hypergeometric-distribution-and-p-value" title="Link to this heading">#</a></h4>
-<p>In the context of Fisher’s test, the “successes” are the individuals with the outcome of interest (e.g., cases in a case-control study), and the “population” is the total number of individuals in the study. The row and column totals in the contingency table define the number of successes and the sample sizes in each group. The probability of observing a particular contingency table with values <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> is given by the hypergeometric probability mass function:</p>
+<p>In the context of Fisher’s test, the “successes” are the individuals with the outcome of interest (e.g., cases in a case-control study), and the “population” is the total number of individuals in the study. The row and column totals in the contingency table define the number of successes and the sample sizes in each group. The probability of observing a particular contingency table with values a, b, c, and d is given by the hypergeometric probability mass function:</p>
 <div class="math notranslate nohighlight">
 \[P(a) = \frac{\binom{a+b}{a} \binom{c+d}{c}}{\binom{a+b+c+d}{a+c}}\]</div>
-<p>The P value (<span class="math notranslate nohighlight">\(P\)</span>) for Fisher’s exact test of independence can be obtained using either the cumulative distribution function (CDF) or the survival function (SF) of the hypergeometric distribution, <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisher_exact.html">as clearly explained elsewhere</a>, depending on the directionality of the test:</p>
+<p>The P value for Fisher’s exact test of independence can be obtained using either the cumulative distribution function (CDF) or the survival function (SF) of the hypergeometric distribution, <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisher_exact.html">as explained in greater details elsewhere</a>, depending on the directionality of the test:</p>
 <ul class="simple">
-<li><p>One-tailed test (right tail): when the alternative hypothesis suggests a higher number of successes than expected, the <span class="math notranslate nohighlight">\(P\)</span> value is calculated using the survival function (SF), which gives the probability of observing a value greater than or equal to the observed value: <span class="math notranslate nohighlight">\(P = P(K \ge k) = \text{SF}(k - 1)\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is the random variable representing the number of successes, and <span class="math notranslate nohighlight">\(k\)</span> is the observed number of successes.</p></li>
-<li><p>One-tailed test (left tail): when the alternative hypothesis suggests a lower number of successes than expected, the <span class="math notranslate nohighlight">\(P\)</span> value is calculated using the cumulative distribution function (CDF), which gives the probability of observing a value less than or equal to the observed value: <span class="math notranslate nohighlight">\(P = P(K \le k) = \text{CDF}(k)\)</span></p></li>
-<li><p>Two-tailed test: in a two-tailed test, we typically consider deviations in both directions (<strong>more extreme associations</strong> in either direction) from the observed table. Therefore, to obtain the two-sided P value, we often double the <span class="math notranslate nohighlight">\(P\)</span> value obtained from the one-sided calculation (using either the CDF or SF, depending on which tail is more extreme).</p></li>
+<li><p>One-tailed test (right tail): when the alternative hypothesis suggests a higher number of successes than expected, the P value is calculated using the survival function (SF), which gives the probability of observing a value greater than or equal to the observed value: <span class="math notranslate nohighlight">\(P = P(K \ge k) = \text{SF}(k - 1)\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is the random variable representing the number of successes, and <span class="math notranslate nohighlight">\(k\)</span> is the observed number of successes.</p></li>
+<li><p>One-tailed test (left tail): when the alternative hypothesis suggests a lower number of successes than expected, the P value is calculated using the cumulative distribution function (CDF), which gives the probability of observing a value less than or equal to the observed value: <span class="math notranslate nohighlight">\(P = P(K \le k) = \text{CDF}(k)\)</span></p></li>
+<li><p>Two-tailed test: in a two-tailed test, we typically consider deviations in both directions (<em>more extreme associations</em> in either direction) from the observed table. Therefore, to obtain the two-sided P value, we often double the P value obtained from the one-sided calculation (using either the CDF or SF, depending on which tail is more extreme).</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -780,7 +780,7 @@ P(K=k) = \frac{\binom{n}{k} \binom{M - n}{N - k}}{\binom{M}{N}}
 
 <span class="c1"># Perform Fisher&#39;s exact test</span>
 <span class="n">odds_ratio</span><span class="p">,</span><span class="w"> </span><span class="n">p_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">fisher_exact</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">alternative</span><span class="o">=</span><span class="s">&#39;two-sided&#39;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;Fisher&#39;s Exact Test (Two-Sided):\n P value: {p_value:.4f}\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;Fisher&#39;s exact test (two-Sided):\n P value: {p_value:.4f}\n&quot;</span><span class="p">)</span>
 
 <span class="c1"># Parameters for the hypergeometric distribution (from contingency table)</span>
 <span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="m">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">table</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">table</span><span class="p">[</span><span class="m">1</span><span class="p">][</span><span class="m">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">table</span><span class="p">[</span><span class="m">1</span><span class="p">][</span><span class="m">1</span><span class="p">]</span>
@@ -790,14 +790,14 @@ P(K=k) = \frac{\binom{n}{k} \binom{M - n}{N - k}}{\binom{M}{N}}
 <span class="c1"># 1. Calculate one-sided P value (more extreme in one direction)</span>
 <span class="n">k</span><span class="o">=</span><span class="m">18</span><span class="w">  </span><span class="c1"># number of successes</span>
 <span class="n">p_value_one_sided</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">hypergeom.sf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;One-Sided P value (&gt;= {k} &#39;successes&#39;): {p_value_one_sided:.4f}\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;One-sided P value (&gt;= {k} &#39;successes&#39;): {p_value_one_sided:.4f}\n&quot;</span><span class="p">)</span>
 
 <span class="c1"># 2. Calculate two-sided P value (more extreme in either direction)</span>
 <span class="n">p_value_two_sided</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p_value_one_sided</span><span class="w">  </span><span class="c1"># Assuming symmetry</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;Two-Sided P value: {p_value_two_sided:.4f}\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;Two-sided P value: {p_value_two_sided:.4f}\n&quot;</span><span class="p">)</span>
 
 <span class="c1"># 3. Probabilities of individual tables</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Probabilities of Individual Tables (more extreme than observed):&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Probabilities of individual tables (more extreme than observed):&quot;</span><span class="p">)</span>
 <span class="n">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="p">[</span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="m">18</span><span class="p">,</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">]</span><span class="o">:</span><span class="w">  </span><span class="c1"># Consider tables with more extreme &#39;successes&#39;</span>
 <span class="w">    </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">hypergeom.pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
 <span class="w">    </span><span class="nf">print</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;  k = {k}:\t{prob:.4f}&quot;</span><span class="p">)</span>
@@ -805,14 +805,14 @@ P(K=k) = \frac{\binom{n}{k} \binom{M - n}{N - k}}{\binom{M}{N}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fisher&#39;s Exact Test (Two-Sided):
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fisher&#39;s exact test (two-Sided):
  P value: 0.0310
 
-One-Sided P value (&gt;= 18 &#39;successes&#39;): 0.0155
+One-sided P value (&gt;= 18 &#39;successes&#39;): 0.0155
 
-Two-Sided P value: 0.0310
+Two-sided P value: 0.0310
 
-Probabilities of Individual Tables (more extreme than observed):
+Probabilities of individual tables (more extreme than observed):
   k = 9:	0.0001
   k = 10:	0.0016
   k = 11:	0.0138
@@ -849,14 +849,14 @@ Probabilities of Individual Tables (more extreme than observed):
 <section id="calculating-and-interpreting-risk-metrics">
 <h3>Calculating and interpreting risk metrics<a class="headerlink" href="#calculating-and-interpreting-risk-metrics" title="Link to this heading">#</a></h3>
 <section id="absolute-risk-reduction-arr-and-attributable-risk-ar">
-<span id="arr"></span><h4>Absolute risk reduction (ARR) and attributable risk (AR)<a class="headerlink" href="#absolute-risk-reduction-arr-and-attributable-risk-ar" title="Link to this heading">#</a></h4>
+<h4>Absolute risk reduction (ARR) and attributable risk (AR)<a class="headerlink" href="#absolute-risk-reduction-arr-and-attributable-risk-ar" title="Link to this heading">#</a></h4>
 <p>In the context of evaluating treatments, the <strong>absolute risk reduction (ARR)</strong>, also known as <strong>attributable risk (AR)</strong> or risk difference, is a key measure that quantifies the absolute difference in the risk of an outcome between the treatment group and the control (or placebo) group. It provides a direct estimate of the reduction in risk that can be attributed to the treatment. The foundation of ARR is the concept of <strong>risk</strong>, which is simply the probability of an event (e.g., disease, side effect, recovery) occurring within a specific time period. Risk is often expressed as a percentage or a decimal:</p>
 <div class="math notranslate nohighlight">
 \[\text{Risk} = p = \frac{\text{Number of events in the group}}{\text{Total number of individuals in the group}}\]</div>
 <p>While ARR and AR are mathematically equivalent, their usage and interpretation differ slightly:</p>
 <ul class="simple">
-<li><p>ARR (Absolute Risk Reduction): typically used when the <em>exposure or intervention is beneficial</em>, emphasizing the positive impact of reducing the risk of an undesirable outcome. The control or placebo group will be in the first row of the contingency table.</p></li>
-<li><p>AR (Attributable Risk): more commonly used when the <em>exposure is harmful</em>, highlighting the excess risk associated with that exposure. The exposed group will be in the first row of the contingency table, like in the <a class="reference internal" href="#par"><span class="std std-ref">example of the oral contraceptive study</span></a>.</p></li>
+<li><p>ARR: typically used when the <em>exposure or intervention is beneficial</em>, emphasizing the positive impact of reducing the risk of an undesirable outcome. The control or placebo group will be in the first row of the contingency table.</p></li>
+<li><p>AR : more commonly used when the <em>exposure is harmful</em>, highlighting the excess risk associated with that exposure. The exposed group will be in the first row of the contingency table, like in the example of the oral contraceptive study discussed later.</p></li>
 </ul>
 <p>We can calculate ARR as:</p>
 <div class="math notranslate nohighlight">
@@ -921,8 +921,8 @@ Probabilities of Individual Tables (more extreme than observed):
 </ul>
 </section>
 <section id="population-attributable-risk-par">
-<span id="par"></span><h4>Population attributable risk (PAR)<a class="headerlink" href="#population-attributable-risk-par" title="Link to this heading">#</a></h4>
-<p>While attributable risk (AR) tells us how much extra risk an exposed group faces compared to an unexposed group, public health officials often want a broader perspective. They need to know how much of a disease’s overall burden in the <em>entire population</em> can be linked to a specific risk factor. This is where population attributable risk (PAR) comes in.</p>
+<h4>Population attributable risk (PAR)<a class="headerlink" href="#population-attributable-risk-par" title="Link to this heading">#</a></h4>
+<p>While AR tells us how much extra risk an exposed group faces compared to an unexposed group, public health officials often want a broader perspective. They need to know how much of a disease’s overall burden in the <em>entire population</em> can be linked to a specific risk factor. This is where population attributable risk (PAR) comes in.</p>
 <p>PAR quantifies the proportion of cases in the entire population that we could potentially prevent if we eliminated the risk factor. It gives us a powerful tool to assess the public health impact of an exposure:</p>
 <div class="math notranslate nohighlight">
 \[\text{PAR} = p_0 - p_2 = (p_1 - p_2) \times n_1 / N\]</div>
@@ -970,7 +970,7 @@ Probabilities of Individual Tables (more extreme than observed):
 </section>
 <section id="number-needed-to-treat-ntt">
 <h4>Number needed to treat (NTT)<a class="headerlink" href="#number-needed-to-treat-ntt" title="Link to this heading">#</a></h4>
-<p>The Number Needed to Treat (NNT), or Number Needed to Harm (NNH), is a practical and clinically relevant measure that tells us how many patients need to receive a treatment in order to prevent <em>one additional adverse outcome</em> (or achieve one positive outcome). It’s calculated as the reciprocal of the absolute risk reduction:</p>
+<p>The number needed to treat (NNT), or number needed to harm (NNH), is a practical and clinically relevant measure that tells us how many patients need to receive a treatment in order to prevent <em>one additional adverse outcome</em> (or achieve one positive outcome). It’s calculated as the reciprocal of the absolute risk reduction:</p>
 <div class="math notranslate nohighlight">
 \[\text{NTT} = 1 / \text{ARR}\]</div>
 <div class="cell docutils container">
@@ -1010,8 +1010,8 @@ Probabilities of Individual Tables (more extreme than observed):
 <p>A <em>lower NNT</em> indicates a <em>more effective</em> treatment. For example, an NNT of 5 means that we need to treat only 5 patients to prevent one additional bad outcome compared to the control group. A <em>higher NNT</em> indicates a <em>less effective</em> treatment. For example, an NNT of 100 means we need to treat 100 patients to prevent one additional bad outcome.</p>
 </section>
 <section id="relative-risk-rr">
-<span id="rr"></span><h4>Relative risk (RR)<a class="headerlink" href="#relative-risk-rr" title="Link to this heading">#</a></h4>
-<p>The Relative Risk (RR), also known as the <strong>Risk Ratio</strong>, compares the risk of an event (such as disease recurrence) occurring in one group versus another. It’s a powerful tool for quantifying how much more (or less) likely an outcome is when exposed to a particular factor or treatment.</p>
+<h4>Relative risk (RR)<a class="headerlink" href="#relative-risk-rr" title="Link to this heading">#</a></h4>
+<p>The relative risk (RR), also known as the <strong>risk ratio</strong>, compares the risk of an event (such as disease recurrence) occurring in one group versus another. It’s a powerful tool for quantifying how much more (or less) likely an outcome is when exposed to a particular factor or treatment.</p>
 <p>In its simplest form, the RR is calculated by dividing the risk in the exposed group by the risk in the unexposed (or control) group:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1116,20 +1116,20 @@ Relative risk (from scipy.stats.contingency): 5.283
 <p>Alternatively, if we directly submitted the proportions <span class="math notranslate nohighlight">\(p_1\)</span> (risk in the treatment group) and <span class="math notranslate nohighlight">\(p_2\)</span> (risk in the placebo group) to the <code class="docutils literal notranslate"><span class="pre">calculate_rr</span></code> function, we obtain an RR of 0.189. This can be interpreted in two ways:</p>
 <ol class="arabic simple">
 <li><p>Risk reduction: patients receiving the drug had only 18.9% of the risk of recurrent disease compared to those receiving the placebo. In other words, the treatment significantly reduced the risk.</p></li>
-<li><p>Protective effect: the treatment exhibited a protective effect, reducing the relative risk of recurrent disease by a substantial margin of <span class="math notranslate nohighlight">\(1 - 0.189 = 81.1\%\)</span>.</p></li>
+<li><p>Protective effect: the treatment exhibited a protective effect, reducing the relative risk of recurrent disease by a substantial margin of 1 - 0.189 = 81.1%.</p></li>
 </ol>
-<p>The reciprocal of the RR (<span class="math notranslate nohighlight">\(1/\text{RR}\)</span>) provides the inverse interpretation. For example, if <span class="math notranslate nohighlight">\(\text{RR} = 0.2\)</span>, then <span class="math notranslate nohighlight">\(1/\text{RR} = 5\)</span>, meaning the first group has 5 times the risk of the second group.</p>
+<p>The reciprocal of the RR, i.e., <span class="math notranslate nohighlight">\(1/\text{RR}\)</span>, provides the inverse interpretation. For example, if <span class="math notranslate nohighlight">\(\text{RR} = 0.2\)</span>, then <span class="math notranslate nohighlight">\(1/\text{RR} = 5\)</span>, meaning the first group has 5 times the risk of the second group.</p>
 </section>
 <section id="logrr">
-<span id="id2"></span><h4>LogRR<a class="headerlink" href="#logrr" title="Link to this heading">#</a></h4>
+<h4>LogRR<a class="headerlink" href="#logrr" title="Link to this heading">#</a></h4>
 <p>The log transformation of the relative risk log(RR) is a valuable tool in biostatistical analysis:</p>
 <ul class="simple">
-<li><p>Symmetry: relative risk (RR) is not symmetric around 1. An RR of 2 (doubling of risk) is not the opposite of an RR of 0.5 (halving of risk). However, the log transformation makes the scale symmetric around 0. This means that a log(RR) of 0.693 (corresponding to an RR of 2) is the exact opposite of a log(RR) of -0.693 (corresponding to an RR of 0.5). This symmetry is helpful for statistical calculations and interpretations.</p></li>
+<li><p>Symmetry: RR is not symmetric around 1. An RR of 2 (doubling of risk) is not the opposite of an RR of 0.5 (halving of risk). However, the log transformation makes the scale symmetric around 0. This means that a log(RR) of 0.693 (corresponding to an RR of 2) is the exact opposite of a log(RR) of -0.693 (corresponding to an RR of 0.5). This symmetry is helpful for statistical calculations and interpretations.</p></li>
 <li><p>Normal approximation: the distribution of log(RR) tends to be more normally distributed than the distribution of RR itself. Many statistical tests assume a normal distribution, so working with log(RR) allows us to use these tests more appropriately.</p></li>
 <li><p>Confidence intervals: when calculating confidence intervals for RR, a log transformation can make the intervals more symmetrical and accurate, especially when the RR is far from 1.</p></li>
 <li><p>Meta-analysis: in meta-analyses that combine results from multiple studies, log(RR) is often used as the effect measure. This is because log(RR) allows for easier pooling of results and better statistical properties.</p></li>
 </ul>
-<p>Calculating the log(RR) is straightforward. You simply take the natural logarithm (<span class="math notranslate nohighlight">\(\ln\)</span>) of the relative risk:</p>
+<p>Calculating the log(RR) is straightforward. You simply take the natural logarithm of the relative risk:</p>
 <div class="math notranslate nohighlight">
 \[\log(\text{RR}) = \ln(\text{RR})\]</div>
 <p>As we saw, the RR is the ratio of the risk in the exposed group <span class="math notranslate nohighlight">\(p_1\)</span> to the risk in the unexposed group <span class="math notranslate nohighlight">\(p_2\)</span>, so we can also write:</p>
@@ -1158,10 +1158,10 @@ Corresponding relative risk: 5.283
 <p>The odds ratio (OR) is another way to quantify the association between an exposure and an outcome. While relative risk compares the probabilities of an event occurring in two groups, the odds ratio compares the <strong>odds</strong> of the event.</p>
 <p>Odds are slightly different from probabilities. The odds of an event are calculated as the probability of the event happening divided by the probability of it not happening:</p>
 <div class="math notranslate nohighlight">
-\[\text{Odds} = \text{Probability of event} / \text{Probability of no event} \ = \frac{p}{1-p}\]</div>
-<p>The odds ratio (OR) is then the ratio of the odds of the event in the exposed group to the odds of the event in the unexposed group:</p>
+\[\text{Odds} = \frac{\text{Probability of event}}{\text{Probability of no event}} = \frac{p}{1-p}\]</div>
+<p>OR is then the ratio of the odds of the event in the exposed group to the odds of the event in the unexposed group:</p>
 <div class="math notranslate nohighlight">
-\[\text{OR} = \text{Odds in exposed group} / \text{Odds in unexposed group}\]</div>
+\[\text{OR} = \frac{\text{Odds in exposed group}}{\text{Odds in unexposed group}}\]</div>
 <p>Mathematically, the OR formula is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1222,7 +1222,7 @@ Odds ratio (from scipy.stats.contingency): 5.697
 <li><p>OR &lt; 1: the odds of the event are lower in the ‘exposed’/reference group, suggesting a protective effect of the exposure.</p></li>
 </ul>
 <p>When the event is rare (low incidence or prevalence), the <em>OR and RR are very close</em> in value and can be interpreted similarly. In contrast, when the event is more common, the OR tends to overestimate the magnitude of association compared to the RR. The more common the event, the greater the discrepancy.</p>
-<p>Actually, <a class="reference external" href="https://docs.scipy.org/doc/scipy-1.13.1/reference/generated/scipy.stats.fisher_exact.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.fisher_exact</span></code></a> provides the odds ratio directly from the contingency table, as seen <a class="reference internal" href="#p-value"><span class="std std-ref">in the section about P value</span></a>.</p>
+<p>Actually, <a class="reference external" href="https://docs.scipy.org/doc/scipy-1.13.1/reference/generated/scipy.stats.fisher_exact.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.fisher_exact</span></code></a> provides the odds ratio directly from the contingency table, as seen <a class="reference internal" href="#p-value"><span class="xref myst">in the section about P value</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;Odds ratio (from `fisher_exact`): {odds_ratio:.3f}&quot;</span><span class="p">)</span>
@@ -1243,7 +1243,7 @@ Odds ratio (from scipy.stats.contingency): 5.697
 <p>Calculating confidence intervals (CIs) for the OR directly can result in asymmetrical and potentially inaccurate intervals, especially when the OR is far from 1. By taking the log(OR), we can calculate CIs on the log scale, which tend to be more symmetric and reliable. We can then transform these CIs back to the original OR scale to get meaningful estimates of the association’s precision.</p>
 <p>Moreover, log(OR) is the preferred effect measure in many <em>meta-analyses</em>. This allows for easier pooling of results from different studies and facilitates statistical calculations like weighting studies based on their precision.</p>
 <p>Finally, in logistic regression, a common statistical model for analyzing binary outcomes, the log(OR) is directly estimated as the coefficient for a predictor variable. This makes log(OR) a fundamental building block for understanding the relationships between predictors and outcomes in these models.</p>
-<p>Because <span class="math notranslate nohighlight">\(\text{OR} = \frac{p_1/(1 - p_1)}{p_2/(1 - p_2)}\)</span>, we can also use:</p>
+<p>Because <span class="math notranslate nohighlight">\(\text{OR} = \frac{p_1/(1 - p_1)}{p_2/(1 - p_2)}\)</span>, we can write:</p>
 <div class="math notranslate nohighlight">
 \[\log(\text{OR}) = \ln(\text{OR}) = \log(p_1) - \log(1 - p_1) - \log(p_2) + \log(1 - p_2)\]</div>
 <div class="cell docutils container">
@@ -1276,7 +1276,7 @@ Odds ratio calculated as the exponential of log(OR): 5.697
 </section>
 <section id="confidence-intervals">
 <h3>Confidence intervals<a class="headerlink" href="#confidence-intervals" title="Link to this heading">#</a></h3>
-<p>In the previous sections, we’ve explored several key measures for comparing proportions: absolute risk reduction (ARR), number needed to treat (NNT), relative risk (RR), and odds ratio (OR). However, these values are just point estimates derived from our sample data. To truly understand the reliability of these estimates and draw meaningful conclusions about the broader population, we need to consider their confidence intervals (CIs).</p>
+<p>In the previous sections, we’ve explored several key measures for comparing proportions: ARR, NNT, RR, and OR. However, these values are just point estimates derived from our sample data. To truly understand the reliability of these estimates and draw meaningful conclusions about the broader population, we need to consider their confidence intervals (CIs).</p>
 <p>A confidence interval provides a <em>range of plausible values for a population parameter</em> (like ARR, NTT, RR, or OR) based on the sample data. It tells us how confident we can be that the true population value falls within that range. A 95% confidence interval, for example, means that if we were to repeat our study many times, we would expect <em>95% of the calculated intervals to contain the true population value</em>.</p>
 <p>Confidence intervals are crucial for several reasons:</p>
 <ul class="simple">
@@ -1286,8 +1286,8 @@ Odds ratio calculated as the exponential of log(OR): 5.697
 </ul>
 <p>The methods for calculating confidence intervals vary depending on the specific measure (ARR, NNT, RR, OR) and the underlying statistical assumptions, e.g., normal approximation (a simple approach that works for large samples), exact methods (more accurate for smaller samples), and bootstrapping (a versatile resampling technique that can be applied to various scenarios), though they are typically calculated as:</p>
 <div class="math notranslate nohighlight">
-\[\text{CI} = \hat{\theta} \pm c^\ast \times s_{\hat{\theta}}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\text{CI}\)</span> represents the confidence interval, <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> the point estimate of the population parameter, <span class="math notranslate nohighlight">\(c^\ast\)</span> the critical value from the relevant distribution, e.g., t-distribution, standard normal, etc., corresponding to the desired confidence level, and sometimes noted <span class="math notranslate nohighlight">\(c_{\alpha/2}\)</span>, and <span class="math notranslate nohighlight">\(s_{\hat{\theta}}\)</span> the standard error (SE) of the point estimate.</p>
+\[\text{CI}^{1 - \alpha} = \hat{\theta} \pm c^\ast \times s_{\hat{\theta}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{CI}^{1 - \alpha}\)</span> represents the confidence interval at <span class="math notranslate nohighlight">\(1 - \alpha\)</span> confidence level, <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> the point estimate of the population parameter, <span class="math notranslate nohighlight">\(c^\ast\)</span> the critical value from the relevant distribution corresponding to the desired confidence level and if relevant, given degrees of freedom, e.g., t-distribution (<span class="math notranslate nohighlight">\(t_{\alpha/2, df}\)</span>), standard normal (<span class="math notranslate nohighlight">\(z_{\alpha/2}\)</span>), etc., and <span class="math notranslate nohighlight">\(s_{\hat{\theta}}\)</span> the standard error (SE) of the point estimate.</p>
 <section id="ci-for-proportions">
 <h4>CI for proportions<a class="headerlink" href="#ci-for-proportions" title="Link to this heading">#</a></h4>
 <p>As discussed in our earlier chapter on confidence intervals for proportions, several methods can be employed to estimate the CI around the proportion of patients experiencing disease progression. In this analysis, we’ll focus on the proportion of patients with disease progression in both the placebo group (73 out of 829) and the apixaban-treated group (14 out of 840). Let’s utilize the ‘normal’ method available in the <code class="docutils literal notranslate"><span class="pre">statsmodels.stats.proportion</span></code> module for this calculation.</p>
@@ -1334,11 +1334,11 @@ apixaban group:	0.0167, (0.008, 0.025)
 <h4>CI for ARR<a class="headerlink" href="#ci-for-arr" title="Link to this heading">#</a></h4>
 <section id="standard-approximations">
 <h5>Standard approximations<a class="headerlink" href="#standard-approximations" title="Link to this heading">#</a></h5>
-<p>While the absolute risk reduction (ARR) gives us a single point estimate of the treatment effect, the confidence interval provides a range of plausible values within which we can be 95% confident that the true population ARR lies.</p>
+<p>While the ARR gives us a single point estimate of the treatment effect, the confidence interval provides a range of plausible values within which we can be 95% confident that the true population ARR lies.</p>
 <p>The confidence interval for ARR is calculated as follows:</p>
 <div class="math notranslate nohighlight">
-\[\text{CI} = \text{ARR} \pm z^\ast \times \text{SE(ARR)}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\text{ARR} = p_1 - p_2\)</span> is the absolute risk reduction <a class="reference internal" href="#arr"><span class="std std-ref">as calculate before</span></a>, <span class="math notranslate nohighlight">\(z^\ast\)</span> is the critical z-value from the standard normal distribution corresponding to the desired level of confidence (e.g., 1.96 for a 95% CI), and <span class="math notranslate nohighlight">\(\text{SE(ARR)} = s_{p_1 - p_2}\)</span> is the standard error of the absolute risk reduction.</p>
+\[\text{CI} = \text{ARR} \pm z^\ast \times s_\text{ARR}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{ARR} = p_1 - p_2\)</span> is the absolute risk reduction, <span class="math notranslate nohighlight">\(z^\ast\)</span> is the critical z-value from the standard normal distribution corresponding to the desired level of confidence (e.g., 1.96 for a 95% CI), and <span class="math notranslate nohighlight">\(s_\text{ARR} = s_{p_1 - p_2}\)</span> is the standard error of the absolute risk reduction.</p>
 <p>Because the standard error of a difference between two proportions is calculated as <span class="math notranslate nohighlight">\(s_{p_1 - p_2} = \sqrt{\mathrm{Var}(p_1) + \mathrm{Var}(p_2)}\)</span>, the variance of a sample proportion <span class="math notranslate nohighlight">\(x\)</span> is estimated as <span class="math notranslate nohighlight">\(\mathrm{Var}(x) = x (1 - x)/n\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is the sample size, and we can express <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span> in terms of the ovarall risk <span class="math notranslate nohighlight">\(p\)</span> and the ARR, substituting these into the formula for <span class="math notranslate nohighlight">\(s_{p_1 - p_2}\)</span> and simplifying, we arrive at:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1413,7 +1413,7 @@ s_{p_1 - p_2} &amp;= \sqrt{p_1 (1 - p_1) /n_1 + p_2 (1 - p_2) /n_2} \\
 <p>When dealing with large sample sizes and comparing proportions between two groups, the z-test offers a <em>simpler alternative</em> to Fisher’s exact test. This test assesses whether there’s a statistically significant difference between two proportions and provides insights into the magnitude of the effect.</p>
 <p>It assumes that the sampling distribution of the difference in proportions is <em>approximately normal</em>, which holds true for large sample sizes (typically at least 30 in group). The z-statistic can be writent as:</p>
 <div class="math notranslate nohighlight">
-\[z = \frac{p_1 - p_2}{s_{p_1 - p_2}}\]</div>
+\[z = \frac{\text{ARR}}{s_\text{ARR}} = \frac{p_1 - p_2}{s_{p_1 - p_2}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(p_1\)</span> is the proportion in group 1, <span class="math notranslate nohighlight">\(p_2\)</span> the proportion in group 2, and <span class="math notranslate nohighlight">\(s_{p_1 - p_2}\)</span> the standard error of the difference in proportions.</p>
 <p>Notice that the numerator in the z-statistic is precisely the ARR we are interested in. The denominator is the same standard error we used to calculate the CI for ARR. This highlights the direct link between the z-test and the confidence interval.</p>
 <p>We can implement the z-test for comparing proportions in Python using the <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.stats.proportion.proportions_ztest.html"><code class="docutils literal notranslate"><span class="pre">proportions_ztest</span></code> function from <code class="docutils literal notranslate"><span class="pre">statsmodels.stats.proportion</span></code></a>.</p>
@@ -1444,7 +1444,7 @@ P value: 5.368112856740949e-11
 </section>
 <section id="exact-methods">
 <h5>Exact methods<a class="headerlink" href="#exact-methods" title="Link to this heading">#</a></h5>
-<p>Using the overall risk <span class="math notranslate nohighlight">\(p\)</span> as an approximation for both <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span> in the SE(ARR) formula introduces only a small error. This approximation simplifies the calculation without sacrificing much accuracy when dealing with rare events. This approximation is less accurate when the event is not rare, and/or the sample size is small. For common events, it’s preferable to use the <strong>exact formula</strong> with the individual risk estimates (<span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span>).</p>
+<p>Using the overall risk <span class="math notranslate nohighlight">\(p\)</span> as an approximation for both <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span> in the <span class="math notranslate nohighlight">\(s_{\text{ARR}}\)</span> formula introduces only a small error. This approximation simplifies the calculation without sacrificing much accuracy when dealing with rare events. This approximation is less accurate when the event is not rare, and/or the sample size is small. For common events, it’s preferable to use the <strong>exact formula</strong> with the individual risk estimates (<span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Application with the Apixaban example</span>
@@ -1527,7 +1527,7 @@ Approximated SE: 0.01088
 </section>
 <section id="ci-for-nnt">
 <h4>CI for NNT<a class="headerlink" href="#ci-for-nnt" title="Link to this heading">#</a></h4>
-<p>The confidence interval for the NNT provides a range of plausible values for the true NNT in the population. Since NNT is the reciprocal of ARR (<span class="math notranslate nohighlight">\(\text{NNT} = 1/\text{ARR}\)</span>), the confidence interval for NNT will be wider when the CI for ARR is narrow, and vice versa. This reflects the fact that smaller treatment effects (smaller ARR) lead to larger NNT values with more uncertainty.</p>
+<p>The confidence interval for the NNT provides a range of plausible values for the true NNT in the population. Since NNT is the reciprocal of ARR, the confidence interval for NNT will be wider when the CI for ARR is narrow, and vice versa. This reflects the fact that smaller treatment effects (smaller ARR) lead to larger NNT values with more uncertainty.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">def</span><span class="w"> </span><span class="nf">calculate_nnt_ci</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">conf</span><span class="o">=</span><span class="m">0.95</span><span class="p">)</span><span class="o">:</span>
@@ -1591,21 +1591,21 @@ Approximated SE: 0.01088
 </section>
 <section id="ci-for-rr">
 <h4>CI for RR<a class="headerlink" href="#ci-for-rr" title="Link to this heading">#</a></h4>
-<p>While the relative risk (RR) provides a valuable point estimate for the comparison of risks between two groups, it’s essential to acknowledge the inherent uncertainty associated with any estimate derived from sample data. To address this uncertainty, we turn to confidence intervals (CIs), which provide a range of plausible values for the true population RR.</p>
+<p>While the RR provides a valuable point estimate for the comparison of risks between two groups, it’s essential to acknowledge the inherent uncertainty associated with any estimate derived from sample data. To address this uncertainty, we turn to confidence intervals (CIs), which provide a range of plausible values for the true population RR.</p>
 <p>Confidence intervals for RR are crucial for several reasons:</p>
 <ul class="simple">
 <li><p>Assessing precision: they indicate how precise our estimate of the RR is. A wider CI suggests greater uncertainty, while a narrower CI reflects a more precise estimate.</p></li>
 <li><p>Statistical significance: if the CI for RR does not include 1 (the value indicating no association), it suggests a statistically significant association between the exposure and outcome.</p></li>
 <li><p>Clinical relevance: CIs help gauge the practical importance of the observed association. A statistically significant RR might not be clinically meaningful if the CI includes values close to 1.</p></li>
 </ul>
-<p>The traditional formula for the CI of RR is <span class="math notranslate nohighlight">\(\text{CI} = \text{RR} \pm z^\ast \times \text{SE(RR)}\)</span>, where <span class="math notranslate nohighlight">\(\text{RR}\)</span> is the relative risk <a class="reference internal" href="#rr"><span class="std std-ref">as calculated previously</span></a>, <span class="math notranslate nohighlight">\(z^\ast\)</span> the critical z-value corresponding to the desired level of confidence (e.g., 1.96 for a 95% CI), and <span class="math notranslate nohighlight">\(\text{SE(RR)}\)</span> the standard error of the relative rsik, often approximated as:</p>
+<p>The traditional formula for the CI of RR is <span class="math notranslate nohighlight">\(\text{CI} = \text{RR} \pm z^\ast \times s_\text{RR}\)</span>, where <span class="math notranslate nohighlight">\(\text{RR}\)</span> is the relative risk, <span class="math notranslate nohighlight">\(z^\ast\)</span> the critical z-value corresponding to the desired level of confidence (e.g., 1.96 for a 95% CI), and <span class="math notranslate nohighlight">\(s_\text{RR}\)</span> the standard error of the relative risk, often approximated as:</p>
 <div class="math notranslate nohighlight">
-\[\text{SE(RR)} \approx \text{RR} \times \sqrt{1/a \times b/n_1 + 1/c \times d/n_2}\]</div>
-<p>However, a more accurate approach to calculating the CI for RR is based on the <a class="reference internal" href="#logrr"><span class="std std-ref">log transformation</span></a>. This approach takes advantage of the fact that the logarithm of the RR tends to follow a normal distribution, especially for large sample sizes. Then we calculate the standard error of log(RR) as:</p>
+\[s_\text{RR} \approx \text{RR} \times \sqrt{1/a \times b/n_1 + 1/c \times d/n_2}\]</div>
+<p>However, a more accurate approach to calculating the CI for RR is based on the log transformation. This approach takes advantage of the fact that the logarithm of the RR tends to follow a normal distribution, especially for large sample sizes. Then we calculate the standard error of log(RR) as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-\mathrm{SE}(\log{\text{RR}}) &amp;= \sqrt{\mathrm{Var}(\log{\text{RR}})} \\
+s_{\log{\text{RR}}} &amp;= \sqrt{\mathrm{Var}(\log{\text{RR}})} \\
 &amp;= \sqrt{\frac{1 - p_1}{a} + \frac{1 - p_2}{c}}
 \end{align}
 \end{split}\]</div>
@@ -1727,9 +1727,9 @@ Approximated SE: 0.01088
 <h4>CI for OR<a class="headerlink" href="#ci-for-or" title="Link to this heading">#</a></h4>
 <p>Similar to relative risk (RR) and absolute risk reduction (ARR), the odds ratio (OR) also requires a confidence interval (CI) to accurately reflect the precision of our estimate. The CI for the OR provides a range of plausible values within which we can be reasonably confident that the true population OR lies.</p>
 <p>Due to the non-normal distribution of the OR, especially when the odds are not close to 1, we typically use the log-transformed OR to calculate the CI. This is because log(OR) tends to be more normally distributed, making the CI calculation more reliable.</p>
-<p>The formula for the confidence interval of the log odds ratio is <span class="math notranslate nohighlight">\(\text{CI}(\log\text{OR}) = \log\text{OR} \pm z^\ast \times \text{SE}(\log\text{OR})\)</span>, where <span class="math notranslate nohighlight">\(\log\text{OR}\)</span> is the natural logarithm of the odds ratio, <span class="math notranslate nohighlight">\(z^\ast\)</span> is the critical z-value corresponding to the desired level of confidence (e.g., 1.96 for a 95% CI), and <span class="math notranslate nohighlight">\(\text{SE}(\log\text{OR})\)</span> is the standard error of the log odds ratio, calculated as</p>
+<p>The formula for the confidence interval of the log odds ratio is <span class="math notranslate nohighlight">\(\text{CI}(\log\text{OR}) = \log\text{OR} \pm z^\ast \times s_{\log\text{OR}}\)</span>, where <span class="math notranslate nohighlight">\(\log\text{OR}\)</span> is the natural logarithm of the odds ratio, <span class="math notranslate nohighlight">\(z^\ast\)</span> is the critical z-value corresponding to the desired level of confidence (e.g., 1.96 for a 95% CI), and <span class="math notranslate nohighlight">\(s_{\log\text{OR}}\)</span> is the standard error of the log odds ratio, calculated as</p>
 <div class="math notranslate nohighlight">
-\[\text{SE}(\log \text{OR}) = \sqrt{1/a + 1/b + 1/c + 1/d}\]</div>
+\[s_{\log \text{OR}} = \sqrt{1/a + 1/b + 1/c + 1/d}\]</div>
 <p>where <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> are the cell counts in the 2x2 contingency table.</p>
 <p>Once the CI for <span class="math notranslate nohighlight">\(\log \text{OR}\)</span> is calculated, we can exponentiate the bounds to get the CI for the original OR, as:</p>
 <div class="math notranslate nohighlight">
@@ -1832,7 +1832,7 @@ Approximated SE: 0.01088
 <h3>Summary table<a class="headerlink" href="#summary-table" title="Link to this heading">#</a></h3>
 <section id="calculating-measures-of-association-and-effect-with-custom-functions">
 <h4>Calculating measures of association and effect with custom functions<a class="headerlink" href="#calculating-measures-of-association-and-effect-with-custom-functions" title="Link to this heading">#</a></h4>
-<p>Let’s create a comprehensive table summarizing the calculation of the P value, individual proportions, ARR, NNT, RR and OR, and their logarithms, and their respective confidence intervals (CIs), incorporating the functions we’ve discussed.</p>
+<p>Let’s create a comprehensive table summarizing the calculation of the P value, individual proportions, ARR, NNT, RR and OR, and their logarithms, and their respective CIs, incorporating the functions we’ve discussed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">def</span><span class="w"> </span><span class="nf">calculate_metrics</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">conf</span><span class="o">=</span><span class="m">0.95</span><span class="p">)</span><span class="o">:</span>
@@ -1961,8 +1961,8 @@ Log risk ratio    1.665 0.288 1.101  2.228   0.000
 <h3>One-sided test - Application to toxicology count data<a class="headerlink" href="#one-sided-test-application-to-toxicology-count-data" title="Link to this heading">#</a></h3>
 <p>In toxicology studies, where the paramount goal is to assess the safety of a test article (TA), e.g., a new drug, minimizing the risk of false negatives - incorrectly concluding a TA is safe when it’s not - must be the central concern throughout the study’s design, analysis, and interpretation.</p>
 <p>Data from toxicology studies frequently consist of event counts, such as the number of tumors observed in two treatment groups: treated with a TA and control. These counts can be easily organized into contingency tables, making Fisher’s exact test a relevant statistical tool for analyzing such data.</p>
-<p>A common scenario is testing the hypothesis that the tumor rate in a treated group is equal to that in a control group, i.e., there is no treatment effect, against the alternative hypothesis that the tumor rate is higher in the treated group. We perform a <strong>one-sided test</strong> to specifically assess whether the odds of tumor development are significantly greater in the treated group compared to the control group (i.e., <strong>OR &gt; 1</strong>). Fisher’s exact test is particularly suitable when the number of observations in the contingency table is small, as it provides an exact P value without relying on large-sample approximations.</p>
-<p>Although some statistical software packages may lack a dedicated function for Fisher’s exact test, it’s readily available in Python using the <code class="docutils literal notranslate"><span class="pre">fisher_exact</span></code> function from the SciPy package, as we’ve <a class="reference internal" href="#fisher"><span class="std std-ref">demonstrated earlier in this chapter</span></a>.</p>
+<p>A common scenario is testing the hypothesis that the tumor rate in a treated group is equal to that in a control group, i.e., there is no treatment effect, against the alternative hypothesis that the tumor rate is higher in the treated group. We perform a <strong>one-sided test</strong> to specifically assess whether the odds of tumor development are significantly greater in the treated group compared to the control group (i.e., OR &gt; 1). Fisher’s exact test is particularly suitable when the number of observations in the contingency table is small, as it provides an exact P value without relying on large-sample approximations.</p>
+<p>Although some statistical software packages may lack a dedicated function for Fisher’s exact test, it’s readily available in Python using the <code class="docutils literal notranslate"><span class="pre">fisher_exact</span></code> function from the SciPy package, as we’ve demonstrated earlier in this chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">table_tumors</span><span class="o">=</span><span class="w"> </span><span class="nf">pd.DataFrame</span><span class="p">(</span>
@@ -1991,7 +1991,7 @@ P value (one-sided)	 0.046
 </section>
 </section>
 <section id="chi-squared-test">
-<span id="chi-squared"></span><h2>Chi-squared test<a class="headerlink" href="#chi-squared-test" title="Link to this heading">#</a></h2>
+<h2>Chi-squared test<a class="headerlink" href="#chi-squared-test" title="Link to this heading">#</a></h2>
 <p>The chi-squared (<span class="math notranslate nohighlight">\(\chi^2\)</span>) test stands as a cornerstone in the analysis of <strong>categorical data</strong>. It’s a versatile statistical tool used to examine the relationship between two categorical variables, answering the question of whether there’s a significant association between them.</p>
 <p>The chi-squared test’s versatility stems from its ability to handle various types of contingency tables, not just the 2x2 tables commonly analyzed with Fisher’s exact test. Whether we’re dealing with multiple groups, multiple outcomes, or a combination of both, the chi-squared test can adapt to the data structure.</p>
 <p>This test is particularly powerful when:</p>
@@ -2147,9 +2147,9 @@ The observed frequencies are consistent with the expected proportions.
 <span class="w">    </span><span class="nf">plt.plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="nf">chi2.pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="p">),</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">&#39;DF={df}&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="nf">plt.xlabel</span><span class="p">(</span><span class="n">r</span><span class="s">&#39;$\chi^2$&#39;</span><span class="p">)</span>
+<span class="nf">plt.xlabel</span><span class="p">(</span><span class="s">&#39;χ²&#39;</span><span class="p">)</span>
 <span class="nf">plt.ylabel</span><span class="p">(</span><span class="s">&#39;Probability density&#39;</span><span class="p">)</span>
-<span class="nf">plt.title</span><span class="p">(</span><span class="n">r</span><span class="s">&#39;$\chi^2$ distribution for various degrees of freedom&#39;</span><span class="p">)</span>
+<span class="nf">plt.title</span><span class="p">(</span><span class="s">&#39;χ² distribution for various degrees of freedom&#39;</span><span class="p">)</span>
 <span class="nf">plt.legend</span><span class="p">()</span>
 
 <span class="c1"># Customize plot aesthetics</span>
@@ -2162,7 +2162,7 @@ The observed frequencies are consistent with the expected proportions.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cb7a9b9f3a0a6623f080a6c3e2e8d387656ff67a725715e11a7a4b7a16f1c734.png" src="_images/cb7a9b9f3a0a6623f080a6c3e2e8d387656ff67a725715e11a7a4b7a16f1c734.png" />
+<img alt="_images/c65a6f0c0c81e33ffc4255c70d14ad9e9b15dc8de30926c6731f234168628b15.png" src="_images/c65a6f0c0c81e33ffc4255c70d14ad9e9b15dc8de30926c6731f234168628b15.png" />
 </div>
 </div>
 <p>The plot illustrates that the chi-squared distribution is right-skewed (long tail to the right). Moreover, as the degrees of freedom increase, the distribution becomes more symmetrical and approaches a normal distribution.</p>
@@ -2196,20 +2196,20 @@ The observed frequencies are consistent with the expected proportions.
 <span class="w">    </span><span class="n">x</span><span class="o">=</span><span class="n">chi2_crit</span><span class="p">,</span><span class="w"> </span><span class="c1"># type: ignore</span>
 <span class="w">    </span><span class="n">color</span><span class="o">=</span><span class="s">&#39;orangered&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;--&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">fr</span><span class="s">&#39;$\chi^{{2\ast}}$ ({chi2_crit:.3f})&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">&#39;χ²* ({chi2_crit:.3f})&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the probability alpha</span>
 <span class="nf">plt.fill_between</span><span class="p">(</span>
 <span class="w">    </span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">chi2_crit</span><span class="p">],</span><span class="w"> </span><span class="n">hx</span><span class="p">[</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">chi2_crit</span><span class="p">],</span>
 <span class="w">    </span><span class="n">linestyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;tomato&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">fr</span><span class="s">&#39;$\alpha$ ({alpha})&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">&#39;α ({alpha})&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot the observed chi-squared statistic</span>
 <span class="nf">plt.axvline</span><span class="p">(</span>
 <span class="w">    </span><span class="n">x</span><span class="o">=</span><span class="n">chi2_stat</span><span class="p">,</span>
 <span class="w">    </span><span class="n">color</span><span class="o">=</span><span class="s">&#39;limegreen&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;--&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">fr</span><span class="s">&#39;$\chi^2$ ({chi2_stat:.3f})&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">&#39;χ² ({chi2_stat:.3f})&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the P value area</span>
 <span class="nf">plt.fill_between</span><span class="p">(</span>
@@ -2219,19 +2219,19 @@ The observed frequencies are consistent with the expected proportions.
 <span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">&#39;P ({p_value:.4f})&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="nf">plt.xlabel</span><span class="p">(</span><span class="n">r</span><span class="s">&#39;$\chi^2$&#39;</span><span class="p">)</span>
+<span class="nf">plt.xlabel</span><span class="p">(</span><span class="s">&#39;χ²&#39;</span><span class="p">)</span>
 <span class="nf">plt.ylabel</span><span class="p">(</span><span class="s">&#39;Density&#39;</span><span class="p">)</span>
 <span class="nf">plt.margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="m">0</span><span class="p">)</span>
 <span class="nf">plt.yticks</span><span class="p">([])</span>
 <span class="nf">plt.title</span><span class="p">(</span>
-<span class="w">    </span><span class="n">fr</span><span class="s">&#39;$\chi^2$ distribution (DF={Df})&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">f</span><span class="s">&#39;χ² distribution (DF={Df})&#39;</span><span class="p">)</span>
 
 <span class="nf">plt.legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/eb97eae095f2e36556fefc4c71ffdacf4553f2bba3ac6343a72c031b8c7d9035.png" src="_images/eb97eae095f2e36556fefc4c71ffdacf4553f2bba3ac6343a72c031b8c7d9035.png" />
+<img alt="_images/f2c2acd42830997d3284019cc3639f59bcc0625878d686b8d4fd9987ab129e6a.png" src="_images/f2c2acd42830997d3284019cc3639f59bcc0625878d686b8d4fd9987ab129e6a.png" />
 </div>
 </div>
 <p>While the chi-squared goodness-of-fit test is inherently <strong>one-tailed</strong> due to the nature of the chi-squared distribution and test statistic, the interpretation can be either directional or non-directional depending on the specific hypothesis.</p>
@@ -2300,7 +2300,7 @@ The observed frequencies are consistent with the expected proportions.
 </section>
 <section id="interpreting-the-results-of-the-chi-squared-test-of-independence">
 <h4>Interpreting the results of the chi-squared test of independence<a class="headerlink" href="#interpreting-the-results-of-the-chi-squared-test-of-independence" title="Link to this heading">#</a></h4>
-<p>The <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2_contingency.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.chi2_contingency</span></code> function</a> performs the chi-squared test of independence for contingency tables. It’s designed to assess whether there is a significant association between two categorical variables. It takes a contingency table (a 2D array or list of lists) as input, representing the observed frequencies of the categories. It returns the <span class="math notranslate nohighlight">\(\chi^2\)</span> test statistic, the P value of the test, the degrees of freedom and the expected frequencies under the null hypothesis of independence.</p>
+<p>The <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2_contingency.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.chi2_contingency</span></code> function</a> performs the chi-squared test of independence for contingency tables. It’s designed to assess whether there is a significant association between two categorical variables. It takes a contingency table (a 2D array or list of lists) as input, representing the observed frequencies of the categories. It returns the χ² test statistic, the P value of the test, the degrees of freedom and the expected frequencies under the null hypothesis of independence.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">chi2_contingency</span></code> function doesn’t inherently know about Mendel’s laws of inheritance or any specific biological mechanism. It calculates expected values based on a purely statistical assumption: independence between the categorical variables. The function first calculates the row and column totals of the observed contingency table. These totals represent the <strong>marginal frequencies</strong> of each category for each variable. It then calculates the expected proportion for each cell in the table under the assumption of independence. This is done by multiplying the corresponding row proportion and column proportion and dividing by the total number of observations. Finally, the expected frequencies are obtained by multiplying the expected proportions by the total number of observations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2358,10 +2358,10 @@ There is not enough evidence to suggest an association between seed shape and co
 <span class="n">Df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dof</span>
 
 <span class="c1"># Significance level (alpha)</span>
-<span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span>
+α<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span>
 
 <span class="c1"># Calculate critical value</span>
-<span class="n">chi2_crit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">chi2.ppf</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="o">=</span><span class="n">Df</span><span class="p">)</span>
+<span class="n">chi2_crit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">chi2.ppf</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>α<span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="o">=</span><span class="n">Df</span><span class="p">)</span>
 
 <span class="c1"># Calculate P value using chi-squared stat from previous calculation</span>
 <span class="n">p_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">chi2.cdf</span><span class="p">(</span><span class="n">chi2_stat</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="o">=</span><span class="n">Df</span><span class="p">)</span>
@@ -2378,20 +2378,20 @@ There is not enough evidence to suggest an association between seed shape and co
 <span class="w">    </span><span class="n">x</span><span class="o">=</span><span class="n">chi2_crit</span><span class="p">,</span><span class="w"> </span><span class="c1"># type: ignore</span>
 <span class="w">    </span><span class="n">color</span><span class="o">=</span><span class="s">&#39;orangered&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;--&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">fr</span><span class="s">&#39;$\chi^{{2\ast}}$ ({chi2_crit:.3f})&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">&#39;χ²* ({chi2_crit:.3f})&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the probability alpha</span>
 <span class="nf">plt.fill_between</span><span class="p">(</span>
 <span class="w">    </span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">chi2_crit</span><span class="p">],</span><span class="w"> </span><span class="n">hx</span><span class="p">[</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">chi2_crit</span><span class="p">],</span>
 <span class="w">    </span><span class="n">linestyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;tomato&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">fr</span><span class="s">&#39;$\alpha$ ({alpha})&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">&#39;α ({α})&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot the observed chi-squared statistic</span>
 <span class="nf">plt.axvline</span><span class="p">(</span>
 <span class="w">    </span><span class="n">x</span><span class="o">=</span><span class="n">chi2_stat</span><span class="p">,</span><span class="w"> </span><span class="c1"># type: ignore</span>
 <span class="w">    </span><span class="n">color</span><span class="o">=</span><span class="s">&#39;limegreen&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;--&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">fr</span><span class="s">&#39;$\chi^2$ ({chi2_stat:.3f})&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">&#39;χ² ({chi2_stat:.3f})&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the P value area</span>
 <span class="nf">plt.fill_between</span><span class="p">(</span>
@@ -2401,19 +2401,19 @@ There is not enough evidence to suggest an association between seed shape and co
 <span class="w">    </span><span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">&#39;P ({p_value:.4f})&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="nf">plt.xlabel</span><span class="p">(</span><span class="n">r</span><span class="s">&#39;$\chi^2$&#39;</span><span class="p">)</span>
+<span class="nf">plt.xlabel</span><span class="p">(</span><span class="s">&#39;χ²&#39;</span><span class="p">)</span>
 <span class="nf">plt.ylabel</span><span class="p">(</span><span class="s">&#39;Density&#39;</span><span class="p">)</span>
 <span class="nf">plt.margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="m">0</span><span class="p">)</span>
 <span class="nf">plt.yticks</span><span class="p">([])</span>
 <span class="nf">plt.ylim</span><span class="p">((</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">5</span><span class="p">))</span>
 <span class="nf">plt.title</span><span class="p">(</span>
-<span class="w">    </span><span class="n">fr</span><span class="s">&#39;$\chi^2$ distribution (DF={Df})&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">f</span><span class="s">&#39;χ² distribution (DF={Df})&#39;</span><span class="p">)</span>
 <span class="nf">plt.legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8399004c022edc57d2ef824f05a9fdfd2f9ce80e57035de9e8080b4564c57a81.png" src="_images/8399004c022edc57d2ef824f05a9fdfd2f9ce80e57035de9e8080b4564c57a81.png" />
+<img alt="_images/bb07dbe009a74bdb44b7aae07a0838f79de4d34ced130b10df7d80f95ec9d89a.png" src="_images/bb07dbe009a74bdb44b7aae07a0838f79de4d34ced130b10df7d80f95ec9d89a.png" />
 </div>
 </div>
 <p>While the chi-squared test is widely used, it’s important to be aware of its limitations and assumptions:</p>
@@ -2425,7 +2425,7 @@ There is not enough evidence to suggest an association between seed shape and co
 </section>
 <section id="degrees-of-freedom-in-independence-tests">
 <h4>Degrees of freedom in independence tests<a class="headerlink" href="#degrees-of-freedom-in-independence-tests" title="Link to this heading">#</a></h4>
-<p>In a chi-squared test of independence, the degrees of freedom represent the number of cells in the contingency table that can vary freely <em>once the marginal totals (row and column sums) are fixed</em>. It’s a measure of how much flexibility or “wiggle room” the data has within the constraints of the fixed totals. For a contingency table with <span class="math notranslate nohighlight">\(r\)</span> rows and <span class="math notranslate nohighlight">\(c\)</span> columns, the degrees of freedom are calculated as <span class="math notranslate nohighlight">\(\text{DF} = (r - 1) * (c - 1)\)</span>.</p>
+<p>In a chi-squared test of independence, the degrees of freedom represent the number of cells in the contingency table that can vary freely <em>once the marginal totals (row and column sums) are fixed</em>. It’s a measure of how much flexibility or “wiggle room” the data has within the constraints of the fixed totals. For a contingency table with r rows and c columns, the degrees of freedom are calculated as DF = (r - 1) * (c - 1).</p>
 <p>In Mendel’s pea experiment, while there are 4 phenotype categories, the underlying genetic model (his laws of inheritance) imposes constraints on how the data can be distributed. Once we know the total number of plants and the expected proportions based on Mendel’s laws, we can determine the expected frequency for three of the cells. The fourth cell’s expected frequency is then automatically determined to maintain the correct marginal totals.</p>
 <p>We have a 2x2 table (2 rows for seed color and 2 columns for seed shape), so the degrees of freedom are 1. Imagine we have a 2x2 table with the marginal totals, once we fill in one cell, the rest of the cells are automatically determined due to the fixed marginal totals. We only <em>had the freedom</em> to choose the value of one cell; the rest were constrained. Hence, the degrees of freedom in this case are 1.</p>
 <p>The degrees of freedom in a chi-squared test reflect the number of independent pieces of information in the data that are available to estimate the parameters of interest.  It’s not simply the number of categories, but rather the number of categories that can vary freely given the constraints imposed by the marginal totals and any underlying model.</p>
@@ -2860,7 +2860,7 @@ alternative hypothesis: two.sided
 <li><p>An OR of 1 means there’s no association between the exposure and the outcome.</p></li>
 </ul>
 <p>In our example, the OR of 0.25 signifies that vaccinated individuals have only 25% of the odds of developing the disease compared to unvaccinated individuals. This translates to a 75% reduction in the odds of disease due to vaccination.</p>
-<p>Interestingly, the odds ratio often serves as a good approximation of the relative risk (RR) in many scenarios. This approximation is particularly accurate when the disease is rare. However, recent research suggests that the OR can be reasonably interpreted as the RR in most case-control studies, even for common diseases, with some caveats and careful consideration of the study design.</p>
+<p>Interestingly, the odds ratio often serves as a good approximation of the RR in many scenarios. This approximation is particularly accurate when the disease is rare. However, recent research suggests that the OR can be reasonably interpreted as the RR in most case-control studies, even for common diseases, with some caveats and careful consideration of the study design.</p>
 <p>Moreover, the 95% confidence interval provides a range within which we can be 95% confident that the true population odds ratio lies. If the CI does not include 1, it indicates a <em>statistically significant</em> association at the 5% significance level.</p>
 <p>Given the relatively small sample sizes in this case-control study, we might consider performing Fisher’s exact test in addition to calculating the OR and CI. This test is more appropriate for small samples and will provide an exact P value for the association.</p>
 <div class="cell docutils container">
@@ -2880,7 +2880,7 @@ alternative hypothesis: two.sided
 </section>
 <section id="isotretinoin-and-bowel-disease">
 <h3>Isotretinoin and bowel disease<a class="headerlink" href="#isotretinoin-and-bowel-disease" title="Link to this heading">#</a></h3>
-<p>Let’s use the example data on isotretinoin use and inflammatory bowel disease (IBD) in the <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/19623167/">case-control study from Bernstein and colleagues</a> to demonstrate a scenario where the confidence interval for the odds ratio (OR) includes 1, indicating a lack of statistically significant association.</p>
+<p>Let’s use the example data on isotretinoin use and inflammatory bowel disease (IBD) in the <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/19623167/">case-control study from Bernstein and colleagues</a> to demonstrate a scenario where the confidence interval for the OR includes 1, indicating a lack of statistically significant association.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Isotretinoin</p></th>
@@ -2962,7 +2962,7 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>In this chapter, we’ve embarked on a journey through the world of comparing proportions—a cornerstone of biostatistical analysis. We’ve explored a wide array of tools and techniques, from foundational contingency tables to powerful statistical tests, each designed to unveil patterns and associations hidden within categorical data.</p>
 <p>We began with Fisher’s exact test, a precise method for analyzing small sample sizes and rare events. We then delved into the versatile chi-squared test, capable of handling larger tables and assessing deviations from expected frequencies. We further refined our toolkit with the Cochran-Armitage trend test, designed to detect trends in ordinal data, particularly useful in toxicological studies.</p>
-<p>Along the way, we explored essential concepts like attributable risk, relative risk, odds ratio, and number needed to treat (NNT), equipping us with the language and understanding to quantify the impact of exposures and treatments. We learned how to construct confidence intervals for these measures, acknowledging and embracing the uncertainty inherent in statistical estimation.</p>
+<p>Along the way, we explored essential concepts like attributable risk, relative risk, odds ratio, and number needed to treat, equipping us with the language and understanding to quantify the impact of exposures and treatments. We learned how to construct confidence intervals for these measures, acknowledging and embracing the uncertainty inherent in statistical estimation.</p>
 <p>Finally, we turned our attention to case-control studies, a powerful observational design for exploring associations in retrospective data. We discovered the importance of the odds ratio in this context and how it can approximate the relative risk under certain conditions.</p>
 <p>Throughout this chapter, we’ve emphasized the importance of selecting the right statistical tool for the job. The choice of test depends on the study design, data characteristics, and research questions. While some tests are more versatile than others, each has its own strengths and limitations. Understanding these nuances is crucial for conducting rigorous and reliable analyses. For example, smaller sample sizes might require exact tests (like Fisher’s) or adjustments (like Yates’ correction), while larger samples can often rely on approximations (like the chi-squared test).</p>
 <p>We’ve learned how to harness the power of Python to perform these analyses, using libraries like <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> and <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>. We’ve seen how these tools can be applied to real-world problems, from assessing the efficacy of treatments to analyzing dose-response relationships in toxicology studies.</p>
@@ -2971,8 +2971,8 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 <section id="cheat-sheet">
 <h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>
 <p>This cheat sheet provides a quick reference for essential code snippets used in this chapter.</p>
-<section id="id3">
-<h3>Contingency table<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h3>Contingency table<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">contingency</span>
 
@@ -3008,8 +3008,8 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 </pre></div>
 </div>
 </section>
-<section id="id4">
-<h3>Fisher’s exact test<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h3>Fisher’s exact test<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">fisher_exact</span>
 
 <span class="c1"># Assuming &#39;table&#39; is (pre-aggregated) 2x2 contingency table (NumPy array or list of lists)</span>
@@ -3109,8 +3109,8 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 </pre></div>
 </div>
 </section>
-<section id="id5">
-<h3>Chi-squared goodness-of-fit test<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3>Chi-squared goodness-of-fit test<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chisquare</span>
 
 <span class="c1"># Mendel&#39;s observed data</span>
@@ -3146,8 +3146,8 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 </pre></div>
 </div>
 </section>
-<section id="id6">
-<h3>Chi-squared test of independence<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h3>Chi-squared test of independence<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mendel&#39;s observed data (2x2 contingency table)</span>
 <span class="n">observed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
     <span class="p">[</span>
@@ -3184,8 +3184,8 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 </pre></div>
 </div>
 </section>
-<section id="id7">
-<h3>Cochran-Armitage test for trend<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h3>Cochran-Armitage test for trend<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.contingency_tables</span> <span class="kn">import</span> <span class="n">Table</span>
 
 <span class="c1"># Sample data: Tumor counts (rows) by Dose groups (columns)</span>
@@ -3229,8 +3229,8 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 </pre></div>
 </div>
 </section>
-<section id="id8">
-<h3>Case-control studies<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h3>Case-control studies<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the contingency table from the data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">213</span><span class="p">],</span>
@@ -3283,8 +3283,8 @@ Log risk ratio    0.138 0.190 -0.235 0.511   0.468
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
--------------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7-------------
+
 numpy: 1.26.4
 pandas: 2.2.2
 matplotlib: 3.9.2
@@ -3309,12 +3309,31 @@ statsmodels: 0.14.2
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">46</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sessionInfo</span><span class="p">()</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.4.1 (2024-06-14 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26120)
 
-<span class="ne">NameError</span>: name &#39;sessionInfo&#39; is not defined
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=French_France.utf8  LC_CTYPE=French_France.utf8   
+[3] LC_MONETARY=French_France.utf8 LC_NUMERIC=C                  
+[5] LC_TIME=French_France.utf8    
+
+time zone: Europe/Paris
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+ [1] digest_0.6.37     IRdisplay_1.1     utf8_1.2.4        base64enc_0.1-3  
+ [5] fastmap_1.2.0     glue_1.7.0        htmltools_0.5.8.1 repr_1.1.7       
+ [9] lifecycle_1.0.4   cli_3.6.3         fansi_1.0.6       vctrs_0.6.5      
+[13] pbdZMQ_0.3-11     compiler_4.4.1    tools_4.4.1       evaluate_0.24.0  
+[17] pillar_1.9.0      crayon_1.5.3      rlang_1.1.4       jsonlite_1.8.8   
+[21] IRkernel_1.3.2    uuid_1.2-1       
 </pre></div>
 </div>
 </div>
@@ -3331,16 +3350,16 @@ statsmodels: 0.14.2
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "r"
+            mode: "python"
         },
         kernelOptions: {
-            name: "ir",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'ir'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -3463,15 +3482,15 @@ statsmodels: 0.14.2
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Contingency table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Fisher’s exact test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contingency table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Fisher’s exact test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-and-odds-ratio-analysis">Risk and odds ratio analysis</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-test">Z-test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Chi-squared goodness-of-fit test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Chi-squared goodness-of-fit test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-squared-distribution">Chi-squared distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Chi-squared test of independence</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Cochran-Armitage test for trend</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Case-control studies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Chi-squared test of independence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Cochran-Armitage test for trend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Case-control studies</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session information</a></li>

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -420,7 +420,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-confidence-interval">What is a Confidence Interval?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-confidence-interval">What is a confidence interval?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-proportion">What is a proportion?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Confidence interval of a proportion</a></li>
 </ul>
@@ -472,12 +472,12 @@ document.write(`
 <section id="definitions">
 <h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h2>
 <section id="what-is-a-confidence-interval">
-<h3>What is a Confidence Interval?<a class="headerlink" href="#what-is-a-confidence-interval" title="Link to this heading">#</a></h3>
+<h3>What is a confidence interval?<a class="headerlink" href="#what-is-a-confidence-interval" title="Link to this heading">#</a></h3>
 <p>A confidence interval is a range of values, derived from a data set, that is likely to contain the value of an unknown population parameter. It provides an estimated range of values which is likely to include an unknown population parameter, the estimated range being calculated from a given set of sample data.</p>
 </section>
 <section id="what-is-a-proportion">
 <h3>What is a proportion?<a class="headerlink" href="#what-is-a-proportion" title="Link to this heading">#</a></h3>
-<p>In statistics, a proportion refers to the fraction of the total that carries a certain characteristic. For example, if we have a sample of 100 individuals and 45 of them are female, the proportion of females in the sample is <span class="math notranslate nohighlight">\(45/100 = 0.45\)</span>.</p>
+<p>In statistics, a proportion refers to the fraction of the total that carries a certain characteristic. For example, if we have a sample of 100 individuals and 45 of them are female, the proportion of females in the sample is 45/100 = 0.45.</p>
 </section>
 <section id="id1">
 <h3>Confidence interval of a proportion<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
@@ -491,7 +491,7 @@ document.write(`
 <p>A <strong>binomial distribution</strong> can be thought of as simply the probability of a SUCCESS or FAILURE outcome in an experiment or survey that is repeated multiple times. The binomial is a type of distribution that has <strong>two possible outcomes</strong> (the prefix ‘bi’ means two, or twice).</p>
 <section id="single-coin-flip">
 <h3>Single coin flip<a class="headerlink" href="#single-coin-flip" title="Link to this heading">#</a></h3>
-<p>When we flip a coin once, there are two possible outcomes: heads (H) or tails (T). If the coin is fair, the probability of getting heads <span class="math notranslate nohighlight">\(P(H)\)</span> is 0.5, and the probability of getting tails <span class="math notranslate nohighlight">\(P(T)\)</span> is also 0.5. This is because a fair coin is equally likely to land on either side.</p>
+<p>When we flip a coin once, there are two possible outcomes: heads (H) or tails (T). If the coin is fair, the probability of getting heads p(H) is 0.5, and the probability of getting tails p(T) = 0.5 as well. This is because a fair coin is equally likely to land on either side.</p>
 <p>This scenario can be modeled as a binomial distribution with parameters n=1 (number of trials) and p=0.5 (probability of success on each trial). In this case, a “success” could be defined as getting heads. Here’s how we can simulate a single coin flip in Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -562,7 +562,7 @@ document.write(`
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
     <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Heads&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of heads&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of heads in 10,000 coin flip experiments&#39;</span><span class="p">);</span>
@@ -570,12 +570,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cc32e5251c56d37c3b3d8c7f8aa1cfccb85a4d9bf6bf80b84028611c40d68a5d.png" src="_images/cc32e5251c56d37c3b3d8c7f8aa1cfccb85a4d9bf6bf80b84028611c40d68a5d.png" />
+<img alt="_images/1e00959d4fa804d5ad7cc2293fd991a9f2de30e27a185b08a14b794607091590.png" src="_images/1e00959d4fa804d5ad7cc2293fd991a9f2de30e27a185b08a14b794607091590.png" />
 </div>
 </div>
 <p>A histogram is a graphical representation that organizes a group of data points into a specified range. In this case, the data points are the number of heads obtained in each of the 10,000 experiments of flipping a coin 10 times. The x-axis represents the number of heads obtained in each experiment, which can range from 0 to 10. The y-axis represents the frequency, i.e., the number of experiments that resulted in a certain number of heads. Each bar in the histogram corresponds to the number of heads (from 0 to 10). The height of each bar represents the number of experiments that resulted in that many heads.</p>
-<p>For a fair coin, we would expect the most common outcome to be <strong>around 5 heads</strong>, so the tallest bar should be around the middle of the histogram. This is because the <strong>binomial distribution is symmetric</strong> for a fair coin (<span class="math notranslate nohighlight">\(p=0.5\)</span>).</p>
-<p>In summary, the histogram provides a visual representation of the distribution of outcomes over many repeated experiments, and it should reflect the properties of the binomial distribution given a large enough number of experiments. It’s a great way to intuitively understand the concept of a binomial distribution. Happy learning!</p>
+<p>For a fair coin, we would expect the most common outcome to be <strong>around 5 heads</strong>, so the tallest bar should be around the middle of the histogram. This is because the <strong>binomial distribution is symmetric</strong> for a fair coin (p=0.5).</p>
+<p>The histogram provides a visual representation of the distribution of outcomes over many repeated experiments, and it should reflect the properties of the binomial distribution given a large enough number of experiments. It’s a great way to intuitively understand the concept of a binomial distribution.</p>
 </section>
 <section id="probability-and-frequency">
 <h3>Probability and frequency<a class="headerlink" href="#probability-and-frequency" title="Link to this heading">#</a></h3>
@@ -602,9 +602,9 @@ document.write(`
 <h2>Computational methods for binomial distribution<a class="headerlink" href="#computational-methods-for-binomial-distribution" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">scipy.stats.binom</span></code> is a function in the <a class="reference external" href="https://scipy.org/">SciPy library</a> in Python that provides a suite of methods for the binomial distribution. Here’s a brief introduction to some of the main methods provided by it:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">pmf(k,</span> <span class="pre">n,</span> <span class="pre">p)</span></code> is the Probability Mass Function (PMF). It gives the probability of getting exactly k successes (heads) in n trials (flips), when the probability of success on any given trial is p.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cdf(k,</span> <span class="pre">n,</span> <span class="pre">p)</span></code> is the Cumulative Distribution Function (CDF). It gives the probability of getting k or fewer successes in n trials.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sf(k)</span></code>, also called the Survival Function (SF), is defined as <span class="math notranslate nohighlight">\(1 - \text{cdf}(k)\)</span>, and it gives the probability of getting more than k successes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pmf(k,</span> <span class="pre">n,</span> <span class="pre">p)</span></code> is the probability mass function (PMF). It gives the probability of getting exactly k successes (heads) in n trials (flips), when the probability of success on any given trial is p.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cdf(k,</span> <span class="pre">n,</span> <span class="pre">p)</span></code> is the cumulative distribution function (CDF). It gives the probability of getting k or fewer successes in n trials.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sf(k)</span></code>, also called the survival function (SF), is defined as 1 - cdf(k), and it gives the probability of getting more than k successes.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">mean(n,</span> <span class="pre">p)</span></code>, <code class="docutils literal notranslate"><span class="pre">var(n,</span> <span class="pre">p)</span></code>, <code class="docutils literal notranslate"><span class="pre">std(n,</span> <span class="pre">p)</span></code> return the mean, variance, and standard deviation of the binomial distribution respectively.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rvs(n,</span> <span class="pre">p,</span> <span class="pre">size)</span></code> generates random variates in a given shape.</p></li>
 </ul>
@@ -633,7 +633,7 @@ Mean and standard deviation: (5.0, 1.581)
 </div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> function stands for Percent Point Function (PPF), which is also known as the inverse of the Cumulative Distribution Function (CDF). The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> takes a probability <span class="math notranslate nohighlight">\(q\)</span> and returns the corresponding x-value (or point) in the distribution such that the probability of observing a value less than or equal to that point is the given probability.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> function stands for percent point function (PPF), which is also known as the inverse of the CDF. The <code class="docutils literal notranslate"><span class="pre">ppf</span></code> takes a probability q and returns the corresponding x-value (or point) in the distribution such that the probability of observing a value less than or equal to that point is the given probability.</p>
 <p>When we plot from <code class="docutils literal notranslate"><span class="pre">ppf(q=0.001)</span></code> to <code class="docutils literal notranslate"><span class="pre">ppf(q=0.999)</span></code>, we’re essentially plotting the range of x-values (or points) that contain the <em>central 99.8%</em> of the distribution. This range excludes the extreme 0.1% on either end of the distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -713,8 +713,8 @@ Mean and standard deviation: (5.0, 1.581)
 </div>
 </div>
 </div>
-<p>The script returns the array <code class="docutils literal notranslate"><span class="pre">trials</span></code> of length 10,000 where each element is the number of improvements in a trial, and then calculates the mean number of improvements across all trials.</p>
-<p>To calculate the probability of getting exactly 10 improvements out of 30 in a single trial, we can use the Probability Mass Function (PMF) of the binomial distribution. In Python, we can use the <code class="docutils literal notranslate"><span class="pre">binom.pmf</span></code> function from the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> module.</p>
+<p>The script returns the array <em>trials</em> of length 10,000 where each element is the number of improvements in a trial, and then calculates the mean number of improvements across all trials.</p>
+<p>To calculate the probability of getting exactly 10 improvements out of 30 in a single trial, we can use the probability mass function (PMF) of the binomial distribution. In Python, we can use the <code class="docutils literal notranslate"><span class="pre">binom.pmf</span></code> function from the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> module.</p>
 <p>Overall this simulation can give us a sense of the variability we might expect in the number of improvements when conducting the clinical trial multiple times. It’s a powerful tool for understanding the potential outcomes and risks associated with the trial.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -805,14 +805,14 @@ Mean and standard deviation: (5.0, 1.581)
     <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1"># type: ignore</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Binomial distribution PMF&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of democrats&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Democrats&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">);</span>
 <span class="c1">#plt.vlines(x, 0, binom.pmf(x, n, p), colors=&#39;b&#39;, lw=5, alpha=.5);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bdf9e9ee774671b071f3ebe55b4231978691949edf5b08a74311a9e26611e06b.png" src="_images/bdf9e9ee774671b071f3ebe55b4231978691949edf5b08a74311a9e26611e06b.png" />
+<img alt="_images/e493fef44f8bd9786575e35b7d3fed713b9d7d7c2804f0751cf459bf05c29785.png" src="_images/e493fef44f8bd9786575e35b7d3fed713b9d7d7c2804f0751cf459bf05c29785.png" />
 </div>
 </div>
 <p>The previous script gives a theoretical calculation based on the binomial distribution, not an empirical result based on random sampling. Let’s try the random sampling approach using the <code class="docutils literal notranslate"><span class="pre">rvs</span></code> function.</p>
@@ -834,7 +834,7 @@ Mean and standard deviation: (5.0, 1.581)
 <span class="c1"># plt.hist(samples, bins=range(n+2), align=&#39;left&#39;, color=&#39;blue&#39;, density=True)</span>
 <span class="c1"># density=True normalizes the histogram</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Histogram of democrats in </span><span class="si">{</span><span class="n">num_simulations</span><span class="si">}</span><span class="s2"> simulated samples (n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Histogram of Democrats in </span><span class="si">{</span><span class="n">num_simulations</span><span class="si">}</span><span class="s2"> simulated samples (n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of democrats&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">195</span><span class="p">,</span> <span class="mi">285</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">);</span>
@@ -842,7 +842,7 @@ Mean and standard deviation: (5.0, 1.581)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/904f664674270e0c8e0de0b2257dd004484e3100d0dfcceebb0f7b0631e738bc.png" src="_images/904f664674270e0c8e0de0b2257dd004484e3100d0dfcceebb0f7b0631e738bc.png" />
+<img alt="_images/536d33405796b8fcbc715bc4f2316399697a1b044499e47cc8ff68c87564e3bd.png" src="_images/536d33405796b8fcbc715bc4f2316399697a1b044499e47cc8ff68c87564e3bd.png" />
 </div>
 </div>
 <p>This histogram gives we a visual representation of the distribution of Democrats in the simulated samples. Each bar represents the number of samples that resulted in a certain number of Democrats.</p>
@@ -874,7 +874,7 @@ Mean and standard deviation: (5.0, 1.581)
 <section id="free-throw-success-rate-example">
 <h3>Free throw success rate example<a class="headerlink" href="#free-throw-success-rate-example" title="Link to this heading">#</a></h3>
 <p>We will explore the concept of confidence intervals in the context of basket free throws by taking the example on pages 32-33 of the book.</p>
-<p>Let’s consider a basketball player who makes 17 out of 20 free throws. We can consider each free throw as a Bernoulli trial where there are only two possible outcomes - <strong>success</strong> (the player makes the shot) or <strong>failure</strong> (the player misses the shot). This gives us a sample success rate of 85%, however, this is just an estimate based on a limited number of shots. If the player were to take many more shots, their overall success rate might be slightly higher or lower.</p>
+<p>Let’s consider a basketball player who makes 17 out of 20 free throws. We can consider each free throw as a Bernoulli trial where there are only two possible outcomes - <em>success</em> (the player makes the shot) or <em>failure</em> (the player misses the shot). This gives us a sample success rate of 85%, however, this is just an estimate based on a limited number of shots. If the player were to take many more shots, their overall success rate might be slightly higher or lower.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
@@ -934,7 +934,7 @@ Attempt 4: 20 successes
 <h3>Constructing confidence intervals via classical methods<a class="headerlink" href="#constructing-confidence-intervals-via-classical-methods" title="Link to this heading">#</a></h3>
 <p>We can for example compute the confidence interval using the modified <strong>Wald method</strong> by hand, as described in the book “Intuitive Biostatistics”:</p>
 <ol class="arabic simple">
-<li><p><span class="math notranslate nohighlight">\(p'=\frac{s + 2}{n + 4}\)</span> where <span class="math notranslate nohighlight">\(s\)</span> is the number of successes, and <span class="math notranslate nohighlight">\(n\)</span> the number of trials</p></li>
+<li><p>The value <span class="math notranslate nohighlight">\(p'=\frac{s + 2}{n + 4}\)</span> where <span class="math notranslate nohighlight">\(s\)</span> is the number of successes, and <span class="math notranslate nohighlight">\(n\)</span> the number of trials</p></li>
 <li><p>The margin of error is <span class="math notranslate nohighlight">\(W = 2\sqrt{\frac{p' (1 - p')}{n + 4}}\)</span></p></li>
 <li><p>Finally, the 95% confidence interval spans from <span class="math notranslate nohighlight">\((p' - W)\)</span> to <span class="math notranslate nohighlight">\((p' + W)\)</span></p></li>
 </ol>
@@ -1057,7 +1057,7 @@ from 62.59% to 95.75% of success
 </div>
 </div>
 </div>
-<p>Therefore, when we calculate the <strong>2.5th and 97.5th percentiles</strong> of this distribution (which gives us a 95% confidence interval), it should be <strong>close to the theoretical binomial confidence interval</strong>, especially when the number of trials is large.</p>
+<p>Therefore, when we calculate the <em>2.5th and 97.5th percentiles</em> of this distribution (which gives us a 95% confidence interval), it should be close to the theoretical binomial confidence interval, especially when the number of trials is large.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the 95% confidence interval using np.percentile</span>
@@ -1082,14 +1082,14 @@ from 62.59% to 95.75% of success
     <span class="n">density</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Bootstrap proportions ($p$)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bootstrap proportions (p)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Annotate the observed mean difference</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cornflowerblue&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;True proportion (</span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;True proportion (</span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add lines for the confidence interval</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
@@ -1104,7 +1104,7 @@ from 62.59% to 95.75% of success
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;97.5th (</span><span class="si">{</span><span class="n">bs_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap distribution of proportions (n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> | B=</span><span class="si">{</span><span class="n">B</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
@@ -1112,7 +1112,7 @@ from 62.59% to 95.75% of success
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6341d1831f67bfec397fcbba965dfad92b2757c4e6c4010e67d46e9cc7833509.png" src="_images/6341d1831f67bfec397fcbba965dfad92b2757c4e6c4010e67d46e9cc7833509.png" />
+<img alt="_images/a3bec81ad85bdd4199594924b1b494f89a4149d19c86f2b458038955caf88353.png" src="_images/a3bec81ad85bdd4199594924b1b494f89a4149d19c86f2b458038955caf88353.png" />
 </div>
 </div>
 <p>While the CLT provides an approximation for calculating confidence intervals, its accuracy depends on factors like the number of trials and the true success probability. This approximation tends to be more reliable with larger sample sizes and when the probability isn’t too close to the extremes of 0 or 1.</p>
@@ -1120,7 +1120,7 @@ from 62.59% to 95.75% of success
 </section>
 <section id="what-does-95-confidence-really-mean">
 <h3>What does 95% confidence really mean?<a class="headerlink" href="#what-does-95-confidence-really-mean" title="Link to this heading">#</a></h3>
-<p>Remember, the confidence interval gives a range of plausible values for the population proportion based on the sample data. It <strong>does not guarantee that the population proportion is within this range</strong>, but it gives a range where the population proportion is likely to fall, with a certain level of confidence (often 95%).</p>
+<p>Remember, the confidence interval gives a range of plausible values for the population proportion based on the sample data. It <em>does not guarantee that the population proportion is within this range</em>, but it gives a range where the population proportion is likely to fall, with a certain level of confidence (often 95%).</p>
 <p>We illustrate that using the example of pages 35-36. The experiment involves a bowl that contains 100 balls in total. Out of these, 25 balls are red and the remaining 75 balls are black. The balls are well mixed to ensure randomness. The process is as follows:</p>
 <ol class="arabic simple">
 <li><p>A ball is chosen randomly from the bowl.</p></li>
@@ -1130,7 +1130,7 @@ from 62.59% to 95.75% of success
 <li><p>Steps 1-4 are repeated 15 times.</p></li>
 </ol>
 <p>Each time a ball is chosen, it represents a Bernoulli trial since there are only two possible outcomes - the ball is either red or black. The proportion of red balls chosen in these 15 trials is recorded.</p>
-<p>This process is then simulated 20 times, each time recording the fraction of red balls chosen. For each simulation, a 95% confidence interval for the proportion of red balls is computed. The aim is to observe that <strong>approximately 1 out of 20 of these 95% confidence intervals will not include the true population proportion</strong> of red balls (which is 0.25 or 25% in this case).</p>
+<p>This process is then simulated 20 times, each time recording the fraction of red balls chosen. For each simulation, a 95% confidence interval for the proportion of red balls is computed. The aim is to observe that <em>approximately 1 out of 20 of these 95% confidence intervals will not include the true population proportion</em> of red balls (which is 0.25 or 25% in this case).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters of the binomial distribution</span>
@@ -1164,7 +1164,7 @@ The 95% confidence interval (scipy norm.interval) is (0.46, 7.04) out of 15
 </div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">statsmodels.stats.proportion.proportion_confint</span></code> function is used to calculate the confidence interval for a proportion in a way that properly accounts for the binomial distribution, which is <strong>discrete</strong>. The <code class="docutils literal notranslate"><span class="pre">count</span></code> parameter of this function represents the number of successes (in this case, the number of red balls drawn), and it must be an integer because we can’t have a fraction of a success in a binomial experiment. It’s either a success or not, hence, it’s a discrete value.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">statsmodels.stats.proportion.proportion_confint</span></code> function is used to calculate the confidence interval for a proportion in a way that properly accounts for the binomial distribution, which is <strong>discrete</strong>. The ‘count’ parameter of this function represents the number of successes (in this case, the number of red balls drawn), and it must be an integer because we can’t have a fraction of a success in a binomial experiment. It’s either a success or not, hence, it’s a discrete value.</p>
 <p>So, in our case, if we’re drawing 15 balls and we know that 25% of them are red, we can’t enter 0.25 * 15 for the count parameter because this would be a fractional number. Instead, we should enter the actual number of red balls drawn in the sample. For example, if we drew 4 red balls out of 15, we would enter 4 for the count parameter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1264,7 +1264,7 @@ The 95% confidence interval (scipy norm.interval) is (0.46, 7.04) out of 15
 <span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span>
     <span class="c1"># central 99.8% of the distribution</span>
     <span class="n">x</span><span class="o">:=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span>
-        <span class="n">binom_distribution</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.001</span><span class="p">),</span> <span class="c1"># Percent Point Function</span>
+        <span class="n">binom_distribution</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.001</span><span class="p">),</span> <span class="c1"># percent point function</span>
         <span class="n">binom_distribution</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">.999</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
     <span class="n">binom_distribution</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">),)</span>
@@ -1273,13 +1273,13 @@ The 95% confidence interval (scipy norm.interval) is (0.46, 7.04) out of 15
 </section>
 <section id="probabilities">
 <h3>Probabilities<a class="headerlink" href="#probabilities" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Probability Mass Function - P(X=5)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># probability mass function - P(X=5)</span>
 <span class="n">binom_distribution</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="c1"># Cumulative Distribution Function - P(X&lt;=3)</span>
+<span class="c1"># cumulative distribution function - P(X&lt;=3)</span>
 <span class="n">binom_distribution</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
-<span class="c1"># Survival Function - P(X&gt;6) or P(X&gt;=7)</span>
+<span class="c1"># survival function - P(X&gt;6) or P(X&gt;=7)</span>
 <span class="n">binom_distribution</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1455,7 +1455,7 @@ seaborn: 0.13.2
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-confidence-interval">What is a Confidence Interval?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-confidence-interval">What is a confidence interval?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-proportion">What is a proportion?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Confidence interval of a proportion</a></li>
 </ul>

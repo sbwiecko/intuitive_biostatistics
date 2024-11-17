@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -790,7 +790,7 @@ timeline
 </section>
 <section id="using-log-rank-test-in-python">
 <h3>Using log-rank test in Python<a class="headerlink" href="#using-log-rank-test-in-python" title="Link to this heading">#</a></h3>
-<p>With <code class="docutils literal notranslate"><span class="pre">lifelines</span></code>, performing the log-rank test is straightforward using <code class="docutils literal notranslate"><span class="pre">logrank_test</span></code>. For multiple groups, consider <code class="docutils literal notranslate"><span class="pre">pairwise_logrank_test()</span></code> to perform all pairwise comparisons between groups, or <code class="docutils literal notranslate"><span class="pre">multivariate_logrank_test()</span></code> to test the overall hypothesis that all groups have the same survival.</p>
+<p>With lifelines, performing the log-rank test is straightforward using <code class="docutils literal notranslate"><span class="pre">logrank_test</span></code>. For multiple groups, consider <code class="docutils literal notranslate"><span class="pre">pairwise_logrank_test()</span></code> to perform all pairwise comparisons between groups, or <code class="docutils literal notranslate"><span class="pre">multivariate_logrank_test()</span></code> to test the overall hypothesis that all groups have the same survival.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lifelines.statistics</span> <span class="kn">import</span> <span class="n">logrank_test</span>
@@ -906,7 +906,7 @@ timeline
 </section>
 <section id="hazard-ratio-for-quantifying-relative-risk">
 <h2>Hazard ratio for quantifying relative risk<a class="headerlink" href="#hazard-ratio-for-quantifying-relative-risk" title="Link to this heading">#</a></h2>
-<p>While Kaplan-Meier curves offer a powerful visual representation of survival experiences, they don’t directly reveal the underlying dynamics of risk over time. To gain insights into the instantaneous risk of an event at any given moment, we turn to the <strong>hazard function</strong>, denoted by <span class="math notranslate nohighlight">\(h(t)\)</span>.</p>
+<p>While Kaplan-Meier curves offer a powerful visual representation of survival experiences, they don’t directly reveal the underlying dynamics of risk over time. To gain insights into the instantaneous risk of an event at any given moment, we turn to the <strong>hazard function</strong>, denoted by h(t).</p>
 <p>In survival analysis, the <strong>hazard</strong> represents the instantaneous <strong>risk</strong> of experiencing the event of interest (e.g., death) at a given time, given that the individual has survived up to that point. Think of it as the “slope” of the survival curve - a steeper slope indicates a higher hazard, meaning events are occurring more rapidly.</p>
 <p>The <strong>hazard ratio (HR)</strong> compares the hazards of two groups, providing a measure of relative risk. If the HR is 2.0, it signifies that the rate of events in one group is twice the rate in the other group at any given time point. In simpler terms, individuals in the first group are experiencing the event at twice the speed of those in the second group.</p>
 <p>The interpretation of the hazard ratio hinges on the <strong>assumption of proportional hazards</strong>. This assumption states that the <em>hazard ratio remains constant over time</em>, regardless of their covariate values. Mathematically: <span class="math notranslate nohighlight">\(h_A(t) / h_B(t) = c\)</span>, where <span class="math notranslate nohighlight">\(h_A(t)\)</span> and <span class="math notranslate nohighlight">\(h_B(t)\)</span> are the hazard functions of the treatment groups, and <span class="math notranslate nohighlight">\(c\)</span> is a constant.</p>
@@ -916,7 +916,7 @@ timeline
 <h3>Unveiling hazards with the Nelson-Aalen estimator<a class="headerlink" href="#unveiling-hazards-with-the-nelson-aalen-estimator" title="Link to this heading">#</a></h3>
 <section id="the-mathematics-behind-the-model">
 <h4>The mathematics behind the model<a class="headerlink" href="#the-mathematics-behind-the-model" title="Link to this heading">#</a></h4>
-<p>We can’t simply transform the Kaplan-Meier estimate to obtain the hazard function because statistical intricacies prevent such a straightforward conversion. But we have a robust <em>non-parametric</em> tool at our disposal: the Nelson-Aalen estimator. This estimator allows us to estimate the <strong>cumulative hazard function</strong>, <span class="math notranslate nohighlight">\(H(t)\)</span>, which represents the total accumulated risk of experiencing the event up to time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>We can’t simply transform the Kaplan-Meier estimate to obtain the hazard function because statistical intricacies prevent such a straightforward conversion. But we have a robust <em>non-parametric</em> tool at our disposal: the Nelson-Aalen estimator. This estimator allows us to estimate the <strong>cumulative hazard function</strong>, H(t), which represents the total accumulated risk of experiencing the event up to time <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <p>Mathematically, the cumulative hazard is defined as the integral of the hazard function: <span class="math notranslate nohighlight">\(H(t) = \int_{0}^t \lambda(z)dz\)</span>, where <span class="math notranslate nohighlight">\(\lambda(z)\)</span> represents the hazard function at time <span class="math notranslate nohighlight">\(z\)</span>.</p>
 <p>The Nelson-Aalen estimator provides a practical way to estimate <span class="math notranslate nohighlight">\(H(t)\)</span> from observed data: <span class="math notranslate nohighlight">\(\hat{H}(t) = \sum_{t_i \le t} \frac{d_i}{n_i}\)</span>. In this formula:</p>
 <ul class="simple">
@@ -1033,7 +1033,7 @@ timeline
 </section>
 <section id="cox-proportional-hazards-model">
 <h3>Cox proportional hazards model<a class="headerlink" href="#cox-proportional-hazards-model" title="Link to this heading">#</a></h3>
-<p>While the <a class="reference internal" href="#weibull"><span class="std std-ref">Weibull model (discussed later)</span></a> is a popular parametric choice for survival analysis, sometimes its distributional assumptions might not be met or are difficult to verify. In such cases, researchers often turn to the <strong>Cox proportional hazards (Cox PH) model</strong>, a <em>semi-parametric approach</em> that offers flexibility while still allowing for the inclusion of <strong>covariates</strong>.</p>
+<p>While the Weibull model (as discussed later) is a popular parametric choice for survival analysis, sometimes its distributional assumptions might not be met or are difficult to verify. In such cases, researchers often turn to the <strong>Cox proportional hazards (Cox PH) model</strong>, a <em>semi-parametric approach</em> that offers flexibility while still allowing for the inclusion of <strong>covariates</strong>.</p>
 <p>The Cox model expresses the hazard function as <span class="math notranslate nohighlight">\(h(t|x) = h_0(t) * \exp[(x - \overline{x})' \beta]\)</span>, where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(h(t|x)\)</span> is the hazard at time <span class="math notranslate nohighlight">\(t\)</span> for an individual with covariate values <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
@@ -1132,7 +1132,7 @@ timeline
     </tr>
     <tr>
       <th>time fit was run</th>
-      <td>2024-11-08 09:30:08 UTC</td>
+      <td>2024-11-17 15:38:33 UTC</td>
     </tr>
   </tbody>
 </table>
@@ -1205,13 +1205,13 @@ timeline
 </table>
 </div></div></div>
 </div>
-<p>In this example, the hazard ratio equals 0.436, with a 95% confidence interval ranging from 0.200 to 0.949. This indicates that, at any given time, individuals in the treated group (<code class="docutils literal notranslate"><span class="pre">'PRED'</span> <span class="pre">=</span> <span class="pre">True</span></code>) have a hazard rate that is approximately 43.6% of the hazard rate in the control/reference group (<code class="docutils literal notranslate"><span class="pre">'PRED'</span> <span class="pre">=</span> <span class="pre">False</span></code>), assuming the proportional hazards assumption holds. In simpler terms, this suggests that treated patients are experiencing death at a significantly lower rate than control patients throughout the follow-up period.</p>
+<p>In this example, the hazard ratio equals 0.436, with a 95% confidence interval ranging from 0.200 to 0.949. This indicates that, at any given time, individuals in the treated group (‘PRED’ = True) have a hazard rate that is approximately 43.6% of the hazard rate in the control/reference group (‘PRED’ = False), assuming the proportional hazards assumption holds. In simpler terms, this suggests that treated patients are experiencing death at a significantly lower rate than control patients throughout the follow-up period.</p>
 <p>Moreover, the 95% confidence interval for the HR does not include 1.0. This indicates that we can be 95% confident that the true hazard ratio in the population is not 1.0, i.e., the hazards are not equal between the two groups. This provides evidence for a statistically significant difference in survival experiences between the treated and control groups.
 If the two survival curves were truly identical, the hazard ratio would indeed be 1.0. The fact that our confidence interval excludes 1.0 strengthens our conclusion that the treatment likely has a real effect on survival.</p>
 </section>
 <section id="assessing-the-proportional-hazards-assumption">
 <h4>Assessing the proportional hazards assumption<a class="headerlink" href="#assessing-the-proportional-hazards-assumption" title="Link to this heading">#</a></h4>
-<p>To ensure the validity of our model and the accuracy of these interpretations, it’s essential to check whether the proportional hazards assumption is reasonably met. The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library provides a convenient method, <a class="reference external" href="https://lifelines.readthedocs.io/en/latest/jupyter_notebooks/Proportional%20hazard%20assumption.html"><code class="docutils literal notranslate"><span class="pre">check_assumptions()</span></code></a>, to assist in this assessment.</p>
+<p>To ensure the validity of our model and the accuracy of these interpretations, it’s essential to check whether the proportional hazards assumption is reasonably met. The lifelines library provides a convenient method, <a class="reference external" href="https://lifelines.readthedocs.io/en/latest/jupyter_notebooks/Proportional%20hazard%20assumption.html"><code class="docutils literal notranslate"><span class="pre">check_assumptions()</span></code></a>, to assist in this assessment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cph</span><span class="o">.</span><span class="n">check_assumptions</span><span class="p">(</span>
@@ -1227,7 +1227,7 @@ If the two survival curves were truly identical, the hazard ratio would indeed b
 Proportional hazard assumption looks okay.
 </pre></div>
 </div>
-<img alt="_images/d665fe82717a0007a2c3931d869eef7c2a91141609a69e7352b23955feb14edd.png" src="_images/d665fe82717a0007a2c3931d869eef7c2a91141609a69e7352b23955feb14edd.png" />
+<img alt="_images/4fc9e6f08246f762bf17be895cc8c47d861d4a84c7f828f4d4a56ac5e6d0b190.png" src="_images/4fc9e6f08246f762bf17be895cc8c47d861d4a84c7f828f4d4a56ac5e6d0b190.png" />
 </div>
 </div>
 </section>
@@ -1258,9 +1258,9 @@ Proportional hazard assumption looks okay.
 <li><p>Continuous covariates: the baseline level is typically the <em>mean or median</em> value of the covariate in the dataset.</p></li>
 <li><p>Categorical covariates: the baseline level is usually the <em>reference category</em> (e.g., the “control” group or the most common category).</p></li>
 </ul>
-<p><em>It’s important to note that in the current version of <code class="docutils literal notranslate"><span class="pre">lifelines</span></code>, when dealing with categorical covariates, the reference or control group used for establishing the baseline is determined by the <strong>first category encountered in the dataset</strong> when the model is fit. In our case, since the first patient in the dataset has <code class="docutils literal notranslate"><span class="pre">PRED</span> <span class="pre">=</span> <span class="pre">False</span></code>, the baseline hazard and survival functions represent the untreated or control group. If ‘PRED’ were encoded numerically as 0 and 1, then 0 (representing the absence of prednisone treatment) would naturally become the baseline. Similarly, if the very first patient in the dataset had been assigned <code class="docutils literal notranslate"><span class="pre">PRED</span> <span class="pre">=</span> <span class="pre">True</span></code>, then the baseline would correspond to the prednisone-treated group.</em></p>
-<p>This enhanced explanation provides a more accurate and nuanced understanding of how <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> handles baseline selection for categorical covariates, which is crucial for interpreting the model results correctly.</p>
-<p><em>Of note, in the current version of <code class="docutils literal notranslate"><span class="pre">lifelines</span></code>, the reference/control group chosen for the baseline is the first category of the dataset, i.e., <code class="docutils literal notranslate"><span class="pre">PRED</span> <span class="pre">=</span> <span class="pre">False</span></code>. If ‘PRED’ were encoded as 0 and 1, then 0 would be the baseline. If the very patient of the dataset was set as <code class="docutils literal notranslate"><span class="pre">PRED</span> <span class="pre">=</span> <span class="pre">True</span></code>, then the baseline would be the prednisone group.</em></p>
+<p><em>It’s important to note that in the current version of lifelines, when dealing with categorical covariates, the reference or control group used for establishing the baseline is determined by the <strong>first category encountered in the dataset</strong> when the model is fit. In our case, since the first patient in the dataset has ‘PRED = False’, the baseline hazard and survival functions represent the untreated or control group. If ‘PRED’ were encoded numerically as 0 and 1, then 0 (representing the absence of prednisone treatment) would naturally become the baseline. Similarly, if the very first patient in the dataset had been assigned ‘PRED = True’, then the baseline would correspond to the prednisone-treated group.</em></p>
+<p>This enhanced explanation provides a more accurate and nuanced understanding of how lifelines handles baseline selection for categorical covariates, which is crucial for interpreting the model results correctly.</p>
+<p><em>Of note, in the current version of lifelines, the reference/control group chosen for the baseline is the first category of the dataset, i.e. in our example, ‘PRED = False’. If the very first patient of the dataset was set as ‘PRED = True’, then the baseline would be the prednisone group.</em></p>
 <p>Essentially, the baseline curve shows the survival experience we would expect for an “average” individual or an individual belonging to the reference categories of all categorical covariates, assuming the proportional hazards assumption holds.</p>
 <p>Why do the curves from both groups have the same shape? This is a direct consequence of the proportional hazards assumption, which is the core principle underlying the Cox PH model. The proportional hazards assumption states that the hazard ratio between any two individuals remains constant over time, regardless of their covariate values.</p>
 <p>Mathematically, this means that the hazard function for one group is simply a <em>constant multiple of the hazard function for another group</em>. When plotting the survival curves, this constant proportionality translates into curves that have the same basic shape but are vertically shifted relative to each other. The vertical shift reflects the difference in hazard (and thus survival probability) between the groups due to their different covariate values.</p>
@@ -1268,7 +1268,7 @@ Proportional hazard assumption looks okay.
 </section>
 </section>
 <section id="the-weibull-parametric-model">
-<span id="weibull"></span><h2>The Weibull parametric model<a class="headerlink" href="#the-weibull-parametric-model" title="Link to this heading">#</a></h2>
+<h2>The Weibull parametric model<a class="headerlink" href="#the-weibull-parametric-model" title="Link to this heading">#</a></h2>
 <p>Having explored non-parametric and semi-parametric approaches, let’s now turn our attention to a fully <strong>parametric</strong> model for survival analysis. The Weibull model is a popular parametric model in survival analysis due to its flexibility in capturing various hazard patterns.</p>
 <p>The Weibull distribution, <a class="reference external" href="https://en.wikipedia.org/wiki/Weibull_distribution">originally applied to model particle size distribution</a>, is a continuous probability distribution that models time-to-event data. Its probability density function is: <span class="math notranslate nohighlight">\(f(x; \lambda, \rho) = \frac{k}{\lambda}(\frac{x}{\lambda})^{\rho-1} \exp{-(x/\lambda)^k}, x \ge 0, \lambda &gt; 0, \rho &gt; 0\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> determines the scale and <span class="math notranslate nohighlight">\(\rho\)</span> the shape of the distribution.</p>
 <div class="cell docutils container">
@@ -1285,9 +1285,9 @@ Proportional hazard assumption looks okay.
 <span class="c1"># Left subplot: varying lambda with rho = 2</span>
 <span class="k">for</span> <span class="n">scale</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
     <span class="n">pdf</span> <span class="o">=</span> <span class="n">weibull_min</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\lambda=$</span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;λ=</span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Weibull PDF ($\rho=2$)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Weibull PDF (ρ =2)&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Probability density&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -1295,9 +1295,9 @@ Proportional hazard assumption looks okay.
 <span class="c1"># Right subplot: varying rho with lambda = 1</span>
 <span class="k">for</span> <span class="n">rho</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
     <span class="n">pdf</span> <span class="o">=</span> <span class="n">weibull_min</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\rho=$</span><span class="si">{</span><span class="n">rho</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;ρ=</span><span class="si">{</span><span class="n">rho</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Weibull PDF ($\lambda=1$)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Weibull PDF (λ=1)&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Density&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -1307,7 +1307,7 @@ Proportional hazard assumption looks okay.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5ccd09526d6876f2eed48c718baea95b1a5e49a75bb69a6d527ddc21fb7947f7.png" src="_images/5ccd09526d6876f2eed48c718baea95b1a5e49a75bb69a6d527ddc21fb7947f7.png" />
+<img alt="_images/14f71dd6f417f6ab8b388504bb8862f01ae109ef268a5d60d5588d759310b5d5.png" src="_images/14f71dd6f417f6ab8b388504bb8862f01ae109ef268a5d60d5588d759310b5d5.png" />
 </div>
 </div>
 <p>The Weibull distribution provides a parameterized form for the survival function: <span class="math notranslate nohighlight">\(S(t)=\exp[-(t / \lambda)^\rho]\)</span>, where:</p>
@@ -1384,7 +1384,7 @@ Proportional hazard assumption looks okay.
 <h3>Goodness-of-fit<a class="headerlink" href="#goodness-of-fit" title="Link to this heading">#</a></h3>
 <p>These interpretations are based on the assumption that the Weibull model provides a good fit to the data for both groups. It’s always advisable to assess the model fit and consider alternative models if necessary.</p>
 <p>The visual comparison with the Kaplan-Meier plots is straightforward and intuitive as we can see how well the Weibull model captures the empirical survival patterns in the data. If the Weibull curves closely follow the Kaplan-Meier curves, it suggests a good fit. Large deviations between the curves indicate potential areas where the Weibull model might not be capturing the underlying survival patterns adequately.</p>
-<p>We can leverage the log-likelihood and AIC values provided in the Weibull model summary table to gain some insights into the goodness-of-fit, but with certain considerations and limitations. In general, a higher log-likelihood value indicates a better fit of the model to the data, but the log-likelihood alone doesn’t tell if the model is a “good” fit in an absolute sense. It’s more useful for relative comparisons between models, e.g., when <a class="reference internal" href="#more-models"><span class="std std-ref">testing other parametric models</span></a>.</p>
+<p>We can leverage the log-likelihood and AIC values provided in the Weibull model summary table to gain some insights into the goodness-of-fit, but with certain considerations and limitations. In general, a higher log-likelihood value indicates a better fit of the model to the data, but the log-likelihood alone doesn’t tell if the model is a “good” fit in an absolute sense. It’s more useful for relative comparisons between models, e.g., when testing other parametric models as it will be discussed at the end of this chapter.</p>
 <p>While AIC and visual comparisons of survival curves offer valuable insights into model fit, we can further assess the suitability of the Weibull model using a Quantile-Quantile (QQ) plot. The QQ plot compares the quantiles of the observed data to the quantiles we would expect if the data truly followed a Weibull distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1508,8 +1508,8 @@ AIC = 176.87
 </div>
 </div>
 </div>
-<p>Here in the placebo group, the lambda (<span class="math notranslate nohighlight">\(\lambda\)</span>) value is significantly lower than that of the prednisone group (88.79 vs. 224.72). This indicates that the median survival time (time at which 63.2% of the population experiences the event) is considerably shorter for the placebo group compared to the prednisone group.</p>
-<p>The rho (<span class="math notranslate nohighlight">\(\rho\)</span>) value for the placebo group is 0.72, which is less than 1. This suggests a decreasing hazard rate over time for the control group. The risk of the event is higher initially but decreases as time progresses. The rho (<span class="math notranslate nohighlight">\(\rho\)</span>) value for the prednisone group is 0.95, which is close to 1. This suggests a hazard rate that is nearly constant over time for the prednisone group. The risk of the event remains relatively stable throughout the follow-up period.</p>
+<p>Here in the placebo group, the λ value is significantly lower than that of the prednisone group (88.79 vs. 224.72). This indicates that the median survival time (time at which 63.2% of the population experiences the event) is considerably shorter for the placebo group compared to the prednisone group.</p>
+<p>The ρ value for the placebo group is 0.72, which is less than 1. This suggests a decreasing hazard rate over time for the control group. The risk of the event is higher initially but decreases as time progresses. The value of ρ for the prednisone group is 0.95, which is close to 1. This suggests a hazard rate that is nearly constant over time for the prednisone group. The risk of the event remains relatively stable throughout the follow-up period.</p>
 </section>
 <section id="weibull-regression">
 <h3>Weibull regression<a class="headerlink" href="#weibull-regression" title="Link to this heading">#</a></h3>
@@ -1597,7 +1597,7 @@ AIC = 176.87
     </tr>
     <tr>
       <th>time fit was run</th>
-      <td>2024-11-08 09:30:10 UTC</td>
+      <td>2024-11-17 15:47:13 UTC</td>
     </tr>
   </tbody>
 </table>
@@ -1702,8 +1702,8 @@ AIC = 176.87
 </div></div></div>
 </div>
 <p>The results suggest that the treatment (‘PRED’) is associated with a significant increase in survival time. The positive coefficient for ‘PRED’ indicates that individuals in the treatment group (PRED = True) experience a deceleration in the time to the event compared to the control group (PRED = False). In other words, the treatment is associated with a longer survival time. The P value is less than 0.05, indicating that the effect of the treatment on survival time is statistically significant.</p>
-<p>The intercept for lambda (<span class="math notranslate nohighlight">\(\lambda\)</span>) represents the log of the baseline scale parameter (<span class="math notranslate nohighlight">\(\lambda_0\)</span>) in the Weibull AFT model. To get the actual baseline scale parameter, we need to exponentiate this value: <span class="math notranslate nohighlight">\(\lambda_0 = exp(4.48) \approx 88.34\)</span>. This means that, in the absence of any effect from the ‘PRED’ covariate (i.e., when PRED = False, which is often considered the baseline or reference group in this context), 63.2% of the individuals are expected to experience the event by approximately 88.34 months.</p>
-<p>Finally, the intercept for rho (<span class="math notranslate nohighlight">\(\rho\)</span>) represents the log of the baseline shape parameter (<span class="math notranslate nohighlight">\(\rho_0\)</span>) in the Weibull AFT model. To get the actual baseline shape parameter, we need to exponentiate this value: <span class="math notranslate nohighlight">\(\rho_0 = exp(-0.24) \approx 0.79\)</span>. This indicates that the baseline hazard function (the hazard function when PRED = False) is decreasing over time. A shape parameter less than 1 implies a decreasing hazard rate, meaning the risk of the event is higher initially but diminishes as time progresses.</p>
+<p>The intercept for λ represents the log of the baseline scale parameter (<span class="math notranslate nohighlight">\(\lambda_0\)</span>) in the Weibull AFT model. To get the actual baseline scale parameter, we need to exponentiate this value: <span class="math notranslate nohighlight">\(\lambda_0 = exp(4.48) \approx 88.34\)</span>. This means that, in the absence of any effect from the ‘PRED’ covariate (i.e., when PRED = False, which is often considered the baseline or reference group in this context), 63.2% of the individuals are expected to experience the event by approximately 88.34 months.</p>
+<p>Finally, the intercept for ρ represents the log of the baseline shape parameter (<span class="math notranslate nohighlight">\(\rho_0\)</span>) in the Weibull AFT model. To get the actual baseline shape parameter, we need to exponentiate this value: <span class="math notranslate nohighlight">\(\rho_0 = exp(-0.24) \approx 0.79\)</span>. This indicates that the baseline hazard function (the hazard function when PRED = False) is decreasing over time. A shape parameter less than 1 implies a decreasing hazard rate, meaning the risk of the event is higher initially but diminishes as time progresses.</p>
 </section>
 <section id="visualization-and-prediction-with-weibull-model">
 <h3>Visualization and prediction with Weibull model<a class="headerlink" href="#visualization-and-prediction-with-weibull-model" title="Link to this heading">#</a></h3>
@@ -1872,7 +1872,7 @@ AIC = 176.87
     </tr>
     <tr>
       <th>time fit was run</th>
-      <td>2024-11-08 09:30:10 UTC</td>
+      <td>2024-11-17 15:47:56 UTC</td>
     </tr>
   </tbody>
 </table>
@@ -2043,7 +2043,7 @@ AIC = 176.87
 <img alt="_images/287311a1721380a7cacfd49852ab29d7d3bb0db255644cd05824782d741e8712.png" src="_images/287311a1721380a7cacfd49852ab29d7d3bb0db255644cd05824782d741e8712.png" />
 </div>
 </div>
-<p>We can also observe the influence a variable, e.g., ‘prio’, in the model by plotting the outcome (i.e. survival) of changing the variable. By comparing the positions and shapes of these curves, we can visually assess how changes in this covariate affect the predicted survival time. In a Weibull AFT model, a negative coefficient for a covariate (like ‘prio’) indicates that an increase in that covariate is associated with a decrease in the acceleration factor (<span class="math notranslate nohighlight">\(\lambda\)</span>). This implies that higher values of ‘prio’ should lead to a slower time to the event (i.e., increased survival time), and we would expect the survival curve to shift to the right.</p>
+<p>We can also observe the influence a variable, e.g., ‘prio’, in the model by plotting the outcome (i.e. survival) of changing the variable. By comparing the positions and shapes of these curves, we can visually assess how changes in this covariate affect the predicted survival time. In a Weibull AFT model, a negative coefficient for a covariate (like ‘prio’) indicates that an increase in that covariate is associated with a decrease in the acceleration factor λ. This implies that higher values of ‘prio’ should lead to a slower time to the event (i.e., increased survival time), and we would expect the survival curve to shift to the right.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aft_rossi</span><span class="o">.</span><span class="n">plot_partial_effects_on_outcome</span><span class="p">(</span>
@@ -2143,7 +2143,7 @@ dtype: float64
 </div>
 </section>
 <section id="alternative-parametric-models">
-<span id="more-models"></span><h3>Alternative parametric models<a class="headerlink" href="#alternative-parametric-models" title="Link to this heading">#</a></h3>
+<h3>Alternative parametric models<a class="headerlink" href="#alternative-parametric-models" title="Link to this heading">#</a></h3>
 <p>While the Weibull model offers flexibility in capturing different hazard shapes, it’s not the only parametric option available:</p>
 <ul class="simple">
 <li><p>Exponential model: assumes a constant hazard rate over time. It’s a special case of the Weibull model with the shape parameter (rho) equal to 1.</p></li>
@@ -2151,7 +2151,7 @@ dtype: float64
 <li><p>Log-logistic model: assumes that the logarithm of the odds of survival follows a logistic distribution. It can also model non-monotonic hazard rates.</p></li>
 <li><p>Generalized gamma model: a more general model that encompasses the Weibull, exponential, and log-normal models as special cases. It offers additional flexibility but can be more complex to interpret</p></li>
 </ul>
-<p>The Akaike Information Criterion (AIC) is a useful metric for comparing the relative quality of different statistical models fit to the same data. It estimates the relative amount of information lost by a given model and penalizes large number of estimated parameters. Therefore, the less information a model loses, the higher the quality of that model, and the fewer parameters (less complex) a model is, the higher the quality of that model. It balances the model’s goodness-of-fit (measured by the log-likelihood) with its complexity (measured by the number of parameters).</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Akaike_information_criterion">Akaike information criterion (AIC)</a> is a useful metric for comparing the relative quality of different statistical models fit to the same data. It estimates the relative amount of information lost by a given model and penalizes large number of estimated parameters. Therefore, the less information a model loses, the higher the quality of that model, and the fewer parameters (less complex) a model is, the higher the quality of that model. It balances the model’s goodness-of-fit (measured by the log-likelihood) with its complexity (measured by the number of parameters).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -2223,7 +2223,7 @@ GeneralizedGammaFitter 	 145.1972001057433
 <img alt="_images/254eccf896574443d86b055b2f1bb969c28b1eabf15151c2e35abdc129d34535.png" src="_images/254eccf896574443d86b055b2f1bb969c28b1eabf15151c2e35abdc129d34535.png" />
 </div>
 </div>
-<p>Given a set of candidate models for the data, the one with the minimum AIC value is the preferred model. To streamline the process of comparing different parametric models and selecting the best-fitting one based on the AIC criterion, we can leverage the convenient <code class="docutils literal notranslate"><span class="pre">find_best_parametric_model</span></code> function provided by <code class="docutils literal notranslate"><span class="pre">lifelines</span></code>. This function automates the fitting and comparison of multiple parametric models, ensuring consistency in the model selection process.</p>
+<p>Given a set of candidate models for the data, the one with the minimum AIC value is the preferred model. To streamline the process of comparing different parametric models and selecting the best-fitting one based on the AIC criterion, we can leverage the convenient <code class="docutils literal notranslate"><span class="pre">find_best_parametric_model</span></code> function provided by lifelines. This function automates the fitting and comparison of multiple parametric models, ensuring consistency in the model selection process.</p>
 <p>Let’s use this function to identify the best-fitting parametric model for both the ‘PRED’ and placebo groups in our prednisolone dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2268,16 +2268,16 @@ AIC: 142.35
 </div>
 </div>
 </div>
-<p>Our exploration of parametric survival models has revealed the richness and depth of this field. Even within the realm of parametric models, there exists a wide array of options beyond the commonly used Weibull, exponential, and log-normal distributions. The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library, with its extensive collection of fitters, provides a powerful toolkit for delving deeper into this fascinating domain.</p>
-<p>The emergence of the <code class="docutils literal notranslate"><span class="pre">PiecewiseExponentialFitter</span></code> as the best-fitting model for the ‘PRED’ group underscores the importance of considering a diverse set of models and letting the data guide the selection process. While we’ve only scratched the surface in this chapter, the <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library offers many more advanced models and techniques for those seeking to master the intricacies of survival analysis.</p>
+<p>Our exploration of parametric survival models has revealed the richness and depth of this field. Even within the realm of parametric models, there exists a wide array of options beyond the commonly used Weibull, exponential, and log-normal distributions. The lifelines library, with its extensive collection of fitters, provides a powerful toolkit for delving deeper into this fascinating domain.</p>
+<p>The emergence of the <code class="docutils literal notranslate"><span class="pre">PiecewiseExponentialFitter</span></code> as the best-fitting model for the ‘PRED’ group underscores the importance of considering a diverse set of models and letting the data guide the selection process. While we’ve only scratched the surface in this chapter, the lifelines library offers many more advanced models and techniques for those seeking to master the intricacies of survival analysis.</p>
 </section>
 </section>
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
-<p>In this chapter, we embarked on a comprehensive exploration of survival analysis, harnessing the capabilities of the <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library in Python. We commenced by elucidating the fundamental concepts of survival data and its visual representation through <strong>Kaplan-Meier</strong> curves. The <strong>log-rank test</strong> was then employed to rigorously assess the statistical significance of observed differences in survival between groups.</p>
+<p>In this chapter, we embarked on a comprehensive exploration of survival analysis, harnessing the capabilities of the lifelines library in Python. We commenced by elucidating the fundamental concepts of survival data and its visual representation through <strong>Kaplan-Meier</strong> curves. The <strong>log-rank test</strong> was then employed to rigorously assess the statistical significance of observed differences in survival between groups.</p>
 <p>We further ventured into the realm of <strong>hazard ratios</strong>, quantifying the relative risks associated with distinct groups, and examined the <strong>Nelson-Aalen estimator</strong>, providing an alternative perspective on the accumulation of risk over time. The chapter subsequently focused on the power of <strong>parametric models</strong>, with a particular emphasis on the <strong>Cox proportional hazards model</strong> and the flexible <strong>Weibull model</strong>. These models allowed us to identify and quantify the impact of <strong>covariates</strong> on survival, enhancing our understanding of the complex interplay between variables and outcomes. The Weibull model’s adaptability in accommodating various hazard shapes proved particularly valuable when the proportional hazards assumption of the Cox model was potentially violated.</p>
 <p>Throughout the chapter, we emphasized the synergy between visualization and prediction. Techniques like <code class="docutils literal notranslate"><span class="pre">plot_partial_effects_on_outcome</span></code> were employed to graphically illustrate the influence of covariates on survival, while functions such as <code class="docutils literal notranslate"><span class="pre">predict_median</span></code> enabled the extraction of concrete predictions from our models. The critical aspect of model selection was also addressed, utilizing the <strong>AIC criterion</strong> and visual inspections, including <strong>QQ plots</strong>, to guide informed decision-making.</p>
-<p>In conclusion, this chapter has equipped readers with the theoretical foundations and practical tools necessary to navigate the complexities of survival analysis. The <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> library, with its extensive suite of functionalities, empowers researchers and practitioners to unveil the intricate dynamics of time-to-event data across diverse fields. We encourage readers to apply these techniques to their own datasets, fostering a deeper understanding of survival phenomena and contributing to the advancement of knowledge in this critical domain.</p>
+<p>In conclusion, this chapter has equipped readers with the theoretical foundations and practical tools necessary to navigate the complexities of survival analysis. The lifelines library, with its extensive suite of functionalities, empowers researchers and practitioners to unveil the intricate dynamics of time-to-event data across diverse fields. We encourage readers to apply these techniques to their own datasets, fostering a deeper understanding of survival phenomena and contributing to the advancement of knowledge in this critical domain.</p>
 </section>
 <section id="cheat-sheet">
 <h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>

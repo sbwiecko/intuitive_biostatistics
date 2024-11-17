@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -460,7 +460,7 @@ document.write(`
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p><strong>Survival analysis</strong> is a branch of statistics that deals with the analysis of time-to-event data, often referred to as ‘survival data’.</p>
-<p>The <strong>event</strong> can be anything from the death of an organism (hence <strong>‘survival’</strong>), to the failure of a mechanical system, to the recovery of a sick patient.</p>
+<p>The <strong>event</strong> can be anything from the death of an organism (hence <strong>survival</strong>), to the failure of a mechanical system, to the recovery of a sick patient.</p>
 <p>A <strong>confidence interval</strong> in survival analysis gives a range of values, derived from the data, that is likely to contain the true value of an unknown population parameter. In the context of survival analysis, a confidence interval might be used to describe the uncertainty around a survival time estimate.</p>
 </section>
 <section id="survival-data">
@@ -479,7 +479,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lifelines version: 0.30.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lifelines version: 0.29.0
 </pre></div>
 </div>
 </div>
@@ -781,11 +781,11 @@ event_at
 </div>
 <p>This prints a DataFrame that includes the following columns:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">removed</span></code>: the number of individuals that had an event or were censored at each time point.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">observed</span></code>: the number of individuals that had an event at each time point.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">censored</span></code>: the number of individuals that were censored at each time point.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">entrance</span></code>: the number of individuals that entered the risk set at each time point. This is usually 0 for all time points except the first one.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">at_risk</span></code>: the number of individuals that are at risk of having an event at each time point.</p></li>
+<li><p><em>removed</em> is the number of individuals that had an event or were censored at each time point.</p></li>
+<li><p><em>observed</em> is the number of individuals that had an event at each time point.</p></li>
+<li><p><em>censored</em> is the number of individuals that were censored at each time point.</p></li>
+<li><p><em>entrance</em> is the number of individuals that entered the risk set at each time point. This is usually 0 for all time points except the first one.</p></li>
+<li><p><em>at_risk</em> is the number of individuals that are at risk of having an event at each time point.</p></li>
 </ul>
 <p>And <code class="docutils literal notranslate"><span class="pre">lifelines.utils.survival_events_from_table</span></code> is the inverse of the function survival_table_from_events:</p>
 <div class="cell docutils container">
@@ -846,14 +846,14 @@ event_at
 <h2>Kaplan-Meier estimator<a class="headerlink" href="#kaplan-meier-estimator" title="Link to this heading">#</a></h2>
 <section id="fraction-surviving">
 <h3>Fraction surviving<a class="headerlink" href="#fraction-surviving" title="Link to this heading">#</a></h3>
-<p>The <strong>fraction surviving</strong>, often represented as <span class="math notranslate nohighlight">\(S(t)\)</span>, is a fundamental concept in survival analysis. It represents the probability that an individual survives from the time origin (t=0) to a specified future time t.</p>
-<p>The survival function S(t), also known as the probability that life is longer than <span class="math notranslate nohighlight">\(t\)</span>, is given by <span class="math notranslate nohighlight">\(S(t) = P(T &gt; t)\)</span>, where T is the random lifetime taken from the population.</p>
+<p>The <strong>fraction surviving</strong>, often represented as S(t), is a fundamental concept in survival analysis. It represents the probability that an individual survives from the time origin (t=0) to a specified future time t.</p>
+<p>The survival function S(t), also known as the probability that life is longer than t, is given by <span class="math notranslate nohighlight">\(S(t) = P(T &gt; t)\)</span>, where T is the random lifetime taken from the population.</p>
 <p>In the context of survival analysis, “surviving” doesn’t necessarily mean “not dying.” Instead, it means “not experiencing the event of interest.” The event could be anything: death, failure of a machine, recovery from a disease, etc.</p>
 <p>Now, let’s consider the example of the 7 individuals in the previous study. Let’s focus on the 3 first events:</p>
 <ol class="arabic simple">
 <li><p>At time t1, one event (death) occurs. So, the fraction surviving drops by 1/7 (since all 7 individuals were at risk at this time). The survival probability at time t1 is thus <span class="math notranslate nohighlight">\(S(t_1) = 6/7\)</span>.</p></li>
 <li><p>At time t2, one individual is censored. This means they leave the study or the study ends before they have the event. Censoring does not affect the survival probability, so <span class="math notranslate nohighlight">\(S(t_2) = S(t_1) = 6/7\)</span>.</p></li>
-<li><p>At time t3, another event occurs. Now, only 5 individuals were at risk (since one event occurred at t1, reducing the at-risk group to 6, and one individual was censored at t2, further reducing the at-risk group to 5), so the fraction surviving drops by 1/5. The survival fraction at time t3 is thus <span class="math notranslate nohighlight">\(S(t_3) = S(t_2) \ast (1 - 1/5) = (6/7) \ast (4/5)\)</span>. And so on.</p></li>
+<li><p>At time t3, another event occurs. Now, only 5 individuals were at risk (since one event occurred at t1, reducing the at-risk group to 6, and one individual was censored at t2, further reducing the at-risk group to 5), so the fraction surviving drops by 1/5. The survival fraction at time t3 is thus <span class="math notranslate nohighlight">\(S(t_3) = S(t_2) \times (1 - 1/5) = (6/7)(4/5)\)</span>. And so on.</p></li>
 </ol>
 <p>We can compute the surviving fractions manually as follows:</p>
 <div class="cell docutils container">
@@ -878,12 +878,12 @@ event_at
 <p>In survival analysis, the survival function S(t) is often estimated using the product of conditional survival probabilities. This is the basis for the Kaplan-Meier estimator, which is one of the most commonly used methods in survival analysis.</p>
 <p>The Kaplan-Meier estimate of the survival function at time t is given by:</p>
 <div class="math notranslate nohighlight">
-\[\hat{S}(t) = \prod_{k \mid t_k \le{t}}(1 - \frac{d_k}{n_k})\]</div>
+\[\hat{S}(t) = \prod_{k \mid t_k \le{t}} \left(1 - \frac{d_k}{n_k} \right)\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p>The product is over all times <span class="math notranslate nohighlight">\(t_i\)</span> up to and including <span class="math notranslate nohighlight">\(t\)</span> where at least one event occurred.</p></li>
-<li><p><span class="math notranslate nohighlight">\(d_i\)</span> is the number of events that occurred at time <span class="math notranslate nohighlight">\(t_i\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(n_i\)</span> is the number of individuals at risk at time <span class="math notranslate nohighlight">\(t_i\)</span>, i.e., the number of individuals who have not yet had an event and have not been censored before time <span class="math notranslate nohighlight">\(t_i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(d_k\)</span> is the number of events that occurred at time <span class="math notranslate nohighlight">\(t_k\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n_k\)</span> is the number of individuals at risk at time <span class="math notranslate nohighlight">\(t_k\)</span>, i.e., the number of individuals who have not yet had an event and have not been censored before time <span class="math notranslate nohighlight">\(t_k\)</span>.</p></li>
 </ul>
 <p>This product ensures that the survival function estimate is properly adjusted at each time an event occurs, taking into account the decreasing number of individuals at risk.</p>
 <p>Also note that</p>
@@ -927,14 +927,16 @@ Time: 6.54, Survival fraction S(t): 0.3428571428571429
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for example at t=4.07</span>
-<span class="c1"># at the 2nd timepoint, no event were observed (censored)</span>
-<span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">0</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for example for t=4.07, since no event were observed</span>
+<span class="c1"># at the second time point t=3.67 (censored)</span>
+<span class="n">S3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">0</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time: </span><span class="si">{</span><span class="mf">4.07</span><span class="si">}</span><span class="s2">, Survival fraction S(t): </span><span class="si">{</span><span class="n">S3</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6857142857142858
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time: 4.07, Survival fraction S(t): 0.6857142857142858
 </pre></div>
 </div>
 </div>
@@ -986,7 +988,7 @@ Time: 6.54, Survival fraction S(t): 0.3428571428571429
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0.85714286, 0.85714286, 0.68571429, 0.51428571, 0.34285714,
-       0.34285714, 0.34285714]), array([1, 0, 1, 1, 1, 0, 0]), array([1.39, 3.67, 4.07, 4.76, 5.89, 6.17, 6.54]))
+       0.34285714, 0.34285714]), array([1, 0, 1, 1, 1, 0, 0], dtype=int64), array([1.39, 3.67, 4.07, 4.76, 5.89, 6.17, 6.54]))
 </pre></div>
 </div>
 </div>
@@ -999,124 +1001,67 @@ Time: 6.54, Survival fraction S(t): 0.3428571428571429
 <h3>The basics<a class="headerlink" href="#the-basics" title="Link to this heading">#</a></h3>
 <p>The confidence interval for the survival function at each time point is typically calculated in using the <a class="reference external" href="https://bookdown.org/sestelo/sa_financial/pointwise-confidence-interval-for-st.html">Greenwood’s formula</a>, which provides an estimate of the variance of the survival function. The formula for the variance at time <span class="math notranslate nohighlight">\(t\)</span> using the so-called “linear” or “plain” method is:</p>
 <div class="math notranslate nohighlight">
-\[\sigma^2[S(t)] = S^2(t) \times \sum_{t_i \le{t}} \frac{d_i}{n_i (n_i - d_i)}\]</div>
+\[s^2_{S(t)} = S^2(t) \times \sum_{t_k \le{t}} \frac{d_k}{n_k (n_k - d_k)}\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(S(t)\)</span> is the Kaplan-Meier estimate of the survival function at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
-<li><p>The sum is over all times <span class="math notranslate nohighlight">\(t_i\)</span> up to and including <span class="math notranslate nohighlight">\(t\)</span> where at least one event occurred.</p></li>
-<li><p><span class="math notranslate nohighlight">\(d_i\)</span> is the number of events that occurred at time <span class="math notranslate nohighlight">\(t_i\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(n_i\)</span> is the number of individuals at risk at time <span class="math notranslate nohighlight">\(t_i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S(t)\)</span> is the Kaplan-Meier estimate of the survival function up to time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+<li><p>The sum is over all times <span class="math notranslate nohighlight">\(t_k\)</span> up to and including <span class="math notranslate nohighlight">\(t\)</span> where at least one event occurred.</p></li>
+<li><p><span class="math notranslate nohighlight">\(d_k\)</span> is the number of events that occurred at time <span class="math notranslate nohighlight">\(t_k\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(n_k\)</span> is the number of individuals at risk at time <span class="math notranslate nohighlight">\(t_k\)</span>.</p></li>
 </ul>
-<p>Therefore, assuming that the sample follow a Normal distribution, so that <span class="math notranslate nohighlight">\(S(t) \pm z \times \text{se}(t)\)</span>, the confidence interval, can be determinted:</p>
+<p>Therefore, assuming that the sample follow a Normal distribution, so that <span class="math notranslate nohighlight">\(S(t) \pm z^\ast \times s_{S(t)}\)</span>, the confidence interval, can be determinted:</p>
 <div class="math notranslate nohighlight">
-\[\text{IC}_{0.95}[S(t)] = S(t) \pm 1.96 \times \sigma(S(t))\]</div>
-<p>where <span class="math notranslate nohighlight">\(z\)</span> is the z-score for the desired confidence level (for example, z = 1.96 for a 95% confidence interval), and <span class="math notranslate nohighlight">\(\sigma[S(t_j)]\)</span> the <strong>standard error</strong> (will be discussed in later chapters). The common practice is to clip the interval at <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
+\[\text{IC}^{0.95}_{S(t)} = S(t) \pm 1.96 \times s_{S(t)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(z^\ast\)</span> is the z-score or critical value for the desired confidence level (for example, z = 1.96 for a 95% confidence interval), and <span class="math notranslate nohighlight">\(s_{S(t)}\)</span> the <em>standard error</em> (it will be discussed in more details in later chapters). The common practice is to clip the interval at <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
 <p>Note that these calculations assume that the number of events at each time point and the number of individuals at risk are <em>large enough</em> for the Central Limit Theorem to hold. If these numbers are small, the confidence intervals may not be accurate.</p>
 </section>
 <section id="step-by-step-example">
 <h3>Step-by-step example<a class="headerlink" href="#step-by-step-example" title="Link to this heading">#</a></h3>
-<p>The z-values, also known as <strong>z-scores</strong>, correspond to the number of standard deviations away from the mean in a standard normal distribution. They are used to calculate confidence intervals in statistics. These values are derived from the standard normal distribution and are used to calculate the margin of error for confidence intervals.</p>
+<p>The z-values, also known as <strong>z-scores</strong>, correspond to the number of standard deviations away from the mean in a standard normal distribution. They are used to calculate confidence intervals in statistics, notably using <strong>critical z-values</strong>. These values are derived from the standard normal distribution and are used to calculate the margin of error.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 
 <span class="c1"># For a 99% confidence level</span>
 <span class="n">z_99</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.995</span><span class="p">)</span>  <span class="c1"># Two-tailed test, so we use 0.995 instead of 0.99</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-value for 99% confidence: </span><span class="si">{</span><span class="n">z_99</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-value for 99% confidence = </span><span class="si">{</span><span class="n">z_99</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># For a 95% confidence level</span>
 <span class="n">z_95</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span>  <span class="c1"># Two-tailed test, so we use 0.975 instead of 0.95</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-value for 95% confidence: </span><span class="si">{</span><span class="n">z_95</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-value for 95% confidence = </span><span class="si">{</span><span class="n">z_95</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Z-value for 99% confidence: 2.5758293035489004
-Z-value for 95% confidence: 1.959963984540054
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Z-value for 99% confidence = 2.575829
+Z-value for 95% confidence = 1.959964
 </pre></div>
 </div>
 </div>
 </div>
-<p>Let’s take the first events in our example:</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>time to event</p></th>
-<th class="head"><p>number at risk</p></th>
-<th class="head"><p>observed</p></th>
-<th class="head"><p>S(t)</p></th>
-<th class="head"><p>e=d/(n(n-d))</p></th>
-<th class="head"><p>sum(e)</p></th>
-<th class="head"><p>se(t)</p></th>
-<th class="head"><p>LCL</p></th>
-<th class="head"><p>UCL</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>1.39</p></td>
-<td><p>7</p></td>
-<td><p>1</p></td>
-<td><p>.8571</p></td>
-<td><p>0.024</p></td>
-<td><p>0.024</p></td>
-<td><p>0.132</p></td>
-<td><p>0.598</p></td>
-<td><p>1.116</p></td>
-</tr>
-<tr class="row-odd"><td><p>3.67</p></td>
-<td><p>6</p></td>
-<td><p>0</p></td>
-<td><p>.8571</p></td>
-<td><p>0</p></td>
-<td><p>0.024</p></td>
-<td><p>0.132</p></td>
-<td><p>0.598</p></td>
-<td><p>1.116</p></td>
-</tr>
-<tr class="row-even"><td><p>4.07</p></td>
-<td><p>5</p></td>
-<td><p>1</p></td>
-<td><p>.6857</p></td>
-<td><p>0.050</p></td>
-<td><p>0.074</p></td>
-<td><p>0.186</p></td>
-<td><p>0.321</p></td>
-<td><p>1.051</p></td>
-</tr>
-<tr class="row-odd"><td><p>4.76</p></td>
-<td><p>4</p></td>
-<td><p>1</p></td>
-<td><p>.5143</p></td>
-<td><p>0.083</p></td>
-<td><p>0.157</p></td>
-<td><p>0.204</p></td>
-<td><p>0.115</p></td>
-<td><p>0.914</p></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>Let’s take the first events in our example to show how we construct the margin of error using the Greenwood’s formula. We simply enter the values for <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(d\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the first event</span>
 <span class="n">S1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">e1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="p">(</span><span class="mi">7</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">sum_e1</span> <span class="o">=</span> <span class="n">e1</span>
-<span class="n">SE1</span> <span class="o">=</span> <span class="n">S1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e1</span><span class="p">)</span>
+<span class="n">component_t1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="p">(</span><span class="mi">7</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">cumsum_component_t1</span> <span class="o">=</span> <span class="n">component_t1</span>
+<span class="n">SE1</span> <span class="o">=</span> <span class="n">S1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cumsum_component_t1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S(t1) = </span><span class="si">{</span><span class="n">S1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;e1 = </span><span class="si">{</span><span class="n">e1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(e) = </span><span class="si">{</span><span class="n">sum_e1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SE(t1) = </span><span class="si">{</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greenwood variance component at t1 = </span><span class="si">{</span><span class="n">component_t1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cumulative sum up to t1 = </span><span class="si">{</span><span class="n">cumsum_component_t1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;s_S(t1) = </span><span class="si">{</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits at t1 are </span><span class="se">\</span>
 <span class="s2">[</span><span class="si">{</span><span class="n">S1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S(t1) = 0.8571
-e1 = 0.024
-sum(e) = 0.024
-SE(t1) = 0.132
-The confidence interval (plain type) limits are [0.598 - 1.116]
+Greenwood variance component at t1 = 0.024
+Cumulative sum up to t1 = 0.024
+s_S(t1) = 0.132
+The confidence interval (plain type) limits at t1 are [0.598 - 1.116]
 </pre></div>
 </div>
 </div>
@@ -1126,24 +1071,24 @@ The confidence interval (plain type) limits are [0.598 - 1.116]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the third event</span>
 <span class="n">S3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">0</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">e3</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">sum_e3</span> <span class="o">=</span> <span class="n">e1</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">e3</span>
-<span class="n">SE3</span> <span class="o">=</span> <span class="n">S3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e3</span><span class="p">)</span>
+<span class="n">component_t3</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">cumsum_component_t3</span> <span class="o">=</span> <span class="n">component_t1</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">component_t3</span>
+<span class="n">SE3</span> <span class="o">=</span> <span class="n">S3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cumsum_component_t3</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S(t3) = </span><span class="si">{</span><span class="n">S3</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;e3 = </span><span class="si">{</span><span class="n">e3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(e) = </span><span class="si">{</span><span class="n">sum_e3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SE(t3) = </span><span class="si">{</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greenwood variance component at t3 = </span><span class="si">{</span><span class="n">component_t3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cumulative sum up to t3 = </span><span class="si">{</span><span class="n">cumsum_component_t3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;s_S(t3) = </span><span class="si">{</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits at t3 are </span><span class="se">\</span>
 <span class="s2">[</span><span class="si">{</span><span class="n">S3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S(t3) = 0.6857
-e3 = 0.050
-sum(e) = 0.074
-SE(t3) = 0.186
-The confidence interval (plain type) limits are [0.321 - 1.051]
+Greenwood variance component at t3 = 0.050
+Cumulative sum up to t3 = 0.074
+s_S(t3) = 0.186
+The confidence interval (plain type) limits at t3 are [0.321 - 1.051]
 </pre></div>
 </div>
 </div>
@@ -1152,56 +1097,38 @@ The confidence interval (plain type) limits are [0.321 - 1.051]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the 4th event</span>
 <span class="n">S4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">0</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">e4</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">sum_e4</span> <span class="o">=</span> <span class="n">e1</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">e3</span> <span class="o">+</span> <span class="n">e4</span>
-<span class="n">SE4</span> <span class="o">=</span> <span class="n">S4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e4</span><span class="p">)</span>
+<span class="n">component_t4</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">cumsum_component_t4</span> <span class="o">=</span> <span class="n">component_t1</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">component_t3</span> <span class="o">+</span> <span class="n">component_t4</span>
+<span class="n">SE4</span> <span class="o">=</span> <span class="n">S4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cumsum_component_t4</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S(t4) = </span><span class="si">{</span><span class="n">S4</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;e4 = </span><span class="si">{</span><span class="n">e4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(e) = </span><span class="si">{</span><span class="n">sum_e4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SE(t4) = </span><span class="si">{</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greenwood variance component at t4 = </span><span class="si">{</span><span class="n">component_t4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cumulative sum up to t4 = </span><span class="si">{</span><span class="n">cumsum_component_t4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;s_S(t4) = </span><span class="si">{</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits at t4 are </span><span class="se">\</span>
 <span class="s2">[</span><span class="si">{</span><span class="n">S4</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">SE4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S(t4) = 0.5143
-e4 = 0.083
-sum(e) = 0.157
-SE(t4) = 0.204
-The confidence interval (plain type) limits are [0.115 - 0.914]
+Greenwood variance component at t4 = 0.083
+Cumulative sum up to t4 = 0.157
+s_S(t4) = 0.204
+The confidence interval (plain type) limits at t4 are [0.115 - 0.914]
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="log-survival">
-<h3>Log survival<a class="headerlink" href="#log-survival" title="Link to this heading">#</a></h3>
-<p>In survival analysis, confidence intervals are often calculated on the log scale, where the <em>complimentary log-log transformation</em> <span class="math notranslate nohighlight">\(v(t) = \log[-\log S(t)]\)</span> is used a few reasons:</p>
-<ol class="arabic simple">
-<li><p>Symmetry: Survival probabilities are bound between 0 and 1, and their distribution can be skewed, especially when probabilities are close to the boundaries. Taking the logarithm helps to symmetrize the distribution, which is a key assumption for the calculation of confidence intervals.</p></li>
-<li><p>Stabilizing Variance: The variance of survival probabilities can change over time, and it can be particularly high when probabilities are close to 0 or 1. The log transformation can help to stabilize the variance, making the statistical analysis more reliable.</p></li>
-<li><p>Multiplicative Effects: In many cases, particularly in the context of survival analysis, the effects are multiplicative rather than additive. The log transformation converts multiplicative effects on the original scale to additive effects on the log scale, which simplifies the analysis, i.e., <span class="math notranslate nohighlight">\(\log {S(t)} = \log \prod (1 - \frac{d_k}{n_k}) = \sum{\log (1 - \frac{d_k}{n_k})}\)</span>.</p></li>
-<li><p>Avoiding Impossible Values: When calculating confidence intervals for survival probabilities, it’s possible to get values that fall outside the range [0, 1], which doesn’t make sense for probabilities. The log transformation followed by exponentiation (when calculating the confidence interval bounds) ensures that the confidence intervals fall within the appropriate range.</p></li>
-</ol>
-<p>The log transformation helps to normalize the distribution, which is a key assumption in the calculation of confidence intervals. Thus, the standard error on the complimentary log-log scale can be estimated by <span class="math notranslate nohighlight">\(\sigma(t)/\log S(t)\)</span>, and we can construct confidence intervals via:</p>
-<div class="math notranslate nohighlight">
-\[\text{SE}(t) = \sqrt{\frac{\sum \frac{d_i}{n_i(n_i - d_i)}}{\sum \log \frac{n_i - d_i}{n_i}}}\]</div>
-<p>Finally, we can transform back to the original scale (i.e., the scale of the survival function) by exponentiating the lower and upper limits of the confidence interval for the log survival function:</p>
-<div class="math notranslate nohighlight">
-\[\text{IC}_{0.95}[S(t)] = S(t)^{\exp(\pm 1.96 \times \text{SE}(t))}\]</div>
-<p>Let’s take the first events in our example:</p>
+<p>So that we obtain the following table:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>time to event</p></th>
-<th class="head"><p>n</p></th>
-<th class="head"><p>d</p></th>
+<th class="head"><p>at risk (n)</p></th>
+<th class="head"><p>observed (d)</p></th>
 <th class="head"><p>S(t)</p></th>
-<th class="head"><p>e</p></th>
-<th class="head"><p>sum(e)</p></th>
-<th class="head"><p>l=log((n-d)/n)</p></th>
-<th class="head"><p>sum(l)</p></th>
-<th class="head"><p>se_log(t)</p></th>
+<th class="head"><p>d/(n(n-d))</p></th>
+<th class="head"><p>cumsum</p></th>
+<th class="head"><p>s_S(t)</p></th>
 <th class="head"><p>LCL</p></th>
 <th class="head"><p>UCL</p></th>
 </tr>
@@ -1210,97 +1137,115 @@ The confidence interval (plain type) limits are [0.115 - 0.914]
 <tr class="row-even"><td><p>1.39</p></td>
 <td><p>7</p></td>
 <td><p>1</p></td>
-<td><p>.8571</p></td>
+<td><p>0.8571</p></td>
 <td><p>0.024</p></td>
 <td><p>0.024</p></td>
-<td><p>-0.154</p></td>
-<td><p>-0.154</p></td>
-<td><p>1.001</p></td>
-<td><p>.3340</p></td>
-<td><p>.9786</p></td>
+<td><p>0.132</p></td>
+<td><p>0.598</p></td>
+<td><p>1.116</p></td>
 </tr>
 <tr class="row-odd"><td><p>3.67</p></td>
 <td><p>6</p></td>
 <td><p>0</p></td>
-<td><p>.8571</p></td>
+<td><p>0.8571</p></td>
 <td><p>0</p></td>
 <td><p>0.024</p></td>
-<td><p>0</p></td>
-<td><p>-0.154</p></td>
-<td><p>1.001</p></td>
-<td><p>.3340</p></td>
-<td><p>.9786</p></td>
+<td><p>0.132</p></td>
+<td><p>0.598</p></td>
+<td><p>1.116</p></td>
 </tr>
 <tr class="row-even"><td><p>4.07</p></td>
 <td><p>5</p></td>
 <td><p>1</p></td>
-<td><p>.6857</p></td>
+<td><p>0.6857</p></td>
 <td><p>0.050</p></td>
 <td><p>0.074</p></td>
-<td><p>-0.223</p></td>
-<td><p>-0.377</p></td>
-<td><p>0.720</p></td>
-<td><p>.2128</p></td>
-<td><p>.9121</p></td>
+<td><p>0.186</p></td>
+<td><p>0.321</p></td>
+<td><p>1.051</p></td>
 </tr>
 <tr class="row-odd"><td><p>4.76</p></td>
 <td><p>4</p></td>
 <td><p>1</p></td>
-<td><p>.5143</p></td>
+<td><p>0.5143</p></td>
 <td><p>0.083</p></td>
 <td><p>0.157</p></td>
-<td><p>-0.288</p></td>
-<td><p>-0.665</p></td>
-<td><p>0.596</p></td>
-<td><p>.1178</p></td>
-<td><p>.8133</p></td>
+<td><p>0.204</p></td>
+<td><p>0.115</p></td>
+<td><p>0.914</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+</section>
+<section id="log-survival">
+<h3>Log survival<a class="headerlink" href="#log-survival" title="Link to this heading">#</a></h3>
+<p>In survival analysis, confidence intervals are often calculated on the log scale, where the <em>complementary log-log transformation</em> <span class="math notranslate nohighlight">\(v(t) = \log(-\log S(t))\)</span> is used a few reasons:</p>
+<ol class="arabic simple">
+<li><p>Symmetry: survival probabilities are bound between 0 and 1, and their distribution can be skewed, especially when probabilities are close to the boundaries. Taking the logarithm helps to symmetrize the distribution, which is a key assumption for the calculation of confidence intervals.</p></li>
+<li><p>Stabilizing variance: the variance of survival probabilities can change over time, and it can be particularly high when probabilities are close to 0 or 1. The log transformation can help to stabilize the variance, making the statistical analysis more reliable.</p></li>
+<li><p>Multiplicative effects: in many cases, particularly in the context of survival analysis, the effects are multiplicative rather than additive. The log transformation converts <em>multiplicative effects</em> on the original scale to <em>additive effects</em> on the log scale, which simplifies the analysis: <span class="math notranslate nohighlight">\(\log {S(t)} = \log \prod (1 - \frac{d_k}{n_k}) = \sum{\log (1 - \frac{d_k}{n_k})}\)</span>.</p></li>
+<li><p>Avoiding impossible values: when calculating confidence intervals for survival probabilities, it’s possible to get values that fall outside the range <span class="math notranslate nohighlight">\([0, 1]\)</span>, which doesn’t make sense for probabilities. The log transformation followed by exponentiation (when calculating the confidence interval bounds) ensures that the confidence intervals fall within the appropriate range.</p></li>
+</ol>
+<p>The variance for the transformed values is calculated using a specialized formula derived from Greenwood’s formula and a technique called the <a class="reference external" href="https://en.wikipedia.org/wiki/Delta_method">delta method</a>. While the derivation involves some calculus (function derivatives), the resulting formula is straightforward to use:</p>
+<div class="math notranslate nohighlight">
+\[
+s^2_{v(t)} = \frac{\sum_{t_k \le t} \frac{d_k}{n_k(n_k - d_k)}}{\left( \sum_{t_k \le t} \log \frac{n_k - d_k}{n_k} \right)^2}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(t_k\)</span> are the distinct event times, <span class="math notranslate nohighlight">\(d_k\)</span> is the number of events at time <span class="math notranslate nohighlight">\(t_k\)</span>, and <span class="math notranslate nohighlight">\(n_k\)</span> is the number of individuals at risk at time <span class="math notranslate nohighlight">\(t_k\)</span>. Note that the numerator in the formula for  <span class="math notranslate nohighlight">\(s_{v(t)}\)</span> is identical to the summation term in Greenwood’s formula, which represents the cumulative sum of estimated hazard increments. So that the confidence interval on the log-log scale is <span class="math notranslate nohighlight">\(\text{CI}_{v(t)} = v(t) \pm z^\ast \times s_{v(t)}\)</span>.</p>
+<p>Finally, we can transform back to the original scale, i.e., the scale of the survival function, by exponentiating the lower and upper limits of the confidence interval for the log survival function:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\text{IC}^{0.95}_{S(t)} &amp;= \exp (-\exp \left(\text{CI}^{0.95}_{v(t)} \right)) \\
+&amp;= \exp (-\exp \left( log(-log(S(t))) \pm 1.96 \times s_{v(t)} \right)) \\
+&amp;= S(t)^{\exp(\pm 1.96 \times s_{v(t)})}
+\end{aligned}
+\end{split}\]</div>
+<p>Let’s fill the formula with the values from the first events in our example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the first and second events</span>
-<span class="n">l1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">7</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">sum_l1</span> <span class="o">=</span> <span class="n">l1</span>
-<span class="n">SEl1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e1</span> <span class="o">/</span> <span class="n">sum_l1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;l1 = </span><span class="si">{</span><span class="n">l1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(l) = </span><span class="si">{</span><span class="n">sum_l1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SElog(t1) = </span><span class="si">{</span><span class="n">SEl1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
-<span class="s2">[</span><span class="si">{</span><span class="n">S1</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S1</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="n">denominator_component_t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">7</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">cumsum_denominator_t1</span> <span class="o">=</span> <span class="n">denominator_component_t1</span>
+<span class="n">s_vt1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cumsum_component_t1</span> <span class="o">/</span> <span class="n">cumsum_denominator_t1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log-survival increment at t1 = </span><span class="si">{</span><span class="n">denominator_component_t1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log-log variance scaling factor at t1 = </span><span class="si">{</span><span class="n">cumsum_denominator_t1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;s_v(t1) = </span><span class="si">{</span><span class="n">s_vt1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (log-log transformation) limits at t1 are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S1</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">s_vt1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S1</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">s_vt1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l1 = -0.154
-sum(l) = -0.154
-SElog(t1) = 1.001
-The confidence interval (plain type) limits are [0.3340 - 0.9786]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log-survival increment at t1 = -0.154
+Log-log variance scaling factor at t1 = -0.154
+s_v(t1) = 1.001
+The confidence interval (log-log transformation) limits at t1 are [0.3340 - 0.9786]
 </pre></div>
 </div>
 </div>
 </div>
-<p>Note that when <span class="math notranslate nohighlight">\(d=0\)</span>, then <span class="math notranslate nohighlight">\(l=\log(n/n)=\log(1)=0\)</span>.</p>
+<p>Note that when <span class="math notranslate nohighlight">\(d=0\)</span>, then <span class="math notranslate nohighlight">\(l=\log(n/n)=\log(1)=0\)</span>, so the all the values for the second time-point are identical to the first ones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the third event</span>
-<span class="n">l3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">5</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">sum_l3</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">+</span> <span class="n">l3</span>
-<span class="n">SEl3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e3</span> <span class="o">/</span> <span class="n">sum_l3</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;l3 = </span><span class="si">{</span><span class="n">l3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(l) = </span><span class="si">{</span><span class="n">sum_l3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SElog(t3) = </span><span class="si">{</span><span class="n">SEl3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
-<span class="s2">[</span><span class="si">{</span><span class="n">S3</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl3</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S3</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl3</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="n">denominator_component_t3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">5</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">cumsum_denominator_t3</span> <span class="o">=</span> <span class="n">denominator_component_t1</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">denominator_component_t3</span>
+<span class="n">s_vt3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cumsum_component_t3</span> <span class="o">/</span> <span class="n">cumsum_denominator_t3</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log-survival increment at t3 = </span><span class="si">{</span><span class="n">denominator_component_t3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log-log variance scaling factor at t3 = </span><span class="si">{</span><span class="n">cumsum_denominator_t3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;s_v(t3) = </span><span class="si">{</span><span class="n">s_vt3</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (log-log transformation) limits at t3 are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S3</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">s_vt3</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S3</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">s_vt3</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l3 = -0.223
-sum(l) = -0.377
-SElog(t3) = 0.720
-The confidence interval (plain type) limits are [0.2128 - 0.9121]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log-survival increment at t3 = -0.223
+Log-log variance scaling factor at t3 = -0.377
+s_v(t3) = 0.720
+The confidence interval (log-log transformation) limits at t3 are [0.2128 - 0.9121]
 </pre></div>
 </div>
 </div>
@@ -1308,25 +1253,93 @@ The confidence interval (plain type) limits are [0.2128 - 0.9121]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># breakdown calculation for the 4th event</span>
-<span class="n">l4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">4</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">sum_l4</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">+</span> <span class="n">l3</span> <span class="o">+</span> <span class="n">l4</span>
-<span class="n">SEl4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_e4</span> <span class="o">/</span> <span class="n">sum_l4</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;l4 = </span><span class="si">{</span><span class="n">l4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sum(l) = </span><span class="si">{</span><span class="n">sum_l4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SElog(t4) = </span><span class="si">{</span><span class="n">SEl4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (plain type) limits are </span><span class="se">\</span>
-<span class="s2">[</span><span class="si">{</span><span class="n">S4</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl4</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S4</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">SEl4</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="n">denominator_component_t4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">4</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">cumsum_denominator_t4</span> <span class="o">=</span> <span class="n">denominator_component_t1</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">denominator_component_t3</span> <span class="o">+</span> <span class="n">denominator_component_t4</span>
+<span class="n">s_vt4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cumsum_component_t4</span> <span class="o">/</span> <span class="n">cumsum_denominator_t4</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log-survival increment at t4 = </span><span class="si">{</span><span class="n">denominator_component_t4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log-log variance scaling factor at t4 = </span><span class="si">{</span><span class="n">cumsum_denominator_t4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;s_v(t4) = </span><span class="si">{</span><span class="n">s_vt4</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The confidence interval (log-log transformation) limits at t4 are </span><span class="se">\</span>
+<span class="s2">[</span><span class="si">{</span><span class="n">S4</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">s_vt4</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">S4</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">s_vt4</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l4 = -0.288
-sum(l) = -0.665
-SElog(t4) = 0.596
-The confidence interval (plain type) limits are [0.1178 - 0.8133]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log-survival increment at t4 = -0.288
+Log-log variance scaling factor at t4 = -0.665
+s_v(t4) = 0.596
+The confidence interval (log-log transformation) limits at t4 are [0.1178 - 0.8133]
 </pre></div>
 </div>
 </div>
+</div>
+<p>These calculations lead to the final table:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>time to event</p></th>
+<th class="head"><p>n</p></th>
+<th class="head"><p>d</p></th>
+<th class="head"><p>S(t)</p></th>
+<th class="head"><p>e</p></th>
+<th class="head"><p>cumsum(e)</p></th>
+<th class="head"><p>log((n-d)/n)</p></th>
+<th class="head"><p>cumsum</p></th>
+<th class="head"><p>s_v(t)</p></th>
+<th class="head"><p>LCL</p></th>
+<th class="head"><p>UCL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.39</p></td>
+<td><p>7</p></td>
+<td><p>1</p></td>
+<td><p>0.8571</p></td>
+<td><p>0.024</p></td>
+<td><p>0.024</p></td>
+<td><p>-0.154</p></td>
+<td><p>-0.154</p></td>
+<td><p>1.001</p></td>
+<td><p>0.3340</p></td>
+<td><p>0.9786</p></td>
+</tr>
+<tr class="row-odd"><td><p>3.67</p></td>
+<td><p>6</p></td>
+<td><p>0</p></td>
+<td><p>0.8571</p></td>
+<td><p>0</p></td>
+<td><p>0.024</p></td>
+<td><p>0</p></td>
+<td><p>-0.154</p></td>
+<td><p>1.001</p></td>
+<td><p>0.3340</p></td>
+<td><p>0.9786</p></td>
+</tr>
+<tr class="row-even"><td><p>4.07</p></td>
+<td><p>5</p></td>
+<td><p>1</p></td>
+<td><p>0.6857</p></td>
+<td><p>0.050</p></td>
+<td><p>0.074</p></td>
+<td><p>-0.223</p></td>
+<td><p>-0.377</p></td>
+<td><p>0.720</p></td>
+<td><p>0.2128</p></td>
+<td><p>0.9121</p></td>
+</tr>
+<tr class="row-odd"><td><p>4.76</p></td>
+<td><p>4</p></td>
+<td><p>1</p></td>
+<td><p>0.5143</p></td>
+<td><p>0.083</p></td>
+<td><p>0.157</p></td>
+<td><p>-0.288</p></td>
+<td><p>-0.665</p></td>
+<td><p>0.596</p></td>
+<td><p>0.1178</p></td>
+<td><p>0.8133</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
 <section id="process-automation-with-scripts">
@@ -1347,7 +1360,7 @@ The confidence interval (plain type) limits are [0.1178 - 0.8133]
 <span class="sd">        at each time point (assumed to be sorted).</span>
 <span class="sd">        event_indicators: A numpy array of indicators (1 for event, 0 for censoring) </span>
 <span class="sd">        at each time point (assumed to be sorted).</span>
-<span class="sd">        alpha: Significance level (e.g., 0.05 for 95% confidence interval)</span>
+<span class="sd">        alpha: significance level (e.g., 0.05 for 95% confidence interval)</span>
 <span class="sd">        method: if not &quot;log-log&quot; then the function return the &quot;plain&quot; </span>
 <span class="sd">        or &quot;linear&quot; confidence intervals</span>
 
@@ -1358,9 +1371,9 @@ The confidence interval (plain type) limits are [0.1178 - 0.8133]
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Use inverse normal cumulative distribution for z-score</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Two-tailed test, so we use 0.975 instead of 0.95</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Two-tailed test</span>
 
-    <span class="c1"># first we calculate the term in the sum for the variance</span>
+    <span class="c1"># first we calculate the term in the sum for the variance;</span>
     <span class="c1"># di is indeed the array `event_indicators_sorted`</span>
     
     <span class="c1"># we need the number of individual at risk remaining at each time point</span>
@@ -1518,13 +1531,13 @@ The confidence interval (plain type) limits are [0.1178 - 0.8133]
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
--------------
-numpy: 2.1.2
-pandas: 2.2.3
-lifelines: 0.30.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7-------------
+
+numpy: 1.26.4
+pandas: 2.2.2
+lifelines: 0.29.0
 scipy: 1.14.1
-statsmodels: 0.14.4
+statsmodels: 0.14.2
 matplotlib: 3.9.2
 </pre></div>
 </div>

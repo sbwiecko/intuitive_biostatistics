@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -429,7 +429,7 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-significance-of-paired-difference-mean">Assessing the significance of paired difference mean</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-significance-of-paired-difference-mean-with-t-test">Assessing the significance of paired difference mean with t-test</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-t-ratio">The t-ratio</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-calculation">Manual calculation</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P value</a></li>
@@ -452,6 +452,15 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-approach">Non-parametric approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-the-wilcoxon-signed-rand-test-manually">Performing the Wilcoxon signed-rand test manually</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exact-test">Exact test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-approach">Asymptotic approach</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-tools-for-the-non-parametric-paired-t-test">Python tools for the non-parametric paired t-test</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-and-permutation-tests-for-paired-data">Bootstrapping and permutation tests for paired data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-bootstrap-pair-samples">Generating bootstrap pair samples</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-of-the-confidence-interval-for-the-paired-difference-mean">Estimate of the confidence interval for the paired difference mean</a></li>
@@ -472,6 +481,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-test">T-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-wilcoxon-signed-rank-test">Non-parametric Wilcoxon signed-rank test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-and-permutation-tests">Bootstrapping and permutation tests</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-pair-samples">Bootstrap pair samples</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">P value</a><ul class="nav section-nav flex-column">
@@ -506,7 +516,7 @@ document.write(`
 <li><p><strong>Normality</strong>: the <em>differences</em> between the paired observations should ideally conform to a normal distribution. However, like its unpaired counterpart, the paired t-test exhibits reasonable resilience to moderate departures from normality, particularly when dealing with larger sample sizes.</p></li>
 <li><p><strong>Independence</strong>: the <em>differences</em> between the paired observations should be independent of each other.</p></li>
 </ul>
-<p>At its core, the paired t-test operates by computing a test statistic (<a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/30%20-%20Comparing%20Two%20Means%20with%20Unpaired%20t%20Test.html">discussed in detail in the chapter on the unpaired t-test</a>) that encapsulates the <em>average difference</em> between the paired observations relative to the variability of these differences. This test statistic adheres to a well-defined distribution (<a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/12%20-%20Confidence%20Interval%20of%20a%20Mean.html#the-t-distribution">the <strong>t-distribution</strong>, also covered previously</a>) under the null hypothesis of no difference. By juxtaposing the calculated test statistic with the anticipated distribution, we derive a P value. Should the P value dip below our predetermined significance level (alpha), we reject the null hypothesis and infer the presence of a statistically significant difference.</p>
+<p>At its core, the paired t-test operates by computing a test statistic (as discussed in details in the chapter on the unpaired t-test) that encapsulates the <em>average difference</em> between the paired observations relative to the variability of these differences. This test statistic adheres to a well-defined distribution (the <strong>t-distribution</strong>, also covered in a preivous chapter) under the null hypothesis of no difference. By juxtaposing the calculated test statistic with the anticipated distribution, we derive a P value. Should the P value dip below our predetermined significance level (α), we reject the null hypothesis and infer the presence of a statistically significant difference.</p>
 <p>In the forthcoming sections, we’ll embark on a deeper exploration of the mathematical underpinnings of the paired t-test, explore its practical applications through illustrative examples, and equip ourselves with the knowledge and confidence to wield this test effectively in your own analytical endeavors.</p>
 </section>
 <section id="preparing-data-for-hypothesis-testing">
@@ -632,17 +642,18 @@ dtype: float64
 <span class="c1"># Set plot labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Difference in height (in)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of height differences</span><span class="se">\n</span><span class="s1">(crossed - self)&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of height differences</span><span class="se">\n</span><span class="s1">(crossed - self fertilized)&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/46764997d5cae0d47519651257052932ff19842828bb286d052fd4647354525e.png" src="_images/46764997d5cae0d47519651257052932ff19842828bb286d052fd4647354525e.png" />
+<img alt="_images/cc705294accc1db933a48ee2b1b34f40270fcb3728ecf012b43d500dabf8d029.png" src="_images/cc705294accc1db933a48ee2b1b34f40270fcb3728ecf012b43d500dabf8d029.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;future.no_silent_downcasting&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
 
@@ -668,10 +679,6 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics\.env\Lib\site-packages\pingouin\plotting.py:573: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option(&#39;future.no_silent_downcasting&#39;, True)`
-  data[&quot;wthn&quot;] = data[within].replace({_ordr: i for i, _ordr in enumerate(order)})
-</pre></div>
-</div>
 <img alt="_images/816023b80408dd897d7589465c556c6447f9d7602d9d37cc1eb666c484798b18.png" src="_images/816023b80408dd897d7589465c556c6447f9d7602d9d37cc1eb666c484798b18.png" />
 </div>
 </div>
@@ -679,7 +686,7 @@ dtype: float64
 </section>
 <section id="assessing-assumptions">
 <h3>Assessing assumptions<a class="headerlink" href="#assessing-assumptions" title="Link to this heading">#</a></h3>
-<p>Before proceeding with any hypothesis test, it’s crucial to verify that our data adheres to the underlying assumptions of the chosen statistical method. This subsection emphasizes the importance of checking for normality, a common assumption in many parametric tests, including the paired t-test. We’ll briefly discuss the methods used to assess this assumption, such as normality tests and visual inspections of histograms or Q-Q plots, <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html">as discussed in greater details in a previous chapter about normality test</a>. These tests help us gauge whether the observed <em>differences</em> between paired observations align with the expected characteristics of a normal distribution.</p>
+<p>Before proceeding with any hypothesis test, it’s crucial to verify that our data adheres to the underlying assumptions of the chosen statistical method. This subsection emphasizes the importance of checking for normality, a common assumption in many parametric tests, including the paired t-test. We’ll briefly discuss the methods used to assess this assumption, such as normality tests and visual inspections of histograms or Q-Q plots, as discussed in greater details in the chapter about normality test. These tests help us gauge whether the observed <em>differences</em> between paired observations align with the expected characteristics of a normal distribution.</p>
 <section id="normality-testing">
 <h4>Normality testing<a class="headerlink" href="#normality-testing" title="Link to this heading">#</a></h4>
 <p>One of the fundamental assumptions of the paired t-test is that the <strong>differences</strong> between the paired observations are approximately normally distributed. To assess this assumption, we employ normality tests such as the D’Agostino-Pearson omnibus K² and Shapiro-Wilk tests, or visual inspections of histograms or Q-Q plots.  These tests help us gauge whether the observed differences align with the expected characteristics of a normal distribution.</p>
@@ -724,7 +731,7 @@ The differences are not inconsistent with a normal distribution
 </div>
 </div>
 </div>
-<p>Similar to our approach in <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/30%20-%20Comparing%20Two%20Means%20with%20Unpaired%20t%20Test.html#normality-testing">unpaired t-tests</a>, we can utilize the pingouin library for normality testing and Q-Q plotting in the context of paired t-tests, directly on the dataframe.</p>
+<p>Similar to our approach in unpaired t-tests, we can utilize the pingouin library for normality testing and Q-Q plotting in the context of paired t-tests, directly on the dataframe.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to perform tests and print results</span>
@@ -783,43 +790,43 @@ Shapiro-Wilk         0.90   0.098    True
 <p>In such cases, we have a few options:</p>
 <ul class="simple">
 <li><p>Transform the differences: if the differences exhibit a clear pattern of non-normality, we might attempt to transform them to achieve a more normal distribution.</p></li>
-<li><p>Use a non-parametric alternative: when transformations are ineffective or impractical, we can consider a non-parametric test like the <em>Wilcoxon signed-rank test</em> (discussed in a later chapter), which does not rely on the normality assumption for the differences.</p></li>
+<li><p>Use a non-parametric alternative: when transformations are ineffective or impractical, we can consider a non-parametric test like the <em>Wilcoxon signed-rank test</em> (discussed in a later section), which does not rely on the normality assumption for the differences.</p></li>
 <li><p>Proceed with caution: if the sample size is relatively large and the deviations from normality in the differences are not severe, we might proceed with the paired t-test, acknowledging the potential limitations in the interpretation of the results.</p></li>
 </ul>
 </section>
 <section id="note-on-homoscedasticity">
 <h4>Note on homoscedasticity<a class="headerlink" href="#note-on-homoscedasticity" title="Link to this heading">#</a></h4>
-<p>The assumption of <em>homoscedasticity</em>, or equal variances, is <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/30%20-%20Comparing%20Two%20Means%20with%20Unpaired%20t%20Test.html#homoscedasticity-testing">crucial for the unpaired t-test</a>, but it is not a requirement for the paired t-test.</p>
+<p>The assumption of <em>homoscedasticity</em>, or equal variances, is crucial for the unpaired t-test, but it is not a requirement for the paired t-test.</p>
 <p>The paired t-test focuses on the differences between paired observations. It inherently assumes that these <em>differences have a constant variance</em>. There’s no need to test for equal variances between the two original groups, as the test operates on a single set of differences.</p>
 </section>
 </section>
 </section>
-<section id="assessing-the-significance-of-paired-difference-mean">
-<h2>Assessing the significance of paired difference mean<a class="headerlink" href="#assessing-the-significance-of-paired-difference-mean" title="Link to this heading">#</a></h2>
+<section id="assessing-the-significance-of-paired-difference-mean-with-t-test">
+<h2>Assessing the significance of paired difference mean with t-test<a class="headerlink" href="#assessing-the-significance-of-paired-difference-mean-with-t-test" title="Link to this heading">#</a></h2>
 <p>The central question in many research studies involving paired data is whether an intervention, treatment, or the passage of time leads to a meaningful change <em>within</em> the same group or individuals. In this section, we’ll explore how the paired t-test enables us to answer this question by comparing the means of paired observations, effectively assessing the significance of the average change or difference.</p>
 <section id="the-t-ratio">
 <h3>The t-ratio<a class="headerlink" href="#the-t-ratio" title="Link to this heading">#</a></h3>
-<p>At the core of the paired t-test also lies the <strong>t-ratio</strong> (or t-value, or t-score), a key statistic that quantifies the <em>magnitude of the average difference between paired observations relative to the variability of those differences</em>. The t-ratio used in the paired t-test shares a conceptual resemblance to both the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/12%20-%20Confidence%20Interval%20of%20a%20Mean.html#the-t-statistic">t-statistic used in confidence intervals for a single mean</a> and the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/30%20-%20Comparing%20Two%20Means%20with%20Unpaired%20t%20Test.html#the-t-ratio">t-ratio used in the unpaired t-test</a>. All three involve a ratio of a difference (or an estimated parameter) to a measure of variability, and they follow a t-distribution. However, the t-ratio in the paired t-test specifically focuses on assessing the mean difference <em>within</em> the same group or individuals under different conditions, while the t-statistic for confidence intervals estimates a single population mean, and the t-ratio in the unpaired t-test compares the means of two independent groups.</p>
+<p>At the core of the paired t-test also lies the <strong>t-ratio</strong> (or t-value, or t-score), and abbreviated <strong>t</strong>, a key statistic that quantifies the <em>magnitude of the average difference between paired observations relative to the variability of those differences</em>. The t-ratio used in the paired t-test shares a conceptual resemblance to both the t-statistic used in confidence intervals for a single mean and the t-ratio used in the unpaired t-test. All three involve a ratio of a difference (or an estimated parameter) to a measure of variability, and they follow a t-distribution. However, the t-ratio in the paired t-test specifically focuses on assessing the mean difference <em>within</em> the same group or individuals under different conditions, while the t-statistic for confidence intervals estimates a single population mean, and the t-ratio in the unpaired t-test compares the means of two independent groups.</p>
 <section id="manual-calculation">
 <h4>Manual calculation<a class="headerlink" href="#manual-calculation" title="Link to this heading">#</a></h4>
 <p>In this subsection, we’ll delve into the mathematical underpinnings of the t-ratio in the context of the paired t-test, exploring how it incorporates the mean difference, the standard deviation of the differences, and the sample size to provide a standardized measure of the effect. Understanding the t-ratio is crucial for interpreting the results of the paired t-test and drawing meaningful conclusions about the statistical significance of any observed changes within the paired data.</p>
 <p>In the paired t-test, we don’t need to worry about unequal variances between two separate groups. Instead, we focus on the variance of the <em>differences</em> between the paired observations.</p>
 <p>The t-ratio for the paired t-test is calculated as follows:</p>
 <div class="math notranslate nohighlight">
-\[t = \frac{\bar{D}}{\sqrt{\frac{s_D^2}{n}}}\]</div>
+\[t = \frac{\overline{D}}{\sqrt{\frac{s_D^2}{n}}}\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\bar{D}\)</span> is the mean of the differences between the paired observations <span class="math notranslate nohighlight">\(D_i = X_{1i} - X_{2i}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{D}\)</span> is the mean of the differences between the paired observations <span class="math notranslate nohighlight">\(D_i = X_{1i} - X_{2i}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(s_D^2\)</span> is the variance of the differences</p></li>
 <li><p><span class="math notranslate nohighlight">\(n\)</span> is the number of pairs (or the sample size)</p></li>
 </ul>
-<p>The standard error of the mean difference, denoted by <span class="math notranslate nohighlight">\(s_{\bar D}\)</span>, is calculated as:</p>
+<p>The standard error of the mean difference, denoted by <span class="math notranslate nohighlight">\(s_{\overline{D}}\)</span>, is calculated as:</p>
 <div class="math notranslate nohighlight">
-\[s_{\bar D} = \frac{s_D}{\sqrt{n}}\]</div>
+\[s_{\overline{D}} = \frac{s_D}{\sqrt{n}}\]</div>
 <p>This standard error quantifies the uncertainty in our estimate of the mean difference.</p>
 <p>We can then express the t-ratio as:</p>
 <div class="math notranslate nohighlight">
-\[t = \frac{\bar{D}}{s_{\bar D}}\]</div>
+\[t = \frac{\overline{D}}{s_{\bar D}}\]</div>
 <p>The degrees of freedom for this t-statistic are simply:</p>
 <div class="math notranslate nohighlight">
 \[\mathrm{DF} = n - 1\]</div>
@@ -849,7 +856,7 @@ Shapiro-Wilk         0.90   0.098    True
 </section>
 <section id="p-value">
 <h4>P value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h4>
-<p>Now that we have our t-statistic and degrees of freedom, we can determine the <strong>P value</strong> associated with our test, as well as construct a <strong>confidence interval</strong> for the true mean difference in the population. The P value will quantify the probability of observing a t-statistic as extreme as (or more extreme than) the one we calculated, assuming the null hypothesis of no difference between the paired observations is true. We will utilize the cumulative distribution function (CDF) of the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/12%20-%20Confidence%20Interval%20of%20a%20Mean.html#the-t-distribution">t-distribution</a> to compute this probability. The confidence interval will provide a range of plausible values for the true mean difference, giving us a sense of the magnitude of the effect and the uncertainty associated with our estimate.</p>
+<p>Now that we have our t-statistic and degrees of freedom, we can determine the <strong>P value</strong> associated with our test, as well as construct a <strong>confidence interval</strong> for the true mean difference in the population. The P value will quantify the probability of observing a t-statistic as extreme as (or more extreme than) the one we calculated, assuming the null hypothesis of no difference between the paired observations is true. We will utilize the cumulative distribution function (CDF) of the t-distribution to compute this probability. The confidence interval will provide a range of plausible values for the true mean difference, giving us a sense of the magnitude of the effect and the uncertainty associated with our estimate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the P value using the t-distribution (two-sided test)</span>
@@ -873,11 +880,11 @@ Shapiro-Wilk         0.90   0.098    True
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Significance level (alpha)</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mf">0.05</span>
 
 <span class="c1"># Calculate critical t-values (two-tailed test)</span>
-<span class="n">t_crit_lower</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df_paired</span><span class="p">)</span> 
-<span class="n">t_crit_upper</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df_paired</span><span class="p">)</span> 
+<span class="n">t_crit_lower</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">α</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df_paired</span><span class="p">)</span> 
+<span class="n">t_crit_upper</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df_paired</span><span class="p">)</span> 
 
 <span class="c1"># Generate x values for plotting</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
@@ -896,7 +903,7 @@ Shapiro-Wilk         0.90   0.098    True
     <span class="n">x</span><span class="o">=</span><span class="n">t_crit_upper</span><span class="p">,</span> <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$t^\ast$ (</span><span class="si">{</span><span class="n">t_crit_upper</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;t* (</span><span class="si">{</span><span class="n">t_crit_upper</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the rejection regions (alpha)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
@@ -905,7 +912,7 @@ Shapiro-Wilk         0.90   0.098    True
     <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
     <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;α (</span><span class="si">{</span><span class="n">α</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper</span><span class="p">],</span>
@@ -919,14 +926,14 @@ Shapiro-Wilk         0.90   0.098    True
     <span class="n">x</span><span class="o">=</span><span class="n">t_statistic_paired</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$t$ (</span><span class="si">{</span><span class="n">t_statistic_paired</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;t (</span><span class="si">{</span><span class="n">t_statistic_paired</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Shade the P-value areas (two-tailed)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_paired</span><span class="p">)],</span>
     <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_paired</span><span class="p">)],</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$P$ (</span><span class="si">{</span><span class="n">p_value_paired</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_paired</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_statistic_paired</span><span class="p">)],</span>
@@ -934,7 +941,7 @@ Shapiro-Wilk         0.90   0.098    True
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
@@ -944,7 +951,7 @@ Shapiro-Wilk         0.90   0.098    True
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dfde494fe78c7ff24a5310102253eba4477f2479c8f6e468e45ee5d19967026d.png" src="_images/dfde494fe78c7ff24a5310102253eba4477f2479c8f6e468e45ee5d19967026d.png" />
+<img alt="_images/00c5ed0a7fa42fd9fdd9db97d8faa14c3df6ef35c599d325f7e258852ab367ab.png" src="_images/00c5ed0a7fa42fd9fdd9db97d8faa14c3df6ef35c599d325f7e258852ab367ab.png" />
 </div>
 </div>
 <p>The red dashed lines in this diagram represent the critical t-values that define the <em>rejection regions</em> for a two-tailed paired t-test at a 5% significance level. The ‘tails’ of the curve outside these lines each represent 2.5% of the probability distribution under the null hypothesis (that the true population mean <em>difference</em> is zero).</p>
@@ -956,13 +963,13 @@ Shapiro-Wilk         0.90   0.098    True
 <p>Since we’re dealing with paired data, we’ll use the differences between the paired observations to calculate the confidence interval. Here’s how it’s done:</p>
 <ol class="arabic simple">
 <li><p>Calculate the differences: for each pair of observations, calculate the difference <span class="math notranslate nohighlight">\(D_i = X_{1i} - X_{2i}\)</span></p></li>
-<li><p>Calculate the mean difference: calculate the mean of these differences <span class="math notranslate nohighlight">\(\bar{D}\)</span>. This is the point estimate of the true difference in population means</p></li>
+<li><p>Calculate the mean difference: calculate the mean of these differences <span class="math notranslate nohighlight">\(\overline{D}\)</span>. This is the point estimate of the true difference in population means</p></li>
 <li><p>Calculate the standard deviation of the differences: calculate the standard deviation of the differences <span class="math notranslate nohighlight">\(s_D\)</span></p></li>
 <li><p>Calculate the standard error: the standard error of the mean difference for paired data is calculated as <span class="math notranslate nohighlight">\(s_D / \sqrt{n}\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of pairs</p></li>
 <li><p>Determine the degrees of freedom: the degrees of freedom for a paired t-test are <span class="math notranslate nohighlight">\(n - 1\)</span></p></li>
-<li><p>Find the critical t-value (<span class="math notranslate nohighlight">\(t^\ast\)</span>): using the desired confidence level (e.g., 95%) and the calculated degrees of freedom, find the corresponding <span class="math notranslate nohighlight">\(t^\ast\)</span> from the t-distribution table</p></li>
+<li><p>Find the critical t-value: using the desired confidence level (e.g., 95%) and the calculated degrees of freedom, find the corresponding t* from the t-distribution table</p></li>
 <li><p>Calculate the margin of error (<span class="math notranslate nohighlight">\(W\)</span>): multiply the standard error by the critical t-value</p></li>
-<li><p>Construct the confidence interval: subtract and add the margin of error to the mean difference to obtain the lower and upper bounds of the confidence interval: <span class="math notranslate nohighlight">\(\bar{d} \pm W\)</span></p></li>
+<li><p>Construct the confidence interval: subtract and add the margin of error to the mean difference to obtain the lower and upper bounds of the confidence interval: <span class="math notranslate nohighlight">\(\overline{D} \pm W\)</span></p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -990,7 +997,7 @@ Shapiro-Wilk         0.90   0.098    True
 </section>
 </section>
 <section id="performing-the-paired-t-test-in-python">
-<span id="test"></span><h3>Performing the paired t-test in Python<a class="headerlink" href="#performing-the-paired-t-test-in-python" title="Link to this heading">#</a></h3>
+<h3>Performing the paired t-test in Python<a class="headerlink" href="#performing-the-paired-t-test-in-python" title="Link to this heading">#</a></h3>
 <p>Let’s conduct the paired t-test using both the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> and <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> libraries in Python. We’ll compare their implementations and outputs, highlighting their respective advantages.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1072,10 +1079,10 @@ Paired t-test results (Pingouin):
 <p>In the context of paired t-tests, a common effect size measure is <strong>Cohen’s <span class="math notranslate nohighlight">\(d\)</span></strong>. It expresses the mean difference in terms of standard deviation units, providing a scale-free measure of the effect’s size. We have previously encountered the effect size statistics in the chapter on statistical power and sample size, notably in the case of <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/20%20-%20Statistical%20Power%20and%20Sample%20Size.html#the-effect-size">comparison of two groups</a>.</p>
 <p>While the general idea of effect size remains the same, the specific calculation of Cohen’s d for paired t-tests differs slightly, as it focuses on the standard deviation of the differences (<span class="math notranslate nohighlight">\(s_D\)</span>) between paired observations rather than the pooled standard deviation of two independent groups:</p>
 <div class="math notranslate nohighlight">
-\[d = \frac{\bar{D}}{s_D}\]</div>
+\[d = \frac{\overline{D}}{s_D}\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\bar{D}\)</span> represents the mean of the differences between the paired observations</p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{D}\)</span> represents the mean of the differences between the paired observations</p></li>
 <li><p><span class="math notranslate nohighlight">\(s_D\)</span> represents the standard deviation of the differences</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1110,9 +1117,9 @@ Paired t-test results (Pingouin):
 </div>
 <p>The conventional interpretation of Cohen’s d for paired t-tests aligns with the general guidelines:</p>
 <ul class="simple">
-<li><p>Small effect: <span class="math notranslate nohighlight">\(d \approx 0.2\)</span></p></li>
-<li><p>Medium effect: <span class="math notranslate nohighlight">\(d \approx 0.5\)</span></p></li>
-<li><p>Large effect: <span class="math notranslate nohighlight">\(d \approx 0.8\)</span></p></li>
+<li><p>Small effect: d ≈ 0.2</p></li>
+<li><p>Medium effect: d ≈ 0.5</p></li>
+<li><p>Large effect: d ≈ 0.8</p></li>
 </ul>
 <p>In the current example, the large Cohen’s <span class="math notranslate nohighlight">\(d\)</span> of 0.89 suggests a substantial difference between the two conditions. Encountering a high P value (0.0497) with a large effect size suggests that while there might be a substantial effect present, the <em>study lacks sufficient power</em> to confidently detect it due to the <em>small sample size</em>. This underscores the importance of considering both P values and effect sizes when interpreting research findings and highlights the need for adequate sample sizes to draw reliable conclusions.</p>
 </section>
@@ -1131,7 +1138,7 @@ Paired t-test results (Pingouin):
     <span class="n">x</span><span class="o">=</span><span class="n">crossed_fertil</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="n">self_fertil</span><span class="p">,</span>
     <span class="n">line_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s1">&#39;Pearson r = </span><span class="si">{</span><span class="n">pearson_r</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">},</span>
-    <span class="p">)</span>
+<span class="p">)</span>
 
 <span class="c1"># Make the axes aspect ratio equal (square)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
@@ -1151,7 +1158,7 @@ Paired t-test results (Pingouin):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a26f0c2f606341d441deddcd8eb6f86750d2a0c063e84c6b199ad6e8311fea17.png" src="_images/a26f0c2f606341d441deddcd8eb6f86750d2a0c063e84c6b199ad6e8311fea17.png" />
+<img alt="_images/6e479b24e3acf45b29ac9d352d85cff0fb46cb60fb4172507846726ba61d16a2.png" src="_images/6e479b24e3acf45b29ac9d352d85cff0fb46cb60fb4172507846726ba61d16a2.png" />
 </div>
 </div>
 <p>In this dataset, the weak or absent correlation between paired observations suggests <strong>ineffective pairing</strong>, leading to high variability in the differences. This increased variability can obscure true effects, potentially resulting in a higher P value even when a substantial difference exists. Consequently, we might observe a large effect size (Cohen’s d) but fail to achieve statistical significance due to the limited sample size and the noise introduced by ineffective pairing.</p>
@@ -1286,12 +1293,6 @@ Paired t-test results (Pingouin):
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics\.env\Lib\site-packages\pingouin\plotting.py:573: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option(&#39;future.no_silent_downcasting&#39;, True)`
-  data[&quot;wthn&quot;] = data[within].replace({_ordr: i for i, _ordr in enumerate(order)})
-c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics\.env\Lib\site-packages\pingouin\plotting.py:573: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option(&#39;future.no_silent_downcasting&#39;, True)`
-  data[&quot;wthn&quot;] = data[within].replace({_ordr: i for i, _ordr in enumerate(order)})
-</pre></div>
-</div>
 <img alt="_images/2cbc84dd38a3375de004a54eb76d7e93cf93f803c648353bd4d5608a4f4298f4.png" src="_images/2cbc84dd38a3375de004a54eb76d7e93cf93f803c648353bd4d5608a4f4298f4.png" />
 </div>
 </div>
@@ -1381,7 +1382,7 @@ c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics
 </div>
 </div>
 </div>
-<p>A ratio of 1.86 signifies that the treated group’s enzyme activity is, on average, 1.86 times the activity in the control group. This translates to an <span class="math notranslate nohighlight">\((1.86 - 1) * 100 = 86\%\)</span> increase.</p>
+<p>A ratio of 1.86 signifies that the treated group’s enzyme activity is, on average, 1.86 times the activity in the control group. This translates to an (1.86 - 1) * 100 = 86% increase.</p>
 <p>Furthermore, the confidence interval (1.62, 2.14) provides a range of plausible values for the true population mean ratio. Importantly, it doesn’t contain 1.0. Since a ratio of 1.0 would indicate no effect (treated and control groups being the same), the absence of 1.0 in the confidence interval strengthens the conclusion that the observed increase is statistically significant and unlikely due to chance.</p>
 </section>
 <section id="mcnemar-s-test">
@@ -1414,7 +1415,7 @@ c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics
 <li><p>The cells ‘a’, ‘b’, ‘c’, and ‘d’ represent the counts of pairs falling into each combination of outcomes.</p></li>
 </ul>
 <p>McNemar’s test focuses on the <strong>discordant pairs</strong> (‘b’ and ‘c’), where the outcome changed between the two measurements. These pairs are crucial for assessing whether there’s a statistically significant difference in the proportions of positive outcomes between the two conditions.</p>
-<p>The McNemar’s test statistic, often denoted as <span class="math notranslate nohighlight">\(\chi^2\)</span> or sometimes <span class="math notranslate nohighlight">\(Q\)</span>, is calculated as <span class="math notranslate nohighlight">\(\chi^2 = \frac{(| b - c | - \mathrm{correction})^2}{b + c}\)</span>, where <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> represent the counts of discordant pairs, and <span class="math notranslate nohighlight">\(\mathrm{correction}\)</span> is Yates’s continuity correction, typically set to 0.5 or 1 depending on the software. The McNemar’s test statistic, under the null hypothesis, approximately follows a chi-squared distribution with one degree of freedom. However, this approximation can be less accurate for smaller sample sizes. Yates’ continuity correction is applied to improve the accuracy of this approximation by adjusting the calculated chi-squared value slightly downwards. This adjustment helps prevent the overestimation of statistical significance (i.e., finding a significant result when there isn’t one) when dealing with smaller sample sizes or low expected frequencies in the contingency table.</p>
+<p>The McNemar’s test statistic, often denoted as χ² or sometimes Q, is calculated as <span class="math notranslate nohighlight">\(\chi^2 = \frac{(| b - c | - \mathrm{correction})^2}{b + c}\)</span>, where <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> represent the counts of discordant pairs, and <span class="math notranslate nohighlight">\(\mathrm{correction}\)</span> is Yates’s continuity correction, typically set to 0.5 or 1 depending on the software. The McNemar’s test statistic, under the null hypothesis, approximately follows a chi-squared distribution with one degree of freedom. However, this approximation can be less accurate for smaller sample sizes. Yates’ continuity correction is applied to improve the accuracy of this approximation by adjusting the calculated chi-squared value slightly downwards. This adjustment helps prevent the overestimation of statistical significance (i.e., finding a significant result when there isn’t one) when dealing with smaller sample sizes or low expected frequencies in the contingency table.</p>
 <p>Let’s examine a case-control study exploring the connection between a risk factor (for instance, smoking) and a disease (like lung cancer). Data is gathered in pairs: each person with the disease (a “case”) is paired with someone without it (a “control”), ensuring they’re similar in age, gender, etc. The researchers examined a total of 134 cases and their corresponding controls, and the outcomes are summarized in the following table.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1501,10 +1502,10 @@ c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>
 
 <span class="c1"># Significance level (alpha)</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mf">0.05</span>
 
 <span class="c1"># Calculate critical chi-squared value</span>
-<span class="n">chi2_crit</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1 degree of freedom</span>
+<span class="n">chi2_crit</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1 degree of freedom</span>
 
 <span class="c1"># Generate x values for plotting</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># Adjust range as needed</span>
@@ -1518,7 +1519,7 @@ c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics
     <span class="n">x</span><span class="o">=</span><span class="n">chi2_crit</span><span class="p">,</span> <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\chi^2_\text</span><span class="si">{crit}</span><span class="s2">$&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; (</span><span class="si">{</span><span class="n">chi2_crit</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;χ²* (</span><span class="si">{</span><span class="n">chi2_crit</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Shade the rejection region (alpha)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
@@ -1527,35 +1528,35 @@ c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics
     <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
     <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;α (</span><span class="si">{</span><span class="n">α</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot the observed chi-squared statistic</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">mcnemar_statistic</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$M^2$ (</span><span class="si">{</span><span class="n">mcnemar_statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;M² (</span><span class="si">{</span><span class="n">mcnemar_statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Shade the P-value area</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">mcnemar_statistic</span><span class="p">],</span>
     <span class="n">hx</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">mcnemar_statistic</span><span class="p">],</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$P$ (</span><span class="si">{</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">chi2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">mcnemar_statistic</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span>  <span class="c1"># Calculate P value</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">chi2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">mcnemar_statistic</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span>  <span class="c1"># Calculate P value</span>
 <span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\chi^2$ value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;χ²&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chi-squared distribution (DF=1) | McNemar&#39;s test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;χ² distribution (DF=1) | McNemar&#39;s test&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dc9bae32603f1de562a15a461191c93feb417af63522307070392562c7bb63c2.png" src="_images/dc9bae32603f1de562a15a461191c93feb417af63522307070392562c7bb63c2.png" />
+<img alt="_images/d0edcedf31398f36d81bd674300b41f4f8d7dd2f6b1cb2bd4b1f815d92806f7d.png" src="_images/d0edcedf31398f36d81bd674300b41f4f8d7dd2f6b1cb2bd4b1f815d92806f7d.png" />
 </div>
 </div>
 <p>We can easily conduct McNemar’s test using either the free web calculator available in the <a class="reference internal" href="#(https://www.graphpad.com/quickcalcs/mcNemar1/)"><span class="xref myst">QuickCalcs section of graphpad.com</span></a> or by utilizing the <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.stats.contingency_tables.mcnemar.html"><code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> library in Python</a>.</p>
@@ -1577,7 +1578,7 @@ statistic   13.793103448275861
 </div>
 </div>
 </div>
-<p>In this specific case, the <span class="math notranslate nohighlight">\(\chi^2\)</span> value is 13.79 with one degree of freedom. This results in a two-tailed P value of 0.0002. In simpler terms, if there was truly no link between the risk factor and the disease, the chance of observing an odds ratio this far from 1.0 (indicating no association) is merely 0.02 percent.</p>
+<p>In this specific case, the χ² value is 13.79 with one degree of freedom. This results in a two-tailed P value of 0.0002. In simpler terms, if there was truly no link between the risk factor and the disease, the chance of observing an odds ratio this far from 1.0 (indicating no association) is merely 0.02 percent.</p>
 <p>Instead of getting caught up in the complexities of the chi-square approximation and whether or not to apply Yates’ correction (and which version to use), it is suggested opting for the binomial test. This provides an exact result, eliminating the need for such approximations and corrections.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1596,7 +1597,7 @@ statistic   4.0
 <section id="bayesian-approach">
 <h4>Bayesian approach<a class="headerlink" href="#bayesian-approach" title="Link to this heading">#</a></h4>
 <p>In contrast to frequentist statistics, which focuses on the probability of observing data given a fixed hypothesis (P values), the Bayesian approach calculates the probability of a hypothesis being true given the observed data. This is achieved by combining prior knowledge (represented by a prior distribution) with the likelihood of the data to obtain a posterior distribution, which reflects our updated belief about the hypothesis after observing the data.</p>
-<p>We previously introduced the Bayesian approach in the chapter on confidence intervals, where we focused on <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/12%20-%20Confidence%20Interval%20of%20a%20Mean.html#bayesian-approach">estimating a single population mean</a>.
+<p>We previously introduced the Bayesian approach in the chapter on confidence intervals, where we focused on estimating a single population mean.
 In the context of the paired t-test, a Bayesian approach would estimate the probability distribution of the true mean difference, allowing us to make statements like “There’s a 95% probability that the true mean difference lies between these two values.”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1639,9 +1640,292 @@ In the context of the paired t-test, a Bayesian approach would estimate the prob
 </section>
 </section>
 </section>
+<section id="non-parametric-approach">
+<h2>Non-parametric approach<a class="headerlink" href="#non-parametric-approach" title="Link to this heading">#</a></h2>
+<p>In the previous chapter on unpaired t-tests, we explored both parametric and non-parametric methods for comparing the means of two independent groups. We noted that parametric tests, like the t-test and ANOVA, are robust to minor deviations from normality, especially with large samples. However, when the assumptions of normality are violated, non-parametric methods offer valuable alternatives. These methods typically analyze the ranks of the data, making them less sensitive to outliers and deviations from normality. However, it’s important to remember that non-parametric tests might have lower statistical power compared to parametric tests when the data is truly Gaussian.</p>
+<p>As a reminder, the follwoing flowchart was designed to help choosing between <a class="reference external" href="https://pingouin-stats.org/build/html/guidelines.html#non-parametric">Pingouin’s functions adequate for a non-parametric analysis</a>:</p>
+<p><img alt="selection of the nonparamettric method" src="https://pingouin-stats.org/build/html/_images/flowchart_nonparametric.svg" /></p>
+<section id="performing-the-wilcoxon-signed-rand-test-manually">
+<h3>Performing the Wilcoxon signed-rand test manually<a class="headerlink" href="#performing-the-wilcoxon-signed-rand-test-manually" title="Link to this heading">#</a></h3>
+<section id="exact-test">
+<h4>Exact test<a class="headerlink" href="#exact-test" title="Link to this heading">#</a></h4>
+<p>The <strong>Wilcoxon matched-pairs signed-rank test</strong> assesses the null hypothesis that two related paired samples come from the same distribution. It specifically tests whether the distribution of the differences (x - y) is symmetric about zero. In simpler terms, it checks if the differences between matched pairs are equally likely to be positive or negative. Its underlying principle is to consider both the magnitude and direction of the differences between paired observations:</p>
+<div class="math notranslate nohighlight">
+\[W = \sum_{i=1}^{N} [\operatorname{sgn}(x_{2,i} - x_{1,i}) R_i]\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_i = (x_{1,i}, x_{2,i})\)</span> represents the <span class="math notranslate nohighlight">\(i\)</span>-th pair of measurements, and <span class="math notranslate nohighlight">\(R_i\)</span> is the rank of the absolute difference <span class="math notranslate nohighlight">\(|x_{2,i} - x_{1,i}|\)</span>.</p>
+<p>The test works as follows:</p>
+<ol class="arabic simple">
+<li><p>Calculate the difference between each matched pair (e.g., ‘after - before’ or ‘treatment - control’) and note the sign of the difference, e.g., negative values refer to a decrease</p></li>
+<li><p>Rank the absolute values of the differences, temporarily <em>ignoring whether they are positive or negative</em></p></li>
+<li><p>Sum the ranks of the positive differences and the ranks of the negative differences separately</p></li>
+<li><p>Compute the test statistic W as the minimum between the two sums of ranks obtained in the previous step</p></li>
+<li><p>Compute the P value: it represents the probability of observing a test statistic (in this case, the difference between the sums of ranks) as extreme as, or more extreme than, the one calculated from the data, assuming the <em>null hypothesis</em> is true. However, the specific way to compute this P value depends on the sample size and whether we’re using tables, the normal approximation, or exact methods, as discussed in the previous chapter for the Mann-Whitney U test</p></li>
+</ol>
+<p>Pairs with large absolute differences have higher ranks, contributing more to W, while pairs with small differences have less influence. By focusing on ranks, the test is less sensitive to outliers and primarily detects shifts in median values between the two groups.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">rankdata</span>
+
+<span class="c1"># Make an array copy of the differences_fert Series</span>
+<span class="n">differences_array</span> <span class="o">=</span> <span class="n">differences_fert</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="c1"># Extract the signs of the differences</span>
+<span class="n">signs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">differences_array</span><span class="p">)</span>  <span class="c1"># 1 for positive, -1 for negative, 0 for zero</span>
+
+<span class="c1"># Print the differences and their signs</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Differences:&quot;</span><span class="p">,</span> <span class="n">differences_array</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Signs:&quot;</span><span class="p">,</span> <span class="n">signs</span><span class="p">)</span>
+
+<span class="c1"># Calculate ranks of absolute differences</span>
+<span class="n">ranks_abs_diff</span> <span class="o">=</span> <span class="n">rankdata</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">differences_array</span><span class="p">))</span>
+
+<span class="c1"># Print the ranks with a descriptive message</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ranks of the absolute differences:&quot;</span><span class="p">,</span> <span class="n">ranks_abs_diff</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Differences: [ 6.125 -8.375  1.     2.     0.75   2.875  3.5    5.125  1.75   3.625
+  7.     3.     9.375  7.5   -6.   ]
+Signs: [ 1. -1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1. -1.]
+Ranks of the absolute differences:
+[11. 14.  2.  4.  1.  5.  7.  9.  3.  8. 12.  6. 15. 13. 10.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s crucial to address two potential issues that can arise:</p>
+<ul class="simple">
+<li><p><strong>Ties:</strong> ties occur when two or more pairs have the same difference. The Wilcoxon test assigns the <em>average</em> rank to tied values. While this is a reasonable approach, a large number of ties can reduce the test’s expressiveness, making it less sensitive to subtle differences between the groups.</p></li>
+<li><p><strong>Zeros:</strong> zeros represent pairs with no difference between the measurements. These pairs don’t provide information about whether the distribution of differences is centered around zero, which is the null hypothesis of the test. Consequently, the Wilcoxon test typically <em>discards</em> pairs with zero differences. If a substantial proportion of pairs have zero differences, the test’s power can be significantly reduced.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the sum of ranks for positive and negative differences</span>
+<span class="n">W_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ranks_abs_diff</span><span class="p">[</span><span class="n">differences_fert</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">W_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ranks_abs_diff</span><span class="p">[</span><span class="n">differences_fert</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Print the results with clear labels</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sum of ranks for positive differences (W+) = </span><span class="si">{</span><span class="n">W_pos</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sum of ranks for negative differences (W-) = </span><span class="si">{</span><span class="n">W_neg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute the W-statistic as the minimum of W_pos and W_neg</span>
+<span class="n">W_statistic</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">W_pos</span><span class="p">,</span> <span class="n">W_neg</span><span class="p">)</span>  <span class="c1"># Corrected calculation</span>
+
+<span class="c1"># Print the result</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;W-statistic: </span><span class="si">{</span><span class="n">W_statistic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sum of ranks for positive differences (W+) = 96.0
+Sum of ranks for negative differences (W-) = 24.0
+W-statistic: 24.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>To determine the P value for the Wilcoxon signed-rank test, we can consult <a class="reference external" href="https://real-statistics.com/statistics-tables/wilcoxon-signed-ranks-table/">tables of critical values</a>. These tables provide P values associated with different values of the test statistic W for various sample sizes. Most tables offer both one-sided and two-sided P values. If only one-sided P values are available, we can double them to obtain the two-sided P value.</p>
+<p>The critical value is the threshold that W must exceed to reject the null hypothesis at a given significance level (α). If the calculated W statistic is slightly lower than the critical value W*, the P value should be approximately equal to the chosen alpha, e.g., P ≈ 0.05.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the critical value and the calculated W-statistic</span>
+<span class="n">W_critical</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Critical W = </span><span class="si">{</span><span class="n">W_critical</span><span class="si">}</span><span class="s2"> for alpha = 0.05 and n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">differences_fert</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calculated W-statistic = </span><span class="si">{</span><span class="n">W_statistic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compare the W-statistic to the critical value and draw a conclusion</span>
+<span class="k">if</span> <span class="n">W_statistic</span> <span class="o">&lt;=</span> <span class="n">W_critical</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reject the null hypothesis. There is a significant difference between the groups.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fail to reject the null hypothesis. There is no significant difference between the groups.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Critical W = 25 for alpha = 0.05 and n = 15
+Calculated W-statistic = 24.0
+Reject the null hypothesis. There is a significant difference between the groups.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculating the <em>exact null distribution</em> for the Wilcoxon signed-rank test involves more intricate combinatorial calculations compared to the Mann-Whitney U test discussed previously. While we won’t delve into the specific details here, it’s important to be aware of the computational challenges involved, especially for larger sample sizes.</p>
+</section>
+<section id="asymptotic-approach">
+<h4>Asymptotic approach<a class="headerlink" href="#asymptotic-approach" title="Link to this heading">#</a></h4>
+<p>When both sample sizes are 10 or greater, we can approximate the distribution of W as a normal distribution with mean <span class="math notranslate nohighlight">\(\mu_A\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma_A\)</span>. This normal approximation simplifies the calculation of P values and is often used in statistical software.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">differences_fert_stats</span><span class="o">.</span><span class="n">nobs</span>
+
+<span class="c1"># Significance level (alpha)</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># Determine the mean and standard deviation for the normal approximation</span>
+<span class="n">μ</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span>
+<span class="n">σ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">24</span><span class="p">)</span>
+
+<span class="c1"># Generate x values for plotting the normal distribution</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">μ</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="p">,</span> <span class="n">μ</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">normal_pdf</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">μ</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">σ</span> <span class="p">)</span>
+
+<span class="c1"># Create the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">normal_pdf</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot the critical W-values (two-tailed test)</span>
+<span class="n">W_crit_lower</span> <span class="o">=</span> <span class="n">μ</span> <span class="o">-</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">σ</span>   <span class="c1"># Lower critical W</span>
+<span class="n">W_crit_upper</span> <span class="o">=</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">σ</span>   <span class="c1"># Upper critical W</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">W_crit_lower</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">W_crit_upper</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;W* (</span><span class="si">{</span><span class="n">W_crit_lower</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Shade the rejection regions (alpha)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">normal_pdf</span><span class="p">,</span>
+    <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">W_crit_lower</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">W_crit_upper</span><span class="p">),</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;α (</span><span class="si">{</span><span class="n">α</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Calculate the z-score</span>
+<span class="n">W_crit</span> <span class="o">=</span> <span class="p">(</span><span class="n">W_statistic</span> <span class="o">-</span> <span class="n">μ</span><span class="p">)</span> <span class="o">/</span> <span class="n">σ</span>
+
+<span class="c1"># Calculate the p-value (two-tailed)</span>
+<span class="n">p_value_W</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">W_crit</span><span class="p">)))</span>
+
+<span class="c1"># Plot the observed W-statistic</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">W_statistic</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;W (</span><span class="si">{</span><span class="n">W_statistic</span><span class="si">:</span><span class="s2">n</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Shade the P-value areas (two-tailed)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">normal_pdf</span><span class="p">,</span>
+    <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">W_statistic</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">μ</span> <span class="o">+</span> <span class="p">(</span><span class="n">μ</span> <span class="o">-</span> <span class="n">W_statistic</span><span class="p">)),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;P (</span><span class="si">{</span><span class="n">p_value_W</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Normal approximation to W distribution (n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/350228a72c31ddf49e4d2d9eecef44586d1ca22ecbd77ae93f902ab1f7fe09ba.png" src="_images/350228a72c31ddf49e4d2d9eecef44586d1ca22ecbd77ae93f902ab1f7fe09ba.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="python-tools-for-the-non-parametric-paired-t-test">
+<h3>Python tools for the non-parametric paired t-test<a class="headerlink" href="#python-tools-for-the-non-parametric-paired-t-test" title="Link to this heading">#</a></h3>
+<p>Python offers convenient tools for running the Wilcoxon signed-rank test, simplifying analysis and providing additional functionalities.</p>
+<p>SciPy provides a comprehensive collection of statistical functions, including the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html"><code class="docutils literal notranslate"><span class="pre">wilcoxon</span></code> function</a> for performing the Wilcoxon signed-rank test.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">wilcoxon</span>
+
+<span class="c1"># Perform Wilcoxon signed-rank test with exact p-value calculation</span>
+<span class="n">W_statistic_exact</span><span class="p">,</span> <span class="n">p_value_exact</span> <span class="o">=</span> <span class="n">wilcoxon</span><span class="p">(</span><span class="n">differences_fert</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;exact&#39;</span><span class="p">)</span>
+
+<span class="c1"># Perform Wilcoxon signed-rank test with normal approximation p-value calculation</span>
+<span class="n">W_statistic_asymptotic</span><span class="p">,</span> <span class="n">p_value_asymptotic</span> <span class="o">=</span> <span class="n">wilcoxon</span><span class="p">(</span><span class="n">differences_fert</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;approx&#39;</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Print the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wilcoxon signed-rank test results:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Exact P value: </span><span class="si">{</span><span class="n">p_value_exact</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Asymptotic P value (similar to normal distribution method): </span><span class="si">{</span><span class="n">p_value_asymptotic</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wilcoxon signed-rank test results:
+  Exact P value: 0.04126
+  Asymptotic P value (similar to normal distribution method): 0.04089
+</pre></div>
+</div>
+</div>
+</div>
+<p>While SciPy provides the core functionality for the Mann-Whitney U test, Pingouin offers a more streamlined <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.wilcoxon.html">function <code class="docutils literal notranslate"><span class="pre">wilcoxon</span></code></a> with additional features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform Wilcoxon signed-rank test using Pingouin</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span>
+    <span class="n">differences_fert</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;approx&#39;</span><span class="p">,</span>
+    <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Pingouin applies a continuity correction by default</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W-val</th>
+      <th>alternative</th>
+      <th>p-val</th>
+      <th>RBC</th>
+      <th>CLES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Wilcoxon</th>
+      <td>24.0</td>
+      <td>two-sided</td>
+      <td>0.040888</td>
+      <td>0.6</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>When the P value is less than 0.05 in a two-tailed Wilcoxon signed-rank test, we generally conclude that there is a significant difference between the paired groups being compared. However, in our case, the P value is borderline, as seen with the parametric tests. The calculated W (24) is slightly lower than the critical value (25), suggesting that the P value is close to the significance level of 0.05. While we still reject the null hypothesis, it’s important to acknowledge the borderline nature of this result and consider the possibility of a type I error (false positive).</p>
+</section>
+</section>
 <section id="bootstrapping-and-permutation-tests-for-paired-data">
 <h2>Bootstrapping and permutation tests for paired data<a class="headerlink" href="#bootstrapping-and-permutation-tests-for-paired-data" title="Link to this heading">#</a></h2>
-<p><strong>Bootstrapping</strong> offers a robust alternative for statistical inference, particularly useful when dealing with small sample sizes or when the assumptions of traditional parametric tests might not be fully met. Bootstrapping allows us to estimate parameters and confidence intervals directly from the data itself, without relying on strong assumptions about the underlying population distribution. This approach, known as <strong>non-parametric inference</strong>, was previously encountered in the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/12%20-%20Confidence%20Interval%20of%20a%20Mean.html#resampling">chapter on calculating the confidence interval of a mean (univariate)</a>, as well as in the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/30%20-%20Comparing%20Two%20Means%20with%20Unpaired%20t%20Test.html">chapter on comparing two means with unpaired t test</a>.</p>
+<p><strong>Bootstrapping</strong> offers a robust alternative for statistical inference, particularly useful when dealing with small sample sizes or when the assumptions of traditional parametric tests might not be fully met. Bootstrapping allows us to estimate parameters and confidence intervals directly from the data itself, without relying on strong assumptions about the underlying population distribution. This approach, known as <strong>non-parametric inference</strong>, was previously encountered in the chapter on calculating the confidence interval of a mean (univariate), as well as in the chapter on comparing two means with unpaired t test.</p>
 <p>While bootstrapping is primarily used for estimation, <strong>permutation tests</strong>, another resampling-based method, are specifically designed for <em>hypothesis testing</em>. They can be employed to test various hypotheses, such as the null hypothesis of exchangeability (where group labels are irrelevant) or the hypothesis of equal means after shifting the group means to a common value.</p>
 <p>Recent research has explored the application of bootstrap and permutation methods to <em>paired data</em>, particularly when the distributions of the paired differences might deviate from normality. A <a class="reference external" href="https://link.springer.com/article/10.1007/s11222-012-9370-4">study by Konietschke and Pauly (2014)</a> demonstrated that even when the data may not be perfectly exchangeable under the null hypothesis, certain permutation and bootstrap approaches can provide valid and powerful alternatives to the traditional t-test. These methods, which may involve resampling or permuting the data while accounting for the dependency structure within pairs, have been shown to improve the power of the test under conditions of non-normality. This highlights the potential of bootstrap and permutation methods to provide more robust and reliable inferences in situations where the assumptions of the paired t-test might be violated.</p>
 <section id="generating-bootstrap-pair-samples">
@@ -1705,14 +1989,14 @@ Corresponding 95% CI estimate = [0.16 4.76]
     <span class="n">density</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Bootstrap $\bar D$&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bootstrap mean difference&#39;</span><span class="p">)</span>
 
 <span class="c1"># Annotate the observed mean difference</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">differences_fert_stats</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cornflowerblue&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;Observed $\bar D$ (</span><span class="si">{</span><span class="n">differences_fert_stats</span><span class="o">.</span><span class="n">mean</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Observed mean difference (</span><span class="si">{</span><span class="n">differences_fert_stats</span><span class="o">.</span><span class="n">mean</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add lines for the confidence interval</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
@@ -1727,15 +2011,15 @@ Corresponding 95% CI estimate = [0.16 4.76]
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;97.5th (</span><span class="si">{</span><span class="n">bs_CI_diff_means</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Mean difference ($\bar D$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Mean difference&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;Bootstrap distribution of the mean difference $\bar D$ (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap distribution of the mean difference (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a3d6dea428500a26766445d6595604c0d4256b19296dbfcc01a919937c83734f.png" src="_images/a3d6dea428500a26766445d6595604c0d4256b19296dbfcc01a919937c83734f.png" />
+<img alt="_images/b067779a0a584a022b1ac440509852537c7a1539ba75f6d119c7ca81f17f50d3.png" src="_images/b067779a0a584a022b1ac440509852537c7a1539ba75f6d119c7ca81f17f50d3.png" />
 </div>
 </div>
 <p>It’s generally expected that the confidence interval obtained through bootstrapping (here [0.16, 4.76]) will be reasonably similar to the confidence interval calculated using the t-distribution (here [0.004, 5.229]), especially when the sample size is sufficiently large and the underlying assumptions of the paired t-test are met.</p>
@@ -1869,7 +2153,7 @@ Corresponding 95% CI estimate = [0.16 4.76]
     <span class="n">x</span><span class="o">=</span><span class="n">t_statistic_paired</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;Observed $t$ (</span><span class="si">{</span><span class="n">t_statistic_paired</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Observed t (</span><span class="si">{</span><span class="n">t_statistic_paired</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Determine the direction of the observed t-statistic and plot accordingly</span>
 <span class="k">if</span> <span class="n">t_statistic_paired</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -1889,12 +2173,12 @@ Corresponding 95% CI estimate = [0.16 4.76]
 <span class="c1"># Add labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;Bootstrap distribution of $t$ under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap distribution of t under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Create a copy of the original patch for the legend</span>
 <span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Bootstrap $t$&#39;</span><span class="p">)</span>
 <span class="c1"># Create a patch for the legend</span>
-<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$P$ (</span><span class="si">{</span><span class="n">p_value_bs_shifted</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_bs_shifted</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add the patches to the legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">original_patch</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_value_patch</span><span class="p">]);</span> <span class="c1"># type: ignore</span>
@@ -1902,7 +2186,7 @@ Corresponding 95% CI estimate = [0.16 4.76]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aab49efe7d676ae52093e29812693501e7aa62faf3ae549dcf967f2f9c685700.png" src="_images/aab49efe7d676ae52093e29812693501e7aa62faf3ae549dcf967f2f9c685700.png" />
+<img alt="_images/9ab5b33148c7a0c9fb21909450f7e18a23a14e72155c8c21304ce5e8725f4fe1.png" src="_images/9ab5b33148c7a0c9fb21909450f7e18a23a14e72155c8c21304ce5e8725f4fe1.png" />
 </div>
 </div>
 </section>
@@ -2001,7 +2285,7 @@ Corresponding 95% CI estimate = [0.16 4.76]
     <span class="n">x</span><span class="o">=</span><span class="n">differences_fert_stats</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;Observed $\bar D$ (</span><span class="si">{</span><span class="n">differences_fert_stats</span><span class="o">.</span><span class="n">mean</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Observed mean difference (</span><span class="si">{</span><span class="n">differences_fert_stats</span><span class="o">.</span><span class="n">mean</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Determine the direction of the observed mean difference and plot accordingly</span>
 <span class="k">if</span> <span class="n">differences_fert_stats</span><span class="o">.</span><span class="n">mean</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -2019,14 +2303,14 @@ Corresponding 95% CI estimate = [0.16 4.76]
             <span class="n">patches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lime&#39;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\bar D$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Mean difference&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribution of bootstrapped mean differences under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribution of bootstrap mean differences under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Create a copy of the original patch for the legend</span>
-<span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Bootstrap $\bar D$&#39;</span><span class="p">)</span>
+<span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bootstrap mean difference&#39;</span><span class="p">)</span>
 <span class="c1"># Create a patch for the legend</span>
-<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$P$ (</span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add the patches to the legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">original_patch</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_value_patch</span><span class="p">]);</span> <span class="c1"># type: ignore</span>
@@ -2034,7 +2318,7 @@ Corresponding 95% CI estimate = [0.16 4.76]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0f8f7932348ecb06085b78490df967fcdc0c2539f1330a5f9cf479fc7858a373.png" src="_images/0f8f7932348ecb06085b78490df967fcdc0c2539f1330a5f9cf479fc7858a373.png" />
+<img alt="_images/4b51f6e5504685b5050092d11c1c8ac9a6aa2b394d18c4fd4779acdfcb6fe963.png" src="_images/4b51f6e5504685b5050092d11c1c8ac9a6aa2b394d18c4fd4779acdfcb6fe963.png" />
 </div>
 </div>
 <p>The analysis of the data using different statistical approaches yielded somewhat mixed results regarding the significance of the observed difference between the paired groups.</p>
@@ -2060,12 +2344,12 @@ Corresponding 95% CI estimate = [0.16 4.76]
 <h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>
 <section id="descriptive-statistics-and-visualization">
 <h3>Descriptive statistics and visualization<a class="headerlink" href="#descriptive-statistics-and-visualization" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">differences</span> <span class="o">=</span> <span class="n">data1</span> <span class="o">-</span> <span class="n">data2</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">differences</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
 
 <span class="c1"># Concatenate the data in a DataFrame for some operations</span>
 <span class="n">data_diffs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">],</span>
-    <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;data1&#39;</span><span class="p">,</span> <span class="s1">&#39;data2&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span>
+    <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span>
     <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Descriptive statistics</span>
@@ -2082,8 +2366,8 @@ Corresponding 95% CI estimate = [0.16 4.76]
 <span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">plot_paired</span><span class="p">(</span>
     <span class="c1"># We need to reshape the DataFrame in the long format</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">data_diffs</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
-        <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;data1&#39;</span><span class="p">,</span> <span class="s1">&#39;data2&#39;</span><span class="p">],</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">differences</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+        <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span>
         <span class="n">id_vars</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">,</span>
         <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span>
         <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
@@ -2119,19 +2403,19 @@ Corresponding 95% CI estimate = [0.16 4.76]
 <section id="t-test">
 <h3>T-test<a class="headerlink" href="#t-test" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using scipy.stats</span>
-<span class="n">stats</span><span class="o">.</span><span class="n">ttest_rel</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">)</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">ttest_rel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># Using pingouin</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">data2</span><span class="p">,</span> <span class="n">paired</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">paired</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># One-sided t-test</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">paired</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;greater&#39;</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">paired</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;greater&#39;</span><span class="p">)</span>
 
 <span class="c1"># Ratio paired t-test</span>
 <span class="c1"># Perform the paired t-test on the log-transformed data</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">data1</span><span class="p">),</span>
-    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">data2</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">y</span><span class="p">),</span>
     <span class="n">paired</span><span class="o">=</span><span class="kc">True</span><span class="p">,)</span>
 
 <span class="c1"># McNemar&#39;s test</span>
@@ -2145,6 +2429,25 @@ Corresponding 95% CI estimate = [0.16 4.76]
 <span class="c1"># Effect size (Cohen&#39;s d)</span>
 <span class="c1"># Calculate unbiased Cohen&#39;s d using pingouin</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">compute_effsize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">paired</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eftype</span><span class="o">=</span><span class="s1">&#39;Cohen&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="non-parametric-wilcoxon-signed-rank-test">
+<h3>Non-parametric Wilcoxon signed-rank test<a class="headerlink" href="#non-parametric-wilcoxon-signed-rank-test" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">wilcoxon</span>
+
+<span class="c1"># Perform Wilcoxon signed-rank test with exact p-value calculation</span>
+<span class="n">wilcoxon</span><span class="p">(</span><span class="n">differences</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;exact&#39;</span><span class="p">)</span>
+
+<span class="c1"># Perform Wilcoxon signed-rank test with normal approximation p-value calculation</span>
+<span class="n">wilcoxon</span><span class="p">(</span><span class="n">differences</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;approx&#39;</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Perform Wilcoxon signed-rank test using Pingouin</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span>
+    <span class="n">differences</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;approx&#39;</span><span class="p">,</span>
+    <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Pingouin applies a continuity correction by default</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2357,7 +2660,7 @@ statsmodels: 0.14.2
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-significance-of-paired-difference-mean">Assessing the significance of paired difference mean</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-significance-of-paired-difference-mean-with-t-test">Assessing the significance of paired difference mean with t-test</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-t-ratio">The t-ratio</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-calculation">Manual calculation</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P value</a></li>
@@ -2380,6 +2683,15 @@ statsmodels: 0.14.2
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-approach">Non-parametric approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-the-wilcoxon-signed-rand-test-manually">Performing the Wilcoxon signed-rand test manually</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exact-test">Exact test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-approach">Asymptotic approach</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-tools-for-the-non-parametric-paired-t-test">Python tools for the non-parametric paired t-test</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-and-permutation-tests-for-paired-data">Bootstrapping and permutation tests for paired data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-bootstrap-pair-samples">Generating bootstrap pair samples</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-of-the-confidence-interval-for-the-paired-difference-mean">Estimate of the confidence interval for the paired difference mean</a></li>
@@ -2400,6 +2712,7 @@ statsmodels: 0.14.2
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-test">T-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-wilcoxon-signed-rank-test">Non-parametric Wilcoxon signed-rank test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-and-permutation-tests">Bootstrapping and permutation tests</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-pair-samples">Bootstrap pair samples</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">P value</a><ul class="nav section-nav flex-column">

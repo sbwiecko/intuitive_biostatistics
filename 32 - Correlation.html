@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -444,13 +444,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pearson-correlation-coefficient">Pearson correlation coefficient</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-pearson-correlation-coefficient-is-calculated">How the Pearson correlation coefficient is calculated</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-r2-coefficient-of-determination">The r² coefficient of determination</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-packages-for-computing-pearson-r">Python packages for computing Pearson <span class="math notranslate nohighlight">\(r\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-packages-for-computing-pearson-r">Python packages for computing Pearson r</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-methods">Non-parametric methods</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spearman-rank-correlation-coefficient">Spearman rank correlation coefficient</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kendall-rank-correlation-coefficient">Kendall rank correlation coefficient</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-package-for-computing-spearman-rho-and-kendall-tau">Python package for computing Spearman <span class="math notranslate nohighlight">\(\rho\)</span> and Kendall <span class="math notranslate nohighlight">\(\tau\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-package-for-computing-spearman-and-kendall">Python package for computing Spearman ρ and Kendall τ</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-ties">Handling ties</a></li>
 </ul>
 </li>
@@ -522,11 +522,11 @@ document.write(`
 </section>
 <section id="types-of-correlation">
 <h3>Types of correlation<a class="headerlink" href="#types-of-correlation" title="Link to this heading">#</a></h3>
-<p>Correlation is a powerful tool because it allows us to quantify these relationships. Correlation can be classified into three main types based on the direction and strength of the relationship, with the <strong>correlation coefficient</strong>, often denoted by <strong><em>r</em></strong>, expressing this relationship as a number ranging <strong>from -1 to +1</strong>:</p>
+<p>Correlation is a powerful tool because it allows us to quantify these relationships. Correlation can be classified into three main types based on the direction and strength of the relationship, with the <strong>correlation coefficient</strong>, often denoted by <strong>r</strong>, expressing this relationship as a number ranging <strong>from -1 to +1</strong>:</p>
 <ul class="simple">
-<li><p>Positive correlation (<span class="math notranslate nohighlight">\(0 \lt r \le 1\)</span>): as one variable increases, the other tends to increase as well. A perfect positive correlation is represented by a correlation coefficient of +1, e.g., height and weight, study time and exam scores.</p></li>
-<li><p>Negative correlation (<span class="math notranslate nohighlight">\(-1 \le r \lt 0\)</span>): as one variable increases, the other tends to decrease. A perfect negative correlation has a coefficient of -1, e.g., exercise and resting heart rate, stress and immune function.</p></li>
-<li><p>No correlation (<span class="math notranslate nohighlight">\(r=0\)</span>): there is no apparent linear relationship between the variables. The correlation coefficient is close to 0, indicating that changes in one variable don’t reliably predict changes in the other, e.g., shoe size and IQ, hair color and favorite movie genre.</p></li>
+<li><p>Positive correlation (0 &lt; r ≤ 1): as one variable increases, the other tends to increase as well. A perfect positive correlation is represented by a correlation coefficient of +1, e.g., height and weight, study time and exam scores.</p></li>
+<li><p>Negative correlation (-1 ≤ r &lt; 0): as one variable increases, the other tends to decrease. A perfect negative correlation has a coefficient of -1, e.g., exercise and resting heart rate, stress and immune function.</p></li>
+<li><p>No correlation (r=0): there is no apparent linear relationship between the variables. The correlation coefficient is close to 0, indicating that changes in one variable don’t reliably predict changes in the other, e.g., shoe size and IQ, hair color and favorite movie genre.</p></li>
 </ul>
 <p>When two variables show a very large correlation, one can be said to be a <strong>predictor</strong> of the other, in the sense that knowing the value of one of the two variable allows us to make a reasonnable guess about the value of the second variable. Another way of looking at this relationship is to see those variable as redundant, in the sense that they carry the same information: knowing the value of both variable does not bring much more insight compared to knowing the value of only one.</p>
 </section>
@@ -724,7 +724,7 @@ Insulin Sensitivity:
 <h3>Visualization<a class="headerlink" href="#visualization" title="Link to this heading">#</a></h3>
 </section>
 <section id="scatter-plots">
-<span id="scatter-plot"></span><h3>Scatter plots<a class="headerlink" href="#scatter-plots" title="Link to this heading">#</a></h3>
+<h3>Scatter plots<a class="headerlink" href="#scatter-plots" title="Link to this heading">#</a></h3>
 <p>Scatter plots are a fundamental tool for visualizing the relationship between two continuous variables. They provide an intuitive way to grasp the strength and direction of a correlation by displaying the data as a collection of points on a two-dimensional graph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -752,7 +752,7 @@ Insulin Sensitivity:
 <p>Scatter plots are excellent for visualizing the relationship between two variables. However, biological datasets often contain many variables, and we might be interested in exploring the relationships between all possible pairs. For this purpose, we can use correlation matrices and heatmaps, which provide a concise overview of the correlations between <strong>multiple variables</strong>.</p>
 <p>A <strong>correlation matrix</strong> is a table that displays the correlation coefficients between all pairs of variables in a dataset. Each row and column represents a variable, and the cells at the intersection show the corresponding correlation coefficient. We’ll delve deeper into the meaning and calculation of these correlation coefficients in the next section.</p>
 <p>A <strong>heatmap</strong> is a graphical representation of a correlation matrix, where the values of the correlation coefficients are represented by colors. Typically, a gradient of colors is used, with warmer colors (e.g., red) indicating stronger positive correlations, cooler colors (e.g., blue) indicating stronger negative correlations, and lighter colors (e.g., white or pale yellow) indicating weak or no correlation.</p>
-<p>Heatmaps make it easy to identify patterns of correlation at a glance. For example, we can quickly spot clusters of variables that are highly correlated with each other or identify variables that are negatively correlated with most other variables. Let’s illustrate this concept using the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/30%20-%20Comparing%20Two%20Unpaired%20Means.html#working-with-real-world-data">Palmer penguins dataset introduced in a previous chapter</a>.</p>
+<p>Heatmaps make it easy to identify patterns of correlation at a glance. For example, we can quickly spot clusters of variables that are highly correlated with each other or identify variables that are negatively correlated with most other variables. Let’s illustrate this concept using the Palmer penguins dataset introduced in a previous chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
@@ -866,7 +866,7 @@ Insulin Sensitivity:
 <img alt="_images/ef640fc68a2c4188d6ea2266f641afdaa650fdf3b50363ee8324c5bdd27f9282.png" src="_images/ef640fc68a2c4188d6ea2266f641afdaa650fdf3b50363ee8324c5bdd27f9282.png" />
 </div>
 </div>
-<p>When testing for multiple pairwise correlations, especially with a large number of correlation coefficients, it’s important to adjust the P values to account for <em>multiple comparisons</em>, <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/15%20-%20P%20Values%20and%20Statistical%20Significance.html#the-challenge-of-multiple-comparisons">as discussed in a previous chapter</a>. This helps control the false positive rate. The <code class="docutils literal notranslate"><span class="pre">pairwise_corr</span></code> function in the Pingouin library provides a convenient way to do this using the ‘padjust’ argument.</p>
+<p>When testing for multiple pairwise correlations, especially with a large number of correlation coefficients, it’s important to adjust the P values to account for <em>multiple comparisons</em>, as discussed in a previous chapter. This helps control the false positive rate. The <code class="docutils literal notranslate"><span class="pre">pairwise_corr</span></code> function in the Pingouin library provides a convenient way to do this using the ‘padjust’ argument.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pg</span><span class="o">.</span><span class="n">pairwise_corr</span><span class="p">(</span>
@@ -1010,7 +1010,7 @@ Insulin Sensitivity:
 <section id="assumptions-of-correlation-analysis">
 <h2>Assumptions of correlation analysis<a class="headerlink" href="#assumptions-of-correlation-analysis" title="Link to this heading">#</a></h2>
 <p>Before we delve into the calculation and interpretation of correlation coefficients, it’s essential to understand the assumptions that underlie correlation analysis. These assumptions are crucial because violating them can lead to misleading or inaccurate results.</p>
-<p>In this section, we’ll examine the key assumptions of correlation analysis, focusing primarily on <a class="reference internal" href="#pearson"><span class="std std-ref">Pearson’s correlation coefficient</span></a>, as it is the most commonly used method and has more stringent assumptions compared to non-parametric alternatives like <a class="reference internal" href="#spearman"><span class="std std-ref">Spearman</span></a> and <a class="reference internal" href="#kandall"><span class="xref myst">Kendall</span></a>:</p>
+<p>In this section, we’ll examine the key assumptions of correlation analysis, focusing primarily on Pearson’s correlation coefficient, as it is the most commonly used method and has more stringent assumptions compared to non-parametric alternatives like Spearman and Kendall:</p>
 <ul class="simple">
 <li><p><strong>Linearity:</strong> Pearson’s correlation measures the strength of a linear relationship. This means that the relationship between the two variables should roughly follow a straight line pattern.</p></li>
 <li><p><strong>Normality:</strong> for hypothesis testing with Pearson’s correlation, the data should be approximately normally distributed. This assumption is less critical for estimating the correlation coefficient itself but becomes important when assessing statistical significance.</p></li>
@@ -1020,8 +1020,8 @@ Insulin Sensitivity:
 <section id="linearity">
 <h3>Linearity<a class="headerlink" href="#linearity" title="Link to this heading">#</a></h3>
 <p>The most important assumption for Pearson’s correlation is linearity. This means that the relationship between the two variables should be linear. In other words, if we were to plot the variables on a scatter plot, we should be able to draw a straight line through the points that captures the general trend of the data.</p>
-<p>To assess linearity, the primary tool is the <a class="reference internal" href="#scatter-plot"><span class="std std-ref">scatter plot</span></a>. By examining the scatter plot of insulin sensitivity and C20-20 fatty acids that we created earlier, we can see that the points appear to cluster around a straight line, supporting the assumption of linearity.</p>
-<p>While the scatter plot provides a visual assessment, we can also calculate the Pearson correlation coefficient (<span class="math notranslate nohighlight">\(r\)</span>). We will see in the next section that a high absolute value of <span class="math notranslate nohighlight">\(r\)</span> (e.g., above 0.7) can provide further support for a linear relationship. For a more detailed analysis, we can create a residual plot. This involves plotting the <strong>residuals</strong> (the differences between the observed values and the values predicted by a linear regression line) against the predicted values. If the residuals are randomly scattered around zero, it supports the linearity assumption. If there are clear patterns in the residuals, it suggests non-linearity.</p>
+<p>To assess linearity, the primary tool is the scatter plot. By examining the scatter plot of insulin sensitivity and C20-20 fatty acids that we created earlier, we can see that the points appear to cluster around a straight line, supporting the assumption of linearity.</p>
+<p>While the scatter plot provides a visual assessment, we can also calculate the Pearson correlation coefficient (r). We will see in the next section that a high absolute value of r (e.g., above 0.7) can provide further support for a linear relationship. For a more detailed analysis, we can create a residual plot. This involves plotting the <strong>residuals</strong> (the differences between the observed values and the values predicted by a linear regression line) against the predicted values. If the residuals are randomly scattered around zero, it supports the linearity assumption. If there are clear patterns in the residuals, it suggests non-linearity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit a linear regression model using Pingouin</span>
@@ -1053,18 +1053,18 @@ Insulin Sensitivity:
 <p>If the relationship appears non-linear, we have a few options:</p>
 <ul class="simple">
 <li><p><strong>Transformations</strong>: we may consider applying transformations to the data (e.g., logarithmic, square root, or reciprocal transformations) to see if we can <em>linearize</em> the relationship.</p></li>
-<li><p><strong>Non-parametric</strong> methods: we can use non-parametric correlation coefficients like <a class="reference internal" href="#spearman"><span class="std std-ref">Spearman’s rank correlation</span></a> or <a class="reference internal" href="#kendall"><span class="std std-ref">Kendall’s tau</span></a>, which don’t require the assumption of linearity.</p></li>
+<li><p><strong>Non-parametric</strong> methods: we can use non-parametric correlation coefficients like Spearman’s rank correlation or Kendall’s tau, which don’t require the assumption of linearity.</p></li>
 </ul>
 </section>
 <section id="normality">
 <h3>Normality<a class="headerlink" href="#normality" title="Link to this heading">#</a></h3>
 <p>The normality assumption in the context of correlation analysis refers to the assumption that <em>both variables being analyzed are approximately normally distributed</em>. This means that the distribution of the data points for each variable should roughly follow a bell-shaped curve.</p>
 <p>The normality assumption is particularly important when we want to perform <em>hypothesis tests</em> to determine the statistical significance of the correlation. Many common statistical tests for correlation rely on the assumption of normality. Normality is also assumed when calculating confidence intervals for the correlation coefficient.</p>
-<p>There are several methods to assess the normality of the data, as discussed in more details in <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html">a previous chapter</a>.</p>
+<p>There are several methods to assess the normality of the data, as discussed in more details in a previous chapter about normality and outlier detection.</p>
 <p>Visual inspection includes:</p>
 <ul class="simple">
-<li><p>Histograms: we can create histograms for each variable. A histogram provides a visual representation of the distribution of the data, allowing us to see <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html#variability-of-gaussian-samples">if it resembles a bell-shaped curve</a>.</p></li>
-<li><p>Q-Q plots: we can also generate <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html#q-q-plots">Q-Q plots (quantile-quantile plots)</a> for each variable. A Q-Q plot compares the quantiles of the data to the quantiles of a normal distribution. If the data is normally distributed, the points on the Q-Q plot should fall approximately along a straight line.</p></li>
+<li><p>Histograms: we can create histograms for each variable. A histogram provides a visual representation of the distribution of the data, allowing us to see if it resembles a bell-shaped curve.</p></li>
+<li><p>Q-Q plots: we can also generate Q-Q plots (quantile-quantile plots) for each variable. A Q-Q plot compares the quantiles of the data to the quantiles of a normal distribution. If the data is normally distributed, the points on the Q-Q plot should fall approximately along a straight line.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1090,8 +1090,8 @@ Insulin Sensitivity:
 </div>
 <p>We can also leverage statistical tests:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html#d-agostino-pearson-omnibus-k2-normality-test">D’Agostino-Pearson omnibus K²</a> and <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html#shapiro-wilk-test">Shapiro-Wilk</a> tests: this are widely used statistical tests specifically designed to assess normality. They test the null hypothesis that the data is drawn from a normal distribution.</p></li>
-<li><p><a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html#kolmogorov-smirnov-test">Kolmogorov-Smirnov test</a>: this is another test for normality, but it’s generally less powerful than the Shapiro-Wilk test.</p></li>
+<li><p>D’Agostino-Pearson omnibus K² and Shapiro-Wilk tests: this are widely used statistical tests specifically designed to assess normality. They test the null hypothesis that the data is drawn from a normal distribution.</p></li>
+<li><p>Kolmogorov-Smirnov test: this is another test for normality, but it’s generally less powerful than the Shapiro-Wilk test.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1114,8 +1114,8 @@ insulin_sensitivity  0.96256  0.792641    True
 <p>If the normality assumption is violated, we have several options:</p>
 <ul class="simple">
 <li><p>Transformations: we may consider applying transformations to the data (e.g., logarithmic, square root) to see if we can normalize the distribution.</p></li>
-<li><p>Non-parametric methods: we could use non-parametric correlation coefficients like <a class="reference internal" href="#spearman"><span class="std std-ref">Spearman’s rank correlation</span></a> or <a class="reference internal" href="#kendall"><span class="std std-ref">Kendall’s tau</span></a>, which do not require the assumption of normality.</p></li>
-<li><p><a class="reference internal" href="#permutations"><span class="std std-ref">Permutation tests</span></a>: these are resampling-based methods that can be used to test the significance of the correlation without relying on distributional assumptions.</p></li>
+<li><p>Non-parametric methods: we could use non-parametric correlation coefficients like Spearman’s rank correlation or Kendall’s tau, which do not require the assumption of normality.</p></li>
+<li><p>Permutation tests: these are resampling-based methods that can be used to test the significance of the correlation without relying on distributional assumptions.</p></li>
 </ul>
 </section>
 <section id="homoscedasticity">
@@ -1123,7 +1123,7 @@ insulin_sensitivity  0.96256  0.792641    True
 <p>The assumption of <strong>homoscedasticity</strong> (also known as homogeneity of variance) refers to the equal spread of data points across the range of values for both variables. In simpler terms, the variability of one variable should be roughly the same across all values of the other variable.</p>
 <p>Homoscedasticity is important for obtaining reliable estimates of the correlation coefficient. When the variability of one variable changes significantly across the range of the other variable, it can distort the correlation estimate. Violations of homoscedasticity can also affect the accuracy of hypothesis tests for correlation.</p>
 <p>The most common way to assess homoscedasticity is to examine the scatter plot of the two variables, looking for any <em>patterns in the spread</em> of the data points. If the spread of the points is roughly consistent across the range of values, it suggests homoscedasticity. If the spread appears to change (e.g., fanning out or narrowing in), it indicates heteroscedasticity (non-constant variance).</p>
-<p>Statistical tests can also be leveraged, as shown in <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/30%20-%20Comparing%20Two%20Unpaired%20Means.html#homoscedasticity-testing">the chapter compairing unpaired means</a>. For example, Levene’s test is a statistical test specifically designed to assess the equality of variances between groups. In the context of correlation, we can <em>divide the data into groups</em> based on the values of one variable and then test for equal variances in the other variable across those groups. Bartlett’s test is another test for equality of variances, but it’s more sensitive to deviations from normality.</p>
+<p>Statistical tests can also be leveraged, as shown in the chapter compairing unpaired means. For example, Levene’s test is a statistical test specifically designed to assess the equality of variances between groups. In the context of correlation, we can <em>divide the data into groups</em> based on the values of one variable and then test for equal variances in the other variable across those groups. Bartlett’s test is another test for equality of variances, but it’s more sensitive to deviations from normality.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Divide the data into groups based on %C20-22 fatty acids</span>
@@ -1184,14 +1184,14 @@ insulin_sensitivity  0.96256  0.792641    True
 </section>
 <section id="outliers">
 <h3>Outliers<a class="headerlink" href="#outliers" title="Link to this heading">#</a></h3>
-<p><a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html#outliers">As shown previously</a>, <strong>outliers</strong> are data points that deviate significantly from the overall pattern of the data. They can have a disproportionate influence on the correlation coefficient, potentially leading to misleading results.</p>
+<p>As discussed previously, <strong>outliers</strong> are data points that deviate significantly from the overall pattern of the data. They can have a disproportionate influence on the correlation coefficient, potentially leading to misleading results.</p>
 <p>Outliers can either inflate or deflate the correlation coefficient, giving a false impression of the true relationship between the variables. The presence of outliers can also lead to incorrect conclusions about the strength and direction of the correlation.</p>
 <p>We can carefully examine the scatter plot for any data points that are far removed from the main cluster of points. These are potential outliers. Boxplots can also help identify outliers by visually displaying the interquartile range (IQR) and any points that fall outside of the “whiskers” of the boxplot.</p>
 <p>Statistical methods include:</p>
 <ul class="simple">
 <li><p>Z-scores: calculate the z-score for each data point. Data points with a z-score above a certain threshold (e.g., 2 or 3) can be considered potential outliers.</p></li>
-<li><p>IQR method: identify outliers as data points that fall below (Q1 - 1.5 * IQR) or above (Q3 + 1.5 * IQR), where Q1 and Q3 are the first and third quartiles, respectively.</p></li>
-<li><p>Grubb’s, Dixon’s Q, and other detection methods, as described in <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html#statistical-outlier-detection">the chapter about normality and outliers</a>.</p></li>
+<li><p>IQR method: identify outliers as data points that fall below (Q1 - 1.5 IQR) or above (Q3 + 1.5 IQR), where Q1 and Q3 are the first and third quartiles, respectively.</p></li>
+<li><p>Grubb’s, Dixon’s Q, and other detection methods, as described in the chapter about normality and outliers.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1231,7 +1231,7 @@ insulin_sensitivity  0.96256  0.792641    True
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d6c5fb8787e643915b61ac216da5315b46ceb174d3ead4df92ecfc9a350b1707.png" src="_images/d6c5fb8787e643915b61ac216da5315b46ceb174d3ead4df92ecfc9a350b1707.png" />
+<img alt="_images/e62a935a87b3ca795758ab0eb64da36bef5307c1bbd379c82a7b67ef0f81827e.png" src="_images/e62a935a87b3ca795758ab0eb64da36bef5307c1bbd379c82a7b67ef0f81827e.png" />
 </div>
 </div>
 </section>
@@ -1243,7 +1243,7 @@ insulin_sensitivity  0.96256  0.792641    True
 <h3>Covariance<a class="headerlink" href="#covariance" title="Link to this heading">#</a></h3>
 <p><strong>Covariance</strong> measures the extent to which two variables change together. If <span class="math notranslate nohighlight">\(x = x_1, x_2, \dots, x_n\)</span> and <span class="math notranslate nohighlight">\(y = y_1, y_2, \dots, y_n\)</span> represent two variables, <span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}\)</span> are their respective means, and <span class="math notranslate nohighlight">\(n\)</span> is the number of data points, then the <strong>sample covariance</strong>, often denoted <span class="math notranslate nohighlight">\(\sigma\)</span>, is defined as:</p>
 <div class="math notranslate nohighlight">
-\[\mathrm{cov_s}(x, y) = \sigma_{xy} = \frac{1}{n - 1} \sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})\]</div>
+\[\mathrm{cov_s}(x, y) = s_{xy} = \frac{1}{n - 1} \sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})\]</div>
 <p>When two variables, <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, are not correlated, the positive products <span class="math notranslate nohighlight">\((x_i - \bar{x})(y_i - \bar{y})\)</span> in the covariance formula will approximately balance out the negative ones, resulting in a covariance and correlation coefficient close to zero.</p>
 <p><strong>Population covariance</strong> represents the true covariance between two variables in the <em>entire population</em> of interest. It’s a parameter, meaning it’s a fixed value that describes the population. It is defined as <span class="math notranslate nohighlight">\(\mathrm{cov_p}(x, y) = \frac{1}{n}\sum_{i = 1}^{n}(x_i - \bar{x})(y_i - \bar{y})\)</span>. In most real-world scenarios, we don’t have access to the entire population, so we can’t directly calculate the population covariance.</p>
 <div class="cell docutils container">
@@ -1262,7 +1262,10 @@ insulin_sensitivity  0.96256  0.792641    True
 </div>
 </div>
 </div>
-<p>The <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.cov.html">Pandas <code class="docutils literal notranslate"><span class="pre">cov</span></code> method</a> computes the pairwise covariance between columns of a DataFrame. The primary output is a <strong>covariance matrix</strong> (<span class="math notranslate nohighlight">\(\Sigma\)</span>). This is a square matrix that shows the covariances between all possible pairs of columns in the DataFrame. The diagonal elements of the matrix represent the <strong>variances</strong> of individual columns (covariance of a variable with itself), and the off-diagonal elements represent the <strong>covariances</strong> between different pairs of columns:</p>
+<p>The <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.cov.html">Pandas <code class="docutils literal notranslate"><span class="pre">cov</span></code> method</a> computes the pairwise covariance between columns of a DataFrame. The primary output is a <strong>(sample) covariance matrix S</strong>. This is a square matrix that shows the covariances between all possible pairs of columns in the DataFrame. The diagonal elements of the matrix represent the <strong>(sample) variances</strong> of individual columns (covariance of a variable with itself), and the off-diagonal elements represent the <strong>(sample) covariances</strong> between different pairs of columns:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S = \begin{bmatrix}s_x^2 &amp; s_{xy}\\ s_{yx} &amp; s_y^2 \end{bmatrix}\end{split}\]</div>
+<p>Similarly, the <strong>population covariance matrix</strong> is populated as follows:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\Sigma = \begin{bmatrix}\sigma_x^2 &amp; \sigma_{xy}\\ \sigma_{yx} &amp; \sigma_y^2 \end{bmatrix}\end{split}\]</div>
 <div class="cell docutils container">
@@ -1319,7 +1322,7 @@ insulin_sensitivity  0.96256  0.792641    True
 <p>While covariance gives us the direction of the relationship, its value is dependent on the scales of the variables, making it difficult to compare covariances across different datasets. It also doesn’t tell us the strength of the relationship. That’s where the Pearson’s correlation coefficient comes in.</p>
 </section>
 <section id="pearson-correlation-coefficient">
-<span id="pearson"></span><h3>Pearson correlation coefficient<a class="headerlink" href="#pearson-correlation-coefficient" title="Link to this heading">#</a></h3>
+<h3>Pearson correlation coefficient<a class="headerlink" href="#pearson-correlation-coefficient" title="Link to this heading">#</a></h3>
 <section id="how-the-pearson-correlation-coefficient-is-calculated">
 <h4>How the Pearson correlation coefficient is calculated<a class="headerlink" href="#how-the-pearson-correlation-coefficient-is-calculated" title="Link to this heading">#</a></h4>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">The Pearson correlation coefficient</a>, often denoted by <span class="math notranslate nohighlight">\(r\)</span> or <span class="math notranslate nohighlight">\(r_{xy}\)</span>, is the most widely used measure of correlation. It quantifies the strength and direction of the <em>linear</em> relationship between two continuous variables. The Pearson correlation coefficient is calculated through the process:</p>
@@ -1384,14 +1387,14 @@ insulin_sensitivity  0.96256  0.792641    True
 </div>
 <p>Thus, Pearson correlation coefficient divides the covariance by the product of the standard deviations of the two variables:</p>
 <div class="math notranslate nohighlight">
-\[r = \frac{\sigma_{xy}}{\sigma_x \sigma_y}\]</div>
-<p>That provides a standardized measure of the linear relationship between two variables, <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. This standardization creates a scale of <span class="math notranslate nohighlight">\(-1\)</span> to <span class="math notranslate nohighlight">\(+1\)</span> for <span class="math notranslate nohighlight">\(r\)</span>, allowing for an intuitive understanding of both the <strong>direction</strong> and <strong>strength</strong> of the relationship. A value of <span class="math notranslate nohighlight">\(-1\)</span> indicates a perfect negative correlation, meaning that <span class="math notranslate nohighlight">\(x\)</span> increases perfectly as <span class="math notranslate nohighlight">\(y\)</span> decreases. Conversely, a value of <span class="math notranslate nohighlight">\(+1\)</span> signifies a perfect positive correlation, where <span class="math notranslate nohighlight">\(x\)</span> increases perfectly as <span class="math notranslate nohighlight">\(y\)</span> increases. A value of <span class="math notranslate nohighlight">\(0\)</span> indicates no linear relationship between the two variables. The magnitude of <span class="math notranslate nohighlight">\(r\)</span> reflects the <strong>strength</strong> of the linear association. Values closer to <span class="math notranslate nohighlight">\(-1\)</span> or <span class="math notranslate nohighlight">\(+1\)</span> suggest a stronger relationship, while values closer to <span class="math notranslate nohighlight">\(0\)</span> imply a weaker association. This <strong>scale-independence</strong> enables comparisons of correlation coefficients across different datasets with varying units of measurement.</p>
+\[r = \frac{s_{xy}}{s_x s_y}\]</div>
+<p>That provides a standardized measure of the linear relationship between two variables, x and y. This standardization creates a scale of -1 to +1 for r, allowing for an intuitive understanding of both the <strong>direction</strong> and <strong>strength</strong> of the relationship. A value of -1 indicates a perfect <em>negative correlation</em>, meaning that x increases perfectly as y decreases. Conversely, a value of +1 signifies a perfect <em>positive correlation</em>, where x increases perfectly as y increases. A value of 0 indicates no linear relationship between the two variables. The magnitude of r reflects the <strong>strength</strong> of the linear association. Values closer to -1 or +1 suggest a stronger relationship, while values closer to 0 imply a weaker association. This <em>scale-independence</em> enables comparisons of correlation coefficients across different datasets with varying units of measurement.</p>
 </section>
 <section id="the-r2-coefficient-of-determination">
 <h4>The r² coefficient of determination<a class="headerlink" href="#the-r2-coefficient-of-determination" title="Link to this heading">#</a></h4>
-<p>The square of the Pearson correlation coefficient, denoted as  <span class="math notranslate nohighlight">\(r^2\)</span>, also known as the <strong>coefficient of determination</strong>, has a special interpretation. It represents the proportion of the total <em>variability</em> in one variable that can be <em>explained</em> by its linear relationship with the other variable, or expressed differently, <span class="math notranslate nohighlight">\(r^2\)</span> is the fraction of the variance shared between the two variables.</p>
-<p>Obviously, <span class="math notranslate nohighlight">\(r^2\)</span> values always range from 0 to 1, with 0 indicating that none of the variability in one variable is explained by its linear relationship with the other variable., and 1 indicating that all of the variability in one variable is explained by its linear relationship with the other variable.</p>
-<p>While  <span class="math notranslate nohighlight">\(r^2\)</span>  is often used in the context of regression analysis, as we will see in the next chapter about linear regression, it’s important to remember that it can also be interpreted in the context of correlation without explicitly referring to regression.</p>
+<p>The square of the Pearson correlation coefficient, denoted as r², also known as the <strong>coefficient of determination</strong>, has a special interpretation. It represents the proportion of the total <em>variability</em> in one variable that can be <em>explained</em> by its linear relationship with the other variable, or expressed differently, r² is the fraction of the variance shared between the two variables.</p>
+<p>Obviously, r² values always range from 0 to 1, with 0 indicating that none of the variability in one variable is explained by its linear relationship with the other variable, and 1 indicating that all of the variability in one variable is explained by its linear relationship with the other variable.</p>
+<p>While r² is often used in the context of regression analysis, as we will see in the next chapter about linear regression, it’s important to remember that it can also be interpreted in the context of correlation without explicitly referring to regression.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;r² coefficient of determination = </span><span class="si">{</span><span class="n">r_custom</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1404,11 +1407,11 @@ insulin_sensitivity  0.96256  0.792641    True
 </div>
 </div>
 </div>
-<p>An <span class="math notranslate nohighlight">\(r^2\)</span> of 0.5929 means that 59.29% of the variance in one variable is shared with the other variable. In other words, 59.29% of the variation in one variable can be explained by its linear relationship with the other variable.</p>
+<p>An r² of 0.5929 means that 59.29% of the variance in one variable is shared with the other variable. In other words, 59.29% of the variation in one variable can be explained by its linear relationship with the other variable.</p>
 <p>The remaining 40.71% of the variance in each variable is explained by other factors that are not included in the correlation analysis. These other factors could include other variables, measurement error, non-linear effects, and random variation.</p>
 </section>
 <section id="python-packages-for-computing-pearson-r">
-<h4>Python packages for computing Pearson <span class="math notranslate nohighlight">\(r\)</span><a class="headerlink" href="#python-packages-for-computing-pearson-r" title="Link to this heading">#</a></h4>
+<h4>Python packages for computing Pearson r<a class="headerlink" href="#python-packages-for-computing-pearson-r" title="Link to this heading">#</a></h4>
 <p>We can use many different ready-to-use functions to calculate correlation coefficients:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html"><code class="docutils literal notranslate"><span class="pre">corrcoef</span></code> from NumPy</a></p></li>
@@ -1438,8 +1441,8 @@ insulin_sensitivity  0.96256  0.792641    True
 <section id="non-parametric-methods">
 <h3>Non-parametric methods<a class="headerlink" href="#non-parametric-methods" title="Link to this heading">#</a></h3>
 <section id="spearman-rank-correlation-coefficient">
-<span id="spearman"></span><h4>Spearman rank correlation coefficient<a class="headerlink" href="#spearman-rank-correlation-coefficient" title="Link to this heading">#</a></h4>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">The Spearman rank correlation coefficient</a>, often denoted as <span class="math notranslate nohighlight">\(\rho\)</span>, offers a <strong>non-parametric</strong> approach to assess the <strong>monotonicity</strong> of the relationship between two variables. Unlike the Pearson correlation, Spearman’s correlation doesn’t assume that the data is normally distributed, making it <em>robust to outliers</em> and suitable for <em>non-linear relationships</em>, as long as they are monotonic. A monotonic relationship is one that consistently increases or decreases, but not necessarily in a linear fashion.</p>
+<h4>Spearman rank correlation coefficient<a class="headerlink" href="#spearman-rank-correlation-coefficient" title="Link to this heading">#</a></h4>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">The Spearman rank correlation coefficient</a>, often denoted as ρ, offers a <strong>non-parametric</strong> approach to assess the <strong>monotonicity</strong> of the relationship between two variables. Unlike the Pearson correlation, Spearman’s correlation doesn’t assume that the data is normally distributed, making it <em>robust to outliers</em> and suitable for <em>non-linear relationships</em>, as long as they are monotonic. A monotonic relationship is one that consistently increases or decreases, but not necessarily in a linear fashion.</p>
 <p>Mathematically, the Spearman correlation coefficient is equivalent to calculating the Pearson correlation coefficient on the ranked values of the variables. This means that instead of using the raw data, we rank the observations within each variable and then compute the correlation based on these ranks.</p>
 <p>A Spearman correlation of -1 indicates a perfect negative monotonic relationship (as one variable increases, the other strictly decreases), while +1 indicates a perfect positive monotonic relationship (both variables increase or decrease together). A value of 0 suggests no monotonic association.</p>
 <p>The formula to calculate Spearman’s rank correlation coefficient between two variables, <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, with <span class="math notranslate nohighlight">\(n\)</span> observations is:</p>
@@ -1499,14 +1502,14 @@ insulin_sensitivity  0.96256  0.792641    True
 </div>
 </section>
 <section id="kendall-rank-correlation-coefficient">
-<span id="kendall"></span><h4>Kendall rank correlation coefficient<a class="headerlink" href="#kendall-rank-correlation-coefficient" title="Link to this heading">#</a></h4>
-<p>As we’ve explored, there are multiple ways to define a correlation coefficient. Pearson’s correlation utilizes the <em>product of standardized distances</em> from the mean, while Spearman’s correlation employs the <em>ranks of the data</em>. Now, let’s introduce another approach to measuring correlation: Kendall’s tau (<span class="math notranslate nohighlight">\(\tau\)</span>).</p>
+<h4>Kendall rank correlation coefficient<a class="headerlink" href="#kendall-rank-correlation-coefficient" title="Link to this heading">#</a></h4>
+<p>As we’ve explored, there are multiple ways to define a correlation coefficient. Pearson’s correlation utilizes the <em>product of standardized distances</em> from the mean, while Spearman’s correlation employs the <em>ranks of the data</em>. Now, let’s introduce another approach to measuring correlation: Kendall’s tau (τ).</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient">Kendall’s tau</a> is based on the concept of <strong>concordant and discordant pairs</strong> of observations. A concordant pair, is a pair of observations <span class="math notranslate nohighlight">\((i, j)\)</span>, where <span class="math notranslate nohighlight">\(i \lt j\)</span>, is concordant if the order of the values for both variables is the same. That is, either  <span class="math notranslate nohighlight">\(x_i \gt x_j\)</span> and <span class="math notranslate nohighlight">\(y_i \gt y_j\)</span>, or <span class="math notranslate nohighlight">\(x_i \lt x_j\)</span> and <span class="math notranslate nohighlight">\(y_i \lt y_j\)</span>. In contrast, a discordant pair is discordant if the order of the values for the variables is opposite. That is, either <span class="math notranslate nohighlight">\(x_i \gt x_j\)</span> and <span class="math notranslate nohighlight">\(y_i \lt y_j\)</span>, or <span class="math notranslate nohighlight">\(x_i \lt x_j\)</span> and <span class="math notranslate nohighlight">\(y_i \gt y_j\)</span>.</p>
 <p>Kendall’s tau is calculated as:</p>
 <div class="math notranslate nohighlight">
 \[\tau = \frac{\text{number of concordant pairs} - \text{number of discordant pairs}}{\binom{n}{2}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the total number of observations. Note that <span class="math notranslate nohighlight">\(\binom{n}{2} = n(n - 1) / 2\)</span>.</p>
-<p>The coefficient ranges from <span class="math notranslate nohighlight">\(-1\)</span> to <span class="math notranslate nohighlight">\(+1\)</span>, with <span class="math notranslate nohighlight">\(0\)</span> indicating no association. The denominator, <span class="math notranslate nohighlight">\(n(n - 1) / 2\)</span>, represents the total number of unique pairs of observations.</p>
+<p>The coefficient ranges from -1 to +1, with 0 indicating no association. The denominator, <span class="math notranslate nohighlight">\(n(n - 1) / 2\)</span>, represents the total number of unique pairs of observations.</p>
 <p>An alternative way to express Kendall’s tau, which is mathematically equivalent, is based on the ranks of the data:</p>
 <div class="math notranslate nohighlight">
 \[\tau = \frac{2}{n(n - 1)} \sum_{i \lt j} \text{sgn}(x_i - x_j) \ast \text{sgn}(y_i - y_j)\]</div>
@@ -1557,9 +1560,9 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 </section>
-<section id="python-package-for-computing-spearman-rho-and-kendall-tau">
-<h4>Python package for computing Spearman <span class="math notranslate nohighlight">\(\rho\)</span> and Kendall <span class="math notranslate nohighlight">\(\tau\)</span><a class="headerlink" href="#python-package-for-computing-spearman-rho-and-kendall-tau" title="Link to this heading">#</a></h4>
-<p>To calculate the Spearman <span class="math notranslate nohighlight">\(\rho\)</span> correlation coefficient, we can use ready-to-use functions like [<code class="docutils literal notranslate"><span class="pre">spearmanr</span></code> from SciPy][<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html</a>], <code class="docutils literal notranslate"><span class="pre">corr</span></code> from Pandas by specifying the method as ‘spearman’, and <code class="docutils literal notranslate"><span class="pre">corr</span></code> from <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> with method parameter set to ‘spearman’.</p>
+<section id="python-package-for-computing-spearman-and-kendall">
+<h4>Python package for computing Spearman ρ and Kendall τ<a class="headerlink" href="#python-package-for-computing-spearman-and-kendall" title="Link to this heading">#</a></h4>
+<p>To calculate the Spearman ρ correlation coefficient, we can use ready-to-use functions like <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html"><code class="docutils literal notranslate"><span class="pre">spearmanr</span></code> from SciPy</a>, <code class="docutils literal notranslate"><span class="pre">corr</span></code> from Pandas by specifying the method as ‘spearman’, and <code class="docutils literal notranslate"><span class="pre">corr</span></code> from Pingouin with method parameter set to ‘spearman’.</p>
 <p>It is also possible to use <code class="docutils literal notranslate"><span class="pre">corrcoef</span></code> from NumPy, although we would first need to rank your data using <code class="docutils literal notranslate"><span class="pre">argsort</span></code>, as we did in the previous custom function <code class="docutils literal notranslate"><span class="pre">spearman_rho</span></code>, or using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rankdata.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.rankdata</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1757,7 +1760,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/571647c918a1bd28421844b4e9787da35e60dde0e323b8c1c7e00dfe367c8461.png" src="_images/571647c918a1bd28421844b4e9787da35e60dde0e323b8c1c7e00dfe367c8461.png" />
+<img alt="_images/7bab3ec1349b277afeab5bf67ff46ae1000dbfd7d582b2818a7d2452f9640242.png" src="_images/7bab3ec1349b277afeab5bf67ff46ae1000dbfd7d582b2818a7d2452f9640242.png" />
 </div>
 </div>
 <p>While both Spearman’s rho and Kendall’s tau are valuable tools for assessing correlation, Kendall’s tau might be preferred in situations with <em>smaller sample sizes</em>, increased concern about <em>outliers</em>, <em>frequent tied values</em>, specific theoretical considerations (e.g., survival analysis or studies of event ordering), or when <em>computational efficiency</em> is a priority.</p>
@@ -1770,20 +1773,21 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <section id="calculating-the-t-statistic-for-correlation">
 <h4>Calculating the t-statistic for correlation<a class="headerlink" href="#calculating-the-t-statistic-for-correlation" title="Link to this heading">#</a></h4>
 <p>Correlation coefficients provide a point estimate of the relationship between variables based on our sample data. However, we often want to go beyond the sample and infer whether a correlation exists in the <em>broader population</em>. Hypothesis testing allows us to do this.</p>
-<p>To test for a non-zero correlation between two variables, we can use a <strong>t-test</strong>, similar to t-test we discussed in previous chapters about the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/30%20-%20Comparing%20Two%20Unpaired%20Means.html">comparison of two unpaired means</a> and in <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/31%20-%20Comparing%20Paired%20Data.html">paired data</a>. This test assesses whether the observed correlation in our sample is statistically significant, meaning it’s unlikely to have occurred by chance if there were no correlation in the population. We can state the hypotheses as follows:</p>
+<p>To test for a non-zero correlation between two variables, we can use a <strong>t-test</strong>, similar to t-test we discussed in previous chapters about the comparison of two unpaired means and in paired data. This test assesses whether the observed correlation in our sample is statistically significant, meaning it’s unlikely to have occurred by chance if there were no correlation in the population. We can state the hypotheses as follows:</p>
 <ul class="simple">
 <li><p>Null hypothesis (H0): the population correlation coefficient is zero (no correlation).</p></li>
 <li><p>Alternative hypothesis (H1): the population correlation coefficient is not zero (correlation exists).</p></li>
 </ul>
 <p>The test statistic for the t-test for correlation is defined as:</p>
 <div class="math notranslate nohighlight">
-\[t = \frac{r}{\mathrm{SE}(r)} = r \sqrt{\frac{n-2}{1 - r^2}}\]</div>
+\[t = \frac{r}{s_r} = r \sqrt{\frac{n-2}{1 - r^2}}\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(r\)</span> is the sample correlation coefficient,</p></li>
-<li><p><span class="math notranslate nohighlight">\(n\)</span> is the sample size.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r\)</span> is the sample correlation coefficient</p></li>
+<li><p><span class="math notranslate nohighlight">\(s_r\)</span> is the standard error of the correlation coefficient <span class="math notranslate nohighlight">\(r\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> is the sample size</p></li>
 </ul>
-<p>Degrees of freedom represent the number of independent pieces of information available to estimate a parameter. In the context of the t-test for correlation, we are estimating the population correlation coefficient based on the sample correlation coefficient. To calculate the sample correlation coefficient, we first need to estimate two other parameters: the mean of <span class="math notranslate nohighlight">\(X\)</span> and the mean of <span class="math notranslate nohighlight">\(Y\)</span>. These two estimated parameters reduce the degrees of freedom. Each data point provides one piece of information. However, since we’ve already estimated two parameters from the data, we lose two degrees of freedom, thus <span class="math notranslate nohighlight">\(\mathrm{DF} = n - 2\)</span>.</p>
+<p>Degrees of freedom represent the number of independent pieces of information available to estimate a parameter. In the context of the t-test for correlation, we are estimating the population correlation coefficient based on the sample correlation coefficient. To calculate the sample correlation coefficient, we first need to estimate two other parameters: the mean of X and the mean of Y. These two estimated parameters reduce the degrees of freedom. Each data point provides one piece of information. However, since we’ve already estimated two parameters from the data, we lose two degrees of freedom, thus DF = n - 2.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the t-statistic and DF for correlation</span>
@@ -1828,15 +1832,15 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </section>
 <section id="visualizing-t-critical-and-p-values">
 <h4>Visualizing t, critical and P values<a class="headerlink" href="#visualizing-t-critical-and-p-values" title="Link to this heading">#</a></h4>
-<p>We can visualize how the P and critical values are determined based on the t-statistic (<span class="math notranslate nohighlight">\(t\)</span>) and the t-distribution.</p>
+<p>We can visualize how the P and critical values are determined based on the t-statistic and the t-distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Significance level (alpha)</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mf">0.05</span>
 
 <span class="c1"># Calculate critical t-values (two-tailed test)</span>
-<span class="n">t_crit_lower</span> <span class="o">=</span> <span class="n">t_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">alpha</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">df_corr</span><span class="p">)</span>
-<span class="n">t_crit_upper</span> <span class="o">=</span> <span class="n">t_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">df_corr</span><span class="p">)</span>
+<span class="n">t_crit_lower</span> <span class="o">=</span> <span class="n">t_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">α</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">df_corr</span><span class="p">)</span>
+<span class="n">t_crit_upper</span> <span class="o">=</span> <span class="n">t_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">df_corr</span><span class="p">)</span>
 
 <span class="c1"># Generate x values for plotting</span>
 <span class="n">x_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
@@ -1855,7 +1859,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
     <span class="n">x</span><span class="o">=</span><span class="n">t_crit_upper</span><span class="p">,</span> <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$t^\ast$ (</span><span class="si">{</span><span class="n">t_crit_upper</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;t* (</span><span class="si">{</span><span class="n">t_crit_upper</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Shade the rejection regions (alpha)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
@@ -1864,7 +1868,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
     <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
     <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$\alpha$ (</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;α (</span><span class="si">{</span><span class="n">α</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x_t</span><span class="p">[</span><span class="n">x_t</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper</span><span class="p">],</span>
     <span class="n">hx_t</span><span class="p">[</span><span class="n">x_t</span> <span class="o">&gt;=</span> <span class="n">t_crit_upper</span><span class="p">],</span>
@@ -1877,7 +1881,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
     <span class="n">x</span><span class="o">=</span><span class="n">t_stat_corr</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$t$ (</span><span class="si">{</span><span class="n">t_stat_corr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;t (</span><span class="si">{</span><span class="n">t_stat_corr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Shade the P value areas (two-tailed)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
@@ -1891,7 +1895,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$t$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
@@ -1901,37 +1905,37 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aec8fc0ac41a1338c794887ba48d4aceea31d8343ee7a6f98c9893ef9993c646.png" src="_images/aec8fc0ac41a1338c794887ba48d4aceea31d8343ee7a6f98c9893ef9993c646.png" />
+<img alt="_images/7584682123c7a00ae81417b00133268085a61e9285a2bbbdd57e07a3fa1d6b3e.png" src="_images/7584682123c7a00ae81417b00133268085a61e9285a2bbbdd57e07a3fa1d6b3e.png" />
 </div>
 </div>
 </section>
 <section id="effect-size">
 <h4>Effect size<a class="headerlink" href="#effect-size" title="Link to this heading">#</a></h4>
 <p>While statistical significance (P value) tells us whether a correlation is likely to exist in the population, it doesn’t tell us how strong the correlation is. That’s where <strong>effect size</strong> comes in.</p>
-<p>In correlation analysis, the correlation coefficient itself (Pearson’s <span class="math notranslate nohighlight">\(r\)</span>, Spearman’s <span class="math notranslate nohighlight">\(\rho\)</span>, or Kendall’s <span class="math notranslate nohighlight">\(\tau\)</span>) serves as the effect size. It provides a standardized measure of the strength of the association between the variables:</p>
+<p>In correlation analysis, the correlation coefficient itself (Pearson’s r, Spearman’s ρ, or Kendall’s τ) serves as the effect size. It provides a standardized measure of the strength of the association between the variables:</p>
 <ul class="simple">
-<li><p>Small effect: <span class="math notranslate nohighlight">\(|r| = 0.1\)</span></p></li>
-<li><p>Medium effect: <span class="math notranslate nohighlight">\(|r| = 0.3\)</span></p></li>
-<li><p>Large effect: <span class="math notranslate nohighlight">\(|r|  = 0.5\)</span></p></li>
+<li><p>Small effect: |r| = 0.1</p></li>
+<li><p>Medium effect: |r| = 0.3</p></li>
+<li><p>Large effect: |r|  = 0.5</p></li>
 </ul>
 <p>These are general guidelines, and the interpretation of effect size can vary depending on the specific research area and context.</p>
 <p>It’s important to recognize that a statistically significant correlation might have a small effect size, indicating that the relationship, while likely present in the population, might not be practically meaningful. However, effect size is crucial because it allows us to compare the strength of correlations across different studies or variables. This is why effect sizes are essential for meta-analysis, which combines the results of multiple studies.</p>
 </section>
 </section>
 <section id="confidence-interval">
-<span id="ci"></span><h3>Confidence interval<a class="headerlink" href="#confidence-interval" title="Link to this heading">#</a></h3>
-<p>A confidence interval provides a range of plausible values for the true population correlation coefficient based on the sample correlation coefficient. It gives us an idea of the <em>precision</em> of our estimate. Similarly to what we discussed for confidence intervals of a <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/04%20-%20Confidence%20Interval%20of%20a%20Proportion.html#">proportion</a>, of <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/05%20-%20Confidence%20Interval%20of%20Survival%20Data.html">survival data</a>, of <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/06%20-%20Confidence%20Interval%20of%20Counted%20Data%20%28Poisson%20Distribution%29.html">counted data</a>, for the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/12%20-%20Confidence%20Interval%20of%20a%20Mean.html">confidence interval of a mean</a>, or for the mean difference when assessing the significance of <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/31%20-%20Comparing%20Paired%20Data.html#p-value-and-confidence-interval">paired difference mean</a> or <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/30%20-%20Comparing%20Two%20Unpaired%20Means.html#welch-s-p-value-and-confidence-interval">mean differences in unpaired data</a>, we need to compute the <strong>margin of error</strong>, which is often based on the <strong>standard error</strong>.</p>
+<h3>Confidence interval<a class="headerlink" href="#confidence-interval" title="Link to this heading">#</a></h3>
+<p>A confidence interval provides a range of plausible values for the true population correlation coefficient based on the sample correlation coefficient. It gives us an idea of the <em>precision</em> of our estimate. Similarly to what we discussed for confidence intervals of a proportion, of survival data, of counted data, for the confidence interval of a mean, or for the mean difference when assessing the significance of paired difference mean or mean differences in unpaired data, we need to compute the <strong>margin of error</strong>, which is often based on the <strong>standard error</strong>.</p>
 <p>A common method for calculating confidence intervals for Pearson’s correlation coefficient is to use <a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Using_the_Fisher_transformation"><strong>Fisher’s r-to-z transformation</strong></a>. This transformation helps to normalize the sampling distribution of the correlation coefficient, especially when the correlation is not close to zero. It works as follows:</p>
 <ol class="arabic">
-<li><p>The correlation coefficient (<span class="math notranslate nohighlight">\(r\)</span>) is transformed to a z-score, also known as Fisher’s Z-score, using the Fisher transformation:</p>
+<li><p>The correlation coefficient (r) is transformed to a z-score, also known as Fisher’s z-score, using the Fisher transformation:</p>
 <div class="math notranslate nohighlight">
 \[z = 1/2 \log\left(\frac{1 + r}{1 - r}\right) = \mathrm{arctanh}(r)\]</div>
 </li>
-<li><p>The standard error of the transformed z-score is calculated as <span class="math notranslate nohighlight">\(\mathrm{SE}_z = 1 / \sqrt{n - 3}\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the sample size.</p></li>
+<li><p>The standard error of the transformed z-score is calculated as <span class="math notranslate nohighlight">\(s_z = 1 / \sqrt{n - 3}\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the sample size.</p></li>
 <li><p>The confidence interval for the transformed z-score is calculated in the <em>z-space</em> using the <strong>standard normal distribution</strong>:</p>
 <div class="math notranslate nohighlight">
-\[\mathrm{CI}_z = z \pm z^\ast \times \mathrm{SE}_z\]</div>
-<p>where <span class="math notranslate nohighlight">\(z^\ast\)</span>, the critical value of <span class="math notranslate nohighlight">\(z\)</span> at <span class="math notranslate nohighlight">\(\alpha / 2\)</span>, is obtained from the standard normal distribution based on the desired confidence level (<span class="math notranslate nohighlight">\(\alpha\)</span>).</p>
+\[\mathrm{CI}_z = z \pm z^\ast \times s_z\]</div>
+<p>where <span class="math notranslate nohighlight">\(z^\ast\)</span>, the critical value of <span class="math notranslate nohighlight">\(z\)</span> at <span class="math notranslate nohighlight">\(\alpha / 2\)</span>, is obtained from the standard normal distribution based on the desired confidence level <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
 </li>
 <li><p>The confidence interval in z-space is back-transformed to the original correlation scale (<em>r-space</em>) using the inverse Fisher transformation:</p>
 <div class="math notranslate nohighlight">
@@ -2095,12 +2099,12 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </section>
 <section id="bootstrapping-and-permutation-tests-for-correlation-analysis">
 <h2>Bootstrapping and permutation tests for correlation analysis<a class="headerlink" href="#bootstrapping-and-permutation-tests-for-correlation-analysis" title="Link to this heading">#</a></h2>
-<p>As we’ve seen in previous chapters, <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/31%20-%20Comparing%20Paired%20Data.html#bootstrapping-and-permutation-tests-for-paired-data">for example in paired t-test</a>, bootstrapping is a valuable tool for statistical inference, especially when dealing with <em>small sample sizes</em> or when the assumptions of traditional methods are not met. It allows us to estimate parameters and confidence intervals directly from the data without relying on strong distributional assumptions.</p>
+<p>As we’ve seen in previous chapters, for example in paired t-test, bootstrapping is a valuable tool for statistical inference, especially when dealing with <em>small sample sizes</em> or when the assumptions of traditional methods are not met. It allows us to estimate parameters and confidence intervals directly from the data without relying on strong distributional assumptions.</p>
 <p><a class="reference external" href="https://jmasm.com/index.php/jmasm/article/view/1069/1069">Recent research has explored the application of bootstrap and permutation methods to correlation analysis</a>, and these methods have been shown to provide valid and robust inferences for correlation coefficients, especially when dealing with small sample sizes or non-linear relationships. By resampling or permuting the data, we can estimate the sampling distribution of the correlation coefficient under the null hypothesis or construct confidence intervals without relying on parametric assumptions.</p>
 <section id="generating-bootstrap-paired-data">
 <h3>Generating bootstrap paired data<a class="headerlink" href="#generating-bootstrap-paired-data" title="Link to this heading">#</a></h3>
 <p>The core idea behind bootstrapping for correlation analysis is to treat the observed sample of <em>paired</em> data points as a miniature representation of the population. We <a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#Using_a_bootstrap">resample pairs of observations with replacement</a>, preserving the relationship between the two measurements within each pair.</p>
-<p>Technically, this method involves resampling of <span class="math notranslate nohighlight">\(n\)</span> <span class="math notranslate nohighlight">\((x_i, y_i)\)</span> pairs <em>with replacement</em> many times (<span class="math notranslate nohighlight">\(B\)</span>), and calculating the correlation coefficient for each resampled dataset. The empirical distribution of these resampled correlation coefficients is then used to approximate the sampling distribution of the statistic.</p>
+<p>Technically, this method involves resampling of <span class="math notranslate nohighlight">\(n\)</span> <span class="math notranslate nohighlight">\((x_i, y_i)\)</span> pairs <em>with replacement</em> many times (B), and calculating the correlation coefficient for each resampled dataset. The empirical distribution of these resampled correlation coefficients is then used to approximate the sampling distribution of the statistic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_bs_pairs</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">pearsonr</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># type: ignore</span>
@@ -2225,14 +2229,14 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
     <span class="n">density</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Bootstrap $r$&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bootstrap r&#39;</span><span class="p">)</span>
 
 <span class="c1"># Annotate the observed mean difference</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">pearson_r</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cornflowerblue&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;Observed $r$ (</span><span class="si">{</span><span class="n">pearson_r</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Observed r (</span><span class="si">{</span><span class="n">pearson_r</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add lines for the confidence interval</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
@@ -2247,18 +2251,18 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;97.5th (</span><span class="si">{</span><span class="n">bs_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$r$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;Bootstrap distribution of $r$ (B=</span><span class="si">{</span><span class="n">B</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap distribution of r (B=</span><span class="si">{</span><span class="n">B</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bbb9c6b34185329b24451f0e37140597a9119a90d9e4224e9836d134d2a2b243.png" src="_images/bbb9c6b34185329b24451f0e37140597a9119a90d9e4224e9836d134d2a2b243.png" />
+<img alt="_images/57c25f84ac26616e58e580531b8c5e952879acb69a145931313ad83c8b92516f.png" src="_images/57c25f84ac26616e58e580531b8c5e952879acb69a145931313ad83c8b92516f.png" />
 </div>
 </div>
-<p>Correlation coefficients have a bounded range (-1 to +1), so that, when the true correlation is near the boundaries, the bootstrap distribution can become <em>skewed</em> because it cannot extend beyond these limits. This is why we applied the <a class="reference internal" href="#ci"><span class="std std-ref">Fisher’s r-to-z transformation for calculating the parametric confidence interval</span></a>. The skewness can affect the accuracy of the confidence interval calculated from the percentiles of the bootstrap distribution.</p>
+<p>Correlation coefficients have a bounded range (-1 to +1), so that, when the true correlation is near the boundaries, the bootstrap distribution can become <em>skewed</em> because it cannot extend beyond these limits. This is why we applied the Fisher’s r-to-z transformation for calculating the parametric confidence interval. The skewness can affect the accuracy of the confidence interval calculated from the percentiles of the bootstrap distribution.</p>
 <p>One solution would be to apply a transformation (like Fisher’s r-to-z transformation) to the correlation coefficients before bootstrapping to help reducing skewness and improving the accuracy of the confidence interval. Let’s take this opportunity to use the <a class="reference external" href="https://pingouin-stats.org/build/html/generated/pingouin.compute_bootci.html"><code class="docutils literal notranslate"><span class="pre">pingouin</span></code> function <code class="docutils literal notranslate"><span class="pre">compute_bootci</span></code></a> that computes bootstrapped confidence intervals of univariate and bivariate functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2361,8 +2365,8 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </section>
 <section id="p-value-using-permutation">
-<span id="permutations"></span><h3>P value using permutation<a class="headerlink" href="#p-value-using-permutation" title="Link to this heading">#</a></h3>
-<p>Bootstrapping and permutation tests offer flexibility in testing hypotheses about correlation. We can manipulate the data to simulate the null hypothesis of no correlation, allowing us to calculate P values. The choice of test statistic in correlation analysis often depends on the specific hypothesis and the nature of the data. Common test statistics include the correlation coefficient Pearson’s <span class="math notranslate nohighlight">\(r\)</span>, Spearman’s <span class="math notranslate nohighlight">\(\rho\)</span>, or Kendall’s <span class="math notranslate nohighlight">\(\tau\)</span>. But the flexibility of resampling methods allows us to explore other relevant statistics as well.</p>
+<h3>P value using permutation<a class="headerlink" href="#p-value-using-permutation" title="Link to this heading">#</a></h3>
+<p>Bootstrapping and permutation tests offer flexibility in testing hypotheses about correlation. We can manipulate the data to simulate the null hypothesis of no correlation, allowing us to calculate P values. The choice of test statistic in correlation analysis often depends on the specific hypothesis and the nature of the data. Common test statistics include the correlation coefficient Pearson’s r, Spearman’s ρ, or Kendall’s τ. But the flexibility of resampling methods allows us to explore other relevant statistics as well.</p>
 <p><strong>Permutation</strong> tests are a common resampling method for hypothesis testing in correlation analysis. In this approach, we randomly shuffle the values of one of the variables while keeping the other variable fixed. This <em>shuffling</em> breaks the association between the variables, simulating the null hypothesis of no correlation. By calculating the correlation coefficient for each permuted dataset, we generate a permutation distribution of correlation coefficients under the null hypothesis. We can then compare the observed correlation from our original data to this permutation distribution to assess its significance (P value).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2475,7 +2479,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
     <span class="n">x</span><span class="o">=</span><span class="n">pearson_r</span><span class="p">,</span> <span class="c1"># type: ignore</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;Observed $r$ (</span><span class="si">{</span><span class="n">pearson_r</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Observed r (</span><span class="si">{</span><span class="n">pearson_r</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Determine the direction of the observed difference and plot accordingly</span>
 <span class="k">if</span> <span class="n">pearson_r</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># type: ignore</span>
@@ -2493,14 +2497,14 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
             <span class="n">patches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lime&#39;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 
 <span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$r$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;Distribution of $r$ under H0 (B=</span><span class="si">{</span><span class="n">B</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribution of r under H0 (B=</span><span class="si">{</span><span class="n">B</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Create a copy of the original patch for the legend</span>
-<span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Permuted $r$&#39;</span><span class="p">)</span>
+<span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Permuted r&#39;</span><span class="p">)</span>
 <span class="c1"># Create a patch for the legend</span>
-<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add the patches to the legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">original_patch</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_value_patch</span><span class="p">]);</span> <span class="c1"># type: ignore</span>
@@ -2508,7 +2512,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/df3b4637ac4e96d487f6697118545d7510cab37c2360548f8983a3c921147b5e.png" src="_images/df3b4637ac4e96d487f6697118545d7510cab37c2360548f8983a3c921147b5e.png" />
+<img alt="_images/1bb9b2d2669f779b60b0f4c334b8f33431f80eab410f7d9202e47adc2b11092e.png" src="_images/1bb9b2d2669f779b60b0f4c334b8f33431f80eab410f7d9202e47adc2b11092e.png" />
 </div>
 </div>
 <p>All the P values we calculated for the correlation between the percentage of C20-22 fatty acids and insulin sensitivity are considerably smaller than the typical significance level of 0.05. This indicates strong evidence to reject the null hypothesis of no correlation between the variables. Therefore, we can confidently conclude that there is a statistically significant correlation between the percentage of C20-22 fatty acids and insulin sensitivity.</p>
@@ -2813,13 +2817,13 @@ pingouin: 0.5.5
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pearson-correlation-coefficient">Pearson correlation coefficient</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-pearson-correlation-coefficient-is-calculated">How the Pearson correlation coefficient is calculated</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-r2-coefficient-of-determination">The r² coefficient of determination</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-packages-for-computing-pearson-r">Python packages for computing Pearson <span class="math notranslate nohighlight">\(r\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-packages-for-computing-pearson-r">Python packages for computing Pearson r</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-methods">Non-parametric methods</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spearman-rank-correlation-coefficient">Spearman rank correlation coefficient</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kendall-rank-correlation-coefficient">Kendall rank correlation coefficient</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-package-for-computing-spearman-rho-and-kendall-tau">Python package for computing Spearman <span class="math notranslate nohighlight">\(\rho\)</span> and Kendall <span class="math notranslate nohighlight">\(\tau\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-package-for-computing-spearman-and-kendall">Python package for computing Spearman ρ and Kendall τ</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-ties">Handling ties</a></li>
 </ul>
 </li>

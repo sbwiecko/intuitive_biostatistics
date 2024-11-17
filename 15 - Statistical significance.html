@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -456,7 +456,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roc-curves">ROC curves</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-thresholds">Decision thresholds</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#area-under-the-curve-auc">Area Under the Curve (AUC)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#area-under-the-curve">Area under the curve</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#roc-and-python">ROC and Python</a></li>
 </ul>
 </li>
@@ -568,7 +568,7 @@ document.write(`
 <span class="c1"># Histogram with log scale</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">p_values</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
 <span class="c1"># Vertical line at p=0.05</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\alpha$ = 0.05&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;α = 0.05&quot;</span><span class="p">)</span>
 
 <span class="c1"># Add percentile lines and annotations</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">percentiles</span><span class="p">:</span>
@@ -578,7 +578,7 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;P value (log scale)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency (log scale)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
-    <span class="s2">&quot;Distribution of P values from 2500 simulations</span><span class="se">\n</span><span class="s2">(True mean difference = 5.0)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Distribution of P values from 2500 simulations</span><span class="se">\n</span><span class="s2">(true mean difference = 5.0)&quot;</span><span class="p">,</span>
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">();</span>
@@ -589,7 +589,7 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 2.5th and 97.5th percentiles are [1.69152124e-04 7.02604441e-01]
 </pre></div>
 </div>
-<img alt="_images/076d0b41357ea0e4096d50f30ea6d0be7fff4008191f10cbd38ead56e5d725b4.png" src="_images/076d0b41357ea0e4096d50f30ea6d0be7fff4008191f10cbd38ead56e5d725b4.png" />
+<img alt="_images/d3f1f2113043dd04d395addd4a5b7861ae82f2c0d9dfea53061d3a9bfaeeb58c.png" src="_images/d3f1f2113043dd04d395addd4a5b7861ae82f2c0d9dfea53061d3a9bfaeeb58c.png" />
 </div>
 </div>
 <p>As our simulation demonstrates, the middle 95% of P values can span a vast range, from as low as 0.000169 to as high as 0.7026 - a difference of over three orders of magnitude! This immense variability underscores a crucial point: P values are far less reproducible than most researchers anticipate.</p>
@@ -657,7 +657,7 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
     <span class="mf">0.05</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\alpha$ = 0.05&quot;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;α = 0.05&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;P value (log scale)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency (Log Scale)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
@@ -675,7 +675,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6690d31eb56b96e07b73fbecef34cfc0b982913a4539e9536aaec0b9f56a1294.png" src="_images/6690d31eb56b96e07b73fbecef34cfc0b982913a4539e9536aaec0b9f56a1294.png" />
+<img alt="_images/fe047310a346ba19c0130399e9f1f1695f9a3bc30eb590e2fa336d08b1f50251.png" src="_images/fe047310a346ba19c0130399e9f1f1695f9a3bc30eb590e2fa336d08b1f50251.png" />
 </div>
 </div>
 <p>In our simulation, where both populations had the same mean, approximately 5% of the experiments yielded P values below the 0.05 significance threshold. This phenomenon is known as a <strong>type I error</strong>, or a <strong>false positive</strong>. This aligns with the chosen significance level, highlighting that statistical significance does not guarantee a true effect.</p>
@@ -714,13 +714,13 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
     <span class="mf">0.05</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\alpha$ = 0.05&quot;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;α = 0.05&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/12e63d5f6cd7a6880b5ab192fe766d7eceab31b30ab2a058c37b91f1c4647ae0.png" src="_images/12e63d5f6cd7a6880b5ab192fe766d7eceab31b30ab2a058c37b91f1c4647ae0.png" />
+<img alt="_images/234c2a9e8ce37b8252ab9da5a2b8b18fee852b2e9caa109f66bdac4e4c04851e.png" src="_images/234c2a9e8ce37b8252ab9da5a2b8b18fee852b2e9caa109f66bdac4e4c04851e.png" />
 </div>
 </div>
 <p>Of course, we can achieve the same results using both <code class="docutils literal notranslate"><span class="pre">scipy.stats.ttest_ind</span></code> (for the t-test) and directly working with the t-distribution, because the t-test relies on the t-distribution to model the behavior of the test statistic under the null hypothesis (will be discussed in later chapter).</p>
@@ -816,7 +816,7 @@ t-statistic: -4.6677, P value: 0.0016
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
     <span class="mf">0.05</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha$ = 0.05&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;α= 0.05&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample size (per group)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;P value (log scale)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
@@ -833,7 +833,7 @@ t-statistic: -4.6677, P value: 0.0016
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ede4b90a05d0b1f3d2570cce238f174215a9ec7653d45d3e55409618ef12b0a8.png" src="_images/ede4b90a05d0b1f3d2570cce238f174215a9ec7653d45d3e55409618ef12b0a8.png" />
+<img alt="_images/39a723ae05175c634f476b1acad7643cd7380e94fcce269c59f46f0c41057800.png" src="_images/39a723ae05175c634f476b1acad7643cd7380e94fcce269c59f46f0c41057800.png" />
 </div>
 </div>
 <p>Consider the potentially misleading practice of collecting data until a statistically significant result is achieved, then abruptly stopping the experiment. This approach capitalizes on the inherent randomness of sampling. If data collection were to continue beyond the initial “significant” finding, the P value might fluctuate back into the non-significant range as new data points are added.</p>
@@ -898,9 +898,9 @@ t-statistic: -4.6677, P value: 0.0016
 <h3>Interpreting statistical significance<a class="headerlink" href="#interpreting-statistical-significance" title="Link to this heading">#</a></h3>
 <section id="the-significance-level">
 <h4>The significance level<a class="headerlink" href="#the-significance-level" title="Link to this heading">#</a></h4>
-<p>When a statistical test yields a “significant” result, it means the observed effect is unlikely to have occurred by chance alone, given a pre-specified threshold of improbability. This threshold is known as the significance level, denoted by the Greek letter alpha (<span class="math notranslate nohighlight">\(\alpha\)</span>).</p>
+<p>When a statistical test yields a “significant” result, it means the observed effect is unlikely to have occurred by chance alone, given a pre-specified threshold of improbability. This threshold is known as the significance level, denoted by the Greek letter alpha (α).</p>
 <p>Typically, researchers set alpha at 0.05, meaning there’s a 5% chance of incorrectly rejecting the null hypothesis (H0) when it’s actually true (a type I error). A P value less than alpha leads to rejecting H0, while a P value greater than or equal to alpha leads to failing to reject H0.</p>
-<p>While a significant result (<span class="math notranslate nohighlight">\(P &lt; \alpha\)</span>) suggests an effect is unlikely due to chance, it doesn’t guarantee the effect is:</p>
+<p>While a significant result (P &lt; α) suggests an effect is unlikely due to chance, it doesn’t guarantee the effect is:</p>
 <ul class="simple">
 <li><p>Large: a small effect can be statistically significant with a large enough sample size.</p></li>
 <li><p>Important: statistical significance doesn’t equate to practical or clinical significance.</p></li>
@@ -911,7 +911,7 @@ t-statistic: -4.6677, P value: 0.0016
 <li><p>Assuming the null hypothesis is true, what is the probability of obtaining a P value that would lead us to incorrectly reject the null hypothesis?</p></li>
 <li><p>If we repeatedly conduct experiments where there is no true effect, what proportion of these experiments will mistakenly lead us to conclude that there is a significant effect?</p></li>
 </ul>
-<p>In practical terms, <span class="math notranslate nohighlight">\(\alpha\)</span> can also be understood through repeated experimentation. Imagine conducting numerous experiments where the null hypothesis (H0) is true. Let <span class="math notranslate nohighlight">\(A\)</span> represent the number of times we incorrectly reject H0 (type I errors), and let <span class="math notranslate nohighlight">\(B\)</span> represent the number of times we correctly fail to reject H0:</p>
+<p>In practical terms, α can also be understood through repeated experimentation. Imagine conducting numerous experiments where the null hypothesis (H0) is true. Let <span class="math notranslate nohighlight">\(A\)</span> represent the number of times we incorrectly reject H0 (type I errors), and let <span class="math notranslate nohighlight">\(B\)</span> represent the number of times we correctly fail to reject H0:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -939,16 +939,16 @@ t-statistic: -4.6677, P value: 0.0016
 </tbody>
 </table>
 </div>
-<p>The significance level only considers analyses where <em>H0 is true</em> (first row of the table). Of all experiments (<span class="math notranslate nohighlight">\(A+B\)</span>), the number of times H0 is rejected equals <span class="math notranslate nohighlight">\(A\)</span>, so that:</p>
+<p>The significance level only considers analyses where <em>H0 is true</em> (first row of the table). Of all experiments (A+B), the number of times H0 is rejected equals A, so that:</p>
 <div class="math notranslate nohighlight">
 \[\alpha = \frac{A}{A+B}\]</div>
-<p>In other words, <span class="math notranslate nohighlight">\(\alpha\)</span> is the proportion of experiments where we mistakenly reject H0 when it’s actually true. This highlights a key point: even when there is no real effect, a certain percentage of studies will yield statistically significant results simply due to random chance.</p>
+<p>In other words, α is the proportion of experiments where we mistakenly reject H0 when it’s actually true. This highlights a key point: even when there is no real effect, a certain percentage of studies will yield statistically significant results simply due to random chance.</p>
 </section>
 <section id="false-positive-report-probability-fprp">
 <h4>False positive report probability (FPRP)<a class="headerlink" href="#false-positive-report-probability-fprp" title="Link to this heading">#</a></h4>
-<p>While <span class="math notranslate nohighlight">\(\alpha\)</span> focuses on the risk of a type I error within a single experiment, the <strong>false positive report probability (FPRP)</strong> takes a broader perspective. It considers the probability that a statistically significant finding in a research report actually represents a false positive result.</p>
+<p>While α focuses on the risk of a type I error within a single experiment, the <strong>false positive report probability (FPRP)</strong> takes a broader perspective. It considers the probability that a statistically significant finding in a research report actually represents a false positive result.</p>
 <p>The FPRP acknowledges that research doesn’t exist in isolation. In practice, multiple studies are often conducted to investigate a particular phenomenon. Some of these studies might yield significant results by chance (type I errors). The FPRP asks: given a significant finding in a published report, what’s the probability that this result is actually a false positive?</p>
-<p>The FPRP only considers analyses that <strong>reject H0</strong> (first column of the table). Of all these studies that report a statistically significant result (reject H0) <span class="math notranslate nohighlight">\(A+C\)</span>, and with <span class="math notranslate nohighlight">\(C\)</span> the number of studies that report a significant result and where H0 is truly false (true positive), the number in which H0 is true equals <span class="math notranslate nohighlight">\(A\)</span>, therefore:</p>
+<p>The FPRP only considers analyses that <strong>reject H0</strong> (first column of the table). Of all these studies that report a statistically significant result (reject H0) A+C, and with C the number of studies that report a significant result and where H0 is truly false (true positive), the number in which H0 is true equals A, therefore:</p>
 <div class="math notranslate nohighlight">
 \[\text{FPRP} = \frac{A}{A+C}\]</div>
 <p>In other words, the FPRP is the proportion of significant results that are actually false positives.</p>
@@ -956,7 +956,7 @@ t-statistic: -4.6677, P value: 0.0016
 </section>
 <section id="prior-probability-influences-fprp">
 <h3>Prior probability influences FPRP<a class="headerlink" href="#prior-probability-influences-fprp" title="Link to this heading">#</a></h3>
-<p>The FPRP isn’t a fixed value; it varies depending on several factors, including the significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>) and statistical power of the study. However, an often overlooked but critical factor is the <strong>prior probability</strong> of a true effect. This reflects our <em>existing knowledge</em> or <em>belief</em> about the likelihood of the phenomenon under investigation before we even conduct the experiment.</p>
+<p>The FPRP isn’t a fixed value; it varies depending on several factors, including the significance level (α) and statistical power of the study. However, an often overlooked but critical factor is the <strong>prior probability</strong> of a true effect. This reflects our <em>existing knowledge</em> or <em>belief</em> about the likelihood of the phenomenon under investigation before we even conduct the experiment.</p>
 <p>Intuitively, if we’re testing a hypothesis that seems highly implausible based on prior research or scientific understanding, even a statistically significant result should be met with greater skepticism. In contrast, a significant finding for a well-established phenomenon is more likely to be a true positive.</p>
 <p>The table below illustrates how the FPRP changes depending on the prior probability of a true effect, assuming a fixed significance level and power.</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -998,9 +998,9 @@ t-statistic: -4.6677, P value: 0.0016
 <ul class="simple">
 <li><p>Of 1000 drugs screened we expect 10 (1%) that really work</p></li>
 <li><p>Of the 10 drugs that really work we expect to obtain a statistically significant result in 8 (80 % power)</p></li>
-<li><p>Of the 990 drugs that are really ineffective we expect to obtain a statistically significant result in 5% (<span class="math notranslate nohighlight">\(\alpha\)</span> set to 0.05), i.e. <span class="math notranslate nohighlight">\(5\% \times 990 = 49\)</span> false positive</p></li>
-<li><p>Of 1000 tests of different drugs we therefore expect to obtain statistically significant difference in <span class="math notranslate nohighlight">\(8+49=57\)</span></p></li>
-<li><p>The FPRP equals <span class="math notranslate nohighlight">\(49/57=86%\)</span></p></li>
+<li><p>Of the 990 drugs that are really ineffective we expect to obtain a statistically significant result in 5% (α set to 0.05), i.e. 0.05 * 990 = 49 false positive</p></li>
+<li><p>Of 1000 tests of different drugs we therefore expect to obtain statistically significant difference in 8+49=57</p></li>
+<li><p>The FPRP equals 49/57=86%</p></li>
 </ul>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>            8 have P&lt;0.05 (80% power)
            /
@@ -1042,11 +1042,11 @@ t-statistic: -4.6677, P value: 0.0016
 </tbody>
 </table>
 </div>
-<p>With such a low prior probability of success (1%), conducting this experiment with a conventional significance level of 5% (<span class="math notranslate nohighlight">\(\alpha = 0.05\)</span>) is likely to yield a high rate of false positives. This means that many of the drugs identified as ‘significant’ would actually be ineffective. To ensure the validity and usefulness of this drug screening, a much stricter significance level, such as 0.1% (<span class="math notranslate nohighlight">\(\alpha = 0.001\)</span>), may be necessary. This stricter threshold would reduce the risk of falsely identifying ineffective drugs as promising candidates, but it would also increase the risk of missing truly effective drugs (type II errors). Balancing these risks requires careful consideration of the specific context, costs, and potential benefits of the drug screening program.</p>
+<p>With such a low prior probability of success (1%), conducting this experiment with a conventional significance level of 5% (α= 0.05) is likely to yield a high rate of false positives. This means that many of the drugs identified as ‘significant’ would actually be ineffective. To ensure the validity and usefulness of this drug screening, a much stricter significance level, such as 0.1% (α = 0.001), may be necessary. This stricter threshold would reduce the risk of falsely identifying ineffective drugs as promising candidates, but it would also increase the risk of missing truly effective drugs (type II errors). Balancing these risks requires careful consideration of the specific context, costs, and potential benefits of the drug screening program.</p>
 </section>
 <section id="prior-probability-of-50">
 <h4>Prior probability of 50%<a class="headerlink" href="#prior-probability-of-50" title="Link to this heading">#</a></h4>
-<p>Even perfectly performed experiments are less reproducible than most expect, and many statistically significant results are false positives in situations where false positive results are likely, e.g. with low prior probability in observational studies or when multiple comparisons are made. In contrast, when the prior probability of a true effect is higher, such as 50%, the likelihood of a significant result being a true positive increases substantially, with here the FPRP equals <span class="math notranslate nohighlight">\(25/425 = 5.9%\)</span>, even if the study is underpowered:</p>
+<p>Even perfectly performed experiments are less reproducible than most expect, and many statistically significant results are false positives in situations where false positive results are likely, e.g. with low prior probability in observational studies or when multiple comparisons are made. In contrast, when the prior probability of a true effect is higher, such as 50%, the likelihood of a significant result being a true positive increases substantially, with here the FPRP equals 25/425 = 5.9%, even if the study is underpowered:</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>             400 have P&lt;0.05 (80% power)
             /
        500 work (prior probability=50%)
@@ -1108,7 +1108,7 @@ t-statistic: -4.6677, P value: 0.0016
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
     <span class="mi">5</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\alpha$ = 0.05&quot;</span><span class="p">)</span>  <span class="c1"># Add alpha level line</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;α = 0.05&quot;</span><span class="p">)</span>  <span class="c1"># Add alpha level line</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
     <span class="s2">&quot;Probability of obtaining ≥ 1 statistically significant result by chance&quot;</span><span class="p">,</span>
     <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
@@ -1121,14 +1121,14 @@ t-statistic: -4.6677, P value: 0.0016
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/be21836c882bfa10e131c971e955ee91ec19224e02f6cde5ea2012c38ec496c4.png" src="_images/be21836c882bfa10e131c971e955ee91ec19224e02f6cde5ea2012c38ec496c4.png" />
+<img alt="_images/9b24c9cb9dc20b86b59c69161cefb8e033ee73210e07f003e92e8dc450448645.png" src="_images/9b24c9cb9dc20b86b59c69161cefb8e033ee73210e07f003e92e8dc450448645.png" />
 </div>
 </div>
 <p>This plot illustrate the concept of the multiple comparisons problem. The x-axis represents the number of comparisons made in a study, while the y-axis shows the probability of obtaining at least one statistically significant result purely by chance.</p>
 <p>As we can see, even with a single comparison (x=1) and an alpha level of 0.05, there’s a 5% chance of getting a false positive. As the number of comparisons increases, this probability rapidly rises. For instance, with just 14 comparisons, the probability of at least one false positive exceeds 50%!</p>
 <section id="bonferroni-correction">
 <h3>Bonferroni correction<a class="headerlink" href="#bonferroni-correction" title="Link to this heading">#</a></h3>
-<p>The simplest approach to controlling the familywise error rate (FWER) is the <strong>Bonferroni correction</strong>, which involves dividing the desired overall significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>) by the number of comparisons <span class="math notranslate nohighlight">\(K\)</span>: <span class="math notranslate nohighlight">\(\alpha_\text{adjusted} = \alpha / K\)</span>. This adjustment ensures that if all the null hypotheses are true, the probability of observing at least one false positive (type I error) among all <span class="math notranslate nohighlight">\(K\)</span> comparisons is at most <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+<p>The simplest approach to controlling the familywise error rate (FWER) is the <strong>Bonferroni correction</strong>, which involves dividing the desired overall significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>) by the number of comparisons <span class="math notranslate nohighlight">\(K\)</span>: <span class="math notranslate nohighlight">\(\alpha_\text{adjusted} = \alpha / K\)</span>. This adjustment ensures that if all the null hypotheses are true, the probability of observing at least one false positive (type I error) among all K comparisons is at most α.</p>
 <p>The Bonferroni correction does not guarantee exactly a 95% chance of seeing no significant results if all null hypotheses are true. It provides a more conservative upper bound on this probability, making it less likely to make any false discoveries. However, this comes at the cost of reduced power to detect true effects (increased risk of type II errors).</p>
 </section>
 <section id="false-discovery-rate-fdr">
@@ -1138,7 +1138,7 @@ t-statistic: -4.6677, P value: 0.0016
 <li><p>If a comparison is deemed significant (P value below a threshold), what’s the chance it’s actually a false positive (H0 is true)?</p></li>
 <li><p>Of all significant findings, what fraction are expected to be false positives?</p></li>
 </ul>
-<p>The desired FDR, often denoted as <span class="math notranslate nohighlight">\(Q\)</span>, is the acceptable proportion of false discoveries. For example, with Q = 10%, we aim for at least 90% of our significant results to be true positives.</p>
+<p>The desired FDR, often denoted as Q, is the acceptable proportion of false discoveries. For example, with Q = 10%, we aim for at least 90% of our significant results to be true positives.</p>
 <p>A widely used method to control the FDR is the <strong>Benjamini-Hochberg</strong> procedure. It sets dynamic thresholds for each comparison, depending on its rank among the P values. For example, if we want an FDR of 5% across 100 comparisons, we would:</p>
 <ol class="arabic simple">
 <li><p>Rank P values: order the P values from smallest to largest, i.e., <span class="math notranslate nohighlight">\(P(1), P(2), ..., P(100)\)</span></p></li>
@@ -1154,7 +1154,7 @@ t-statistic: -4.6677, P value: 0.0016
 <p>Traditional hypothesis testing focuses on demonstrating a significant difference between treatments. However, in certain contexts, like generic drug development, the goal shifts towards demonstrating equivalence or noninferiority compared to a standard drug.</p>
 <section id="bioequivalence">
 <h3>Bioequivalence<a class="headerlink" href="#bioequivalence" title="Link to this heading">#</a></h3>
-<p>The U.S. Food and Drug Administration (FDA) defines two drug formulations as <strong>bioequivalent</strong> if the 90% confidence interval (CI) of the ratio of peak concentrations (Cmax) and total drug exposure (AUC) in blood plasma falls entirely within the range of <strong>0.80 to 1.25</strong> (note that the reciprocal of 80% is <span class="math notranslate nohighlight">\(1/0.8=125\%\)</span>). This means the generic drug’s performance is expected to be within 20% of the reference drug’s performance in most cases, a difference usually considered clinically insignificant.</p>
+<p>The U.S. Food and Drug Administration (FDA) defines two drug formulations as <strong>bioequivalent</strong> if the 90% confidence interval (CI) of the ratio of peak concentrations (Cmax) and total drug exposure (AUC) in blood plasma falls entirely within the range of <strong>0.80 to 1.25</strong> (note that the reciprocal of 80% is 1/0.8 = 125%). This means the generic drug’s performance is expected to be within 20% of the reference drug’s performance in most cases, a difference usually considered clinically insignificant.</p>
 <p>Using a 90% confidence interval (CI) for each of the two one-sided tests results in an overall 95% confidence level for the equivalence conclusion. This might seem counterintuitive, but it’s a result of how the two tests and their associated CIs combine.</p>
 </section>
 <section id="two-one-sided-tests-tost">
@@ -1178,7 +1178,7 @@ t-statistic: -4.6677, P value: 0.0016
 <li><p><strong>Equivalence</strong>: when the entire 90% CI lies within the 0.80-1.25 equivalence zone, the generic drug is deemed equivalent to the standard drug.</p></li>
 <li><p><strong>Non-equivalence</strong>: if the 90% CI falls completely outside the equivalence zone, the drugs are considered not equivalent.</p></li>
 <li><p><strong>Inconclusive results</strong>: a 90% CI that straddles the equivalence zone, i.e., partially inside, partially outside, means the data are inconclusive regarding equivalence.</p></li>
-<li><p><strong>Noninferiority</strong>: noninferiority trials aim to demonstrate that a new treatment is not unacceptably worse than an existing treatment. This is done by specifying a pre-defined margin of inferiority (<span class="math notranslate nohighlight">\(\Delta\)</span>), which represents the largest clinically acceptable difference between the new and existing treatment. This margin is not always 0.80 and it’s carefully chosen based on factors like the clinical importance of the effect of the existing treatment, the severity of the disease, and potential risks and benefits of the new treatment. To conclude non-inferiority, the entire 90% CI for the comparison between the new and existing treatments must lie above the pre-defined non-inferiority margin.</p></li>
+<li><p><strong>Noninferiority</strong>: noninferiority trials aim to demonstrate that a new treatment is not unacceptably worse than an existing treatment. This is done by specifying a pre-defined margin of inferiority Δ, which represents the largest clinically acceptable difference between the new and existing treatment. This margin is not always 0.80 and it’s carefully chosen based on factors like the clinical importance of the effect of the existing treatment, the severity of the disease, and potential risks and benefits of the new treatment. To conclude non-inferiority, the entire 90% CI for the comparison between the new and existing treatments must lie above the pre-defined non-inferiority margin.</p></li>
 </ul>
 <p><img alt="noninferiority testing" src="_images/bioequivalence.svg" /></p>
 <p>There is also a nice interactive visualization of <a class="reference external" href="https://rpsychologist.com/d3/equivalence/">equivalence, non-inferiority and superiority testing</a>, where we can play with the effect size, the sample, size and the margin and see how these parameters affect equivalence.</p>
@@ -1188,7 +1188,7 @@ t-statistic: -4.6677, P value: 0.0016
 <section id="assessing-diagnostic-accuracy">
 <h2>Assessing diagnostic accuracy<a class="headerlink" href="#assessing-diagnostic-accuracy" title="Link to this heading">#</a></h2>
 <p>Statistical significance is crucial for determining if an effect exists, but it doesn’t tell the whole story when evaluating the <strong>performance</strong> of diagnostic tests or classification models. In the realm of medical diagnosis, epidemiology, and machine learning, we need metrics that assess how well a test or model can distinguish between different conditions or classes.</p>
-<p>Sensitivity, specificity, and Receiver Operating Characteristic (ROC) curves provide a powerful framework for quantifying and visualizing diagnostic <strong>accuracy</strong>. They offer insights into the trade-offs between true positive and false positive rates, allowing us to select optimal decision thresholds and compare the performance of different tests or models.</p>
+<p>Sensitivity, specificity, and receiver operating characteristic (ROC) curves provide a powerful framework for quantifying and visualizing diagnostic <strong>accuracy</strong>. They offer insights into the trade-offs between true positive and false positive rates, allowing us to select optimal decision thresholds and compare the performance of different tests or models.</p>
 <section id="definitions">
 <h3>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h3>
 <p>Deciding whether a clinical laboratory result is normal or abnormal involves a similar logic to statistical hypothesis testing, but with a focus on diagnostic accuracy:</p>
@@ -1258,9 +1258,9 @@ t-statistic: -4.6677, P value: 0.0016
 </ul>
 <p>The optimal threshold depends on the specific clinical context and the relative consequences of false negatives and false positives. For example, screening tests for serious diseases often use a lower threshold to maximize sensitivity (catching as many cases as possible), even if it leads to more false positives that require further testing.</p>
 </section>
-<section id="area-under-the-curve-auc">
-<h4>Area Under the Curve (AUC)<a class="headerlink" href="#area-under-the-curve-auc" title="Link to this heading">#</a></h4>
-<p>The <strong>Area Under the ROC Curve (AUC)</strong> is a single metric summarizing a diagnostic/classifier’s overall ability to discriminate between positive and negative classes across all possible thresholds.:</p>
+<section id="area-under-the-curve">
+<h4>Area under the curve<a class="headerlink" href="#area-under-the-curve" title="Link to this heading">#</a></h4>
+<p>The <strong>Area under the ROC curve (AUC)</strong> is a single metric summarizing a diagnostic/classifier’s overall ability to discriminate between positive and negative classes across all possible thresholds.:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\text{AUC} = 1.0\)</span>: this represents a <strong>perfect</strong> classifier, one that can flawlessly distinguish between positive and negative cases across all thresholds.</p></li>
 <li><p><span class="math notranslate nohighlight">\(0.5 &lt; \text{AUC} &lt; 1.0\)</span>: a classifier with an AUC greater than 0.5 is considered a <strong>good</strong> classifier, as it performs better than random chance. The closer the AUC is to 1.0, the better the classifier’s ability to discriminate between classes.</p></li>
@@ -1416,8 +1416,8 @@ t-statistic: -4.6677, P value: 0.0016
 <ul class="simple">
 <li><p><em>False negatives</em> in diagnostic tests are akin to <em>type II errors</em> in hypothesis testing. Both represent missed opportunities to detect a true condition or effect.</p></li>
 <li><p><em>False positives</em> in diagnostic tests are akin to <em>type I errors</em> in hypothesis testing. Both represent erroneous claims of a condition or effect when none truly exists.</p></li>
-<li><p><em>Sensitivity</em> in diagnostic tests mirrors <em>power</em> (<span class="math notranslate nohighlight">\(1 - \beta\)</span>) in hypothesis testing. Both quantify the ability to correctly identify a true positive.</p></li>
-<li><p><em>Specificity</em> in diagnostic tests mirrors <em>one minus the significance level</em> (<span class="math notranslate nohighlight">\(1 - \alpha\)</span>) in hypothesis testing. Both measure the ability to correctly identify a true negative.</p></li>
+<li><p><em>Sensitivity</em> in diagnostic tests mirrors <em>power</em> (1 - β) in hypothesis testing. Both quantify the ability to correctly identify a true positive.</p></li>
+<li><p><em>Specificity</em> in diagnostic tests mirrors <em>one minus the significance level</em> (1 - α) in hypothesis testing. Both measure the ability to correctly identify a true negative.</p></li>
 </ul>
 </section>
 <section id="bayes-revisited">
@@ -1641,7 +1641,7 @@ seaborn: 0.13.2
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roc-curves">ROC curves</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-thresholds">Decision thresholds</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#area-under-the-curve-auc">Area Under the Curve (AUC)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#area-under-the-curve">Area under the curve</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#roc-and-python">ROC and Python</a></li>
 </ul>
 </li>

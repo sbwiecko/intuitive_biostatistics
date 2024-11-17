@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -473,7 +473,7 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Range: the simplest measure of scatter, defined as the difference between the maximum and minimum values in a dataset.</p></li>
 <li><p>Interquartile Range (IQR): this measure gives us the range within which the central 50% of our data lies.</p></li>
-<li><p>Variance (<span class="math notranslate nohighlight">\(\operatorname{Var}\)</span>) and standard deviation: these are more sophisticated measures of scatter that take into account how far each data point is from the mean.</p></li>
+<li><p>Variance (Var) and standard deviation: these are more sophisticated measures of scatter that take into account how far each data point is from the mean.</p></li>
 </ol>
 </section>
 <section id="definitions">
@@ -498,7 +498,7 @@ document.write(`
 </section>
 <section id="standard-deviation">
 <h3>Standard deviation<a class="headerlink" href="#standard-deviation" title="Link to this heading">#</a></h3>
-<p>Variance does not have intuitive scale relative to the data being studied, because we have used a <em>squared distance metric</em>, therefore we can square-root it to get a measure of ‘deviance’ on the same scale as the data. We call this the <strong>standard deviation (SD)</strong> <span class="math notranslate nohighlight">\(\sigma(x)\)</span>, where <span class="math notranslate nohighlight">\(\operatorname{Var}(x) = \sigma^2(x)\)</span>.</p>
+<p>Variance does not have intuitive scale relative to the data being studied, because we have used a <em>squared distance metric</em>, therefore we can square-root it to get a measure of ‘deviance’ on the same scale as the data. We call this the <strong>standard deviation (SD) or <span class="math notranslate nohighlight">\(\sigma(x)\)</span></strong>, where <span class="math notranslate nohighlight">\(\operatorname{Var}(x) = \sigma^2(x)\)</span>.</p>
 <p>The standard deviation accounts for the variation among the values, with an estimation of the spread of the distribution:</p>
 <div class="math notranslate nohighlight">
 \[\sigma(x) = \sqrt{\frac{\sum(X_i - \overline{X})^2}{n}}\]</div>
@@ -508,7 +508,7 @@ document.write(`
 </section>
 <section id="standard-error">
 <h3>Standard error<a class="headerlink" href="#standard-error" title="Link to this heading">#</a></h3>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_error"><strong>standard error (SE)</strong></a>, also known as the <em>standard error of the mean (SEM)</em>, or the <em>standard deviation of the mean</em> (<span class="math notranslate nohighlight">\(\sigma_{\overline{x}}\)</span>), is a measure of how far our sample mean is likely to be from the true population mean.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_error"><strong>standard error (SE)</strong></a>, also known as the <em>standard error of the mean (SEM)</em> in the context of a mean estimate, or the <em>standard deviation of the mean</em> (<span class="math notranslate nohighlight">\(\sigma_{\overline{x}}\)</span>), is a measure of how far our sample mean is likely to be from the true population mean.</p>
 <p>Let’s derive the formula for the standard error of the mean of <span class="math notranslate nohighlight">\( x = x_1, x_2, \dots, x_n \)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -581,13 +581,13 @@ The population standard deviation (ddof=0) is 9.166
 </div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">ddof</span></code> parameter stands for ‘Delta Degrees of Freedom’. When calculating the standard deviation, the sum of squared deviations from the mean is usually divided by <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">-</span> <span class="pre">ddof</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of elements in the dataset.</p>
-<p>Setting <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code> means that we divide by n, which gives us the <em>population standard deviation</em>. This assumes that the dataset represents the entire population.</p>
-<p>On the other hand, if we set <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>, we would be dividing by <span class="math notranslate nohighlight">\(n - 1\)</span>, giving the <em>sample standard deviation</em>. This is used when our data is a sample from a larger population.</p>
-<p>In most cases, if we’re working with a sample, we would use <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code> to get an unbiased estimate of the actual population standard deviation. However, if our data represents the entire population, we would use <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code>.</p>
+<p>The <em>ddof</em> parameter stands for <em>Delta Degrees of Freedom</em>. When calculating the standard deviation, the sum of squared deviations from the mean is usually divided by [n - ddof], where n is the number of elements in the dataset.</p>
+<p>Setting <em>ddof=0</em> means that we divide simply by n, which gives us the <em>population standard deviation</em>. This assumes that the dataset represents the entire population.</p>
+<p>On the other hand, if we set <em>ddof=1</em>, we would be dividing by [n - 1], giving the <em>sample standard deviation</em>. This is used when our data is a sample from a larger population.</p>
+<p>In most cases, if we’re working with a sample, we would use <em>ddof=1</em> to get an unbiased estimate of the actual population standard deviation. However, if our data represents the entire population, we would use <em>ddof=0</em>.</p>
 <section id="the-3-sigma-rule">
 <h3>The 3-sigma rule<a class="headerlink" href="#the-3-sigma-rule" title="Link to this heading">#</a></h3>
-<p>The <strong>3-sigma</strong> (3-<span class="math notranslate nohighlight">\(\sigma\)</span>) rule, also known as the <em>empirical rule</em> or <em>68-95-99.7 rule</em>, is a statistical rule which states that for a normal distribution:</p>
+<p>The <strong>3-sigma (3-σ)</strong> rule, also known as the <em>empirical rule</em> or <em>68-95-99.7 rule</em>, is a statistical rule which states that for a normal distribution:</p>
 <ol class="arabic simple">
 <li><p>Approximately 68% of the data falls within one standard deviation of the mean.</p></li>
 <li><p>Approximately 95% of the data falls within two standard deviations of the mean.</p></li>
@@ -597,7 +597,7 @@ The population standard deviation (ddof=0) is 9.166
 <p>Here’s how it relates to the standard deviation:</p>
 <ul class="simple">
 <li><p>The standard deviation is a measure of the amount of variation or dispersion in a set of values. A low standard deviation means that the values tend to be close to the mean, while a high standard deviation means that the values are spread out over a wider range.</p></li>
-<li><p>When we talk about the “3-sigma” or “three standard deviations from the mean”, we’re talking about the range of values that covers about 99.7% of the data (assuming a normal distribution). This means that the probability of a value being outside of this range is very low (0.3%).</p></li>
+<li><p>When we talk about the “3-σ” or “three standard deviations from the mean”, we’re talking about the range of values that covers about 99.7% of the data (assuming a normal distribution). This means that the probability of a value being outside of this range is very low (0.3%).</p></li>
 </ul>
 <p>So, the 3-sigma rule gives us a way to understand the standard deviation in terms of the percentage of data that falls within these ranges. It’s a useful rule of thumb for understanding the distribution of the data when working with statistics.</p>
 </section>
@@ -632,7 +632,7 @@ The geometric standard deviation is 1.1451
 </section>
 <section id="weighted-statistics">
 <h3>Weighted statistics<a class="headerlink" href="#weighted-statistics" title="Link to this heading">#</a></h3>
-<p>Weighted statistics are a type of statistics where some data points contribute more than others. The <strong>“weight”</strong> of a data point refers to the relative importance or frequency of that point in the dataset.</p>
+<p>Weighted statistics are a type of statistics where some data points contribute more than others. The <strong>weight</strong> of a data point refers to the relative importance or frequency of that point in the dataset.</p>
 <p>For example, if we’re calculating the average test score in a class, but some tests count for more of the final grade than others, we would use a weighted mean, where each test score is multiplied by the weight of that test before summing and dividing by the total weight.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -662,23 +662,23 @@ The geometric standard deviation is 1.1451
 <h3>SciPy<a class="headerlink" href="#scipy" title="Link to this heading">#</a></h3>
 <p>This module contains a large number of probability distributions as well as a growing library of statistical functions:</p>
 <ul class="simple">
-<li><p><em>Interquartile Range (IQR)</em> is a measure of statistical dispersion, being equal to the difference between the upper and lower quartiles. IQR is a measure of variability, based on dividing a data set into quartiles.</p></li>
+<li><p><em>Interquartile range (IQR)</em> is a measure of statistical dispersion, being equal to the difference between the upper and lower quartiles. IQR is a measure of variability, based on dividing a data set into quartiles.</p></li>
 <li><p><em>Descriptive summary</em> provides several descriptive statistics of the data. This includes measures such as the number of elements in the data set, the minimum and maximum value, the mean, variance, skewness, and kurtosis.</p></li>
 <li><p><em>Z-score</em> is a statistical measurement that describes a value’s relationship to the mean of a group of values. It is measured in terms of standard deviations from the mean.</p></li>
-<li><p><em>Coefficient of Variation (<span class="math notranslate nohighlight">\(\operatorname{CV}\)</span>)</em> is a statistical measure of the relative dispersion of data points in a data series around the mean, with <span class="math notranslate nohighlight">\(\operatorname{CV} = \sigma / \mu\)</span>. For example, if <span class="math notranslate nohighlight">\(\operatorname{CV} = 0.25\)</span>, we know that the SD is 25% of the mean</p></li>
+<li><p><em>Coefficient of variation (CV)</em> is a statistical measure of the relative dispersion of data points in a data series around the mean, with <span class="math notranslate nohighlight">\(\operatorname{CV} = \sigma / \mu\)</span>. For example, if CV = 0.25, we know that the SD is 25% of the mean</p></li>
 <li><p><em>Geometric mean</em> is a kind of average of a set of numbers that is different from the arithmetic average. The geometric mean is calculated by multiplying all the numbers together and then taking the nth root of the product.</p></li>
 <li><p><em>Geometric standard deviation</em> is a measure of spread of a set of numbers where the geometric mean is preferred, it expounds the factor by which a set of numbers deviate from the geometric mean.</p></li>
 </ul>
 <p>Here’s how we can use it to calculate various statistical measures:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interquartile Range (IQR)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interquartile range (IQR)</span>
 <span class="n">iqr</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">iqr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Interquartile Range (IQR) is </span><span class="si">{</span><span class="n">iqr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The interquartile range (IQR) is </span><span class="si">{</span><span class="n">iqr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Standard Error of the Mean (SEM)</span>
 <span class="n">sem</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Standard Error of the Mean (SEM) is </span><span class="si">{</span><span class="n">sem</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The standard error of the mean (SEM) is </span><span class="si">{</span><span class="n">sem</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Descriptive summary</span>
 <span class="n">summary</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -690,7 +690,7 @@ The geometric standard deviation is 1.1451
 
 <span class="c1"># Coefficient of Variation (CV)</span>
 <span class="n">cv</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">variation</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Coefficient of Variation (CV) is </span><span class="si">{</span><span class="n">cv</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The coefficient of variation (CV) is </span><span class="si">{</span><span class="n">cv</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Geometric mean</span>
 <span class="n">gmean</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gmean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -703,12 +703,12 @@ The geometric standard deviation is 1.1451
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Interquartile Range (IQR) is 7.20
-The Standard Error of the Mean (SEM) is 4.583
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The interquartile range (IQR) is 7.20
+The standard error of the mean (SEM) is 4.583
 The descriptive summary is:
-DescribeResult(nobs=5, minmax=(np.float64(64.0), np.float64(88.3)), mean=np.float64(70.86000000000001), variance=np.float64(105.01299999999995), skewness=np.float64(1.1912013156755001), kurtosis=np.float64(-0.24972334599204293))
+DescribeResult(nobs=5, minmax=(64.0, 88.3), mean=70.86000000000001, variance=105.01299999999995, skewness=1.1912013156755001, kurtosis=-0.24972334599204293)
 The z-scores are [-0.6720695  -0.59569796  1.90274222 -0.74844103  0.11346628]
-The Coefficient of Variation (CV) is 0.1293
+The coefficient of variation (CV) is 0.1293
 The geometric mean is 70.32
 The geometric standard deviation is 1.145
 </pre></div>
@@ -735,11 +735,11 @@ The geometric standard deviation is 1.145
 
 <span class="c1"># Calculate the Standard Error of the Mean (SEM)</span>
 <span class="n">sem</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sem</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Standard Error of the Mean (SEM) is </span><span class="si">{</span><span class="n">sem</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The standard error of the mean (SEM) is </span><span class="si">{</span><span class="n">sem</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Calculate the Interquartile Range (IQR)</span>
 <span class="n">iqr</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Interquartile Range (IQR) is </span><span class="si">{</span><span class="n">iqr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The interquartile range (IQR) is </span><span class="si">{</span><span class="n">iqr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Descriptive summary</span>
 <span class="n">summary</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -751,15 +751,15 @@ The geometric standard deviation is 1.145
 
 <span class="c1"># Coefficient of Variation (CV)</span>
 <span class="n">cv</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Coefficient of Variation (CV) is </span><span class="si">{</span><span class="n">cv</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The coefficient of variation (CV) is </span><span class="si">{</span><span class="n">cv</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mean of the dataset is 70.86
 The standard deviation of the dataset is 10.248
-The Standard Error of the Mean (SEM) is 4.583
-The Interquartile Range (IQR) is 7.20
+The standard error of the mean (SEM) is 4.583
+The interquartile range (IQR) is 7.20
 The descriptive summary is:
 count     5.000000
 mean     70.860000
@@ -777,7 +777,7 @@ The z-scores are:
 3   -0.669426
 4    0.101487
 Name: Z_score, dtype: float64
-The Coefficient of Variation (CV) is 0.1446
+The coefficient of variation (CV) is 0.1446
 </pre></div>
 </div>
 </div>
@@ -984,10 +984,10 @@ The standard deviation is 9.8036
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
 -------------
-numpy: 2.1.2
-pandas: 2.2.3
+numpy: 1.26.4
+pandas: 2.2.2
 scipy: 1.14.1
-statsmodels: 0.14.4
+statsmodels: 0.14.2
 </pre></div>
 </div>
 </div>
