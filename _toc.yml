@@ -4,16 +4,16 @@
 format: jb-book
 root: README
 parts:
-    - caption: Confidence intervals
-      chapters:
-      - file: 04 - Confidence interval of a proportion
-      - file: 05 - Confidence interval of survival data
-      - file: 06 - Confidence interval of counted data
     - caption: Continuous variables
       chapters:
       - file: 09 - Quantifying scatter of continuous data
       - file: 10 - Gaussian distribution
+    - caption: Confidence intervals
+      chapters:
       - file: 12 - Confidence interval of a mean
+      - file: 04 - Confidence interval of a proportion
+      - file: 05 - Confidence interval of survival data
+      - file: 06 - Confidence interval of counted data
     - caption: Statistical significance and data assumptions
       chapters:
       - file: 15 - Statistical significance

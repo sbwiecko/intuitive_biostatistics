@@ -6,7 +6,7 @@ title                       : The Python Companion of Intuitive Biostatistics
 author                      : "Sébastien Wieckowski"
 copyright                   : "2024"
 logo                        : logo.jpg
-exclude_patterns            : [_build, "**.ipynb_checkpoints", pdf, html, vscode]
+exclude_patterns            : [_build, "**.ipynb_checkpoints", pdf, html, .vscode, .env, book_samples, LICENSE]
 
 # Auto-exclude files not in the toc
 only_build_toc_files        : true
@@ -38,6 +38,7 @@ repository:
 # LaTeX-specific settings
 # Define the name of the latex output file for PDF builds
 latex:
+  latex_engine: "xelatex"
   latex_documents:
     targetname              : intuitive-biostatistics-python.tex
 
