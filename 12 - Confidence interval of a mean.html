@@ -75,7 +75,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '12 - Confidence interval of a mean';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Statistical significance" href="15%20-%20Statistical%20significance.html" />
+    <link rel="next" title="Confidence interval of a proportion" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html" />
     <link rel="prev" title="The Gaussian distribution" href="10%20-%20Gaussian%20distribution.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -194,17 +194,17 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20scatter%20of%20continuous%20data.html">Quantifying scatter of continuous data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20distribution.html">The Gaussian distribution</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Confidence interval of a mean</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20interval%20of%20survival%20data.html">Confidence interval of survival data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20scatter%20of%20continuous%20data.html">Quantifying scatter of continuous data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20distribution.html">The Gaussian distribution</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Confidence interval of a mean</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical significance and data assumptions</span></p>
 <ul class="nav bd-sidenav">
@@ -765,9 +765,12 @@ Upper t* = 2.2 (2.5% of the area under the curve is to the right of this value)
 <p>While we can use the t-distribution to calculate confidence intervals and test hypotheses about the population mean, it’s important to distinguish between the <em>t-statistic</em> (calculated from the sample data) and <span class="math notranslate nohighlight">\(t^\ast\)</span> (obtained from the t-distribution as shown above).</p>
 <p>Suppose we have a population that is normally distributed, with known parameters μ (mean) and σ (standard deviation). By taking multiple random samples of size <span class="math notranslate nohighlight">\(n\)</span> from this population, we can compute the sample mean <span class="math notranslate nohighlight">\(m\)</span> and sample standard deviation <span class="math notranslate nohighlight">\(s\)</span> for each. Then, for each sample, we can calculate the <strong>t-statistic</strong> <span class="math notranslate nohighlight">\(t\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[t=\frac{m - \mu}{s / \sqrt{n}}\]</div>
+\[
+t=\frac{m - \mu}{s / \sqrt{n}} \sim t_{n-1}
+\]</div>
 <ul class="simple">
 <li><p>The t-statistic tells us how extreme the sample mean is compared to the hypothesized population mean, under the assumption that the null hypothesis is true (i.e., the true population mean is equal to the hypothesized value).</p></li>
+<li><p>It follows a t-distribution with n−1 degrees of freedom.</p></li>
 <li><p>A larger absolute value of t indicates a more significant difference between the sample mean and the hypothesized population mean.</p></li>
 <li><p>The sign of t indicates whether the sample mean is larger (+) or smaller (-) than the hypothesized population mean.</p></li>
 </ul>
@@ -786,24 +789,19 @@ Upper t* = 2.2 (2.5% of the area under the curve is to the right of this value)
 </div>
 </div>
 <p>The result indicates that the sample mean is 3.651 standard errors <em>lower</em> than the hypothesized population mean of 130 mmHg.</p>
-<p>Once we’ve calculated the t-statistic, we can use the t-distribution to determine:</p>
-<ul class="simple">
-<li><p>P value: the probability of observing a t-statistic as extreme as or more extreme than the one calculated, assuming the null hypothesis is true. A smaller P value provides stronger evidence against the null hypothesis.</p></li>
-<li><p>Critical t-value t*: the t-value that corresponds to our chosen significance level (alpha) and degrees of freedom. If our calculated t-statistic is more extreme than t*, we reject the null hypothesis.</p></li>
-</ul>
 </section>
 <section id="the-flip">
 <h3>The flip<a class="headerlink" href="#the-flip" title="Link to this heading">#</a></h3>
 <p>For any individual sample, we know the specific values for the sample mean, standard deviation, and size. The population mean, though, remains hidden. Our goal is to <em>estimate this population mean</em> while quantifying our level of uncertainty. To achieve this, we can calculate a confidence interval as follows:</p>
 <div class="math notranslate nohighlight">
-\[\mu = m \pm t^\ast \times \frac{s}{\sqrt{n}}\]</div>
-<p>To estimate the population mean with a specified level of confidence, we can employ the t-distribution and follow this procedure:</p>
+\[\text{CI} = m \pm t^\ast \times \frac{s}{\sqrt{n}} = m \pm t^\ast \times s_{\bar x}\]</div>
+<p>where <span class="math notranslate nohighlight">\(s_{\bar x}\)</span> is the standard error of the mean, as defined in the previous chapter. To estimate the population mean with a specified level of confidence, we can employ the t-distribution and follow this procedure:</p>
 <ol class="arabic simple">
 <li><p>Calculate the sample mean (<span class="math notranslate nohighlight">\(m\)</span>) and sample standard deviation (<span class="math notranslate nohighlight">\(s\)</span>)</p></li>
 <li><p>Determine the degrees of freedom as <span class="math notranslate nohighlight">\(\text{DF} = n - 1\)</span></p></li>
 <li><p>Choose a confidence level, e.g., 95%</p></li>
 <li><p>Find the critical t-value <span class="math notranslate nohighlight">\(t^\ast\)</span></p></li>
-<li><p>Calculate the margin of error <span class="math notranslate nohighlight">\(W\)</span>, such as <span class="math notranslate nohighlight">\(W = t^\ast \times s / \sqrt{n}\)</span></p></li>
+<li><p>Calculate the margin of error <span class="math notranslate nohighlight">\(W\)</span>, such as <span class="math notranslate nohighlight">\(W = t^\ast \times s_{\bar x}\)</span></p></li>
 <li><p>Construct the confidence interval <span class="math notranslate nohighlight">\(\text{CI}\)</span>, such as <span class="math notranslate nohighlight">\(\text{CI} = m \pm W\)</span></p></li>
 </ol>
 </section>
@@ -1198,23 +1196,32 @@ Sample size n = 130, with unknown population SD:
 </section>
 <section id="estimate-of-the-ci">
 <h4>Estimate of the CI<a class="headerlink" href="#estimate-of-the-ci" title="Link to this heading">#</a></h4>
-<p>Once we have the bootstrap distribution of correlation coefficients, we can estimate the confidence interval by finding the percentiles corresponding to the desired confidence level. For a 95% confidence interval, we typically use the 2.5th and 97.5th percentiles of the bootstrap distribution. This means that 95% of the bootstrapped correlation coefficients fall within this interval, providing a range of plausible values for the true population correlation coefficient.</p>
+<p>Once we have the bootstrap distribution of correlation coefficients, we can estimate the confidence interval by finding the percentiles corresponding to the desired confidence level. For a <strong>95% bootstrap percentile confidence interval</strong>, we typically use the 2.5th and 97.5th percentiles of the bootstrap distribution. This means that 95% of the bootstrapped correlation coefficients fall within this interval, providing a range of plausible values for the true population correlation coefficient. Note that the bootstrap standard error is simply the standard deviation of the distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the 95% confidence interval using np.percentile</span>
-<span class="n">bs_ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bs_replicates</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">]),</span> <span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the mean, 95% CI, and standard error</span>
+<span class="n">bs_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_replicates</span><span class="p">)</span>
+<span class="n">bs_ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bs_replicates</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">]),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">bs_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">bs_replicates</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Print the results</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap 95% CI estimate = </span><span class="si">{</span><span class="n">bs_ci</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap analysis of sample1 (n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sample1</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap mean = </span><span class="si">{</span><span class="n">bs_m</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap 95% percentile CI estimate = </span><span class="si">{</span><span class="n">bs_ci</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap standard error = </span><span class="si">{</span><span class="n">bs_s</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bootstrap 95% CI estimate = [36.769 37.088]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bootstrap analysis of sample1 (n=12)
+Bootstrap mean = 36.921
+Bootstrap 95% percentile CI estimate = [36.76874 37.08819]
+Bootstrap standard error = 0.0821
 </pre></div>
 </div>
 </div>
 </div>
+<p>The 95% bootstrap percentile CI is (36.769, 37.088). We are 95% confident that the true mean is in this interval. Additionally, because (36.769, 37.088) is estimated from our data directly, 95% of the bootstrap means fall in this interval.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the histogram of the bootstrap distribution of correlation coefficients</span>
@@ -1407,14 +1414,14 @@ Sample size n = 130, with unknown population SD:
 <span class="c1"># Add labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;SD&#39;</span><span class="p">,</span> <span class="s1">&#39;SEM&#39;</span><span class="p">,</span> <span class="s1">&#39;95% CI&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparison of SD, SEM, and 95% CI&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparison of SD, SEM, and 95% CI (for sample1)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cae38601052c75aa246d5d71c15f4d5f8e8e92c65e712175801747b0c2c5b129.png" src="_images/cae38601052c75aa246d5d71c15f4d5f8e8e92c65e712175801747b0c2c5b129.png" />
+<img alt="_images/8e8d24c54d13e376150569b515840b2871b6783cc920d53a12ad965e813d4ac1.png" src="_images/8e8d24c54d13e376150569b515840b2871b6783cc920d53a12ad965e813d4ac1.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1422,13 +1429,46 @@ Sample size n = 130, with unknown population SD:
 <li><p>The SEM error bar is shorter than the SD, showing the reduced variability expected in sample means compared to individual data points.</p></li>
 <li><p>The 95% CI error bar has a moderate width, indicating the range within which we are 95% confident that the true population mean lies.</p></li>
 </ul>
+<p>Since the distribution of our bootstrapped mean differences appeared symmetrical, e.g., for <code class="docutils literal notranslate"><span class="pre">sample1</span></code>, we can calculate the <strong>95% normal percentile confidence interval</strong> using the formula:</p>
+<div class="math notranslate nohighlight">
+\[\text{CI}_z = m \pm z^\ast \times s_{\bar x}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m\)</span> is the mean of the bootstrap replicates</p></li>
+<li><p><span class="math notranslate nohighlight">\(z^\ast\)</span> is the critical value from the standard normal distribution for a 95% confidence level (approximately 1.96)</p></li>
+<li><p><span class="math notranslate nohighlight">\(s_{\bar x}\)</span> is the standard error of the bootstrap replicates</p></li>
+</ul>
+<p>This approach provides a convenient way to estimate the confidence interval when the bootstrap distribution is approximately normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the 95% normal margin of error</span>
+<span class="n">bs_w</span> <span class="o">=</span>  <span class="n">z_crit</span> <span class="o">*</span> <span class="n">bs_s</span>
+
+<span class="c1"># Calculate confidence interval</span>
+<span class="n">bs_ci_normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">bs_m</span> <span class="o">-</span> <span class="n">bs_w</span><span class="p">,</span> <span class="n">bs_m</span> <span class="o">+</span> <span class="n">bs_w</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Print the result</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap analysis of sample1 (n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sample1</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% normal percentile CI of bootstrap distribution = </span><span class="si">{</span><span class="n">bs_ci_normal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bootstrap analysis of sample1 (n=12)
+95% normal percentile CI of bootstrap distribution = [36.75972 37.08147]
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s interesting to note that both the 95% percentile and normal percentile confidence intervals yield similar results in this case. However, it’s important to remember that the percentile method doesn’t require the interval to be symmetric around the estimated parameter. This offers greater flexibility compared to the normal percentile method, which enforces symmetry. This flexibility can be particularly valuable when dealing with skewed distributions or small sample sizes, where the assumption of symmetry might not hold.</p>
 </section>
 <section id="ci-of-the-standard-deviation">
 <h2>CI of the standard deviation<a class="headerlink" href="#ci-of-the-standard-deviation" title="Link to this heading">#</a></h2>
 <section id="frequentist-approach">
 <h3>Frequentist approach<a class="headerlink" href="#frequentist-approach" title="Link to this heading">#</a></h3>
 <p>Confidence intervals are a versatile tool in statistics, applicable to a wide range of values calculated from sample data, not just the mean. Under common assumptions, i.e., a roughly Gaussian population distribution, a random and representative sample, independent observations, accurate data, and a meaningful outcome, a 95% CI allows us to be 95% confident that the calculated interval captures the true population parameter of interest, whether it’s the standard deviation, a proportion, or another statistic.</p>
-<p>While the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> library doesn’t directly provide a function for calculating confidence intervals of standard deviation using the frequentist approach, it’s easy to implement it using the <strong>chi-squared</strong> distribution.</p>
+<p>While the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> library doesn’t directly provide a function for calculating confidence intervals of standard deviation using the frequentist approach, it’s easy to implement it using the <strong>chi-squared</strong> distribution, knowing that <span class="math notranslate nohighlight">\(\frac{(n - 1) s^2}{\sigma^2} \sim \chi^2_{n-1}\)</span>, where <span class="math notranslate nohighlight">\(\chi^2_{n-1}\)</span> is the chi-squared distribution with <span class="math notranslate nohighlight">\(n − 1\)</span> degrees of freedom.</p>
+<p>The chi-squared distribution is related to the sum of squared standard normal random variables. When we calculate the sample variance, we’re essentially summing the squared deviations of each data point from the sample mean. After appropriate scaling, this sum of squares follows a chi-squared distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>
@@ -1849,11 +1889,11 @@ seaborn: 0.13.2
       </div>
     </a>
     <a class="right-next"
-       href="15%20-%20Statistical%20significance.html"
+       href="04%20-%20Confidence%20interval%20of%20a%20proportion.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Statistical significance</p>
+        <p class="prev-next-title">Confidence interval of a proportion</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

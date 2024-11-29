@@ -194,17 +194,17 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20interval%20of%20survival%20data.html">Confidence interval of survival data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20scatter%20of%20continuous%20data.html">Quantifying scatter of continuous data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20distribution.html">The Gaussian distribution</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20interval%20of%20a%20mean.html">Confidence interval of a mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20interval%20of%20survival%20data.html">Confidence interval of survival data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical significance and data assumptions</span></p>
 <ul class="current nav bd-sidenav">
@@ -620,7 +620,7 @@ document.write(`
 <img alt="_images/2bdcf4516bbc65ff60051c6f6fa2d384fb4359f76b88a5c6071c9ab21c0b2101.png" src="_images/2bdcf4516bbc65ff60051c6f6fa2d384fb4359f76b88a5c6071c9ab21c0b2101.png" />
 </div>
 </div>
-<p>This plot illustrates how increasing standard deviation (greater variability in the data) lowers the statistical power for a given sample size and effect size. To maintain a desired level of power when dealing with higher variability, we need to increase the sample size, because <a class="reference internal" href="#effect-size"><span class="xref myst">effect size and variance are inversely related</span></a>.</p>
+<p>This plot illustrates how increasing standard deviation (greater variability in the data) lowers the statistical power for a given sample size and effect size. To maintain a desired level of power when dealing with higher variability, we need to increase the sample size, because effect size and variance are inversely related.</p>
 <p>The plot is also a valuable tool for planning studies. It helps us determine the appropriate sample size needed to detect a specific effect with a desired level of confidence, given the expected variability in the data. If our study didn’t find a significant result, this plot can help us assess whether it was due to a lack of a true effect or simply a lack of power (insufficient sample size). Finally, by understanding the relationship between power, sample size, and variability, we can allocate the research resources more efficiently, avoiding underpowered studies that are unlikely to yield meaningful results.</p>
 </section>
 <section id="unpaired-t-test">
@@ -887,10 +887,10 @@ Effect size = 0.8: 15 pairs
 <p>If we collect weights from 17 men and 17 women in many experiments, assuming the standard deviation of 17 kg is close to the true population SD, we’d expect approximately 80% of those experiments to yield statistically significant results (P &lt; 0.05). This is because our power analysis indicated that a sample size of 17 per group is sufficient to achieve 80% power to detect a mean difference of 17 kg with this SD.</p>
 <p>Important Considerations:</p>
 <ul class="simple">
-<li><p>Assumption of Equal Variance (Homoscedasticity): this calculation assumes that the <em>variances</em> in the men and women groups are <em>equal</em>. If we have reason to believe the variances might be different, we should use a different power analysis function or adjust the calculation accordingly.</p></li>
-<li><p>Assumption of Normality: the power analysis and the interpretation of the results rely on the assumption that the weight data are <em>normally distributed</em> within each group. If this assumption is violated, the results might not be accurate.</p></li>
-<li><p>Standard Deviation: the <em>standard deviation</em> of 17 kg is an estimate. It’s crucial to have a <em>reliable estimate</em> of this value, either from prior studies or pilot data.</p></li>
-<li><p>Effect Size: the chosen effect size of 1.0 (17 kg / 17 kg) is considered a <em>large effect</em>. If we expect a smaller effect, we will need a larger sample size to achieve the same power.</p></li>
+<li><p>Assumption of equal variance (homoscedasticity): this calculation assumes that the <em>variances</em> in the men and women groups are <em>equal</em>. If we have reason to believe the variances might be different, we should use a different power analysis function or adjust the calculation accordingly.</p></li>
+<li><p>Assumption of normality: the power analysis and the interpretation of the results rely on the assumption that the weight data are <em>normally distributed</em> within each group. If this assumption is violated, the results might not be accurate.</p></li>
+<li><p>Standard deviation: the <em>standard deviation</em> of 17 kg is an estimate. It’s crucial to have a <em>reliable estimate</em> of this value, either from prior studies or pilot data.</p></li>
+<li><p>Effect size: the chosen effect size of 1.0 (17 kg / 17 kg) is considered a <em>large effect</em>. If we expect a smaller effect, we will need a larger sample size to achieve the same power.</p></li>
 </ul>
 </section>
 <section id="the-simulation-based-approach">

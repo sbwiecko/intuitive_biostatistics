@@ -194,17 +194,17 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20interval%20of%20survival%20data.html">Confidence interval of survival data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20scatter%20of%20continuous%20data.html">Quantifying scatter of continuous data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20distribution.html">The Gaussian distribution</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20interval%20of%20a%20mean.html">Confidence interval of a mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20interval%20of%20survival%20data.html">Confidence interval of survival data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical significance and data assumptions</span></p>
 <ul class="nav bd-sidenav">
@@ -479,6 +479,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-with-pingouin">Bootstrapping with pingouin</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-p-value">Bootstrap P value</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapped-t-statistics-of-shifted-data">Bootstrapped t-statistics of shifted data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#one-tailed-p-value">One-tailed P value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-two-tailed-bootstrap-p-value">Estimating two-tailed bootstrap P value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rule">99 rule</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#permutation">Permutation</a></li>
 </ul>
 </li>
@@ -696,10 +699,6 @@ c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\Sébastien\Documents\data_science\biostatistics\intuitive_biostatistics\.env\Lib\site-packages\scipy\stats\_axis_nan_policy.py:418: UserWarning: `kurtosistest` p-value may be inaccurate with fewer than 20 observations; only n=9 observations were given.
-  return hypotest_fun_in(*args, **kwds)
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------Normality tests for old rats-------
 Test                 W      P value  normal
 D&#39;Agostino-Pearson   0.11   0.947    True
@@ -747,7 +746,7 @@ Shapiro-Wilk         0.89   0.238    True
 <p>In such cases, we have a few options:</p>
 <ul class="simple">
 <li><p>Transform the data: if the data exhibits a clear pattern of non-normality, we might attempt to transform it (e.g., using log transformations or square root transformations) to achieve a more normal distribution.</p></li>
-<li><p>Use non-parametric alternatives: when transformations are ineffective or impractical, we can consider non-parametric tests like the <em>Mann-Whitney U test</em>, <a class="reference internal" href="#nonparametric"><span class="xref myst">as discussed in the dedicated section</span></a>, which do not rely on the normality assumption.</p></li>
+<li><p>Use non-parametric alternatives: when transformations are ineffective or impractical, we can consider non-parametric tests like the <em>Mann-Whitney U test</em>, as discussed in the dedicated section, which do not rely on the normality assumption.</p></li>
 <li><p>Proceed with caution: if the sample sizes are relatively large and the deviations from normality are not severe, we might proceed with the unpaired t-test, acknowledging the potential limitations in the interpretation of the results.</p></li>
 </ul>
 </section>
@@ -1104,7 +1103,7 @@ bartlett  1.290011  0.256046       True
 <li><p>Calculate the standard error: the standard error of the difference in means for the Welch test is calculated as <span class="math notranslate nohighlight">\(s_{\bar x_1 - \bar x_2} = \sqrt{s_1^2 / n_1 + s_2^2 / n_2}\)</span>, where <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are the sample standard deviations of the two groups, and <span class="math notranslate nohighlight">\(n_1\)</span> and <span class="math notranslate nohighlight">\(n_2\)</span> are the respective sample sizes</p></li>
 <li><p>Determine the degrees of freedom: the degrees of freedom for the Welch test are calculated using a rather complex formula (Welch-Satterthwaite equation) to account for the unequal variances</p></li>
 <li><p>Find the critical t-value: using the desired confidence level (e.g., 95%) and the calculated degrees of freedom, find the corresponding critical t-value from the t-distribution table or using statistical software</p></li>
-<li><p>Calculate the margin of error: multiply the standard error by the critical t-value <span class="math notranslate nohighlight">\(t^\ast\)</span></p></li>
+<li><p>Calculate the margin of error: multiply the standard error by the critical t-value: <span class="math notranslate nohighlight">\(W = t^\ast \times s_{\bar x_1 - \bar x_2}\)</span></p></li>
 <li><p>Construct the confidence interval: subtract and add the margin of error to the point estimate to obtain the lower and upper bounds of the confidence interval: <span class="math notranslate nohighlight">\((\bar X_1 - \bar X_2) \pm W\)</span>, where <span class="math notranslate nohighlight">\(W\)</span> is the margin of error</p></li>
 </ol>
 <div class="cell docutils container">
@@ -2842,7 +2841,7 @@ Reject the null hypothesis. There is a significant difference between the groups
 <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
     <span class="n">x</span><span class="p">,</span>
     <span class="n">normal_pdf</span><span class="p">,</span>
-    <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">U_statistic</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">mu</span> <span class="o">+</span> <span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="n">U_statistic</span><span class="p">)),</span>
+    <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">U_statistic</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">μ</span> <span class="o">+</span> <span class="p">(</span><span class="n">μ</span> <span class="o">-</span> <span class="n">U_statistic</span><span class="p">)),</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;P (</span><span class="si">{</span><span class="n">p_value_U</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
@@ -2851,13 +2850,13 @@ Reject the null hypothesis. There is a significant difference between the groups
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;Normal approximation to U distribution ($n=$</span><span class="si">{</span><span class="n">n1</span><span class="si">}</span><span class="s2">, $m=$</span><span class="si">{</span><span class="n">n2</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Normal approximation to U distribution (n=</span><span class="si">{</span><span class="n">n1</span><span class="si">}</span><span class="s2">, m=</span><span class="si">{</span><span class="n">n2</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2226c2e877378f3cc2204e94a0591b2ac561a1920ecfa038b186141ff8786e2d.png" src="_images/2226c2e877378f3cc2204e94a0591b2ac561a1920ecfa038b186141ff8786e2d.png" />
+<img alt="_images/fca4cec3ffd385451a5ac04d9caf5e42241601c0acc5f432c3c1010bd0b28f71.png" src="_images/fca4cec3ffd385451a5ac04d9caf5e42241601c0acc5f432c3c1010bd0b28f71.png" />
 </div>
 </div>
 </section>
@@ -2947,7 +2946,7 @@ Asymptotic P value: 0.00523
 <section id="the-essence-of-bootstrapping">
 <h3>The essence of bootstrapping<a class="headerlink" href="#the-essence-of-bootstrapping" title="Link to this heading">#</a></h3>
 <p>The core idea behind bootstrapping is to treat our observed sample as <em>miniature representation of the population</em>. We repeatedly resample from our original sample to create <em>multiple bootstrap samples</em>. Each replicate is generated by <strong>randomly sampling (with replacement)</strong> from the original data, creating a new dataset of the <strong>same size</strong>.</p>
-<p>The power of bootstrapping lies in its ability to empirically estimate the sampling distribution of a statistic of interest, such as the <strong>difference between group means</strong>. By calculating this statistic for each bootstrap sample, we generate a <strong>bootstrap distribution</strong>. This distribution serves as an <em>approximation</em> of how the statistic would vary if we were to repeatedly sample from the population. It’s important to note that while the <strong>central limit theorem</strong> guarantees that the distribution of sample means approaches a normal distribution as the sample size increases, bootstrapping doesn’t rely on this assumption. It directly leverages the empirical distribution of the data to make inferences. Learn more on bootstrap and computer-intensive methods in <a class="reference external" href="https://link.springer.com/chapter/10.1007/978-1-4419-5525-8_6">Wilcox (2010)</a> and <a class="reference external" href="https://doi.org/10.1201/9780429329203">Manly and Navarro Alberto (2020)</a>.</p>
+<p>The power of bootstrapping lies in its ability to empirically estimate the sampling distribution of a statistic of interest, such as the <strong>difference between group means</strong>. By calculating this statistic for each bootstrap sample, we generate a <strong>bootstrap distribution</strong>. This distribution serves as an <em>approximation</em> of how the statistic would vary if we were to repeatedly sample from the population. It’s important to note that while the <strong>central limit theorem</strong> guarantees that the distribution of sample means approaches a normal distribution as the sample size increases, with <span class="math notranslate nohighlight">\(\bar X \sim \mathcal N(\mu, \frac{\sigma^2}{\sqrt{n}})\)</span>, bootstrapping doesn’t rely on this assumption. It directly leverages the empirical distribution of the data to make inferences. Learn more on bootstrap and computer-intensive methods in <a class="reference external" href="https://link.springer.com/chapter/10.1007/978-1-4419-5525-8_6">Wilcox (2010)</a> and <a class="reference external" href="https://doi.org/10.1201/9780429329203">Manly and Navarro Alberto (2020)</a>.</p>
 <p>For now, let’s return to the example of bladder muscle relaxation in old and young rats, where we have relatively small sample sizes. This scenario provides an excellent opportunity to showcase the power and utility of bootstrapping and permutation tests in handling such data limitations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2987,21 +2986,25 @@ Asymptotic P value: 0.00523
 <section id="estimate-of-the-confidence-interval">
 <h3>Estimate of the confidence interval<a class="headerlink" href="#estimate-of-the-confidence-interval" title="Link to this heading">#</a></h3>
 <p>Once we have the bootstrap distribution, we can <a class="reference external" href="https://courses.washington.edu/matlab1/Bootstrap_examples.html">estimate the confidence interval</a> by finding the percentiles corresponding to the desired confidence level.</p>
-<p>For a 95% confidence interval, we typically use the 2.5th and 97.5th percentiles of the bootstrap distribution. This means that 95% of the bootstrap estimates fall within this interval, providing a range of plausible values for the true population parameter.</p>
+<p>For a 95% confidence interval, we typically use the 2.5th and 97.5th percentiles of the bootstrap distribution. This means that 95% of the bootstrap estimates fall within this interval, providing a range of plausible values for the true population parameter. And as seen in the chapter about the confidence interval of a mean, i.e., the confidence interval of the distribution of an unique sample, we can determine the bootstrap standard error as the standard deviation of the bootstrapped distribution of the mean difference.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the 95% confidence interval using np.percentile</span>
-<span class="n">bs_CI_mean_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bs_mean_diff</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the 95% CI using np.percentile and the standard error</span>
+<span class="n">bs_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_mean_diff</span><span class="p">)</span>
+<span class="n">bs_CI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bs_mean_diff</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">bs_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">bs_mean_diff</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Print the results</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap estimate of the mean difference  = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_mean_diff</span><span class="p">)</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Corresponding 95% CI estimate = </span><span class="si">{</span><span class="n">bs_CI_mean_diff</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap estimate of the mean difference = </span><span class="si">{</span><span class="n">bs_m</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% bootstrap percentile CI = </span><span class="si">{</span><span class="n">bs_CI</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap standard error = </span><span class="si">{</span><span class="n">bs_s</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bootstrap estimate of the mean difference  = 23.44
-Corresponding 95% CI estimate = [11.52 35.54]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bootstrap estimate of the mean difference = 23.44
+95% bootstrap percentile CI = [11.52 35.54]
+Bootstrap standard error = 6.07867
 </pre></div>
 </div>
 </div>
@@ -3027,15 +3030,15 @@ Corresponding 95% CI estimate = [11.52 35.54]
 
 <span class="c1"># Add lines for the confidence interval</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">bs_CI_mean_diff</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">bs_CI</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;2.5th (</span><span class="si">{</span><span class="n">bs_CI_mean_diff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;2.5th (</span><span class="si">{</span><span class="n">bs_CI</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">bs_CI_mean_diff</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">bs_CI</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;97.5th (</span><span class="si">{</span><span class="n">bs_CI_mean_diff</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;97.5th (</span><span class="si">{</span><span class="n">bs_CI</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Mean difference&#39;</span><span class="p">)</span>
@@ -3047,6 +3050,27 @@ Corresponding 95% CI estimate = [11.52 35.54]
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/6f1d3b32a126cfb54ec9cb3182c9ab1fd767945350090617afeb15cf6880723d.png" src="_images/6f1d3b32a126cfb54ec9cb3182c9ab1fd767945350090617afeb15cf6880723d.png" />
+</div>
+</div>
+<p>Given the symmetrical distribution of our bootstrapped mean differences, we can also efficiently estimate the confidence interval for the mean difference using the normal approximation and the previously calculated bootstrap standard error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the 95% normal margin of error</span>
+<span class="n">z_crit</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span>
+<span class="n">bs_w</span> <span class="o">=</span>  <span class="n">z_crit</span> <span class="o">*</span> <span class="n">bs_s</span>
+
+<span class="c1"># Calculate confidence interval</span>
+<span class="n">bs_ci_normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">bs_m</span> <span class="o">-</span> <span class="n">bs_w</span><span class="p">,</span> <span class="n">bs_m</span> <span class="o">+</span> <span class="n">bs_w</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Print the result</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% normal percentile CI of bootstrap distribution = </span><span class="si">{</span><span class="n">bs_ci_normal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% normal percentile CI of bootstrap distribution = [11.52206 35.35001]
+</pre></div>
+</div>
 </div>
 </div>
 <p>Bootstrapping relies entirely on the data in the original sample. If, by chance, the original samples have less variability or happen to be more representative of their respective populations, the bootstrap distribution might exhibit less spread, leading to a narrower confidence interval. And as bootstrapping involves random resampling, which introduces some inherent variability in the results, it’s possible that the particular set of bootstrap samples generated in this instance led to a slightly narrower confidence interval than the theoretical one based on the t-distribution. Moreover, the t-distribution-based confidence interval assumes that the data follows a normal distribution. If the actual data deviates from normality, especially in the tails, the t-distribution might overestimate the variability, resulting in a wider confidence interval than necessary.</p>
@@ -3087,31 +3111,55 @@ Corresponding 95% CI estimate = [11.52 35.54]
 </section>
 <section id="bootstrap-p-value">
 <h3>Bootstrap P value<a class="headerlink" href="#bootstrap-p-value" title="Link to this heading">#</a></h3>
-<p><strong>Bootstrapping and permutation</strong> tests offer remarkable flexibility in hypothesis testing, going beyond the traditional t-statistic used in t-tests. As we’ve seen, resampling techniques can generate data for constructing confidence intervals around various test statistics. But we can also strategically manipulate the data to simulate the null hypothesis, enabling us to compute P values that assess the likelihood of observing our data under the assumption of no effect.</p>
-<p>The key is to choose a <strong>test statistic</strong> that is relevant to the hypothesis being tested and calculate it <em>consistently for both the original data and the resampled or permuted data</em>. For instance, when the primary goal is to compare the means of two groups, the <strong>mean difference</strong> or the <strong>t-statistic</strong> can serve as simple and effective test statistics. However, the flexibility of resampling methods allows us to explore other relevant statistics as well. We can examine the <em>median difference</em> when dealing with skewed data or outliers, the <em>ratio of means</em> for assessing relative differences, or even differences in specific <em>quantiles</em> to capture distributional characteristics. Furthermore, if the research question extends beyond comparing means and focuses on the overall difference in distributions, statistics like the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html#kolmogorov-smirnov-test"><strong>Kolmogorov-Smirnov statistic</strong></a> can be employed within the bootstrapping or permutation framework.</p>
-<p>Ultimately, the choice of test statistic should be guided by the specific hypotheses being tested and the nature of the data. The adaptability of bootstrapping and permutation tests empowers researchers to tailor their analyses precisely to the requirements of their study, providing a robust and versatile approach to statistical inference.</p>
+<p><strong>Bootstrapping and permutation</strong> tests offer remarkable flexibility in hypothesis testing, going beyond the traditional t-statistic used in t-tests. As we’ve seen, resampling techniques can generate data for constructing confidence intervals around various test statistics. But we can also strategically manipulate the data to <strong>simulate the null hypothesis</strong>, enabling us to compute P values that assess the likelihood of observing our data under the assumption of no effect.</p>
+<p>The key is to choose a <strong>test statistic</strong> that is relevant to the hypothesis being tested and calculate it <em>consistently for both the original data and the resampled or permuted data</em>. For instance, when the primary goal is to compare the means of two groups, the <strong>mean difference</strong> or a <strong>t-statistic</strong> can serve as simple and effective test statistics. However, the flexibility of resampling methods allows us to explore other relevant statistics as well. We can examine the <em>median difference</em> when dealing with skewed data or outliers, the <em>ratio of means</em> for assessing relative differences, or even differences in specific <em>quantiles</em> to capture distributional characteristics. Furthermore, if the research question extends beyond comparing means and focuses on the overall difference in distributions, statistics like the <a class="reference external" href="https://sbwiecko.github.io/intuitive_biostatistics/24%20-%20Normality%20Tests%20and%20Outliers.html#kolmogorov-smirnov-test"><strong>Kolmogorov-Smirnov statistic</strong></a> can be employed within the bootstrapping or permutation framework.</p>
+<p>The choice of test statistic in bootstrapping or permutation tests depends on the specific hypothesis being tested and the characteristics of the data. For example, to test the null hypothesis that two groups have the <em>same distribution</em> <span class="math notranslate nohighlight">\(H_0: F(t) = G(t)\)</span>, where <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(G\)</span> are the cumulative distribution functions, we might shift the data in each group to a common mean, assuming they have <em>equal variances</em>. Alternatively, if we want to test the more general null hypothesis of <em>equal means</em> <span class="math notranslate nohighlight">\(H_0: \mu_X = \mu_Y\)</span> while allowing for <em>unequal variances</em>, we could center each group’s data around zero.</p>
+<p>The adaptability of bootstrapping and permutation tests empowers researchers to tailor their analyses precisely to the requirements of their study, providing a robust and versatile approach to statistical inference.</p>
 <section id="bootstrapped-t-statistics-of-shifted-data">
 <h4>Bootstrapped t-statistics of shifted data<a class="headerlink" href="#bootstrapped-t-statistics-of-shifted-data" title="Link to this heading">#</a></h4>
-<p><a class="reference external" href="https://academic.oup.com/biomet/article-abstract/68/3/589/218600?redirectedFrom=fulltext&amp;amp;login=false">Bradley Efron</a> proposes an elegant bootstrapping algorithm for comparing the means of two independent samples, even when their variances might differ. This approach involves shifting the data in each group to have a common mean, effectively simulating the null hypothesis of equal population means.</p>
+<p><a class="reference external" href="https://academic.oup.com/biomet/article-abstract/68/3/589/218600?redirectedFrom=fulltext&amp;amp;login=false">Bradley Efron</a> proposes an elegant bootstrapping algorithm for comparing the means of two independent samples, even when their overall distribution and variances might differ. This approach involves shifting or <em>centering</em> the data in each group to have a common mean, effectively simulating the null hypothesis of equal population means.</p>
 <p>Specifically, we create two new datasets where the values are <strong>shifted</strong> as follows: <span class="math notranslate nohighlight">\(x_{1i}' = x_{1i} - \bar x_1 + \bar z\)</span>, and <span class="math notranslate nohighlight">\(x_{2i}' = x_{2i} - \bar x_2 + \bar z\)</span>, where <span class="math notranslate nohighlight">\(\bar z\)</span> is the mean of the <em>combined sample</em>. Next, we perform the following steps <span class="math notranslate nohighlight">\(B\)</span> times (e.g., <span class="math notranslate nohighlight">\(B = 10000\)</span>):</p>
 <ol class="arabic simple">
-<li><p>Draw a bootstrap sample <span class="math notranslate nohighlight">\(x_{1i}^*\)</span> of size <span class="math notranslate nohighlight">\(n_1\)</span> with replacement from <span class="math notranslate nohighlight">\(x_{1i}'\)</span></p></li>
-<li><p>Draw another bootstrap sample <span class="math notranslate nohighlight">\(x_{2i}^*\)</span> of size <span class="math notranslate nohighlight">\(n_2\)</span> with replacement from <span class="math notranslate nohighlight">\(x_{2i}'\)</span></p></li>
-<li><p>Calculate <a class="reference internal" href="#welch"><span class="xref myst">Welch’s t-statistic</span></a> <span class="math notranslate nohighlight">\(t^*\)</span> using the bootstrap samples.</p></li>
+<li><p>Draw a bootstrap sample <span class="math notranslate nohighlight">\(x_{1i}^b\)</span> of size <span class="math notranslate nohighlight">\(n_1\)</span> with replacement from <span class="math notranslate nohighlight">\(x_{1i}'\)</span></p></li>
+<li><p>Draw another bootstrap sample <span class="math notranslate nohighlight">\(x_{2i}^b\)</span> of size <span class="math notranslate nohighlight">\(n_2\)</span> with replacement from <span class="math notranslate nohighlight">\(x_{2i}'\)</span></p></li>
+<li><p>Calculate Welch’s t-statistic <span class="math notranslate nohighlight">\(T_i\)</span> using the bootstrap samples. This approach is more robust as it accounts for potential differences in variances between the groups, unlike the Student’s t-statistic, which assumes equal variances.</p></li>
 </ol>
-<p>Finally, we <a class="reference external" href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)#Bootstrap_hypothesis_testing">estimate the P value</a> as the proportion of bootstrap t-statistics that are as extreme as or more extreme than the observed t-statistic <span class="math notranslate nohighlight">\(t\)</span> from our original data:</p>
+</section>
+<section id="one-tailed-p-value">
+<h4>One-tailed P value<a class="headerlink" href="#one-tailed-p-value" title="Link to this heading">#</a></h4>
+<p>To estimate the P value using bootstrapping, we assess how often the bootstrapped t-statistics (<span class="math notranslate nohighlight">\(T^b_i\)</span>) are <em>as extreme as, or more extreme than</em>, the observed t-statistic (<span class="math notranslate nohighlight">\(t\)</span>) from our original data. This involves generating multiple bootstrap samples, calculating the t-statistic for each, and <a class="reference external" href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)#Bootstrap_hypothesis_testing">determining the proportion of these bootstrap t-statistics that exceed the observed t-statistic</a>.</p>
+<p>Mathematically, the bootstrap P value (<span class="math notranslate nohighlight">\(p_B\)</span>) can be expressed as:</p>
 <div class="math notranslate nohighlight">
-\[p = \frac{\sum_{i=1}^B I\{t_i^* \ge t \}}{B} | t &gt; 0\]</div>
-<p>where <span class="math notranslate nohighlight">\(I\{\text{condition}\} = 1\)</span> if the <em>condition</em> is true and <span class="math notranslate nohighlight">\(0\)</span> otherwise. This P value represents the probability of observing a t-statistic as extreme as, or more extreme than, the one calculated from our original data, assuming the null hypothesis (H0) of equal population means is true.</p>
-<p>Importantly, we’re not just interested in any difference, but a difference in a <em>specific direction</em>. A positive statistic suggests an effect in one direction, a negative statistic suggests an effect in the opposite direction. Therefore, if the observed test statistic is negative, the P value is the proportion of bootstrapped test statistics that <em>are less than or equal</em> to the observed test statistic:</p>
+\[P(T^b \ge t | H_0) = p_B = \frac{\{\# T^b_i \ge t\}}{B}\]</div>
+<p>But we’re not just interested in any difference, but a difference in a <em>specific direction</em>. A positive statistic suggests an effect in one direction, a negative statistic suggests an effect in the opposite direction. Therefore, if the observed test statistic is negative, i.e., H0: t ≥ 0 and H1: t &lt; 0, the P value is the proportion of bootstrapped test statistics that <em>are less than or equal</em> to the observed test statistic:</p>
 <div class="math notranslate nohighlight">
-\[p = \frac{\sum_{i=1}^B I\{t_i^* \le t \}}{B} | t &lt; 0\]</div>
+\[
+p_B = \frac{\sum_{i=1}^B I\{T^b_i \ge t \}}{B} | t &gt; 0
+\qquad
+p_B = \frac{\sum_{i=1}^B I\{T^b_i \le t \}}{B} | t &lt; 0
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(I\{\text{condition}\} = 1\)</span> if the <em>condition</em> is true and <span class="math notranslate nohighlight">\(0\)</span> otherwise.</p>
+<p>While it’s sometimes suggested to add 1 to both the numerator and denominator of the P value calculation in permutation tests to avoid a P value of 0, there’s no firm consensus on this practice. Some argue it can lead to a slightly more conservative P value, while others consider it an unnecessary adjustment.</p>
+</section>
+<section id="estimating-two-tailed-bootstrap-p-value">
+<h4>Estimating two-tailed bootstrap P value<a class="headerlink" href="#estimating-two-tailed-bootstrap-p-value" title="Link to this heading">#</a></h4>
+<p>Assume <span class="math notranslate nohighlight">\(t &gt; 0\)</span>, then we can calculate the probability of observing something as or more extreme in each tail as <span class="math notranslate nohighlight">\(P(T^b \ge t | H_0)\)</span>, i.e., what we observed, and <span class="math notranslate nohighlight">\(P(T^b \le -t | H_0)\)</span>, i.e., as or more extreme in other tail. For two-sided P values, multiple strategies exist in our bootstrap distribution:</p>
+<ul class="simple">
+<li><p>Multiply the highest P value by 2: <span class="math notranslate nohighlight">\(p_B = 2 \times \max[P(T^b \ge t | H_0), P(T^b \le -t | H_0)]\)</span>. This is the most conservative strategy.</p></li>
+<li><p>Multiply the lowest P value by 2: <span class="math notranslate nohighlight">\(p_B = 2 \times \min[P(T^b \ge t | H_0), P(T^b \le -t | H_0)]\)</span>. This is the least conservative strategy.</p></li>
+<li><p>Multiply le lowest one-tailed P value by 2: <span class="math notranslate nohighlight">\(p_B = 2 \times \min[P(T^b \ge t | H_0), P(T^b &lt; t | H_0)]\)</span>.</p></li>
+<li><p>Add the two tails together: <span class="math notranslate nohighlight">\(p_B = P(T^b \ge t | H_0) + P(T^b \le -t | H_0)\)</span>. This strategy doesn’t assume symmetry of the bootstrap distribution, so it’s the most flexible one.</p></li>
+</ul>
+</section>
+<section id="rule">
+<h4>99 rule<a class="headerlink" href="#rule" title="Link to this heading">#</a></h4>
+<p>When determining the number of bootstrap replicates, we can refer to <a class="reference external" href="https://books.google.fr/books?id=8VNDAAAAQBAJ">the “99 rule” suggested by Boos and Stefanski</a>. This rule of thumb proposes that 99 replicates are often sufficient for constructing reliable confidence intervals, especially when estimating the median. However, the optimal number can vary, and for most analyses, especially those involving means or standard deviations, it’s generally recommended to use at least 1,000 replicates. In our subsequent analyses, we’ll use  B = 9999 to ensure adequate precision.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the random seed for reproducibility</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
-<span class="n">n_replicates</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">n_replicates</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># 99 rule</span>
 
 <span class="c1"># Calculate the combined mean of both groups</span>
 <span class="n">combined_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">old</span><span class="p">,</span> <span class="n">yng</span><span class="p">]))</span>
@@ -3120,7 +3168,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <span class="n">old_shifted</span> <span class="o">=</span> <span class="n">old</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">old</span><span class="p">)</span> <span class="o">+</span> <span class="n">combined_mean</span>
 <span class="n">yng_shifted</span> <span class="o">=</span> <span class="n">yng</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">yng</span><span class="p">)</span> <span class="o">+</span> <span class="n">combined_mean</span>
 
-<span class="c1"># Generate 10,000 bootstrap replicates for each shifted group</span>
+<span class="c1"># Generate B bootstrap replicates for each shifted group</span>
 <span class="n">bs_shifted_old</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">old_shifted</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">old</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)])</span>
 <span class="n">bs_shifted_yng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
@@ -3140,34 +3188,46 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <span class="c1"># Calculate Welch&#39;s t-statistic for each bootstrap replicate</span>
 <span class="n">bs_t_statistic_welch</span> <span class="o">=</span> <span class="p">(</span><span class="n">bs_shifted_yng_means</span> <span class="o">-</span> <span class="n">bs_shifted_old_means</span><span class="p">)</span> <span class="o">/</span> <span class="n">bs_se_unequal</span>
 
+<span class="c1"># Or simply perform a Welch&#39;s t-test on the bootstrap replicates without calculating intermediates</span>
+<span class="c1"># bs_t_statistic_welch = np.array([</span>
+<span class="c1">#     stats.ttest_ind(yng, old, equal_var=False)[0] for yng, old in zip(bs_shifted_yng, bs_shifted_old)</span>
+<span class="c1"># ])</span>
+
 <span class="c1"># Print the first 15 t-statistics from the bootstrap replicates</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">[:</span><span class="mi">15</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.3117061   0.04728963 -0.30521782  0.8322539  -0.03140883  0.49586349
- -0.0809322  -0.76470241  0.51108061  0.84035053 -2.5197374   0.16208369
- -2.19024079  0.38957005  2.06971633]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.28169183  0.09257722 -0.72309354  0.9685118   0.9869254  -0.39840539
+ -0.89747736 -0.84256454  0.74883099  0.72440274 -1.14597461  0.04187397
+ -1.25776734  0.47912576  0.70211139]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the P value using bootstrapping, considering the direction of the observed statistic</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate one-sided P value using bootstrapping, considering the direction of the observed statistic</span>
+<span class="c1"># 1. Calculate lower and upper tail</span>
 <span class="k">if</span> <span class="n">t_statistic_welch</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&gt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">)</span>
+    <span class="c1"># p_value_bs_shifted_low = np.sum(bs_t_statistic_welch &gt;= t_statistic_welch) / len(bs_t_statistic_welch)</span>
+    <span class="n">p_value_bs_shifted_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&gt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span>  <span class="c1"># Mathematically same as above</span>
+    <span class="n">p_value_bs_shifted_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">t_statistic_welch</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&lt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">)</span>
+    <span class="n">p_value_bs_shifted_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&lt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span>
+    <span class="n">p_value_bs_shifted_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="n">t_statistic_welch</span><span class="p">)</span>
+
+<span class="c1"># 2. Attribute the one-tailed P value</span>
+<span class="n">p_value_bs_shifted_1t</span> <span class="o">=</span> <span class="n">p_value_bs_shifted_up</span> <span class="k">if</span> <span class="n">t_statistic_welch</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">p_value_bs_shifted_low</span>
 
 <span class="c1"># Print the P value</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value obtained using bootstrapped t-statistics = </span><span class="si">{</span><span class="n">p_value_bs_shifted</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;One-sided P value obtained using bootstrapped t-statistics = </span><span class="si">{</span><span class="n">p_value_bs_shifted_1t</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P value obtained using bootstrapped t-statistics = 0.0026
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>One-sided P value obtained using bootstrapped t-statistics = 0.0023
 </pre></div>
 </div>
 </div>
@@ -3211,12 +3271,12 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <span class="c1"># Add labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap distribution of t under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bootstrap distribution of Welch&#39;s t under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Create a copy of the original patch for the legend</span>
 <span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bootstrap t&#39;</span><span class="p">)</span>
 <span class="c1"># Create a patch for the legend</span>
-<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_bs_shifted</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;One-tailed P (</span><span class="si">{</span><span class="n">p_value_bs_shifted_1t</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add the patches to the legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">original_patch</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_value_patch</span><span class="p">]);</span> <span class="c1"># type: ignore</span>
@@ -3224,14 +3284,37 @@ Corresponding 95% CI estimate = [11.52 35.54]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/34ec6efa931edfb097060ccc0cd2658848a3174812866f2d89b072c86abf2846.png" src="_images/34ec6efa931edfb097060ccc0cd2658848a3174812866f2d89b072c86abf2846.png" />
+<img alt="_images/75a4be781d7e0b825133f9a842de8776b492ac9ec810803f4a201705b34986e1.png" src="_images/75a4be781d7e0b825133f9a842de8776b492ac9ec810803f4a201705b34986e1.png" />
+</div>
+</div>
+<p>To calculate the two-tailed P value, we typically sum the probabilities in <em>both tails</em> of the distribution. However, since the bootstrap distribution under the null hypothesis is symmetrical, we can also obtain the two-sided P value by simply doubling the more conservative of the two one-tailed P values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Maximum one-tail</span>
+<span class="n">p_value_bs_shifted_2t_max</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">p_value_bs_shifted_low</span><span class="p">,</span> <span class="n">p_value_bs_shifted_up</span><span class="p">)</span>
+
+<span class="c1"># Sum of the tails</span>
+<span class="n">p_value_bs_shifted_2t_sum</span> <span class="o">=</span> <span class="n">p_value_bs_shifted_low</span> <span class="o">+</span> <span class="n">p_value_bs_shifted_up</span>
+
+<span class="c1"># Print the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two-tailed t-test bootstrap P value (conservative) = </span><span class="si">{</span><span class="n">p_value_bs_shifted_2t_max</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two-tailed t-test bootstrap P value (both tails) = </span><span class="si">{</span><span class="n">p_value_bs_shifted_2t_sum</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Two-tailed t-test bootstrap P value (conservative) = 0.0046
+Two-tailed t-test bootstrap P value (both tails) = 0.0037
+</pre></div>
+</div>
 </div>
 </div>
 </section>
 <section id="permutation">
 <h4>Permutation<a class="headerlink" href="#permutation" title="Link to this heading">#</a></h4>
-<p>The permutation/shuffle method involves combining all the data, <strong>shuffling</strong> the labels, and then reassigning them to create new “groups.” This is typically used when we want to test the <em>null hypothesis of identical distributions</em> between the two groups, not just equal means. It’s a more general approach that doesn’t assume any specific distributional form.</p>
-<p>To facilitate the permutation test, we’ll define a function that shuffles the original arrays and returns permutation samples. This function will be instrumental in creating datasets where the group labels have been randomly reassigned, allowing us to simulate the null hypothesis of no difference between the groups. For further exploration of permutation and bootstrapping techniques, refer to the <a class="reference external" href="https://github.com/justinbois/dc_stat_think">dc_stat_think repository from Justin Bois</a>.</p>
+<p>The permutation approach, closely related to the permutation test, provides a way to directly simulate the null hypothesis of no difference between two groups. It involves pooling all the data, <strong>shuffling the group labels</strong>, and then reassigning these shuffled labels to create new “groups”. This process disrupts any inherent structure or relationship between the original groups, effectively simulating a scenario where the groups are indistinguishable.</p>
+<p>This method is particularly useful when testing the <em>null hypothesis of identical distributions</em> between the two groups, not just equal means. It’s a more general approach that doesn’t rely on specific distributional assumptions, making it suitable for a wider range of data. While it shares similarities with bootstrapping in terms of resampling, it differs in its focus on simulating the null hypothesis rather than estimating the sampling distribution of a specific statistic. It’s worth noting that the permutation approach, when applied to the difference in means, <em>doesn’t explicitly incorporate the standard errors</em> of the groups, unlike the t-statistic.</p>
+<p>To facilitate the permutation test, we’ll define a function that shuffles the original arrays and returns permuted samples. This function will be instrumental in creating datasets with randomly reassigned group labels, allowing us to assess the likelihood of observing our original data under the null hypothesis. For further exploration of permutation and bootstrapping techniques, refer to the <a class="reference external" href="https://www.alexkaizer.com/bios_6618/">advanced biostatistical methods I (BIOS 6618)</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutation_sample</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
@@ -3273,7 +3356,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
 <span class="c1"># Generate 10,000 bootstrap replicates of the mean difference for each permutation samples</span>
-<span class="n">n_replicates</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">n_replicates</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span>
 
 <span class="c1"># Initialize an empty array to store the bootstrap mean differences</span>
 <span class="n">permuted_mean_diffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)</span>
@@ -3287,8 +3370,8 @@ Corresponding 95% CI estimate = [11.52 35.54]
     <span class="n">permuted_mean_diffs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># We could also use a list comprehension instead of the loop</span>
-<span class="c1"># bs_mean_diff_shuffled = np.array([</span>
-<span class="c1">#     np.mean(x)-np.mean(y) for _ in range(n_replicates) for x,y in [permutation_sample(old, yng)]</span>
+<span class="c1"># permuted_mean_diffs = np.array([</span>
+<span class="c1">#     np.mean(x) - np.mean(y) for _ in range(n_replicates) for x, y in [permutation_sample(old, yng)]</span>
 <span class="c1">#     ])</span>
 
 <span class="c1"># Print the first 10 replicates</span>
@@ -3306,20 +3389,23 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <p>The core logic for calculating the P value remains consistent between the permutation test and the mean-shifting approach. In both cases, we estimate the P value as the proportion of replicates (permuted mean differences or bootstrapped t-statistics from shifted data) that are as extreme as, or more extreme than, the observed statistic (the original mean difference or t-statistic). The fundamental distinction lies in how the null hypothesis is simulated. The permutation test achieves this by shuffling group labels, while the mean-shifting approach shifts the data in each group to a common mean, effectively assuming no difference between the groups.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the P value using the permutation distribution of mean differences,</span>
-<span class="c1"># considering the direction of the observed mean difference</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate one-sided P value using the permutation distribution of mean differences</span>
 <span class="k">if</span> <span class="n">mean_diff</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&gt;=</span> <span class="n">mean_diff</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">permuted_mean_diffs</span><span class="p">)</span>
+    <span class="n">p_value_permutation_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&gt;=</span> <span class="n">mean_diff</span><span class="p">)</span>
+    <span class="n">p_value_permutation_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">mean_diff</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&lt;=</span> <span class="n">mean_diff</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">permuted_mean_diffs</span><span class="p">)</span>
+    <span class="n">p_value_permutation_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&lt;=</span> <span class="n">mean_diff</span><span class="p">)</span>
+    <span class="n">p_value_permutation_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="n">mean_diff</span><span class="p">)</span>
 
-<span class="c1"># Print the p-value</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value obtained using permutation test (mean difference) = </span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">p_value_permutation_1t</span> <span class="o">=</span> <span class="n">p_value_permutation_up</span> <span class="k">if</span> <span class="n">mean_diff</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">p_value_permutation_low</span>
+
+<span class="c1"># Print the P value</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;One-sided P value obtained using permutation test (mean difference) = </span><span class="si">{</span><span class="n">p_value_permutation_1t</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P value obtained using permutation test (mean difference) = 0.0018
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>One-sided P value obtained using permutation test (mean difference) = 0.0018
 </pre></div>
 </div>
 </div>
@@ -3360,12 +3446,12 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <span class="c1"># Add labels and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Mean difference&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribution of permutated mean differences under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribution of permutated mean difference under H0 (B=</span><span class="si">{</span><span class="n">n_replicates</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Create a copy of the original patch for the legend</span>
 <span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Permuted $\bar x - \bar y$&#39;</span><span class="p">)</span>
 <span class="c1"># Create a patch for the legend</span>
-<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;One-tailed P (</span><span class="si">{</span><span class="n">p_value_permutation_1t</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add the patches to the legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">original_patch</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_value_patch</span><span class="p">]);</span> <span class="c1"># type: ignore</span>
@@ -3373,11 +3459,34 @@ Corresponding 95% CI estimate = [11.52 35.54]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b1f1a417d7772837f6227f8e16a61f2f914e9991c2870ed803968c2bf44f2ae8.png" src="_images/b1f1a417d7772837f6227f8e16a61f2f914e9991c2870ed803968c2bf44f2ae8.png" />
+<img alt="_images/7282935bf917135a587fda009a9e1432c28ab50f885f63eb6dde292542bed3f7.png" src="_images/7282935bf917135a587fda009a9e1432c28ab50f885f63eb6dde292542bed3f7.png" />
 </div>
 </div>
-<p>All the P values are considerably smaller than the typical significance level of 0.05. This indicates strong evidence to <strong>reject the null hypothesis</strong> of no difference between the means of the “old” and “young” rat groups. Therefore, we can confidently conclude that there is a <strong>statistically significant difference</strong> between the means of the two groups. The data suggests that the “young” rats, on average, have a significantly different (likely higher, based on the previous context) outcome measurement compared to the “old” rats.</p>
-<p>Note that the slightly smaller P values from the permutation test and bootstrapping might indicate that these non-parametric methods are slightly more sensitive in detecting the difference in means for this particular dataset. However, the overall conclusion remains the same across all tests.</p>
+<p>We use the same approach as in the shifting mean mean for computing the two-tailed P value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Maximum one-tail</span>
+<span class="n">p_value_permut_2t_max</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">p_value_permutation_low</span><span class="p">,</span> <span class="n">p_value_permutation_up</span><span class="p">)</span>
+
+<span class="c1"># Sum of the tails</span>
+<span class="n">p_value_permut_2t_sum</span> <span class="o">=</span> <span class="n">p_value_permutation_low</span> <span class="o">+</span> <span class="n">p_value_permutation_up</span>
+
+<span class="c1"># Print the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two-tailed permutation bootstrap P value (conservative) = </span><span class="si">{</span><span class="n">p_value_permut_2t_max</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two-tailed permutation bootstrap P value (both tails) = </span><span class="si">{</span><span class="n">p_value_permut_2t_sum</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Two-tailed permutation bootstrap P value (conservative) = 0.0036
+Two-tailed permutation bootstrap P value (both tails) = 0.0031
+</pre></div>
+</div>
+</div>
+</div>
+<p>The P values obtained from all the tests we conducted, i.e., permutation test, bootstrapped t-statistic, Mann-Whitney non-parametric approaches, Student’s t-test, and Welch’s t-test, are substantially lower than the conventional significance level of 0.05. This provides compelling evidence to <strong>reject the null hypothesis</strong> of no difference between the means of the “old” and “young” rat groups. We can confidently assert that a <strong>statistically significant difference</strong> exists between the two groups, with “young” rats exhibiting, on average, a significantly different (and likely higher) outcome measurement compared to “old” rats.</p>
+<p>Interestingly, the permutation test and bootstrapping yielded slightly smaller P values than the parametric t-tests. This might indicate a subtle advantage of these non-parametric methods in detecting the mean difference for this specific dataset. However, all tests consistently lead to the same conclusion: a significant difference exists between the groups.</p>
+<p>Navigating the nuances of hypothesis testing involves careful consideration of the null distribution, P value calculation method, and the chosen test statistic. While no single “correct” answer exists, adopting a more conservative approach in P value calculations can help mitigate the risk of type I errors (false positives).</p>
 </section>
 </section>
 </section>
@@ -3455,6 +3564,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <h4>Welch’s t-test<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using scipy.stats</span>
 <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1">#t = stats.ttest_ind(x, y, equal_var=False)[0]</span>
 
 <span class="c1"># Using pingouin</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -3539,10 +3649,16 @@ Corresponding 95% CI estimate = [11.52 35.54]
     <span class="p">])</span>
 <span class="c1"># bs_data2_means = ...</span>
 
-<span class="c1"># Calculate the statistic of interest `bs` for each replicate</span>
+<span class="c1"># Calculate the statistics of interest `bs` for each replicate</span>
+<span class="n">bs_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_data2_means</span> <span class="o">-</span> <span class="n">bs_data1_means</span><span class="p">)</span>
+<span class="n">bs_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">bs_data2_means</span> <span class="o">-</span> <span class="n">bs_data1_means</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># Confidence interval</span>
+<span class="c1"># Bootstrap percentile confidence interval</span>
 <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">])</span>
+
+<span class="c1"># 95% normal confidence interval</span>
+<span class="n">bs_w</span> <span class="o">=</span>  <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span> <span class="o">*</span> <span class="n">bs_s</span>
+<span class="p">(</span><span class="n">bs_m</span> <span class="o">-</span> <span class="n">bs_w</span><span class="p">,</span> <span class="n">bs_m</span> <span class="o">+</span> <span class="n">bs_w</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -3560,7 +3676,7 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <h4>P value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h4>
 <section id="id9">
 <h5>Bootstrapped t-statistics of shifted data<a class="headerlink" href="#id9" title="Link to this heading">#</a></h5>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_replicates</span> <span class="o">=</span> <span class="mi">10000</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_replicates</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># 99 rule</span>
 
 <span class="c1"># Calculate the combined mean of both groups</span>
 <span class="n">combined_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">]))</span>
@@ -3575,26 +3691,29 @@ Corresponding 95% CI estimate = [11.52 35.54]
 <span class="n">bs_shifted_data2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data2_shifted</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data2</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)])</span>
 
-<span class="c1"># Calculate sample means and variances for each bootstrap replicate</span>
-<span class="c1"># !np.mean calculates the mean of the entire flattened array by default if no &#39;axis&#39; is provided</span>
-<span class="n">bs_shifted_data1_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_shifted_data1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Calculate mean along each row</span>
-<span class="n">bs_shifted_data2_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_shifted_data2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">bs_shifted_data1_vars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">bs_shifted_data1</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Variance along each row</span>
-<span class="n">bs_shifted_data2_vars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">bs_shifted_data2</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># Calculate the standard error for the difference in means for each replicate (Welch&#39;s formula)</span>
-<span class="n">bs_se_unequal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">bs_shifted_data1_vars</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span> <span class="o">+</span> <span class="n">bs_shifted_data2_vars</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data2</span><span class="p">))</span>
-
 <span class="c1"># Calculate Welch&#39;s t-statistic for each bootstrap replicate</span>
-<span class="n">bs_t_statistic_welch</span> <span class="o">=</span> <span class="p">(</span><span class="n">bs_shifted_data2_means</span> <span class="o">-</span> <span class="n">bs_shifted_data1_means</span><span class="p">)</span> <span class="o">/</span> <span class="n">bs_se_unequal</span>
+<span class="n">bs_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bs_shifted_data1</span><span class="p">,</span> <span class="n">bs_shifted_data2</span><span class="p">)</span>
+<span class="p">])</span>
 
-<span class="c1"># Calculate the P value using bootstrapping, considering the direction of the observed statistic</span>
-<span class="k">if</span> <span class="n">t_statistic_welch</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&gt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">)</span>
+<span class="c1"># Calculate P values using bootstrapping, considering the direction of the observed statistic</span>
+<span class="c1"># 1. Calculate lower and upper tail</span>
+<span class="k">if</span> <span class="n">t</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">p_value_bs_t_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_t</span> <span class="o">&gt;=</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">p_value_bs_t_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_t</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">t</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span> <span class="o">&lt;=</span> <span class="n">t_statistic_welch</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_t_statistic_welch</span><span class="p">)</span>
+    <span class="n">p_value_bs_t_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_t</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">p_value_bs_t_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bs_t</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="n">t</span><span class="p">)</span>
 
+<span class="c1"># 2. Attribute the one-tailed P value</span>
+<span class="n">p_value_bs_t_up</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">p_value_bs_t_low</span>
+
+<span class="c1"># 3. Attribute the two-tailed P values</span>
+<span class="c1"># Maximum one-tail</span>
+<span class="mi">2</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">p_value_bs_t_low</span><span class="p">,</span> <span class="n">p_value_bs_t_up</span><span class="p">)</span>
+
+<span class="c1"># Sum of the tails</span>
+<span class="n">p_value_bs_t_low</span> <span class="o">+</span> <span class="n">p_value_bs_t_up</span>
 </pre></div>
 </div>
 </section>
@@ -3611,17 +3730,28 @@ Corresponding 95% CI estimate = [11.52 35.54]
 
     <span class="k">return</span> <span class="n">permuted_data1</span><span class="p">,</span> <span class="n">permuted_data2</span>
 
-<span class="n">bs_mean_diff_shuffled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="n">permuted_mean_diffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
     <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span>
         <span class="n">permutation_sample</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">)]</span>
     <span class="p">])</span>
 
-<span class="c1"># Calculate the P value using the permutation distribution of mean differences,</span>
-<span class="c1"># considering the direction of the observed mean difference</span>
+<span class="c1"># Calculate permutation P values</span>
 <span class="k">if</span> <span class="n">mean_diff</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span> <span class="o">&gt;=</span> <span class="n">mean_diff</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span><span class="p">)</span>
+    <span class="n">p_value_permutation_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&gt;=</span> <span class="n">mean_diff</span><span class="p">)</span>
+    <span class="n">p_value_permutation_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">mean_diff</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span> <span class="o">&lt;=</span> <span class="n">mean_diff</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">bs_mean_diff_shuffled</span><span class="p">)</span>
+    <span class="n">p_value_permutation_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&lt;=</span> <span class="n">mean_diff</span><span class="p">)</span>
+    <span class="n">p_value_permutation_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_mean_diffs</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="n">mean_diff</span><span class="p">)</span>
+
+<span class="c1"># One-tailed P value</span>
+<span class="n">p_value_permutation_up</span> <span class="k">if</span> <span class="n">mean_diff</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">p_value_permutation_low</span>
+
+<span class="c1"># Two-tailed P values</span>
+<span class="c1"># Maximum one-tail</span>
+<span class="mi">2</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">p_value_permutation_low</span><span class="p">,</span> <span class="n">p_value_permutation_up</span><span class="p">)</span>
+
+<span class="c1"># Sum of the tails</span>
+<span class="n">p_value_permutation_low</span> <span class="o">+</span> <span class="n">p_value_permutation_up</span>
 </pre></div>
 </div>
 </section>
@@ -3808,6 +3938,9 @@ statsmodels: 0.14.2
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping-with-pingouin">Bootstrapping with pingouin</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-p-value">Bootstrap P value</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapped-t-statistics-of-shifted-data">Bootstrapped t-statistics of shifted data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#one-tailed-p-value">One-tailed P value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-two-tailed-bootstrap-p-value">Estimating two-tailed bootstrap P value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rule">99 rule</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#permutation">Permutation</a></li>
 </ul>
 </li>

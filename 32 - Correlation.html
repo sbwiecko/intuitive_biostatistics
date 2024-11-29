@@ -194,17 +194,17 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20interval%20of%20survival%20data.html">Confidence interval of survival data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20scatter%20of%20continuous%20data.html">Quantifying scatter of continuous data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20distribution.html">The Gaussian distribution</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20interval%20of%20a%20mean.html">Confidence interval of a mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20interval%20of%20survival%20data.html">Confidence interval of survival data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical significance and data assumptions</span></p>
 <ul class="nav bd-sidenav">
@@ -1231,7 +1231,7 @@ insulin_sensitivity  0.96256  0.792641    True
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e62a935a87b3ca795758ab0eb64da36bef5307c1bbd379c82a7b67ef0f81827e.png" src="_images/e62a935a87b3ca795758ab0eb64da36bef5307c1bbd379c82a7b67ef0f81827e.png" />
+<img alt="_images/8bd8a70e4a7e58f4f893272b42fbfff10b78350f70618dd0b16bcbfc468c7bf6.png" src="_images/8bd8a70e4a7e58f4f893272b42fbfff10b78350f70618dd0b16bcbfc468c7bf6.png" />
 </div>
 </div>
 </section>
@@ -1424,9 +1424,23 @@ insulin_sensitivity  0.96256  0.792641    True
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
 
-<span class="c1"># Calculate the Pearson correlation coefficient</span>
-<span class="n">pearson_r</span><span class="p">,</span> <span class="n">pearson_p_value</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pearson correlation coefficient:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">pearson_r</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> <span class="c1"># type: ignore</span>
+<span class="c1"># Calculate the Pearson correlation coefficient and the associated P value</span>
+<span class="n">pearsonr</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PearsonRResult(statistic=0.7700025428371726, pvalue=0.0020770121514794735)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the Pearson&#39;s r only</span>
+<span class="n">pearson_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pearson correlation coefficient:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">pearson_r</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1760,7 +1774,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7bab3ec1349b277afeab5bf67ff46ae1000dbfd7d582b2818a7d2452f9640242.png" src="_images/7bab3ec1349b277afeab5bf67ff46ae1000dbfd7d582b2818a7d2452f9640242.png" />
+<img alt="_images/4a2c25ed747f42334ee88798999f4b1341716caa16e3ed54fddb078ca7caeed7.png" src="_images/4a2c25ed747f42334ee88798999f4b1341716caa16e3ed54fddb078ca7caeed7.png" />
 </div>
 </div>
 <p>While both Spearman’s rho and Kendall’s tau are valuable tools for assessing correlation, Kendall’s tau might be preferred in situations with <em>smaller sample sizes</em>, increased concern about <em>outliers</em>, <em>frequent tied values</em>, specific theoretical considerations (e.g., survival analysis or studies of event ordering), or when <em>computational efficiency</em> is a priority.</p>
@@ -1793,7 +1807,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the t-statistic and DF for correlation</span>
 <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">])</span>  <span class="c1"># Sample size</span>
 <span class="n">df_corr</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span>                    <span class="c1"># Degrees of freedom</span>
-<span class="n">t_stat_corr</span> <span class="o">=</span> <span class="n">pearson_r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pearson_r</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># type: ignore</span>
+<span class="n">t_stat_corr</span> <span class="o">=</span> <span class="n">pearson_r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pearson_r</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 
 <span class="c1"># Print the t-statistic</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-statistic for correlation = </span><span class="si">{</span><span class="n">t_stat_corr</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="n">df_corr</span><span class="si">}</span><span class="s2"> degrees of freedom&quot;</span><span class="p">)</span>
@@ -1947,7 +1961,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 
 <span class="c1"># Fisher&#39;s r-to-z transformation</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctanh</span><span class="p">(</span><span class="n">pearson_r</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctanh</span><span class="p">(</span><span class="n">pearson_r</span><span class="p">)</span>
 <span class="c1"># or 0.5 * np.log((1 + r) / (1 - r))</span>
 <span class="n">se</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
 
@@ -1980,7 +1994,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;Parametric confidence intervals around Pearson r=</span><span class="si">{</span><span class="n">pg</span><span class="o">.</span><span class="n">compute_effsize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">eftype</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;Parametric confidence intervals around Pearson r = </span><span class="si">{</span><span class="n">pg</span><span class="o">.</span><span class="n">compute_effsize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">eftype</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">,</span>
     <span class="n">pg</span><span class="o">.</span><span class="n">compute_esci</span><span class="p">(</span>
         <span class="n">stat</span><span class="o">=</span><span class="n">pg</span><span class="o">.</span><span class="n">compute_effsize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">eftype</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">),</span>
         <span class="n">nx</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">eftype</span><span class="o">=</span><span class="s1">&#39;r&#39;</span>
@@ -1990,7 +2004,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parametric confidence intervals around Pearson r=0.77: [0.38 0.93]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parametric confidence intervals around Pearson r = 0.77: [0.38 0.93]
 </pre></div>
 </div>
 </div>
@@ -2231,9 +2245,9 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bootstrap r&#39;</span><span class="p">)</span>
 
-<span class="c1"># Annotate the observed mean difference</span>
+<span class="c1"># Annotate the observed Pearson&#39;s correlation</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">pearson_r</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">pearson_r</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cornflowerblue&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Observed r (</span><span class="si">{</span><span class="n">pearson_r</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
@@ -2314,60 +2328,11 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span><span class="p">,</span> <span class="n">t</span>
-
-<span class="c1"># ... (your DataFrame &#39;df&#39; with &#39;C2022_fatacids&#39; and &#39;insulin_sensitiv&#39;) ...</span>
-
-<span class="k">def</span> <span class="nf">draw_bs_pairs_t_stat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Perform pairs bootstrap for correlation and compute t-statistics </span>
-<span class="sd">    from the replicates.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="n">bs_t_stats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># Calculate sample size here</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
-        <span class="n">bs_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">inds</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inds</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">bs_x</span><span class="p">,</span> <span class="n">bs_y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">bs_inds</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">bs_inds</span><span class="p">]</span>
-        <span class="n">r</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">bs_x</span><span class="p">,</span> <span class="n">bs_y</span><span class="p">)</span>
-        <span class="n">t_stat</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># type: ignore</span>
-        <span class="n">bs_t_stats</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">t_stat</span>
-    <span class="k">return</span> <span class="n">bs_t_stats</span>
-
-<span class="c1"># Set random seed for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
-
-<span class="c1"># Generate 10000 bootstrap replicates of the t-statistic</span>
-<span class="n">n_replicates</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">bs_t_replicates</span> <span class="o">=</span> <span class="n">draw_bs_pairs_t_stat</span><span class="p">(</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_replicates</span>
-<span class="p">)</span>
-
-<span class="c1"># Calculate the P value using bootstrapping, considering the direction of the observed t-statistic</span>
-<span class="k">if</span> <span class="n">t_stat_corr</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_replicates</span> <span class="o">&gt;=</span> <span class="n">t_stat_corr</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bs_t_replicates</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">p_value_bs_shifted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bs_t_replicates</span> <span class="o">&lt;=</span> <span class="n">t_stat_corr</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bs_t_replicates</span><span class="p">)</span>
-
-<span class="c1"># Print the P value</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value obtained using bootstrapped t-statistics = </span><span class="si">{</span><span class="n">p_value_bs_shifted</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P value obtained using bootstrapped t-statistics = 0.5382
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="p-value-using-permutation">
 <h3>P value using permutation<a class="headerlink" href="#p-value-using-permutation" title="Link to this heading">#</a></h3>
-<p>Bootstrapping and permutation tests offer flexibility in testing hypotheses about correlation. We can manipulate the data to simulate the null hypothesis of no correlation, allowing us to calculate P values. The choice of test statistic in correlation analysis often depends on the specific hypothesis and the nature of the data. Common test statistics include the correlation coefficient Pearson’s r, Spearman’s ρ, or Kendall’s τ. But the flexibility of resampling methods allows us to explore other relevant statistics as well.</p>
-<p><strong>Permutation</strong> tests are a common resampling method for hypothesis testing in correlation analysis. In this approach, we randomly shuffle the values of one of the variables while keeping the other variable fixed. This <em>shuffling</em> breaks the association between the variables, simulating the null hypothesis of no correlation. By calculating the correlation coefficient for each permuted dataset, we generate a permutation distribution of correlation coefficients under the null hypothesis. We can then compare the observed correlation from our original data to this permutation distribution to assess its significance (P value).</p>
+<p>Bootstrapping and permutation tests offer flexibility in testing hypotheses about correlation. We can manipulate the data to simulate the null hypothesis of no correlation, allowing us to calculate P values. The choice of test statistic in correlation analysis often depends on the specific hypothesis and the nature of the data. Common test statistics include the correlation coefficient Pearson’s r, Spearman’s ρ, or Kendall’s τ.</p>
+<p><strong>Permutation</strong> tests are a common resampling method for hypothesis testing in correlation analysis. In this approach, we randomly shuffle the values of one of the variables while keeping the other variable fixed. This <em>shuffling</em> breaks the association between the variables, simulating the <strong>null hypothesis</strong> of no correlation. By calculating the correlation coefficient for each permuted dataset, we generate a permutation distribution of correlation coefficients under the null hypothesis. We can then compare the observed correlation from our original data to this permutation distribution to assess its significance (P value).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permute_for_correlation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -2396,8 +2361,8 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed for reproducibility</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
-<span class="c1"># Generate 10,000 permutation replicates of the correlation coefficient</span>
-<span class="n">B</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="c1"># Generate permutation replicates of the correlation coefficient</span>
+<span class="n">B</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="n">permuted_corrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 
 <span class="c1"># Generate permuted correlation coefficients</span>
@@ -2406,7 +2371,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
     <span class="n">permuted_x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">permute_for_correlation</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">])</span>
     
     <span class="c1"># Calculate the correlation coefficient for this permuted sample</span>
-    <span class="n">permuted_corrs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">permuted_x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">permuted_corrs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">permuted_x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">statistic</span> <span class="c1"># type: ignore</span>
 
 <span class="c1"># Print the first 6 replicate correlation coefficients</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">permuted_corrs</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span>
@@ -2426,12 +2391,12 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
-<span class="n">permuted_corrs_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="n">pearsonr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># type: ignore</span>
+<span class="n">permut_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">pearsonr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">statistic</span> <span class="c1"># type: ignore</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 <span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">permuted_corrs_b</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">permut_r</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2441,22 +2406,27 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 </div>
+<p>Whether we’re dealing with one-sample, two-sample, or correlation analyses, the core logic of the permutation test remains consistent. We estimate the P value by assessing how often the test statistic calculated from permuted data is as extreme as, or more extreme than, the observed statistic. The key lies in how we simulate the null hypothesis, which varies depending on the specific test and data structure.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the P value using the distribution of Pearson&#39;s r replicates of permuted pairs,</span>
 <span class="c1"># considering the direction of the observed correlation coefficient</span>
-<span class="k">if</span> <span class="n">pearson_r</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># type: ignore</span>
-    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">permuted_corrs</span> <span class="o">&gt;=</span> <span class="n">pearson_r</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">permuted_corrs</span><span class="p">)</span> <span class="c1"># type: ignore</span>
+<span class="k">if</span> <span class="n">pearson_r</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">p_value_permut_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permut_r</span> <span class="o">&gt;=</span> <span class="n">pearson_r</span><span class="p">)</span>
+    <span class="n">p_value_permut_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permut_r</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">pearson_r</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">permuted_corrs</span> <span class="o">&lt;=</span> <span class="n">pearson_r</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">permuted_corrs</span><span class="p">)</span> <span class="c1"># type: ignore</span>
+    <span class="n">p_value_permut_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permut_r</span> <span class="o">&lt;=</span> <span class="n">pearson_r</span><span class="p">)</span>
+    <span class="n">p_value_permut_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permut_r</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="n">pearson_r</span><span class="p">)</span>
 
-<span class="c1"># Print the p-value</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value obtained using permutation = </span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">p_value_permut_1t</span> <span class="o">=</span> <span class="n">p_value_permut_up</span> <span class="k">if</span> <span class="n">pearson_r</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">p_value_permut_low</span>
+
+<span class="c1"># Print the P value</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;One-sided P value obtained using permutation = </span><span class="si">{</span><span class="n">p_value_permut_1t</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P value obtained using permutation = 0.0012
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>One-sided P value obtained using permutation = 0.0012
 </pre></div>
 </div>
 </div>
@@ -2476,7 +2446,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 
 <span class="c1"># Annotate the observed mean difference</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">pearson_r</span><span class="p">,</span> <span class="c1"># type: ignore</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">pearson_r</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
     <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Observed r (</span><span class="si">{</span><span class="n">pearson_r</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
@@ -2491,7 +2461,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
             <span class="n">patches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lime&#39;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="c1"># Plot the histogram of the mean differences &lt;= observed mean difference</span>
-    <span class="n">extreme_diffs</span> <span class="o">=</span> <span class="n">permuted_corrs</span><span class="p">[</span><span class="n">permuted_mean_diffs</span> <span class="o">&lt;=</span> <span class="n">pearson_r</span><span class="p">]</span> <span class="c1"># type: ignore</span>
+    <span class="n">extreme_diffs</span> <span class="o">=</span> <span class="n">permuted_corrs</span><span class="p">[</span><span class="n">permuted_corrs</span> <span class="o">&lt;=</span> <span class="n">pearson_r</span><span class="p">]</span> <span class="c1"># type: ignore</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bin_edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">bin_edge</span> <span class="o">&lt;=</span> <span class="n">extreme_diffs</span><span class="p">):</span>
             <span class="n">patches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lime&#39;</span><span class="p">)</span> <span class="c1"># type: ignore</span>
@@ -2504,7 +2474,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <span class="c1"># Create a copy of the original patch for the legend</span>
 <span class="n">original_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Permuted r&#39;</span><span class="p">)</span>
 <span class="c1"># Create a patch for the legend</span>
-<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;P (</span><span class="si">{</span><span class="n">p_value_permutation</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">p_value_patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;One-tailed P (</span><span class="si">{</span><span class="n">p_value_permut_1t</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add the patches to the legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">original_patch</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_value_patch</span><span class="p">]);</span> <span class="c1"># type: ignore</span>
@@ -2512,7 +2482,29 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1bb9b2d2669f779b60b0f4c334b8f33431f80eab410f7d9202e47adc2b11092e.png" src="_images/1bb9b2d2669f779b60b0f4c334b8f33431f80eab410f7d9202e47adc2b11092e.png" />
+<img alt="_images/784aed62d7708f47ffa8c4be5431fa09e3b5571907a7c2180de633c90a0b3eed.png" src="_images/784aed62d7708f47ffa8c4be5431fa09e3b5571907a7c2180de633c90a0b3eed.png" />
+</div>
+</div>
+<p>To calculate the two-tailed P value in the bootstrap analysis of the correlation coefficient, we can sum the probabilities in both tails of the distribution. However, since the bootstrap distribution of r under the null hypothesis is symmetrical, we can also approximate the two-sided P value by doubling the more conservative of the two one-tailed P values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Maximum one-tail</span>
+<span class="n">p_value_permut_2t_max</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">p_value_permut_low</span><span class="p">,</span> <span class="n">p_value_permut_up</span><span class="p">)</span>
+
+<span class="c1"># Sum of the tails</span>
+<span class="n">p_value_permut_2t_sum</span> <span class="o">=</span> <span class="n">p_value_permut_low</span> <span class="o">+</span> <span class="n">p_value_permut_up</span>
+
+<span class="c1"># Print the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two-tailed permutation P value of bootstrap r (conservative) = </span><span class="si">{</span><span class="n">p_value_permut_2t_max</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two-tailed permutation P value of bootstrap r (both tails) = </span><span class="si">{</span><span class="n">p_value_permut_2t_sum</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Two-tailed permutation P value of bootstrap r (conservative) = 0.0024
+Two-tailed permutation P value of bootstrap r (both tails) = 0.0020
+</pre></div>
+</div>
 </div>
 </div>
 <p>All the P values we calculated for the correlation between the percentage of C20-22 fatty acids and insulin sensitivity are considerably smaller than the typical significance level of 0.05. This indicates strong evidence to reject the null hypothesis of no correlation between the variables. Therefore, we can confidently conclude that there is a statistically significant correlation between the percentage of C20-22 fatty acids and insulin sensitivity.</p>
@@ -2582,11 +2574,12 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <span class="n">df</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># same as np.cov(df[x], df[y])</span>
 
-<span class="c1"># Pearson correlation coefficient</span>
+<span class="c1"># Pearson correlation coefficient and P value</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
 <span class="n">pearsonr</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="c1">#pearson_r = np.corrcoef(df[x], df[y])[0,1]  # Pearson&#39;s r only (NumPy)</span>
 
-<span class="c1"># Spearman rank correlation coefficient</span>
+<span class="c1"># Spearman rank correlation analysis</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">spearmanr</span>
 <span class="n">spearmanr</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
 
@@ -2616,7 +2609,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <span class="n">inds</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
 <span class="n">bs_replicates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="n">pearsonr</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">bs_inds</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">bs_inds</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">pearsonr</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">bs_inds</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">bs_inds</span><span class="p">])</span><span class="o">.</span><span class="n">statistic</span>
     <span class="k">for</span> <span class="n">bs_inds</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">inds</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inds</span><span class="p">)),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="p">])</span>
 
@@ -2631,7 +2624,7 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
     <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
     <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">y</span><span class="p">],</span>
     <span class="n">paired</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Resample the pairs (x_i, y_i)</span>
-    <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arctanh</span><span class="p">(</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span>
+    <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arctanh</span><span class="p">(</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">statistic</span><span class="p">),</span>
     <span class="n">method</span><span class="o">=</span><span class="s1">&#39;per&#39;</span><span class="p">,</span>
     <span class="n">return_dist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -2653,21 +2646,32 @@ It’s also suitable for <em>ordinal data</em>, where the ranks of the values ar
 <section id="id4">
 <h4>P value using permutation<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate B replicates of r from permutated pairs</span>
-<span class="n">B</span> <span class="o">=</span> <span class="mi">10_000</span>
+<span class="n">B</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
-<span class="n">permuted_corrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="n">pearsonr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">permuted_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">pearsonr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">statistic</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 <span class="p">])</span>
 
 <span class="c1"># Calculate the P value using the distribution of Pearson&#39;s r replicates of permuted pairs,</span>
 <span class="c1"># considering the direction of the observed correlation coefficient</span>
 <span class="k">if</span> <span class="n">pearson_r</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">permuted_corrs</span> <span class="o">&gt;=</span> <span class="n">pearson_r</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">permuted_corrs</span><span class="p">)</span>
+    <span class="n">p_value_permut_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_r</span> <span class="o">&gt;=</span> <span class="n">pearson_r</span><span class="p">)</span>
+    <span class="n">p_value_permut_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_r</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">pearson_r</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">p_value_permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">permuted_corrs</span> <span class="o">&lt;=</span> <span class="n">pearson_r</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">permuted_corrs</span><span class="p">)</span>
+    <span class="n">p_value_permut_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_r</span> <span class="o">&lt;=</span> <span class="n">pearson_r</span><span class="p">)</span>
+    <span class="n">p_value_permut_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">permuted_r</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="n">pearson_r</span><span class="p">)</span>
+
+<span class="n">p_value_permut_1t</span> <span class="o">=</span> <span class="n">p_value_permut_up</span> <span class="k">if</span> <span class="n">pearson_r</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">p_value_permut_low</span>
+
+<span class="c1"># Maximum one-tail</span>
+<span class="n">p_value_permut_2t_max</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">p_value_permut_low</span><span class="p">,</span> <span class="n">p_value_permut_up</span><span class="p">)</span>
+
+<span class="c1"># Sum of the tails</span>
+<span class="n">p_value_permut_2t_sum</span> <span class="o">=</span> <span class="n">p_value_permut_low</span> <span class="o">+</span> <span class="n">p_value_permut_up</span>
+
 </pre></div>
 </div>
 </section>
