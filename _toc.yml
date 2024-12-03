@@ -29,5 +29,5 @@ parts:
     - caption: Fitting models to data
       chapters:
       - file: 33 - Simple linear regression
-    
+      - file: 35 - Comparing models
       
