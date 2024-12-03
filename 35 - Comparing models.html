@@ -1,0 +1,2061 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Comparing models &#8212; The Python Companion of Intuitive Biostatistics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QQY9FLLPJ8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '35 - Comparing models';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Simple linear regression" href="33%20-%20Simple%20linear%20regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="The Python Companion of Intuitive Biostatistics - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="The Python Companion of Intuitive Biostatistics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Python Companion Guide to “Intuitive Biostatistics”
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20scatter%20of%20continuous%20data.html">Quantifying scatter of continuous data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20distribution.html">The Gaussian distribution</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20interval%20of%20a%20mean.html">Confidence interval of a mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20interval%20of%20survival%20data.html">Confidence interval of survival data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical significance and data assumptions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="15%20-%20Statistical%20significance.html">Statistical significance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20power%20and%20sample%20size.html">Statistical power and sample size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24%20-%20Normality%20tests%20and%20outliers.html">Normality tests and outliers</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical tests</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20proportions.html">Comparing proportions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29%20-%20Comparing%20survival%20curves.html">Comparing survival curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30%20-%20Comparing%20two%20unpaired%20means.html">Comparing two unpaired means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31%20-%20Comparing%20paired%20data.html">Comparing paired data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32%20-%20Correlation.html">Correlation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fitting models to data</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="33%20-%20Simple%20linear%20regression.html">Simple linear regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Comparing models</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/master/35 - Comparing models.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/35 - Comparing models.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Comparing models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-regression-models-to-the-mean">Comparing regression models to the mean</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-horizontal-line-model">The horizontal line model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-squared">R-squared</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sums-of-squares-and-variation">Sums of squares and variation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-variance">Analysis of variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-variation">Sources of variation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-residuals">Visualizing the residuals</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#degrees-of-freedom">Degrees of freedom</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squares">Mean squares</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ratio">F-ratio</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-critical-values">Visualizing critical values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anova-table">ANOVA table</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-anova-table-in-python">Getting the ANOVA table in Python</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-models">Nested models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unpaired-t-test-as-a-special-case-of-regression">Unpaired t-test as a special case of regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-group-comparison">Two-group comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dummy-variables">Dummy variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-analysis-of-group-differences">Regression analysis of group differences</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-regression-with-dummy-variables">Performing regression with dummy variables</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#goodness-of-fit-and-r-squared">Goodness of fit and R-squared</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anova-table-for-t-test">ANOVA table for t-test</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ratio-and-t-statistic">F-ratio and t-statistic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grand-mean-model">Grand mean model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-distribution">F-distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">ANOVA table</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session information</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="comparing-models">
+<h1>Comparing models<a class="headerlink" href="#comparing-models" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>In biostatistics, we often encounter data that suggests relationships between variables. But how do we determine if these relationships are real and meaningful, or just due to chance? This is where the crucial concept of <strong>model comparison</strong> comes in. It allows us to systematically evaluate different explanations for our data and choose the one that best fits the evidence.</p>
+<p>In this chapter, we’ll focus on using <strong>linear regression</strong> as a powerful tool for understanding model comparison. We’ll start with the simplest possible model—a horizontal line representing the mean of our data—and then explore how adding variables improves our ability to explain and predict outcomes. By comparing these models, we gain valuable insights into the relationships within our data.</p>
+<p>We’ll delve into the <strong>ANOVA table</strong>, which helps us assess the improvement in fit offered by a more complex model. We’ll also discover how a familiar technique, the <em>unpaired t-test</em>, can be viewed as a special case of model comparison within the linear regression framework.</p>
+<p>Throughout the chapter, we’ll emphasize the connection between model comparison and P values, highlighting how these values help us make informed decisions about the strength of evidence for different hypotheses. We’ll also take a look forward to the <strong>F-test</strong> for unrelated models and discuss P-values in the context of model comparison and model selection.</p>
+</section>
+<section id="comparing-regression-models-to-the-mean">
+<h2>Comparing regression models to the mean<a class="headerlink" href="#comparing-regression-models-to-the-mean" title="Link to this heading">#</a></h2>
+<section id="the-horizontal-line-model">
+<h3>The horizontal line model<a class="headerlink" href="#the-horizontal-line-model" title="Link to this heading">#</a></h3>
+<p>We can use P values and R² from a <strong>linear regression</strong>, but let’s shift our focus to <em>comparing two models</em>: the linear regression model and the null hypothesis model. What is this null hypothesis model? It’s the <strong>simplest model</strong> we can imagine: a <em>horizontal line at the mean of all the y-values</em>.</p>
+<p>Imagine plotting the data points on a graph. The horizontal line model essentially says, “let’s just use the average y value to predict every single outcome, regardless of the X values.”  It’s like saying there’s <em>no relationship</em> between X and y.</p>
+<p>This simple model serves as a baseline for comparison. When we fit a linear regression model, we’re trying to do <em>better</em> than simply predicting the mean. We’re attempting to capture a trend in the data that allows us to make more accurate predictions.</p>
+<p>We’ll continue our analysis of the relationship between insulin sensitivity and C20-22 fatty acids, using the same dataset from the previous chapters on correlation and simple linear regression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>  <span class="c1"># For better aesthetics</span>
+
+<span class="c1"># Example data from last chapters (directly into a DataFrame)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">17.9</span><span class="p">,</span> <span class="mf">18.3</span><span class="p">,</span> <span class="mf">18.3</span><span class="p">,</span> <span class="mf">18.4</span><span class="p">,</span> <span class="mf">18.4</span><span class="p">,</span> <span class="mf">20.2</span><span class="p">,</span> <span class="mf">20.3</span><span class="p">,</span> <span class="mf">21.8</span><span class="p">,</span> <span class="mf">21.9</span><span class="p">,</span> <span class="mf">22.1</span><span class="p">,</span> <span class="mf">23.1</span><span class="p">,</span> <span class="mf">24.2</span><span class="p">,</span> <span class="mf">24.4</span><span class="p">],</span>
+    <span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">370</span><span class="p">,</span> <span class="mi">260</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">530</span><span class="p">,</span> <span class="mi">375</span><span class="p">],</span>
+<span class="p">})</span>
+
+<span class="c1"># --- Perform the linear regression ---</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;per_C2022_fatacids&#39;</span><span class="p">]</span>  <span class="c1"># More descriptive variable names</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;insulin_sensitivity&#39;</span><span class="p">]</span>
+
+<span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># --- Create the plots ---</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>  <span class="c1"># Slightly wider figure for better spacing</span>
+
+<span class="c1"># --- Subplot 1: Linear Regression Model ---</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;k+&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+
+<span class="n">y_line</span> <span class="o">=</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="n">intercept</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_line</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Plot the regression line</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;%C20-22 fatty acids&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Insulin sensitivity (mg/m²/min)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Linear regression model&#39;</span><span class="p">)</span>
+
+<span class="c1"># --- Subplot 2: Null Hypothesis Model (Horizontal Line) ---</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;k+&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+
+<span class="n">y_mean</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>  <span class="c1"># Calculate the mean of Y</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">y_mean</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">xmax</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Draw an horizontal line</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;%C20-22 fatty acids&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Insulin sensitivity (mg/m²/min)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Null hypothesis model (mean)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/efbcd3c81b5aed31bc590cbf2b0592a2f7f05352c4b3b30e281a69519636b5da.png" src="_images/efbcd3c81b5aed31bc590cbf2b0592a2f7f05352c4b3b30e281a69519636b5da.png" />
+</div>
+</div>
+<p>By comparing the linear regression model to the horizontal line model, we can answer crucial questions:</p>
+<ul class="simple">
+<li><p>Does our regression model actually improve our ability to predict y?</p></li>
+<li><p>Is the relationship between X and y strong enough to be considered statistically significant?</p></li>
+</ul>
+<p>To answer these questions, we’ll delve into the concepts of R², sums of squares, and the <strong>ANOVA table</strong>, all within the context of comparing these two models. This approach will give us a deeper understanding of how linear regression works and how we can use it to draw meaningful conclusions from our data.</p>
+</section>
+<section id="r-squared">
+<h3>R-squared<a class="headerlink" href="#r-squared" title="Link to this heading">#</a></h3>
+<p>In the previous chapter, we delved into the details of R-squared (R²) as a measure of how well a linear regression model fits our data. Now, let’s revisit R² from the perspective of model comparison.</p>
+<p>Remember that R² tells us the proportion of variance in the outcome variable (y) that is explained by our predictor variable (X). But what does this really mean? Now think of it this way; the horizontal line model (null hypothesis) simply uses the mean of Y to predict all values. The variability of the data points around this horizontal line represents the <strong>total variability</strong> in y. On the other side, the linear regression model tries to capture a trend in the data. If the regression line fits the data well, the variability of the points around this line will be <em>less</em> than the variability around the horizontal line.</p>
+<p>Essentially, the linear regression model “explains away” some of the variability in the data by accounting for the relationship between X and y. R² quantifies how much of that total variability is explained by the regression model.</p>
+<p>To put it mathematically, recall the formula for R²:</p>
+<div class="math notranslate nohighlight">
+\[R^2 = \frac{\text{TSS} - \text{RSS}}{\text{TSS}} = 1 - \frac{\text{RSS}}{\text{TSS}}\]</div>
+<p>where the <strong>total sum of squares (TSS)</strong> represents the total variability in <span class="math notranslate nohighlight">\(y\)</span> around the horizontal line (the mean <span class="math notranslate nohighlight">\(\bar y\)</span>), and the <strong>residual sum of squares (RSS)</strong> represents the remaining variability in <span class="math notranslate nohighlight">\(y\)</span> around the regression line after accounting for the effect of <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{TSS} = \sum{(y_i - \bar{y})^2}
+\qquad
+\text{RSS} = \sum{(y_i - \hat{y}_i)^2}
+\]</div>
+<p>R² is the proportion of the total variability (TSS) that is reduced by using the regression model instead of just the mean. A higher R² indicates a better fit, meaning the regression model explains more of the variation in the data compared to the simple horizontal line model.</p>
+</section>
+<section id="sums-of-squares-and-variation">
+<h3>Sums of squares and variation<a class="headerlink" href="#sums-of-squares-and-variation" title="Link to this heading">#</a></h3>
+<p>We’ve been using the terms TSS, RSS, and TSS-RSS to represent the different components of variation. However, we might also encounter the terms <strong>SST</strong>, <strong>SSE</strong>, and <strong>SSR</strong>, which stand for <em>sum of squares total</em>, <em>sum of squares error</em> (errors are residuals), and <em>sum of squares regression</em>, respectively. These terms are equivalent to the ones we’ve been using and represent the same underlying concepts. So we can also write:</p>
+<div class="math notranslate nohighlight">
+\[R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}}\]</div>
+<p><strong>Important Note:</strong> In Statsmodels, the <code class="docutils literal notranslate"><span class="pre">ssr</span></code> attribute of a regression results object refers to the <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.regression.linear_model.OLSResults.ssr.html">sum of squared <em>residuals</em> (SSE)</a>, not the sum of squares due to <em>regression</em> (SSR). This is different from the conventional use of the abbreviation “SSR”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define functions to compute RSS and estimate y</span>
+<span class="k">def</span> <span class="nf">compute_sse</span><span class="p">(</span><span class="n">y_estimate</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+  <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_estimate</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">estimate_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">intercept</span> <span class="o">+</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">X</span>
+
+<span class="c1"># Calculate RSS and TSS</span>
+<span class="n">sse</span> <span class="o">=</span> <span class="n">compute_sse</span><span class="p">(</span><span class="n">estimate_y</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">intercept</span><span class="o">=</span><span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="n">slope</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># RSS</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">compute_sse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># SST</span>
+<span class="c1"># sst = (y  - y.mean()).pow(2).sum()  # SST</span>
+<span class="n">ssr</span> <span class="o">=</span> <span class="n">sst</span> <span class="o">-</span> <span class="n">sse</span>  <span class="c1"># TSS - RSS</span>
+
+<span class="c1"># Print RSS, TSS and R²</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scatter around the regression line (RSS or SSE): </span><span class="si">{</span><span class="n">sse</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scatter around the horizontal line (TSS or SST): </span><span class="si">{</span><span class="n">sst</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variability explained by the regression model (SSR): </span><span class="si">{</span><span class="n">ssr</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R²: </span><span class="si">{</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">sse</span><span class="o">/</span><span class="n">sst</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Proportion of variation explained by the regression line (SSR/SST)= </span><span class="si">{</span><span class="n">ssr</span><span class="o">/</span><span class="n">sst</span><span class="si">:</span><span class="s2">3.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scatter around the regression line (SSE/SST) accounts for </span><span class="si">{</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">ssr</span><span class="o">/</span><span class="n">sst</span><span class="p">)</span><span class="si">:</span><span class="s2">3.1%</span><span class="si">}</span><span class="s2"> of the total variation&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scatter around the regression line (RSS or SSE): 63361.4
+Scatter around the horizontal line (TSS or SST): 155642.3
+Variability explained by the regression model (SSR): 92280.9
+R²: 0.5929
+Proportion of variation explained by the regression line (SSR/SST)= 59.3%
+Scatter around the regression line (SSE/SST) accounts for 40.7% of the total variation
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis-of-variance">
+<h3>Analysis of variance<a class="headerlink" href="#analysis-of-variance" title="Link to this heading">#</a></h3>
+<section id="sources-of-variation">
+<h4>Sources of variation<a class="headerlink" href="#sources-of-variation" title="Link to this heading">#</a></h4>
+<p>To formally compare the null hypothesis model (horizontal line) with the linear regression model, we need a way to systematically assess how much the regression model improves our ability to explain the variation in the data. This is where the concept of <strong>analysis of variance (ANOVA)</strong> becomes essential.</p>
+<p>Before we introduce the structured framework that ANOVA provides, let’s first break down the key sources of variation and their associated sums of squares:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Hypothesis</p></th>
+<th class="head text-left"><p>Scatter from</p></th>
+<th class="head text-left"><p>Variation</p></th>
+<th class="head text-center"><p>Sum of squares</p></th>
+<th class="head text-left"><p>Variation</p></th>
+<th class="head text-left"><p>R²</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Null</p></td>
+<td class="text-left"><p>Horizontal line</p></td>
+<td class="text-left"><p>Total (SST)</p></td>
+<td class="text-center"><p>155642</p></td>
+<td class="text-left"><p>100.0%</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Alternative</p></td>
+<td class="text-left"><p>Regression line</p></td>
+<td class="text-left"><p>Unexplained (SSE)</p></td>
+<td class="text-center"><p>63361</p></td>
+<td class="text-left"><p>40.7%</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Difference</p></td>
+<td class="text-left"><p>Improvement</p></td>
+<td class="text-left"><p>Explained (SSR)</p></td>
+<td class="text-center"><p>92281</p></td>
+<td class="text-left"><p>59.3%</p></td>
+<td class="text-left"><p>0.593</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This table highlights the following:</p>
+<ul class="simple">
+<li><p><strong>Total variation (SST)</strong>: the ‘null hypothesis’ row represents the total variability in the data around the mean, captured by the sum of squares of 155642. This is our baseline.</p></li>
+<li><p><strong>Unexplained or <em>random</em> variation (SSE)</strong>: the ‘alternative hypothesis’ row shows the variability that remains unexplained after fitting the regression line (63361).</p></li>
+<li><p><strong>Explained variation (SSR)</strong>: the ‘difference’ row shows how much variability is explained by the regression model (92281). This is the improvement we gain by using the regression line instead of just the mean.</p></li>
+<li><p>R-squared: as we’ve seen, R² (0.593) is the proportion of the total variation explained by the regression model. It’s the ratio of the explained variation (SSR) to the total variation (SST).</p></li>
+</ul>
+</section>
+<section id="visualizing-the-residuals">
+<h4>Visualizing the residuals<a class="headerlink" href="#visualizing-the-residuals" title="Link to this heading">#</a></h4>
+<p>To better understand the difference in scatter between the two models, let’s visualize the residuals.  Recall that a residual is the vertical distance between an observed data point and the model’s prediction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Residuals from linear regression</span>
+<span class="n">resid_lin</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">estimate_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span><span class="p">))</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="c1"># Residuals from horizontal line (mean)</span>
+<span class="n">resid_mean</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">resid_lin</span><span class="p">,</span> <span class="n">resid_mean</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
+    <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Distance from mean or from line&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Linear regression&#39;</span><span class="p">,</span> <span class="s1">&#39;Horizontal line (mean)&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Residuals of each point from both models&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e142a65a1b3e74a1d52afcb99821b99b0088e893504bd40e522a4e31b5aa78c5.png" src="_images/e142a65a1b3e74a1d52afcb99821b99b0088e893504bd40e522a4e31b5aa78c5.png" />
+</div>
+</div>
+<p>The spread of the residuals is visibly smaller around the linear regression line compared to the horizontal line, indicating a better fit for the linear regression model.</p>
+</section>
+<section id="degrees-of-freedom">
+<h4>Degrees of freedom<a class="headerlink" href="#degrees-of-freedom" title="Link to this heading">#</a></h4>
+<p>Each source of variation in the ANOVA table has an associated number of <strong>degrees of freedom (DF)</strong>. Degrees of freedom represent the number of independent pieces of information available to estimate a parameter:</p>
+<ul class="simple">
+<li><p>Regression: this is equal to the number of predictor variables in the model. In simple linear regression, we have <em>only one predictor</em> <span class="math notranslate nohighlight">\(X\)</span>, so <span class="math notranslate nohighlight">\(\text{DF}_\text{regression} = 1\)</span>.</p></li>
+<li><p>Error (residual, or random): this is calculated as the total number of observations (<span class="math notranslate nohighlight">\(n\)</span>) minus the number of parameters estimated in the regression model. In simple linear regression, we estimate two parameters (the intercept and the slope), so <span class="math notranslate nohighlight">\(\text{DF}_\text{error} = n - 2\)</span>.</p></li>
+<li><p>Total (the null hypothesis, horizontal line, or mean): this is equal to the total number of observations minus 1 (because we know the mean), which is <span class="math notranslate nohighlight">\(\text{DF}_\text{total} = n - 1\)</span>.</p></li>
+</ul>
+<p>Essentially, the total degrees of freedom (<span class="math notranslate nohighlight">\(n - 1\)</span>) are partitioned between the regression model (1) and the remaining error (<span class="math notranslate nohighlight">\(n - 2\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\text{DF}_\text{total} =  \text{DF}_\text{error} + \text{DF}_\text{regression}\]</div>
+<p>This reflects that the linear model has one more parameter (the slope) than the null hypothesis model (which only estimates the mean).</p>
+<p>Degrees of freedom are crucial because they affect the calculation of the mean squares and the F-statistic in the ANOVA table. They essentially adjust for the number of parameters being estimated, ensuring that our statistical tests are accurate.</p>
+</section>
+<section id="mean-squares">
+<h4>Mean squares<a class="headerlink" href="#mean-squares" title="Link to this heading">#</a></h4>
+<p>In the ANOVA table, we don’t just use the sums of squares (SST, SSR, SSE) directly. We also calculate <strong>mean squares (MS)</strong>, also called <em>estimates of variance</em>, which are essentially “averaged” sums of squares. They represent the average variation attributed to each source, adjusted for their degrees of freedom.</p>
+<p>Here’s how we calculate the mean squares:</p>
+<ul>
+<li><p><strong>MSR (mean square regression)</strong>: SSR (sum of squares regression) divided by its degrees of freedom (<span class="math notranslate nohighlight">\(\text{DF} = 1\)</span> in simple linear regression):</p>
+<div class="math notranslate nohighlight">
+\[\text{MSR} = \frac{\text{SSR}}{\text{DF}_\text{regression}} = \text{SST} - \text{SSE}\]</div>
+</li>
+<li><p><strong>MSE (mean square error)</strong>: SSE (sum of squares error) divided by its degrees of freedom (<span class="math notranslate nohighlight">\(\text{DF} = n - 2\)</span> in simple linear regression). Remind the formula discussed in the previous chapter:</p>
+<div class="math notranslate nohighlight">
+\[\text{MSE} = \frac{\text{RSS}}{n - p - 1} = \frac{\text{SSE}}{n - 2}\]</div>
+</li>
+</ul>
+<p>Mean squares allow us to compare the different sources of variation on a more even playing field, as they account for the different degrees of freedom associated with each source. In particular, the MS are essential for calculating the F-ratio, which is a key statistic in the ANOVA table for testing the significance of the regression model.</p>
+</section>
+<section id="f-ratio">
+<h4>F-ratio<a class="headerlink" href="#f-ratio" title="Link to this heading">#</a></h4>
+<p>We’ve seen the F-test briefly in previous chapters, both in the context of comparing variances for unpaired data and in linear regression analysis. Now, we’ll encounter it again as a key component of the ANOVA table.</p>
+<p>The <strong>F-ratio</strong> is a measure of how much the regression model <strong>improves</strong> our ability to explain the variation in the data compared to just using the mean (the null hypothesis model). It essentially compares the amount of variation <em>explained</em> by the regression line (SSR) to the amount of variation that remains <em>unexplained</em> (SSE), but it does so while taking the degrees of freedom into account:</p>
+<div class="math notranslate nohighlight">
+\[F = \frac{\text{MSR}}{\text{MSE}} = \frac{\text{SST} - \text{SSE}}{\text{SSE}/(n - 2)}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span>  <span class="c1"># Number of observations</span>
+
+<span class="c1"># Degrees of freedom:</span>
+<span class="n">df_regression</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># DF for regression (explained variation)</span>
+<span class="n">df_residual</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span>  <span class="c1"># DF for residuals (unexplained variation)</span>
+
+<span class="n">f_value</span> <span class="o">=</span> <span class="p">((</span><span class="n">sst</span> <span class="o">-</span> <span class="n">sse</span><span class="p">)</span> <span class="o">/</span> <span class="n">df_regression</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">sse</span> <span class="o">/</span> <span class="n">df_residual</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F ratio = </span><span class="si">{</span><span class="n">f_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F ratio = 16.021
+</pre></div>
+</div>
+</div>
+</div>
+<p>By dividing MSR by MSE, the F-ratio tells us how much larger the explained variation is relative to the unexplained variation, adjusted for their respective degrees of freedom.</p>
+<p>A larger F-ratio indicates that the regression model explains a substantial amount of variation compared to the variation that remains unexplained. This suggests that the regression model provides a significantly better fit to the data than simply using the mean.</p>
+</section>
+<section id="p-value">
+<h4>P value<a class="headerlink" href="#p-value" title="Link to this heading">#</a></h4>
+<p>The distribution of the F-ratio is known when the null hypothesis is true. This allows us to compute a P value for any observed F-ratio, given the specific degrees of freedom for the <em>numerator</em> and <em>denominator</em>.</p>
+<p>The P-value tells us the probability of observing an F-ratio as extreme as, or more extreme than, the one we calculated, <em>if the null hypothesis were true</em>.</p>
+<p>To calculate the P value, we use the <code class="docutils literal notranslate"><span class="pre">scipy.stats.f</span></code> module in Python, which provides functions for working with the F-distribution. Specifically, we use the <code class="docutils literal notranslate"><span class="pre">sf()</span></code> function (survival function) to find the area under the F-distribution curve to the right of our calculated F-ratio. This area represents the P value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">f</span>
+
+<span class="c1"># Calculate the P-value using the survival function (sf) of the F-distribution</span>
+<span class="n">p_value</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">dfn</span><span class="o">=</span><span class="n">df_regression</span><span class="p">,</span> <span class="n">dfd</span><span class="o">=</span><span class="n">df_residual</span><span class="p">)</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">f_value</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value = </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P value = 0.0021
+</pre></div>
+</div>
+</div>
+</div>
+<p>In our example, with an F-ratio of 16.0 and degrees of freedom of 1 and 11, the P value is 0.0021. This means that if there were truly no relationship between X and y, there would only be a 0.21% chance of observing an F-ratio this large or larger due to random sampling. This small P value provides strong evidence against the null hypothesis, suggesting that the linear regression model provides a significantly better fit to the data than the horizontal line model.</p>
+</section>
+<section id="visualizing-critical-values">
+<h4>Visualizing critical values<a class="headerlink" href="#visualizing-critical-values" title="Link to this heading">#</a></h4>
+<p>Just like with the t-test, we can visualize how the P value and critical value are determined based on the F-statistic and the F-distribution.</p>
+<p>The F-distribution represents the probability of observing different F-ratios under the null hypothesis. The critical value is the F-value that corresponds to your chosen significance level (e.g., alpha = 0.05). If the calculated F-ratio exceeds the critical value, it falls within the rejection region, and we reject the null hypothesis.</p>
+<p>The P value is the area under the F-distribution curve to the right of your calculated F-ratio. It represents the probability of observing an F-ratio as extreme as, or more extreme than, the one you calculated, if the null hypothesis were true. A smaller P value indicates stronger evidence against the null hypothesis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Significance level (alpha)</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># Calculate critical F-value</span>
+<span class="n">f_crit</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">dfn</span><span class="o">=</span><span class="n">df_regression</span><span class="p">,</span> <span class="n">dfd</span><span class="o">=</span><span class="n">df_residual</span><span class="p">)</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">)</span>
+
+<span class="c1"># Generate x values for plotting</span>
+<span class="n">x_f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">hx_f</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x_f</span><span class="p">,</span> <span class="n">df_regression</span><span class="p">,</span> <span class="n">df_residual</span><span class="p">)</span>
+
+<span class="c1"># Create the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_f</span><span class="p">,</span> <span class="n">hx_f</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="c1"># Critical value</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">f_crit</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;F* (</span><span class="si">{</span><span class="n">f_crit</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Alpha area</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x_f</span><span class="p">[</span><span class="n">x_f</span> <span class="o">&gt;=</span> <span class="n">f_crit</span><span class="p">],</span>
+    <span class="n">hx_f</span><span class="p">[</span><span class="n">x_f</span> <span class="o">&gt;=</span> <span class="n">f_crit</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;α (</span><span class="si">{</span><span class="n">α</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1"># F-statistic</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">f_value</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;F (</span><span class="si">{</span><span class="n">f_value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1"># P-value area</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x_f</span><span class="p">[</span><span class="n">x_f</span> <span class="o">&gt;=</span> <span class="n">f_value</span><span class="p">],</span>
+    <span class="n">hx_f</span><span class="p">[</span><span class="n">x_f</span> <span class="o">&gt;=</span> <span class="n">f_value</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;P (</span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F-distribution (DFn=</span><span class="si">{</span><span class="n">df_regression</span><span class="si">}</span><span class="s2">, DFd=</span><span class="si">{</span><span class="n">df_residual</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d4e64152d62a0a6e099604689c2dd8f5e1e97cb6bfca52dbeb35dae5a57a0bb0.png" src="_images/d4e64152d62a0a6e099604689c2dd8f5e1e97cb6bfca52dbeb35dae5a57a0bb0.png" />
+</div>
+</div>
+<p>In our example, the calculated F-ratio of 16.0 falls far to the right of the critical value, and the shaded area (P value) is very small. This visually confirms the strong evidence against the null hypothesis, supporting the conclusion that the linear regression model provides a significantly better fit to the data than the horizontal line model.</p>
+</section>
+<section id="anova-table">
+<h4>ANOVA table<a class="headerlink" href="#anova-table" title="Link to this heading">#</a></h4>
+<p>We’ve now explored the key components of analysis of variance: sums of squares (SST, SSR, SSE), degrees of freedom, and mean squares (MSR, MSE). These elements come together in a structured way within the <strong>ANOVA table</strong>. This table provides a framework for comparing the horizontal line model to the linear regression model and formally testing the significance of the regression.</p>
+<p>Here’s the ANOVA table for our example comparing the fit of a horizontal line to the best-fit linear regression line:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Source of variation</p></th>
+<th class="head text-left"><p>Hypothesis</p></th>
+<th class="head text-left"><p>Scatter from</p></th>
+<th class="head text-left"><p>Sum of squares</p></th>
+<th class="head text-left"><p>DF</p></th>
+<th class="head text-left"><p>MS</p></th>
+<th class="head text-left"><p>F ratio</p></th>
+<th class="head text-left"><p>P value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Regression (model) - SSR</p></td>
+<td class="text-left"><p>Difference</p></td>
+<td class="text-left"><p>Improvement</p></td>
+<td class="text-left"><p>92281</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>92281</p></td>
+<td class="text-left"><p>16.0</p></td>
+<td class="text-left"><p>0.0021</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Error (residual) - SSE</p></td>
+<td class="text-left"><p>Alternative</p></td>
+<td class="text-left"><p>Regression line</p></td>
+<td class="text-left"><p>63361</p></td>
+<td class="text-left"><p>11</p></td>
+<td class="text-left"><p>5760.1</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Total - SST</p></td>
+<td class="text-left"><p>Null</p></td>
+<td class="text-left"><p>Horizontal line</p></td>
+<td class="text-left"><p>155642</p></td>
+<td class="text-left"><p>12</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Interpretation:</p>
+<ul class="simple">
+<li><p>The table partitions the total variation (SST) into the variation explained by the regression model (SSR) and the unexplained variation (SSE).</p></li>
+<li><p>The degrees of freedom (DF) are shown for each source of variation.</p></li>
+<li><p>The mean squares (MS) are calculated by dividing the sum of squares by the corresponding degrees of freedom.</p></li>
+<li><p>The F-ratio, calculated as MSR/MSE, compares the explained and unexplained variation, adjusted for their degrees of freedom.</p></li>
+<li><p>The P value helps us determine the statistical significance of the F-ratio.</p></li>
+</ul>
+<p>If the null hypothesis were true (i.e., if there were no relationship between X and y), we would expect the two MS values (MSR and MSE) to be similar, resulting in an F-ratio close to 1.0. However, in our example, the F-ratio is 16.0, suggesting that the regression model explains significantly more variation than would be expected by chance. This small P value (0.0021) provides strong evidence against the null hypothesis.</p>
+</section>
+<section id="getting-the-anova-table-in-python">
+<h4>Getting the ANOVA table in Python<a class="headerlink" href="#getting-the-anova-table-in-python" title="Link to this heading">#</a></h4>
+<p>In the previous chapter on linear regression, we used the Statsmodels library to fit a linear regression model. Recall that the <code class="docutils literal notranslate"><span class="pre">summary()</span></code> method of the fitted model object provides a table with various statistics, including:</p>
+<ul class="simple">
+<li><p>‘Df Model’: degrees of freedom for the regression model.</p></li>
+<li><p>‘Df Residuals’: degrees of freedom for the residuals.</p></li>
+<li><p>‘R-squared’: the coefficient of determination.</p></li>
+<li><p>‘F-statistic’: the F-statistic from the overall model F-test.</p></li>
+<li><p>‘Prob (F-statistic)’: the P value associated with the F-statistic.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="c1"># Suppress all UserWarnings, incl. messages related to small sample size</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
+
+<span class="n">model_linear_reg</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;insulin_sensitivity ~ per_C2022_fatacids&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">results_linear_reg</span> <span class="o">=</span> <span class="n">model_linear_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Classical output of the OLS result table</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_linear_reg</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                             OLS Regression Results                            
+===============================================================================
+Dep. Variable:     insulin_sensitivity   R-squared:                       0.593
+Model:                             OLS   Adj. R-squared:                  0.556
+Method:                  Least Squares   F-statistic:                     16.02
+Date:                 Tue, 03 Dec 2024   Prob (F-statistic):            0.00208
+Time:                         18:36:22   Log-Likelihood:                -73.642
+No. Observations:                   13   AIC:                             151.3
+Df Residuals:                       11   BIC:                             152.4
+Df Model:                            1                                         
+Covariance Type:             nonrobust                                         
+===============================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<p>These values correspond directly to the values in the ANOVA table we constructed. Statsmodels also provides <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.stats.anova.anova_lm.html#statsmodels.stats.anova.anova_lm">a convenient way to generate a complete ANOVA table using the <code class="docutils literal notranslate"><span class="pre">anova_lm()</span></code> function</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.anova</span> <span class="kn">import</span> <span class="n">anova_lm</span>
+
+<span class="c1"># Print the ANOVA table</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">results_linear_reg</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                      df      sum_sq     mean_sq        F  PR(&gt;F)
+per_C2022_fatacids   1.0  92280.9337  92280.9337  16.0206  0.0021
+Residual            11.0  63361.3740   5760.1249      NaN     NaN
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="nested-models">
+<h3>Nested models<a class="headerlink" href="#nested-models" title="Link to this heading">#</a></h3>
+<p>As we’ve seen, the F-test approach described in this chapter is specifically designed to compare <strong>nested models</strong>, where <em>one model is a simpler case of the other</em>. Our linear regression example fits this criterion perfectly: the null hypothesis model (horizontal line) is nested within the linear regression model because it’s equivalent to setting the slope of the regression line to zero. This nesting relationship is crucial because it allows us to directly assess the improvement in fit gained by adding the predictor variable (X) to the model. While powerful for comparing nested models, it’s important to remember that this particular F-test doesn’t apply to situations where we want to compare unrelated models. We’ll explore methods for comparing those types of models later in the book.</p>
+</section>
+</section>
+<section id="unpaired-t-test-as-a-special-case-of-regression">
+<h2>Unpaired t-test as a special case of regression<a class="headerlink" href="#unpaired-t-test-as-a-special-case-of-regression" title="Link to this heading">#</a></h2>
+<p>In a previous chapter, we explored the unpaired t-test, a common tool for comparing the means of two independent groups. Now, we’ll revisit this familiar test from a fresh perspective, i.e., through the lens of linear regression. Surprisingly, the unpaired t-test can be seen as a special case of linear regression where we use a <strong>binary variable</strong> to represent group membership. This connection not only deepens our understanding of the t-test but also highlights the versatility of linear regression as a framework for statistical analysis.</p>
+<section id="two-group-comparison">
+<h3>Two-group comparison<a class="headerlink" href="#two-group-comparison" title="Link to this heading">#</a></h3>
+<p>At its heart, the unpaired t-test is a way to compare two models:</p>
+<ol class="arabic simple">
+<li><p>The null hypothesis model (horizontal line): this model assumes there’s no difference between the means of the two groups. It’s represented by a horizontal line at the <em>overall mean of the combined data</em>.</p></li>
+<li><p>The alternative hypothesis model (two means): this model allows for a <em>difference in means between the two groups</em>. In the context of regression, this is represented by a model with a single dummy variable to distinguish the groups.</p></li>
+</ol>
+<p>When we perform an unpaired t-test, we’re essentially asking: <em>does the model with separate means (represented by the dummy variable) provide a significantly better fit to the data than the model with a single mean (the horizontal line)?</em></p>
+</section>
+<section id="dummy-variables">
+<h3>Dummy variables<a class="headerlink" href="#dummy-variables" title="Link to this heading">#</a></h3>
+<p>To bridge the gap between the unpaired t-test and linear regression, we need a way to represent group membership within the framework of regression. This is where <strong>dummy variables</strong> come in.</p>
+<p>A dummy variable (also called an <em>indicator variable</em>) is a binary variable that takes on the value of 0 or 1 to indicate the absence or presence of a categorical effect that may shift the outcome. In the case of the unpaired t-test, we have two groups we want to compare. We can create a dummy variable, often denoted as X, to represent these groups:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">0</span></code>: represents individuals in the first group (e.g., the control group).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">1</span></code>: represents individuals in the second group (e.g., the treatment group).</p></li>
+</ul>
+<p>Remid the simple linear regression equation <span class="math notranslate nohighlight">\(y = \text{intercept} + \text{slope} \times X\)</span>:</p>
+<ul class="simple">
+<li><p>When <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">0</span></code> (first group), the equation simplifies to <span class="math notranslate nohighlight">\(y = \text{intercept}\)</span>, this means the intercept represents the <em>mean of the first group</em>. Indeed, the intercept of the regression line will be placed in a way that <em>minimizes</em> the overall distance between the line and these data points. This position often corresponds to the mean of the first group’s y values.</p></li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">1</span></code> (second group), the equation becomes <span class="math notranslate nohighlight">\(y = \text{intercept} + \text{slope}\)</span>, this means the slope represents the <em>difference</em> in means between the second group and the first group.</p></li>
+</ul>
+<p><em>Important note: while the intercept often closely approximates the mean of the first group, it might not be exactly equal to the mean. This is because the regression line is fitted using all the data points (from both groups), not just the data points where X = 0. However, the intercept will generally provide a good estimate of the first group’s mean.</em></p>
+<p>By incorporating this dummy variable into our regression model, we can model the difference in means between the two groups:</p>
+<ul class="simple">
+<li><p>If the <strong>slope</strong> of the regression line (associated with the dummy variable) is <em>statistically significant</em>, it means that there’s strong evidence for a difference in means between the groups, and we would reject the null hypothesis.</p></li>
+<li><p>If the slope is not significant, it suggests that the model with a single mean (<em>horizontal line</em>) is sufficient, and we fail to reject the null hypothesis.</p></li>
+</ul>
+</section>
+<section id="regression-analysis-of-group-differences">
+<h3>Regression analysis of group differences<a class="headerlink" href="#regression-analysis-of-group-differences" title="Link to this heading">#</a></h3>
+<p>Let’s revisit the data from Frazier and colleagues (2006), where they investigated the impact of norepinephrine on bladder muscle relaxation in rats. We’ll focus on their measurements of maximum relaxation (%E<sub>max</sub>) achieved with high doses of norepinephrine, comparing the responses of old and young rats. To represent these groups within a regression framework, we’ll assign a dummy variable X as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">0</span></code>: old rats</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">1</span></code>: young rats</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data from the chapter on unpaired t-test</span>
+<span class="n">old</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">20.8</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">33.3</span><span class="p">,</span> <span class="mf">29.4</span><span class="p">,</span> <span class="mf">38.9</span><span class="p">,</span> <span class="mf">29.4</span><span class="p">,</span> <span class="mf">52.6</span><span class="p">,</span> <span class="mf">14.3</span><span class="p">])</span>  <span class="c1"># Old rats</span>
+<span class="n">yng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">45.5</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mf">60.7</span><span class="p">,</span> <span class="mf">61.5</span><span class="p">,</span> <span class="mf">61.1</span><span class="p">,</span> <span class="mf">65.5</span><span class="p">,</span> <span class="mf">42.9</span><span class="p">,</span> <span class="mf">37.5</span><span class="p">])</span>       <span class="c1"># Young rats</span>
+
+<span class="c1"># Create the DataFrame with the dummy variable &#39;X&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">old</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">yng</span><span class="p">),</span>  <span class="c1"># 0 for old, 1 for young</span>
+    <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">old</span><span class="p">,</span> <span class="n">yng</span><span class="p">])</span>        <span class="c1"># Combine the data</span>
+<span class="p">})</span>
+
+<span class="c1"># Print a random sample of the data</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12</th>
+      <td>1</td>
+      <td>61.5</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1</td>
+      <td>45.5</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>20.8</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1</td>
+      <td>60.7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>2.8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the figure and axes</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># --- Box and swarm plot ---</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">boxprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;none&#39;</span><span class="p">},</span>  <span class="c1"># Make the boxplot transparent</span>
+<span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\%\text</span><span class="si">{E}</span><span class="s2">_\text</span><span class="si">{max}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s1">&#39;Old&#39;</span><span class="p">,</span> <span class="s1">&#39;Young&#39;</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Boxplots&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- Regression plot ---</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">ci</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">line_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">})</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\%\text</span><span class="si">{E}</span><span class="s2">_\text</span><span class="si">{max}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Comparing means by linear regression&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- Adjust layout ---</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4f7007420f7f778f082c43bfbe43f26122f2637855b38fccf6bf47b43a5b1f46.png" src="_images/4f7007420f7f778f082c43bfbe43f26122f2637855b38fccf6bf47b43a5b1f46.png" />
+</div>
+</div>
+<section id="performing-regression-with-dummy-variables">
+<h4>Performing regression with dummy variables<a class="headerlink" href="#performing-regression-with-dummy-variables" title="Link to this heading">#</a></h4>
+<p>Now that we’ve established how our dummy variable (<code class="docutils literal notranslate"><span class="pre">X</span></code>) represents the two groups (old and young rats), let’s perform the linear regression analysis. We’ll use the same <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> library we’ve employed in previous chapters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the linear regression model using the formula API</span>
+<span class="n">model_ttest</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;y ~ X&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">results_ttest</span> <span class="o">=</span> <span class="n">model_ttest</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Print the regression results</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_ttest</span><span class="o">.</span><span class="n">summary2</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Results: Ordinary least squares
+=================================================================
+Model:              OLS              Adj. R-squared:     0.418   
+Dependent Variable: y                AIC:                139.1606
+Date:               2024-12-03 18:36 BIC:                140.8271
+No. Observations:   17               Log-Likelihood:     -67.580 
+Df Model:           1                F-statistic:        12.47   
+Df Residuals:       15               Prob (F-statistic): 0.00302 
+R-squared:          0.454            Scale:              188.28  
+------------------------------------------------------------------
+                Coef.   Std.Err.    t     P&gt;|t|    [0.025   0.975]
+------------------------------------------------------------------
+Intercept      30.1667    4.5738  6.5955  0.0000  20.4178  39.9155
+X              23.5458    6.6674  3.5315  0.0030   9.3346  37.7571
+-----------------------------------------------------------------
+Omnibus:               0.260        Durbin-Watson:          2.044
+Prob(Omnibus):         0.878        Jarque-Bera (JB):       0.358
+Skew:                  -0.240       Prob(JB):               0.836
+Kurtosis:              2.476        Condition No.:          3    
+=================================================================
+Notes:
+[1] Standard Errors assume that the covariance matrix of the
+errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">model.summary2()</span></code> output provides a wealth of information. Here are the key elements to focus on in this context:</p>
+<ul class="simple">
+<li><p>Intercept: the intercept estimate represents the <strong>mean</strong> %E<sub>max</sub> for the old rats (where <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">0</span></code>).</p></li>
+<li><p>Coefficient for X: this coefficient represents the <strong>difference</strong> in mean %E<sub>max</sub> between the young rats (<code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">1</span></code>) and the old rats (<code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">0</span></code>). Because our dummy variable X takes on values of 0 and 1, the slope of the best-fit regression line directly equals this difference in means. In our analysis, the slope is 23.55, with a 95% confidence interval ranging from 9.33 to 37.76. This matches the results we obtained from the unpaired t-test. Importantly, the confidence interval of the slope is identical to the confidence interval for the difference between the two means.</p></li>
+<li><p>t-statistic and P value for X: these values test the <strong>statistical significance</strong> of the difference in means between the two groups. A small P value (typically less than 0.05) indicates strong evidence against the null hypothesis of no difference. The P value from the linear regression tests the null hypothesis that the slope is zero, which is another way of stating the null hypothesis of the unpaired t-test: that the two populations have the same mean. As expected, the P value determined by linear regression is identical to the P value we obtained from the t-test.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Descriptive statistics</span>
+<span class="n">old_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">old</span><span class="p">)</span>
+<span class="n">yng_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">yng</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean of the group &#39;old&#39;:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">old_mean</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean of the group &#39;young&#39;:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">yng_mean</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difference in mean:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">yng_mean</span> <span class="o">-</span> <span class="n">old_mean</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of the group &#39;old&#39;: 30.166667
+Mean of the group &#39;young&#39;: 53.7125
+Difference in mean: 23.545833
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
+
+<span class="c1"># Student&#39;s t-test using Pingouin</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">ttest</span><span class="p">(</span><span class="n">yng</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># type: ignore</span>
+<span class="c1"># ix=data[&#39;X&#39;]==0; pg.ttest(data.loc[~ix, &#39;y&#39;], data.loc[ix, &#39;y&#39;], correction=False)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>T</th>
+      <th>dof</th>
+      <th>alternative</th>
+      <th>p-val</th>
+      <th>CI95%</th>
+      <th>cohen-d</th>
+      <th>BF10</th>
+      <th>power</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>T-test</th>
+      <td>3.531488</td>
+      <td>15</td>
+      <td>two-sided</td>
+      <td>0.003022</td>
+      <td>[9.33, 37.76]</td>
+      <td>1.715995</td>
+      <td>12.56</td>
+      <td>0.909532</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Notice that the t-statistic and P value for the <code class="docutils literal notranslate"><span class="pre">X</span></code> coefficient are virtually identical to the results we obtained from a <em>Student’s t-test</em> assuming equal variances. Now, one of the assumptions of OLS is <strong>homoscedasticity</strong>, which means that the variance of the errors (residuals) is constant across all levels of the predictor variables. So that, when we use a dummy variable to represent two groups, the homoscedasticity assumption implies that the variances of the two groups are equal. Therefore, when we perform a regression with a dummy variable, it <em>implicitly assumes equal variances</em> between the groups, leading to a t-statistic that’s equivalent to Student’s t-test.</p>
+</section>
+<section id="goodness-of-fit-and-r-squared">
+<h4>Goodness of fit and R-squared<a class="headerlink" href="#goodness-of-fit-and-r-squared" title="Link to this heading">#</a></h4>
+<p>R², as we know, represents the proportion of variance in the outcome variable explained by the predictor variable. In this case, our predictor is the dummy variable representing the two groups (old and young rats). Therefore, R² tells us how much of the variability in %E<sub>max</sub> is explained by the difference between the two age groups. A higher R² indicates that a larger proportion of the variability is due to the difference between the groups, suggesting a stronger effect of age on %E<sub>max</sub>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the predicted values from the Statsmodels model</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">results_ttest</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+
+<span class="c1"># Calculate RSS and TSS</span>
+<span class="n">sse</span> <span class="o">=</span> <span class="n">compute_sse</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>  <span class="c1"># RSS using predicted values</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">compute_sse</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>  <span class="c1"># SST</span>
+
+<span class="n">ssr</span> <span class="o">=</span> <span class="n">sst</span> <span class="o">-</span> <span class="n">sse</span>  <span class="c1"># TSS - RSS</span>
+
+<span class="c1"># Print RSS, TSS and R²</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scatter around the regression line (RSS or SSE): </span><span class="si">{</span><span class="n">sse</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scatter around the horizontal line (TSS or SST): </span><span class="si">{</span><span class="n">sst</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variability explained by the regression model (SSR): </span><span class="si">{</span><span class="n">ssr</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R²: </span><span class="si">{</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">sse</span><span class="o">/</span><span class="n">sst</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Proportion of variation explained by the regression line (SSR/SST)= </span><span class="si">{</span><span class="n">ssr</span><span class="o">/</span><span class="n">sst</span><span class="si">:</span><span class="s2">3.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scatter around the regression line (SSE/SST) accounts for </span><span class="si">{</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">ssr</span><span class="o">/</span><span class="n">sst</span><span class="p">)</span><span class="si">:</span><span class="s2">3.1%</span><span class="si">}</span><span class="s2"> of the total variation&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scatter around the regression line (RSS or SSE): 2824.1
+Scatter around the horizontal line (TSS or SST): 5172.2
+Variability explained by the regression model (SSR): 2348.1
+R²: 0.4540
+Proportion of variation explained by the regression line (SSR/SST)= 45.4%
+Scatter around the regression line (SSE/SST) accounts for 54.6% of the total variation
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s important to note that R² in this specific scenario might be lower than what we might expect in typical regression analyses. This is because we only have one predictor variable (the dummy variable), and it only has two levels. Therefore, the model might not capture all the variability in the outcome.</p>
+<p>While R² provides some information about the effect size, giving us a sense of how much of the overall variation is attributable to the grouping variable, the primary focus in this analysis is usually on the statistical significance of the group difference, as indicated by the t-statistic and P value for the dummy variable’s coefficient.</p>
+</section>
+<section id="anova-table-for-t-test">
+<h4>ANOVA table for t-test<a class="headerlink" href="#anova-table-for-t-test" title="Link to this heading">#</a></h4>
+<p>Just as we did in the previous section, we can construct an ANOVA table to analyze the variance in our regression model with the dummy variable. This table will help us further understand the connection between the F-ratio and the t-statistic in the context of comparing two groups.</p>
+<p>The t-test recast as a comparison of models:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Hypothesis</p></th>
+<th class="head text-left"><p>Scatter from</p></th>
+<th class="head text-left"><p>Variation</p></th>
+<th class="head text-left"><p>Sum of squares</p></th>
+<th class="head text-left"><p>Variation</p></th>
+<th class="head text-left"><p>R²</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Null</p></td>
+<td class="text-left"><p>Grand mean</p></td>
+<td class="text-left"><p>Total (STT)</p></td>
+<td class="text-left"><p>5172</p></td>
+<td class="text-left"><p>100.0%</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Alternative</p></td>
+<td class="text-left"><p>Group means</p></td>
+<td class="text-left"><p>Unexplained (SSE)</p></td>
+<td class="text-left"><p>2824</p></td>
+<td class="text-left"><p>54.6%</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Difference</p></td>
+<td class="text-left"><p>Improvement</p></td>
+<td class="text-left"><p>Explained (SSR)</p></td>
+<td class="text-left"><p>2348</p></td>
+<td class="text-left"><p>45.4%</p></td>
+<td class="text-left"><p>0.454</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Of all the variation (sum of squares from the null hypothesis <strong>grand mean</strong>, represented by SST), 54.6% is caused by scatter <strong>within</strong> each group (<strong>SSE</strong>). It’s the variability that remains unexplained even after accounting for the group differences. It represents the inherent variability of the data points within each group around their respective means.</p>
+<p>And 45.4% of the total variation is caused by the difference <strong>between</strong> the two <strong>group means (SSR</strong>). It’s the variability explained by the difference in means between the groups. A larger “between groups” variation suggests a stronger effect of the grouping factor.</p>
+<p><em>Note: The distinction between <strong>between-group variation</strong> (variation explained by differences between groups) and <strong>within-group variation</strong> (variation within each group) is crucial not only in the context of t-tests but also in the broader framework of ANOVA. As we’ll see in a future chapter, ANOVA extends these concepts to compare the means of three or more groups, allowing us to analyze more complex experimental designs.</em></p>
+<p>Here, SSR represents the reduction in variability achieved by <em>using separate group means instead of a single grand mean</em>. In other words, it quantifies how much better we can predict the outcome variable by taking the group membership into account.</p>
+<p>In the context of the t-test, SSR reflects the magnitude of the difference between the two group means. A larger SSR indicates a greater difference between the means, suggesting a stronger effect of the grouping variable.</p>
+<p>Regarding the <strong>degrees of freedom</strong>, we still have one predictor variable (the dummy variable), so we can calculate the F-statistic and its associated P value as follows. And in linear regression, n represents the total number of data points used to fit the model. This holds true even when we’re using a dummy variable to represent groups in a t-test scenario.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># Number of observations</span>
+
+<span class="c1"># Degrees of freedom:</span>
+<span class="n">df_regression</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># DF for regression (explained variation)</span>
+<span class="n">df_residual</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span>  <span class="c1"># DF for residuals (unexplained variation) </span>
+
+<span class="n">f_value</span> <span class="o">=</span> <span class="p">((</span><span class="n">sst</span> <span class="o">-</span> <span class="n">sse</span><span class="p">)</span> <span class="o">/</span> <span class="n">df_regression</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">sse</span> <span class="o">/</span> <span class="n">df_residual</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F ratio = </span><span class="si">{</span><span class="n">f_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate the P-value using the survival function (sf) of the F-distribution</span>
+<span class="n">p_value</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">dfn</span><span class="o">=</span><span class="n">df_regression</span><span class="p">,</span> <span class="n">dfd</span><span class="o">=</span><span class="n">df_residual</span><span class="p">)</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">f_value</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value = </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F ratio = 12.4714
+P value = 0.0030
+</pre></div>
+</div>
+</div>
+</div>
+<p>In our example, with an F-ratio of 12.47 and degrees of freedom of 1 and 15, the P-value is 0.003. This means that if there were truly no relationship between X and y (i.e., if the null hypothesis were true), there would only be a 0.3% chance of observing an F-ratio this large or larger due to random sampling. This small P value provides strong evidence against the null hypothesis, suggesting that the linear regression model, which includes the dummy variable to distinguish between the groups, provides a significantly better fit to the data than the horizontal line model.</p>
+<p>Let’s visualize these values on F-distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Significance level (alpha)</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># Calculate critical F-value</span>
+<span class="n">f_crit</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">dfn</span><span class="o">=</span><span class="n">df_regression</span><span class="p">,</span> <span class="n">dfd</span><span class="o">=</span><span class="n">df_residual</span><span class="p">)</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">)</span>
+
+<span class="c1"># Generate x values for plotting</span>
+<span class="n">x_f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">hx_f</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x_f</span><span class="p">,</span> <span class="n">df_regression</span><span class="p">,</span> <span class="n">df_residual</span><span class="p">)</span>
+
+<span class="c1"># Create the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_f</span><span class="p">,</span> <span class="n">hx_f</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="c1"># Critical value</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">f_crit</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;F* (</span><span class="si">{</span><span class="n">f_crit</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Alpha area</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x_f</span><span class="p">[</span><span class="n">x_f</span> <span class="o">&gt;=</span> <span class="n">f_crit</span><span class="p">],</span>
+    <span class="n">hx_f</span><span class="p">[</span><span class="n">x_f</span> <span class="o">&gt;=</span> <span class="n">f_crit</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;α (</span><span class="si">{</span><span class="n">α</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1"># F-statistic</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">f_value</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;F (</span><span class="si">{</span><span class="n">f_value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1"># P-value area</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x_f</span><span class="p">[</span><span class="n">x_f</span> <span class="o">&gt;=</span> <span class="n">f_value</span><span class="p">],</span>
+    <span class="n">hx_f</span><span class="p">[</span><span class="n">x_f</span> <span class="o">&gt;=</span> <span class="n">f_value</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;P (</span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F-distribution (DFn=</span><span class="si">{</span><span class="n">df_regression</span><span class="si">}</span><span class="s2">, DFd=</span><span class="si">{</span><span class="n">df_residual</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06be22baea0ec589834ed00792929669de836fa0d833921b4c3adfca984b2cca.png" src="_images/06be22baea0ec589834ed00792929669de836fa0d833921b4c3adfca984b2cca.png" />
+</div>
+</div>
+<p>Let’s put it all together and complete the ANOVA table for our t-test recast as linear regression:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Source of Variation</p></th>
+<th class="head text-left"><p>Hypothesis</p></th>
+<th class="head text-left"><p>Scatter from</p></th>
+<th class="head text-left"><p>Sum of squares</p></th>
+<th class="head text-left"><p>DF</p></th>
+<th class="head text-left"><p>MS</p></th>
+<th class="head text-left"><p>F ratio</p></th>
+<th class="head text-left"><p>P value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Between Groups - SSR</p></td>
+<td class="text-left"><p>Difference</p></td>
+<td class="text-left"><p>Improvement</p></td>
+<td class="text-left"><p>2348</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>2348.0</p></td>
+<td class="text-left"><p>12.47</p></td>
+<td class="text-left"><p>0.0030</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Within Groups - SSE</p></td>
+<td class="text-left"><p>Alternative</p></td>
+<td class="text-left"><p>Group means</p></td>
+<td class="text-left"><p>2824</p></td>
+<td class="text-left"><p>15</p></td>
+<td class="text-left"><p>188.3</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Total - SST</p></td>
+<td class="text-left"><p>Null</p></td>
+<td class="text-left"><p>Grand mean</p></td>
+<td class="text-left"><p>5172</p></td>
+<td class="text-left"><p>16</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Interpreting the ANOVA table:</p>
+<ul class="simple">
+<li><p>Degrees of freedom (DF):</p>
+<ol class="arabic simple">
+<li><p>Total: this shows the fit of the null hypothesis model (a single grand mean). With 17 data points and one parameter (the grand mean) <span class="math notranslate nohighlight">\(\text{DF} = 16\)</span>.</p></li>
+<li><p>Within groups: this shows the fit of the alternative model (separate group means). With two parameters estimated (the mean of each group) <span class="math notranslate nohighlight">\(\text{DF} = 17 - 2 = 15\)</span>.</p></li>
+<li><p>Between groups: this shows the difference between the two models. The alternative model has one more parameter than the null hypothesis model so <span class="math notranslate nohighlight">\(\text{DF} = 1\)</span>.</p></li>
+</ol>
+</li>
+<li><p>Mean squares (MS):  these variances are calculated by dividing the sum of squares (SS) by the corresponding degrees of freedom (DF).</p></li>
+<li><p>F-ratio: if the null hypothesis were true (no difference between group means), we’d expect the mean squares (MS) for “Between Groups” and “Within Groups” to be similar, and their ratio (the F-ratio) would be close to 1.0. In our example, the F-ratio is 12.47, suggesting a difference between the groups.</p></li>
+<li><p>P-value: the P value, calculated from the F-distribution, answers this question: If the simpler model (null hypothesis) were true, what’s the probability of observing an F-ratio as large as 12.47 or larger due to random chance? In our case, the P value is 0.003, indicating strong evidence against the null hypothesis.</p></li>
+</ul>
+<p>As in the previous example, we can extract the ANOVA table from the corresponding Statsmodels’ model results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the ANOVA table</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">results_ttest</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            df    sum_sq   mean_sq       F  PR(&gt;F)
+X          1.0  2348.074  2348.074  12.471   0.003
+Residual  15.0  2824.149   188.277     NaN     NaN
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="f-ratio-and-t-statistic">
+<h3>F-ratio and t-statistic<a class="headerlink" href="#f-ratio-and-t-statistic" title="Link to this heading">#</a></h3>
+<p>In this particular case, where we’re using a single dummy variable to compare two groups, there’s a direct link between the F-ratio from the ANOVA table and the t-statistic from the regression output:</p>
+<div class="math notranslate nohighlight">
+\[ F = t^2\]</div>
+<p>The key connection lies in the fact that the <strong>square of a t-distributed random variable with <em>k</em> degrees of freedom follows an F-distribution with 1 and <em>k</em> degrees of freedom.</strong> Mathematically, if <span class="math notranslate nohighlight">\(T \sim t(k)\)</span>, then <span class="math notranslate nohighlight">\(T^2 \sim F(1, k)\)</span>.</p>
+<p>This means the F-ratio is simply the square of the t-statistic. We can verify this by squaring the t-value associated with the <code class="docutils literal notranslate"><span class="pre">X</span></code> coefficient in the <code class="docutils literal notranslate"><span class="pre">results_ttest</span></code> output and comparing it to the F-ratio in the ANOVA table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Extract the t-value for the dummy variable (X) ---</span>
+<span class="n">t_value</span> <span class="o">=</span> <span class="n">results_ttest</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span>
+
+<span class="c1"># --- Print the results ---</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-value from regression: </span><span class="si">{</span><span class="n">t_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F-value from ANOVA: </span><span class="si">{</span><span class="n">f_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t-value squared: </span><span class="si">{</span><span class="n">t_value</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>t-value from regression: 3.5315
+F-value from ANOVA: 12.4714
+t-value squared: 12.4714
+</pre></div>
+</div>
+</div>
+</div>
+<p>This demonstrates the mathematical equivalence between the F-test in the ANOVA and the t-test for comparing two groups. Both approaches are testing the same hypothesis: whether there’s a significant difference between the means of the two groups.</p>
+<p>By recognizing this connection, we gain a deeper understanding of how these seemingly different statistical tools are fundamentally related, reinforcing the idea that the t-test can be viewed as a comparison between two models: the null hypothesis model (horizontal line) and the alternative model with separate group means (represented by the dummy variable).</p>
+</section>
+<section id="grand-mean-model">
+<h3>Grand mean model<a class="headerlink" href="#grand-mean-model" title="Link to this heading">#</a></h3>
+<p>In the context of comparing two groups using regression, the simplest <strong>baseline</strong> model we can use is the <strong>grand mean model</strong>.</p>
+<p>The grand mean model ignores the distinction between groups and estimates a single mean value for the entire dataset. This is equivalent to fitting a horizontal line to the data, where the predicted value for all individuals is simply the <em>overall mean of the outcome variable</em>.</p>
+<p>In the previous section, we performed the regression with a dummy variable, which allowed us to estimate separate means for the two groups. Now, we want to compare this model to the simpler grand mean model to see if accounting for group membership actually improves our ability to predict the outcome.</p>
+<p>In Statsmodels, we can fit the grand mean model using the formula ‘y ~ 1’ which specifies that we’re regressing the outcome variable (y) on a constant term only (represented by 1). This effectively estimates the grand mean of y.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the grand mean model using the formula API</span>
+<span class="n">model_grandmean</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;y ~ 1&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">results_grandmean</span> <span class="o">=</span> <span class="n">model_grandmean</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Print the regression results</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_grandmean</span><span class="o">.</span><span class="n">summary2</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               Coef.  Std.Err.         t         P&gt;|t|     [0.025     0.975]
+Intercept  41.247059  4.360679  9.458861  5.922799e-08  32.002832  50.491286
+</pre></div>
+</div>
+</div>
+</div>
+<p>While the t-statistic, P value, and confidence interval can be used to test whether the intercept differs significantly from zero, our primary focus here is on the estimated grand mean itself. This value serves as a baseline for comparison when we assess the improvement gained by including the dummy variable and accounting for group differences.</p>
+<p>The intercept value of 41.247 represents the estimated grand mean of our outcome variable. This is the average value across all observations, regardless of group membership. The standard error of 4.361 reflects the uncertainty in this estimate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate and print the mean</span>
+<span class="n">grand_mean</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean: </span><span class="si">{</span><span class="n">grand_mean</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate and print the standard error of the mean</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SEM: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sem</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean: 41.2471
+SEM: 4.3607
+</pre></div>
+</div>
+</div>
+</div>
+<p>To evaluate the importance of incorporating group membership into our analysis, we can compare the grand mean model (<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">~</span> <span class="pre">1</span></code>) with the model that includes the dummy variable (<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">~</span> <span class="pre">X</span></code>). This comparison can be formalized using an ANOVA table.</p>
+<p>In the context of the grand mean model, remember that:</p>
+<ul class="simple">
+<li><p><strong>SSR = 0:</strong> the sum of squares regression (SSR) is 0 because there is no predictor variable in the model.</p></li>
+<li><p><strong>SSE = SST:</strong> the sum of squares error (SSE) is equal to the sum of squares total (SST) because there’s no explained variance. The model only estimates the grand mean, so all variation is considered unexplained.</p></li>
+</ul>
+<p>Let’s construct the ANOVA table with these considerations in mind.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Calculate the Sum of Squares (SS) ---</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">compute_sse</span><span class="p">(</span><span class="n">grand_mean</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">sse</span> <span class="o">=</span> <span class="n">sst</span>
+<span class="n">ssr</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># --- Degrees of Freedom (DF) ---</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>  <span class="c1"># Number of observations</span>
+<span class="n">df_total</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">df_residual</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># For the grand mean model, df_residual = df_total</span>
+<span class="n">df_regression</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># For the grand mean model, df_regression = 0</span>
+
+<span class="c1"># Print RSS, TSS and R²</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scatter around the regression line (RSS or SSE): </span><span class="si">{</span><span class="n">sse</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scatter around the horizontal line (TSS or SST): </span><span class="si">{</span><span class="n">sst</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variability explained by the regression model (SSR): </span><span class="si">{</span><span class="n">ssr</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R²: </span><span class="si">{</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">sse</span><span class="o">/</span><span class="n">sst</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Proportion of variation explained by the regression line (SSR/SST)= </span><span class="si">{</span><span class="n">ssr</span><span class="o">/</span><span class="n">sst</span><span class="si">:</span><span class="s2">3.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scatter around the regression line (SSE/SST) accounts for </span><span class="si">{</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">ssr</span><span class="o">/</span><span class="n">sst</span><span class="p">)</span><span class="si">:</span><span class="s2">3.1%</span><span class="si">}</span><span class="s2"> of the total variation&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scatter around the regression line (RSS or SSE): 5172.2
+Scatter around the horizontal line (TSS or SST): 5172.2
+Variability explained by the regression model (SSR): 0.0
+R²: 0.0000
+Proportion of variation explained by the regression line (SSR/SST)= 0.0%
+Scatter around the regression line (SSE/SST) accounts for 100.0% of the total variation
+</pre></div>
+</div>
+</div>
+</div>
+<p>This leads to the following table of the sources of variation:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Hypothesis</p></th>
+<th class="head text-left"><p>Scatter from</p></th>
+<th class="head text-left"><p>Variation</p></th>
+<th class="head text-center"><p>Sum of squares</p></th>
+<th class="head text-left"><p>Variation</p></th>
+<th class="head text-left"><p>R²</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Null</p></td>
+<td class="text-left"><p>Horizontal line</p></td>
+<td class="text-left"><p>Total (SST)</p></td>
+<td class="text-center"><p>5172</p></td>
+<td class="text-left"><p>100.0%</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Alternative</p></td>
+<td class="text-left"><p>Regression line</p></td>
+<td class="text-left"><p>Unexplained (SSE)</p></td>
+<td class="text-center"><p>5172</p></td>
+<td class="text-left"><p>100.0%</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Difference</p></td>
+<td class="text-left"><p>Improvement</p></td>
+<td class="text-left"><p>Explained (SSR)</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-left"><p>0%</p></td>
+<td class="text-left"><p>0.000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Plot residuals for the grand mean model</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span>
+    <span class="n">results_grandmean</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Grand mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X (Group)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Total variation (STT)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Plot residuals for the group mean model</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">results_ttest</span><span class="o">.</span><span class="n">resid</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Old group mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">results_ttest</span><span class="o">.</span><span class="n">resid</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Young group mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X (Group)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Within-group variation (SSE)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5ee4e65f50c552ac9711a2df3f69b106cbdd06e3a08128b6a602aba5883e87b5.png" src="_images/5ee4e65f50c552ac9711a2df3f69b106cbdd06e3a08128b6a602aba5883e87b5.png" />
+</div>
+</div>
+<p>When we have both the grand mean model (<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">~</span> <span class="pre">1</span></code>) and the model with the dummy variable (<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">~</span> <span class="pre">X</span></code>), we can directly compare their sum of squared residuals (SSR) to calculate the F-statistic:</p>
+<ol class="arabic simple">
+<li><p>Calculate SSR for each model:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{SSR}_\text{grandmean}\)</span> is the sum of squared residuals for the grand mean model (<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">~</span> <span class="pre">1</span></code>). This represents the total variability in the data when only the grand mean is considered.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{SSR}_\text{groupmean}\)</span> is the sum of squared residuals for the model with the dummy variable (<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">~</span> <span class="pre">X</span></code>). This represents the unexplained variability when accounting for group membership.</p></li>
+</ul>
+</li>
+<li><p>Calculate the <strong>difference in SSR</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{SSR}_\text{difference} = \text{SSR}_\text{grandmean} - \text{SSR}_\text{groupmean}\)</span> represents the reduction in variability achieved by including the dummy variable. This is the amount of variability explained by the difference between the groups.</p></li>
+</ul>
+</li>
+<li><p>Calculate the F-statistic:</p>
+<ul class="simple">
+<li><p>The F-statistic is calculated as the ratio of the explained variance (<span class="math notranslate nohighlight">\(\text{SSR}_\text{difference}\)</span>) to the unexplained variance (<span class="math notranslate nohighlight">\(\text{SSR}_\text{groupmean}\)</span>), each divided by their respective degrees of freedom:</p></li>
+</ul>
+</li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+F = \frac{\text{SSR}_\text{difference} / \text{DF}_\text{between}}{\text{SSR}_\text{groupmean} / \text{DF}_\text{within}}
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{DF}_\text{between}\)</span> is the degrees of freedom for the “between groups” variation, which is 1 in this case.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{DF}_\text{within}\)</span> is the degrees of freedom for the “within groups” variation, which is n minus the number of groups.</p></li>
+</ul>
+<p>A larger F-statistic indicates that the model with the dummy variable explains significantly more variation than the grand mean model, suggesting that group membership is an important factor in explaining the outcome.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the sum of squared residuals (SSR) for each model</span>
+<span class="n">ssr_grandmean</span> <span class="o">=</span> <span class="n">results_grandmean</span><span class="o">.</span><span class="n">ssr</span>
+<span class="n">ssr_groupmean</span> <span class="o">=</span> <span class="n">results_ttest</span><span class="o">.</span><span class="n">ssr</span>
+
+<span class="c1"># Calculate the difference in SSR</span>
+<span class="n">ssr_difference</span> <span class="o">=</span> <span class="n">ssr_grandmean</span> <span class="o">-</span> <span class="n">ssr_groupmean</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SSR grand mean:</span><span class="si">{</span><span class="n">ssr_grandmean</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SSR group mean:</span><span class="si">{</span><span class="n">ssr_groupmean</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Degrees of freedom</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># Total number of observations</span>
+<span class="n">df_between</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># DF for Between Groups (number of groups - 1)</span>
+<span class="n">df_within</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span>  <span class="c1"># DF for Within Groups (n - number of groups)</span>
+
+<span class="c1"># Calculate the F-ratio</span>
+<span class="n">f_value</span> <span class="o">=</span> <span class="p">(</span><span class="n">ssr_difference</span> <span class="o">/</span> <span class="n">df_between</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ssr_groupmean</span> <span class="o">/</span> <span class="n">df_within</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F ratio = </span><span class="si">{</span><span class="n">f_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate the P-value</span>
+<span class="n">p_value</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">dfn</span><span class="o">=</span><span class="n">df_between</span><span class="p">,</span> <span class="n">dfd</span><span class="o">=</span><span class="n">df_within</span><span class="p">)</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">f_value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value = </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SSR grand mean:5172.2
+SSR group mean:2824.1
+F ratio = 12.4714
+P value = 0.0030
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.stats.anova.anova_lm.html"><code class="docutils literal notranslate"><span class="pre">anova_lm</span></code> function performs an analysis of variance to compare one or more fitted linear models</a>, therefore, here it is testing whether the inclusion of the dummy variable (i.e., accounting for group membership) significantly improves the model’s fit compared to just using the grand mean.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anova_lm</span><span class="p">(</span><span class="n">results_grandmean</span><span class="p">,</span> <span class="n">results_ttest</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>df_resid</th>
+      <th>ssr</th>
+      <th>df_diff</th>
+      <th>ss_diff</th>
+      <th>F</th>
+      <th>Pr(&gt;F)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16.0</td>
+      <td>5172.222353</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>15.0</td>
+      <td>2824.148750</td>
+      <td>1.0</td>
+      <td>2348.073603</td>
+      <td>12.471405</td>
+      <td>0.003022</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The reason we’re getting the same F and P values is that this ANOVA comparison is mathematically equivalent to the overall F-test performed in the <code class="docutils literal notranslate"><span class="pre">results_ttest</span></code> model itself. Both tests assess the same thing: whether the variance explained by including the dummy variable is significantly greater than the unexplained variance.</p>
+<p>In essence, the <code class="docutils literal notranslate"><span class="pre">anova_lm</span></code> function provides a way to explicitly compare the two models, while the overall F-test in <code class="docutils literal notranslate"><span class="pre">results_ttest</span></code> implicitly performs the same comparison as part of its model summary.</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>This chapter focused on comparing models within the framework of simple linear regression. We explored how the t-test can be viewed as a special case of regression, and we delved into the ANOVA table as a tool for analyzing variation and comparing model fit.</p>
+<p>By understanding the principles of model comparison, we gain a deeper appreciation for the interconnectedness of statistical concepts and develop a more flexible approach to data analysis.</p>
+<p>While we focused on comparing nested models, where one model is a simpler version of the other, it’s important to be aware that we can also compare unrelated models, such as different types of non-linear models, which we’ll explore in future chapters.</p>
+<p>Throughout this chapter, we saw how P values arise from comparing the fit of different models. In essence, a P value reflects the probability of observing our data (or more extreme data) if the simpler (null hypothesis) model were true. Model comparison provides a framework for hypothesis testing and helps us choose the best model to represent our data, leading to more informed inferences.</p>
+</section>
+<section id="cheat-sheet">
+<h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>
+<section id="f-distribution">
+<h3>F-distribution<a class="headerlink" href="#f-distribution" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">f</span>
+
+<span class="c1"># Parameters of the F-distribution</span>
+<span class="n">dfn</span> <span class="o">=</span> <span class="n">dfn</span>  <span class="c1"># Degrees of freedom of the numerator</span>
+<span class="n">dfd</span> <span class="o">=</span> <span class="n">dfd</span>  <span class="c1"># Degrees of freedom of the denominator</span>
+
+<span class="c1"># Instantiate the F-distribution</span>
+<span class="n">f_distribution</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">dfn</span><span class="o">=</span><span class="n">dfn</span><span class="p">,</span> <span class="n">dfd</span><span class="o">=</span><span class="n">dfd</span><span class="p">)</span>
+
+<span class="c1"># Calculate mean, variance (and more), median and SD from the distribution</span>
+<span class="n">f_distribution</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mv&#39;</span><span class="p">)</span>
+<span class="n">f_distribution</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">f_distribution</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">f_distribution</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="c1"># Probability Mass Function - P(X=5)</span>
+<span class="n">f_distribution</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Cumulative Distribution Function - P(X&lt;=3)</span>
+<span class="n">f_distribution</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Survival Function - P(X&gt;6) or P(X&gt;=7)</span>
+<span class="n">f_distribution</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>  <span class="c1"># Returns the P value</span>
+
+<span class="c1"># Percent Point Function</span>
+<span class="n">f_distribution</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">))</span>  <span class="c1"># Returns the critical F</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>ANOVA table<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;y ~ X&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">statsmodels.stats.anova</span> <span class="kn">import</span> <span class="n">anova_lm</span>
+<span class="n">anova_lm</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="session-information">
+<h2>Session information<a class="headerlink" href="#session-information" title="Link to this heading">#</a></h2>
+<p>The output below details all packages and version necessary to reproduce the results in this report.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>--version
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">importlib.metadata</span> <span class="kn">import</span> <span class="n">version</span>
+
+<span class="c1"># List of packages we want to check the version</span>
+<span class="n">packages</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;numpy&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas&#39;</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">,</span> <span class="s1">&#39;seaborn&#39;</span><span class="p">,</span> <span class="s1">&#39;scipy&#39;</span><span class="p">,</span> <span class="s1">&#39;pingouin&#39;</span><span class="p">,</span> <span class="s1">&#39;statsmodels&#39;</span><span class="p">]</span>
+
+<span class="c1"># Initialize an empty list to store the versions</span>
+<span class="n">versions</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Loop over the packages</span>
+<span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">packages</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Get the version of the package</span>
+        <span class="n">package_version</span> <span class="o">=</span> <span class="n">version</span><span class="p">(</span><span class="n">package</span><span class="p">)</span>
+        <span class="c1"># Append the version to the list</span>
+        <span class="n">versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">package_version</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># Use a more general exception for broader compatibility</span>
+        <span class="n">versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Not installed&#39;</span><span class="p">)</span>
+
+<span class="c1"># Print the versions</span>
+<span class="k">for</span> <span class="n">package</span><span class="p">,</span> <span class="n">version</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span> <span class="n">versions</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">package</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
+-------------
+numpy: 1.26.4
+pandas: 2.2.2
+matplotlib: 3.9.2
+seaborn: 0.13.2
+scipy: 1.14.1
+pingouin: 0.5.5
+statsmodels: 0.14.2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="33%20-%20Simple%20linear%20regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Simple linear regression</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-regression-models-to-the-mean">Comparing regression models to the mean</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-horizontal-line-model">The horizontal line model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-squared">R-squared</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sums-of-squares-and-variation">Sums of squares and variation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-variance">Analysis of variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-variation">Sources of variation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-residuals">Visualizing the residuals</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#degrees-of-freedom">Degrees of freedom</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squares">Mean squares</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ratio">F-ratio</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-critical-values">Visualizing critical values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anova-table">ANOVA table</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-anova-table-in-python">Getting the ANOVA table in Python</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-models">Nested models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unpaired-t-test-as-a-special-case-of-regression">Unpaired t-test as a special case of regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-group-comparison">Two-group comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dummy-variables">Dummy variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-analysis-of-group-differences">Regression analysis of group differences</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-regression-with-dummy-variables">Performing regression with dummy variables</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#goodness-of-fit-and-r-squared">Goodness of fit and R-squared</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anova-table-for-t-test">ANOVA table for t-test</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ratio-and-t-statistic">F-ratio and t-statistic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grand-mean-model">Grand mean model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-distribution">F-distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">ANOVA table</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session information</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sébastien Wieckowski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -75,6 +75,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '33 - Simple linear regression';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Comparing models" href="35%20-%20Comparing%20models.html" />
     <link rel="prev" title="Correlation" href="32%20-%20Correlation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -222,6 +223,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fitting models to data</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Simple linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35%20-%20Comparing%20models.html">Comparing models</a></li>
 </ul>
 
     </div>
@@ -862,7 +864,7 @@ per_C2022_fatacids    37.208    9.296   4.003   0.002  0.593     0.556      16.7
 =======================================================================
 Model:               OLS                  Adj. R-squared:      0.556   
 Dependent Variable:  insulin_sensitivity  AIC:                 151.2840
-Date:                2024-11-29 10:34     BIC:                 152.4139
+Date:                2024-11-30 08:57     BIC:                 152.4139
 No. Observations:    13                   Log-Likelihood:      -73.642 
 Df Model:            1                    F-statistic:         16.02   
 Df Residuals:        11                   Prob (F-statistic):  0.00208 
@@ -998,8 +1000,8 @@ Intercept (NumPy): -486.54199459921
 Dep. Variable:     insulin_sensitivity   R-squared:                       0.593
 Model:                             OLS   Adj. R-squared:                  0.556
 Method:                  Least Squares   F-statistic:                     16.02
-Date:                 Fri, 29 Nov 2024   Prob (F-statistic):            0.00208
-Time:                         10:34:13   Log-Likelihood:                -73.642
+Date:                 Sat, 30 Nov 2024   Prob (F-statistic):            0.00208
+Time:                         08:57:18   Log-Likelihood:                -73.642
 No. Observations:                   13   AIC:                             151.3
 Df Residuals:                       11   BIC:                             152.4
 Df Model:                            1                                         
@@ -1052,7 +1054,7 @@ r = \frac{s_{xy}}{s_x s_y}
 \qquad
 R^2 = \frac{s^2_{xy}}{s^2_x s^2_y}
 \]</div>
-<p>Let’s define the <strong>total sum of squares (TSS)</strong> as a measure of the total variability of the response variable (y) around its mean, the the <strong>residual sum of squares (RSS)</strong>, also called <strong>sum of squared residuals (SSR)</strong>, as a measure of the variability in y that is not explained by the regression model:</p>
+<p>Let’s define the <strong>total sum of squares (TSS)</strong> as a measure of the total variability of the response variable (y) around its mean, the <strong>residual sum of squares (RSS)</strong>, also called <strong>sum of squared residuals (SSR)</strong>, as a measure of the variability in y that is not explained by the regression model:</p>
 <div class="math notranslate nohighlight">
 \[
 \text{TSS} = \sum{(y_i - \bar{y})^2}
@@ -1065,9 +1067,10 @@ R^2 = \frac{s^2_{xy}}{s^2_x s^2_y}
 \[s^2_y = \frac{1}{n-1}\sum(y_i - \bar y)^2 = \frac{\text{TSS}}{n-1}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of observations. Moreover, we can substitute the expression of the predicted value fror the <span class="math notranslate nohighlight">\(i\)</span>-th observation into the RSS formula using the OLS estimates for the intercept and slope:</p>
 <div class="math notranslate nohighlight">
+\[\hat{y}_i = \hat \beta_0 + \hat \beta_1 x_i = (\bar y - \hat \beta_1 \bar x) + \beta_1 x_i\]</div>
+<div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-\hat{y}_i &amp;= \hat \beta_0 + \hat \beta_1 x_i = (\bar y - \hat \beta_1 \bar x) + \beta_1 x_i \\
 \text{RSS} &amp;= \sum{(y_i - \hat{y}_i)^2} \\
 &amp;=\sum{[y_i - (\bar y - \hat \beta_1 \bar x + \beta_1 x_i)]^2} \\
 &amp;= \sum{[(y_i - \bar y) - \hat \beta_1 (x_i - \bar x)]^2} \\
@@ -1077,11 +1080,11 @@ R^2 = \frac{s^2_{xy}}{s^2_x s^2_y}
 &amp;= \text{TSS} + s^2_{xy}/(s^2_x)\cancel{^2} (n - 1) \cancel{s^2_x} - 2 s_{xy}/s^2_x (n - 1) s_{xy} \\
 &amp;= \text{TSS} - (n - 1) s_{xy}^2 / s^2_x \\
 &amp;= \text{TSS} - R^2 (n - 1) s^2_y \\
-\text{RSS} &amp;= \text{TSS} - R^2 \text{TSS} \\
+&amp;= \text{TSS} - R^2 \text{TSS} \\
 \end{aligned}
 \end{split}\]</div>
 <div class="math notranslate nohighlight">
-\[R^2 = \frac{\text{TSS} -\text{RSS}}{\text{TSS}} = 1 - \frac{\text{RSS}}{\text{TSS}}\]</div>
+\[R^2 = \frac{\text{TSS} - \text{RSS}}{\text{TSS}} = 1 - \frac{\text{RSS}}{\text{TSS}}\]</div>
 <p>The code snippet below demonstrates how to calculate R² manually using the <code class="docutils literal notranslate"><span class="pre">compute_rss</span></code> and <code class="docutils literal notranslate"><span class="pre">estimate_y</span></code> functions. It uses the intercept and slope estimated coefficients from the NumPy results to calculate the predicted values, and subsequently the RSS. Finally, it calculates TSS and uses both RSS and TSS to compute R-squared.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1909,7 +1912,7 @@ P value for Slope: 0.00208
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;%C20-22 fatty acids&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Insulin sensitivity (mg/m²/min)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Linear regression with 95</span><span class="si">% c</span><span class="s2">onfidence band&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Linear regression with 95</span><span class="si">% c</span><span class="s2">onfidence band (manual)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the handles and labels from the automatically generated legend</span>
 <span class="n">handles</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
@@ -1921,7 +1924,7 @@ P value for Slope: 0.00208
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c18f25ea9c7e7f941d3484644583faa871b81a8ebb65b746b75711f91b938583.png" src="_images/c18f25ea9c7e7f941d3484644583faa871b81a8ebb65b746b75711f91b938583.png" />
+<img alt="_images/f1cfcaec94b4cfe79fc75becf37fa5b498435ff8052f5b9ef133411f52d20fac.png" src="_images/f1cfcaec94b4cfe79fc75becf37fa5b498435ff8052f5b9ef133411f52d20fac.png" />
 </div>
 </div>
 <p>We can achieve a similar visualization <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.regression.linear_model.OLSResults.get_prediction.html">using our fitted model and its <code class="docutils literal notranslate"><span class="pre">get_prediction</span></code> method</a>. By leveraging its built-in capabilities, we can generate the fitted values and confidence intervals directly, using the ‘mean_ci_lower’ and ‘mean_ci_upper’ values from the prediction results. This streamlined approach eliminates the need for a custom function and showcases the convenience of Statsmodels for visualizing uncertainty in regression analysis. However, the resulting confidence band might appear less smooth compared to the one generated with a denser set of points from <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code>, because it uses only the x-values from the original dataset.</p>
@@ -1954,7 +1957,7 @@ P value for Slope: 0.00208
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;%C20-22 fatty acids&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Insulin sensitivity (mg/m²/min)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Linear regression with 95</span><span class="si">% c</span><span class="s2">onfidence band&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Linear regression with 95</span><span class="si">% c</span><span class="s2">onfidence band (Statsmodels)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the handles and labels from the automatically generated legend</span>
 <span class="n">handles</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
@@ -1966,7 +1969,7 @@ P value for Slope: 0.00208
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c38530ee475b598bd7c90ef700c65c0c26c54c86c925923fe211a22c52ba630b.png" src="_images/c38530ee475b598bd7c90ef700c65c0c26c54c86c925923fe211a22c52ba630b.png" />
+<img alt="_images/b8a4eccf6ee3583c470cbafc31e2da8ef46d9c4bf2209f912c9e329ef795460e.png" src="_images/b8a4eccf6ee3583c470cbafc31e2da8ef46d9c4bf2209f912c9e329ef795460e.png" />
 </div>
 </div>
 </section>
@@ -2166,7 +2169,7 @@ Bootstrap 95% CI (β1) = [18.705 57.088]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aac10dcd507da90a01106303af504db77f03e50e91ce502fe7deddeb5df58a6e.png" src="_images/aac10dcd507da90a01106303af504db77f03e50e91ce502fe7deddeb5df58a6e.png" />
+<img alt="_images/79cae4f44d65d94c2788790424cc8d63e7173b87838e8ee29c21238accdd548d.png" src="_images/79cae4f44d65d94c2788790424cc8d63e7173b87838e8ee29c21238accdd548d.png" />
 </div>
 </div>
 <p>As seen in the previous chapters, given the symmetrical distribution of our bootstrapped coefficients, we can also estimate the confidence intervals of the bootstrap distributions using the normal approximation and the bootstrap means and standard errors.</p>
@@ -2633,7 +2636,7 @@ MAE	: 65.00429
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;%C20-22 fatty acids&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Insulin sensitivity (mg/m²/min)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Linear regression of insulin sensitivity on %C20-22 fatty acids&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Linear regression with 95% prediction limits (manual)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the handles and labels from the automatically generated legend</span>
 <span class="n">handles</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
@@ -2645,7 +2648,7 @@ MAE	: 65.00429
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6f8b77a6b866e906fc1e056092e39ec5b562723b7b76c367cf40cf375e190c24.png" src="_images/6f8b77a6b866e906fc1e056092e39ec5b562723b7b76c367cf40cf375e190c24.png" />
+<img alt="_images/3d1a94c7d1839ba33fc8aa2bf263b6e9aefc9c2b118a8c7e750a8046bf14a3da.png" src="_images/3d1a94c7d1839ba33fc8aa2bf263b6e9aefc9c2b118a8c7e750a8046bf14a3da.png" />
 </div>
 </div>
 <p>Similarly to how we plotted confidence bands, we can visualize prediction interval limits using our fitted model. By leveraging its built-in capabilities, we can generate the predicted values and prediction intervals directly, using the ‘obs_ci_lower’ and ‘obs_ci_upper’ values from the prediction results.</p>
@@ -2694,7 +2697,7 @@ MAE	: 65.00429
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;%C20-22 fatty acids&quot;</span><span class="p">,</span>
     <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Insulin sensitivity (mg/m²/min)&quot;</span><span class="p">,</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Linear regression of insulin sensitivity on %C20-22 fatty acids&quot;</span><span class="p">)</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Linear regression with 95% prediction limits (Statsmodels)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the handles and labels from the automatically generated legend</span>
 <span class="n">handles</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
@@ -2706,7 +2709,7 @@ MAE	: 65.00429
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fb467427cdf9949baf8e301333a8737359f80bc489768080aa0a3f6c859500db.png" src="_images/fb467427cdf9949baf8e301333a8737359f80bc489768080aa0a3f6c859500db.png" />
+<img alt="_images/44f2abda36eed76e6d0a67a28ab523c34b1801477ba1750303ec22ce17ba7135.png" src="_images/44f2abda36eed76e6d0a67a28ab523c34b1801477ba1750303ec22ce17ba7135.png" />
 </div>
 </div>
 <p>Prediction intervals are always wider than confidence intervals for the same predictor value and confidence level. This is because prediction intervals account for two sources of uncertainty:</p>
@@ -3224,6 +3227,15 @@ scikit-learn: 1.5.1
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Correlation</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="35%20-%20Comparing%20models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Comparing models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
