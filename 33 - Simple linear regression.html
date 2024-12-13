@@ -224,6 +224,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Simple linear regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="35%20-%20Comparing%20models.html">Comparing models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36%20-%20Nonlinear%20regression.html">Nonlinear regression</a></li>
 </ul>
 
     </div>
@@ -864,7 +865,7 @@ per_C2022_fatacids    37.208    9.296   4.003   0.002  0.593     0.556      16.7
 =======================================================================
 Model:               OLS                  Adj. R-squared:      0.556   
 Dependent Variable:  insulin_sensitivity  AIC:                 151.2840
-Date:                2024-11-30 08:57     BIC:                 152.4139
+Date:                2024-12-12 12:11     BIC:                 152.4139
 No. Observations:    13                   Log-Likelihood:      -73.642 
 Df Model:            1                    F-statistic:         16.02   
 Df Residuals:        11                   Prob (F-statistic):  0.00208 
@@ -1000,8 +1001,8 @@ Intercept (NumPy): -486.54199459921
 Dep. Variable:     insulin_sensitivity   R-squared:                       0.593
 Model:                             OLS   Adj. R-squared:                  0.556
 Method:                  Least Squares   F-statistic:                     16.02
-Date:                 Sat, 30 Nov 2024   Prob (F-statistic):            0.00208
-Time:                         08:57:18   Log-Likelihood:                -73.642
+Date:                 Thu, 12 Dec 2024   Prob (F-statistic):            0.00208
+Time:                         12:11:17   Log-Likelihood:                -73.642
 No. Observations:                   13   AIC:                             151.3
 Df Residuals:                       11   BIC:                             152.4
 Df Model:                            1                                         
@@ -2212,17 +2213,30 @@ Bootstrap 95% CI (β1) = [18.705 57.088]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the variability of the regression line</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">bs_slope_reps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="n">bs_intercept_reps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;y-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">bs_slope_reps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="n">bs_intercept_reps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="s1">&#39;y-&#39;</span><span class="p">,</span>
+        <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bootstrap replicates&#39;</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># Print label only once in legend</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">results_statsmodels</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span>
+    <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Regression line&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;%C20-22 fatty acids&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Insulin sensitivity (mg/m²/min)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Bootstrapped regression lines and the confidence band&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Bootstrapped regression lines and the confidence band&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e59360ec069659f7cf782c6de774a93eca8a95a13f57fdead8b9c73ce9d312d8.png" src="_images/e59360ec069659f7cf782c6de774a93eca8a95a13f57fdead8b9c73ce9d312d8.png" />
+<img alt="_images/a35fcb0aaeacc6c285b4151bd221ecc9c52eb5b4212d08a1823d89a79cf83c4d.png" src="_images/a35fcb0aaeacc6c285b4151bd221ecc9c52eb5b4212d08a1823d89a79cf83c4d.png" />
 </div>
 </div>
 <p>We can also use the <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.regplot.html"><code class="docutils literal notranslate"><span class="pre">sns.regplot()</span></code> function in Seaborn</a> to visualize the variability of the regression line based on bootstrapping. The ‘n_boot’ parameter controls the number of bootstrap iterations used to estimate the confidence interval.</p>
@@ -3172,8 +3186,8 @@ Log-likelihood (MLE):		-73.662270832
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
--------------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.8-------------
+
 numpy: 1.26.4
 pandas: 2.2.2
 matplotlib: 3.9.2

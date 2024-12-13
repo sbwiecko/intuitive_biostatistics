@@ -75,6 +75,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '35 - Comparing models';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Nonlinear regression" href="36%20-%20Nonlinear%20regression.html" />
     <link rel="prev" title="Simple linear regression" href="33%20-%20Simple%20linear%20regression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -223,6 +224,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="33%20-%20Simple%20linear%20regression.html">Simple linear regression</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Comparing models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36%20-%20Nonlinear%20regression.html">Nonlinear regression</a></li>
 </ul>
 
     </div>
@@ -693,8 +695,8 @@ Scatter around the regression line (SSE/SST) accounts for 40.7% of the total var
 <h4>Degrees of freedom<a class="headerlink" href="#degrees-of-freedom" title="Link to this heading">#</a></h4>
 <p>Each source of variation in the ANOVA table has an associated number of <strong>degrees of freedom (DF)</strong>. Degrees of freedom represent the number of independent pieces of information available to estimate a parameter:</p>
 <ul class="simple">
-<li><p>Regression: this is equal to the number of predictor variables in the model. In simple linear regression, we have <em>only one predictor</em> <span class="math notranslate nohighlight">\(X\)</span>, so <span class="math notranslate nohighlight">\(\text{DF}_\text{regression} = 1\)</span>.</p></li>
-<li><p>Error (residual, or random): this is calculated as the total number of observations (<span class="math notranslate nohighlight">\(n\)</span>) minus the number of parameters estimated in the regression model. In simple linear regression, we estimate two parameters (the intercept and the slope), so <span class="math notranslate nohighlight">\(\text{DF}_\text{error} = n - 2\)</span>.</p></li>
+<li><p>Regression: this is equal to the number of predictor variables (<span class="math notranslate nohighlight">\(p\)</span>) in the model. In simple linear regression, we have <em>only one predictor</em> <span class="math notranslate nohighlight">\(X\)</span>, so <span class="math notranslate nohighlight">\(\text{DF}_\text{regression} = p = 1\)</span>.</p></li>
+<li><p>Error (residual, or random): this is calculated as the total number of observations (<span class="math notranslate nohighlight">\(n\)</span>) minus the number of predictor variables (<span class="math notranslate nohighlight">\(p\)</span>) in the model, minus 1. In simple linear regression, we have one predictor variable, so  <span class="math notranslate nohighlight">\(\text{DF}_\text{error} = n - p - 1 = n - 1 - 1 = n - 2\)</span>.</p></li>
 <li><p>Total (the null hypothesis, horizontal line, or mean): this is equal to the total number of observations minus 1 (because we know the mean), which is <span class="math notranslate nohighlight">\(\text{DF}_\text{total} = n - 1\)</span>.</p></li>
 </ul>
 <p>Essentially, the total degrees of freedom (<span class="math notranslate nohighlight">\(n - 1\)</span>) are partitioned between the regression model (1) and the remaining error (<span class="math notranslate nohighlight">\(n - 2\)</span>):</p>
@@ -712,9 +714,9 @@ Scatter around the regression line (SSE/SST) accounts for 40.7% of the total var
 <div class="math notranslate nohighlight">
 \[\text{MSR} = \frac{\text{SSR}}{\text{DF}_\text{regression}} = \text{SST} - \text{SSE}\]</div>
 </li>
-<li><p><strong>MSE (mean square error)</strong>: SSE (sum of squares error) divided by its degrees of freedom (<span class="math notranslate nohighlight">\(\text{DF} = n - 2\)</span> in simple linear regression). Remind the formula discussed in the previous chapter:</p>
+<li><p><strong>MSE (mean square error)</strong>: SSE (sum of squares error) divided by its degrees of freedom (<span class="math notranslate nohighlight">\(\text{DF} = n - 2\)</span> in simple linear regression):</p>
 <div class="math notranslate nohighlight">
-\[\text{MSE} = \frac{\text{RSS}}{n - p - 1} = \frac{\text{SSE}}{n - 2}\]</div>
+\[\text{MSE} = \frac{\text{SSE}}{n - p - 1} = \frac{\text{SSE}}{n - 2}\]</div>
 </li>
 </ul>
 <p>Mean squares allow us to compare the different sources of variation on a more even playing field, as they account for the different degrees of freedom associated with each source. In particular, the MS are essential for calculating the F-ratio, which is a key statistic in the ANOVA table for testing the significance of the regression model.</p>
@@ -775,7 +777,7 @@ Scatter around the regression line (SSE/SST) accounts for 40.7% of the total var
 <h4>Visualizing critical values<a class="headerlink" href="#visualizing-critical-values" title="Link to this heading">#</a></h4>
 <p>Just like with the t-test, we can visualize how the P value and critical value are determined based on the F-statistic and the F-distribution.</p>
 <p>The F-distribution represents the probability of observing different F-ratios under the null hypothesis. The critical value is the F-value that corresponds to your chosen significance level (e.g., alpha = 0.05). If the calculated F-ratio exceeds the critical value, it falls within the rejection region, and we reject the null hypothesis.</p>
-<p>The P value is the area under the F-distribution curve to the right of your calculated F-ratio. It represents the probability of observing an F-ratio as extreme as, or more extreme than, the one you calculated, if the null hypothesis were true. A smaller P value indicates stronger evidence against the null hypothesis.</p>
+<p>The P value is the area under the F-distribution curve to the right of your calculated F-ratio. It represents the probability of observing an F-ratio as extreme as, or more extreme than, the one you calculated, if the null hypothesis were true.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Significance level (alpha)</span>
@@ -1947,6 +1949,15 @@ statsmodels: 0.14.2
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Simple linear regression</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="36%20-%20Nonlinear%20regression.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Nonlinear regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
