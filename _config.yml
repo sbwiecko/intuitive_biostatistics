@@ -4,7 +4,7 @@
 
 title                       : The Python Companion of Intuitive Biostatistics
 author                      : "Sébastien Wieckowski"
-copyright                   : "2024"
+copyright                   : "2025"
 logo                        : logo.jpg
 exclude_patterns            : [_build, "**.ipynb_checkpoints", pdf, html, .vscode, .env, book_samples, LICENSE]
 
@@ -23,7 +23,8 @@ html:
   use_edit_page_button      : true  # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
   use_repository_button     : true  # Whether to add a link to your repository button
   use_multitoc_numbering    : true   # Continuous numbering across parts/chapters
-  google_analytics_id       : G-QQY9FLLPJ8  # A GA id that can be used to track book views.
+  analytics:
+    google_analytics_id     : G-QQY9FLLPJ8  # A GA id that can be used to track book views.
 
 #######################################################################################
 # Launch button settings

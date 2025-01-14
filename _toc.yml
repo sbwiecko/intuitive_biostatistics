@@ -30,4 +30,6 @@ parts:
       chapters:
       - file: 33 - Simple linear regression
       - file: 35 - Comparing models
+      - file: 36 - Nonlinear regression
+      - file: 37 - Multiple regression
       
