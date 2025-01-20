@@ -1,0 +1,1493 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Logistic regression &#8212; The Python Companion of Intuitive Biostatistics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QQY9FLLPJ8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QQY9FLLPJ8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '38 - Logistic regression';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Multiple regression" href="37%20-%20Multiple%20regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="The Python Companion of Intuitive Biostatistics - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="The Python Companion of Intuitive Biostatistics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Python Companion Guide to “Intuitive Biostatistics”
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20scatter%20of%20continuous%20data.html">Quantifying scatter of continuous data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20distribution.html">The Gaussian distribution</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20interval%20of%20a%20mean.html">Confidence interval of a mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20interval%20of%20survival%20data.html">Confidence interval of survival data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical significance and data assumptions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="15%20-%20Statistical%20significance.html">Statistical significance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20power%20and%20sample%20size.html">Statistical power and sample size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24%20-%20Normality%20tests%20and%20outliers.html">Normality tests and outliers</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical tests</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20proportions.html">Comparing proportions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29%20-%20Comparing%20survival%20curves.html">Comparing survival curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30%20-%20Comparing%20two%20unpaired%20means.html">Comparing two unpaired means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31%20-%20Comparing%20paired%20data.html">Comparing paired data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32%20-%20Correlation.html">Correlation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fitting models to data</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="33%20-%20Simple%20linear%20regression.html">Simple linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35%20-%20Comparing%20models.html">Comparing models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36%20-%20Nonlinear%20regression.html">Nonlinear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37%20-%20Multiple%20regression.html">Multiple regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Logistic regression</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/master/38 - Logistic regression.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/38 - Logistic regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Logistic regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-maths">The maths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Logistic regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">Maximum likelihood estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions">Assumptions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearity">Linearity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-of-errors">Independence of errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homoscedasticity">Homoscedasticity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normality-of-errors">Normality of errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-perfect-multicollinearity">No perfect multicollinearity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-example">Real-world example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-data">Getting the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-logistic-regression-model">Building the logistic regression model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-model-with-a-continuous-variable">Logistic regression model with a continuous variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-more-complex-logistic-regression-model">Fitting a more complex logistic regression model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Building the logistic regression model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session information</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
+<h1>Logistic regression<a class="headerlink" href="#logistic-regression" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>We’ve spent a good amount of time exploring the intricacies of correlation, simple linear regression, and multiple using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>. Now, let’s shift our focus to a powerful technique called logistic regression.</p>
+<p>Logistic regression comes into play when our <em>outcome variable</em> (the dependent variable) has <em>two possible categories</em> - think “yes” or “no,” “success” or “failure,” or “present” or “absent”.  Why can’t we just use linear regression in these cases?  Well, in simple linear regression, we assume the error term follows a normal distribution, which can take on any value from negative to positive infinity. This doesn’t align with a <strong>binary outcome</strong>.</p>
+<p>While we often use logistic regression with multiple independent variables (making it technically “multiple logistic regression”), the core concepts remain the same. Here’s a quick comparison of regression types:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Type of Regression</p></th>
+<th class="head text-left"><p>Dependent Variable (Y)</p></th>
+<th class="head"><p>Examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Linear</p></td>
+<td class="text-left"><p>Continuous (interval, ratio)</p></td>
+<td><p>Enzyme activity, renal function, weight</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Logistic</p></td>
+<td class="text-left"><p>Binary (dichotomous)</p></td>
+<td><p>Death during surgery, graduation, recurrence of cancer</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Proportional Hazards</p></td>
+<td class="text-left"><p>Elapsed time to event</p></td>
+<td><p>Months until death, time to graduation</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="definitions">
+<h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h2>
+<section id="the-maths">
+<h3>The maths<a class="headerlink" href="#the-maths" title="Link to this heading">#</a></h3>
+<p>At the heart of logistic regression lies the concept of <strong>odds</strong> and <strong>odds ratios</strong>. As we have seen in the chapter on the comparison of proportions, the odds of an event occurring are calculated as the probability of that event happening divided by the probability of it not happening:</p>
+<div class="math notranslate nohighlight">
+\[\text{Odds} = \frac{\text{Probability of event}}{\text{Probability of no event}} = \frac{p}{1-p}\]</div>
+<p>The logistic regression model calculates the odds of our outcome based on two key components:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\text{Odds} &amp;= (\text{Baseline odds}) \times \text{OR}_1 \times \text{OR}_2 \times \dots \times \text{OR}_n\\
+&amp;= (\text{Baseline odds}) \times \prod_{i=1}^n \text{OR}_i
+\end{aligned}
+\end{split}\]</div>
+<ol class="arabic simple">
+<li><p><em>Baseline odds</em>: these represent the <em>odds</em> of the outcome when all of our independent variables are set to <em>zero</em>. To make this more meaningful, we can center our variables (e.g., by using “Age - 20” instead of just “Age”). This way, our baseline odds would reflect the odds for a 20-year-old individual.</p></li>
+<li><p><em>Odds ratios (OR)</em>: each independent variable in our model has an associated odds ratio, which tells us how the odds of the outcome change with a one-unit increase in that variable:</p>
+<ul class="simple">
+<li><p>For continuous variables, the odds ratio tells us how much the odds change for a one-unit increase in that variable.</p></li>
+<li><p>For binary variables, it tells us how much the odds change when the binary variable switches from 0 to 1.</p></li>
+</ul>
+</li>
+</ol>
+<p>We can interpret the OR as follows:</p>
+<ul class="simple">
+<li><p>An OR of 1 means no relationship between the variable and the outcome.</p></li>
+<li><p>An OR greater than 1 indicates that the odds increase as the variable increases (or when it switches from 0 to 1 for binary variables).</p></li>
+<li><p>An OR less than 1 indicates that the odds decrease as the variable increases (or when it switches from 0 to 1 for binary variables).</p></li>
+</ul>
+<p>Let’s imagine we’re predicting the likelihood of a certain species of bird nesting in a particular habitat. Our model includes an odds ratio (OR) of 1.05 associated with tree density. This means that for every additional tree per hectare, the odds of a bird nesting in that habitat increase by 5%.</p>
+<p>Now, let’s consider another example where we’re predicting the risk of a plant disease. Our model shows an OR of 0.90 for soil pH. This indicates that for every one-unit increase in soil pH, the odds of the plant disease decrease by 10%.</p>
+<p>To illustrate how odds ratios work over a range of values, let’s say we have an OR of 0.98 for temperature in predicting insect abundance. We want to compare the odds of insect abundance at 30°C versus 20°C.  We can use the following formula:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\text{OR}_\text{temperature} &amp;= \text{OR}^\text{temperature difference} \\
+&amp;= 0.98 \times 0.98 \times \dots \times 0.98 \\
+&amp;= 0.98^{30 - 20} \\
+&amp;= 0.98^{10} \\
+&amp;\approx 0.82
+\end{aligned}
+\end{split}\]</div>
+<p>This means the odds of insect abundance at 30°C are about 82% of the odds at 20°C. In other words, the odds are about 18% lower at the higher temperature.</p>
+</section>
+<section id="id1">
+<h3>Logistic regression<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>As we’ve discussed, linear regression assumes the dependent variable (<span class="math notranslate nohighlight">\(Y_i\)</span>) can take any value. But what if <span class="math notranslate nohighlight">\(Y_i\)</span> is binary—for example, representing the presence (<span class="math notranslate nohighlight">\(1\)</span>) or absence (<span class="math notranslate nohighlight">\(0\)</span>) of a disease? This is where logistic regression comes in.</p>
+<p>In logistic regression, <span class="math notranslate nohighlight">\(Y_i\)</span> is binary (e.g., 0 or 1). This creates two main issues for linear regression:</p>
+<ol class="arabic simple">
+<li><p><em>Non-linearity:</em> the relationship between our predictors and a binary outcome is usually S-shaped (sigmoidal), not linear.</p></li>
+<li><p><em>Unbounded predictions:</em> linear regression can predict values outside the 0 to 1 range, which doesn’t make sense for probabilities.</p></li>
+</ol>
+<p>To address these issues, we introduce the <strong>logit transformation</strong>. This transformation takes a probability (<span class="math notranslate nohighlight">\(p\)</span>) and maps it from <span class="math notranslate nohighlight">\([0,1)\)</span> to a value that can range from negative to positive infinity <span class="math notranslate nohighlight">\((-\infty, +\infty)\)</span>. The logit function is:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{logit}(p_i) = \ln \left(\frac{p_i}{1 - p_i} \right)\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p_i\)</span> is the probability of the event (e.g., the probability of a patient having a certain disease) being 1 for the <span class="math notranslate nohighlight">\(i\)</span>-th participant.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\ln\)</span> is the natural logarithm, not the common logarithm (<span class="math notranslate nohighlight">\(\log_{10}\)</span>)</p></li>
+</ul>
+<p>Now, instead of predicting <span class="math notranslate nohighlight">\(Y_i\)</span> directly, we predict the <em>logit</em> of <span class="math notranslate nohighlight">\(p_i\)</span>. This allows us to use a linear equation, similar to multiple regression:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{logit}(p_i) = \ln \left(\frac{p_i}{1 - p_i} \right) = \beta_0 + \beta_1 X_{i,1} + \beta_2 X_{i,2} + ... + \beta_n X_{i,n}\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Y_i\)</span> is the dependent variable (what we’re trying to predict).</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_{i,1}, X_{i,2}, \dots, X_{i,n}\)</span> are the independent variables (our predictors).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> is the intercept (the value of <span class="math notranslate nohighlight">\(Y\)</span> when all <span class="math notranslate nohighlight">\(X\)</span> are 0).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_1, \beta_2, \dots, \beta_n\)</span> are the coefficients (how much <span class="math notranslate nohighlight">\(Y\)</span> changes for a one-unit change in each <span class="math notranslate nohighlight">\(X\)</span>).</p></li>
+</ul>
+<p>The <span class="math notranslate nohighlight">\(Y_i\)</span> value is the natural log of odds, which can be transformed to a probability. Since it implicitly embodies uncertainty, there is no need to explicitly add a random term to the model.</p>
+</section>
+<section id="maximum-likelihood-estimation">
+<h3>Maximum likelihood estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Logistic_regression#Fit">Maximum likelihood estimation (MLE) is used to estimate the <span class="math notranslate nohighlight">\(\beta\)</span> coefficients</a> in logistric regression. As discussed at the end of the linear regression chapter as an advanced technique, MLE is a different approach than the OLS method we used in linear regression:</p>
+<ul class="simple">
+<li><p>OLS finds the coefficients that minimize the sum of squared errors between the observed and predicted values. It’s a good method when the dependent variable is continuous and the errors are normally distributed.</p></li>
+<li><p>MLE finds the coefficients that maximize the likelihood of observing the data given the model. It’s a more general method that can be used for various types of data and models, including logistic regression where the dependent variable is binary.</p></li>
+</ul>
+<p>In essence, MLE is a more suitable method for estimating the coefficients in logistic regression due to the nature of the outcome variable and the model’s assumptions.</p>
+<p>We then apply back-transformation to retrieve the odds and probability:</p>
+<ul class="simple">
+<li><p>Odds: <span class="math notranslate nohighlight">\(\frac{p_i}{1 - p_i} =  e^{Y_i} = e^{\beta_0 + \beta_1 X_{i,1} + \beta_2 X_{i,2} + ... + \beta_n X_{i,n}}\)</span></p></li>
+<li><p>Probability: <span class="math notranslate nohighlight">\(p_i = \frac{1}{1 + e^{-Y_i}} = \frac{1}{1 + e^{-(\beta_0 + \beta_1 X_{i,1} + \beta_2 X_{i,2} + ... + \beta_n X_{i,n})}}\)</span></p></li>
+</ul>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>Let’s say we want to predict the likelihood of a student passing an exam (<span class="math notranslate nohighlight">\(Y = 1\)</span> for pass, <span class="math notranslate nohighlight">\(0\)</span> for fail) based on whether they attended a study session (<span class="math notranslate nohighlight">\(X_1 = 1\)</span> for attended, <span class="math notranslate nohighlight">\(0\)</span> for did not attend) and whether they completed the practice problems (<span class="math notranslate nohighlight">\(X_2 = 1\)</span> for completed, <span class="math notranslate nohighlight">\(0\)</span> for did not complete).</p>
+<p>Our logistic regression model might look like this:</p>
+<div class="math notranslate nohighlight">
+\[\ln \left( \frac{p_\text{pass=1}}{1-p_\text{pass=1}} \right) = -1.5 + 0.8 \times \text{Study Session} + 1.2 \times \text{Practice Problems}\]</div>
+<p>Here’s how we can interpret the coefficients:</p>
+<ul class="simple">
+<li><p>Intercept (<span class="math notranslate nohighlight">\(\beta_0 = -1.5\)</span>): this represents the log-odds of passing the exam for a student who did <em>not</em> attend the study session and did <em>not</em> complete the practice problems.</p></li>
+<li><p><em>Study Session</em> coefficient (<span class="math notranslate nohighlight">\(\beta_1 = 0.8\)</span>): attending the study session increases the log-odds of passing by 0.8.</p></li>
+<li><p><em>Practice Problems</em> coefficient (<span class="math notranslate nohighlight">\(\beta_2 = 1.2\)</span>): completing the practice problems increases the log-odds of passing by 1.2.</p></li>
+</ul>
+<p>To get the actual probabilities, we would need to apply the transformations discussed earlier (exponentiate to get odds, then use the logistic function to get probability):</p>
+<div class="math notranslate nohighlight">
+\[p = \frac{\text{odds}}{1 + \text{odd}}\]</div>
+</section>
+</section>
+<section id="assumptions">
+<h2>Assumptions<a class="headerlink" href="#assumptions" title="Link to this heading">#</a></h2>
+<p>Just as with multiple linear regression, logistic regression relies on several assumptions. Violating these can lead to unreliable estimates, invalid P values, and incorrect conclusions.</p>
+<section id="linearity">
+<h3>Linearity<a class="headerlink" href="#linearity" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In multiple regression, we assumed linearity between each independent variable and the <em>dependent variable</em> (after considering other predictors).</p></li>
+<li><p>In logistic regression, we assume linearity between each independent variable and the <em>log-odds</em> of the outcome.</p></li>
+</ul>
+<p>To assess this assumption, we examine residual plots (plotted against predicted log-odds) and consider component-component plus residual (CCPR) plots. If we find evidence of non-linearity, we can try transformations of the independent variables, including polynomial terms. In some cases, we might need to consider alternative models if the relationship is fundamentally non-linear.</p>
+</section>
+<section id="independence-of-errors">
+<h3>Independence of errors<a class="headerlink" href="#independence-of-errors" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In both multiple and logistic regressions, errors (residuals) should be independent of each other. This is often violated in data with time series, repeated measures, or clustered structures.</p></li>
+</ul>
+<p>To assess this, we consider the study design and examine residual plots for patterns. If we suspect non-independence, we need to use appropriate models that account for the data structure, such as time series models, mixed-effects models, or generalized estimating equations (GEEs).</p>
+</section>
+<section id="homoscedasticity">
+<h3>Homoscedasticity<a class="headerlink" href="#homoscedasticity" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In multiple regression, we assumed constant variance of errors across all levels of the independent variables.</p></li>
+<li><p>In logistic regression, this assumption is not as critical. Due to the binary nature of the outcome, some degree of heteroscedasticity is expected.</p></li>
+</ul>
+<p>We assess this primarily through visual inspection of residual plots. If we detect severe heteroscedasticity, we can consider transformations or robust standard errors.</p>
+</section>
+<section id="normality-of-errors">
+<h3>Normality of errors<a class="headerlink" href="#normality-of-errors" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In multiple regression, we assumed normally distributed errors, which is especially important for small sample sizes.</p></li>
+<li><p>In logistic regression, this assumption is less critical due to the Central Limit Theorem and the asymptotic properties of maximum likelihood estimation.</p></li>
+</ul>
+<p>We can assess normality using histograms and Q-Q plots of the residuals. If substantial deviations from normality are observed, we might consider transformations or bootstrapping.</p>
+</section>
+<section id="no-perfect-multicollinearity">
+<h3>No perfect multicollinearity<a class="headerlink" href="#no-perfect-multicollinearity" title="Link to this heading">#</a></h3>
+<p>No independent variable should be a perfect linear combination of the others. This assumption applies to both multiple and logistic regression.</p>
+<p>We can assess multicollinearity by examining correlation matrices and variance inflation factors (VIFs). To address it, we might remove redundant variables, combine variables, or use regularization techniques.</p>
+</section>
+</section>
+<section id="real-world-example">
+<h2>Real-world example<a class="headerlink" href="#real-world-example" title="Link to this heading">#</a></h2>
+<section id="getting-the-data">
+<h3>Getting the data<a class="headerlink" href="#getting-the-data" title="Link to this heading">#</a></h3>
+<p>In the previous chapter on multiple regression, we analyzed a study examining the prevalence of mental disorders among male prisoners in France.</p>
+<p>The dataset, coming from the study <a class="reference external" href="https://bmcpsychiatry.biomedcentral.com/articles/10.1186/1471-244X-6-33">“Prevalence of mental disorders in French prisons for men” by Falissard et al. (2006)</a>, is available through a MOOC (Massive Open Online Course) on biostatistics using R offered by Bruno Falissard (one of the study’s authors).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Load the dataset from the URL of the MOOC</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://lms.fun-mooc.fr/c4x/Paris11/15001/asset/smp2.csv&quot;</span><span class="p">,</span>
+    <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span>  <span class="c1"># Specify the delimiter as &#39;;&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Display the first 5 rows of the DataFrame</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>prof</th>
+      <th>duree</th>
+      <th>discip</th>
+      <th>n.enfant</th>
+      <th>n.fratrie</th>
+      <th>ecole</th>
+      <th>separation</th>
+      <th>juge.enfant</th>
+      <th>place</th>
+      <th>...</th>
+      <th>subst.cons</th>
+      <th>scz.cons</th>
+      <th>char</th>
+      <th>rs</th>
+      <th>ed</th>
+      <th>dr</th>
+      <th>suicide.s</th>
+      <th>suicide.hr</th>
+      <th>suicide.past</th>
+      <th>dur.interv</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>31.0</td>
+      <td>autre</td>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>4</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>49.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>7.0</td>
+      <td>3</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>70.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>50.0</td>
+      <td>prof.interm?diaire</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>47.0</td>
+      <td>ouvrier</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>6</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>105.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>23.0</td>
+      <td>sans emploi</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>6</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 26 columns</p>
+</div></div></div>
+</div>
+<p>As seen in the previous chapter on multiple regression, the variable names in the dataset are in French, though a <a class="reference external" href="https://lms.fun-mooc.fr/c4x/Paris11/15001/asset/Pr_sentation_variables__tude_SMP_MOOC_R.pdf">comprehensive PDF document</a> explains each variable in detail, as summarized below.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>age</p></td>
+<td><p>Age</p></td>
+<td><p>Years</p></td>
+</tr>
+<tr class="row-odd"><td><p>prof</p></td>
+<td><p>Profession (agriculteur, artisan, cadre, profession intermédiaire, employé, ouvrier, autre, sans emploi)</p></td>
+<td><p>Categorical</p></td>
+</tr>
+<tr class="row-even"><td><p>dep.cons</p></td>
+<td><p>Presence of depressive disorder (diagnosed by consensus of two clinicians)</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-odd"><td><p>scz.cons</p></td>
+<td><p>Presence of schizophrenia (diagnosed by consensus of two clinicians)</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-even"><td><p>grav.cons</p></td>
+<td><p>Severity of the inmate’s psychopathology (1: normal, 2: borderline, 3: mild, 4: moderate, 5: manifest, 6: severe, 7: among the most ill)</p></td>
+<td><p>Ordinal (1-7)</p></td>
+</tr>
+<tr class="row-odd"><td><p>n.enfant</p></td>
+<td><p>Number of children</p></td>
+<td><p>Count</p></td>
+</tr>
+<tr class="row-even"><td><p>rs</p></td>
+<td><p>Novelty seeking (1: low, 2: moderate, 3: high)</p></td>
+<td><p>Ordinal (1-3)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ed</p></td>
+<td><p>Harm avoidance (1: low, 2: moderate, 3: high)</p></td>
+<td><p>Ordinal (1-3)</p></td>
+</tr>
+<tr class="row-even"><td><p>dr</p></td>
+<td><p>Reward dependence (1: low, 2: moderate, 3: high)</p></td>
+<td><p>Ordinal (1-3)</p></td>
+</tr>
+<tr class="row-odd"><td><p>duree</p></td>
+<td><p>Duration of incarceration (1: Less than 1 month, 2: 1 to 6 months, 3: 6 months to 1 year, 4: 1 to 5 years, 5: 5 years or more)</p></td>
+<td><p>Ordinal (1-5)</p></td>
+</tr>
+<tr class="row-even"><td><p>discip</p></td>
+<td><p>Disciplinary action since incarceration</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-odd"><td><p>n.fratrie</p></td>
+<td><p>Number of siblings</p></td>
+<td><p>Count</p></td>
+</tr>
+<tr class="row-even"><td><p>ecole</p></td>
+<td><p>Education level (1: no diploma, 2: middle school, 3: CAP, BEP, 4: high school, 5: university)</p></td>
+<td><p>Ordinal (1-5)</p></td>
+</tr>
+<tr class="row-odd"><td><p>separation</p></td>
+<td><p>Separation from parents for at least 6 months during childhood</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-even"><td><p>juge.enfant</p></td>
+<td><p>Followed by a children’s judge before age 18</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-odd"><td><p>place</p></td>
+<td><p>Placement in a home or foster care before age 18</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-even"><td><p>abus</p></td>
+<td><p>History of childhood abuse (physical, psychological, or sexual)</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ago.cons</p></td>
+<td><p>Presence of agoraphobia</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-even"><td><p>ptsd.cons</p></td>
+<td><p>Presence of post-traumatic stress disorder</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-odd"><td><p>alc.cons</p></td>
+<td><p>Presence of alcohol abuse</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-even"><td><p>subst.cons</p></td>
+<td><p>Presence of substance abuse</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-odd"><td><p>char</p></td>
+<td><p>Intensity of personality disorder (1: absent, 2: mild, 3: moderate, 4: severe)</p></td>
+<td><p>Ordinal (1-4)</p></td>
+</tr>
+<tr class="row-even"><td><p>suicide.s</p></td>
+<td><p>Suicide risk score</p></td>
+<td><p>Score (1-6)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://suicide.hr">suicide.hr</a></p></td>
+<td><p>High suicide risk</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-even"><td><p>suicide.past</p></td>
+<td><p>History of suicide attempt</p></td>
+<td><p>Binary (0: No, 1: Yes)</p></td>
+</tr>
+<tr class="row-odd"><td><p>dur.interv</p></td>
+<td><p>Duration of the interview</p></td>
+<td><p>Minutes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="building-the-logistic-regression-model">
+<h3>Building the logistic regression model<a class="headerlink" href="#building-the-logistic-regression-model" title="Link to this heading">#</a></h3>
+<p>We’ll construct a simple logistic regression model to predict the probability of high suicide risk (’<a class="reference external" href="http://suicide.hr">suicide.hr</a>’) based on the presence of childhood abuse (‘abus’). Our model can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[\text{logit}(p) = \ln \left( \frac{p(\text{suicide.hr = 1})}{1 - p(\text{suicide.hr = 1})} \right) = \beta_0 + \beta_\mathrm{abus} X_\mathrm{abus}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p\)</span> represents the probability of having a high suicide risk.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{logit}(p)\)</span> is the log-odds of having a high suicide risk, which is transformed using the logit function to ensure the probability ranges between 0 and 1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> is the intercept, representing the log-odds of having a high suicide risk when there is no history of childhood abuse.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_\mathrm{abus}\)</span> is the regression coefficient for ‘abus’, representing the change in the log-odds of having a high suicide risk associated with having a history of childhood abuse.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+
+<span class="c1"># Drop rows with missing values for `suicide.hr` and `abus`</span>
+<span class="n">data_abus</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;suicide.hr&#39;</span><span class="p">,</span> <span class="s1">&#39;abus&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Define the dependent variable (y) and independent variable (X)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_abus</span><span class="p">[</span><span class="s1">&#39;suicide.hr&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data_abus</span><span class="p">[[</span><span class="s1">&#39;abus&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Add a constant term to the independent variable matrix</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Fit the logistic regression model</span>
+<span class="n">model_abus</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>  <span class="c1"># Using Logit for logistic regression</span>
+<span class="n">result_abus</span> <span class="o">=</span> <span class="n">model_abus</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>     <span class="c1"># This uses Maximum Likelihood Estimation (MLE) by default</span>
+
+<span class="c1"># Print the model summary</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_abus</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.494196
+         Iterations 5
+                            Logit Regression Results                           
+===============================================================================
+Dep. Variable:              suicide.hr   No. Observations:                  753
+Model:                           Logit   Df Residuals:                      751
+Method:                            MLE   Df Model:                            1
+Date:              lun., 20 janv. 2025   Pseudo R-squ.:                 0.02098
+Time:                         18:08:01   Log-Likelihood:                -372.13
+converged:                        True   LL-Null:                       -380.11
+Covariance Type:             nonrobust   LLR p-value:                 6.494e-05
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -1.6161      0.115    -14.003      0.000      -1.842      -1.390
+abus           0.7688      0.190      4.052      0.000       0.397       1.141
+==============================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<p>To make these coefficients more interpretable, we need to convert them to odds ratios.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Calculate the odds and probability for the intercept</span>
+<span class="n">intercept_odds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">result_abus</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;const&#39;</span><span class="p">])</span>
+<span class="n">intercept_prob</span> <span class="o">=</span> <span class="n">intercept_odds</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">intercept_odds</span><span class="p">)</span>
+
+<span class="c1"># Calculate the odds ratio and confidence interval for &#39;abus&#39;</span>
+<span class="n">abus_coeff_or</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">result_abus</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;abus&#39;</span><span class="p">])</span>
+<span class="n">abus_coeff_ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">result_abus</span><span class="o">.</span><span class="n">conf_int</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;abus&#39;</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Print the odds and probability for the intercept</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Odds for intercept (no abuse): </span><span class="si">{</span><span class="n">intercept_odds</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Probability for intercept (no abuse): </span><span class="si">{</span><span class="n">intercept_prob</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Print the odds ratio, confidence interval, and p-value for &#39;abus&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Odds ratio for &#39;abus&#39;: </span><span class="si">{</span><span class="n">abus_coeff_or</span><span class="si">:</span><span class="s2">3.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CI of the OR for &#39;abus&#39;: [</span><span class="si">{</span><span class="n">abus_coeff_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">abus_coeff_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P value for &#39;abus&#39;: </span><span class="si">{</span><span class="n">result_abus</span><span class="o">.</span><span class="n">pvalues</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;abus&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">3.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Odds for intercept (no abuse): 0.199
+Probability for intercept (no abuse): 0.166
+
+Odds ratio for &#39;abus&#39;: 2.157
+CI of the OR for &#39;abus&#39;: [1.49, 3.13]
+P value for &#39;abus&#39;: 0.0001
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s interpret the coefficients and odds ratios:</p>
+<ul class="simple">
+<li><p><em>Intercept</em>: the intercept, or constant ‘const’ (-1.616) represents the log-odds of ‘<a class="reference external" href="http://suicide.hr">suicide.hr</a> = 1’ (high suicide risk) when there is no history of childhood abuse (‘abus = 0’). Exponentiating this value gives us the odds, which is approximately 0.20:1. This means that when there’s no history of abuse, the odds of having a high suicide risk are about 1 in 5, or a probability of <span class="math notranslate nohighlight">\(0.20 / (1 + 0.20) = 16.6\%\)</span>.</p></li>
+<li><p><em>‘abus’ coefficient</em>: the coefficient for ‘abus’ (0.7688) represents the change in the log-odds of ‘<a class="reference external" href="http://suicide.hr">suicide.hr</a>’ associated with having a history of childhood abuse. Exponentiating this value gives us the odds ratio, which is approximately 2.16. This means that prisoners with a history of childhood abuse have about 2.16 times the odds of having a high suicide risk compared to those without a history of abuse.</p></li>
+<li><p><em>Confidence intervals</em>: the 95% confidence interval for the ‘abus’ coefficient (0.397 to 1.141) does not include 1, confirming that the association between ‘abus’ and ‘<a class="reference external" href="http://suicide.hr">suicide.hr</a>’ is statistically significant at a significance level of 0.05.</p></li>
+<li><p><em>P value</em>: the P value for ‘abus’ is very small (less than 0.0001), which also provides strong evidence to reject the null hypothesis that there is no association between childhood abuse and suicide risk.</p></li>
+</ul>
+<p>Our logistic regression analysis indicates a statistically significant positive association between a history of childhood abuse and high suicide risk among male prisoners. Prisoners with a history of abuse have more than twice the odds of being classified as high suicide risk compared to those without such a history. The table below shows the probability of ‘<a class="reference external" href="http://suicide.hr">suicide.hr</a>’ for both values of ‘abus’:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>abus</p></th>
+<th class="head"><p>Log-odds</p></th>
+<th class="head"><p>Odds</p></th>
+<th class="head"><p>Ratio</p></th>
+<th class="head"><p>Proba</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>-1.616</p></td>
+<td><p>0.20</p></td>
+<td><p>1:5</p></td>
+<td><p>0.166</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>-0.847</p></td>
+<td><p>0.43</p></td>
+<td><p>1:2.3</p></td>
+<td><p>0.300</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>where <span class="math notranslate nohighlight">\(\text{logit}(p_{\text{abus}=1}) = \beta_0 + \beta_\mathrm{abus} \times 1 = -1.616 + 0.769 = -0.847\)</span>.</p>
+</section>
+<section id="contingency-table">
+<h3>Contingency table<a class="headerlink" href="#contingency-table" title="Link to this heading">#</a></h3>
+<p>In that particular scenario where we analyze 2 binary variables, we can create a contingency table using <code class="docutils literal notranslate"><span class="pre">pd.crosstab</span></code>. This will help us visualize the distribution of ‘<a class="reference external" href="http://suicide.hr">suicide.hr</a>’ across the different levels of ‘abus’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the contingency table</span>
+<span class="n">contingency_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">data_abus</span><span class="p">[</span><span class="s1">&#39;abus&#39;</span><span class="p">],</span> <span class="n">data_abus</span><span class="p">[</span><span class="s1">&#39;suicide.hr&#39;</span><span class="p">])</span>
+
+<span class="c1"># Print the contingency table</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contingency table:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contingency_table</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">numalign</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">stralign</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contingency table:
+| abus   | 0.0   | 1.0   |
+|:-------|:------|:------|
+| 0      | 453   | 90    |
+| 1      | 147   | 63    |
+</pre></div>
+</div>
+</div>
+</div>
+<p>This table will provide a clear overview of the number of individuals in each category of ‘abus’ and ‘<a class="reference external" href="http://suicide.hr">suicide.hr</a>’. Next, let’s use the <code class="docutils literal notranslate"><span class="pre">Table2x2</span></code> module from <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> to calculate and display the odds ratio and confidence interval.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the odds ratio and confidence interval</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">Table2x2</span><span class="p">(</span><span class="n">contingency_table</span><span class="p">)</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<tr>
+         <td></td>        <th>Estimate</th>  <th>SE</th>    <th>LCB</th>   <th>UCB</th>  <th>p-value</th>
+</tr>
+<tr>
+  <th>Odds ratio</th>        <td>2.157</td>      <td></td> <td>1.487</td> <td>3.129</td>   <td>0.000</td>
+</tr>
+<tr>
+  <th>Log odds ratio</th>    <td>0.769</td> <td>0.190</td> <td>0.397</td> <td>1.141</td>   <td>0.000</td>
+</tr>
+<tr>
+  <th>Risk ratio</th>        <td>1.192</td>      <td></td> <td>1.083</td> <td>1.312</td>   <td>0.000</td>
+</tr>
+<tr>
+  <th>Log risk ratio</th>    <td>0.175</td> <td>0.049</td> <td>0.079</td> <td>0.272</td>   <td>0.000</td>
+</tr>
+</table></div></div>
+</div>
+<p>The odds ratio obtained with the analysis of the contingency table is similar to the odds ratio computed using the logistic regression model. This is because both methods estimate the odds ratio, but they use slightly different approaches. We should refer to the chapter dealing with the comparison of proportions to understand this.</p>
+</section>
+<section id="logistic-regression-model-with-a-continuous-variable">
+<h3>Logistic regression model with a continuous variable<a class="headerlink" href="#logistic-regression-model-with-a-continuous-variable" title="Link to this heading">#</a></h3>
+<p>Let’s build a simple logistic regression model to predict the probability of high suicide risk (’<a class="reference external" href="http://suicide.hr">suicide.hr</a>’) based on the continuous variable ‘age’.</p>
+<p>Our model can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[\text{logit}(p) = \beta_0 + \beta_\mathrm{age} X_\mathrm{age}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p\)</span> represents the probability of having a high suicide risk.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{logit}(p)\)</span> is the log-odds of having a high suicide risk.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> is the intercept, representing the log-odds of having a high suicide risk when age is 0 (which may not have practical meaning).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_\mathrm{age}\)</span> is the regression coefficient for ‘age’, representing the change in the log-odds of having a high suicide risk associated with a one-unit increase in age.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop rows with missing values for `suicide.hr` and `abus`</span>
+<span class="n">data_age</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;suicide.hr&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Define the dependent variable (y) and independent variable (X)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_age</span><span class="p">[</span><span class="s1">&#39;suicide.hr&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data_age</span><span class="p">[[</span><span class="s1">&#39;age&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Add a constant term to the independent variable matrix</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Fit the logistic regression model</span>
+<span class="n">model_age</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>  <span class="c1"># Using Logit for logistic regression</span>
+<span class="n">result_age</span> <span class="o">=</span> <span class="n">model_age</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>     <span class="c1"># This uses Maximum Likelihood Estimation (MLE) by default</span>
+
+<span class="c1"># Print the model summary</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_age</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.496980
+         Iterations 6
+                            Logit Regression Results                           
+===============================================================================
+Dep. Variable:              suicide.hr   No. Observations:                  758
+Model:                           Logit   Df Residuals:                      756
+Method:                            MLE   Df Model:                            1
+Date:              lun., 20 janv. 2025   Pseudo R-squ.:                 0.01187
+Time:                         18:08:27   Log-Likelihood:                -376.71
+converged:                        True   LL-Null:                       -381.24
+Covariance Type:             nonrobust   LLR p-value:                  0.002621
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.5527      0.288     -1.919      0.055      -1.117       0.012
+age           -0.0216      0.007     -2.923      0.003      -0.036      -0.007
+==============================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the odds ratios for all coefficients</span>
+<span class="n">odds_ratios</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">result_age</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># Print the odds ratios</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Odds ratios:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odds_ratios</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">numalign</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">stralign</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Odds ratios:
+|       | 0        |
+|:------|:---------|
+| const | 0.575416 |
+| age   | 0.978666 |
+</pre></div>
+</div>
+</div>
+</div>
+<p>The intercept (-0.5527) represents the log-odds of a prisoner having a high suicide risk when their age is 0. While we can exponentiate this to get an odds value, it doesn’t have a practical interpretation in this context, as age cannot be 0. The intercept mainly serves as a mathematical starting point for the model.</p>
+<p>The coefficient for ‘age’ (-0.0216) tells us how the log-odds of high suicide risk change with each one-year increase in age. More importantly, the odds ratio for age (0.979) indicates that for each year older a prisoner is, their odds of being a high suicide risk decrease by about 2% (1 - 0.979 = 0.021). However, the association is relatively weak and the confidence interval is somewhat wide, so we should interpret these findings with caution.</p>
+</section>
+<section id="fitting-a-more-complex-logistic-regression-model">
+<h3>Fitting a more complex logistic regression model<a class="headerlink" href="#fitting-a-more-complex-logistic-regression-model" title="Link to this heading">#</a></h3>
+<p>Let’s fit a more complex logistic regression model using the Patsy formula and the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> library. This approach allows us to include multiple independent variables and their interactions.</p>
+<div class="math notranslate nohighlight">
+\[\text{logit}(p) = \beta_0 + \beta_\mathrm{duree} X_\mathrm{duree} + \beta_\mathrm{discip} X_\mathrm{discip} + \beta_\mathrm{abus} X_\mathrm{abus} + \beta_\mathrm{discip:duree} X_\mathrm{discip}X_\mathrm{duree}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p\)</span> represents the probability of the outcome.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{logit}(p)\)</span> is the log-odds of the outcome.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> is the intercept.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_\mathrm{duree}\)</span>, <span class="math notranslate nohighlight">\(\beta_\mathrm{discip}\)</span>, and <span class="math notranslate nohighlight">\(\beta_\mathrm{abus}\)</span> are the coefficients for the individual variables (‘duree’, ‘discip’, and ‘abus’).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_\mathrm{discip:duree}\)</span> is the coefficient for the interaction term between ‘discip’ and ‘duree’.</p></li>
+</ul>
+<p>The interaction term allows us to capture the combined effect of ‘discip’ and ‘duree’ on the outcome.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
+
+<span class="c1"># Drop rows with missing values for relevant variables</span>
+<span class="n">data_interaction</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;suicide.hr&#39;</span><span class="p">,</span> <span class="s1">&#39;abus&#39;</span><span class="p">,</span> <span class="s1">&#39;discip&#39;</span><span class="p">,</span> <span class="s1">&#39;duree&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Create the Patsy formula using the `C()` function to specify categorical variables</span>
+<span class="n">formula_interaction</span> <span class="o">=</span> <span class="s2">&quot;Q(&#39;suicide.hr&#39;) ~ duree + discip*duree&quot;</span>
+
+<span class="c1"># Fit the logistic regression model using the Patsy formula</span>
+<span class="n">model_interaction</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula_interaction</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_interaction</span><span class="p">)</span>
+<span class="n">result_interaction</span> <span class="o">=</span> <span class="n">model_interaction</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Print the model summary</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_interaction</span><span class="o">.</span><span class="n">summary2</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.491424
+         Iterations 6
+                         Results: Logit
+================================================================
+Model:              Logit            Method:           MLE      
+Dependent Variable: Q(&#39;suicide.hr&#39;)  Pseudo R-squared: 0.028    
+Date:               2025-01-20 18:08 AIC:              548.5668 
+No. Observations:   550              BIC:              565.8065 
+Df Model:           3                Log-Likelihood:   -270.28  
+Df Residuals:       546              LL-Null:          -277.97  
+Converged:          1.0000           LLR p-value:      0.0015221
+No. Iterations:     6.0000           Scale:            1.0000   
+----------------------------------------------------------------
+                  Coef.  Std.Err.    z    P&gt;|z|   [0.025  0.975]
+----------------------------------------------------------------
+Intercept         0.0737   0.5469  0.1347 0.8928 -0.9983  1.1457
+duree            -0.3784   0.1301 -2.9084 0.0036 -0.6334 -0.1234
+discip            0.6338   1.2578  0.5039 0.6143 -1.8314  3.0990
+discip:duree     -0.0101   0.2895 -0.0350 0.9721 -0.5775  0.5572
+================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the previous formula, the dependent variable (’<a class="reference external" href="http://suicide.hr">suicide.hr</a>’) is enclosed in <code class="docutils literal notranslate"><span class="pre">Q()</span></code> to quote the variable name, as it contains the special character ‘.’.</p>
+<p>Moreover, the ‘discip*duree’ term specifies the interaction between ‘discip’ and ‘duree’. The <code class="docutils literal notranslate"><span class="pre">*</span></code> operator is used to indicate an interaction between two or more variables. In the previous chapter, we used the <code class="docutils literal notranslate"><span class="pre">:</span></code> operator to specify interaction terms in a similar way. Remind that the colon only includes the interaction term itself, not the main effects of the variables involved.</p>
+<p>By combining all the approaches we’ve seen in multiple regression - using <strong>categories</strong>, <strong>removing the intercept</strong>, and including <strong>quadratic polynomial terms</strong> - we can create more flexible and complex logistic regression models that capture non-linear relationships and interactions between variables.</p>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>In this chapter, we delved into logistic regression, a powerful technique for modeling the relationship between a binary outcome and one or more predictor variables. We built upon our knowledge of simple and multiple linear regression, demonstrating how the logit transformation allows us to adapt linear modeling principles to analyze binary outcomes.</p>
+<p>We explored the interpretation of logistic regression coefficients, emphasizing the importance of odds ratios in understanding the effects of predictors on the outcome. We also saw how to use the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> library in Python to fit and interpret logistic regression models, leveraging the flexibility of Patsy formulas to incorporate interactions and categorical variables.</p>
+<p>Importantly, we highlighted the close connection between logistic regression and the analysis of contingency tables, showing how both approaches can be used, in some scenarios, to estimate odds ratios and assess associations between variables.</p>
+<p>Beyond its applications in traditional statistical analysis, logistic regression plays a crucial role in <em>machine learning</em>, particularly in <strong>classification</strong> tasks. The predicted probabilities from a logistic regression model can be used to classify observations into different categories based on a chosen threshold. This makes logistic regression a valuable tool for a wide range of applications, from medical diagnosis to image recognition.</p>
+<p>With this chapter, we conclude our exploration of fitting models to data. In the next section, we’ll shift our focus to another fundamental statistical technique: Analysis of Variance (ANOVA). ANOVA allows us to compare means across multiple groups and understand the sources of variation in our data.</p>
+</section>
+</section>
+<section id="cheat-sheet">
+<h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h3>Building the logistic regression model<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
+
+<span class="c1"># Create a new DataFrame with only the relevant variables</span>
+<span class="n">analysis_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="n">y</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Drop rows with missing values in any of the selected columns</span>
+<span class="n">analysis_data</span> <span class="o">=</span> <span class="n">analysis_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Define the model formula using patsy syntax with the interaction term</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;y ~ X1 + X2&quot;</span>
+
+<span class="c1"># Quote variable names that contains special characters (e.g., periods `.` or hyphens `-`)</span>
+<span class="c1"># formula = &quot;Q(&#39;dur.interv&#39;) ~ age + Q(&#39;dep.cons&#39;) + Q(&#39;subst.cons&#39;)&quot;</span>
+
+<span class="c1"># Fit the MLE  model using the formula and data</span>
+<span class="n">model_interaction</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">analysis_data</span><span class="p">)</span>
+
+<span class="c1"># Fit the model</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Print the regression results summary</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="c1"># print(results.summary2())</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="session-information">
+<h2>Session information<a class="headerlink" href="#session-information" title="Link to this heading">#</a></h2>
+<p>The output below details all packages and version necessary to reproduce the results in this report.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>--version
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib.metadata</span><span class="w"> </span><span class="kn">import</span> <span class="n">version</span>
+
+<span class="c1"># List of packages we want to check the version</span>
+<span class="n">packages</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;numpy&#39;</span><span class="p">,</span> <span class="s1">&#39;pandas&#39;</span><span class="p">,</span> <span class="s1">&#39;statsmodels&#39;</span><span class="p">]</span>
+
+<span class="c1"># Initialize an empty list to store the versions</span>
+<span class="n">versions</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Loop over the packages</span>
+<span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">packages</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Get the version of the package</span>
+        <span class="n">package_version</span> <span class="o">=</span> <span class="n">version</span><span class="p">(</span><span class="n">package</span><span class="p">)</span>
+        <span class="c1"># Append the version to the list</span>
+        <span class="n">versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">package_version</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># Use a more general exception for broader compatibility</span>
+        <span class="n">versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Not installed&#39;</span><span class="p">)</span>
+
+<span class="c1"># Print the versions</span>
+<span class="k">for</span> <span class="n">package</span><span class="p">,</span> <span class="n">version</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span> <span class="n">versions</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">package</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.8
+-------------
+numpy: 1.26.4
+pandas: 2.2.2
+statsmodels: 0.14.2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="37%20-%20Multiple%20regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Multiple regression</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-maths">The maths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Logistic regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">Maximum likelihood estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions">Assumptions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearity">Linearity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-of-errors">Independence of errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homoscedasticity">Homoscedasticity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normality-of-errors">Normality of errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-perfect-multicollinearity">No perfect multicollinearity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-example">Real-world example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-data">Getting the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-logistic-regression-model">Building the logistic regression model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-model-with-a-continuous-variable">Logistic regression model with a continuous variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-more-complex-logistic-regression-model">Fitting a more complex logistic regression model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Building the logistic regression model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-information">Session information</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sébastien Wieckowski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

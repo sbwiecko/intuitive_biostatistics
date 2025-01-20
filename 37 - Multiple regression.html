@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -75,6 +75,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '37 - Multiple regression';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Logistic regression" href="38%20-%20Logistic%20regression.html" />
     <link rel="prev" title="Nonlinear regression" href="36%20-%20Nonlinear%20regression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -223,6 +224,7 @@
 <li class="toctree-l1"><a class="reference internal" href="35%20-%20Comparing%20models.html">Comparing models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="36%20-%20Nonlinear%20regression.html">Nonlinear regression</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Multiple regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38%20-%20Logistic%20regression.html">Logistic regression</a></li>
 </ul>
 
     </div>
@@ -432,7 +434,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions">Assumptions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearity">Linearity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-of-errors">Independence of Errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-of-errors">Independence of errors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homoscedasticity">Homoscedasticity</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normality-of-errors">Normality of errors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-perfect-multicollinearity">No perfect multicollinearity</a></li>
@@ -583,7 +585,7 @@ document.write(`
 <p>We will delve deeper into residual plots and CCPR plots in the upcoming sections.</p>
 </section>
 <section id="independence-of-errors">
-<h3>Independence of Errors<a class="headerlink" href="#independence-of-errors" title="Link to this heading">#</a></h3>
+<h3>Independence of errors<a class="headerlink" href="#independence-of-errors" title="Link to this heading">#</a></h3>
 <p>The independence of errors assumption states that the error terms (residuals) should be independent of each other. This means that the error associated with one observation does not influence the error associated with any other observation.</p>
 <p>Violating this assumption can lead to underestimated standard errors of the coefficients, inflated t-statistics, and artificially low P values, increasing the risk of Type I errors (false positives). Why? Because if errors are correlated, the model underestimates the true variability of the estimates.</p>
 <p>To assess the independence of errors, we first need to consider the study design. Non-independence often occurs in data with inherent structure, such as:</p>
@@ -1893,8 +1895,8 @@ interaction     4.4969      3.243      1.387      0.166      -1.870      10.863
 <p>If the confidence interval (CI) of the interaction term includes zero, we can conclude that there is no statistically significant interaction between <code class="docutils literal notranslate"><span class="pre">dep.cons</span></code> (depression) and <code class="docutils literal notranslate"><span class="pre">subst.cons</span></code> (substance abuse). In other words, the effect of depression on the outcome variable (e.g., interview duration) does not significantly depend on whether the individual also has a substance abuse disorder.</p>
 <p>Note that Patsy provides two primary ways to specify interaction terms in formulas:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code>: The asterisk indicates that we want to include both the main effects of the variables and their interaction. For example, <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">B</span></code> would include <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>, and the interaction <code class="docutils literal notranslate"><span class="pre">A:B</span></code> in the model.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">:</span></code>: The colon only includes the interaction term itself. For example, <code class="docutils literal notranslate"><span class="pre">A:B</span></code> would only include the interaction effect, not the main effects of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p></li>
+<li><p>The asterisk <code class="docutils literal notranslate"><span class="pre">*</span></code> indicates that we want to include both the main effects of the variables and their interaction. For example, <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">B</span></code> would include <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>, and the interacThe colon <code class="docutils literal notranslate"><span class="pre">:</span></code> only includes the interaction term itself. For example, <code class="docutils literal notranslate"><span class="pre">A:B</span></code> would only include the interaction effect, not the main effects of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>.tion <code class="docutils literal notranslate"><span class="pre">A:B</span></code> in the model.</p></li>
+<li></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2313,7 +2315,7 @@ Notes:
 <span class="kn">import</span><span class="w"> </span><span class="nn">pingouin</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pg</span>
 
 <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="n">y</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">X3</span><span class="p">]]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">X3</span><span class="p">]]</span>
 
 <span class="c1"># Fit the linear regression model (for numerical variables)</span>
 <span class="n">results_pingouin</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">linear_regression</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -2533,6 +2535,15 @@ statsmodels: 0.14.2
         <p class="prev-next-title">Nonlinear regression</p>
       </div>
     </a>
+    <a class="right-next"
+       href="38%20-%20Logistic%20regression.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Logistic regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -2563,7 +2574,7 @@ statsmodels: 0.14.2
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions">Assumptions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearity">Linearity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-of-errors">Independence of Errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-of-errors">Independence of errors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homoscedasticity">Homoscedasticity</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normality-of-errors">Normality of errors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-perfect-multicollinearity">No perfect multicollinearity</a></li>
