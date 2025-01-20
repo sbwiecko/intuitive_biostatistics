@@ -32,4 +32,5 @@ parts:
       - file: 35 - Comparing models
       - file: 36 - Nonlinear regression
       - file: 37 - Multiple regression
+      - file: 38 - Logistic regression
       
