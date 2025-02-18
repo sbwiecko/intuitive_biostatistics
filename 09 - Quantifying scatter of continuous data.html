@@ -226,6 +226,10 @@
 <li class="toctree-l1"><a class="reference internal" href="37%20-%20Multiple%20regression.html">Multiple regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="38%20-%20Logistic%20regression.html">Logistic regression</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The rest of statistics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="39%20-%20ANOVA.html">ANOVA</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -422,6 +426,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean">Mean</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-deviation">Standard deviation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error">Standard error</a></li>
@@ -480,6 +485,20 @@ document.write(`
 </section>
 <section id="definitions">
 <h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h2>
+<section id="mean">
+<h3>Mean<a class="headerlink" href="#mean" title="Link to this heading">#</a></h3>
+<p>The <strong>mean</strong>, also known as the <strong>average</strong>, is a measure of <em>central tendency</em> that describes the typical value in a dataset. It is calculated by adding up all the values in the dataset and then dividing by the number of values. We often denote the mean as <span class="math notranslate nohighlight">\(\bar{x}\)</span> when referring to a sample, and as E[X] when discussing the mean of a random variable or a population. It is calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[\bar{x} = \frac{\sum_{i=1}^{n}x_i}{n}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bar{x}\)</span> represents the sample mean</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> is the i-th value in the dataset</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> is the number of values in the dataset</p></li>
+</ul>
+<p>The mean is a useful statistic for summarizing the center of a dataset. However, it is important to note that the mean can be affected by outliers, which are extreme values that are much larger or smaller than the other values in the dataset. In some cases, the <strong>median</strong>, which is the middle value in a dataset, may be a better measure of central tendency than the mean.</p>
+<p>The mean is often used in conjunction with other statistics, such as the standard deviation, to describe the distribution of a dataset. The standard deviation is a measure of how spread out the values in a dataset are from the mean.</p>
+</section>
 <section id="variance">
 <h3>Variance<a class="headerlink" href="#variance" title="Link to this heading">#</a></h3>
 <p>The <strong>variance</strong> is a measure of how much the data varies around its mean. There are two different definitions of variance.</p>
@@ -1063,6 +1082,7 @@ statsmodels: 0.14.2
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean">Mean</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-deviation">Standard deviation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error">Standard error</a></li>

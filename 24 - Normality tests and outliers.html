@@ -226,6 +226,10 @@
 <li class="toctree-l1"><a class="reference internal" href="37%20-%20Multiple%20regression.html">Multiple regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="38%20-%20Logistic%20regression.html">Logistic regression</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The rest of statistics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="39%20-%20ANOVA.html">ANOVA</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -459,6 +463,7 @@ document.write(`
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-outlier-detection">Statistical outlier detection</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grubbs-test">Grubbs’ test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-outliers-with-grubb-s-test-in-scikit-posthocs">Identifying outliers with Grubb’s test in scikit-posthocs</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-statistical-methods-for-outlier-detection">Additional statistical methods for outlier detection</a></li>
 </ul>
 </li>
@@ -560,7 +565,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ebb963171af7665d18dd204b5f26019f193747b0f4d2a4f45a3346853b134183.png" src="_images/ebb963171af7665d18dd204b5f26019f193747b0f4d2a4f45a3346853b134183.png" />
+<img alt="_images/acb56a6dbccccf1f4f8bbb8c84fd3300eec3aa3a52506ace012cd221ad7cdd52.png" src="_images/acb56a6dbccccf1f4f8bbb8c84fd3300eec3aa3a52506ace012cd221ad7cdd52.png" />
 </div>
 </div>
 <p>Even though all samples are drawn from the same theoretical distribution, they exhibit natural variation due to random sampling. The swarm plot below vividly demonstrates this, showing how each sample can differ slightly in its shape and spread.</p>
@@ -606,7 +611,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e939b72b41ef789a250c16fe6b51e3cd8e034261d60dd041be570b5fa9f6bce3.png" src="_images/e939b72b41ef789a250c16fe6b51e3cd8e034261d60dd041be570b5fa9f6bce3.png" />
+<img alt="_images/7ac83065a395b81d7560107aa369efbe82ef5a383cc03a3b1143df5e5a9b6958.png" src="_images/7ac83065a395b81d7560107aa369efbe82ef5a383cc03a3b1143df5e5a9b6958.png" />
 </div>
 </div>
 </section>
@@ -650,7 +655,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/021c37ba244e23a25c0f3726f298b3ad26c64822225da0c853df14fc17218ba1.png" src="_images/021c37ba244e23a25c0f3726f298b3ad26c64822225da0c853df14fc17218ba1.png" />
+<img alt="_images/f07b9cd9e31fbfb7715d6e1313f7e883d9d6cd1cc3ec13df2a101076dbce43c6.png" src="_images/f07b9cd9e31fbfb7715d6e1313f7e883d9d6cd1cc3ec13df2a101076dbce43c6.png" />
 </div>
 </div>
 <p>The Q-Q plot for the normally distributed sample closely follows a straight line, indicating normality, while the plot for the exponentially distributed sample deviates significantly from the straight line, revealing its non-normal nature.</p>
@@ -687,7 +692,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/437dd3901647ec8865e35cc4201087ad37c1add5e1c4244dc63c63c086b50607.png" src="_images/437dd3901647ec8865e35cc4201087ad37c1add5e1c4244dc63c63c086b50607.png" />
+<img alt="_images/7f4b257649b34350d13f32dfc60bf30b31ea585d2d2e5b22c5df6e682568699f.png" src="_images/7f4b257649b34350d13f32dfc60bf30b31ea585d2d2e5b22c5df6e682568699f.png" />
 </div>
 </div>
 <p>The confidence intervals show the range within which we would expect the sample quantiles to fall if the data were truly drawn from a normal distribution.
@@ -774,7 +779,7 @@ Points falling outside the confidence intervals suggest deviations from normalit
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1931db6a77e2e0f76e4d0ba43ae44d2a6a82f097656fb6168e6e200d35e5f2ae.png" src="_images/1931db6a77e2e0f76e4d0ba43ae44d2a6a82f097656fb6168e6e200d35e5f2ae.png" />
+<img alt="_images/3e707b49e764d4367b0934af55c2cf4e975560598a33b22f11a9d1a297eea088.png" src="_images/3e707b49e764d4367b0934af55c2cf4e975560598a33b22f11a9d1a297eea088.png" />
 </div>
 </div>
 <p>Initially, i.e., without standardisation, the Q-Q plot for the exponential distribution does appear shifted upwards compared to the theoretical normal quantiles, as <a class="reference external" href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot">shown elsewhere</a>. The exponential distribution is right-skewed, meaning it has a long tail on the right side and most of its values are concentrated on the left side, while the normal distribution is symmetrical, with values evenly distributed around the mean.</p>
@@ -1218,7 +1223,7 @@ Omnibus p-value: 0.000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4338b7ebcf7888bacc47ed95c138b76d63b6929551abf742eb96dbd813523587.png" src="_images/4338b7ebcf7888bacc47ed95c138b76d63b6929551abf742eb96dbd813523587.png" />
+<img alt="_images/db0cc75dad70e7a68bd0d1425121d8da0d8ac7eed88ca0b33e7e2c32c408f088.png" src="_images/db0cc75dad70e7a68bd0d1425121d8da0d8ac7eed88ca0b33e7e2c32c408f088.png" />
 </div>
 </div>
 <p>We can perform the (one-sample) K-S test using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kstest.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.kstest</span></code></a> as shown below.</p>
@@ -1316,7 +1321,7 @@ Reject H0: evidence suggests the sample is NOT normally distributed
 <li><p>Univariate data:</p>
 <ul>
 <li><p>Histograms: looking for isolated bars or gaps in the distribution.</p></li>
-<li><p><strong>Box plots</strong>: identifying points that fall outside the whiskers (1.5*IQR from the quartiles).</p></li>
+<li><p><strong>Box plots</strong>: identifying points that fall outside the whiskers (1.5 IQRs from the quartiles).</p></li>
 <li><p>Normal Q-Q plots: checking if points deviate significantly from the diagonal line, especially in the tails.</p></li>
 </ul>
 </li>
@@ -1387,7 +1392,7 @@ Reject H0: evidence suggests the sample is NOT normally distributed
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/076f84e482b992b4aed9444d29f74fa3d3b0a014a806f8c0aa54aef5a450e47b.png" src="_images/076f84e482b992b4aed9444d29f74fa3d3b0a014a806f8c0aa54aef5a450e47b.png" />
+<img alt="_images/248852f66d9dcff2e6a3e420dcbec9ac704c4acb33ddc5ff7320c68d93b62e04.png" src="_images/248852f66d9dcff2e6a3e420dcbec9ac704c4acb33ddc5ff7320c68d93b62e04.png" />
 </div>
 </div>
 <p>The top swarm plot shows the raw, untransformed data. Notice the <em>rightward skew</em>, with most values clustered towards the lower end and a few extreme values stretching out the tail. On this linear scale, these extreme values might be mistakenly labeled as outliers.</p>
@@ -1674,13 +1679,53 @@ Reject H0: evidence suggests the presence of a significant outlier.
 </div>
 </div>
 </section>
+<section id="identifying-outliers-with-grubb-s-test-in-scikit-posthocs">
+<h4>Identifying outliers with Grubb’s test in scikit-posthocs<a class="headerlink" href="#identifying-outliers-with-grubb-s-test-in-scikit-posthocs" title="Link to this heading">#</a></h4>
+<p>The Python package <a class="reference external" href="https://scikit-posthocs.readthedocs.io/en/latest/generated/scikit_posthocs.outliers_grubbs.html#scikit_posthocs.outliers_grubbs">scikit-posthocs provides a function for detecting outliers using Grubb’s test</a>. This function analyzes an array of data and, if the alternative hypothesis is true, returns a filtered array with the outlier(s) removed based on Grubb’s algorithm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scikit_posthocs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ph</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_outliers</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identifies and returns outliers from a dataset using Grubb&#39;s test.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sample: A NumPy array of data points.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A NumPy array containing the outlier(s) detected by Grubb&#39;s test.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># Apply Grubb&#39;s test to filter outliers</span>
+    <span class="n">filtered</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">outliers_grubbs</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+    
+    <span class="c1"># Find the difference between the original and filtered arrays</span>
+    <span class="n">outliers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">filtered</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">outliers</span>
+
+<span class="c1"># Example with the previous sample array</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">find_outliers</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Outlier(s) detected:&quot;</span><span class="p">,</span> <span class="n">outliers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outlier(s) detected: [5.]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="additional-statistical-methods-for-outlier-detection">
 <h4>Additional statistical methods for outlier detection<a class="headerlink" href="#additional-statistical-methods-for-outlier-detection" title="Link to this heading">#</a></h4>
 <p>There are several other statistical methods to identify outliers, each with its own strengths and weaknesses depending on the data and assumptions.</p>
 <ul class="simple">
-<li><p><strong>Generalized Extreme Studentized Deviate (GESD) Test</strong>: this test extends Grubbs’ test to detect multiple outliers in a normally distributed dataset. It’s implemented in the <a class="reference external" href="https://pypi.org/project/outlier-utils/"><code class="docutils literal notranslate"><span class="pre">outliers</span></code> library</a>.</p></li>
+<li><p><strong>Generalized extreme studentized deviate (GESD) test</strong>: this test extends Grubbs’ test to detect multiple outliers in a normally distributed dataset. It’s implemented in the <a class="reference external" href="https://pypi.org/project/outlier-utils/"><code class="docutils literal notranslate"><span class="pre">outliers</span></code> library</a> and in <a class="reference external" href="https://scikit-posthocs.readthedocs.io/en/latest/generated/scikit_posthocs.outliers_gesd.html#scikit_posthocs.outliers_gesd">scikit-posthocs</a>.</p></li>
+<li><p><strong>scikit-posthocs</strong> also offers <a class="reference external" href="https://scikit-posthocs.readthedocs.io/en/latest/generated/scikit_posthocs.outliers_iqr.html#scikit_posthocs.outliers_iqr">simple detection of potential outliers based on interquartile range (IQR)</a> and the <a class="reference external" href="https://scikit-posthocs.readthedocs.io/en/latest/generated/scikit_posthocs.outliers_tietjen.html#scikit_posthocs.outliers_tietjen">Tietjen-Moore test</a>.</p></li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Dixon%27s_Q_test"><strong>Dixon’s Q Test</strong></a>: another test for outliers, but it’s more sensitive to outliers at the ends of the distribution and can be less powerful for outliers near the center. <a class="reference external" href="https://sebastianraschka.com/Articles/2014_dixon_test.html#implementing-a-dixon-q-test-function">Sebastian Raschka has implemented the Dixon’s Q test elsewhere</a>.</p></li>
-<li><p><strong>T-test based Outlier Detection</strong>: we can perform t-tests comparing <em>each data point against the mean of the remaining data</em> to identify outliers. This can be computationally intensive for large datasets.</p></li>
+<li><p><strong>T-test based outlier detection</strong>: we can perform t-tests comparing <em>each data point against the mean of the remaining data</em> to identify outliers. This can be computationally intensive for large datasets.</p></li>
 <li><p>scikit-learn provides different <a class="reference external" href="https://scikit-learn.org/stable/modules/outlier_detection.html#id1">unsupervised outlier detection algorithms</a>:</p>
 <ul>
 <li><p>Fitting an elliptic envelope: fits a robust covariance estimate to the data, and thus fits an ellipse to the central data points, ignoring points outside the central mode.</p></li>
@@ -1831,6 +1876,10 @@ Reject H0: evidence suggests the presence of a significant outlier.
 <span class="c1"># DFFITS Plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">dffits</span><span class="p">)</span>
 
+<span class="c1"># Grubb&#39;s test</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scikit_posthocs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ph</span>
+<span class="n">ph</span><span class="o">.</span><span class="n">outliers_grubbs</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
 <span class="c1"># Robust outlier detection based on the MAD-median rule</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">madmedianrule</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># returns array of True and False whether of not sample is outlier</span>
 </pre></div>
@@ -1876,7 +1925,7 @@ Reject H0: evidence suggests the presence of a significant outlier.
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.7
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.9
 -------------
 numpy: 1.26.4
 scipy: 1.14.1
@@ -1994,6 +2043,7 @@ seaborn: 0.13.2
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-outlier-detection">Statistical outlier detection</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grubbs-test">Grubbs’ test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-outliers-with-grubb-s-test-in-scikit-posthocs">Identifying outliers with Grubb’s test in scikit-posthocs</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-statistical-methods-for-outlier-detection">Additional statistical methods for outlier detection</a></li>
 </ul>
 </li>

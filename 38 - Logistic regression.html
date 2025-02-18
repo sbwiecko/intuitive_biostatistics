@@ -75,6 +75,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '38 - Logistic regression';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ANOVA" href="39%20-%20ANOVA.html" />
     <link rel="prev" title="Multiple regression" href="37%20-%20Multiple%20regression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -224,6 +225,10 @@
 <li class="toctree-l1"><a class="reference internal" href="36%20-%20Nonlinear%20regression.html">Nonlinear regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="37%20-%20Multiple%20regression.html">Multiple regression</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Logistic regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The rest of statistics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="39%20-%20ANOVA.html">ANOVA</a></li>
 </ul>
 
     </div>
@@ -980,15 +985,15 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
          Current function value: 0.494196
          Iterations 5
-                            Logit Regression Results                           
-===============================================================================
-Dep. Variable:              suicide.hr   No. Observations:                  753
-Model:                           Logit   Df Residuals:                      751
-Method:                            MLE   Df Model:                            1
-Date:              lun., 20 janv. 2025   Pseudo R-squ.:                 0.02098
-Time:                         18:08:01   Log-Likelihood:                -372.13
-converged:                        True   LL-Null:                       -380.11
-Covariance Type:             nonrobust   LLR p-value:                 6.494e-05
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:             suicide.hr   No. Observations:                  753
+Model:                          Logit   Df Residuals:                      751
+Method:                           MLE   Df Model:                            1
+Date:                Tue, 18 Feb 2025   Pseudo R-squ.:                 0.02098
+Time:                        08:20:27   Log-Likelihood:                -372.13
+converged:                       True   LL-Null:                       -380.11
+Covariance Type:            nonrobust   LLR p-value:                 6.494e-05
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
@@ -1160,15 +1165,15 @@ P value for &#39;abus&#39;: 0.0001
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
          Current function value: 0.496980
          Iterations 6
-                            Logit Regression Results                           
-===============================================================================
-Dep. Variable:              suicide.hr   No. Observations:                  758
-Model:                           Logit   Df Residuals:                      756
-Method:                            MLE   Df Model:                            1
-Date:              lun., 20 janv. 2025   Pseudo R-squ.:                 0.01187
-Time:                         18:08:27   Log-Likelihood:                -376.71
-converged:                        True   LL-Null:                       -381.24
-Covariance Type:             nonrobust   LLR p-value:                  0.002621
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:             suicide.hr   No. Observations:                  758
+Model:                          Logit   Df Residuals:                      756
+Method:                           MLE   Df Model:                            1
+Date:                Tue, 18 Feb 2025   Pseudo R-squ.:                 0.01187
+Time:                        08:20:27   Log-Likelihood:                -376.71
+converged:                       True   LL-Null:                       -381.24
+Covariance Type:            nonrobust   LLR p-value:                  0.002621
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
@@ -1244,7 +1249,7 @@ age           -0.0216      0.007     -2.923      0.003      -0.036      -0.007
 ================================================================
 Model:              Logit            Method:           MLE      
 Dependent Variable: Q(&#39;suicide.hr&#39;)  Pseudo R-squared: 0.028    
-Date:               2025-01-20 18:08 AIC:              548.5668 
+Date:               2025-02-18 08:20 AIC:              548.5668 
 No. Observations:   550              BIC:              565.8065 
 Df Model:           3                Log-Likelihood:   -270.28  
 Df Residuals:       546              LL-Null:          -277.97  
@@ -1339,7 +1344,7 @@ discip:duree     -0.0101   0.2895 -0.0350 0.9721 -0.5775  0.5572
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.8
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.12.9
 -------------
 numpy: 1.26.4
 pandas: 2.2.2
@@ -1389,6 +1394,15 @@ statsmodels: 0.14.2
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Multiple regression</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="39%20-%20ANOVA.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ANOVA</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
