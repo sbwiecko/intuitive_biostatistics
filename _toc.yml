@@ -33,4 +33,6 @@ parts:
       - file: 36 - Nonlinear regression
       - file: 37 - Multiple regression
       - file: 38 - Logistic regression
-      
+    - caption: The rest of statistics
+      chapters:
+      - file: 39 - ANOVA
