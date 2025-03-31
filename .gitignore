@@ -5,6 +5,7 @@
 _build
 .env
 *.code-workspace
+.quarto
 
 # Latex and markdown exports
 *.md
