@@ -36,3 +36,5 @@ parts:
     - caption: The rest of statistics
       chapters:
       - file: 39 - ANOVA
+      - file: 21 - Meta-analysis
+      
