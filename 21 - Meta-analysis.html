@@ -1,0 +1,1860 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Meta-analysis &#8212; The Python Companion of Intuitive Biostatistics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '21 - Meta-analysis';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="ANOVA" href="39%20-%20ANOVA.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="The Python Companion of Intuitive Biostatistics - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="The Python Companion of Intuitive Biostatistics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Python Companion Guide to “Intuitive Biostatistics”
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Continuous variables</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="09%20-%20Quantifying%20scatter%20of%20continuous%20data.html">Quantifying scatter of continuous data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20-%20Gaussian%20distribution.html">The Gaussian distribution</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence intervals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="12%20-%20Confidence%20interval%20of%20a%20mean.html">Confidence interval of a mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20-%20Confidence%20interval%20of%20a%20proportion.html">Confidence interval of a proportion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05%20-%20Confidence%20interval%20of%20survival%20data.html">Confidence interval of survival data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20-%20Confidence%20interval%20of%20counted%20data.html">Confidence interval of counted data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical significance and data assumptions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="15%20-%20Statistical%20significance.html">Statistical significance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20%20-%20Statistical%20power%20and%20sample%20size.html">Statistical power and sample size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24%20-%20Normality%20tests%20and%20outliers.html">Normality tests and outliers</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical tests</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="27%20-%20Comparing%20proportions.html">Comparing proportions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29%20-%20Comparing%20survival%20curves.html">Comparing survival curves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30%20-%20Comparing%20two%20unpaired%20means.html">Comparing two unpaired means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31%20-%20Comparing%20paired%20data.html">Comparing paired data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32%20-%20Correlation.html">Correlation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fitting models to data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="33%20-%20Simple%20linear%20regression.html">Simple linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="35%20-%20Comparing%20models.html">Comparing models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="36%20-%20Nonlinear%20regression.html">Nonlinear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="37%20-%20Multiple%20regression.html">Multiple regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="38%20-%20Logistic%20regression.html">Logistic regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The rest of statistics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="39%20-%20ANOVA.html">ANOVA</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Meta-analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sbwiecko/intuitive_biostatistics/edit/master/21 - Meta-analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/21 - Meta-analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Meta-analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-of-meta-analysis">Assumptions of meta-analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-of-counted-data">Meta-analysis of counted data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-two-independent-proportions">Comparison of two independent proportions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-data">Loading the data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-effect-sizes-and-variances">Calculating effect sizes and variances</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-combined-effects">Calculating combined effects</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forest-plot">Forest plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effects-woolf-method">Fixed-effects (Woolf method)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weights-and-variances">Weights and variances</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantel-hanszel-odds-ratio">Mantel-Hanszel odds-ratio</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneity">Heterogeneity</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effects-models">Random-effects models</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tau-squared">Tau-squared</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals-in-random-effects">Confidence intervals in random-effects</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals-using-the-t-distribution">Confidence intervals using the t-distribution</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-random-effects-models">Advanced random-effects models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-of-continuous-data">Meta-analysis of continuous data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-effect-size">Overall effect size</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-data">Continuous data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-overall-effect-size-using-the-normal-distribution">Computing overall effect size using the normal distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forest-plot-of-continuous-data-normal-distribution">Forest plot of continuous data (normal distribution)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effects-overall-effect-size">Fixed-effects overall effect size</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneity-using-continuous-data">Heterogeneity using continuous data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effects-overall-effect-size">Random-effects overall effect size</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-mean-difference-smd">Standardized mean difference (SMD)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Meta-analysis of counted data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantel-hanszel-odds-raio">Mantel-Hanszel odds-raio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Heterogeneity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-using-the-t-distribution">Meta-analysis using the t-distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Forest plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Meta-analysis of continuous data</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="meta-analysis">
+<h1>Meta-analysis<a class="headerlink" href="#meta-analysis" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p><strong>Meta-analysis</strong> is a powerful statistical technique used to synthesize evidence from multiple studies, often clinical trials evaluating the effectiveness of new therapies or diagnostic tests. In the life sciences, combining results from multiple studies provides more precise and reliable answers than any single study could achieve.</p>
+<p>However, conducting a robust meta-analysis involves addressing several challenges:</p>
+<ul class="simple">
+<li><p><em>Variability in study populations:</em> differences in inclusion/exclusion criteria, disease definitions, and outcome measures can introduce heterogeneity.</p></li>
+<li><p><em>Publication bias:</em> studies with positive results are more likely to be published, potentially overestimating treatment effects.</p></li>
+<li><p><em>Study quality:</em> variations in study design, methodology, and reporting can affect the reliability of findings.</p></li>
+<li><p><em>Data accessibility:</em> language barriers, unpublished data, and incomplete reporting can hinder data collection.</p></li>
+<li><p><em>Data integrity:</em> internal inconsistencies and redundant publications can complicate data analysis.</p></li>
+</ul>
+<p>Addressing these challenges necessitates careful planning, thorough literature searches (including unpublished studies and study registries), rigorous quality assessments, and potentially contacting study authors for additional information.</p>
+<p>A meta-analysis consists of two fundamental components: a <strong>narrative synthesis</strong> and a <strong>quantitative analysis</strong>. We begin by summarizing the included studies, critically evaluating their strengths, weaknesses, and potential sources of bias. This qualitative assessment establishes the context of the research and aids in the interpretation of the quantitative findings.</p>
+<p>The quantitative aspect focuses on <em>combining</em> the results from individual studies. Each study’s findings are represented by an <strong>effect size</strong>, such as a <em>relative risk</em> or <em>odds ratio</em>, along with its <em>confidence interval (CI)</em>. The effect size quantifies the magnitude of the treatment effect or association observed in the study.</p>
+<p>At its core, meta-analysis pools the effect sizes from individual studies, <strong>weighting</strong> them based on factors like <em>study size and precision</em>. This weighted pooling generates a <strong>pooled effect</strong> estimate with its corresponding CI and P value, providing an overall measure of the effect across all studies. This combined estimate offers a more precise and reliable answer than any single study could provide.</p>
+</section>
+<section id="assumptions-of-meta-analysis">
+<h2>Assumptions of meta-analysis<a class="headerlink" href="#assumptions-of-meta-analysis" title="Link to this heading">#</a></h2>
+<p>When we conduct a meta-analysis, we’re essentially trying to answer a broader question than any single study could address. To do this effectively, we rely on certain <em>assumptions</em>, and the choice of model hinges on which assumptions we deem most appropriate. Primarily, we choose between a fixed-effects model and a random-effects model.</p>
+<p>The <strong>fixed-effects model</strong> operates under the assumption that all the studies included in the meta-analysis are, in reality, estimating <em>the same true underlying effect</em>. Imagine that all the participants across all the studies were actually drawn from one enormous, <em>homogenous population</em>. In this scenario, any differences we observe in the effect sizes across studies would be attributed solely to <em>random sampling error</em>. In other words, the variations we see are simply due to chance fluctuations in the selection of participants for each study. This model implies that there’s one single “true” effect, and we’re just trying to get the best estimate of it.</p>
+<p>On the other hand, the <strong>random-effects model</strong> takes a more nuanced view. It acknowledges that the studies included in the meta-analysis might be investigating <em>slightly different, but related, effects</em>. This model recognizes that the populations, interventions, or outcomes across the studies might not be perfectly identical. For instance, the patient populations might differ in age, severity of disease, or other relevant characteristics. The interventions might also have subtle variations, or the outcomes might be measured in slightly different ways.</p>
+<p>Therefore, the random-effects model assumes that there’s a distribution of true effect sizes, and the studies we’ve included are essentially random samples from this distribution. In this model, the variation we observe in effect sizes is attributed to both random sampling error and genuine differences between the studies. Because it accounts for the <em>potential heterogeneity among studies</em>, the random-effects model is generally considered more realistic and is more frequently employed in practice. It provides a broader and more conservative estimate of the overall effect, reflecting the inherent variability in the real world.</p>
+<p>A more sophisticated approach to evidence synthesis is the <strong>individual participant data (IPD) meta-analysis</strong>. This method involves acquiring the raw data from each participant in every included study, enabling a more comprehensive and robust analysis. IPD meta-analysis is often considered the gold standard in the field. By utilizing individual participant data, we can implement standardized definitions and analytical methods across all studies, ensuring consistency in outcome measurements and analyses. This approach often incorporates a larger dataset than is available in published reports, leading to more precise effect estimates. Furthermore, it facilitates detailed subgroup analyses, the exploration of confounding variables, and the investigation of research questions that were not addressed in the original publications. IPD meta-analysis can yield definitive answers to complex clinical questions beyond the reach of traditional methods, but it demands significant researcher collaboration and data sharing. Therefore, we will not elaborate on this approach here.</p>
+</section>
+<section id="meta-analysis-of-counted-data">
+<h2>Meta-analysis of counted data<a class="headerlink" href="#meta-analysis-of-counted-data" title="Link to this heading">#</a></h2>
+<section id="comparison-of-two-independent-proportions">
+<h3>Comparison of two independent proportions<a class="headerlink" href="#comparison-of-two-independent-proportions" title="Link to this heading">#</a></h3>
+<p>To better understand how meta-analysis works, let’s examine a real-world example. We’ll focus on a section of the meta-analysis conducted by Eyding and colleagues, which investigated the effectiveness, measured as response rate, of reboxetine for treating severe depression [&#64;eyding_reboxetine_2010]. This portion of their analysis includes seven studies, each providing an odds ratio (OR) and its corresponding 95% confidence interval. As we discussed in chapter &#64;sec-comparing-proportions, an odds ratio serves as a measure of association. Specifically, in this context, an OR exceeding 1.0 indicates that reboxetine was more effective than the placebo, while an OR below 1.0 suggests it was less effective.</p>
+<p>In this section, we will delve into the meta-analysis of counted data, focusing on methods used for comparing two independent proportions. We’ll explore how to implement this analysis using the <a class="reference external" href="https://www.statsmodels.org/stable/examples/notebooks/generated/metaanalysis1.html">statsmodels’ <code class="docutils literal notranslate"><span class="pre">meta_analysis</span></code> module</a> in Python. Statsmodels provides a suite of tools that facilitate meta-analysis, offering functions for:</p>
+<ul class="simple">
+<li><p>Calculating effect sizes for comparing two independent proportions via <code class="docutils literal notranslate"><span class="pre">effectsize_2proportions</span></code>. This includes risk difference, (log) risk ratio, (log) odds-ratio, or arcsine square root transformation, along with their standard errors.</p></li>
+<li><p>Computing fixed and random effects estimates for the overall mean or effect via the <code class="docutils literal notranslate"><span class="pre">combine_effects</span></code> function, which also provides the ability to generate informative forest plots.</p></li>
+<li><p>Estimating the random effect variance, tau-squared, which is essential for random-effects models.</p></li>
+</ul>
+<section id="loading-the-data">
+<h4>Loading the data<a class="headerlink" href="#loading-the-data" title="Link to this heading">#</a></h4>
+<p>Since the meta-analysis functions require <em>raw count data</em>, rather than odds ratios or confidence intervals, we’ll import the necessary counts from the publication into a Pandas DataFrame. To demonstrate a convenient data entry method, we’ll use a raw IO string, formatted as comma-separated values with a header row, ideal for manually entered or copied data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">raw_data_eyding</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">study,count_t,nobs_t,count_c,nobs_c</span>
+<span class="s2">014,70,126,43,128</span>
+<span class="s2">015,65,110,58,111</span>
+<span class="s2">046,144,252,136,247</span>
+<span class="s2">047,120,238,108,239</span>
+<span class="s2">050,60,144,63,143</span>
+<span class="s2">045,38,88,39,86</span>
+<span class="s2">049,42,106,35,104</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">data_eyding</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">raw_data_eyding</span><span class="p">),</span>
+    <span class="n">converters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;study&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)},</span>
+    <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;study&#39;</span>
+    <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">data_eyding</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       count_t  nobs_t  count_c  nobs_c
+study                                  
+014         70     126       43     128
+015         65     110       58     111
+046        144     252      136     247
+047        120     238      108     239
+050         60     144       63     143
+045         38      88       39      86
+049         42     106       35     104
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculating-effect-sizes-and-variances">
+<h4>Calculating effect sizes and variances<a class="headerlink" href="#calculating-effect-sizes-and-variances" title="Link to this heading">#</a></h4>
+<p>To perform the meta-analysis, we extract event counts and sample sizes from the <code class="docutils literal notranslate"><span class="pre">data_eyding</span></code> DataFrame. Subsequently, we compute log odds ratios and their variances for each individual study with <code class="docutils literal notranslate"><span class="pre">effectsize_2proportions</span></code>. Importantly, the exponentiated log odds ratios match the odds ratios presented in the published study.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.meta_analysis</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">effectsize_2proportions</span><span class="p">,</span>
+    <span class="n">combine_effects</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Extract data for effect size calculation</span>
+<span class="n">count_t</span> <span class="o">=</span> <span class="n">data_eyding</span><span class="p">[</span><span class="s1">&#39;count_t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">nobs_t</span>  <span class="o">=</span> <span class="n">data_eyding</span><span class="p">[</span><span class="s1">&#39;nobs_t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">count_c</span> <span class="o">=</span> <span class="n">data_eyding</span><span class="p">[</span><span class="s1">&#39;count_c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">nobs_c</span>  <span class="o">=</span> <span class="n">data_eyding</span><span class="p">[</span><span class="s1">&#39;nobs_c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Calculate effect sizes (log odds ratios) and variances</span>
+<span class="n">eff_eyding</span><span class="p">,</span> <span class="n">var_eyding</span> <span class="o">=</span> <span class="n">effectsize_2proportions</span><span class="p">(</span>
+    <span class="n">count1</span><span class="o">=</span><span class="n">count_t</span><span class="p">,</span>
+    <span class="n">nobs1</span><span class="o">=</span><span class="n">nobs_t</span><span class="p">,</span>
+    <span class="n">count2</span><span class="o">=</span><span class="n">count_c</span><span class="p">,</span>
+    <span class="n">nobs2</span><span class="o">=</span><span class="n">nobs_c</span><span class="p">,</span>
+    <span class="n">statistic</span><span class="o">=</span><span class="s2">&quot;odds-ratio&quot;</span><span class="p">,</span>  <span class="c1"># We could also look at risk difference p1 - p2</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Study list:</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">data_eyding</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Log odds ratios</span><span class="se">\t</span><span class="s2">:&quot;</span><span class="p">,</span> <span class="n">eff_eyding</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Log variance:</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">var_eyding</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Odds ratios</span><span class="se">\t</span><span class="s2">:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">eff_eyding</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variance:</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">var_eyding</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Study list:	 [&#39;014&#39; &#39;015&#39; &#39;046&#39; &#39;047&#39; &#39;050&#39; &#39;045&#39; &#39;049&#39;]
+Log odds ratios	: [ 0.9   0.28  0.08  0.21 -0.1  -0.09  0.26]
+Log variance:	 [0.067 0.074 0.033 0.034 0.057 0.093 0.082]
+Odds ratios	: [2.47 1.32 1.09 1.23 0.91 0.92 1.29]
+Variance:	 [1.069 1.077 1.033 1.034 1.059 1.098 1.086]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This process is essentially an extension of the calculations we’ve seen in &#64;sec-comparing-proportions. Let’s break down the manual calculation of the log odds ratio, its standard error, and the corresponding confidence interval for study ‘014’, mirroring the underlying computations performed by <code class="docutils literal notranslate"><span class="pre">effectsize_2proportions</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">study_014</span> <span class="o">=</span> <span class="n">data_eyding</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data_eyding</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="s1">&#39;014&#39;</span><span class="p">]</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">study_014</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">b</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">-</span> <span class="n">a</span><span class="p">,</span> <span class="n">n2</span> <span class="o">-</span> <span class="n">c</span>
+<span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">n1</span><span class="p">,</span> <span class="n">c</span> <span class="o">/</span> <span class="n">n2</span>
+
+<span class="n">log_or_014</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">p2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p2</span><span class="p">)))</span>
+<span class="n">log_var_014</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">d</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Effect size and variance for study &#39;014&#39;:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log(OR) = </span><span class="si">{</span><span class="n">log_or_014</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">with Log(s²) = </span><span class="si">{</span><span class="n">log_var_014</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OR = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_or_014</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">with s² = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_var_014</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Effect size and variance for study &#39;014&#39;:
+Log(OR) = 0.90 with Log(s²) = 0.067
+OR = 2.47 with s² = 1.069
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculating-combined-effects">
+<h4>Calculating combined effects<a class="headerlink" href="#calculating-combined-effects" title="Link to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">combine_effects</span></code> function performs both fixed-effects (abbreviated <em>fe</em>), and random-effects (<em>re</em>) meta-analyses. For the random-effects model, we estimate the between-study variance (tau-squared or τ²) using either the one-step chi-squared (chi2) method, also known as DerSimonian-Laird (DL; set <code class="docutils literal notranslate"><span class="pre">method_re=&quot;chi2&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">method_re=&quot;dl&quot;</span></code>), or the default Paule and Mandel method (<code class="docutils literal notranslate"><span class="pre">method_re=&quot;pm&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">method_re=&quot;iterated&quot;</span></code>). The Paule and Mandel method won’t be discussed in this book.</p>
+<p>The function also generates the fixed-effect model, facilitating direct comparison. Both models utilize <em>weighted least squares (WLS)</em> to calculate variances and confidence intervals, <a class="reference external" href="https://www.statsmodels.org/dev/examples/notebooks/generated/metaanalysis1.html">a technique that assigns weights to observations</a>, particularly useful in cases of varying effect size variances (heteroscedasticity). While WLS is integral to these calculations, we will not delve into its specifics in this book.</p>
+<p>Moreover, setting <code class="docutils literal notranslate"><span class="pre">use_t=False</span></code> utilizes a standard normal distribution, appropriate for large sample sizes. This simplifies calculations and enables accurate pooling of effect sizes while accounting for potential heterogeneity. We will return to this topic for a more thorough discussion later in this chapter.</p>
+<p>The output provides a comprehensive summary of each study, including effect sizes, standard deviations, confidence intervals, and relative weights, for both fixed- and random-effects, which we will discuss in detail shortly. Notably, these results align with the data presented in the original publication. Furthermore, we can access any statistic and information on the method from the analysis using the available methods and attributes, and manipulating the result dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform meta-analysis (random-effects using chi2/DL method)</span>
+<span class="n">res_eyding</span> <span class="o">=</span> <span class="n">combine_effects</span><span class="p">(</span>
+    <span class="n">effect</span><span class="o">=</span><span class="n">eff_eyding</span><span class="p">,</span>
+    <span class="n">variance</span><span class="o">=</span><span class="n">var_eyding</span><span class="p">,</span>
+    <span class="n">method_re</span><span class="o">=</span><span class="s2">&quot;chi2&quot;</span><span class="p">,</span>  <span class="c1"># One-step chi2/DerSimonian-Laird estimate for RE variance τ²</span>
+    <span class="n">use_t</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">row_names</span><span class="o">=</span><span class="n">data_eyding</span><span class="o">.</span><span class="n">index</span>
+<span class="p">)</span>
+
+<span class="c1"># Print key information</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Random effects (RE) method:&quot;</span><span class="p">,</span> <span class="n">res_eyding</span><span class="o">.</span><span class="n">method_re</span><span class="p">)</span>
+
+<span class="c1"># Print formatted summary results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Meta-analysis summary (log):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">res_eyding</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random effects (RE) method: chi2
+
+Meta-analysis summary (log):
+                         eff    sd_eff    ci_low    ci_upp      w_fe      w_re
+014                0.904595  0.259159  0.396652  1.412537  0.115202  0.130693
+015                0.277574  0.271507 -0.254571  0.809718  0.104962  0.123201
+046                0.084557  0.180460 -0.269137  0.438252  0.237593  0.192509
+047                0.209873  0.183578 -0.149932  0.569679  0.229590  0.189568
+050               -0.097580  0.238630 -0.565287  0.370127  0.135876  0.144388
+045               -0.087851  0.305341 -0.686309  0.510607  0.082989  0.105232
+049                0.257545  0.287226 -0.305407  0.820497  0.093788  0.114410
+fixed effect       0.205226  0.087962  0.032823  0.377629  1.000000       NaN
+random effect      0.214617  0.118666 -0.017964  0.447198       NaN  1.000000
+fixed effect wls   0.205226  0.115618 -0.021381  0.431833  1.000000       NaN
+random effect wls  0.214617  0.122392 -0.025268  0.454501       NaN  1.000000
+</pre></div>
+</div>
+</div>
+</div>
+<p>To present the meta-analysis results in terms of odds ratios, which are more clinically interpretable, we extract the effect sizes, standard deviations, and confidence interval bounds from the <code class="docutils literal notranslate"><span class="pre">res_eyding.summary_frame()</span></code>. We then exponentiate these values to convert them from log odds ratios to odds ratios. Finally, we round the results to two decimal places for clarity, making the findings easier to understand and apply.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract relevant summary statistics and exponentiate for odds ratios</span>
+<span class="n">res_eyding_or</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">res_eyding</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="p">:</span><span class="s1">&#39;random effect&#39;</span><span class="p">,</span>  <span class="c1"># We remove WLS</span>
+    <span class="p">[</span><span class="s1">&#39;eff&#39;</span><span class="p">,</span> <span class="s1">&#39;sd_eff&#39;</span><span class="p">,</span> <span class="s1">&#39;ci_low&#39;</span><span class="p">,</span> <span class="s1">&#39;ci_upp&#39;</span><span class="p">]</span>
+<span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Meta-analysis summary (ORs):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">res_eyding_or</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Meta-analysis summary (ORs):
+                 eff  sd_eff  ci_low  ci_upp
+014            2.47    1.30    1.49    4.11
+015            1.32    1.31    0.78    2.25
+046            1.09    1.20    0.76    1.55
+047            1.23    1.20    0.86    1.77
+050            0.91    1.27    0.57    1.45
+045            0.92    1.36    0.50    1.67
+049            1.29    1.33    0.74    2.27
+fixed effect   1.23    1.09    1.03    1.46
+random effect  1.24    1.13    0.98    1.56
+</pre></div>
+</div>
+</div>
+</div>
+<p>The meta-analysis (random-effect) yielded a pooled odds ratio of 1.24, indicating a modest, though potentially clinically relevant, effect favoring the drug. However, the 95% confidence interval for this pooled effect, ranging from 0.98 to 1.56, encompasses 1.0, albeit narrowly. Consequently, the overall result does not achieve statistical significance at the conventional 0.05 level.</p>
+<p>As with the effect size and variance calculations, the confidence intervals rely on the principles of the standard normal distribution, a concept covered in &#64;sec-comparing-proportions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="c1"># Defining critical z value for α=0.05 (z_crit ≈ 1.96)</span>
+<span class="n">z_crit</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mf">0.05</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">ci_lo_log</span> <span class="o">=</span> <span class="n">log_or_014</span> <span class="o">-</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">log_var_014</span><span class="p">)</span>
+<span class="n">ci_hi_log</span> <span class="o">=</span> <span class="n">log_or_014</span> <span class="o">+</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">log_var_014</span><span class="p">)</span>
+
+<span class="n">ci_lo_or</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci_lo_log</span><span class="p">)</span>
+<span class="n">ci_hi_or</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci_hi_log</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Confidence intervals for study &#39;014&#39;:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% CI of Log(OR) extends from </span><span class="si">{</span><span class="n">ci_lo_log</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">ci_hi_log</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% CI of OR extends from </span><span class="si">{</span><span class="n">ci_lo_or</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">ci_hi_or</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confidence intervals for study &#39;014&#39;:
+95% CI of Log(OR) extends from 0.3967 to 1.4125
+95% CI of OR extends from 1.49 to 4.11
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="forest-plot">
+<h3>Forest plot<a class="headerlink" href="#forest-plot" title="Link to this heading">#</a></h3>
+<p>To visualize the meta-analysis results, we construct a <strong>forest plot</strong>, also known as a <strong>blobbogram</strong> (&#64;fig-forest), which graphically summarizes the findings from all included studies. We utilize the <code class="docutils literal notranslate"><span class="pre">plot_forest</span></code> method from the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> meta-analysis output, leveraging the combined effect sizes we calculated previously.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#| label: fig-forest</span>
+<span class="c1">#| fig-cap: &quot;Forest plot of the reboxetine study (response rate), using a log scale for the odds ratio&quot;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">ScalarFormatter</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">res_eyding</span><span class="o">.</span><span class="n">plot_forest</span><span class="p">(</span>
+    <span class="n">use_exp</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># to show OR instead of logOR</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+
+<span class="c1"># By default, a logarithmic scale uses a LogFormatter</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ScalarFormatter</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mf">.33</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Forest plot -- Eyding study&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Odds ratio (95% CI)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b00b1334a906533b5eb64d986ed49ce5922f242eebb742aeaa10047ad3d7553e.png" src="_images/b00b1334a906533b5eb64d986ed49ce5922f242eebb742aeaa10047ad3d7553e.png" />
+</div>
+</div>
+<p>A forest plot uses horizontal lines to represent individual studies. Along each line, a square denotes the study’s effect size, and a line extending from the square represents the confidence interval. The position of markers indicates effect direction and magnitude, while confidence interval width reflects estimate uncertainty, and visual inspection can reveal heterogeneity across studies. Ideally, the square’s size would be proportional to the study’s weight in the meta-analysis, reflecting factors like sample size or precision, where larger squares imply greater influence. Currently, statsmodels doesn’t offer this feature, so in &#64;fig-forest, a red dot of the same size is used to represent the effect size for all studies.</p>
+<p>A vertical line, typically set at the value representing no effect (e.g., an odds ratio of 1), serves as a visual reference point. If a study’s confidence interval crosses this line, it suggests that the effect observed in that study is not statistically significant. Finally, a diamond shape at the bottom of the plot represents the pooled effect estimate, with its width indicating the confidence interval for the combined result.</p>
+<p>Looking at the individual studies, six out of the seven have 95% confidence intervals for the odds ratio that include 1.0. This means we cannot confidently conclude that the drug is more effective than the placebo in those studies. However, one study shows a 95% CI that does not include 1.0, suggesting a statistically significant benefit in that particular study.</p>
+<p>A key strength of meta-analysis lies in its ability to provide a more precise estimate of the overall effect by synthesizing evidence from multiple studies, even when individual studies exhibit heterogeneous findings. The confidence interval of the pooled effect is paramount for interpretation. If it includes the value representing “no effect,” such as 1.0 for odds ratios, we cannot confidently assert the presence of a genuine effect. Therefore, while statistical significance is important, clinical significance should also be considered, which involves evaluating the magnitude of the effect size.</p>
+</section>
+<section id="fixed-effects-woolf-method">
+<h3>Fixed-effects (Woolf method)<a class="headerlink" href="#fixed-effects-woolf-method" title="Link to this heading">#</a></h3>
+<p>When conducting a fixed-effects meta-analysis for comparing proportions, we often utilize the <strong>inverse-variance method</strong>, also known as the <em>Woolf method</em>. This approach widely used in meta-analyses, relies on a fundamental principle: <em>assigning weights to studies based on the inverse of their variance</em>.</p>
+<section id="weights-and-variances">
+<h4>Weights and variances<a class="headerlink" href="#weights-and-variances" title="Link to this heading">#</a></h4>
+<p>Specifically, the <strong>weight</strong> (<span class="math notranslate nohighlight">\(w_i\)</span>) given to each study is calculated as the reciprocal of its variance (<span class="math notranslate nohighlight">\(s^2_i\)</span>), which is the square of its standard error. This means studies with smaller standard errors, typically larger studies, receive higher weights, reflecting their greater precision. This weighting strategy minimizes the uncertainty of the pooled effect estimate. Mathematically, <span class="math notranslate nohighlight">\(w_i = \frac{1}{s^2_i}\)</span>, where <span class="math notranslate nohighlight">\(s^2_i\)</span> represents the within-study variance for study <span class="math notranslate nohighlight">\(i\)</span>. We can easily extract those weights from the result dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fixed-effect weights (inverse variance)</span>
+<span class="n">fe_weights_eyding</span> <span class="o">=</span> <span class="n">res_eyding</span><span class="o">.</span><span class="n">weights_fe</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fixed-effect weights (inverse variance):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fe_weights_eyding</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Fixed-effect weights (normalized)</span>
+<span class="n">normalized_fe_weights_eyding</span> <span class="o">=</span> <span class="n">fe_weights_eyding</span> <span class="o">/</span> <span class="n">fe_weights_eyding</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalized fixed-effect weights:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">normalized_fe_weights_eyding</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fixed-effect weights (inverse variance):
+ [14.889 13.566 30.707 29.673 17.561 10.726 12.121]
+Normalized fixed-effect weights:
+ [0.115 0.105 0.238 0.23  0.136 0.083 0.094]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="confidence-interval">
+<h4>Confidence interval<a class="headerlink" href="#confidence-interval" title="Link to this heading">#</a></h4>
+<p>The pooled effect size (<span class="math notranslate nohighlight">\(\bar E\)</span>) is then computed as a <em>weighted average</em>:</p>
+<div class="math notranslate nohighlight">
+\[
+\bar E = \frac{\sum_{i=1}^kw_iE_i}{\sum_{i=1}^kw_i} = \frac{\sum E_i(1/s^2_i)}{\sum 1/s^2_i}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(E_i\)</span> is the effect size of the individual study.</p>
+<p>This method operates under the assumption that all studies are estimating the same true underlying effect. This is the core <em>fixed-effect</em> assumption. The variance of the combined effect is <span class="math notranslate nohighlight">\(s = \frac{1}{\sum_{i=1}^kw_i}\)</span>, and the standard error of the pooled effect is <span class="math notranslate nohighlight">\(s_{\bar E} = \sqrt{s}\)</span>.</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=DPo88xtPUaA">The 95% confidence interval for the pooled effect</a> is calculated as <span class="math notranslate nohighlight">\(\bar{E} \pm z^\ast \times s_{\bar E}\)</span>, where <span class="math notranslate nohighlight">\(z^\ast\)</span> is the critical value from the standard normal distribution. Note that in fixed effect meta analysis, the t distribution (see &#64;sec-confidence-interval-mean) is rarely used. This interval reflects the precision of the pooled effect estimate, not the distribution of individual study effects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate combined effect size (fixed-effect)</span>
+<span class="n">E_eyding_fe</span> <span class="o">=</span> <span class="p">(</span><span class="n">eff_eyding</span> <span class="o">*</span> <span class="n">fe_weights_eyding</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">fe_weights_eyding</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Note that we can extract the effect size and weights as follows:</span>
+<span class="c1">#E_eyding_fe = res_eyding.mean_effect_fe</span>
+<span class="c1">#eff_eyding = res_eyding.effect</span>
+<span class="c1">#fe_weights_eyding = res_eyding.weights_fe</span>
+
+<span class="c1"># Calculate variance and standard error (fixed-effect)</span>
+<span class="n">var_eyding_fe</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fe_weights_eyding</span><span class="p">)</span>
+<span class="n">SE_eyding_fe</span> <span class="o">=</span> <span class="n">var_eyding_fe</span><span class="o">**</span><span class="mf">0.5</span>
+
+<span class="c1"># Calculate confidence interval (fixed-effect)</span>
+
+<span class="c1"># If t-distribution is preferred, with k the number of studies</span>
+<span class="c1">#from scipy.stats import t as t_dist</span>
+<span class="c1">#t_crit_eyding = t_dist(df=res_eyding.df).ppf((1+.95)/2)</span>
+<span class="n">ci_lo_E_eyding_fe</span> <span class="o">=</span> <span class="n">E_eyding_fe</span> <span class="o">-</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">SE_eyding_fe</span>
+<span class="n">ci_up_E_eyding_fe</span> <span class="o">=</span> <span class="n">E_eyding_fe</span> <span class="o">+</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">SE_eyding_fe</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined effect size (FE) = </span><span class="si">{</span><span class="n">E_eyding_fe</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  with SE = </span><span class="si">{</span><span class="n">SE_eyding_fe</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  and the 95% CI ranging from </span><span class="si">{</span><span class="n">ci_lo_E_eyding_fe</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">to </span><span class="si">{</span><span class="n">ci_up_E_eyding_fe</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% CI of the total OR (FE) of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">E_eyding_fe</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">extends from </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci_lo_E_eyding_fe</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci_up_E_eyding_fe</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined effect size (FE) = 0.205
+  with SE = 0.0880
+  and the 95% CI ranging from 0.0328 to 0.3776
+The 95% CI of the total OR (FE) of 1.23 extends from 1.03 to 1.46
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="mantel-hanszel-odds-ratio">
+<h3>Mantel-Hanszel odds-ratio<a class="headerlink" href="#mantel-hanszel-odds-ratio" title="Link to this heading">#</a></h3>
+<p>Having thoroughly examined the inverse-variance weighted fixed-effects model, we now turn to another fixed-effects approach: the <strong>Mantel-Haenszel odds-ratio</strong> method, abbreviated <strong>MH</strong>. This technique, while still operating under the assumption of a common true effect across studies, utilizes <strong>contingency tables</strong>, discussed in &#64;sec-comparing-proportions, to calculate a <em>pooled odds ratio</em>, particularly useful when dealing with binary outcomes.</p>
+<p>In contrast to the inverse-variance method, which relies on continuous effect sizes and their variances, Mantel-Haenszel directly uses the counts within each study’s contingency table. While not typically a direct feature of standard meta-analysis functions within statsmodels, we can compute the Mantel-Haenszel odds-ratio using tools designed for stratified analysis, as demonstrated in <a class="reference external" href="https://www.statsmodels.org/dev/examples/notebooks/generated/metaanalysis1.html#Mantel-Hanszel-odds-ratio-using-contingency-tables">another statsmodels tutorial</a>. This necessitates transforming our data into a 2 x 2 x k table, specifically containing <em>event and non-event counts</em>, not event counts and total observations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract data into NumPy arrays</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">data_eyding</span><span class="p">[</span><span class="s1">&#39;count_t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># treatment</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="n">data_eyding</span><span class="p">[</span><span class="s1">&#39;nobs_t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># total treatment</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">data_eyding</span><span class="p">[</span><span class="s1">&#39;count_c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># control</span>
+<span class="n">nc</span> <span class="o">=</span> <span class="n">data_eyding</span><span class="p">[</span><span class="s1">&#39;nobs_c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># total control</span>
+
+<span class="c1"># Construct the 2 x 2 x k contingency table, containing</span>
+<span class="c1"># event and non-event counts, in treatment and control</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">nt</span> <span class="o">-</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">nc</span> <span class="o">-</span> <span class="n">c</span><span class="p">])</span>
+<span class="n">ctables</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Print the first study contingency table for verification</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Contingency table for study </span><span class="si">{</span><span class="n">data_eyding</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ctables</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contingency table for study 014:
+[[70 56]
+ [43 85]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can apply the Mantel-Haenszel method using the <code class="docutils literal notranslate"><span class="pre">StratifiedTable</span></code> class to calculate the pooled log odds ratio and perform relevant statistical tests. In statsmodels, the Mantel-Haenszel confidence interval is calculated using the Robins, Breslow, and Greenland variance formula, or Sato’s method when necessary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.stats.api</span> <span class="k">as</span> <span class="nn">smstats</span>
+
+<span class="c1"># Create a StratifiedTable object from the contingency table</span>
+<span class="c1"># The contingency table is cast to float64 to ensure compatibility</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">smstats</span><span class="o">.</span><span class="n">StratifiedTable</span><span class="p">(</span><span class="n">ctables</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+
+<span class="c1"># Calculate and store the pooled log odds ratio</span>
+<span class="n">logodds_pooled</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">logodds_pooled</span>
+
+<span class="c1"># Calculate and store the standard error of the pooled log odds ratio</span>
+<span class="n">logodds_pooled_se</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">logodds_pooled_se</span>
+
+<span class="c1"># Calculate and store the confidence interval of the pooled log odds ratio</span>
+<span class="n">logodds_pooled_ci</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">logodds_pooled_confint</span><span class="p">()</span>
+
+<span class="c1"># Print the results with formatted output</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pooled LogOR (MH) = </span><span class="si">{</span><span class="n">logodds_pooled</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  with SE = </span><span class="si">{</span><span class="n">logodds_pooled_se</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  and 95% CI of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">logodds_pooled_ci</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% CI of the pooled OR (MH) of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logodds_pooled</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">extends from </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logodds_pooled_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logodds_pooled_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pooled LogOR (MH) = 0.2067
+  with SE = 0.0875
+  and 95% CI of [0.0352 0.3782]
+The 95% CI of the pooled OR (MH) of 1.23 extends from 1.04 to 1.46
+</pre></div>
+</div>
+</div>
+</div>
+<p>While both methods, i.e., Woolf (inverse variance) and Mantel-Haenszel, estimate the pooled odds ratio under a fixed-effects assumption, their results are not entirely consistent. Among these, the Mantel-Haenszel method is generally considered the most robust, particularly in studies with small event counts [&#64;lee_comparison_2016].</p>
+<p>A chi-square test assesses if the pooled odds ratio differs from one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform a test of the null hypothesis that the pooled odds ratio is 1 (log odds = 0)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MH Test null OR:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">test_null_odds</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MH Test null OR:
+pvalue      0.018042566133150473
+statistic   5.5920114367536735
+</pre></div>
+</div>
+</div>
+</div>
+<p>Beyond the Mantel-Haenszel method, <a class="reference external" href="https://www.statsdirect.com/help/meta_analysis/peto.htm">Peto’s method</a> can also be used for fixed-effects meta-analysis. However, Mantel-Haenszel is particularly advantageous in trials with sparse event data. The results of the Mantel-Haenszel test and calculations are summarized below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                   Estimate   LCB    UCB 
+-----------------------------------------
+Pooled odds           1.230   1.036 1.460
+Pooled log odds       0.207   0.035 0.378
+Pooled risk ratio     1.112              
+                                         
+                 Statistic P-value 
+-----------------------------------
+Test of OR=1         5.592   0.018 
+Test constant OR    10.448   0.107 
+                       
+-----------------------
+Number of tables    7  
+Min n             174  
+Max n             499  
+Avg n             303  
+Total n          2122  
+-----------------------
+</pre></div>
+</div>
+</div>
+</div>
+<section id="heterogeneity">
+<h4>Heterogeneity<a class="headerlink" href="#heterogeneity" title="Link to this heading">#</a></h4>
+<p>In the context of fixed-effect models for comparing proportions, we assess <strong>heterogeneity</strong>, i.e., the variability in observed effects beyond what’s expected by chance, using <strong>Cochran’s</strong> <span class="math notranslate nohighlight">\(Q\)</span>. This statistic is calculated as the weighted sum of squared differences between individual study effects and the pooled effect, using the weights from the fixed-effect pooling method:</p>
+<div class="math notranslate nohighlight">
+\[
+Q = \sum w_i(E_i - \bar E)^2
+\]</div>
+<p><span class="math notranslate nohighlight">\(Q\)</span> follows a chi-square distribution with <span class="math notranslate nohighlight">\(k - 1\)</span> degrees of freedom, where <span class="math notranslate nohighlight">\(k\)</span> is the number of studies: <span class="math notranslate nohighlight">\(Q \sim \chi^2(k-1)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>
+
+<span class="n">Q_eyding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fe_weights_eyding</span> <span class="o">*</span> <span class="p">(</span><span class="n">eff_eyding</span> <span class="o">-</span> <span class="n">E_eyding_fe</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df_eyding</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">eff_eyding</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># Same as res_eyding.df</span>
+<span class="n">p_heterogeneity_eyding</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">chi2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Q_eyding</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df_eyding</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cochrane Q=</span><span class="si">{</span><span class="n">Q_eyding</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="se">\</span>
+<span class="s2">with P value for heterogeneity = </span><span class="si">{</span><span class="n">p_heterogeneity_eyding</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cochrane Q=10.366, with P value for heterogeneity = 0.110064
+</pre></div>
+</div>
+</div>
+</div>
+<p>If the P value exceeds 0.05, it indicates that the variation observed between studies is likely attributable to <em>random chance</em>, supporting the assumption of <em>homogeneity</em>. Conveniently, statsmodels offers an easily accessible function for this heterogeneity assessment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_eyding</span><span class="o">.</span><span class="n">test_homogeneity</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;statsmodels.stats.base.HolderTuple&#39;&gt;
+statistic = 10.36591423715851
+pvalue = 0.11006446031462974
+df = 6
+distr = &#39;chi2&#39;
+tuple = (10.36591423715851, 0.11006446031462974)
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, <span class="math notranslate nohighlight">\(Q\)</span> has limitations as it may have low power to detect heterogeneity with few studies and excessive power with many studies. The <span class="math notranslate nohighlight">\(I^2\)</span> statistic quantifies the percentage of variation across studies attributable to heterogeneity rather than chance, with <span class="math notranslate nohighlight">\(I^2 = 100\% \frac{Q - \mathrm{DF}}{Q}\)</span>. It provides an intuitive measure of inconsistency and is less dependent on the number of studies than <span class="math notranslate nohighlight">\(Q\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I² = </span><span class="si">{</span><span class="p">(</span><span class="n">Q_eyding</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">df_eyding</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Q_eyding</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I² (internal attribute) = </span><span class="si">{</span><span class="n">res_eyding</span><span class="o">.</span><span class="n">i2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I² = 42.12%
+I² (internal attribute) = 42.12%
+</pre></div>
+</div>
+</div>
+</div>
+<p>The I² value of 42.12% signifies moderate heterogeneity, meaning roughly 42% of the observed variation across studies reflects genuine differences, not just random error. Potential sources include variations in study populations, interventions, outcome measures, or designs. Although moderate heterogeneity is frequently observed, its practical impact requires contextual evaluation. Given this level of heterogeneity, a <em>random-effects model</em>, which the authors employed and will be discussed next, is more appropriate than a fixed-effect model.</p>
+</section>
+</section>
+<section id="random-effects-models">
+<h3>Random-effects models<a class="headerlink" href="#random-effects-models" title="Link to this heading">#</a></h3>
+<p>When studies appear to estimate different, yet related, intervention effects, we turn to random-effects meta-analysis, such as the <strong>chi-squared</strong> or <strong>DerSimonian and Laird</strong> method. This approach allows us to address heterogeneity that isn’t easily explained by other factors. Essentially, we assume that the effects observed in different studies follow a distribution, typically a normal distribution, reflecting our uncertainty about why these effects vary. The center of this distribution represents the average effect, and its width indicates the degree of heterogeneity. While the validity of any distributional assumption can be questioned, this is a common critique of random-effects models.</p>
+<p>To account for this variability, we adjust the standard errors of the study-specific estimates (<span class="math notranslate nohighlight">\(s_i\)</span>) using tau-squared (<span class="math notranslate nohighlight">\(\tau^2\)</span>), a measure of <em>between-study variation</em>. This adjustment is estimated from the study effects and their standard errors. Notably, in heterogeneous studies, random-effects models assign relatively more weight to smaller studies than fixed-effect models, as these smaller studies provide valuable insights into the distribution of effects.</p>
+<p>When I² is low, suggesting minimal between-study variation, a fixed-effects model might be appropriate. Fixed-effects models assume studies are conducted under similar conditions, with differences only in their power. Random-effects models, which allow effects to vary across studies, are often considered more realistic, especially in medical decision-making contexts. It’s important to recognize that random-effects models don’t simply eliminate heterogeneity; rather, they incorporate it into the analysis. Exploring the causes of heterogeneity remains essential, even if limited study numbers make a thorough investigation challenging. However, random-effects models require more data to achieve the same statistical power as fixed-effects models. Therefore, exercise caution when using them with sparse datasets, and seek expert statistical guidance when necessary.</p>
+<section id="tau-squared">
+<h4>Tau-squared<a class="headerlink" href="#tau-squared" title="Link to this heading">#</a></h4>
+<p>As we saw earlier, in a fixed-effect model, the weight assigned to each study is the inverse of its variance. For random-effects models, we adjust these weights by incorporating tau-squared (<span class="math notranslate nohighlight">\(\tau^2\)</span>), which accounts for between-study heterogeneity. To calculate <span class="math notranslate nohighlight">\(\tau^2\)</span> using the DerSimonian-Laird method, we first compute the weighted sum of squared differences between individual study effects and the overall weighted mean, adjusted for the overall weighted mean squared (<span class="math notranslate nohighlight">\(q\)</span>), and the correction factor that accounts for the distribution of weights (<span class="math notranslate nohighlight">\(c\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+q = \sum w_iE_i^2 - \frac{(\sum w_iE_i)^2}{\sum w_i}
+\qquad
+c = \frac{\sum w_i - \sum w_i^2}{\sum w_i}
+\]</div>
+<p>Then, <span class="math notranslate nohighlight">\(\tau^2\)</span> is calculated as:</p>
+<div class="math notranslate nohighlight">
+\[
+\tau^2 = \frac{q - \mathrm{DF}}{c}
+\]</div>
+<p>Finally, the random-effects weights are obtained by:</p>
+<div class="math notranslate nohighlight">
+\[
+w_i = \frac{1}{s_i^2 + \tau^2}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate tau-squared using fixed-effect weights</span>
+<span class="n">q_eyding</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fe_weights_eyding</span> <span class="o">*</span> <span class="n">eff_eyding</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fe_weights_eyding</span> <span class="o">*</span> <span class="n">eff_eyding</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+    <span class="o">/</span> <span class="n">fe_weights_eyding</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">c_eyding</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fe_weights_eyding</span><span class="p">)</span>
+    <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fe_weights_eyding</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fe_weights_eyding</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">tau2_eyding</span> <span class="o">=</span> <span class="p">(</span><span class="n">q_eyding</span> <span class="o">-</span> <span class="n">df_eyding</span><span class="p">)</span> <span class="o">/</span> <span class="n">c_eyding</span>
+
+<span class="c1"># Print τ²</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;τ² (Eyding study)= &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">tau2_eyding</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># Same as res_eyding.tau2</span>
+
+<span class="c1"># Calculate random-effect weights using tau-squared</span>
+<span class="n">re_weights_eyding</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">var_eyding</span> <span class="o">+</span> <span class="n">tau2_eyding</span><span class="p">)</span>
+<span class="c1">#re_weights_eyding = res_eyding.weights_re</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Random-effect weights:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">re_weights_eyding</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Calculate normalized random-effect weights</span>
+<span class="n">normalized_re_weights_eyding</span> <span class="o">=</span> <span class="n">re_weights_eyding</span> <span class="o">/</span> <span class="n">re_weights_eyding</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalized random-effect weights:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">normalized_re_weights_eyding</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>τ² (Eyding study)=  0.0406
+Random-effect weights:
+ [ 9.281  8.749 13.671 13.462 10.254  7.473  8.125]
+Normalized random-effect weights:
+ [0.131 0.123 0.193 0.19  0.144 0.105 0.114]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the normalized random-effect weights we calculated match those reported by the authors.</p>
+</section>
+<section id="confidence-intervals-in-random-effects">
+<h4>Confidence intervals in random-effects<a class="headerlink" href="#confidence-intervals-in-random-effects" title="Link to this heading">#</a></h4>
+<p>In contrast to fixed-effect meta-analysis, where the pooled effect size (<span class="math notranslate nohighlight">\(\bar E\)</span>) is calculated as a weighted average under the assumption of a single true effect, random-effects models account for variability between studies. As previously described, the weights are adjusted to incorporate tau-squared (<span class="math notranslate nohighlight">\(\tau^2\)</span>), reflecting this heterogeneity. The pooled effect size is <em>still a weighted average, but with these adjusted weights</em>. The variance and standard error of the pooled effect are then computed using these random-effects weights.</p>
+<p>To determine the confidence interval, we use the same general formula, <span class="math notranslate nohighlight">\(\bar{E} \pm z^\ast \times s_{\bar E}\)</span>, but with the standard error calculated using the random-effects variance. While we still employ the standard normal distribution, or sometimes the t-distribution with small sample sizes, this interval now reflects the precision of the estimated average effect <em>across</em> studies, acknowledging that each study may be estimating a slightly different true effect.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate combined effect size (random-effect)</span>
+<span class="n">E_eyding_re</span> <span class="o">=</span> <span class="p">(</span><span class="n">eff_eyding</span> <span class="o">*</span> <span class="n">re_weights_eyding</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">re_weights_eyding</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="c1">#E_eyding_re = (eff_eyding * normalized_re_weights_eyding).sum()</span>
+
+<span class="c1"># Note that we can extract the effect size and weights as follows:</span>
+<span class="c1"># E_eyding_re = res_eyding.mean_effect_re</span>
+<span class="c1"># re_weights_eyding = res_eyding.weights_re</span>
+
+<span class="c1"># Calculate variance and standard error (random-effect)</span>
+<span class="n">var_eyding_re</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">re_weights_eyding</span><span class="p">)</span>
+<span class="n">SE_eyding_re</span> <span class="o">=</span> <span class="n">var_eyding_re</span><span class="o">**</span><span class="mf">0.5</span>
+
+<span class="c1"># Calculate confidence interval (random-effect)</span>
+<span class="n">ci_lo_E_eyding_re</span> <span class="o">=</span> <span class="n">E_eyding_re</span> <span class="o">-</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">SE_eyding_re</span>
+<span class="n">ci_up_E_eyding_re</span> <span class="o">=</span> <span class="n">E_eyding_re</span> <span class="o">+</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">SE_eyding_re</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined effect size (RE) = </span><span class="si">{</span><span class="n">E_eyding_re</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  with SE = </span><span class="si">{</span><span class="n">SE_eyding_re</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  and the 95% CI ranging from </span><span class="si">{</span><span class="n">ci_lo_E_eyding_re</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">to </span><span class="si">{</span><span class="n">ci_up_E_eyding_re</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% CI of the total OR (RE) of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">E_eyding_re</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">extends from </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci_lo_E_eyding_re</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci_up_E_eyding_re</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined effect size (RE) = 0.215
+  with SE = 0.1187
+  and the 95% CI ranging from -0.0180 to 0.4472
+The 95% CI of the total OR (RE) of 1.24 extends from 0.98 to 1.56
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="confidence-intervals-using-the-t-distribution">
+<h4>Confidence intervals using the t-distribution<a class="headerlink" href="#confidence-intervals-using-the-t-distribution" title="Link to this heading">#</a></h4>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">use_t=True</span></code> allows us to use the t-distribution, rather than the Gaussian, to calculate confidence intervals for the pooled effect size. This uses a critical t-value, with degrees of freedom determined by the number of studies minus one.</p>
+<p>For pooled effect size confidence intervals, setting <code class="docutils literal notranslate"><span class="pre">use_t=True</span></code> allows the use of the t-distribution, with degrees of freedom determined by the number of studies minus one. However, statsmodels currently requires a separate method, utilizing total observations, to calculate t-distribution confidence intervals for individual studies. In many cases, though, the large sample sizes of individual studies make the Gaussian distribution a sufficient approximation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform meta-analysis using the t-distribution</span>
+<span class="n">res_eyding_t</span> <span class="o">=</span> <span class="n">combine_effects</span><span class="p">(</span>
+    <span class="n">effect</span><span class="o">=</span><span class="n">eff_eyding</span><span class="p">,</span>
+    <span class="n">variance</span><span class="o">=</span><span class="n">var_eyding</span><span class="p">,</span>
+    <span class="n">method_re</span><span class="o">=</span><span class="s2">&quot;chi2&quot;</span><span class="p">,</span> 
+    <span class="n">use_t</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">row_names</span><span class="o">=</span><span class="n">data_eyding</span><span class="o">.</span><span class="n">index</span>
+<span class="p">)</span>
+
+<span class="n">res_eyding_t</span><span class="o">.</span><span class="n">conf_int_samples</span><span class="p">(</span>
+    <span class="n">nobs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="n">data_eyding</span><span class="p">[</span><span class="s1">&#39;nobs_t&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">data_eyding</span><span class="p">[</span><span class="s1">&#39;nobs_c&#39;</span><span class="p">]))</span>
+
+<span class="c1"># Print formatted summary results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results of the meta-analysis usig the t-distribution:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Meta-analysis summary (log):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">res_eyding_t</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results of the meta-analysis usig the t-distribution:
+
+Meta-analysis summary (log):
+                         eff    sd_eff    ci_low    ci_upp      w_fe      w_re
+014                0.904595  0.259159  0.394211  1.414978  0.115202  0.130693
+015                0.277574  0.271507 -0.257514  0.812662  0.104962  0.123201
+046                0.084557  0.180460 -0.269999  0.439113  0.237593  0.192509
+047                0.209873  0.183578 -0.150850  0.570596  0.229590  0.189568
+050               -0.097580  0.238630 -0.567275  0.372114  0.135876  0.144388
+045               -0.087851  0.305341 -0.690525  0.514823  0.082989  0.105232
+049                0.257545  0.287226 -0.308686  0.823776  0.093788  0.114410
+fixed effect       0.205226  0.087962 -0.010010  0.420462  1.000000       NaN
+random effect      0.214617  0.118666 -0.075749  0.504982       NaN  1.000000
+fixed effect wls   0.205226  0.115618 -0.077681  0.488133  1.000000       NaN
+random effect wls  0.214617  0.122392 -0.084867  0.514100       NaN  1.000000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span> <span class="k">as</span> <span class="n">t_dist</span>
+
+<span class="n">t_crit_eyding</span> <span class="o">=</span> <span class="n">t_dist</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">res_eyding</span><span class="o">.</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">ppf</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="mf">.95</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ci_t_lo_E_eyding_re</span> <span class="o">=</span> <span class="n">E_eyding_re</span> <span class="o">-</span> <span class="n">t_crit_eyding</span> <span class="o">*</span> <span class="n">SE_eyding_re</span>
+<span class="n">ci_t_up_E_eyding_re</span> <span class="o">=</span> <span class="n">E_eyding_re</span> <span class="o">+</span> <span class="n">t_crit_eyding</span> <span class="o">*</span> <span class="n">SE_eyding_re</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined effect size (RE) using the t-distribution = </span><span class="si">{</span><span class="n">E_eyding_re</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  with SE = </span><span class="si">{</span><span class="n">SE_eyding_re</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  and the 95% CI ranging from </span><span class="si">{</span><span class="n">ci_t_lo_E_eyding_re</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">to </span><span class="si">{</span><span class="n">ci_t_up_E_eyding_re</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% CI of the total OR (RE) of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">E_eyding_re</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">extends from </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci_t_lo_E_eyding_re</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci_t_up_E_eyding_re</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined effect size (RE) using the t-distribution = 0.215
+  with SE = 0.1187
+  and the 95% CI ranging from -0.0757 to 0.5050
+The 95% CI of the total OR (RE) of 1.24 extends from 0.93 to 1.66
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the t-distribution, the 95% confidence interval for the random-effects model’s overall odds ratio of 1.24 is 0.93 to 1.66, while the Gaussian distribution produces an interval of 0.98 to 1.56. With only seven studies, the t-distribution is generally considered more reliable, and both intervals include 1.0, thereby confirming the result’s statistical insignificance.</p>
+</section>
+</section>
+<section id="advanced-random-effects-models">
+<h3>Advanced random-effects models<a class="headerlink" href="#advanced-random-effects-models" title="Link to this heading">#</a></h3>
+<p>As we’ve explored, random-effects models are essential in meta-analysis for addressing between-study heterogeneity, particularly in medical studies. Traditionally, the normal distribution has been the standard assumption due to its computational ease and conceptual simplicity. However, it’s crucial to recognize that the shape of the random-effects distribution directly reflects how treatment effect parameters (e.g., mean difference, log relative risk) are distributed across the population of studies, and thus, it’s intricately linked to the underlying heterogeneity.</p>
+<p>If the normal distribution assumption significantly deviates from the true heterogeneous structure, our meta-analytic results can be misleading. For instance, if the true distribution is skewed or has heavier tails than a normal distribution, using a normal distribution might lead to inaccurate estimates of the pooled effect and its uncertainty.</p>
+<p>To address these limitations, recent advancements propose the use of flexible random-effects distribution models [&#64;noma_meta-analysis_2022]. These models can accommodate skewness, kurtosis (peakedness), and varying tail weights, providing a more accurate representation of the heterogeneity. These flexible distributions include:</p>
+<ul class="simple">
+<li><p><em>Skew normal distribution</em>: accounts for asymmetry in the distribution.</p></li>
+<li><p><em>Skew t-distribution</em>: handles both skewness and heavier tails, which are common in real-world data.</p></li>
+<li><p><em>Asymmetric subbotin distribution</em>: offers flexibility in modeling both skewness and kurtosis.</p></li>
+<li><p><em>Jones-Faddy distribution</em>: provides a versatile framework for modeling a wide range of distribution shapes.</p></li>
+<li><p><em>sinh-arcsinh distribution</em>: can capture complex distributional shapes, including skewness and heavy tails.</p></li>
+</ul>
+<p>By employing these flexible models, we can potentially achieve more robust and reliable meta-analytic results. The choice of distribution should be guided by the characteristics of the data and our understanding of the underlying heterogeneity. For example, if we have prior knowledge or evidence suggesting that the treatment effects are likely skewed, a skew normal or skew t-distribution might be more appropriate.</p>
+<p>The adoption of these advanced models is becoming increasingly important as we strive for greater accuracy and reliability in evidence synthesis. It’s crucial to acknowledge that the conclusions and interpretations derived from meta-analyses can be substantially altered if the normal distribution assumption is not suitable. Therefore, we recommend exploring these flexible distribution models, particularly when there are reasons to believe that the normal distribution may not adequately represent the data’s heterogeneity. We will not explore these methods in depth here, as they are advanced methods, but we wanted to make you aware of their existance.</p>
+</section>
+</section>
+<section id="meta-analysis-of-continuous-data">
+<h2>Meta-analysis of continuous data<a class="headerlink" href="#meta-analysis-of-continuous-data" title="Link to this heading">#</a></h2>
+<section id="overall-effect-size">
+<h3>Overall effect size<a class="headerlink" href="#overall-effect-size" title="Link to this heading">#</a></h3>
+<p>Having explored meta-analysis techniques for counted data, including the Mantel-Haenszel method and various fixed and random-effects models, we now transition to the meta-analysis of continuous data. In this section, we will focus on estimating the <strong>overall effect size</strong> from continuous data, specifically the mean value of the measured variable.</p>
+<p>In the context of meta-analysis, the primary difference between counted data and continuous data lies in the nature of the outcome measures and the effect sizes used. Counted data, often binary, involves events or proportions, such as the number of patients responding to a treatment or the occurrence of adverse events. Consequently, effect sizes like odds ratios, risk ratios, and risk differences are used to quantify the treatment effect.</p>
+<p>Continuous data, on the other hand, involves measurements on a <em>continuous scale</em>, such as blood pressure, weight, or test scores. Here, we aim to estimate the overall mean value of the measured variable across studies. This approach is suitable when the studies are measuring the same quantity using the same scale, allowing for direct comparison of means.</p>
+<p>As we are working with data measured on a consistent scale, we <em>directly combine the means and variances</em> to estimate the overall effect size. This approach allows us to determine the pooled mean value of the continuous variable, providing a direct and interpretable measure of the overall effect across studies.</p>
+<section id="continuous-data">
+<h4>Continuous data<a class="headerlink" href="#continuous-data" title="Link to this heading">#</a></h4>
+<p>To demonstrate the meta-analysis of continuous data, we will utilize a dataset published by Karcher [&#64;kacker_combining_2004] that combines information from interlaboratory evaluations. The data specifically concerns the intralaboratory means and standard deviations of the amount of lead (Pb) in natural water, with measurements in nmol/kg, as derived from Table A1 in the original article [&#64;kacker_combining_2004].</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the row names (lab identifiers)</span>
+<span class="n">rownames_karcher</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;PTB&#39;</span><span class="p">,</span> <span class="s1">&#39;NMi&#39;</span><span class="p">,</span> <span class="s1">&#39;NIMC&#39;</span><span class="p">,</span> <span class="s1">&#39;KRISS&#39;</span><span class="p">,</span> <span class="s1">&#39;LGC&#39;</span><span class="p">,</span> <span class="s1">&#39;NRC&#39;</span><span class="p">,</span> <span class="s1">&#39;IRMM&#39;</span><span class="p">,</span> <span class="s1">&#39;NIST&#39;</span><span class="p">,</span> <span class="s1">&#39;LNE&#39;</span><span class="p">])</span>
+<span class="c1"># Define the array of mean values for each laboratory</span>
+<span class="n">mean_karcher</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="mf">61.00</span><span class="p">,</span> <span class="mf">61.40</span><span class="p">,</span> <span class="mf">62.21</span><span class="p">,</span> <span class="mf">62.30</span><span class="p">,</span> <span class="mf">62.34</span><span class="p">,</span> <span class="mf">62.60</span><span class="p">,</span> <span class="mf">62.70</span><span class="p">,</span> <span class="mf">62.84</span><span class="p">,</span> <span class="mf">65.90</span><span class="p">])</span>
+<span class="c1"># Define the array of standard deviation values</span>
+<span class="n">std_karcher</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">1.10</span> <span class="p">,</span> <span class="mf">0.30</span><span class="p">,</span> <span class="mf">0.45</span> <span class="p">,</span> <span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">1.35</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="computing-overall-effect-size-using-the-normal-distribution">
+<h4>Computing overall effect size using the normal distribution<a class="headerlink" href="#computing-overall-effect-size-using-the-normal-distribution" title="Link to this heading">#</a></h4>
+<p>We’ll leverage the statsmodels <code class="docutils literal notranslate"><span class="pre">meta_analysis</span></code> module in Python, which, as we’ve seen, provides a robust suite of tools for meta-analysis. Building upon our previous understanding of effect size calculations, we can directly use <code class="docutils literal notranslate"><span class="pre">combine_effects</span></code> with the mean effects and variances to perform the meta-analysis. However, it’s important to note that only the normal distribution can be used if <em>observation counts are not provided</em>. This is because while the <strong>pooled effect size</strong> and its variance can be calculated without individual study counts, the t-distribution requires degrees of freedom to accurately estimate <em>individual study/lab confidence intervals</em>. Without the sample sizes (counts), <code class="docutils literal notranslate"><span class="pre">combine_effects</span></code> cannot calculate these degrees of freedom, and therefore must default to the normal distribution for those individual confidence intervals.</p>
+<p>Using this approach, we can reuse our knowledge of fixed and random-effects models to estimate the overall mean or effect. We can estimate the random-effects variance, tau-squared, using the one-step chi-squared (chi2) / DerSimonian-Laird (DL) method. Note that we need the variance values for proceeding, so we need to transform the standard deviation values provided in the original article.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_karcher</span> <span class="o">=</span> <span class="n">combine_effects</span><span class="p">(</span>
+    <span class="n">effect</span><span class="o">=</span><span class="n">mean_karcher</span><span class="p">,</span>
+    <span class="n">variance</span><span class="o">=</span><span class="n">std_karcher</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># variance</span>
+    <span class="n">method_re</span><span class="o">=</span><span class="s2">&quot;dl&quot;</span><span class="p">,</span>  <span class="c1"># Same as &#39;chi2&#39;</span>
+    <span class="n">use_t</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">row_names</span><span class="o">=</span><span class="n">rownames_karcher</span><span class="p">)</span>
+
+<span class="c1"># Print key information</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Random effects (RE) method:&quot;</span><span class="p">,</span> <span class="n">res_karcher</span><span class="o">.</span><span class="n">method_re</span><span class="p">)</span>
+
+<span class="c1"># Print formatted summary results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Meta-analysis summary:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">res_karcher</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Print summary statistics only</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Combined effects:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">res_karcher</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random effects (RE) method: dl
+
+Meta-analysis summary:
+                        eff  sd_eff   ci_low   ci_upp    w_fe    w_re
+PTB                61.0000  0.4500  60.1180  61.8820  0.0574  0.1231
+NMi                61.4000  1.1000  59.2440  63.5560  0.0096  0.0403
+NIMC               62.2100  0.3000  61.6220  62.7980  0.1292  0.1597
+KRISS              62.3000  0.4500  61.4180  63.1820  0.0574  0.1231
+LGC                62.3400  0.6200  61.1248  63.5552  0.0303  0.0898
+NRC                62.6000  0.7500  61.1300  64.0700  0.0207  0.0710
+IRMM               62.7000  0.2600  62.1904  63.2096  0.1721  0.1698
+NIST               62.8400  0.1500  62.5460  63.1340  0.5169  0.1945
+LNE                65.9000  1.3500  63.2540  68.5460  0.0064  0.0286
+fixed effect       62.5834  0.1078  62.3720  62.7948  1.0000     NaN
+random effect      62.3901  0.2457  61.9085  62.8718     NaN  1.0000
+fixed effect wls   62.5834  0.1899  62.2112  62.9556  1.0000     NaN
+random effect wls  62.3901  0.2948  61.8124  62.9679     NaN  1.0000
+
+Combined effects:
+                      eff    sd_eff     ci_low     ci_upp  w_fe  w_re
+fixed effect   62.583397  0.107846  62.372023  62.794771   1.0   NaN
+random effect  62.390139  0.245750  61.908478  62.871799   NaN   1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The meta-analysis of continuous data using yields straightforward results on a linear scale, unlike the log-transformed odds ratios encountered with proportions. In this analysis, the fixed-effect model estimates the combined mean effect as 62.58, with a narrow confidence interval (62.37, 62.79), indicating high precision. The random-effects model, accounting for potential between-study heterogeneity, estimates a slightly lower combined mean of 62.39, but with a <em>wider confidence interval</em> (61.91, 62.87), reflecting increased uncertainty.</p>
+</section>
+<section id="forest-plot-of-continuous-data-normal-distribution">
+<h4>Forest plot of continuous data (normal distribution)<a class="headerlink" href="#forest-plot-of-continuous-data-normal-distribution" title="Link to this heading">#</a></h4>
+<p>Both models demonstrate a high degree of consistency, with the random-effects estimate falling well within the fixed-effect confidence interval. Notably, these results are directly interpretable on the original measurement scale, nmol/kg for lead, without requiring back-transformation, simplifying the interpretation compared to log odds ratios in proportion-based meta-analyses, as shown in &#64;fig-forest-lab. Note that we don’t need to draw a vertical line because we are not testing a specific null value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#| label: fig-forest-lab</span>
+<span class="c1">#| fig-cap: &quot;Forest plot of Lead (Pb) concentrations from Karcher et al.&quot;</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">res_karcher</span><span class="o">.</span><span class="n">plot_forest</span><span class="p">(</span>
+    <span class="n">use_exp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Linear scale is only required</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Forest plot -- Karcher study&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;[Pb] (nmol/kg)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/702ff7542a73c034031b70ef824f30e5809a8888b4c41a7a4e64aad576115132.png" src="_images/702ff7542a73c034031b70ef824f30e5809a8888b4c41a7a4e64aad576115132.png" />
+</div>
+</div>
+</section>
+<section id="fixed-effects-overall-effect-size">
+<h4>Fixed-effects overall effect size<a class="headerlink" href="#fixed-effects-overall-effect-size" title="Link to this heading">#</a></h4>
+<p>The fixed-effects analysis follows the same methodology as applied to proportions, employing a weighted average of study effects, weighted by their <em>inverse variances</em>. We will not repeat the calculation procedure here, but the manually derived fixed-effects pooled value with its confidence interval are presented below. Note that we can directly use the initial mean and standard deviation values from <code class="docutils literal notranslate"><span class="pre">mean_karcher</span></code> and <code class="docutils literal notranslate"><span class="pre">std_karcher</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the weighted effects by multiplying each effect by its fixed-effects weight</span>
+<span class="n">karcher_weighted</span> <span class="o">=</span> <span class="n">mean_karcher</span> <span class="o">*</span> <span class="n">res_karcher</span><span class="o">.</span><span class="n">weights_fe</span>
+<span class="c1">#karcher_weighted = res_karcher.effect * res_karcher.weights_fe</span>
+
+<span class="c1"># Calculate the pooled fixed effect by summing the weighted effects and </span>
+<span class="c1"># dividing by the sum of the weights</span>
+<span class="n">E_karcher_fe</span> <span class="o">=</span> <span class="n">karcher_weighted</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">res_karcher</span><span class="o">.</span><span class="n">weights_fe</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Calculate inverse variances and standard error (fixed-effect)</span>
+<span class="n">inverse_variance_karcher</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">std_karcher</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">SE_karcher_fe</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">inverse_variance_karcher</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># Calculate confidence interval (fixed-effect)</span>
+<span class="c1"># If t-distribution is preferred, with k the number of studies</span>
+<span class="c1">#t_crit_karcher = stats.t(df=res_karcher.df).ppf((1+.95)/2)</span>
+<span class="n">ci_lo_E_karcher_fe</span> <span class="o">=</span> <span class="n">E_karcher_fe</span> <span class="o">-</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">SE_karcher_fe</span>
+<span class="n">ci_up_E_karcher_fe</span> <span class="o">=</span> <span class="n">E_karcher_fe</span> <span class="o">+</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">SE_karcher_fe</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined effect size in Karcher study (FE) = </span><span class="si">{</span><span class="n">E_karcher_fe</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  with SE = </span><span class="si">{</span><span class="n">SE_karcher_fe</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  and the 95% CI ranging from </span><span class="si">{</span><span class="n">ci_lo_E_karcher_fe</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">to </span><span class="si">{</span><span class="n">ci_up_E_karcher_fe</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined effect size in Karcher study (FE) = 62.58340
+  with SE = 0.1078
+  and the 95% CI ranging from 62.3720 to 62.7948
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="heterogeneity-using-continuous-data">
+<h4>Heterogeneity using continuous data<a class="headerlink" href="#heterogeneity-using-continuous-data" title="Link to this heading">#</a></h4>
+<p>In meta-analysis, we assess heterogeneity—the variability in observed effects beyond chance—using Cochran’s Q statistic. This statistic, calculated as the weighted sum of squared differences between individual study effects and the pooled effect, follows a chi-square distribution. While Cochran’s Q is applicable to both proportion and continuous data, it’s important to note its limitations: low power with few studies and excessive power with many studies. Therefore, its interpretation should be considered in light of the number of studies included in the meta-analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cochrane heterogeneity assessment in Karcher study:&quot;</span><span class="p">)</span>
+<span class="n">res_karcher</span><span class="o">.</span><span class="n">test_homogeneity</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cochrane heterogeneity assessment in Karcher study:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;statsmodels.stats.base.HolderTuple&#39;&gt;
+statistic = 24.80189774185419
+pvalue = 0.001679351463714887
+df = 8
+distr = &#39;chi2&#39;
+tuple = (24.80189774185419, 0.001679351463714887)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I² in Karcher study = </span><span class="si">{</span><span class="n">res_karcher</span><span class="o">.</span><span class="n">i2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I² in Karcher study = 67.74%
+</pre></div>
+</div>
+</div>
+</div>
+<p>The significant heterogeneity shown by the Cochran’s Q test (p=<code class="docutils literal notranslate"><span class="pre">{python}</span> <span class="pre">round(res_karcher.test_homogeneity().pvalue,</span> <span class="pre">4)</span></code>), and the high I² of <code class="docutils literal notranslate"><span class="pre">{python}</span> <span class="pre">round(res_karcher.i2</span> <span class="pre">*</span> <span class="pre">100,</span> <span class="pre">2)</span></code>%, confirm that the variability in lead (Pb) measurements across laboratories is not solely due to chance, suggesting that a random-effects model would be more suitable.</p>
+</section>
+<section id="random-effects-overall-effect-size">
+<h4>Random-effects overall effect size<a class="headerlink" href="#random-effects-overall-effect-size" title="Link to this heading">#</a></h4>
+<p>Tau-squared and the study normalized weights for the random-effects model are shown below. These values are used for calculating the confidence interval of the pooled effect size in random-effects models.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print τ²</span>
+<span class="n">tau2_karcher</span> <span class="o">=</span> <span class="n">res_karcher</span><span class="o">.</span><span class="n">tau2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;τ² (Karcher study) = &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">tau2_karcher</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Calculate normalized random-effect weights</span>
+<span class="n">normalized_re_weights_karcher</span> <span class="o">=</span> <span class="n">res_karcher</span><span class="o">.</span><span class="n">weights_re</span> <span class="o">/</span> <span class="n">res_karcher</span><span class="o">.</span><span class="n">weights_re</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalized random-effect weights:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">normalized_re_weights_karcher</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>τ² (Karcher study) =  0.288
+Normalized random-effect weights:
+ [0.123 0.04  0.16  0.123 0.09  0.071 0.17  0.194 0.029]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate combined effect size (random-effect)</span>
+<span class="n">E_karcher_re</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean_karcher</span> <span class="o">*</span> <span class="n">normalized_re_weights_karcher</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Calculate inverse variances and standard error (random-effect)</span>
+<span class="n">re_weights_karcher</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">std_karcher</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">tau2_karcher</span><span class="p">)</span>
+<span class="c1">#re_weights_karcher = res_karcher.weights_re</span>
+<span class="n">SE_karcher_re</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">re_weights_karcher</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># Calculate confidence interval (random-effect)</span>
+<span class="n">ci_lo_E_karcher_re</span> <span class="o">=</span> <span class="n">E_karcher_re</span> <span class="o">-</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">SE_karcher_re</span>
+<span class="n">ci_up_E_karcher_re</span> <span class="o">=</span> <span class="n">E_karcher_re</span> <span class="o">+</span> <span class="n">z_crit</span> <span class="o">*</span> <span class="n">SE_karcher_re</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined effect size (RE) = </span><span class="si">{</span><span class="n">E_karcher_re</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  with SE = </span><span class="si">{</span><span class="n">SE_karcher_re</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  and the 95% CI ranging from </span><span class="si">{</span><span class="n">ci_lo_E_karcher_re</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">to </span><span class="si">{</span><span class="n">ci_up_E_karcher_re</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined effect size (RE) = 62.390
+  with SE = 0.2457
+  and the 95% CI ranging from 61.9085 to 62.8718
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="standardized-mean-difference-smd">
+<h3>Standardized mean difference (SMD)<a class="headerlink" href="#standardized-mean-difference-smd" title="Link to this heading">#</a></h3>
+<p>Effect sizes like <em>mean differences</em> or <strong>standardized mean differences (SMDs)</strong> are employed to summarize the treatment impact. It is a statistical measure used to combine the results of studies that have measured the same outcome using <em>different scales</em>. It quantifies the <em>difference between the means of two groups</em> (e.g., treatment and control) divided by the standard deviation, effectively expressing the treatment effect in standard deviation units.</p>
+<p>This allows for the comparison of studies that used different measurement tools, making it particularly useful when synthesizing continuous data where direct mean differences are not comparable. Common variations include Cohen’s d and Hedges’ g, which adjust for small sample bias, providing a standardized way to assess the magnitude of an effect across diverse studies.</p>
+<p>The following example is based on the code from the <a class="reference external" href="https://www.statsmodels.org/dev/examples/notebooks/generated/metaanalysis1.html">statsmodels meta-analysis tutorial</a>, with minor cosmetic changes applied for clarity and presentation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the row names (study identifiers)</span>
+<span class="n">study_smd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;Carroll&#39;</span><span class="p">,</span> <span class="s1">&#39;Grant&#39;</span><span class="p">,</span> <span class="s1">&#39;Peck&#39;</span><span class="p">,</span> <span class="s1">&#39;Donat&#39;</span><span class="p">,</span> <span class="s1">&#39;Stewart&#39;</span><span class="p">,</span> <span class="s1">&#39;Young&#39;</span><span class="p">])</span>
+<span class="c1"># Define the array of mean values of the treatment group</span>
+<span class="n">mean_t_smd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">94</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">96</span><span class="p">])</span>
+<span class="c1"># Define the array of standard deviation values of the treatment group</span>
+<span class="n">sd_t_smd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">22</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">])</span>
+<span class="c1"># Define the array of number of observation in the treatment group</span>
+<span class="n">n_t_smd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">85</span><span class="p">])</span>
+
+<span class="c1"># Define the arrays for the control group</span>
+<span class="n">mean_c_smd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">92</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">92</span><span class="p">])</span>
+<span class="n">sd_c_smd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">22</span><span class="p">])</span>
+<span class="n">n_c_smd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">85</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To calculate standardized mean differences, we use the <code class="docutils literal notranslate"><span class="pre">effectsize_smd</span></code> function. <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.stats.meta_analysis.effectsize_smd.html">This function computes the effect size</a> as the difference between the means of two groups (mean1 - mean2) standardized by an estimate of the within-group variance.</p>
+<p>By standardizing the mean difference, we account for variations in measurement scales across the two groups, enabling us to compare studies that use different units of measurement for the same underlying construct.</p>
+<p>Importantly, this function also allows for <strong>bias correction</strong>, such as <strong>Hedges’ g</strong>, which adjusts for small sample bias, ensuring more accurate effect size estimation, particularly when sample sizes are limited.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.meta_analysis</span> <span class="kn">import</span> <span class="n">effectsize_smd</span>
+
+<span class="c1"># Computing bias corrected estimate of standardized mean difference</span>
+<span class="c1"># and estimate of variance of smd_bc</span>
+<span class="n">smd_bc</span><span class="p">,</span> <span class="n">var_smbd</span> <span class="o">=</span> <span class="n">effectsize_smd</span><span class="p">(</span>
+    <span class="n">mean1</span><span class="o">=</span><span class="n">mean_t_smd</span><span class="p">,</span>
+    <span class="n">sd1</span><span class="o">=</span><span class="n">sd_t_smd</span><span class="p">,</span>
+    <span class="n">nobs1</span><span class="o">=</span><span class="n">n_t_smd</span><span class="p">,</span>
+    <span class="n">mean2</span><span class="o">=</span><span class="n">mean_c_smd</span><span class="p">,</span>
+    <span class="n">sd2</span><span class="o">=</span><span class="n">sd_c_smd</span><span class="p">,</span>
+    <span class="n">nobs2</span><span class="o">=</span><span class="n">n_c_smd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We then combine these standardized mean differences using meta-analysis techniques utilized throughout the chapter, to estimate the overall effect size across all studies, and generate the corresponding forest plot (&#64;fig-forest-smd).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_smb</span> <span class="o">=</span> <span class="n">combine_effects</span><span class="p">(</span>
+    <span class="n">effect</span><span class="o">=</span><span class="n">smd_bc</span><span class="p">,</span>
+    <span class="n">variance</span><span class="o">=</span><span class="n">var_smbd</span><span class="p">,</span>
+    <span class="n">method_re</span><span class="o">=</span><span class="s2">&quot;dl&quot;</span><span class="p">,</span>  <span class="c1"># Same as &#39;chi2&#39;</span>
+    <span class="n">use_t</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">row_names</span><span class="o">=</span><span class="n">study_smd</span><span class="p">)</span>
+
+<span class="c1"># Print formatted summary results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Meta-analysis summary (SMD):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">res_smb</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Meta-analysis summary (SMD):
+                       eff  sd_eff  ci_low  ci_upp    w_fe    w_re
+Carroll            0.0945  0.1827 -0.2635  0.4526  0.1239  0.1575
+Grant              0.2774  0.1763 -0.0681  0.6229  0.1330  0.1628
+Peck               0.3665  0.2256 -0.0756  0.8087  0.0813  0.1262
+Donat              0.6644  0.1027  0.4630  0.8658  0.3916  0.2327
+Stewart            0.4618  0.2083  0.0535  0.8701  0.0953  0.1379
+Young              0.1852  0.1537 -0.1161  0.4865  0.1749  0.1827
+fixed effect       0.4150  0.0643  0.2889  0.5410  1.0000     NaN
+random effect      0.3585  0.1055  0.1518  0.5652     NaN  1.0000
+fixed effect wls   0.4150  0.0992  0.2205  0.6095  1.0000     NaN
+random effect wls  0.3585  0.0903  0.1814  0.5355     NaN  1.0000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#| label: fig-forest-smd</span>
+<span class="c1">#| fig-cap: &quot;Forest plot of Hedges&#39; g standardized mean difference from the SMD example&quot;</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">res_smb</span><span class="o">.</span><span class="n">plot_forest</span><span class="p">(</span>
+    <span class="n">use_exp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Linear scale is only required</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Forest plot -- SMD example&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Hedges&#39; g&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/da86cad062e1eea27e634874db8f2b9a6a2b0cf35698897618149917d5ec3896.png" src="_images/da86cad062e1eea27e634874db8f2b9a6a2b0cf35698897618149917d5ec3896.png" />
+</div>
+</div>
+<p>Hedges’ g is a refinement of Cohen’s d, we encounterd in &#64;sec-statistical-power-and-sample-size, &#64;sec-comparing-two-unpaired-means, &#64;sec-comparing-paired-data, and &#64;sec-comparing-models, specifically designed to address bias in small samples. Both measures are critical for power analysis and provide valuable information alongside t-test results. As we discussed earlier, a precise estimation of the effect size is important for the power of a study.</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>This chapter has provided a comprehensive overview of meta-analysis, a powerful tool for synthesizing evidence across multiple studies. We began by establishing the fundamental assumptions underlying meta-analytic techniques, emphasizing the importance of study selection, data extraction, and the potential for bias.</p>
+<p>We then delved into the meta-analysis of counted data, specifically focusing on the comparison of two independent proportions. We explored fixed-effects models, including the Mantel-Haenszel method, which assumes a common true effect across studies. These models, while straightforward, are sensitive to heterogeneity, prompting our discussion of random-effects models that account for between-study variability. Heterogeneity was examined using Cochran’s Q test and the I² statistic. We highlighted the importance of these measures in determining the appropriateness of fixed versus random-effects models. We also explored how weights are assigned in both fixed and random-effects models, emphasizing how they influence the pooled effect size.</p>
+<p>Transitioning to continuous data, we explored two distinct approaches: estimating the overall effect size and calculating the standardized mean difference (SMD). When studies measured the same outcome on a consistent scale, we demonstrated how to directly combine means and variances to estimate the overall effect size. In cases where studies employed different measurement scales, we utilized the <code class="docutils literal notranslate"><span class="pre">effectsize_smd</span></code> function to compute Hedges’ g, a bias-corrected SMD, and subsequently combined these standardized effect sizes using meta-analysis techniques.</p>
+<p>We demonstrated the application of these models using <code class="docutils literal notranslate"><span class="pre">summary_frame</span></code>, which provides tabular summaries of the pooled effects, and <code class="docutils literal notranslate"><span class="pre">plot_forest</span></code>, helping us to visualize individual study effects and their confidence intervals, facilitating a clear understanding of the overall treatment effect. We also discussed the use of the t-distribution in calculating confidence intervals, highlighting its importance when dealing with a small number of studies, as this distribution is more appropriate than the Gaussian distribution in those cases.</p>
+<p>By covering both counted and continuous data, and exploring various effect size measures and modeling approaches, this chapter has equipped us with the foundational knowledge and practical skills necessary to conduct and interpret meta-analyses. We have emphasized the importance of understanding the assumptions, limitations, and appropriate applications of each method, enabling us to draw robust and meaningful conclusions from synthesized evidence.</p>
+</section>
+<section id="cheat-sheet">
+<h2>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.meta_analysis</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">effectsize_2proportions</span><span class="p">,</span>
+    <span class="n">effectsize_smd</span><span class="p">,</span>
+    <span class="n">combine_effects</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>Meta-analysis of counted data<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate effect sizes (log odds ratios) and variances</span>
+<span class="n">eff</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">effectsize_2proportions</span><span class="p">(</span>
+    <span class="n">count1</span><span class="o">=</span><span class="n">count1</span><span class="p">,</span>  <span class="c1"># count positive in treatment group</span>
+    <span class="n">nobs1</span><span class="o">=</span><span class="n">nobs1</span><span class="p">,</span>    <span class="c1"># number of observation in treatment group</span>
+    <span class="n">count2</span><span class="o">=</span><span class="n">count2</span><span class="p">,</span>  <span class="c1"># count positive in control group</span>
+    <span class="n">nobs2</span><span class="o">=</span><span class="n">nobs2</span><span class="p">,</span>    <span class="c1"># number of observation in control group</span>
+    <span class="n">statistic</span><span class="o">=</span><span class="s2">&quot;odds-ratio&quot;</span><span class="p">)</span>
+
+<span class="c1"># Perform fixed- and random-effects meta-analysis (chi2/DL method)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">combine_effects</span><span class="p">(</span>
+    <span class="n">effect</span><span class="o">=</span><span class="n">eff</span><span class="p">,</span>
+    <span class="n">variance</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
+    <span class="n">method_re</span><span class="o">=</span><span class="s2">&quot;chi2&quot;</span><span class="p">,</span>  <span class="c1"># One-step chi2/DL estimate for RE variance τ²</span>
+    <span class="n">use_t</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">row_names</span><span class="o">=</span><span class="n">row_names</span><span class="p">)</span>
+
+<span class="c1"># Print the summary results</span>
+<span class="n">res</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">()</span>          <span class="c1"># LogOR</span>
+<span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">())</span>  <span class="c1"># OR</span>
+
+<span class="c1"># Retrieving key information</span>
+<span class="n">res</span><span class="o">.</span><span class="n">effect</span>
+<span class="n">res</span><span class="o">.</span><span class="n">mean_effect_fe</span>
+<span class="n">res</span><span class="o">.</span><span class="n">weights_fe</span>
+<span class="n">res</span><span class="o">.</span><span class="n">df</span>  <span class="c1"># Degrees of freedom</span>
+<span class="n">res</span><span class="o">.</span><span class="n">mean_effect_re</span>
+<span class="n">res</span><span class="o">.</span><span class="n">method_re</span>
+<span class="n">res_eyding</span><span class="o">.</span><span class="n">tau2</span>
+<span class="n">res</span><span class="o">.</span><span class="n">weights_re</span>
+</pre></div>
+</div>
+</section>
+<section id="mantel-hanszel-odds-raio">
+<h3>Mantel-Hanszel odds-raio<a class="headerlink" href="#mantel-hanszel-odds-raio" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.stats.api</span> <span class="k">as</span> <span class="nn">smstats</span>
+
+<span class="c1"># Construct the 2 x 2 x k contingency table, containing</span>
+<span class="c1"># event and non-event counts, in treatment and control</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">count1</span><span class="p">,</span> <span class="n">nobs1</span> <span class="o">-</span> <span class="n">count1</span><span class="p">,</span> <span class="n">count2</span><span class="p">,</span> <span class="n">nobs2</span> <span class="o">-</span> <span class="n">count2</span><span class="p">])</span>
+<span class="n">ctables</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Create a StratifiedTable object from the contingency table</span>
+<span class="c1"># The contingency table is cast to float64 to ensure compatibility</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">smstats</span><span class="o">.</span><span class="n">StratifiedTable</span><span class="p">(</span><span class="n">ctables</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">logodds_pooled</span>           <span class="c1"># Pooled log odds ratio</span>
+<span class="n">st</span><span class="o">.</span><span class="n">logodds_pooled_se</span>        <span class="c1"># Standard error of the pooled logOR</span>
+<span class="n">st</span><span class="o">.</span><span class="n">logodds_pooled_confint</span><span class="p">()</span> <span class="c1"># Confidence interval of the pooled logOR</span>
+
+<span class="c1"># Test of the null hypothesis that the pooled LogOR is 0 (OR=1)</span>
+<span class="n">st</span><span class="o">.</span><span class="n">test_null_odds</span><span class="p">()</span>
+
+<span class="c1"># MH summary table</span>
+<span class="n">st</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>Heterogeneity<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cochran&#39;s Q χ² test</span>
+<span class="n">res</span><span class="o">.</span><span class="n">test_homogeneity</span><span class="p">()</span>
+
+<span class="c1"># I²</span>
+<span class="n">res</span><span class="o">.</span><span class="n">i2</span>
+</pre></div>
+</div>
+</section>
+<section id="meta-analysis-using-the-t-distribution">
+<h3>Meta-analysis using the t-distribution<a class="headerlink" href="#meta-analysis-using-the-t-distribution" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">combine_effects</span><span class="p">(</span>
+    <span class="n">effect</span><span class="o">=</span><span class="n">eff</span><span class="p">,</span>
+    <span class="n">variance</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
+    <span class="n">method_re</span><span class="o">=</span><span class="s2">&quot;chi2&quot;</span><span class="p">,</span> 
+    <span class="n">use_t</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">row_names</span><span class="o">=</span><span class="n">row_names</span><span class="p">)</span>
+
+<span class="n">res</span><span class="o">.</span><span class="n">conf_int_samples</span><span class="p">(</span>
+    <span class="n">nobs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;nobs1&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;nobs2&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Forest plot<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">plot_forest</span><span class="p">(</span>
+    <span class="n">use_exp</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># to show OR instead of logOR</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Meta-analysis of continuous data<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Overall effect size and variance</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">combine_effects</span><span class="p">(</span>
+    <span class="n">effect</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span>
+    <span class="n">variance</span><span class="o">=</span><span class="n">std</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># variance</span>
+    <span class="n">method_re</span><span class="o">=</span><span class="s2">&quot;dl&quot;</span><span class="p">,</span>
+    <span class="n">use_t</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">row_names</span><span class="o">=</span><span class="n">rownames</span><span class="p">)</span>
+
+<span class="c1"># Computing bias corrected estimate of SMD and variance</span>
+<span class="n">smd_bc</span><span class="p">,</span> <span class="n">var_smbd</span> <span class="o">=</span> <span class="n">effectsize_smd</span><span class="p">(</span>
+    <span class="n">mean1</span><span class="o">=</span><span class="n">mean1</span><span class="p">,</span>  <span class="c1"># mean values in group A</span>
+    <span class="n">sd1</span><span class="o">=</span><span class="n">sd1</span><span class="p">,</span>      <span class="c1"># standard deviation in group A</span>
+    <span class="n">nobs1</span><span class="o">=</span><span class="n">n1</span><span class="p">,</span>     <span class="c1"># total count in group A</span>
+    <span class="n">mean2</span><span class="o">=</span><span class="n">mean2</span><span class="p">,</span>  <span class="c1"># mean values in group B</span>
+    <span class="n">sd2</span><span class="o">=</span><span class="n">sd2</span><span class="p">,</span>      <span class="c1"># standard deviation in group B</span>
+    <span class="n">nobs2</span><span class="o">=</span><span class="n">n2</span>      <span class="c1"># total count in group A</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="39%20-%20ANOVA.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ANOVA</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-of-meta-analysis">Assumptions of meta-analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-of-counted-data">Meta-analysis of counted data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-two-independent-proportions">Comparison of two independent proportions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-data">Loading the data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-effect-sizes-and-variances">Calculating effect sizes and variances</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-combined-effects">Calculating combined effects</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forest-plot">Forest plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effects-woolf-method">Fixed-effects (Woolf method)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weights-and-variances">Weights and variances</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval">Confidence interval</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantel-hanszel-odds-ratio">Mantel-Hanszel odds-ratio</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneity">Heterogeneity</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effects-models">Random-effects models</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tau-squared">Tau-squared</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals-in-random-effects">Confidence intervals in random-effects</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals-using-the-t-distribution">Confidence intervals using the t-distribution</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-random-effects-models">Advanced random-effects models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-of-continuous-data">Meta-analysis of continuous data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-effect-size">Overall effect size</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-data">Continuous data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-overall-effect-size-using-the-normal-distribution">Computing overall effect size using the normal distribution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forest-plot-of-continuous-data-normal-distribution">Forest plot of continuous data (normal distribution)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effects-overall-effect-size">Fixed-effects overall effect size</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneity-using-continuous-data">Heterogeneity using continuous data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#random-effects-overall-effect-size">Random-effects overall effect size</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardized-mean-difference-smd">Standardized mean difference (SMD)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheet">Cheat sheet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Meta-analysis of counted data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantel-hanszel-odds-raio">Mantel-Hanszel odds-raio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Heterogeneity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-using-the-t-distribution">Meta-analysis using the t-distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Forest plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Meta-analysis of continuous data</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sébastien Wieckowski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
